@@ -23,7 +23,7 @@ final List<Map<String, dynamic>> ticket = [
     "problemTime": "04:53",
     "dateTime": "01-12-2021 8.00 AM",
     "Status": "Not Resolved",
-    "loadingIndicator":true,
+    "loadingIndicator":false,
   },
   {
     "HostName": "PCAL0051",
