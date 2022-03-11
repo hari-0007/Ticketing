@@ -574,6 +574,34 @@ class _MatrixPageState extends State<MatrixPage> {
   @override
   Widget build(BuildContext context) {
 
+    memorybar.forEach((key, value) {
+      if(key=='C0001'){
+        if(value.length>0){
+          _foundTicket[0]['loadingIndicator']=true;
+        }else{
+          _foundTicket[0]['loadingIndicator']=false;
+        }
+      }else if(key == 'C0002'){
+        if(value.length>0){
+          _foundTicket[1]['loadingIndicator']=true;
+        }else{
+          _foundTicket[1]['loadingIndicator']=false;
+        }
+      }else if(key == 'C0003'){
+        if(value.length>0){
+          _foundTicket[2]['loadingIndicator']=true;
+        }else{
+          _foundTicket[2]['loadingIndicator']=false;
+        }
+      }else if(key == 'C0004'){
+        if(value.length>0){
+          _foundTicket[3]['loadingIndicator']=true;
+        }else{
+          _foundTicket[3]['loadingIndicator']=false;
+        }
+      }
+    });
+
     /*_memoryWidgets=memoryWidgets.toSet().toList();*/
 
     // for (final i in ticket){
@@ -596,6 +624,7 @@ class _MatrixPageState extends State<MatrixPage> {
       print(memorybar['C0001']?.length);
     }*/
     // main();
+    /*print(memorybar);*/
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -3813,7 +3842,16 @@ class _MatrixPageState extends State<MatrixPage> {
                     /*_foundTicket[1];*/
                     width = !width;
                     flag = false;
+                    /*if(_foundTicket[0].containsValue('C0001')){
+                      _foundTicket[0]['loadingIndicator']=true;
+                    }*/
+                    /*memorybar.forEach((key, value) {
+                      if(key=='C0001'){
+                        print(value.length);
+                      }
+                    });*/
                   });
+                  print(memorybar);
                 },
                 child: AnimatedContainer(
                   constraints: BoxConstraints(
