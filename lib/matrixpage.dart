@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'dart:ui';
+
 // import 'dart:html';
 import 'package:badges/badges.dart';
 import 'package:custom_pop_up_menu/custom_pop_up_menu.dart';
@@ -8,7 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:grouped_list/grouped_list.dart';
 import 'package:loading_indicator/loading_indicator.dart';
-import 'package:measured_size/measured_size.dart';
+
+// import 'package:measured_size/measured_size.dart';
 import 'package:shimmer/shimmer.dart';
 
 final List<Map<String, dynamic>> ticket = [
@@ -19,11 +21,11 @@ final List<Map<String, dynamic>> ticket = [
     "Type": "Manual",
     "sysNumber": "C0001",
     "problemText":
-    "Browser not opening tried to fix but not possible Browser not opening tried to fix but not possible Browser not opening tried to fix but not possible ",
+        "Browser not opening tried to fix but not possible Browser not opening tried to fix but not possible Browser not opening tried to fix but not possible ",
     "problemTime": "04:53",
     "dateTime": "01-12-2021 8.00 AM",
     "Status": "Not Resolved",
-    "loadingIndicator":false,
+    "loadingIndicator": false,
   },
   {
     "HostName": "PCAL0051",
@@ -35,7 +37,7 @@ final List<Map<String, dynamic>> ticket = [
     "problemTime": "04:53",
     "dateTime": "01-12-2021 8.00 AM",
     "Status": "Resolved",
-    "loadingIndicator":false,
+    "loadingIndicator": false,
   },
   {
     "HostName": "PCAL0052",
@@ -47,7 +49,7 @@ final List<Map<String, dynamic>> ticket = [
     "problemTime": "04:53",
     "dateTime": '01-12-2021 8.00 AM',
     "Status": 'Not Resolved',
-    "loadingIndicator":false,
+    "loadingIndicator": false,
   },
   {
     "HostName": "PCAL0053",
@@ -59,422 +61,421 @@ final List<Map<String, dynamic>> ticket = [
     "problemTime": '04:53',
     "dateTime": '01-12-2021 8.00 AM',
     "Status": 'Resolved',
-    "loadingIndicator":false,
+    "loadingIndicator": false,
   },
 ];
 
 List _elements = [
   {
     'Time': '8:00 AM',
-    'Color':  Color(0xffE20000),
-    'Severity':'High',
+    'Color': Color(0xffE20000),
+    'Severity': 'High',
     'SystemNumber': 'A0001',
     'ErrorText': 'System is not booting, it shows no boot files found.',
     'group': 'Today'
   },
   {
     'Time': '8:00 AM',
-    'Color':  Color(0xff8CE95E),
-    'Severity':'Medium',
+    'Color': Color(0xff8CE95E),
+    'Severity': 'Medium',
     'SystemNumber': 'A0002',
     'ErrorText': 'System is not booting, it show an unknow error ',
     'group': 'Today'
   },
   {
     'Time': '8:00 AM',
-    'Color':  Color(0xffEDE13D),
-    'Severity':'Low',
+    'Color': Color(0xffEDE13D),
+    'Severity': 'Low',
     'SystemNumber': 'A0003',
     'ErrorText': 'System is not booting, it shows no boot files found.',
     'group': 'Today'
   },
   {
     'Time': '8:00 AM',
-    'Color':  Color(0xffFDFDFD),
-    'Severity':'Information',
+    'Color': Color(0xffFDFDFD),
+    'Severity': 'Information',
     'SystemNumber': 'A0004',
     'ErrorText': 'System is not booting, it show an unknow error ',
     'group': 'Today'
   },
   {
     'Time': '8:00 AM',
-    'Color':  Color(0xff99E9EE),
-    'Severity':'Average',
+    'Color': Color(0xff99E9EE),
+    'Severity': 'Average',
     'SystemNumber': 'A0005',
     'ErrorText': 'System is not booting, it shows no boot files found.',
     'group': 'Today'
   },
   {
     'Time': '8:00 AM',
-    'Color':  Color(0xffE20000),
-    'Severity':'High',
+    'Color': Color(0xffE20000),
+    'Severity': 'High',
     'SystemNumber': 'A0006',
     'ErrorText': 'System is not booting, it show an unknow error ',
     'group': 'Today'
   },
   {
     'Time': '8:00 AM',
-    'Color':  Color(0xff8CE95E),
-    'Severity':'Medium',
+    'Color': Color(0xff8CE95E),
+    'Severity': 'Medium',
     'SystemNumber': 'A0007',
     'ErrorText': 'System is not booting, it shows no boot files found.',
     'group': 'Today'
   },
   {
     'Time': '8:00 AM',
-    'Color':  Color(0xffEDE13D),
-    'Severity':'Low',
+    'Color': Color(0xffEDE13D),
+    'Severity': 'Low',
     'SystemNumber': 'A0008',
     'ErrorText': 'System is not booting, it show an unknow error ',
     'group': 'Today'
   },
   {
     'Time': '8:00 AM',
-    'Color':  Color(0xffFDFDFD),
-    'Severity':'Information',
+    'Color': Color(0xffFDFDFD),
+    'Severity': 'Information',
     'SystemNumber': 'A0009',
     'ErrorText': 'System is not booting, it shows no boot files found.',
     'group': 'Today'
   },
   {
     'Time': '8:00 AM',
-    'Color':  Color(0xff99E9EE),
-    'Severity':'Average',
+    'Color': Color(0xff99E9EE),
+    'Severity': 'Average',
     'SystemNumber': 'A0010',
     'ErrorText': 'System is not booting, it show an unknow error ',
     'group': 'Today'
-  },//
+  }, //
   {
     'Time': '8:00 AM',
-    'Color':  Color(0xffE20000),
-    'Severity':'High',
+    'Color': Color(0xffE20000),
+    'Severity': 'High',
     'SystemNumber': 'A0011',
     'ErrorText': 'System is not booting, it shows no boot files found.',
     'group': '03-02-2022'
   },
   {
     'Time': '8:00 AM',
-    'Color':  Color(0xff8CE95E),
-    'Severity':'Medium',
+    'Color': Color(0xff8CE95E),
+    'Severity': 'Medium',
     'SystemNumber': 'A0012',
     'ErrorText': 'System is not booting, it show an unknow error ',
     'group': '03-02-2022'
   },
   {
     'Time': '8:00 AM',
-    'Color':  Color(0xffEDE13D),
-    'Severity':'Low',
+    'Color': Color(0xffEDE13D),
+    'Severity': 'Low',
     'SystemNumber': 'A0013',
     'ErrorText': 'System is not booting, it shows no boot files found.',
     'group': '03-02-2022'
   },
   {
     'Time': '8:00 AM',
-    'Color':  Color(0xffFDFDFD),
-    'Severity':'Information',
+    'Color': Color(0xffFDFDFD),
+    'Severity': 'Information',
     'SystemNumber': 'A0014',
     'ErrorText': 'System is not booting, it show an unknow error ',
     'group': '03-02-2022'
   },
   {
     'Time': '8:00 AM',
-    'Color':  Color(0xff99E9EE),
-    'Severity':'Average',
+    'Color': Color(0xff99E9EE),
+    'Severity': 'Average',
     'SystemNumber': 'A0015',
     'ErrorText': 'System is not booting, it shows no boot files found.',
     'group': '03-02-2022'
   },
   {
     'Time': '8:00 AM',
-    'Color':  Color(0xffE20000),
-    'Severity':'High',
+    'Color': Color(0xffE20000),
+    'Severity': 'High',
     'SystemNumber': 'A0016',
     'ErrorText': 'System is not booting, it show an unknow error ',
     'group': '03-02-2022'
   },
   {
     'Time': '8:00 AM',
-    'Color':  Color(0xff8CE95E),
-    'Severity':'Medium',
+    'Color': Color(0xff8CE95E),
+    'Severity': 'Medium',
     'SystemNumber': 'A0017',
     'ErrorText': 'System is not booting, it shows no boot files found.',
     'group': '03-02-2022'
   },
   {
     'Time': '8:00 AM',
-    'Color':  Color(0xffEDE13D),
-    'Severity':'Low',
+    'Color': Color(0xffEDE13D),
+    'Severity': 'Low',
     'SystemNumber': 'A0018',
     'ErrorText': 'System is not booting, it show an unknow error ',
     'group': '03-02-2022'
   },
   {
     'Time': '8:00 AM',
-    'Color':  Color(0xffFDFDFD),
-    'Severity':'Information',
+    'Color': Color(0xffFDFDFD),
+    'Severity': 'Information',
     'SystemNumber': 'A0019',
     'ErrorText': 'System is not booting, it shows no boot files found.',
     'group': '03-02-2022'
   },
   {
     'Time': '8:00 AM',
-    'Color':  Color(0xff99E9EE),
-    'Severity':'Average',
+    'Color': Color(0xff99E9EE),
+    'Severity': 'Average',
     'SystemNumber': 'A0020',
     'ErrorText': 'System is not booting, it show an unknow error ',
     'group': '03-02-2022'
-  },//
+  }, //
   {
     'Time': '8:00 AM',
-    'Color':  Color(0xffE20000),
-    'Severity':'High',
+    'Color': Color(0xffE20000),
+    'Severity': 'High',
     'SystemNumber': 'A0001',
     'ErrorText': 'System is not booting, it shows no boot files found.',
     'group': '02-02-2022'
   },
   {
     'Time': '8:00 AM',
-    'Color':  Color(0xff8CE95E),
-    'Severity':'Medium',
+    'Color': Color(0xff8CE95E),
+    'Severity': 'Medium',
     'SystemNumber': 'A0001',
     'ErrorText': 'System is not booting, it show an unknow error ',
     'group': '02-02-2022'
   },
   {
     'Time': '8:00 AM',
-    'Color':  Color(0xffEDE13D),
-    'Severity':'Low',
+    'Color': Color(0xffEDE13D),
+    'Severity': 'Low',
     'SystemNumber': 'A0001',
     'ErrorText': 'System is not booting, it shows no boot files found.',
     'group': '02-02-2022'
   },
   {
     'Time': '8:00 AM',
-    'Color':  Color(0xffFDFDFD),
-    'Severity':'Information',
+    'Color': Color(0xffFDFDFD),
+    'Severity': 'Information',
     'SystemNumber': 'A0001',
     'ErrorText': 'System is not booting, it show an unknow error ',
     'group': '02-02-2022'
   },
   {
     'Time': '8:00 AM',
-    'Color':  Color(0xff99E9EE),
-    'Severity':'Average',
+    'Color': Color(0xff99E9EE),
+    'Severity': 'Average',
     'SystemNumber': 'A0001',
     'ErrorText': 'System is not booting, it shows no boot files found.',
     'group': '02-02-2022'
   },
   {
     'Time': '8:00 AM',
-    'Color':  Color(0xffE20000),
-    'Severity':'High',
+    'Color': Color(0xffE20000),
+    'Severity': 'High',
     'SystemNumber': 'A0001',
     'ErrorText': 'System is not booting, it show an unknow error ',
     'group': '02-02-2022'
   },
   {
     'Time': '8:00 AM',
-    'Color':  Color(0xff8CE95E),
-    'Severity':'Medium',
+    'Color': Color(0xff8CE95E),
+    'Severity': 'Medium',
     'SystemNumber': 'A0001',
     'ErrorText': 'System is not booting, it shows no boot files found.',
     'group': '02-02-2022'
   },
   {
     'Time': '8:00 AM',
-    'Color':  Color(0xffEDE13D),
-    'Severity':'Low',
+    'Color': Color(0xffEDE13D),
+    'Severity': 'Low',
     'SystemNumber': 'A0001',
     'ErrorText': 'System is not booting, it show an unknow error ',
     'group': '02-02-2022'
   },
   {
     'Time': '8:00 AM',
-    'Color':  Color(0xffFDFDFD),
-    'Severity':'Information',
+    'Color': Color(0xffFDFDFD),
+    'Severity': 'Information',
     'SystemNumber': 'A0001',
     'ErrorText': 'System is not booting, it shows no boot files found.',
     'group': '02-02-2022'
   },
   {
     'Time': '8:00 AM',
-    'Color':  Color(0xff99E9EE),
-    'Severity':'Average',
+    'Color': Color(0xff99E9EE),
+    'Severity': 'Average',
     'SystemNumber': 'A0001',
     'ErrorText': 'System is not booting, it show an unknow error ',
     'group': '02-02-2022'
-  },//
+  }, //
   {
     'Time': '8:00 AM',
-    'Color':  Color(0xffE20000),
-    'Severity':'High',
+    'Color': Color(0xffE20000),
+    'Severity': 'High',
     'SystemNumber': 'A0001',
     'ErrorText': 'System is not booting, it shows no boot files found.',
     'group': '01-02-2022'
   },
   {
     'Time': '8:00 AM',
-    'Color':  Color(0xff8CE95E),
-    'Severity':'Medium',
+    'Color': Color(0xff8CE95E),
+    'Severity': 'Medium',
     'SystemNumber': 'A0001',
     'ErrorText': 'System is not booting, it show an unknow error ',
     'group': '01-02-2022'
   },
   {
     'Time': '8:00 AM',
-    'Color':  Color(0xffEDE13D),
-    'Severity':'Low',
+    'Color': Color(0xffEDE13D),
+    'Severity': 'Low',
     'SystemNumber': 'A0001',
     'ErrorText': 'System is not booting, it shows no boot files found.',
     'group': '01-02-2022'
   },
   {
     'Time': '8:00 AM',
-    'Color':  Color(0xffFDFDFD),
-    'Severity':'Information',
+    'Color': Color(0xffFDFDFD),
+    'Severity': 'Information',
     'SystemNumber': 'A0001',
     'ErrorText': 'System is not booting, it show an unknow error ',
     'group': '01-02-2022'
   },
   {
     'Time': '8:00 AM',
-    'Color':  Color(0xff99E9EE),
-    'Severity':'Average',
+    'Color': Color(0xff99E9EE),
+    'Severity': 'Average',
     'SystemNumber': 'A0001',
     'ErrorText': 'System is not booting, it shows no boot files found.',
     'group': '01-02-2022'
   },
   {
     'Time': '8:00 AM',
-    'Color':  Color(0xffE20000),
-    'Severity':'High',
+    'Color': Color(0xffE20000),
+    'Severity': 'High',
     'SystemNumber': 'A0001',
     'ErrorText': 'System is not booting, it show an unknow error ',
     'group': '01-02-2022'
   },
   {
     'Time': '8:00 AM',
-    'Color':  Color(0xff8CE95E),
-    'Severity':'Medium',
+    'Color': Color(0xff8CE95E),
+    'Severity': 'Medium',
     'SystemNumber': 'A0001',
     'ErrorText': 'System is not booting, it shows no boot files found.',
     'group': '01-02-2022'
   },
   {
     'Time': '8:00 AM',
-    'Color':  Color(0xffEDE13D),
-    'Severity':'Low',
+    'Color': Color(0xffEDE13D),
+    'Severity': 'Low',
     'SystemNumber': 'A0001',
     'ErrorText': 'System is not booting, it show an unknow error ',
     'group': '01-02-2022'
   },
   {
     'Time': '8:00 AM',
-    'Color':  Color(0xffFDFDFD),
-    'Severity':'Information',
+    'Color': Color(0xffFDFDFD),
+    'Severity': 'Information',
     'SystemNumber': 'A0001',
     'ErrorText': 'System is not booting, it shows no boot files found.',
     'group': '01-02-2022'
   },
   {
     'Time': '8:00 AM',
-    'Color':  Color(0xff99E9EE),
-    'Severity':'Average',
+    'Color': Color(0xff99E9EE),
+    'Severity': 'Average',
     'SystemNumber': 'A0001',
     'ErrorText': 'System is not booting, it show an unknow error ',
     'group': '01-02-2022'
-  },//
+  }, //
   {
     'Time': '8:00 AM',
-    'Color':  Color(0xffE20000),
-    'Severity':'High',
+    'Color': Color(0xffE20000),
+    'Severity': 'High',
     'SystemNumber': 'A0001',
     'ErrorText': 'System is not booting, it shows no boot files found.',
     'group': '31-01-2022'
   },
   {
     'Time': '8:00 AM',
-    'Color':  Color(0xff8CE95E),
-    'Severity':'Medium',
+    'Color': Color(0xff8CE95E),
+    'Severity': 'Medium',
     'SystemNumber': 'A0001',
     'ErrorText': 'System is not booting, it show an unknow error ',
     'group': '31-01-2022'
   },
   {
     'Time': '8:00 AM',
-    'Color':  Color(0xffEDE13D),
-    'Severity':'Low',
+    'Color': Color(0xffEDE13D),
+    'Severity': 'Low',
     'SystemNumber': 'A0001',
     'ErrorText': 'System is not booting, it shows no boot files found.',
     'group': '31-01-2022'
   },
   {
     'Time': '8:00 AM',
-    'Color':  Color(0xffFDFDFD),
-    'Severity':'Information',
+    'Color': Color(0xffFDFDFD),
+    'Severity': 'Information',
     'SystemNumber': 'A0001',
     'ErrorText': 'System is not booting, it show an unknow error ',
     'group': '31-01-2022'
   },
   {
     'Time': '8:00 AM',
-    'Color':  Color(0xff99E9EE),
-    'Severity':'Average',
+    'Color': Color(0xff99E9EE),
+    'Severity': 'Average',
     'SystemNumber': 'A0001',
     'ErrorText': 'System is not booting, it shows no boot files found.',
     'group': '31-01-2022'
   },
   {
     'Time': '8:00 AM',
-    'Color':  Color(0xffE20000),
-    'Severity':'High',
+    'Color': Color(0xffE20000),
+    'Severity': 'High',
     'SystemNumber': 'A0001',
     'ErrorText': 'System is not booting, it show an unknow error ',
     'group': '31-01-2022'
   },
   {
     'Time': '8:00 AM',
-    'Color':  Color(0xff8CE95E),
-    'Severity':'Medium',
+    'Color': Color(0xff8CE95E),
+    'Severity': 'Medium',
     'SystemNumber': 'A0001',
     'ErrorText': 'System is not booting, it shows no boot files found.',
     'group': '31-01-2022'
   },
   {
     'Time': '8:00 AM',
-    'Color':  Color(0xffEDE13D),
-    'Severity':'Low',
+    'Color': Color(0xffEDE13D),
+    'Severity': 'Low',
     'SystemNumber': 'A0001',
     'ErrorText': 'System is not booting, it show an unknow error ',
     'group': '31-01-2022'
   },
   {
     'Time': '8:00 AM',
-    'Color':  Color(0xffFDFDFD),
-    'Severity':'Information',
+    'Color': Color(0xffFDFDFD),
+    'Severity': 'Information',
     'SystemNumber': 'A0001',
     'ErrorText': 'System is not booting, it shows no boot files found.',
     'group': '31-01-2022'
   },
   {
     'Time': '8:00 AM',
-    'Color':  Color(0xff99E9EE),
-    'Severity':'Average',
+    'Color': Color(0xff99E9EE),
+    'Severity': 'Average',
     'SystemNumber': 'A0001',
     'ErrorText': 'System is not booting, it show an unknow error ',
     'group': '31-01-2022'
   },
 ];
 
-void main(){
-  for (final i in ticket){
+void main() {
+  for (final i in ticket) {
     print(i['sysNumber']);
   }
 }
 
-
-enum WidgetMarker { dashboard, incident }
-enum IncidentMarker { main,chat,notification }
+enum WidgetMarker { dashboard, incident }                          // Drawer
+enum IncidentMarker { main, chat, notification }                   // Inside Incident
 
 class MatrixPage extends StatefulWidget {
   const MatrixPage({Key? key}) : super(key: key);
@@ -484,10 +485,9 @@ class MatrixPage extends StatefulWidget {
 }
 
 class _MatrixPageState extends State<MatrixPage> {
+  List<Map<String, dynamic>> _foundTicket = [];                   //Search at getAssignedTicket
 
-  List<Map<String, dynamic>> _foundTicket = [];
-
-  Map<String,Set<String>> memorybar = Map();
+  Map<String, Set<String>> memorybar = Map();                     // Memorybar Data
 
   @override
   initState() {
@@ -503,8 +503,9 @@ class _MatrixPageState extends State<MatrixPage> {
       results = ticket;
     } else {
       results = ticket
-          .where((user) =>
-          user["sysNumber"].toLowerCase().contains(enteredKeyword.toLowerCase()))
+          .where((user) => user["sysNumber"]
+              .toLowerCase()
+              .contains(enteredKeyword.toLowerCase()))
           .toList();
       // we use the toLowerCase() method to make it case-insensitive
     }
@@ -516,88 +517,94 @@ class _MatrixPageState extends State<MatrixPage> {
   }
 
   double value = 0;
-  IncidentMarker selectedIncidentWidgetMarker = IncidentMarker.main;
-  WidgetMarker selectedWidgetMarker = WidgetMarker.incident;
+  IncidentMarker selectedIncidentWidgetMarker = IncidentMarker.main;   //Inside Incident Starting home
+  WidgetMarker selectedWidgetMarker = WidgetMarker.incident;           // Drawer Starting home
 
-  bool _ticketExpand = false;
-  bool _isChatButton = true;
-  bool _isCallButton = true;
-  bool _isRemoteButton = true;
-  bool _isScriptButton = true;
-  bool _isTerminalButton = true;
-  bool _isUpdatesButton = true;
-  bool _isActionsButton = true;
-  bool _isForwardButton = true;
-  bool _isPendingButton = true;
-  bool _isUnAvailableButton = true;
-  bool _isResolveButton = true;
-  bool _isActionCloseButton = true;
-  bool _buttonPosition =false;
+  bool _ticketExpand = false;                                           // getAssignedTicket
+  bool _isChatButton = true;                                            // getAssignedTicket -> Stack -> Red:White
+  bool _isCallButton = true;                                            // getAssignedTicket -> Stack -> Red:White
+  bool _isRemoteButton = true;                                          // getAssignedTicket -> Stack -> Red:White
+  bool _isScriptButton = true;                                          // getAssignedTicket -> Stack -> Red:White
+  bool _isTerminalButton = true;                                        // getAssignedTicket -> Stack -> Red:White
+  bool _isUpdatesButton = true;                                         // getAssignedTicket -> Stack -> Red:White
+  bool _isActionsButton = true;                                         // getAssignedTicket -> Stack -> Red:White
+  bool _isForwardButton = true;                                         // getAssignedTicket -> Stack -> Red:White
+  bool _isPendingButton = true;                                         // getAssignedTicket -> Stack -> Red:White
+  bool _isUnAvailableButton = true;                                     // getAssignedTicket -> Stack -> Red:White
+  bool _isResolveButton = true;                                         // getAssignedTicket -> Stack -> Red:White
+  bool _isActionCloseButton = true;                                     // getAssignedTicket -> Stack -> Red:White
+  bool _buttonPosition = false;                                         // getAssignedTicket -> Stack -> Red:White
 
   bool _selectedTicketIndex = true;
   int selectedIndex = -1;
-  bool _enterAction =true;
+  bool _enterAction = true;                                             // getAssignedTicket -> Visibility Chat to Actions
 
-  bool width = true;
-  bool flag = false;
+  bool width = true;                                                    // Search at getAssignedTicket Expand
+  bool flag = false;                                                    // Search at getAssignedTicket AnimatedSwitcher
 
-  Size mySize = Size.zero;
+  // Size mySize = Size.zero;
 
-  bool _remote = false;
-  var _sysNumber ;
+  bool _remote = false;                                                  // Remote Visible <-> Invisible
+  var _sysNumber;
+
+  var _index ;
 
   /*var memoryWidgets = <String>[];
   var _memoryWidgets = [];*/
 
-  bool memory(){
-    if(memorybar[_sysNumber]?.length==null){
+  bool memory() {
+    if (memorybar[_sysNumber]?.length == null) {
       return false;
-    }else if(memorybar[_sysNumber]?.length==0){
+    } else if (memorybar[_sysNumber]?.length == 0) {
       return false;
-    }else{
+    } else {
       return true;
     }
   }
 
+  double target() {
+    if (_remote == false &&
+        _foundTicket[_index]['loadingIndicator'] == false &&
+        _ticketExpand == false) {
+      return MediaQuery.of(context).size.height - 348;
+    } else if (_remote == false &&
+        _foundTicket[_index]['loadingIndicator'] == true &&
+        _ticketExpand == false) {
+      return MediaQuery.of(context).size.height - 348;
+    } else if (_ticketExpand == true &&
+        _foundTicket[_index]['loadingIndicator'] == false) {
+      return MediaQuery.of(context).size.height - 348;
+    } else if (_remote == false && _ticketExpand == true) {
+      return MediaQuery.of(context).size.height - 393;
+    } else if (_foundTicket[_index]['loadingIndicator'] == true &&
+        _ticketExpand == true &&
+        _remote == false) {
+      return MediaQuery.of(context).size.height - 393;
+    } else if (_remote == true) {
+      return MediaQuery.of(context).size.height * 0.24;
+    } else {
+      return 0;
+    }
+  }
+
   /*double target(){
-    if(_remote == false){
+    if(_remote==false){
       return MediaQuery.of(context).size.height -348;
-    }else if(_remote == true){
-      return MediaQuery.of(context).size.height -605;
-    }else if(_ticketExpand == true){
-      return MediaQuery.of(context).size.height -395;
-    }else {
+    }else if(_remote==true){
+      return MediaQuery.of(context).size.height -595;
+    }else{
       return 0;
     }
   }*/
 
   @override
   Widget build(BuildContext context) {
-
     memorybar.forEach((key, value) {
-      if(key=='C0001'){
-        if(value.length>0){
-          _foundTicket[0]['loadingIndicator']=true;
-        }else{
-          _foundTicket[0]['loadingIndicator']=false;
-        }
-      }else if(key == 'C0002'){
-        if(value.length>0){
-          _foundTicket[1]['loadingIndicator']=true;
-        }else{
-          _foundTicket[1]['loadingIndicator']=false;
-        }
-      }else if(key == 'C0003'){
-        if(value.length>0){
-          _foundTicket[2]['loadingIndicator']=true;
-        }else{
-          _foundTicket[2]['loadingIndicator']=false;
-        }
-      }else if(key == 'C0004'){
-        if(value.length>0){
-          _foundTicket[3]['loadingIndicator']=true;
-        }else{
-          _foundTicket[3]['loadingIndicator']=false;
+      if (key == _foundTicket[_index]['sysNumber']) {
+        if (value.length > 0) {
+          _foundTicket[_index]['loadingIndicator'] = true;
+        } else {
+          _foundTicket[_index]['loadingIndicator'] = false;
         }
       }
     });
@@ -632,7 +639,7 @@ class _MatrixPageState extends State<MatrixPage> {
       body: Stack(
         children: [
           Container(
-            decoration:  BoxDecoration(
+            decoration: BoxDecoration(
                 gradient: LinearGradient(
                     colors: [Colors.blueGrey, Colors.black87],
                     begin: Alignment.topCenter,
@@ -640,79 +647,77 @@ class _MatrixPageState extends State<MatrixPage> {
           ),
           Container(
             width: 250,
-            padding:  EdgeInsets.all(0),
+            padding: EdgeInsets.all(0),
             child: Column(
               // crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 DrawerHeader(
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        ClipOval(
-                          // borderRadius: BorderRadius.circular(30),
-                          child: Image.network(
-                              'https://static.wikia.nocookie.net/dcanimated/images/2/21/Batman_%28BTAS%29.png/revision/latest?cb=20191206112827',
-                            width: 100,
-                            height: 100,
-                            fit: BoxFit.cover,
-                              loadingBuilder: (BuildContext context, Widget child,
-                                  ImageChunkEvent? loadingProgress){
-                                if (loadingProgress == null) return child;
-                                return ClipOval(
-                                  child: Shimmer(
-                                    period: Duration(milliseconds: 1500),
-                                    gradient: LinearGradient(
-                                      colors: [
-                                        Colors.white.withOpacity(0.6),
-                                        Colors.white.withOpacity(0.2),
-                                        Colors.white.withOpacity(0.6),
-                                        Colors.white.withOpacity(0.2),
-                                        Colors.white.withOpacity(0.6),
-                                        Colors.white.withOpacity(0.2),
-                                        Colors.white.withOpacity(0.6),
-                                        Colors.white.withOpacity(0.2),
-                                        Colors.white.withOpacity(0.6),
-                                        Colors.white.withOpacity(0.2),
-                                        Colors.white.withOpacity(0.6),
-                                        Colors.white.withOpacity(0.2),
-                                      ],
-                                      begin: Alignment.topLeft,
-                                      end: Alignment.bottomRight,
-                                    ),
-                                    // highlightColor: Colors.white,
-                                    // baseColor: Colors.black,
-                                    child: Container(
-                                      width: 100,
-                                      height: 100,
-                                      color: Colors.white,
-                                      /*child: CircularProgressIndicator(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ClipOval(
+                      // borderRadius: BorderRadius.circular(30),
+                      child: Image.network(
+                          'https://static.wikia.nocookie.net/dcanimated/images/2/21/Batman_%28BTAS%29.png/revision/latest?cb=20191206112827',
+                          width: 100,
+                          height: 100,
+                          fit: BoxFit.cover, loadingBuilder:
+                              (BuildContext context, Widget child,
+                                  ImageChunkEvent? loadingProgress) {
+                        if (loadingProgress == null) return child;
+                        return ClipOval(
+                          child: Shimmer(
+                            period: Duration(milliseconds: 1500),
+                            gradient: LinearGradient(
+                              colors: [
+                                Colors.white.withOpacity(0.6),
+                                Colors.white.withOpacity(0.2),
+                                Colors.white.withOpacity(0.6),
+                                Colors.white.withOpacity(0.2),
+                                Colors.white.withOpacity(0.6),
+                                Colors.white.withOpacity(0.2),
+                                Colors.white.withOpacity(0.6),
+                                Colors.white.withOpacity(0.2),
+                                Colors.white.withOpacity(0.6),
+                                Colors.white.withOpacity(0.2),
+                                Colors.white.withOpacity(0.6),
+                                Colors.white.withOpacity(0.2),
+                              ],
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                            ),
+                            // highlightColor: Colors.white,
+                            // baseColor: Colors.black,
+                            child: Container(
+                              width: 100,
+                              height: 100,
+                              color: Colors.white,
+                              /*child: CircularProgressIndicator(
                                         color: Colors.black,
                                         value: loadingProgress.expectedTotalBytes != null ? loadingProgress.cumulativeBytesLoaded /
                                             loadingProgress.expectedTotalBytes!
                                             : null,
                                       ),*/
-                                    ),
-                                  ),
-                                );
-                              }
+                            ),
                           ),
-                        ),
-                        //  CircleAvatar(
-                        //   radius: 50,
-                        //   backgroundImage: NetworkImage(
-                        //       'https://static.wikia.nocookie.net/dcanimated/images/2/21/Batman_%28BTAS%29.png/revision/latest?cb=20191206112827'),
-                        // ),
-                         SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          'USERNAME',
-                          style: TextStyle(
-                              color: Colors.white.withOpacity(0.8),
-                              fontSize: 20),
-                        ),
-                      ],
-                    )),
+                        );
+                      }),
+                    ),
+                    //  CircleAvatar(
+                    //   radius: 50,
+                    //   backgroundImage: NetworkImage(
+                    //       'https://static.wikia.nocookie.net/dcanimated/images/2/21/Batman_%28BTAS%29.png/revision/latest?cb=20191206112827'),
+                    // ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      'USERNAME',
+                      style: TextStyle(
+                          color: Colors.white.withOpacity(0.8), fontSize: 20),
+                    ),
+                  ],
+                )),
                 Expanded(
                   child: Column(
                     children: [
@@ -720,7 +725,7 @@ class _MatrixPageState extends State<MatrixPage> {
                         onTap: () {
                           setState(() {
                             selectedWidgetMarker = WidgetMarker.dashboard;
-                            value=0;
+                            value = 0;
                           });
                         },
                         leading: SizedBox(
@@ -729,7 +734,7 @@ class _MatrixPageState extends State<MatrixPage> {
                           child: Image.asset('assets/dashboardlarge.png',
                               color: Colors.white.withOpacity(1)),
                         ),
-                        title:  Text(
+                        title: Text(
                           'Dashboard',
                           style: TextStyle(color: Colors.white, fontSize: 18),
                         ),
@@ -738,7 +743,7 @@ class _MatrixPageState extends State<MatrixPage> {
                         onTap: () {
                           setState(() {
                             selectedWidgetMarker = WidgetMarker.incident;
-                            value=0;
+                            value = 0;
                           });
                         },
                         leading: SizedBox(
@@ -747,7 +752,7 @@ class _MatrixPageState extends State<MatrixPage> {
                           child: Image.asset('assets/incidentlarge.png',
                               color: Colors.white.withOpacity(1)),
                         ),
-                        title:  Text(
+                        title: Text(
                           'Incidents',
                           style: TextStyle(color: Colors.white, fontSize: 18),
                         ),
@@ -760,7 +765,7 @@ class _MatrixPageState extends State<MatrixPage> {
                           child: Image.asset('assets/deviceslarge.png',
                               color: Colors.white.withOpacity(1)),
                         ),
-                        title:  Text(
+                        title: Text(
                           'Devices',
                           style: TextStyle(color: Colors.white, fontSize: 18),
                         ),
@@ -778,7 +783,7 @@ class _MatrixPageState extends State<MatrixPage> {
                           child: Image.asset('assets/report.png',
                               color: Colors.white.withOpacity(1)),
                         ),
-                        title:  Text(
+                        title: Text(
                           'Report',
                           style: TextStyle(color: Colors.white, fontSize: 18),
                         ),
@@ -823,7 +828,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                 margin: const EdgeInsets.symmetric(
                                     vertical: 10.0, horizontal: 0),
                                 child:
-                                Text('Terms of Service | Privacy Policy'),
+                                    Text('Terms of Service | Privacy Policy'),
                               ),
                             ),
                             // Icon(
@@ -847,28 +852,26 @@ class _MatrixPageState extends State<MatrixPage> {
                 return Transform(
                     alignment: Alignment.center,
                     transform: Matrix4.identity()
-                  ..setEntry(3, 2, 0.0019)
-                  ..setEntry(0, 3, 260 * val)
-                  ..rotateY((pi / 12) * val),
-                  child: getSelectedDrawer()
-                );
-              }
-          )
+                      ..setEntry(3, 2, 0.0019)
+                      ..setEntry(0, 3, 260 * val)
+                      ..rotateY((pi / 12) * val),
+                    child: getSelectedDrawer());
+              })
         ],
       ),
     );
   }
 
-  Widget getSelectedDrawer(){
-    switch (selectedWidgetMarker){
+  Widget getSelectedDrawer() {
+    switch (selectedWidgetMarker) {
       case WidgetMarker.dashboard:
         return getDashboard();
       case WidgetMarker.incident:
         return getIncident();
     }
-    }
+  }
 
-    Widget getDashboard(){
+  Widget getDashboard() {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.transparent,
@@ -901,9 +904,9 @@ class _MatrixPageState extends State<MatrixPage> {
           //     });
           //   },
           // )
-      ),
+          ),
     );
-    }
+  }
 
   Widget getDashboardAppbar() {
     return Container(
@@ -940,47 +943,47 @@ class _MatrixPageState extends State<MatrixPage> {
                         reverseDuration: Duration(milliseconds: 0),
                         transitionBuilder: (child, animation) =>
                             RotationTransition(
-                              child: child,
-                              turns: animation,
-                            ),
+                          child: child,
+                          turns: animation,
+                        ),
                         child: value == 1
                             ? GestureDetector(
-                          key: Key('2'),
-                          onTap: () {
-                            setState(() {
-                              value == 0 ? value = 1 : value = 0;
-                            });
-                          },
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              border: Border.all(
-                                  style: BorderStyle.solid,
-                                  color: Colors.black.withOpacity(0.7),
-                                  width: 3),
-                            ),
-                            child: Icon(
-                              Icons.clear_rounded,
-                              color: Colors.black.withOpacity(0.7),
-                              size: 26.5,
-                            ),
-                          ),
-                        )
+                                key: Key('2'),
+                                onTap: () {
+                                  setState(() {
+                                    value == 0 ? value = 1 : value = 0;
+                                  });
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    border: Border.all(
+                                        style: BorderStyle.solid,
+                                        color: Colors.black.withOpacity(0.7),
+                                        width: 3),
+                                  ),
+                                  child: Icon(
+                                    Icons.clear_rounded,
+                                    color: Colors.black.withOpacity(0.7),
+                                    size: 26.5,
+                                  ),
+                                ),
+                              )
                             : GestureDetector(
-                            key: Key('1'),
-                            onTap: () {
-                              setState(() {
-                                value == 0 ? value = 1 : value = 0;
-                              });
-                            },
-                            child: Image.asset(
-                              'assets/menu12.png',
-                              width: 32,
-                              height: 32,
-                              color: Colors.black.withOpacity(0.7),
-                              // color: Colors.black,
-                            ),
-                        ),
+                                key: Key('1'),
+                                onTap: () {
+                                  setState(() {
+                                    value == 0 ? value = 1 : value = 0;
+                                  });
+                                },
+                                child: Image.asset(
+                                  'assets/menu12.png',
+                                  width: 32,
+                                  height: 32,
+                                  color: Colors.black.withOpacity(0.7),
+                                  // color: Colors.black,
+                                ),
+                              ),
                       ),
                       Padding(padding: EdgeInsets.only(left: 7.5)),
                       GestureDetector(
@@ -1025,8 +1028,8 @@ class _MatrixPageState extends State<MatrixPage> {
     }
   }*/
 
-  Widget getIncidentSwitchContainer(){
-    switch(selectedIncidentWidgetMarker){
+  Widget getIncidentSwitchContainer() {
+    switch (selectedIncidentWidgetMarker) {
       case IncidentMarker.main:
         return getstartingIncident();
       case IncidentMarker.chat:
@@ -1036,7 +1039,7 @@ class _MatrixPageState extends State<MatrixPage> {
     }
   }
 
-    Widget getIncident(){
+  Widget getIncident() {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.transparent,
@@ -1050,17 +1053,14 @@ class _MatrixPageState extends State<MatrixPage> {
               gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  colors: [
-                    Color(0xff497D7D),
-                    Color(0xff8D6679)
-                  ])),
+                  colors: [Color(0xff497D7D), Color(0xff8D6679)])),
           child: Column(
             children: [
               Padding(padding: EdgeInsets.only(bottom: 42.5)),
               getIncidentAppbar(),
 
               Visibility(
-                visible: (memory()&&_ticketExpand==true),
+                visible: (memory() && _ticketExpand == true),
                 /*(memorybar[_sysNumber]?.length!=null||memorybar[_sysNumber]?.length==0),*/
                 /*memorybar[_sysNumber]?.length==null?false:true,*/
                 /*memorybar[_sysNumber]?.length != null?true:false,*/
@@ -1069,7 +1069,8 @@ class _MatrixPageState extends State<MatrixPage> {
                   height: 35,
                   width: MediaQuery.of(context).size.width,
                   padding: EdgeInsets.symmetric(horizontal: 20),
-                  margin: EdgeInsets.only(top: 7.5,left: 0,right: 0,bottom: 5),
+                  margin:
+                      EdgeInsets.only(top: 7.5, left: 0, right: 0, bottom: 5),
                   child: DecoratedBox(
                     decoration: BoxDecoration(
                       image: DecorationImage(
@@ -1088,26 +1089,34 @@ class _MatrixPageState extends State<MatrixPage> {
                       borderRadius: BorderRadius.all(Radius.circular(70)),
                     ),
                     child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 7.5,vertical: 0.5),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 7.5, vertical: 0.5),
                       child: ListView.builder(
                           scrollDirection: Axis.horizontal,
-                          itemCount: memorybar.containsKey(_sysNumber)?memorybar[_sysNumber]!.length:0,
-                          itemBuilder: (context, index){
+                          itemCount: memorybar.containsKey(_sysNumber)
+                              ? memorybar[_sysNumber]!.length
+                              : 0,
+                          itemBuilder: (context, index) {
                             return GestureDetector(
-                              onTap: (){
+                              onTap: () {
                                 setState(() {
                                   // memorybar.remove('C0001');
-                                  memorybar.forEach((key, value){
-                                    if(key==_sysNumber){
+                                  memorybar.forEach((key, value) {
+                                    if (key == _sysNumber) {                            //Switching on Visible MemoryBar only Remote and Chat Added
                                       /*value.remove('assets/calliconpadding.png');*/
-                                      if(value.toList()[index]=='assets/chaticon250.png'){
-                                        if(selectedIncidentWidgetMarker == IncidentMarker.main){
-                                          selectedIncidentWidgetMarker = IncidentMarker.chat;
-                                          _remote=false;
-                                        }else{
-                                          selectedIncidentWidgetMarker = IncidentMarker.main;
+                                      if (value.toList()[index] ==
+                                          'assets/chaticon250.png') {
+                                        if (selectedIncidentWidgetMarker ==
+                                            IncidentMarker.main) {                      // Switching Between Main and Chat Container
+                                          selectedIncidentWidgetMarker =
+                                              IncidentMarker.chat;
+                                          _remote = false;
+                                        } else {
+                                          selectedIncidentWidgetMarker =
+                                              IncidentMarker.main;
                                         }
-                                      }else if(value.toList()[index]=='assets/remoteiconpadding.png'){
+                                      } else if (value.toList()[index] ==
+                                          'assets/remoteiconpadding.png') {            // Turning ON and OFF Remote
                                         _remote = !_remote;
                                       }
                                       /*for (String i in value.toList()){
@@ -1128,52 +1137,59 @@ class _MatrixPageState extends State<MatrixPage> {
                               },
                               child: LongPressDraggable(
                                 data: memorybar[_sysNumber],
-                                onDragStarted: (){
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                        duration: Duration(seconds: 60),
-                                        padding: EdgeInsets.zero,
-                                        backgroundColor: Colors.transparent,
-                                        behavior: SnackBarBehavior.floating,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(24),
-                                        ),
-                                        margin: EdgeInsets.only(
-                                            bottom:  MediaQuery.of(context).size.height - 62.5
-                                        ),
-                                        content: DragTarget(
-                                          onAccept: (remove){
-                                            setState(() {
-                                              memorybar.forEach((key, value){
-                                                if(key==_sysNumber){
-                                                  value.remove(memorybar[_sysNumber]!.toList()[index]);
-                                                  /*value.remove(memorybar[_sysNumber]?.toList()[index]);*/
-                                                  selectedIncidentWidgetMarker = IncidentMarker.main;
-                                                  _remote=false;
-                                                }
-                                              });
-                                            });
-                                            print(memorybar[_sysNumber]!.toList().length);
-                                          },
-                                          builder: (context, _, __) => Container(
-                                            height: 62.5,
-                                            width: MediaQuery.of(context).size.width,
-                                            decoration: BoxDecoration(
-                                                gradient: LinearGradient(
-                                                    colors: [
-                                                      Color(0xffE35353),
-                                                      Color(0xffE35353).withOpacity(0.0),
-                                                    ],
-                                                    begin: Alignment.topCenter,
-                                                    end: Alignment.bottomCenter
-                                                )
-                                            ),
-                                          ),
-                                        ),
-                                      ));
+                                onDragStarted: () {
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(SnackBar(
+                                    duration: Duration(seconds: 60),
+                                    padding: EdgeInsets.zero,
+                                    backgroundColor: Colors.transparent,
+                                    behavior: SnackBarBehavior.floating,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(24),
+                                    ),
+                                    margin: EdgeInsets.only(
+                                        bottom:
+                                            MediaQuery.of(context).size.height -
+                                                62.5),
+                                    content: DragTarget(
+                                      onAccept: (remove) {
+                                        setState(() {
+                                          memorybar.forEach((key, value) {
+                                            if (key == _sysNumber) {
+                                              value.remove(
+                                                  memorybar[_sysNumber]!
+                                                      .toList()[index]);
+                                              /*value.remove(memorybar[_sysNumber]?.toList()[index]);*/
+                                              selectedIncidentWidgetMarker =
+                                                  IncidentMarker.main;
+                                              _remote = false;
+                                            }
+                                          });
+                                        });
+                                        print(memorybar[_sysNumber]!
+                                            .toList()
+                                            .length);
+                                      },
+                                      builder: (context, _, __) => Container(
+                                        height: 62.5,
+                                        width:
+                                            MediaQuery.of(context).size.width,
+                                        decoration: BoxDecoration(
+                                            gradient: LinearGradient(
+                                                colors: [
+                                              Color(0xffE35353),
+                                              Color(0xffE35353)
+                                                  .withOpacity(0.0),
+                                            ],
+                                                begin: Alignment.topCenter,
+                                                end: Alignment.bottomCenter)),
+                                      ),
+                                    ),
+                                  ));
                                 },
-                                onDragEnd: (remove){
-                                  ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                                onDragEnd: (remove) {
+                                  ScaffoldMessenger.of(context)
+                                      .hideCurrentSnackBar();
                                 },
                                 childWhenDragging: Container(),
                                 feedback: Material(
@@ -1184,9 +1200,9 @@ class _MatrixPageState extends State<MatrixPage> {
                                     margin: EdgeInsets.only(left: 5),
                                     decoration: BoxDecoration(
                                         image: DecorationImage(
-                                            image: AssetImage(memorybar[_sysNumber]!.elementAt(index))
-                                        )
-                                    ),
+                                            image: AssetImage(
+                                                memorybar[_sysNumber]!
+                                                    .elementAt(index)))),
                                   ),
                                 ),
                                 child: Container(
@@ -1195,14 +1211,13 @@ class _MatrixPageState extends State<MatrixPage> {
                                   margin: EdgeInsets.only(left: 5),
                                   decoration: BoxDecoration(
                                       image: DecorationImage(
-                                          image: AssetImage( memorybar[_sysNumber]!.elementAt(index))
-                                      )
-                                  ),
+                                          image: AssetImage(
+                                              memorybar[_sysNumber]!
+                                                  .elementAt(index)))),
                                 ),
                               ),
                             );
-                          }
-                      ),
+                          }),
                     ),
                   ),
                 ),
@@ -1309,18 +1324,19 @@ class _MatrixPageState extends State<MatrixPage> {
                               );
                     }),
                       )
-                      *//*Row(
+                      */ /*Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.start,
-                        children: [Container()]*//**//*this.memoryWidgets.toSet().toList()*//**//*
-                      ),*//*
+                        children: [Container()]*/ /**/ /*this.memoryWidgets.toSet().toList()*/ /**/ /*
+                      ),*/ /*
                   ),
                   ),
                 ),
               ),*/
 
               Container(
-                padding: EdgeInsets.only(top: 0,left: 17.5,right: 17.5,bottom:0),
+                padding:
+                    EdgeInsets.only(top: 0, left: 17.5, right: 17.5, bottom: 0),
                 margin: EdgeInsets.only(top: 2.5),
                 child: Column(
                   children: [
@@ -1359,7 +1375,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                 width: _remote?MediaQuery.of(context).size.width:0,
                               ),*/
                               Positioned(
-                                top:6,
+                                top: 6,
                                 right: 5,
                                 child: DelayedDisplay(
                                   fadingDuration: Duration(milliseconds: 2750),
@@ -1382,7 +1398,7 @@ class _MatrixPageState extends State<MatrixPage> {
                         fadingDuration: Duration(milliseconds: 1250),
                         fadeIn: _remote,
                         child: Align(
-                          alignment: Alignment(1,0),
+                          alignment: Alignment(1, 0),
                           child: Card(
                             shadowColor: Colors.black,
                             shape: RoundedRectangleBorder(
@@ -1395,14 +1411,14 @@ class _MatrixPageState extends State<MatrixPage> {
                               height: 22,
                               width: 170,
                               decoration: BoxDecoration(
-                                color: Color(0xff6F0309),
-                                borderRadius: BorderRadius.circular(25)
-                              ),
+                                  color: Color(0xff6F0309),
+                                  borderRadius: BorderRadius.circular(25)),
                               child: Row(
-                                crossAxisAlignment:CrossAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Container(
-                                    margin: EdgeInsets.only(left:7.5,bottom: 0),
+                                    margin:
+                                        EdgeInsets.only(left: 7.5, bottom: 0),
                                     child: Icon(
                                       Icons.fullscreen,
                                       color: Colors.white,
@@ -1410,15 +1426,12 @@ class _MatrixPageState extends State<MatrixPage> {
                                     ),
                                   ),
                                   Container(
-                                      margin: EdgeInsets.only(left:7.5),
+                                      margin: EdgeInsets.only(left: 7.5),
                                       child: Text(
-                                          'View on Full screen',
+                                        'View on Full screen',
                                         style: TextStyle(
-                                          fontSize: 14,
-                                          color: Colors.white
-                                        ),
-                                      )
-                                  )
+                                            fontSize: 14, color: Colors.white),
+                                      ))
                                 ],
                               ),
                             ),
@@ -1434,12 +1447,11 @@ class _MatrixPageState extends State<MatrixPage> {
               // getAssignedTicket(),
               // getUnAssignedTicket(),
             ],
-          )
-      ),
+          )),
     );
-    }
+  }
 
-    Widget getstartingIncident(){
+  Widget getstartingIncident() {
     return Expanded(
       child: Column(
         children: [
@@ -1448,7 +1460,7 @@ class _MatrixPageState extends State<MatrixPage> {
         ],
       ),
     );
-    }
+  }
 
   Widget getChatContainer() {
     return Expanded(
@@ -1476,8 +1488,7 @@ class _MatrixPageState extends State<MatrixPage> {
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter)),
               margin: EdgeInsets.only(left: 15, right: 15, top: 0, bottom: 10),
-              child:
-              Stack(
+              child: Stack(
                 // clipBehavior: Clip.none,
                 children: [
                   Align(
@@ -1485,27 +1496,27 @@ class _MatrixPageState extends State<MatrixPage> {
                     child: Container(
                       height: 30,
                       width: MediaQuery.of(context).size.width,
-                      margin: EdgeInsets.only(top: 7.5,left: 15,right: 15),
-                      padding: EdgeInsets.only(left: 7.5,right: 7.5,top: 2.5,bottom: 2.5),
+                      margin: EdgeInsets.only(top: 7.5, left: 15, right: 15),
+                      padding: EdgeInsets.only(
+                          left: 7.5, right: 7.5, top: 2.5, bottom: 2.5),
                       decoration: BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                              blurRadius: 1,
-                              offset: Offset(1, 0),
-                              color: Colors.black.withOpacity(0.65)),
-                        ],
-                        borderRadius: BorderRadius.circular(10),
-                        gradient: LinearGradient(
-                          colors: [
-                            Color(0xff497D7D).withOpacity(1),
-                            Color(0xff91BBD2).withOpacity(1),
+                          boxShadow: [
+                            BoxShadow(
+                                blurRadius: 1,
+                                offset: Offset(1, 0),
+                                color: Colors.black.withOpacity(0.65)),
                           ],
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          stops: [0.5,1]
-                        )
-                        // color: Color(0xff91BBD2).withOpacity(0.35),
-                      ),
+                          borderRadius: BorderRadius.circular(10),
+                          gradient: LinearGradient(
+                              colors: [
+                                Color(0xff497D7D).withOpacity(1),
+                                Color(0xff91BBD2).withOpacity(1),
+                              ],
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                              stops: [0.5, 1])
+                          // color: Color(0xff91BBD2).withOpacity(0.35),
+                          ),
                       child: Row(
                         children: [
                           Expanded(child: Container()),
@@ -1522,7 +1533,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                     color: Colors.black,
                                   ),
                                 ],
-                                  color: Colors.white,
+                                color: Colors.white,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 18,
                                 fontFamily: 'Roboto',
@@ -1541,213 +1552,225 @@ class _MatrixPageState extends State<MatrixPage> {
           IgnorePointer(
             ignoring: _remote,
             child: Container(
-              decoration: BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                      blurRadius: 3,
-                      offset: Offset(1, 0),
-                      color: Colors.black.withOpacity(0.4)),
-                  //3dright
-                  BoxShadow(
-                      blurRadius: 3,
-                      offset: Offset(0, 1),
-                      color: Colors.black.withOpacity(0.4)),
-                  // 3dbottom
-                  // BoxShadow(
-                  //     blurRadius: 1,
-                  //     offset: -Offset(1, 0),
-                  //     color: Colors.black.withOpacity(0.5)),
-                  //3dleft
-                  // BoxShadow(
-                  //     blurRadius: 1,
-                  //     offset: -Offset(0, 1),
-                  //     color: Colors.black.withOpacity(0.9)),
-                ],
-                borderRadius: BorderRadius.circular(50),
-                gradient: LinearGradient(colors: [
-                  Color(0xffEAE2E2).withOpacity(0.9),
-                  Color(0xffABA4A4)
-                  // Colors.white,
-                  // Colors.black,
-                ], stops: [
-                  0.6,
-                  1.0
-                ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
-                color: Colors.black,
-              ),
-              margin: EdgeInsets.only(left: 15, right: 15, bottom: 7.5),
-              child: Container(
-                padding: EdgeInsets.only(left: 5,right: 5),
-                child: Row(
-                  children: [
-                    CustomPopupMenu(
-                      arrowColor: Colors.transparent,
-                      horizontalMargin: 17.5,
-                      verticalMargin: 5,
-                      child: Icon(
-                        Icons.add_circle_outline_rounded,
-                        color: Color(0xff1A5099).withOpacity(1),
-                        size: 32.5,
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                        blurRadius: 3,
+                        offset: Offset(1, 0),
+                        color: Colors.black.withOpacity(0.4)),
+                    //3dright
+                    BoxShadow(
+                        blurRadius: 3,
+                        offset: Offset(0, 1),
+                        color: Colors.black.withOpacity(0.4)),
+                    // 3dbottom
+                    // BoxShadow(
+                    //     blurRadius: 1,
+                    //     offset: -Offset(1, 0),
+                    //     color: Colors.black.withOpacity(0.5)),
+                    //3dleft
+                    // BoxShadow(
+                    //     blurRadius: 1,
+                    //     offset: -Offset(0, 1),
+                    //     color: Colors.black.withOpacity(0.9)),
+                  ],
+                  borderRadius: BorderRadius.circular(50),
+                  gradient: LinearGradient(colors: [
+                    Color(0xffEAE2E2).withOpacity(0.9),
+                    Color(0xffABA4A4)
+                    // Colors.white,
+                    // Colors.black,
+                  ], stops: [
+                    0.6,
+                    1.0
+                  ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
+                  color: Colors.black,
+                ),
+                margin: EdgeInsets.only(left: 15, right: 15, bottom: 7.5),
+                child: Container(
+                  padding: EdgeInsets.only(left: 5, right: 5),
+                  child: Row(
+                    children: [
+                      CustomPopupMenu(
+                        arrowColor: Colors.transparent,
+                        horizontalMargin: 17.5,
+                        verticalMargin: 5,
+                        child: Icon(
+                          Icons.add_circle_outline_rounded,
+                          color: Color(0xff1A5099).withOpacity(1),
+                          size: 32.5,
+                        ),
+                        menuBuilder: () {
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              DelayedDisplay(
+                                delay: Duration(milliseconds: 300),
+                                child: Card(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15.0),
+                                  ),
+                                  color: Colors.transparent,
+                                  elevation: 8,
+                                  child: Container(
+                                    height: 45,
+                                    width: 45,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(100),
+                                      gradient: LinearGradient(
+                                          colors: [
+                                            Color(0xffEAE2E2).withOpacity(0.9),
+                                            Color(0xffABA4A4)
+                                            // Colors.white,
+                                            // Colors.black,
+                                          ],
+                                          stops: [
+                                            0.6,
+                                            1.0
+                                          ],
+                                          begin: Alignment.topCenter,
+                                          end: Alignment.bottomCenter),
+                                    ),
+                                    child: Center(
+                                      child: Icon(
+                                        Icons.insert_photo_outlined,
+                                        color: Color(0xff1A5099).withOpacity(1),
+                                        size: 32.5,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              DelayedDisplay(
+                                delay: Duration(milliseconds: 200),
+                                child: Card(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15.0),
+                                  ),
+                                  color: Colors.transparent,
+                                  elevation: 8,
+                                  child: Container(
+                                    height: 45,
+                                    width: 45,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(100),
+                                      gradient: LinearGradient(
+                                          colors: [
+                                            Color(0xffEAE2E2).withOpacity(0.9),
+                                            Color(0xffABA4A4)
+                                            // Colors.white,
+                                            // Colors.black,
+                                          ],
+                                          stops: [
+                                            0.6,
+                                            1.0
+                                          ],
+                                          begin: Alignment.topCenter,
+                                          end: Alignment.bottomCenter),
+                                    ),
+                                    child: Center(
+                                      child: Icon(
+                                        Icons.ondemand_video_outlined,
+                                        color: Color(0xff1A5099).withOpacity(1),
+                                        size: 32.5,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              DelayedDisplay(
+                                delay: Duration(milliseconds: 100),
+                                child: Card(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15.0),
+                                  ),
+                                  color: Colors.transparent,
+                                  elevation: 8,
+                                  child: Container(
+                                    height: 45,
+                                    width: 45,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(100),
+                                      gradient: LinearGradient(
+                                          colors: [
+                                            Color(0xffEAE2E2).withOpacity(0.9),
+                                            Color(0xffABA4A4)
+                                            // Colors.white,
+                                            // Colors.black,
+                                          ],
+                                          stops: [
+                                            0.6,
+                                            1.0
+                                          ],
+                                          begin: Alignment.topCenter,
+                                          end: Alignment.bottomCenter),
+                                    ),
+                                    child: Center(
+                                      child: Icon(
+                                        Icons.folder_outlined,
+                                        color: Color(0xff1A5099).withOpacity(1),
+                                        size: 32.5,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          );
+                        },
+                        pressType: PressType.singleClick,
                       ),
-                      menuBuilder: () {
-                        return Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            DelayedDisplay(
-                              delay: Duration(milliseconds: 300),
-                              child: Card(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(15.0),
-                                ),
-                                color: Colors.transparent,
-                                elevation: 8,
-                                child: Container(
-                                  height: 45,
-                                  width: 45,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(100),
-                                    gradient: LinearGradient(colors: [
-                                      Color(0xffEAE2E2).withOpacity(0.9),
-                                      Color(0xffABA4A4)
-                                      // Colors.white,
-                                      // Colors.black,
-                                    ], stops: [
-                                      0.6,
-                                      1.0
-                                    ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
-                                  ),
-                                  child: Center(
-                                    child: Icon(
-                                      Icons.insert_photo_outlined,
-                                      color: Color(0xff1A5099).withOpacity(1),
-                                      size: 32.5,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            SizedBox(height: 5,),
-                            DelayedDisplay(
-                              delay: Duration(milliseconds: 200),
-                              child: Card(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(15.0),
-                                ),
-                                color: Colors.transparent,
-                                elevation: 8,
-                                child: Container(
-                                  height: 45,
-                                  width: 45,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(100),
-                                    gradient: LinearGradient(colors: [
-                                      Color(0xffEAE2E2).withOpacity(0.9),
-                                      Color(0xffABA4A4)
-                                      // Colors.white,
-                                      // Colors.black,
-                                    ], stops: [
-                                      0.6,
-                                      1.0
-                                    ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
-                                  ),
-                                  child: Center(
-                                    child: Icon(
-                                      Icons.ondemand_video_outlined,
-                                      color: Color(0xff1A5099).withOpacity(1),
-                                      size: 32.5,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            SizedBox(height: 5,),
-                            DelayedDisplay(
-                              delay: Duration(milliseconds: 100),
-                              child: Card(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(15.0),
-                                ),
-                                color: Colors.transparent,
-                                elevation: 8,
-                                child: Container(
-                                  height: 45,
-                                  width: 45,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(100),
-                                    gradient: LinearGradient(colors: [
-                                      Color(0xffEAE2E2).withOpacity(0.9),
-                                      Color(0xffABA4A4)
-                                      // Colors.white,
-                                      // Colors.black,
-                                    ], stops: [
-                                      0.6,
-                                      1.0
-                                    ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
-                                  ),
-                                  child: Center(
-                                    child: Icon(
-                                      Icons.folder_outlined,
-                                      color: Color(0xff1A5099).withOpacity(1),
-                                      size: 32.5,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        );
-                      },
-                      pressType: PressType.singleClick,
-                    ),
-                    /*Icon(
+                      /*Icon(
                       Icons.add_circle_outline_rounded,
                       color: Color(0xff1A5099).withOpacity(1),
                       size: 32.5,
                     ),*/
-                    Expanded(
-                      child: Container(
-                        // height: 40,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        margin: EdgeInsets.only(left: 5,right: 5),
-                        padding: EdgeInsets.only(left: 7.5,right: 7.5),
-                        width: 50,
-                        child: TextField(
-                          minLines: 1,
-                          maxLines: 4,
-                          keyboardType: TextInputType.multiline,
-                          textInputAction: TextInputAction.done,
-                          cursorColor: Colors.black.withOpacity(0.25),
-                          showCursor: true,
-                          decoration: InputDecoration(
-                            hintText: 'Message',
-                            border: InputBorder.none,
-                              labelStyle: TextStyle(
-                                color: Colors.black
-                                    .withOpacity(0.6),
-                              )
+                      Expanded(
+                        child: Container(
+                          // height: 40,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          margin: EdgeInsets.only(left: 5, right: 5),
+                          padding: EdgeInsets.only(left: 7.5, right: 7.5),
+                          width: 50,
+                          child: TextField(
+                            minLines: 1,
+                            maxLines: 4,
+                            keyboardType: TextInputType.multiline,
+                            textInputAction: TextInputAction.done,
+                            cursorColor: Colors.black.withOpacity(0.25),
+                            showCursor: true,
+                            decoration: InputDecoration(
+                                hintText: 'Message',
+                                border: InputBorder.none,
+                                labelStyle: TextStyle(
+                                  color: Colors.black.withOpacity(0.6),
+                                )),
                           ),
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(right: 5),
-                        child: Image.asset(
+                      Padding(
+                          padding: EdgeInsets.only(right: 5),
+                          child: Image.asset(
                             'assets/send1.png',
-                          height: 31,
-                        )
-                    ),
-                    /*Icon(
+                            height: 31,
+                          )),
+                      /*Icon(
                       Icons.send_rounded,
                       color: Color(0xff1A5099).withOpacity(1),
                       size: 32.5,
                     ),*/
-                  ],
-                ),
-              )
-            ),
+                    ],
+                  ),
+                )),
           ),
           SizedBox(
             height: MediaQuery.of(context).viewInsets.vertical,
@@ -1757,7 +1780,7 @@ class _MatrixPageState extends State<MatrixPage> {
     );
   }
 
-  Widget getNotification(){
+  Widget getNotification() {
     return Expanded(
       child: Container(
         // height: MediaQuery.of(context).size.height-100,
@@ -1784,7 +1807,9 @@ class _MatrixPageState extends State<MatrixPage> {
         margin: EdgeInsets.only(left: 15, right: 15, top: 10, bottom: 10),
         child: Column(
           children: [
-            SizedBox(height: 5,),
+            SizedBox(
+              height: 5,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -1793,8 +1818,7 @@ class _MatrixPageState extends State<MatrixPage> {
                   style: TextStyle(
                       color: Colors.white70,
                       fontWeight: FontWeight.bold,
-                      fontSize: 16
-                  ),
+                      fontSize: 16),
                 )
               ],
             )
@@ -1839,52 +1863,52 @@ class _MatrixPageState extends State<MatrixPage> {
                         duration: Duration(milliseconds: 750),
                         reverseDuration: Duration(microseconds: 0),
                         transitionBuilder: (child, animation) =>
-                        /*ScaleTransition(
+                            /*ScaleTransition(
                           child: child,
                           scale: animation,
                         ),*/
-                        RotationTransition(
+                            RotationTransition(
                           child: child,
                           turns: animation,
                         ),
                         child: value == 1
                             ? GestureDetector(
-                          key: Key('2'),
-                          onTap: () {
-                            setState(() {
-                              value == 0 ? value = 1 : value = 0;
-                            });
-                          },
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              border: Border.all(
-                                  style: BorderStyle.solid,
-                                  color: Colors.black.withOpacity(0.7),
-                                  width: 3),
-                            ),
-                            child: Icon(
-                              Icons.clear_rounded,
-                              color: Colors.black.withOpacity(0.7),
-                              size: 26.0,
-                            ),
-                          ),
-                        )
+                                key: Key('2'),
+                                onTap: () {
+                                  setState(() {
+                                    value == 0 ? value = 1 : value = 0;
+                                  });
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    border: Border.all(
+                                        style: BorderStyle.solid,
+                                        color: Colors.black.withOpacity(0.7),
+                                        width: 3),
+                                  ),
+                                  child: Icon(
+                                    Icons.clear_rounded,
+                                    color: Colors.black.withOpacity(0.7),
+                                    size: 26.0,
+                                  ),
+                                ),
+                              )
                             : GestureDetector(
-                            key: Key('1'),
-                            onTap: () {
-                              setState(() {
-                                value == 0 ? value = 1 : value = 0;
-                              });
-                            },
-                            child: Image.asset(
-                              'assets/menu12.png',
-                              width: 32,
-                              height: 32,
-                              color: Colors.black.withOpacity(0.7),
-                              // color: Colors.black,
-                            ),
-                        ),
+                                key: Key('1'),
+                                onTap: () {
+                                  setState(() {
+                                    value == 0 ? value = 1 : value = 0;
+                                  });
+                                },
+                                child: Image.asset(
+                                  'assets/menu12.png',
+                                  width: 32,
+                                  height: 32,
+                                  color: Colors.black.withOpacity(0.7),
+                                  // color: Colors.black,
+                                ),
+                              ),
                       ),
                       Padding(padding: EdgeInsets.only(left: 7.5)),
                       GestureDetector(
@@ -1921,10 +1945,11 @@ class _MatrixPageState extends State<MatrixPage> {
                   //     selectedIncidentWidgetMarker = IncidentMarker.main;
                   //   });
                   // },
-                  onTap: (){
+                  onTap: () {
                     _remote = false;
                     setState(() {
-                      selectedIncidentWidgetMarker = IncidentMarker.notification;
+                      selectedIncidentWidgetMarker =
+                          IncidentMarker.notification;
                     });
                   },
                   child: Center(
@@ -1938,217 +1963,220 @@ class _MatrixPageState extends State<MatrixPage> {
                           animationType: BadgeAnimationType.fade,
                           badgeColor: Colors.deepPurple,
                           badgeContent: Text(
-                              '1',
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.white
-                            ),
+                            '1',
+                            style: TextStyle(fontSize: 12, color: Colors.white),
                           ),
                           child: Icon(
                             Icons.notifications_sharp,
                             color: Colors.black.withOpacity(0.85),
                             size: 32,
                           ),
-                        )
-                    ),
+                        )),
                   ),
                 )
               ])),
     );
   }
 
-  Widget getAssignedTicket(){
+  Widget getAssignedTicket() {
     return Stack(
       children: [
         Container(
-          alignment: Alignment.center,
-          height: 230,
-          padding: EdgeInsets.only(left: 15,right: 15),
-          color: Colors.transparent,
-          child: ListView.builder(
-             /*separatorBuilder: (BuildContext context, int index) {
+            alignment: Alignment.center,
+            height: 230,
+            padding: EdgeInsets.only(left: 15, right: 15),
+            color: Colors.transparent,
+            child: ListView.builder(
+                /*separatorBuilder: (BuildContext context, int index) {
                 return SizedBox(width: 0);
               },*/
-              shrinkWrap: true,
-              scrollDirection: Axis.horizontal,
-              itemCount:_foundTicket.length,
-            itemBuilder: (context, index) {
-              return Visibility(
-                visible:
-                (_selectedTicketIndex || selectedIndex == index) ? true : false,
-                child: Container(
-                  // padding: EdgeInsets.only(left: 0),
-                  // margin: EdgeInsets.only(top: 10,bottom: 10,left: 10,right: 10),
-                  color: Colors.transparent,
-                  width: _ticketExpand ? 333: 188.94,
-                  child: Stack(
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            _selectedTicketIndex = !_selectedTicketIndex;
-                            selectedIndex = index;
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                itemCount: _foundTicket.length,
+                itemBuilder: (context, index) {
+                  return Visibility(
+                    visible: (_selectedTicketIndex || selectedIndex == index)
+                        ? true
+                        : false,
+                    child: Container(
+                      // padding: EdgeInsets.only(left: 0),
+                      // margin: EdgeInsets.only(top: 10,bottom: 10,left: 10,right: 10),
+                      color: Colors.transparent,
+                      width: _ticketExpand ? 333 : 188.94,
+                      child: Stack(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              print(_index);
+                              setState(() {
+                                _selectedTicketIndex = !_selectedTicketIndex;
+                                selectedIndex = index;
 
-                            _buttonPosition = !_buttonPosition;
-                            _ticketExpand = !_ticketExpand;
+                                _buttonPosition = !_buttonPosition;
+                                _ticketExpand = !_ticketExpand;
 
-                            _remote=false;
+                                _remote = false;
 
-                            if( _enterAction == false ){
-                              _enterAction= true;
-                            }
+                                if (_enterAction == false) {
+                                  _enterAction = true;
+                                }
+                                _index = index;
+                                _sysNumber = ticket[index]['sysNumber'];
+                              });
 
-                            _sysNumber= ticket[index]['sysNumber'];
-
-                          });
-
-                          /*setState(() {
+                              /*setState(() {
                             if( _enterAction == false ){
                                _enterAction= true;
                             }
                           });*/
-
-                        },
-                        child: LongPressDraggable(
-                          data: ticket,
-                          maxSimultaneousDrags: 1,
-                          delay: Duration(milliseconds: 500),
-                          onDragStarted: (){
-                            final snackBar = SnackBar(
-                              duration: Duration(seconds: 60),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius:
-                                  BorderRadius.all(Radius.circular(30))),
-                              behavior: SnackBarBehavior.floating,
-                              margin: EdgeInsets.symmetric(horizontal: 15),
-                              backgroundColor:
-                              Colors.transparent.withOpacity(0.2),
-                              content: DragTarget(
-                                onAccept: (receivedContainer) {
-                                  showModalBottomSheet(
-                                    constraints: BoxConstraints(
-                                      maxWidth:
-                                      MediaQuery.of(context).size.width *
-                                          0.958,
-                                      minHeight:
-                                      MediaQuery.of(context).size.height *
-                                          0.80,
-                                    ),
-                                    isScrollControlled: true,
-                                    backgroundColor: Colors.transparent,
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                      return Container(
-                                        constraints: BoxConstraints(
-                                          // minHeight: MediaQuery.of(context).size.height *0.80,
-                                          maxHeight: MediaQuery.of(context)
-                                              .size
-                                              .height *
-                                              0.80,
-                                        ),
-                                        decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                              fit: BoxFit.cover,
-                                              image: AssetImage(
-                                                  'assets/assignedticketsdetails.png')),
-                                          borderRadius: BorderRadius.only(
-                                            topRight: Radius.circular(45),
-                                            topLeft: Radius.circular(45),
-                                            bottomRight: Radius.circular(30),
-                                            bottomLeft: Radius.circular(30),
-                                          ),
-                                        ),
-                                        child: SingleChildScrollView(
-                                          reverse: true,
-                                          child: ConstrainedBox(
-                                            constraints: BoxConstraints(
-                                                minHeight:
-                                                MediaQuery.of(context)
+                            },
+                            child: LongPressDraggable(
+                              data: ticket,
+                              maxSimultaneousDrags: 1,
+                              delay: Duration(milliseconds: 500),
+                              onDragStarted: () {
+                                _index = index;
+                                final snackBar = SnackBar(
+                                    duration: Duration(seconds: 60),
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(30))),
+                                    behavior: SnackBarBehavior.floating,
+                                    margin:
+                                        EdgeInsets.symmetric(horizontal: 15),
+                                    backgroundColor:
+                                        Colors.transparent.withOpacity(0.2),
+                                    content: DragTarget(
+                                      onAccept: (receivedContainer) {
+                                        showModalBottomSheet(
+                                          constraints: BoxConstraints(
+                                            maxWidth: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.958,
+                                            minHeight: MediaQuery.of(context)
                                                     .size
                                                     .height *
-                                                    0.80),
-                                            child: IntrinsicHeight(
-                                              child: Column(
-                                                children: [
-                                                  Padding(
-                                                      padding: EdgeInsets.only(
-                                                          bottom: 20.0)),
-                                                  Row(
-                                                    children: [
-                                                      Expanded(
-                                                          child: Container()),
-                                                      Center(
-                                                        child: Text(
-                                                          _foundTicket[index]
-                                                          ["sysNumber"],
-                                                          style: TextStyle(
-                                                              fontFamily:
-                                                              'fonts/Roboto-Bold.ttf',
-                                                              fontWeight:
-                                                              FontWeight
-                                                                  .w900,
-                                                              fontSize: 24),
-                                                        ),
-                                                      ),
-                                                      Expanded(
-                                                        child: Center(
-                                                          child:
-                                                          GestureDetector(
-                                                            // onTap: () => Navigator.pop(context),
-                                                            child: Container(
-                                                              decoration:
-                                                              BoxDecoration(
-                                                                borderRadius: BorderRadius
-                                                                    .all(Radius
-                                                                    .circular(
-                                                                    50)),
-                                                                boxShadow: [
-                                                                  BoxShadow(
-                                                                      blurRadius:
-                                                                      5,
-                                                                      offset:
-                                                                      Offset(
-                                                                          8,
-                                                                          8),
-                                                                      color: Color(
-                                                                          0xff000000)
-                                                                          .withOpacity(
-                                                                          0.10)),
-                                                                ],
-                                                              ),
-                                                              child: ClipRRect(
-                                                                borderRadius: BorderRadius
-                                                                    .all(Radius
-                                                                    .circular(
-                                                                    50)),
+                                                0.80,
+                                          ),
+                                          isScrollControlled: true,
+                                          backgroundColor: Colors.transparent,
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return Container(
+                                              constraints: BoxConstraints(
+                                                // minHeight: MediaQuery.of(context).size.height *0.80,
+                                                maxHeight:
+                                                    MediaQuery.of(context)
+                                                            .size
+                                                            .height *
+                                                        0.80,
+                                              ),
+                                              decoration: BoxDecoration(
+                                                image: DecorationImage(
+                                                    fit: BoxFit.cover,
+                                                    image: AssetImage(
+                                                        'assets/assignedticketsdetails.png')),
+                                                borderRadius: BorderRadius.only(
+                                                  topRight: Radius.circular(45),
+                                                  topLeft: Radius.circular(45),
+                                                  bottomRight:
+                                                      Radius.circular(30),
+                                                  bottomLeft:
+                                                      Radius.circular(30),
+                                                ),
+                                              ),
+                                              child: SingleChildScrollView(
+                                                reverse: true,
+                                                child: ConstrainedBox(
+                                                  constraints: BoxConstraints(
+                                                      minHeight:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .height *
+                                                              0.80),
+                                                  child: IntrinsicHeight(
+                                                    child: Column(
+                                                      children: [
+                                                        Padding(
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                                    bottom:
+                                                                        20.0)),
+                                                        Row(
+                                                          children: [
+                                                            Expanded(
                                                                 child:
-                                                                GestureDetector(
-                                                                  onTap: () {
-                                                                    // Navigator.pop(context, "This string will be passed back to the parent",);
-                                                                  },
+                                                                    Container()),
+                                                            Center(
+                                                              child: Text(
+                                                                _foundTicket[
+                                                                        index][
+                                                                    "sysNumber"],
+                                                                style: TextStyle(
+                                                                    fontFamily:
+                                                                        'fonts/Roboto-Bold.ttf',
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w900,
+                                                                    fontSize:
+                                                                        24),
+                                                              ),
+                                                            ),
+                                                            Expanded(
+                                                              child: Center(
+                                                                child:
+                                                                    GestureDetector(
+                                                                  // onTap: () => Navigator.pop(context),
                                                                   child:
-                                                                  Container(
-                                                                    color: Color(
-                                                                        0xff5F4E4E)
-                                                                        .withOpacity(
-                                                                        0.45),
-                                                                    height: 19,
-                                                                    width: 115,
+                                                                      Container(
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                      borderRadius:
+                                                                          BorderRadius.all(
+                                                                              Radius.circular(50)),
+                                                                      boxShadow: [
+                                                                        BoxShadow(
+                                                                            blurRadius:
+                                                                                5,
+                                                                            offset: Offset(8,
+                                                                                8),
+                                                                            color:
+                                                                                Color(0xff000000).withOpacity(0.10)),
+                                                                      ],
+                                                                    ),
                                                                     child:
-                                                                    Center(
+                                                                        ClipRRect(
+                                                                      borderRadius:
+                                                                          BorderRadius.all(
+                                                                              Radius.circular(50)),
                                                                       child:
-                                                                      Text(
-                                                                        'Records',
-                                                                        style:
-                                                                        TextStyle(
+                                                                          GestureDetector(
+                                                                        onTap:
+                                                                            () {
+                                                                          // Navigator.pop(context, "This string will be passed back to the parent",);
+                                                                        },
+                                                                        child:
+                                                                            Container(
                                                                           color:
-                                                                          Colors.white,
-                                                                          fontFamily:
-                                                                          'fonts/Roboto-Bold.ttf',
-                                                                          fontWeight:
-                                                                          FontWeight.w600,
-                                                                          fontSize:
-                                                                          16,
+                                                                              Color(0xff5F4E4E).withOpacity(0.45),
+                                                                          height:
+                                                                              19,
+                                                                          width:
+                                                                              115,
+                                                                          child:
+                                                                              Center(
+                                                                            child:
+                                                                                Text(
+                                                                              'Records',
+                                                                              style: TextStyle(
+                                                                                color: Colors.white,
+                                                                                fontFamily: 'fonts/Roboto-Bold.ttf',
+                                                                                fontWeight: FontWeight.w600,
+                                                                                fontSize: 16,
+                                                                              ),
+                                                                            ),
+                                                                          ),
                                                                         ),
                                                                       ),
                                                                     ),
@@ -2156,1658 +2184,1803 @@ class _MatrixPageState extends State<MatrixPage> {
                                                                 ),
                                                               ),
                                                             ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  Padding(
-                                                      padding: EdgeInsets.only(
-                                                          bottom: 5.0)),
-                                                  Expanded(child: Container()),
-                                                  Row(
-                                                    children: [
-                                                      // Padding(padding: EdgeInsets.only(right: 15.0)),
-                                                      Expanded(
-                                                          child: Container()),
-                                                      Flexible(
-                                                        flex: 4,
-                                                        fit: FlexFit.tight,
-                                                        child: Text(
-                                                          'HostName',
-                                                          style: TextStyle(
-                                                              fontFamily:
-                                                              'fonts/Roboto-Bold.ttf',
-                                                              fontWeight:
-                                                              FontWeight
-                                                                  .w400,
-                                                              fontSize: 18),
-                                                        ),
-                                                      ),
-                                                      Flexible(
-                                                        flex: 4,
-                                                        fit: FlexFit.tight,
-                                                        child: Text(
-                                                          _foundTicket[index]
-                                                          ['HostName'],
-                                                          style: TextStyle(
-                                                              fontFamily:
-                                                              'fonts/Roboto-Bold.ttf',
-                                                              fontWeight:
-                                                              FontWeight
-                                                                  .w400,
-                                                              fontSize: 18),
-                                                        ),
-                                                      ),
-                                                      Padding(
-                                                          padding:
-                                                          EdgeInsets.only(
-                                                              right: 10.0)),
-                                                    ],
-                                                  ),
-                                                  Padding(
-                                                      padding: EdgeInsets.only(
-                                                          bottom: 5.0)),
-                                                  Expanded(child: Container()),
-                                                  Row(
-                                                    children: [
-                                                      // Padding(padding: EdgeInsets.only(right: 15.0)),
-                                                      Expanded(
-                                                          child: Container()),
-                                                      Flexible(
-                                                        flex: 4,
-                                                        fit: FlexFit.tight,
-                                                        child: Text(
-                                                          'IP Address',
-                                                          style: TextStyle(
-                                                              fontFamily:
-                                                              'fonts/Roboto-Bold.ttf',
-                                                              fontWeight:
-                                                              FontWeight
-                                                                  .w400,
-                                                              fontSize: 18),
-                                                        ),
-                                                      ),
-                                                      Flexible(
-                                                        flex: 4,
-                                                        fit: FlexFit.tight,
-                                                        child: Text(
-                                                          'IP Address',
-                                                          style: TextStyle(
-                                                              fontFamily:
-                                                              'fonts/Roboto-Bold.ttf',
-                                                              fontWeight:
-                                                              FontWeight
-                                                                  .w400,
-                                                              fontSize: 18),
-                                                        ),
-                                                      ),
-                                                      Padding(
-                                                          padding:
-                                                          EdgeInsets.only(
-                                                              right: 10.0)),
-                                                    ],
-                                                  ),
-                                                  Padding(
-                                                      padding: EdgeInsets.only(
-                                                          bottom: 5.0)),
-                                                  Expanded(child: Container()),
-                                                  Row(
-                                                    children: [
-                                                      // Padding(padding: EdgeInsets.only(right: 15.0)),
-                                                      Expanded(
-                                                          child: Container()),
-                                                      Flexible(
-                                                        flex: 4,
-                                                        fit: FlexFit.tight,
-                                                        child: Text(
-                                                          'Date & Time',
-                                                          style: TextStyle(
-                                                              fontFamily:
-                                                              'fonts/Roboto-Bold.ttf',
-                                                              fontWeight:
-                                                              FontWeight
-                                                                  .w400,
-                                                              fontSize: 18),
-                                                        ),
-                                                      ),
-                                                      Flexible(
-                                                        flex: 4,
-                                                        fit: FlexFit.tight,
-                                                        child: Text(
-                                                          _foundTicket[index]
-                                                          ["dateTime"],
-                                                          style: TextStyle(
-                                                              fontFamily:
-                                                              'fonts/Roboto-Bold.ttf',
-                                                              fontWeight:
-                                                              FontWeight
-                                                                  .w400,
-                                                              fontSize: 17),
-                                                        ),
-                                                      ),
-                                                      Padding(
-                                                          padding:
-                                                          EdgeInsets.only(
-                                                              right: 10.0)),
-                                                    ],
-                                                  ),
-                                                  Padding(
-                                                      padding: EdgeInsets.only(
-                                                          bottom: 5.0)),
-                                                  Expanded(child: Container()),
-                                                  Row(
-                                                    children: [
-                                                      // Padding(padding: EdgeInsets.only(right: 15.0)),
-                                                      Expanded(
-                                                          child: Container()),
-                                                      Flexible(
-                                                        flex: 4,
-                                                        fit: FlexFit.tight,
-                                                        child: Text(
-                                                          'Duration',
-                                                          style: TextStyle(
-                                                              fontFamily:
-                                                              'fonts/Roboto-Bold.ttf',
-                                                              fontWeight:
-                                                              FontWeight
-                                                                  .w400,
-                                                              fontSize: 18),
-                                                        ),
-                                                      ),
-                                                      Flexible(
-                                                        flex: 4,
-                                                        fit: FlexFit.tight,
-                                                        child: Text(
-                                                          'Duration',
-                                                          style: TextStyle(
-                                                              fontFamily:
-                                                              'fonts/Roboto-Bold.ttf',
-                                                              fontWeight:
-                                                              FontWeight
-                                                                  .w400,
-                                                              fontSize: 18),
-                                                        ),
-                                                      ),
-                                                      Padding(
-                                                          padding:
-                                                          EdgeInsets.only(
-                                                              right: 10.0)),
-                                                    ],
-                                                  ),
-                                                  Padding(
-                                                      padding: EdgeInsets.only(
-                                                          bottom: 5.0)),
-                                                  Expanded(child: Container()),
-                                                  Row(
-                                                    children: [
-                                                      // Padding(padding: EdgeInsets.only(right: 15.0)),
-                                                      Expanded(
-                                                          child: Container()),
-                                                      Flexible(
-                                                        flex: 4,
-                                                        fit: FlexFit.tight,
-                                                        child: Text(
-                                                          'Severity',
-                                                          style: TextStyle(
-                                                              fontFamily:
-                                                              'fonts/Roboto-Bold.ttf',
-                                                              fontWeight:
-                                                              FontWeight
-                                                                  .w400,
-                                                              fontSize: 18),
-                                                        ),
-                                                      ),
-                                                      Flexible(
-                                                        flex: 4,
-                                                        fit: FlexFit.tight,
-                                                        child: Text(
-                                                          _foundTicket[index]
-                                                          ['Severity'],
-                                                          style: TextStyle(
-                                                              fontFamily:
-                                                              'fonts/Roboto-Bold.ttf',
-                                                              fontWeight:
-                                                              FontWeight
-                                                                  .w400,
-                                                              fontSize: 18),
-                                                        ),
-                                                      ),
-                                                      Padding(
-                                                          padding:
-                                                          EdgeInsets.only(
-                                                              right: 10.0)),
-                                                    ],
-                                                  ),
-                                                  Padding(
-                                                      padding: EdgeInsets.only(
-                                                          bottom: 5.0)),
-                                                  Expanded(child: Container()),
-                                                  Row(
-                                                    children: [
-                                                      // Padding(padding: EdgeInsets.only(right: 15.0)),
-                                                      Expanded(
-                                                          child: Container()),
-                                                      Flexible(
-                                                        flex: 4,
-                                                        fit: FlexFit.tight,
-                                                        child: Text(
-                                                          'Type',
-                                                          style: TextStyle(
-                                                              fontFamily:
-                                                              'fonts/Roboto-Bold.ttf',
-                                                              fontWeight:
-                                                              FontWeight
-                                                                  .w400,
-                                                              fontSize: 18),
-                                                        ),
-                                                      ),
-                                                      Flexible(
-                                                        flex: 4,
-                                                        fit: FlexFit.tight,
-                                                        child: Text(
-                                                          _foundTicket[index]["Type"],
-                                                          style: TextStyle(
-                                                              fontFamily:
-                                                              'fonts/Roboto-Bold.ttf',
-                                                              fontWeight:
-                                                              FontWeight
-                                                                  .w400,
-                                                              fontSize: 18),
-                                                        ),
-                                                      ),
-                                                      Padding(
-                                                          padding:
-                                                          EdgeInsets.only(
-                                                              right: 10.0)),
-                                                    ],
-                                                  ),
-                                                  Padding(
-                                                      padding: EdgeInsets.only(
-                                                          bottom: 5.0)),
-                                                  Expanded(child: Container()),
-                                                  Row(
-                                                    children: [
-                                                      // Padding(padding: EdgeInsets.only(right: 15.0)),
-                                                      Expanded(
-                                                          child: Container()),
-                                                      Flexible(
-                                                        flex: 4,
-                                                        fit: FlexFit.tight,
-                                                        child: Text(
-                                                          'Notes',
-                                                          style: TextStyle(
-                                                              fontFamily:
-                                                              'fonts/Roboto-Bold.ttf',
-                                                              fontWeight:
-                                                              FontWeight
-                                                                  .w400,
-                                                              fontSize: 18),
-                                                        ),
-                                                      ),
-                                                      Flexible(
-                                                        flex: 4,
-                                                        fit: FlexFit.tight,
-                                                        child: Text(
-                                                          _foundTicket[index]
-                                                          ["problemText"],
-                                                          style: TextStyle(
-                                                              fontFamily:
-                                                              'fonts/Roboto-Bold.ttf',
-                                                              fontWeight:
-                                                              FontWeight
-                                                                  .w400,
-                                                              fontSize: 18),
-                                                        ),
-                                                      ),
-                                                      Padding(
-                                                          padding:
-                                                          EdgeInsets.only(
-                                                              right: 10.0)),
-                                                    ],
-                                                  ),
-                                                  Padding(
-                                                      padding: EdgeInsets.only(
-                                                          bottom: 5.0)),
-                                                  Expanded(child: Container()),
-                                                  Row(
-                                                    children: [
-                                                      // Padding(padding: EdgeInsets.only(right: 15.0)),
-                                                      Expanded(
-                                                          child: Container()),
-                                                      Flexible(
-                                                        flex: 4,
-                                                        fit: FlexFit.tight,
-                                                        child: Text(
-                                                          'Status',
-                                                          style: TextStyle(
-                                                              fontFamily:
-                                                              'fonts/Roboto-Bold.ttf',
-                                                              fontWeight:
-                                                              FontWeight
-                                                                  .w400,
-                                                              fontSize: 18),
-                                                        ),
-                                                      ),
-                                                      Flexible(
-                                                        flex: 4,
-                                                        fit: FlexFit.tight,
-                                                        child: Text(
-                                                          _foundTicket[index]
-                                                          ['Status'],
-                                                          style: TextStyle(
-                                                              fontFamily:
-                                                              'fonts/Roboto-Bold.ttf',
-                                                              fontWeight:
-                                                              FontWeight
-                                                                  .w400,
-                                                              fontSize: 18),
-                                                        ),
-                                                      ),
-                                                      Padding(
-                                                          padding:
-                                                          EdgeInsets.only(
-                                                              right: 10.0)),
-                                                    ],
-                                                  ),
-                                                  Padding(
-                                                      padding: EdgeInsets.only(
-                                                          bottom: 10.0)),
-                                                   Center(
-                                                    child:
-                                                    // Padding(padding: EdgeInsets.only(right: 15.0)),
-                                                    Text(
-                                                      'Updates:',
-                                                      style: TextStyle(
-                                                          fontFamily:
-                                                          'fonts/Roboto-Bold.ttf',
-                                                          fontWeight:
-                                                          FontWeight.w800,
-                                                          fontSize: 18),
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                      padding: EdgeInsets.only(
-                                                          bottom: 15.0)),
-                                                  // TextField(),
-                                                  Center(
-                                                      child: ClipRRect(
-                                                        borderRadius:
-                                                        BorderRadius.all(
-                                                            Radius.circular(
-                                                                10)),
-                                                        child: Column(
-                                                          children: [
-                                                            Container(
-                                                              width: MediaQuery.of(
-                                                                  context)
-                                                                  .size
-                                                                  .width *
-                                                                  0.90,
-                                                              color:
-                                                              Color(0xffC4C4C4)
-                                                                  .withOpacity(
-                                                                  0.20),
-                                                              height: 70,
-                                                              child: TextField(
-                                                                scrollPadding:
-                                                                EdgeInsets.only(
-                                                                    top: 40),
-                                                                showCursor: true,
-                                                                cursorColor:
-                                                                Colors.white70,
-                                                                keyboardType:
-                                                                TextInputType
-                                                                    .text,
-                                                                textInputAction:
-                                                                TextInputAction
-                                                                    .done,
-                                                                style: TextStyle(
-                                                                  fontFamily:
-                                                                  'fonts/Roboto-Bold.ttf',
-                                                                  fontSize: 18,
-                                                                ),
-                                                                textAlign: TextAlign
-                                                                    .center,
-                                                                decoration:
-                                                                InputDecoration
-                                                                    .collapsed(
-                                                                  hintText: "Notes",
-                                                                  border:
-                                                                  InputBorder
-                                                                      .none,
-                                                                ),
-                                                              ),
-                                                            ),
-                                                            Container(
-                                                              width: MediaQuery.of(
-                                                                  context)
-                                                                  .size
-                                                                  .width *
-                                                                  0.90,
-                                                              color:
-                                                              Color(0xff486C7B),
-                                                              child: Text(
-                                                                'Update',
-                                                                textAlign: TextAlign
-                                                                    .center,
-                                                                style: TextStyle(
-                                                                  color:
-                                                                  Colors.white,
-                                                                  fontFamily:
-                                                                  'fonts/Roboto-Bold.ttf',
-                                                                  fontWeight:
-                                                                  FontWeight
-                                                                      .w600,
-                                                                  fontSize: 18,
-                                                                ),
-                                                              ),
-                                                            )
                                                           ],
                                                         ),
-                                                      )),
-                                                  SizedBox(
-                                                    height:
-                                                    MediaQuery.of(context)
-                                                        .viewInsets
-                                                        .vertical,
+                                                        Padding(
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                                    bottom:
+                                                                        5.0)),
+                                                        Expanded(
+                                                            child: Container()),
+                                                        Row(
+                                                          children: [
+                                                            // Padding(padding: EdgeInsets.only(right: 15.0)),
+                                                            Expanded(
+                                                                child:
+                                                                    Container()),
+                                                            Flexible(
+                                                              flex: 4,
+                                                              fit:
+                                                                  FlexFit.tight,
+                                                              child: Text(
+                                                                'HostName',
+                                                                style: TextStyle(
+                                                                    fontFamily:
+                                                                        'fonts/Roboto-Bold.ttf',
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w400,
+                                                                    fontSize:
+                                                                        18),
+                                                              ),
+                                                            ),
+                                                            Flexible(
+                                                              flex: 4,
+                                                              fit:
+                                                                  FlexFit.tight,
+                                                              child: Text(
+                                                                _foundTicket[
+                                                                        index][
+                                                                    'HostName'],
+                                                                style: TextStyle(
+                                                                    fontFamily:
+                                                                        'fonts/Roboto-Bold.ttf',
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w400,
+                                                                    fontSize:
+                                                                        18),
+                                                              ),
+                                                            ),
+                                                            Padding(
+                                                                padding: EdgeInsets
+                                                                    .only(
+                                                                        right:
+                                                                            10.0)),
+                                                          ],
+                                                        ),
+                                                        Padding(
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                                    bottom:
+                                                                        5.0)),
+                                                        Expanded(
+                                                            child: Container()),
+                                                        Row(
+                                                          children: [
+                                                            // Padding(padding: EdgeInsets.only(right: 15.0)),
+                                                            Expanded(
+                                                                child:
+                                                                    Container()),
+                                                            Flexible(
+                                                              flex: 4,
+                                                              fit:
+                                                                  FlexFit.tight,
+                                                              child: Text(
+                                                                'IP Address',
+                                                                style: TextStyle(
+                                                                    fontFamily:
+                                                                        'fonts/Roboto-Bold.ttf',
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w400,
+                                                                    fontSize:
+                                                                        18),
+                                                              ),
+                                                            ),
+                                                            Flexible(
+                                                              flex: 4,
+                                                              fit:
+                                                                  FlexFit.tight,
+                                                              child: Text(
+                                                                'IP Address',
+                                                                style: TextStyle(
+                                                                    fontFamily:
+                                                                        'fonts/Roboto-Bold.ttf',
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w400,
+                                                                    fontSize:
+                                                                        18),
+                                                              ),
+                                                            ),
+                                                            Padding(
+                                                                padding: EdgeInsets
+                                                                    .only(
+                                                                        right:
+                                                                            10.0)),
+                                                          ],
+                                                        ),
+                                                        Padding(
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                                    bottom:
+                                                                        5.0)),
+                                                        Expanded(
+                                                            child: Container()),
+                                                        Row(
+                                                          children: [
+                                                            // Padding(padding: EdgeInsets.only(right: 15.0)),
+                                                            Expanded(
+                                                                child:
+                                                                    Container()),
+                                                            Flexible(
+                                                              flex: 4,
+                                                              fit:
+                                                                  FlexFit.tight,
+                                                              child: Text(
+                                                                'Date & Time',
+                                                                style: TextStyle(
+                                                                    fontFamily:
+                                                                        'fonts/Roboto-Bold.ttf',
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w400,
+                                                                    fontSize:
+                                                                        18),
+                                                              ),
+                                                            ),
+                                                            Flexible(
+                                                              flex: 4,
+                                                              fit:
+                                                                  FlexFit.tight,
+                                                              child: Text(
+                                                                _foundTicket[
+                                                                        index][
+                                                                    "dateTime"],
+                                                                style: TextStyle(
+                                                                    fontFamily:
+                                                                        'fonts/Roboto-Bold.ttf',
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w400,
+                                                                    fontSize:
+                                                                        17),
+                                                              ),
+                                                            ),
+                                                            Padding(
+                                                                padding: EdgeInsets
+                                                                    .only(
+                                                                        right:
+                                                                            10.0)),
+                                                          ],
+                                                        ),
+                                                        Padding(
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                                    bottom:
+                                                                        5.0)),
+                                                        Expanded(
+                                                            child: Container()),
+                                                        Row(
+                                                          children: [
+                                                            // Padding(padding: EdgeInsets.only(right: 15.0)),
+                                                            Expanded(
+                                                                child:
+                                                                    Container()),
+                                                            Flexible(
+                                                              flex: 4,
+                                                              fit:
+                                                                  FlexFit.tight,
+                                                              child: Text(
+                                                                'Duration',
+                                                                style: TextStyle(
+                                                                    fontFamily:
+                                                                        'fonts/Roboto-Bold.ttf',
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w400,
+                                                                    fontSize:
+                                                                        18),
+                                                              ),
+                                                            ),
+                                                            Flexible(
+                                                              flex: 4,
+                                                              fit:
+                                                                  FlexFit.tight,
+                                                              child: Text(
+                                                                'Duration',
+                                                                style: TextStyle(
+                                                                    fontFamily:
+                                                                        'fonts/Roboto-Bold.ttf',
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w400,
+                                                                    fontSize:
+                                                                        18),
+                                                              ),
+                                                            ),
+                                                            Padding(
+                                                                padding: EdgeInsets
+                                                                    .only(
+                                                                        right:
+                                                                            10.0)),
+                                                          ],
+                                                        ),
+                                                        Padding(
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                                    bottom:
+                                                                        5.0)),
+                                                        Expanded(
+                                                            child: Container()),
+                                                        Row(
+                                                          children: [
+                                                            // Padding(padding: EdgeInsets.only(right: 15.0)),
+                                                            Expanded(
+                                                                child:
+                                                                    Container()),
+                                                            Flexible(
+                                                              flex: 4,
+                                                              fit:
+                                                                  FlexFit.tight,
+                                                              child: Text(
+                                                                'Severity',
+                                                                style: TextStyle(
+                                                                    fontFamily:
+                                                                        'fonts/Roboto-Bold.ttf',
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w400,
+                                                                    fontSize:
+                                                                        18),
+                                                              ),
+                                                            ),
+                                                            Flexible(
+                                                              flex: 4,
+                                                              fit:
+                                                                  FlexFit.tight,
+                                                              child: Text(
+                                                                _foundTicket[
+                                                                        index][
+                                                                    'Severity'],
+                                                                style: TextStyle(
+                                                                    fontFamily:
+                                                                        'fonts/Roboto-Bold.ttf',
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w400,
+                                                                    fontSize:
+                                                                        18),
+                                                              ),
+                                                            ),
+                                                            Padding(
+                                                                padding: EdgeInsets
+                                                                    .only(
+                                                                        right:
+                                                                            10.0)),
+                                                          ],
+                                                        ),
+                                                        Padding(
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                                    bottom:
+                                                                        5.0)),
+                                                        Expanded(
+                                                            child: Container()),
+                                                        Row(
+                                                          children: [
+                                                            // Padding(padding: EdgeInsets.only(right: 15.0)),
+                                                            Expanded(
+                                                                child:
+                                                                    Container()),
+                                                            Flexible(
+                                                              flex: 4,
+                                                              fit:
+                                                                  FlexFit.tight,
+                                                              child: Text(
+                                                                'Type',
+                                                                style: TextStyle(
+                                                                    fontFamily:
+                                                                        'fonts/Roboto-Bold.ttf',
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w400,
+                                                                    fontSize:
+                                                                        18),
+                                                              ),
+                                                            ),
+                                                            Flexible(
+                                                              flex: 4,
+                                                              fit:
+                                                                  FlexFit.tight,
+                                                              child: Text(
+                                                                _foundTicket[
+                                                                        index]
+                                                                    ["Type"],
+                                                                style: TextStyle(
+                                                                    fontFamily:
+                                                                        'fonts/Roboto-Bold.ttf',
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w400,
+                                                                    fontSize:
+                                                                        18),
+                                                              ),
+                                                            ),
+                                                            Padding(
+                                                                padding: EdgeInsets
+                                                                    .only(
+                                                                        right:
+                                                                            10.0)),
+                                                          ],
+                                                        ),
+                                                        Padding(
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                                    bottom:
+                                                                        5.0)),
+                                                        Expanded(
+                                                            child: Container()),
+                                                        Row(
+                                                          children: [
+                                                            // Padding(padding: EdgeInsets.only(right: 15.0)),
+                                                            Expanded(
+                                                                child:
+                                                                    Container()),
+                                                            Flexible(
+                                                              flex: 4,
+                                                              fit:
+                                                                  FlexFit.tight,
+                                                              child: Text(
+                                                                'Notes',
+                                                                style: TextStyle(
+                                                                    fontFamily:
+                                                                        'fonts/Roboto-Bold.ttf',
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w400,
+                                                                    fontSize:
+                                                                        18),
+                                                              ),
+                                                            ),
+                                                            Flexible(
+                                                              flex: 4,
+                                                              fit:
+                                                                  FlexFit.tight,
+                                                              child: Text(
+                                                                _foundTicket[
+                                                                        index][
+                                                                    "problemText"],
+                                                                style: TextStyle(
+                                                                    fontFamily:
+                                                                        'fonts/Roboto-Bold.ttf',
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w400,
+                                                                    fontSize:
+                                                                        18),
+                                                              ),
+                                                            ),
+                                                            Padding(
+                                                                padding: EdgeInsets
+                                                                    .only(
+                                                                        right:
+                                                                            10.0)),
+                                                          ],
+                                                        ),
+                                                        Padding(
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                                    bottom:
+                                                                        5.0)),
+                                                        Expanded(
+                                                            child: Container()),
+                                                        Row(
+                                                          children: [
+                                                            // Padding(padding: EdgeInsets.only(right: 15.0)),
+                                                            Expanded(
+                                                                child:
+                                                                    Container()),
+                                                            Flexible(
+                                                              flex: 4,
+                                                              fit:
+                                                                  FlexFit.tight,
+                                                              child: Text(
+                                                                'Status',
+                                                                style: TextStyle(
+                                                                    fontFamily:
+                                                                        'fonts/Roboto-Bold.ttf',
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w400,
+                                                                    fontSize:
+                                                                        18),
+                                                              ),
+                                                            ),
+                                                            Flexible(
+                                                              flex: 4,
+                                                              fit:
+                                                                  FlexFit.tight,
+                                                              child: Text(
+                                                                _foundTicket[
+                                                                        index]
+                                                                    ['Status'],
+                                                                style: TextStyle(
+                                                                    fontFamily:
+                                                                        'fonts/Roboto-Bold.ttf',
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w400,
+                                                                    fontSize:
+                                                                        18),
+                                                              ),
+                                                            ),
+                                                            Padding(
+                                                                padding: EdgeInsets
+                                                                    .only(
+                                                                        right:
+                                                                            10.0)),
+                                                          ],
+                                                        ),
+                                                        Padding(
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                                    bottom:
+                                                                        10.0)),
+                                                        Center(
+                                                          child:
+                                                              // Padding(padding: EdgeInsets.only(right: 15.0)),
+                                                              Text(
+                                                            'Updates:',
+                                                            style: TextStyle(
+                                                                fontFamily:
+                                                                    'fonts/Roboto-Bold.ttf',
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w800,
+                                                                fontSize: 18),
+                                                          ),
+                                                        ),
+                                                        Padding(
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                                    bottom:
+                                                                        15.0)),
+                                                        // TextField(),
+                                                        Center(
+                                                            child: ClipRRect(
+                                                          borderRadius:
+                                                              BorderRadius.all(
+                                                                  Radius
+                                                                      .circular(
+                                                                          10)),
+                                                          child: Column(
+                                                            children: [
+                                                              Container(
+                                                                width: MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width *
+                                                                    0.90,
+                                                                color: Color(
+                                                                        0xffC4C4C4)
+                                                                    .withOpacity(
+                                                                        0.20),
+                                                                height: 70,
+                                                                child:
+                                                                    TextField(
+                                                                  scrollPadding:
+                                                                      EdgeInsets
+                                                                          .only(
+                                                                              top: 40),
+                                                                  showCursor:
+                                                                      true,
+                                                                  cursorColor:
+                                                                      Colors
+                                                                          .white70,
+                                                                  keyboardType:
+                                                                      TextInputType
+                                                                          .text,
+                                                                  textInputAction:
+                                                                      TextInputAction
+                                                                          .done,
+                                                                  style:
+                                                                      TextStyle(
+                                                                    fontFamily:
+                                                                        'fonts/Roboto-Bold.ttf',
+                                                                    fontSize:
+                                                                        18,
+                                                                  ),
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .center,
+                                                                  decoration:
+                                                                      InputDecoration
+                                                                          .collapsed(
+                                                                    hintText:
+                                                                        "Notes",
+                                                                    border:
+                                                                        InputBorder
+                                                                            .none,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              Container(
+                                                                width: MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width *
+                                                                    0.90,
+                                                                color: Color(
+                                                                    0xff486C7B),
+                                                                child: Text(
+                                                                  'Update',
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .center,
+                                                                  style:
+                                                                      TextStyle(
+                                                                    color: Colors
+                                                                        .white,
+                                                                    fontFamily:
+                                                                        'fonts/Roboto-Bold.ttf',
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w600,
+                                                                    fontSize:
+                                                                        18,
+                                                                  ),
+                                                                ),
+                                                              )
+                                                            ],
+                                                          ),
+                                                        )),
+                                                        SizedBox(
+                                                          height: MediaQuery.of(
+                                                                  context)
+                                                              .viewInsets
+                                                              .vertical,
+                                                        ),
+                                                        Padding(
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                                    bottom:
+                                                                        10.0)),
+                                                      ],
+                                                    ),
                                                   ),
-                                                  Padding(
-                                                      padding: EdgeInsets.only(
-                                                          bottom: 10.0)),
-                                                ],
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        );
+                                        // }
+                                      },
+                                      builder: (context, _, __) => SizedBox(
+                                          height: target(),
+                                          /*(mySize.height.toDouble())-25.5,*/
+                                          /*height: MediaQuery.of(context).size.height-338,*/
+                                          // 508.07142857142856-30,
+                                          child: Center(
+                                              child: Shimmer.fromColors(
+                                                  highlightColor:
+                                                      Color(0xff333333),
+                                                  baseColor: Colors.white,
+                                                  child: Text(
+                                                    'Drop Here For More Info!',
+                                                    style:
+                                                        TextStyle(fontSize: 18),
+                                                  )))),
+                                    ));
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(snackBar);
+                              },
+                              onDraggableCanceled: (a, b) {
+                                setState(() {
+                                  ScaffoldMessenger.of(context)
+                                      .hideCurrentSnackBar();
+                                });
+                              },
+                              onDragEnd: (hello) {
+                                ScaffoldMessenger.of(context)
+                                    .hideCurrentSnackBar();
+                              },
+                              feedback: Material(
+                                color: Colors.transparent,
+                                child: Container(
+                                  height: 210,
+                                  width: 153.94,
+                                  margin: EdgeInsets.only(
+                                      left: 10, right: 10, top: 10, bottom: 10),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(12.5),
+                                    boxShadow: [
+                                      BoxShadow(
+                                          blurRadius: 5,
+                                          offset: Offset(1, 0),
+                                          color: Colors.black.withOpacity(0.8)),
+                                      //3dright
+                                      BoxShadow(
+                                          blurRadius: 0,
+                                          offset: Offset(0, 1),
+                                          color: Colors.black.withOpacity(0.9)),
+                                      //3dbottom
+                                      BoxShadow(
+                                          blurRadius: 5,
+                                          offset: -Offset(1, 0),
+                                          color: Colors.black.withOpacity(0.8)),
+                                      //3dleft
+                                      BoxShadow(
+                                          blurRadius: 0,
+                                          offset: -Offset(0, 1),
+                                          color: Colors.black.withOpacity(0.9)),
+                                    ],
+                                    image: DecorationImage(
+                                        fit: BoxFit.cover,
+                                        image:
+                                            AssetImage('assets/rectangle.png')),
+                                  ),
+                                  child: Column(
+                                    children: [
+                                      Padding(
+                                          padding: EdgeInsets.only(top: 10.0)),
+                                      Row(
+                                        children: [
+                                          Image.asset(
+                                              _foundTicket[index]["Image"]),
+                                          Padding(
+                                              padding:
+                                                  EdgeInsets.only(right: 5.0)),
+                                          Text(
+                                            _foundTicket[index]['sysNumber'],
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                                fontFamily:
+                                                    'fonts/Roboto-Bold.ttf',
+                                                fontWeight: FontWeight.w900,
+                                                fontSize: 24),
+                                          ),
+                                          /*Visibility(
+                                            visible: false,
+                                            child: Padding(
+                                              padding: EdgeInsets.only(
+                                                  top: 0.0, bottom: 4, left: 5),
+                                              child: SizedBox(
+                                                width: 20,
+                                                height: 20,
+                                                child: LoadingIndicator(
+                                                  indicatorType:
+                                                      Indicator.ballScale,
+                                                  colors: [
+                                                    Colors.green,
+                                                  ],
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                  );
-                                  // }
-                                },
-                                  builder: (context, _, __) => SizedBox(
-                                    height: (mySize.height.toDouble())-25.5,
-                                      /*target(),*/
-                                      /*height: MediaQuery.of(context).size.height -
-                                          338,*/
-                                      // 508.07142857142856-30,
-                                      child: Center(
-                                          child: Shimmer.fromColors(
-                                              highlightColor: Color(0xff333333),
-                                              baseColor: Colors.white,
-                                              child:  Text(
-                                                'Drop Here For More Info!',
-                                                style: TextStyle(fontSize: 18),
-                                              )))),
-                              )
-                            );
-                            ScaffoldMessenger.of(context)
-                                .showSnackBar(snackBar);
-                          },
-
-                          onDraggableCanceled: (a, b) {
-                            setState(() {
-                              ScaffoldMessenger.of(context)
-                                  .hideCurrentSnackBar();
-                            });
-                          },
-
-                          onDragEnd: (hello) {
-                            ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                          },
-
-                          feedback: Material(
-                            color: Colors.transparent,
-                            child: Container(
-                              height: 210,
-                              width: 153.94,
-                              margin: EdgeInsets.only(
-                                  left: 10, right: 10, top: 10, bottom: 10),
-                              decoration: BoxDecoration(
-                                borderRadius:
-                                BorderRadius.circular(12.5),
-                                boxShadow: [
-                                  BoxShadow(
-                                      blurRadius: 5,
-                                      offset: Offset(1, 0),
-                                      color: Colors.black
-                                          .withOpacity(0.8)),
-                                  //3dright
-                                  BoxShadow(
-                                      blurRadius: 0,
-                                      offset: Offset(0, 1),
-                                      color: Colors.black
-                                          .withOpacity(0.9)),
-                                  //3dbottom
-                                  BoxShadow(
-                                      blurRadius: 5,
-                                      offset: -Offset(1, 0),
-                                      color: Colors.black
-                                          .withOpacity(0.8)),
-                                  //3dleft
-                                  BoxShadow(
-                                      blurRadius: 0,
-                                      offset: -Offset(0, 1),
-                                      color: Colors.black
-                                          .withOpacity(0.9)),
-                                ],
-                                image: DecorationImage(
-                                    fit: BoxFit.cover,
-                                    image: AssetImage(
-                                        'assets/rectangle.png')),
-                              ),
-                              child: Column(
-                                children: [
-                                  Padding(
-                                      padding:
-                                      EdgeInsets.only(top: 10.0)),
-                                  Row(
-                                    children: [
-                                      Image.asset(
-                                          _foundTicket[index]["Image"]),
+                                          ),*/
+                                        ],
+                                      ),
                                       Padding(
-                                          padding: EdgeInsets.only(
-                                              right: 5.0)),
-                                      Text(
-                                        _foundTicket[index]['sysNumber'],
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                            fontFamily:
-                                            'fonts/Roboto-Bold.ttf',
-                                            fontWeight: FontWeight.w900,
-                                            fontSize: 24),
-                                      ),
-                                      Visibility(
-                                        visible: false,
-                                        child: Padding(
-                                          padding: EdgeInsets.only(
-                                              top: 0.0,
-                                              bottom: 4,
-                                              left: 5),
-                                          child: SizedBox(
-                                            width: 20,
-                                            height: 20,
-                                            child: LoadingIndicator(
-                                              indicatorType:
-                                              Indicator.ballScale,
-                                              colors: [
-                                                Colors.green,
-                                              ],
-                                            ),
+                                          padding: EdgeInsets.only(top: 3.0)),
+                                      SizedBox(
+                                        height: 108,
+                                        width: 112,
+                                        child: SingleChildScrollView(
+                                          scrollDirection: Axis.vertical,
+                                          child: Text(
+                                            _foundTicket[index]['problemText'],
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                                fontFamily: 'Roboto',
+                                                fontSize: 14),
                                           ),
                                         ),
                                       ),
-                                    ],
-                                  ),
-                                  Padding(
-                                      padding:
-                                      EdgeInsets.only(top: 3.0)),
-                                  SizedBox(
-                                    height: 108,
-                                    width: 112,
-                                    child: SingleChildScrollView(
-                                      scrollDirection: Axis.vertical,
-                                      child: Text(
-                                        _foundTicket[index]['problemText'],
+                                      Padding(
+                                          padding: EdgeInsets.only(top: 13.0)),
+                                      Text(
+                                        _foundTicket[index]['problemTime'],
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                             fontFamily: 'Roboto',
-                                            fontSize: 14),
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: 18),
                                       ),
-                                    ),
+                                      Padding(
+                                          padding: EdgeInsets.only(top: 1.5)),
+                                      Text(
+                                        _foundTicket[index]['dateTime'],
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                            color: Color(0xff000000)
+                                                .withOpacity(0.65),
+                                            fontFamily: 'fonts/Roboto-Thin.ttf',
+                                            // fontWeight: FontWeight.normal,
+                                            fontSize: 12),
+                                      ),
+                                    ],
                                   ),
-                                  Padding(
-                                      padding:
-                                      EdgeInsets.only(top: 13.0)),
-                                  Text(
-                                    _foundTicket[index]['problemTime'],
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        fontFamily: 'Roboto',
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 18),
-                                  ),
-                                  Padding(
-                                      padding:
-                                      EdgeInsets.only(top: 1.5)),
-                                  Text(
-                                    _foundTicket[index]['dateTime'],
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        color: Color(0xff000000)
-                                            .withOpacity(0.65),
-                                        fontFamily:
-                                        'fonts/Roboto-Thin.ttf',
-                                        // fontWeight: FontWeight.normal,
-                                        fontSize: 12),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          childWhenDragging: Stack(
-                            children: [
-                              Container(
-                                height: 210,
-                                width: 153.94,
-                                margin: EdgeInsets.only(
-                                    left: 10, right: 10, top: 10, bottom: 0),
-                                decoration: BoxDecoration(
-                                  borderRadius:
-                                  BorderRadius.circular(12.5),
-                                  boxShadow: [
-                                    BoxShadow(
-                                        blurRadius: 5,
-                                        offset: Offset(1, 0),
-                                        color: Colors.black
-                                            .withOpacity(0.8)),
-                                    //3dright
-                                    BoxShadow(
-                                        blurRadius: 0,
-                                        offset: Offset(0, 1),
-                                        color: Colors.black
-                                            .withOpacity(0.9)),
-                                    //3dbottom
-                                    BoxShadow(
-                                        blurRadius: 5,
-                                        offset: -Offset(1, 0),
-                                        color: Colors.black
-                                            .withOpacity(0.8)),
-                                    //3dleft
-                                    BoxShadow(
-                                        blurRadius: 0,
-                                        offset: -Offset(0, 1),
-                                        color: Colors.black
-                                            .withOpacity(0.9)),
-                                  ],
-                                  image: DecorationImage(
-                                      fit: BoxFit.cover,
-                                      image: AssetImage(
-                                          'assets/rectangle.png')),
                                 ),
-                                child: Column(
-                                  children: [
-                                    Padding(
-                                        padding:
-                                        EdgeInsets.only(top: 10.0)),
-                                    Row(
+                              ),
+                              childWhenDragging: Stack(
+                                children: [
+                                  Container(
+                                    height: 210,
+                                    width: 153.94,
+                                    margin: EdgeInsets.only(
+                                        left: 10,
+                                        right: 10,
+                                        top: 10,
+                                        bottom: 0),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(12.5),
+                                      boxShadow: [
+                                        BoxShadow(
+                                            blurRadius: 5,
+                                            offset: Offset(1, 0),
+                                            color:
+                                                Colors.black.withOpacity(0.8)),
+                                        //3dright
+                                        BoxShadow(
+                                            blurRadius: 0,
+                                            offset: Offset(0, 1),
+                                            color:
+                                                Colors.black.withOpacity(0.9)),
+                                        //3dbottom
+                                        BoxShadow(
+                                            blurRadius: 5,
+                                            offset: -Offset(1, 0),
+                                            color:
+                                                Colors.black.withOpacity(0.8)),
+                                        //3dleft
+                                        BoxShadow(
+                                            blurRadius: 0,
+                                            offset: -Offset(0, 1),
+                                            color:
+                                                Colors.black.withOpacity(0.9)),
+                                      ],
+                                      image: DecorationImage(
+                                          fit: BoxFit.cover,
+                                          image: AssetImage(
+                                              'assets/rectangle.png')),
+                                    ),
+                                    child: Column(
                                       children: [
-                                        Image.asset(
-                                            _foundTicket[index]["Image"]),
                                         Padding(
-                                            padding: EdgeInsets.only(
-                                                right: 5.0)),
-                                        Text(
-                                          _foundTicket[index]['sysNumber'],
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                              fontFamily:
-                                              'fonts/Roboto-Bold.ttf',
-                                              fontWeight: FontWeight.w900,
-                                              fontSize: 24),
-                                        ),
-                                        Visibility(
-                                          visible: false,
-                                          child: Padding(
-                                            padding: EdgeInsets.only(
-                                                top: 0.0,
-                                                bottom: 4,
-                                                left: 5),
-                                            child: SizedBox(
-                                              width: 20,
-                                              height: 20,
-                                              child: LoadingIndicator(
-                                                indicatorType:
-                                                Indicator.ballScale,
-                                                colors: [
-                                                  Colors.green,
-                                                ],
+                                            padding:
+                                                EdgeInsets.only(top: 10.0)),
+                                        Row(
+                                          children: [
+                                            Image.asset(
+                                                _foundTicket[index]["Image"]),
+                                            Padding(
+                                                padding: EdgeInsets.only(
+                                                    right: 5.0)),
+                                            Text(
+                                              _foundTicket[index]['sysNumber'],
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  fontFamily:
+                                                      'fonts/Roboto-Bold.ttf',
+                                                  fontWeight: FontWeight.w900,
+                                                  fontSize: 24),
+                                            ),
+                                            /*Visibility(
+                                              visible: false,
+                                              child: Padding(
+                                                padding: EdgeInsets.only(
+                                                    top: 0.0,
+                                                    bottom: 4,
+                                                    left: 5),
+                                                child: SizedBox(
+                                                  width: 20,
+                                                  height: 20,
+                                                  child: LoadingIndicator(
+                                                    indicatorType:
+                                                        Indicator.ballScale,
+                                                    colors: [
+                                                      Colors.green,
+                                                    ],
+                                                  ),
+                                                ),
                                               ),
+                                            ),*/
+                                          ],
+                                        ),
+                                        Padding(
+                                            padding: EdgeInsets.only(top: 3.0)),
+                                        SizedBox(
+                                          height: 108,
+                                          width: 112,
+                                          child: SingleChildScrollView(
+                                            scrollDirection: Axis.vertical,
+                                            child: Text(
+                                              _foundTicket[index]
+                                                  ['problemText'],
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  fontFamily: 'Roboto',
+                                                  fontSize: 14),
                                             ),
                                           ),
                                         ),
-                                      ],
-                                    ),
-                                    Padding(
-                                        padding:
-                                        EdgeInsets.only(top: 3.0)),
-                                    SizedBox(
-                                      height: 108,
-                                      width: 112,
-                                      child: SingleChildScrollView(
-                                        scrollDirection: Axis.vertical,
-                                        child: Text(
-                                          _foundTicket[index]['problemText'],
+                                        Padding(
+                                            padding:
+                                                EdgeInsets.only(top: 13.0)),
+                                        Text(
+                                          _foundTicket[index]['problemTime'],
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                               fontFamily: 'Roboto',
-                                              fontSize: 14),
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 18),
                                         ),
-                                      ),
+                                        Padding(
+                                            padding: EdgeInsets.only(top: 1.5)),
+                                        Text(
+                                          _foundTicket[index]['dateTime'],
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              color: Color(0xff000000)
+                                                  .withOpacity(0.65),
+                                              fontFamily:
+                                                  'fonts/Roboto-Thin.ttf',
+                                              // fontWeight: FontWeight.normal,
+                                              fontSize: 12),
+                                        ),
+                                      ],
                                     ),
-                                    Padding(
-                                        padding:
-                                        EdgeInsets.only(top: 13.0)),
-                                    Text(
-                                      _foundTicket[index]['problemTime'],
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          fontFamily: 'Roboto',
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 18),
-                                    ),
-                                    Padding(
-                                        padding:
-                                        EdgeInsets.only(top: 1.5)),
-                                    Text(
-                                      _foundTicket[index]['dateTime'],
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          color: Color(0xff000000)
-                                              .withOpacity(0.65),
-                                          fontFamily:
-                                          'fonts/Roboto-Thin.ttf',
-                                          // fontWeight: FontWeight.normal,
-                                          fontSize: 12),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Positioned.fill(
-                                  child: BackdropFilter(
+                                  ),
+                                  Positioned.fill(
+                                      child: BackdropFilter(
                                     filter:
-                                    ImageFilter.blur(sigmaX: 1, sigmaY: 1),
+                                        ImageFilter.blur(sigmaX: 1, sigmaY: 1),
                                     child: Container(
                                       color: Colors.transparent,
                                     ),
                                   ))
-                            ],
-                          ),
-                          child: Card(
-                            color: Colors.transparent,
-                            elevation: 5,
-                            shadowColor: Colors.black.withOpacity(0.15),
-                            child: Transform(
-                              alignment: Alignment.center,
-                              transform: Matrix4.identity()
-                                ..setEntry(3, 2, 0.0019)..setEntry(0, 3, 0)
-                                ..rotateY(!_ticketExpand ? 0 : -(pi / 18)),
-                              child: Container(
-                                height: 210,
-                                width: 153.94,
-                                margin: EdgeInsets.only(
-                                    left: 10, right: 10, top: 0, bottom: 5),
-                                decoration: BoxDecoration(
-                                  borderRadius:
-                                  BorderRadius.circular(12.5),
-                                  boxShadow: [
-                                    BoxShadow(
-                                        blurRadius: 5,
-                                        offset: Offset(1, 0),
-                                        color: Colors.black
-                                            .withOpacity(0.8)),
-                                    //3dright
-                                    BoxShadow(
-                                        blurRadius: 0,
-                                        offset: Offset(0, 1),
-                                        color: Colors.black
-                                            .withOpacity(0.9)),
-                                    //3dbottom
-                                    BoxShadow(
-                                        blurRadius: 5,
-                                        offset: -Offset(1, 0),
-                                        color: Colors.black
-                                            .withOpacity(0.8)),
-                                    //3dleft
-                                    BoxShadow(
-                                        blurRadius: 0,
-                                        offset: -Offset(0, 1),
-                                        color: Colors.black
-                                            .withOpacity(0.9)),
-                                  ],
-                                  image: DecorationImage(
-                                      fit: BoxFit.cover,
-                                      image: AssetImage(
-                                          'assets/rectangle.png')),
-                                ),
-                                child: Column(
-                                  children: [
-                                    Padding(
-                                        padding:
-                                        EdgeInsets.only(top: 10.0)),
-                                    Row(
+                                ],
+                              ),
+                              child: Card(
+                                color: Colors.transparent,
+                                elevation: 5,
+                                shadowColor: Colors.black.withOpacity(0.15),
+                                child: Transform(
+                                  alignment: Alignment.center,
+                                  transform: Matrix4.identity()
+                                    ..setEntry(3, 2, 0.0019)
+                                    ..setEntry(0, 3, 0)
+                                    ..rotateY(!_ticketExpand ? 0 : -(pi / 18)),
+                                  child: Container(
+                                    height: 210,
+                                    width: 153.94,
+                                    margin: EdgeInsets.only(
+                                        left: 10, right: 10, top: 0, bottom: 5),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(12.5),
+                                      boxShadow: [
+                                        BoxShadow(
+                                            blurRadius: 5,
+                                            offset: Offset(1, 0),
+                                            color:
+                                                Colors.black.withOpacity(0.8)),
+                                        //3dright
+                                        BoxShadow(
+                                            blurRadius: 0,
+                                            offset: Offset(0, 1),
+                                            color:
+                                                Colors.black.withOpacity(0.9)),
+                                        //3dbottom
+                                        BoxShadow(
+                                            blurRadius: 5,
+                                            offset: -Offset(1, 0),
+                                            color:
+                                                Colors.black.withOpacity(0.8)),
+                                        //3dleft
+                                        BoxShadow(
+                                            blurRadius: 0,
+                                            offset: -Offset(0, 1),
+                                            color:
+                                                Colors.black.withOpacity(0.9)),
+                                      ],
+                                      image: DecorationImage(
+                                          fit: BoxFit.cover,
+                                          image: AssetImage(
+                                              'assets/rectangle.png')),
+                                    ),
+                                    child: Column(
                                       children: [
-                                        Image.asset(
-                                            _foundTicket[index]["Image"]),
                                         Padding(
-                                            padding: EdgeInsets.only(
-                                                right: 5.0)),
-                                        Text(
-                                          _foundTicket[index]['sysNumber'],
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                              fontFamily:
-                                              'fonts/Roboto-Bold.ttf',
-                                              fontWeight: FontWeight.w900,
-                                              fontSize: 24),
-                                        ),
-
-                                        Visibility(
-                                          visible: _foundTicket[index]['loadingIndicator'],
-                                          child: Padding(
-                                            padding: EdgeInsets.only(
-                                                top: 0.0,
-                                                bottom: 4,
-                                                left: 5),
-                                            child: SizedBox(
-                                              width: 20,
-                                              height: 20,
-                                              child: LoadingIndicator(
-                                                indicatorType:
-                                                Indicator.ballScale,
-                                                colors: [
-                                                  Colors.green,
-                                                ],
+                                            padding:
+                                                EdgeInsets.only(top: 10.0)),
+                                        Row(
+                                          children: [
+                                            Image.asset(
+                                                _foundTicket[index]["Image"]),
+                                            Padding(
+                                                padding: EdgeInsets.only(
+                                                    right: 5.0)),
+                                            Text(
+                                              _foundTicket[index]['sysNumber'],
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  fontFamily:
+                                                      'fonts/Roboto-Bold.ttf',
+                                                  fontWeight: FontWeight.w900,
+                                                  fontSize: 24),
+                                            ),
+                                            Visibility(
+                                              visible: _foundTicket[index]
+                                                  ['loadingIndicator'],
+                                              child: Padding(
+                                                padding: EdgeInsets.only(
+                                                    top: 0.0,
+                                                    bottom: 2.5,
+                                                    left: 5),
+                                                child: Stack(
+                                                  alignment: Alignment.center,
+                                                  children: [
+                                                    SizedBox(
+                                                      width: 25,
+                                                      height: 25,
+                                                      child: LoadingIndicator(
+                                                        indicatorType: Indicator
+                                                            .ballScaleMultiple,
+                                                        colors: [
+                                                          Colors.green
+                                                              .withOpacity(
+                                                                  0.9),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Container(
+                                                      height: 7.5,
+                                                      width: 7.5,
+                                                      decoration: BoxDecoration(
+                                                          color: Colors.green,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      50)),
+                                                    )
+                                                  ],
+                                                ),
                                               ),
                                             ),
+                                          ],
+                                        ),
+                                        Padding(
+                                            padding: EdgeInsets.only(top: 3.0)),
+                                        SizedBox(
+                                          height: 108,
+                                          width: 112,
+                                          child: SingleChildScrollView(
+                                            scrollDirection: Axis.vertical,
+                                            child: Text(
+                                              _foundTicket[index]
+                                                  ['problemText'],
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  fontFamily: 'Roboto',
+                                                  fontSize: 14),
+                                            ),
                                           ),
+                                        ),
+                                        Padding(
+                                            padding:
+                                                EdgeInsets.only(top: 13.0)),
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          children: [
+                                            Expanded(
+                                              child: Container(),
+                                            ),
+                                            Text(
+                                              _foundTicket[index]['problemTime'],
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  fontFamily: 'Roboto',
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: 18),
+                                            ),
+                                            Expanded(
+                                              child: Visibility(
+                                                visible: false,
+                                                child: Icon(
+                                                  Icons.messenger_outline_outlined,
+                                                  color: Colors.black.withOpacity(0.85),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        Padding(
+                                            padding: EdgeInsets.only(top: 1.5)),
+                                        Text(
+                                          _foundTicket[index]['dateTime'],
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              color: Color(0xff000000)
+                                                  .withOpacity(0.65),
+                                              fontFamily:
+                                                  'fonts/Roboto-Thin.ttf',
+                                              // fontWeight: FontWeight.normal,
+                                              fontSize: 12),
                                         ),
                                       ],
                                     ),
-                                    Padding(
-                                        padding:
-                                        EdgeInsets.only(top: 3.0)),
-                                    SizedBox(
-                                      height: 108,
-                                      width: 112,
-                                      child: SingleChildScrollView(
-                                        scrollDirection: Axis.vertical,
-                                        child: Text(
-                                          _foundTicket[index]['problemText'],
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                              fontFamily: 'Roboto',
-                                              fontSize: 14),
-                                        ),
-                                      ),
-                                    ),
-                                    Padding(
-                                        padding:
-                                        EdgeInsets.only(top: 13.0)),
-                                    Text(
-                                      _foundTicket[index]['problemTime'],
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          fontFamily: 'Roboto',
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 18),
-                                    ),
-                                    Padding(
-                                        padding:
-                                        EdgeInsets.only(top: 1.5)),
-                                    Text(
-                                      _foundTicket[index]['dateTime'],
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          color: Color(0xff000000)
-                                              .withOpacity(0.65),
-                                          fontFamily:
-                                          'fonts/Roboto-Thin.ttf',
-                                          // fontWeight: FontWeight.normal,
-                                          fontSize: 12),
-                                    ),
-                                  ],
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                      ),
+                          Visibility(
+                            visible: _enterAction,
+                            child: AnimatedPositioned(
+                                curve: Curves.fastOutSlowIn,
+                                left: _buttonPosition
+                                    ? 150
+                                    : MediaQuery.of(context).size.width + 175,
+                                top: 18,
+                                duration: Duration(milliseconds: 250),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    /*_sysNumber= ticket[index]['sysNumber'];*/
+                                    _remote = false;
+                                    setState(() {
+                                      selectedIncidentWidgetMarker =
+                                          IncidentMarker.chat;
+                                      /*this._memoryWidgets.add('assets/chaticon250.png');*/
+                                      /*memorybar[ticket[index]['sysNumber']] = ['Call'];*/
 
-                      Visibility(
-                        visible: _enterAction,
-                        child: AnimatedPositioned(
-                          curve: Curves.fastOutSlowIn,
-                          left: _buttonPosition
-                              ? 150
-                              : MediaQuery
-                              .of(context)
-                              .size
-                              .width +
-                              175,
-                          top: 18,
-                          duration: Duration(milliseconds: 250),
-                          child: GestureDetector(
-                            onTap : (){
-                              /*_sysNumber= ticket[index]['sysNumber'];*/
-                              _remote = false;
-                              setState(() {
-
-                                selectedIncidentWidgetMarker = IncidentMarker.chat;
-                                /*this._memoryWidgets.add('assets/chaticon250.png');*/
-                                /*memorybar[ticket[index]['sysNumber']] = ['Call'];*/
-
-                                if(memorybar.containsKey(ticket[index]['sysNumber'])==true){
-                                  memorybar[ticket[index]['sysNumber']]?.add('assets/chaticon250.png');
-                                }else{
-                                  memorybar.addEntries([
-                                    MapEntry(ticket[index]['sysNumber'], {'assets/chaticon250.png'})
-                                  ]);
-                                }
-
-                              });
-                            },
-                            onTapDown: (pressing) {
-                              setState(() {
-                                _isChatButton = false;
-                              });
-                            },
-                            onTapUp: (pressing) {
-                              setState(() {
-                                _isChatButton = true;
-                              });
-                            },
-                            child: Container(
-                              height: 24,
-                              width: 174,
-                              decoration: BoxDecoration(
-                                gradient: RadialGradient(
-                                  tileMode: TileMode.mirror,
-                                  focalRadius: 10,
-                                  radius: 2,
-                                  colors: [
-                                    _isChatButton ? Color(0xffD3D3D3) : Color(0xff7E040A),
-                                    _isChatButton ? Colors.white : Color(0xff81040A),
-                                  ],
+                                      if (memorybar.containsKey(
+                                              ticket[index]['sysNumber']) ==
+                                          true) {
+                                        memorybar[ticket[index]['sysNumber']]
+                                            ?.add('assets/chaticon250.png');
+                                      } else {
+                                        memorybar.addEntries([
+                                          MapEntry(ticket[index]['sysNumber'],
+                                              {'assets/chaticon250.png'})
+                                        ]);
+                                      }
+                                    });
+                                  },
+                                  onTapDown: (pressing) {
+                                    setState(() {
+                                      _isChatButton = false;
+                                    });
+                                  },
+                                  onTapUp: (pressing) {
+                                    setState(() {
+                                      _isChatButton = true;
+                                    });
+                                  },
+                                  child: Container(
+                                    height: 24,
+                                    width: 174,
+                                    decoration: BoxDecoration(
+                                      gradient: RadialGradient(
+                                        tileMode: TileMode.mirror,
+                                        focalRadius: 10,
+                                        radius: 2,
+                                        colors: [
+                                          _isChatButton
+                                              ? Color(0xffD3D3D3)
+                                              : Color(0xff7E040A),
+                                          _isChatButton
+                                              ? Colors.white
+                                              : Color(0xff81040A),
+                                        ],
+                                      ),
+                                      boxShadow: [
+                                        BoxShadow(
+                                            blurRadius: 10,
+                                            offset: Offset(1, 1),
+                                            color: Color(0xff000000)
+                                                .withOpacity(0.60)),
+                                        // BoxShadow(
+                                        //     blurRadius: 10,
+                                        //     offset: -Offset(1, 1),
+                                        //     color: Color(0xff000000).withOpacity(0.30)),
+                                      ],
+                                      // color: Color(0xffECECEC),
+                                      borderRadius: BorderRadius.circular(12.5),
+                                    ),
+                                    alignment: Alignment(-0.385, 0),
+                                    child: Text(
+                                      'CHAT',
+                                      style: TextStyle(
+                                          color: _isChatButton
+                                              ? Color(0XFF81040A)
+                                              : Colors.white,
+                                          fontFamily: 'Roboto',
+                                          fontWeight: FontWeight.w900,
+                                          fontSize: 14),
+                                    ),
+                                  ),
+                                )
+                                // ChatButton(),
                                 ),
-                                boxShadow: [
-                                  BoxShadow(
-                                      blurRadius: 10,
-                                      offset: Offset(1, 1),
-                                      color: Color(0xff000000).withOpacity(0.60)),
-                                  // BoxShadow(
-                                  //     blurRadius: 10,
-                                  //     offset: -Offset(1, 1),
-                                  //     color: Color(0xff000000).withOpacity(0.30)),
-                                ],
-                                // color: Color(0xffECECEC),
-                                borderRadius: BorderRadius.circular(12.5),
-                              ),
-                              alignment: Alignment(-0.385, 0),
-                              child: Text(
-                                'CHAT',
-                                style: TextStyle(
-                                    color: _isChatButton ? Color(0XFF81040A) : Colors.white,
-                                    fontFamily: 'Roboto',
-                                    fontWeight: FontWeight.w900,
-                                    fontSize: 14),
-                              ),
-                            ),
-                          )
-                          // ChatButton(),
-                        ),
-                      ),
-
-                      Visibility(
-                        visible: _enterAction,
-                        child: AnimatedPositioned(
-                          curve: Curves.fastOutSlowIn,
-                            left: _buttonPosition
-                                ? 150
-                                : MediaQuery
-                                .of(context)
-                                .size
-                                .width +
-                                175,
-                          top: 44,
-                          duration: Duration(milliseconds: 350),
-                          child: GestureDetector(
-                            onTap: (){
-                              setState(() {
-                                /*this.memoryWidgets.add('assets/calliconpadding.png');*/
-                                /*memorybar.addEntries([
+                          ),
+                          Visibility(
+                            visible: _enterAction,
+                            child: AnimatedPositioned(
+                                curve: Curves.fastOutSlowIn,
+                                left: _buttonPosition
+                                    ? 150
+                                    : MediaQuery.of(context).size.width + 175,
+                                top: 44,
+                                duration: Duration(milliseconds: 350),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      /*this.memoryWidgets.add('assets/calliconpadding.png');*/
+                                      /*memorybar.addEntries([
                                   MapEntry(ticket[index]['sysNumber'],['Call'])
                                 ]);*/
-                                // memorybar[ticket[index]['sysNumber']];
-                                /*memorybar[ticket[index]['sysNumber']] = ['Call'];*/
-                                /*memorybar.forEach((key, value) {
+                                      // memorybar[ticket[index]['sysNumber']];
+                                      /*memorybar[ticket[index]['sysNumber']] = ['Call'];*/
+                                      /*memorybar.forEach((key, value) {
 
                                 });*/
-                                /*memorybar[ticket[index]['sysNumber']]?.insertAll(memorybar[ticket[index]['sysNumber']]!.length,['Call']);*/
-                                if(memorybar.containsKey(ticket[index]['sysNumber'])==true){
-                                  memorybar[ticket[index]['sysNumber']]?.add('assets/calliconpadding.png');
-                                }else{
-                                  memorybar.addEntries([
-                                    MapEntry(ticket[index]['sysNumber'], {'assets/calliconpadding.png'})
-                                  ]);
-                                }
-
-                              });
-                              // memorybar.forEach((k,v) => print('${k}: ${v}'));
-                              // print(memorybar[ticket[index]['sysNumber']]?.toList());
-                              /*memorybar.forEach((key, value) {
+                                      /*memorybar[ticket[index]['sysNumber']]?.insertAll(memorybar[ticket[index]['sysNumber']]!.length,['Call']);*/
+                                      if (memorybar.containsKey(
+                                              ticket[index]['sysNumber']) ==
+                                          true) {
+                                        memorybar[ticket[index]['sysNumber']]
+                                            ?.add('assets/calliconpadding.png');
+                                      } else {
+                                        memorybar.addEntries([
+                                          MapEntry(ticket[index]['sysNumber'],
+                                              {'assets/calliconpadding.png'})
+                                        ]);
+                                      }
+                                    });
+                                    // memorybar.forEach((k,v) => print('${k}: ${v}'));
+                                    // print(memorybar[ticket[index]['sysNumber']]?.toList());
+                                    /*memorybar.forEach((key, value) {
                                 print('${key}: ${value.toList()}');
                               });*/
 
-                              /*print(memorybar['C0001']?.elementAt(1));*/
-
-                            },
-                            onTapDown: (pressing) {
-                              setState(() {
-                                _isCallButton = false;
-                              });
-                            },
-                            onTapUp: (pressing) {
-                              setState(() {
-                                _isCallButton = true;
-                              });
-                            },
-                            child: Container(
-                              height: 24,
-                              width: 174,
-                              decoration: BoxDecoration(
-                                gradient: RadialGradient(
-                                  tileMode: TileMode.mirror,
-                                  focalRadius: 10,
-                                  radius: 2,
-                                  colors: [
-                                    _isCallButton ? Color(0xffD3D3D3) : Color(0xff7E040A),
-                                    _isCallButton ? Colors.white : Color(0xff81040A),
-                                  ],
+                                    /*print(memorybar['C0001']?.elementAt(1));*/
+                                  },
+                                  onTapDown: (pressing) {
+                                    setState(() {
+                                      _isCallButton = false;
+                                    });
+                                  },
+                                  onTapUp: (pressing) {
+                                    setState(() {
+                                      _isCallButton = true;
+                                    });
+                                  },
+                                  child: Container(
+                                    height: 24,
+                                    width: 174,
+                                    decoration: BoxDecoration(
+                                      gradient: RadialGradient(
+                                        tileMode: TileMode.mirror,
+                                        focalRadius: 10,
+                                        radius: 2,
+                                        colors: [
+                                          _isCallButton
+                                              ? Color(0xffD3D3D3)
+                                              : Color(0xff7E040A),
+                                          _isCallButton
+                                              ? Colors.white
+                                              : Color(0xff81040A),
+                                        ],
+                                      ),
+                                      boxShadow: [
+                                        BoxShadow(
+                                            blurRadius: 10,
+                                            offset: Offset(1, 1),
+                                            color: Color(0xff000000)
+                                                .withOpacity(0.60)),
+                                        // BoxShadow(
+                                        //     blurRadius: 10,
+                                        //     offset: -Offset(1, 1),
+                                        //     color: Color(0xff000000).withOpacity(0.30)),
+                                      ],
+                                      // color: Color(0xffECECEC),
+                                      borderRadius: BorderRadius.circular(12.5),
+                                    ),
+                                    alignment: Alignment(-0.40, 0),
+                                    child: Text(
+                                      'CALL',
+                                      style: TextStyle(
+                                          color: _isCallButton
+                                              ? Color(0XFF81040A)
+                                              : Colors.white,
+                                          fontFamily: 'Roboto',
+                                          fontWeight: FontWeight.w900,
+                                          fontSize: 14),
+                                    ),
+                                  ),
+                                )
+                                // CallButton(),
                                 ),
-                                boxShadow: [
-                                  BoxShadow(
-                                      blurRadius: 10,
-                                      offset: Offset(1, 1),
-                                      color: Color(0xff000000).withOpacity(0.60)),
-                                  // BoxShadow(
-                                  //     blurRadius: 10,
-                                  //     offset: -Offset(1, 1),
-                                  //     color: Color(0xff000000).withOpacity(0.30)),
-                                ],
-                                // color: Color(0xffECECEC),
-                                borderRadius: BorderRadius.circular(12.5),
-                              ),
-                              alignment: Alignment(-0.40, 0),
-                              child: Text(
-                                'CALL',
-                                style: TextStyle(
-                                    color: _isCallButton ? Color(0XFF81040A) : Colors.white,
-                                    fontFamily: 'Roboto',
-                                    fontWeight: FontWeight.w900,
-                                    fontSize: 14),
-                              ),
-                            ),
-                          )
-                          // CallButton(),
-                        ),
-                      ),
+                          ),
+                          Visibility(
+                            visible: _enterAction,
+                            child: AnimatedPositioned(
+                                curve: Curves.fastOutSlowIn,
+                                left: _buttonPosition
+                                    ? 150
+                                    : MediaQuery.of(context).size.width + 175,
+                                top: 70,
+                                duration: Duration(milliseconds: 450),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    _remote = !_remote;
+                                    setState(() {
+                                      /*this.memoryWidgets.add('assets/remoteiconpadding.png');*/
 
-                      Visibility(
-                        visible: _enterAction,
-                        child: AnimatedPositioned(
-                          curve: Curves.fastOutSlowIn,
-                            left: _buttonPosition
-                                ? 150
-                                : MediaQuery
-                                .of(context)
-                                .size
-                                .width +
-                                175,
-                          top: 70,
-                          duration: Duration(milliseconds: 450),
-                          child: GestureDetector(
-                            onTap: (){
-                              _remote = !_remote;
-                              setState(() {
-                                /*this.memoryWidgets.add('assets/remoteiconpadding.png');*/
-
-                                if(memorybar.containsKey(ticket[index]['sysNumber'])==true){
-                                  memorybar[ticket[index]['sysNumber']]?.add('assets/remoteiconpadding.png');
-                                }else{
-                                  memorybar.addEntries([
-                                    MapEntry(ticket[index]['sysNumber'], {'assets/remoteiconpadding.png'})
-                                  ]);
-                                }
-
-                              });
-                            },
-                            onTapDown: (pressing) {
-                              setState(() {
-                                _isRemoteButton = false;
-                              });
-                            },
-                            onTapUp: (pressing) {
-                              setState(() {
-                                _isRemoteButton = true;
-                              });
-                            },
-                            child: Container(
-                              height: 24,
-                              width: 174,
-                              decoration: BoxDecoration(
-                                gradient: RadialGradient(
-                                  tileMode: TileMode.mirror,
-                                  focalRadius: 10,
-                                  radius: 2,
-                                  colors: [
-                                    _isRemoteButton ? Color(0xffD3D3D3) : Color(0xff7E040A),
-                                    _isRemoteButton ? Colors.white : Color(0xff81040A),
-                                  ],
+                                      if (memorybar.containsKey(
+                                              ticket[index]['sysNumber']) ==
+                                          true) {
+                                        memorybar[ticket[index]['sysNumber']]
+                                            ?.add(
+                                                'assets/remoteiconpadding.png');
+                                      } else {
+                                        memorybar.addEntries([
+                                          MapEntry(ticket[index]['sysNumber'],
+                                              {'assets/remoteiconpadding.png'})
+                                        ]);
+                                      }
+                                    });
+                                  },
+                                  onTapDown: (pressing) {
+                                    setState(() {
+                                      _isRemoteButton = false;
+                                    });
+                                  },
+                                  onTapUp: (pressing) {
+                                    setState(() {
+                                      _isRemoteButton = true;
+                                    });
+                                  },
+                                  child: Container(
+                                    height: 24,
+                                    width: 174,
+                                    decoration: BoxDecoration(
+                                      gradient: RadialGradient(
+                                        tileMode: TileMode.mirror,
+                                        focalRadius: 10,
+                                        radius: 2,
+                                        colors: [
+                                          _isRemoteButton
+                                              ? Color(0xffD3D3D3)
+                                              : Color(0xff7E040A),
+                                          _isRemoteButton
+                                              ? Colors.white
+                                              : Color(0xff81040A),
+                                        ],
+                                      ),
+                                      boxShadow: [
+                                        BoxShadow(
+                                            blurRadius: 10,
+                                            offset: Offset(1, 1),
+                                            color: Color(0xff000000)
+                                                .withOpacity(0.60)),
+                                        // BoxShadow(
+                                        //     blurRadius: 10,
+                                        //     offset: -Offset(1, 1),
+                                        //     color: Color(0xff000000).withOpacity(0.30)),
+                                      ],
+                                      // color: Color(0xffECECEC),
+                                      borderRadius: BorderRadius.circular(12.5),
+                                    ),
+                                    alignment: Alignment(-0.30, 0),
+                                    child: Text(
+                                      'REMOTE',
+                                      style: TextStyle(
+                                          color: _isRemoteButton
+                                              ? Color(0XFF81040A)
+                                              : Colors.white,
+                                          fontFamily: 'Roboto',
+                                          fontWeight: FontWeight.w900,
+                                          fontSize: 14),
+                                    ),
+                                  ),
+                                )
+                                // RemoteButton(),
                                 ),
-                                boxShadow: [
-                                  BoxShadow(
-                                      blurRadius: 10,
-                                      offset: Offset(1, 1),
-                                      color: Color(0xff000000).withOpacity(0.60)),
-                                  // BoxShadow(
-                                  //     blurRadius: 10,
-                                  //     offset: -Offset(1, 1),
-                                  //     color: Color(0xff000000).withOpacity(0.30)),
-                                ],
-                                // color: Color(0xffECECEC),
-                                borderRadius: BorderRadius.circular(12.5),
-                              ),
-                              alignment: Alignment(-0.30, 0),
-                              child: Text(
-                                'REMOTE',
-                                style: TextStyle(
-                                    color: _isRemoteButton ? Color(0XFF81040A) : Colors.white,
-                                    fontFamily: 'Roboto',
-                                    fontWeight: FontWeight.w900,
-                                    fontSize: 14),
-                              ),
-                            ),
-                          )
-                          // RemoteButton(),
-                        ),
-                      ),
-
-                      Visibility(
-                        visible: _enterAction,
-                        child: AnimatedPositioned(
-                          curve: Curves.fastOutSlowIn,
-                            left: _buttonPosition
-                                ? 150
-                                : MediaQuery
-                                .of(context)
-                                .size
-                                .width +
-                                175,
-                          top: 96,
-                          duration: Duration(milliseconds: 550),
-                          child: GestureDetector(
-                            onTap: (){
-                              setState(() {
-                                /*this.memoryWidgets.add('assets/scripticonpadding.png');*/
-                                /*memorybar.addEntries([
+                          ),
+                          Visibility(
+                            visible: _enterAction,
+                            child: AnimatedPositioned(
+                                curve: Curves.fastOutSlowIn,
+                                left: _buttonPosition
+                                    ? 150
+                                    : MediaQuery.of(context).size.width + 175,
+                                top: 96,
+                                duration: Duration(milliseconds: 550),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      /*this.memoryWidgets.add('assets/scripticonpadding.png');*/
+                                      /*memorybar.addEntries([
                                   MapEntry(ticket[index]['sysNumber'],['Script'])
                                 ]);*/
-                                /*memorybar[ticket[index]['sysNumber']];*/
-                                /*memorybar[ticket[index]['sysNumber']] = ['script'];*/
-                               /* memorybar[ticket[index]['sysNumber']]?.insertAll(memorybar[ticket[index]['sysNumber']]!.length,['Script']);*/
-                                if(memorybar.containsKey(ticket[index]['sysNumber'])==true){
-                                  memorybar[ticket[index]['sysNumber']]?.add('assets/scripticonpadding.png');
-                                }else{
-                                  memorybar.addEntries([
-                                    MapEntry(ticket[index]['sysNumber'], {'assets/scripticonpadding.png'})
-                                  ]);
-                                }
-                              });
-                              /*print(memorybar);*/
-                            },
-                            onTapDown: (pressing) {
-                              setState(() {
-                                _isScriptButton = false;
-                              });
-                            },
-                            onTapUp: (pressing) {
-                              setState(() {
-                                _isScriptButton = true;
-                              });
-                            },
-                            child: Container(
-                              height: 24,
-                              width: 174,
-                              decoration: BoxDecoration(
-                                gradient: RadialGradient(
-                                  tileMode: TileMode.mirror,
-                                  focalRadius: 10,
-                                  radius: 2,
-                                  colors: [
-                                    _isScriptButton ? Color(0xffD3D3D3) : Color(0xff7E040A),
-                                    _isScriptButton ? Colors.white : Color(0xff81040A),
-                                  ],
+                                      /*memorybar[ticket[index]['sysNumber']];*/
+                                      /*memorybar[ticket[index]['sysNumber']] = ['script'];*/
+                                      /* memorybar[ticket[index]['sysNumber']]?.insertAll(memorybar[ticket[index]['sysNumber']]!.length,['Script']);*/
+                                      if (memorybar.containsKey(
+                                              ticket[index]['sysNumber']) ==
+                                          true) {
+                                        memorybar[ticket[index]['sysNumber']]
+                                            ?.add(
+                                                'assets/scripticonpadding.png');
+                                      } else {
+                                        memorybar.addEntries([
+                                          MapEntry(ticket[index]['sysNumber'],
+                                              {'assets/scripticonpadding.png'})
+                                        ]);
+                                      }
+                                    });
+                                    /*print(memorybar);*/
+                                  },
+                                  onTapDown: (pressing) {
+                                    setState(() {
+                                      _isScriptButton = false;
+                                    });
+                                  },
+                                  onTapUp: (pressing) {
+                                    setState(() {
+                                      _isScriptButton = true;
+                                    });
+                                  },
+                                  child: Container(
+                                    height: 24,
+                                    width: 174,
+                                    decoration: BoxDecoration(
+                                      gradient: RadialGradient(
+                                        tileMode: TileMode.mirror,
+                                        focalRadius: 10,
+                                        radius: 2,
+                                        colors: [
+                                          _isScriptButton
+                                              ? Color(0xffD3D3D3)
+                                              : Color(0xff7E040A),
+                                          _isScriptButton
+                                              ? Colors.white
+                                              : Color(0xff81040A),
+                                        ],
+                                      ),
+                                      boxShadow: [
+                                        BoxShadow(
+                                            blurRadius: 10,
+                                            offset: Offset(1, 1),
+                                            color: Color(0xff000000)
+                                                .withOpacity(0.60)),
+                                        // BoxShadow(
+                                        //     blurRadius: 10,
+                                        //     offset: -Offset(1, 1),
+                                        //     color: Color(0xff000000).withOpacity(0.30)),
+                                      ],
+                                      // color: Color(0xffECECEC),
+                                      borderRadius: BorderRadius.circular(12.5),
+                                    ),
+                                    alignment: Alignment(-0.33, 0),
+                                    child: Text(
+                                      'SCRIPT',
+                                      style: TextStyle(
+                                          color: _isScriptButton
+                                              ? Color(0XFF81040A)
+                                              : Colors.white,
+                                          fontFamily: 'Roboto',
+                                          fontWeight: FontWeight.w900,
+                                          fontSize: 14),
+                                    ),
+                                  ),
+                                )
+                                // ScriptButton(),
                                 ),
-                                boxShadow: [
-                                  BoxShadow(
-                                      blurRadius: 10,
-                                      offset: Offset(1, 1),
-                                      color: Color(0xff000000).withOpacity(0.60)),
-                                  // BoxShadow(
-                                  //     blurRadius: 10,
-                                  //     offset: -Offset(1, 1),
-                                  //     color: Color(0xff000000).withOpacity(0.30)),
-                                ],
-                                // color: Color(0xffECECEC),
-                                borderRadius: BorderRadius.circular(12.5),
-                              ),
-                              alignment: Alignment(-0.33, 0),
-                              child: Text(
-                                'SCRIPT',
-                                style: TextStyle(
-                                    color: _isScriptButton ? Color(0XFF81040A) : Colors.white,
-                                    fontFamily: 'Roboto',
-                                    fontWeight: FontWeight.w900,
-                                    fontSize: 14),
-                              ),
-                            ),
-                          )
-                          // ScriptButton(),
-                        ),
-                      ),
+                          ),
+                          Visibility(
+                            visible: _enterAction,
+                            child: AnimatedPositioned(
+                                curve: Curves.fastOutSlowIn,
+                                left: _buttonPosition
+                                    ? 150
+                                    : MediaQuery.of(context).size.width + 175,
+                                top: 122,
+                                duration: Duration(milliseconds: 650),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      /*this.memoryWidgets.add('assets/terminaliconpadding.png');*/
 
-                      Visibility(
-                        visible: _enterAction,
-                        child: AnimatedPositioned(
-                          curve: Curves.fastOutSlowIn,
-                            left: _buttonPosition
-                                ? 150
-                                : MediaQuery
-                                .of(context)
-                                .size
-                                .width +
-                                175,
-                          top: 122,
-                          duration: Duration(milliseconds: 650),
-                          child: GestureDetector(
-                            onTap: (){
-                              setState(() {
-                                /*this.memoryWidgets.add('assets/terminaliconpadding.png');*/
+                                      if (memorybar.containsKey(
+                                              ticket[index]['sysNumber']) ==
+                                          true) {
+                                        memorybar[ticket[index]['sysNumber']]
+                                            ?.add(
+                                                'assets/terminaliconpadding.png');
+                                      } else {
+                                        memorybar.addEntries([
+                                          MapEntry(ticket[index]['sysNumber'], {
+                                            'assets/terminaliconpadding.png'
+                                          })
+                                        ]);
+                                      }
 
-                                if(memorybar.containsKey(ticket[index]['sysNumber'])==true){
-                                  memorybar[ticket[index]['sysNumber']]?.add('assets/terminaliconpadding.png');
-                                }else{
-                                  memorybar.addEntries([
-                                    MapEntry(ticket[index]['sysNumber'], {'assets/terminaliconpadding.png'})
-                                  ]);
-                                }
-
-                                /*memorybar.addEntries([
+                                      /*memorybar.addEntries([
                                   MapEntry(ticket[index]['sysNumber'],['Terminal'])
                                 ]);*/
-                                /*memorybar[ticket[index]['sysNumber']];*/
-                                /*memorybar[ticket[index]['sysNumber']] = ['terminal'];*/
-                              });
-                              /*print(memorybar);*/
-                            },
-                            onTapDown: (pressing) {
-                              setState(() {
-                                _isTerminalButton = false;
-                              });
-                            },
-                            onTapUp: (pressing) {
-                              setState(() {
-                                _isTerminalButton = true;
-                              });
-                            },
-                            child: Container(
-                              height: 24,
-                              width: 174,
-                              decoration: BoxDecoration(
-                                gradient: RadialGradient(
-                                  tileMode: TileMode.mirror,
-                                  focalRadius: 10,
-                                  radius: 2,
-                                  colors: [
-                                    _isTerminalButton ? Color(0xffD3D3D3) : Color(0xff7E040A),
-                                    _isTerminalButton ? Colors.white : Color(0xff81040A),
-                                  ],
+                                      /*memorybar[ticket[index]['sysNumber']];*/
+                                      /*memorybar[ticket[index]['sysNumber']] = ['terminal'];*/
+                                    });
+                                    /*print(memorybar);*/
+                                  },
+                                  onTapDown: (pressing) {
+                                    setState(() {
+                                      _isTerminalButton = false;
+                                    });
+                                  },
+                                  onTapUp: (pressing) {
+                                    setState(() {
+                                      _isTerminalButton = true;
+                                    });
+                                  },
+                                  child: Container(
+                                    height: 24,
+                                    width: 174,
+                                    decoration: BoxDecoration(
+                                      gradient: RadialGradient(
+                                        tileMode: TileMode.mirror,
+                                        focalRadius: 10,
+                                        radius: 2,
+                                        colors: [
+                                          _isTerminalButton
+                                              ? Color(0xffD3D3D3)
+                                              : Color(0xff7E040A),
+                                          _isTerminalButton
+                                              ? Colors.white
+                                              : Color(0xff81040A),
+                                        ],
+                                      ),
+                                      boxShadow: [
+                                        BoxShadow(
+                                            blurRadius: 10,
+                                            offset: Offset(1, 1),
+                                            color: Color(0xff000000)
+                                                .withOpacity(0.60)),
+                                        // BoxShadow(
+                                        //     blurRadius: 10,
+                                        //     offset: -Offset(1, 1),
+                                        //     color: Color(0xff000000).withOpacity(0.30)),
+                                      ],
+                                      // color: Color(0xffECECEC),
+                                      borderRadius: BorderRadius.circular(12.5),
+                                    ),
+                                    alignment: Alignment(-0.20, 0),
+                                    child: Text(
+                                      'TERMINAL',
+                                      style: TextStyle(
+                                          color: _isTerminalButton
+                                              ? Color(0XFF81040A)
+                                              : Colors.white,
+                                          fontFamily: 'Roboto',
+                                          fontWeight: FontWeight.w900,
+                                          fontSize: 14),
+                                    ),
+                                  ),
+                                )
+                                // TerminalButton(),
                                 ),
-                                boxShadow: [
-                                  BoxShadow(
-                                      blurRadius: 10,
-                                      offset: Offset(1, 1),
-                                      color: Color(0xff000000).withOpacity(0.60)),
-                                  // BoxShadow(
-                                  //     blurRadius: 10,
-                                  //     offset: -Offset(1, 1),
-                                  //     color: Color(0xff000000).withOpacity(0.30)),
-                                ],
-                                // color: Color(0xffECECEC),
-                                borderRadius: BorderRadius.circular(12.5),
-                              ),
-                              alignment: Alignment(-0.20, 0),
-                              child: Text(
-                                'TERMINAL',
-                                style: TextStyle(
-                                    color: _isTerminalButton ? Color(0XFF81040A) : Colors.white,
-                                    fontFamily: 'Roboto',
-                                    fontWeight: FontWeight.w900,
-                                    fontSize: 14),
-                              ),
-                            ),
-                          )
-                          // TerminalButton(),
-                        ),
-                      ),
-
-                      Visibility(
-                        visible: _enterAction,
-                        child: AnimatedPositioned(
-                          curve: Curves.fastOutSlowIn,
-                            left: _buttonPosition
-                                ? 150
-                                : MediaQuery
-                                .of(context)
-                                .size
-                                .width +
-                                175,
-                          top: 148,
-                          duration: Duration(milliseconds: 750),
-                          child: GestureDetector(
-                            onTap: () {
-                              showDialog(
-                                  context: context,
-                                  builder: (BuildContext context){
-                                    return
-                                      AlertDialog(
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                          BorderRadius.circular(30.0),
-                                        ),
-                                        scrollable: true,
-                                        insetPadding: EdgeInsets.all(50),
-                                        contentPadding: EdgeInsets.all(0),
-                                        backgroundColor: Colors.white60,
-                                        content: Container(
-                                          height: 260,
-                                          width: 300,
-                                          decoration: BoxDecoration(
-                                            border: Border.all(
-                                              color: Colors.black.withOpacity(0.8),
-                                              width: 3,
+                          ),
+                          Visibility(
+                            visible: _enterAction,
+                            child: AnimatedPositioned(
+                                curve: Curves.fastOutSlowIn,
+                                left: _buttonPosition
+                                    ? 150
+                                    : MediaQuery.of(context).size.width + 175,
+                                top: 148,
+                                duration: Duration(milliseconds: 750),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return AlertDialog(
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(30.0),
                                             ),
-                                            // color: Color(0xffB5B5B5),
-                                            borderRadius:
-                                            BorderRadius.circular(30.0),
-                                          ),
-                                          child: Column(
-                                            children: [
-                                              SizedBox(height: 5,),
-                                              Text(
-                                                'Updates',
-                                                style: TextStyle(
-                                                    fontSize: 17,
-                                                    color: Colors.white,
-                                                    fontWeight: FontWeight.bold
+                                            scrollable: true,
+                                            insetPadding: EdgeInsets.all(50),
+                                            contentPadding: EdgeInsets.all(0),
+                                            backgroundColor: Colors.white60,
+                                            content: Container(
+                                              height: 260,
+                                              width: 300,
+                                              decoration: BoxDecoration(
+                                                border: Border.all(
+                                                  color: Colors.black
+                                                      .withOpacity(0.8),
+                                                  width: 3,
                                                 ),
+                                                // color: Color(0xffB5B5B5),
+                                                borderRadius:
+                                                    BorderRadius.circular(30.0),
                                               ),
-                                              Container(
-                                                padding: EdgeInsets.only(left: 15,right: 15),
-                                                decoration: BoxDecoration(
-                                                    color: Colors.white.withOpacity(0.8),
-                                                    borderRadius: BorderRadius.circular(15)
-                                                ),
-                                                height: 170,
-                                                margin: EdgeInsets.only(left: 15,right: 15,top: 5,bottom: 5),
-                                                child: TextField(
-                                                  minLines: 1,
-                                                  maxLines: 250,
-                                                  keyboardType: TextInputType.multiline,
-                                                  textInputAction: TextInputAction.done,
-                                                  cursorColor: Colors.black.withOpacity(0.2),
-                                                  showCursor: true,
-                                                  decoration: InputDecoration(
-                                                      border: InputBorder.none,
-                                                      labelStyle: TextStyle(
-                                                        color: Colors.black
-                                                            .withOpacity(0.6),
-                                                      )
+                                              child: Column(
+                                                children: [
+                                                  SizedBox(
+                                                    height: 5,
                                                   ),
-                                                ),
-                                              ),
-                                              ElevatedButton(
-                                                  child: Text(
-                                                    "SUBMIT",
+                                                  Text(
+                                                    'Updates',
                                                     style: TextStyle(
-                                                        fontWeight: FontWeight.bold,
+                                                        fontSize: 17,
+                                                        color: Colors.white,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                  Container(
+                                                    padding: EdgeInsets.only(
+                                                        left: 15, right: 15),
+                                                    decoration: BoxDecoration(
                                                         color: Colors.white
+                                                            .withOpacity(0.8),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(15)),
+                                                    height: 170,
+                                                    margin: EdgeInsets.only(
+                                                        left: 15,
+                                                        right: 15,
+                                                        top: 5,
+                                                        bottom: 5),
+                                                    child: TextField(
+                                                      minLines: 1,
+                                                      maxLines: 250,
+                                                      keyboardType:
+                                                          TextInputType
+                                                              .multiline,
+                                                      textInputAction:
+                                                          TextInputAction.done,
+                                                      cursorColor: Colors.black
+                                                          .withOpacity(0.2),
+                                                      showCursor: true,
+                                                      decoration:
+                                                          InputDecoration(
+                                                              border:
+                                                                  InputBorder
+                                                                      .none,
+                                                              labelStyle:
+                                                                  TextStyle(
+                                                                color: Colors
+                                                                    .black
+                                                                    .withOpacity(
+                                                                        0.6),
+                                                              )),
                                                     ),
                                                   ),
-                                                  style:
-                                                  ElevatedButton.styleFrom(
-                                                    side: BorderSide(
-                                                      color: Colors.white,
-                                                      width: 2.0,
-                                                    ),
-                                                    shape: RoundedRectangleBorder(
-                                                      borderRadius: BorderRadius.circular(15), // <-- Radius
-                                                    ),
-                                                    primary: Color(0xff8D3030),
-                                                  ),
-                                                  onPressed: () {
-                                                    Navigator.pop(context);
-                                                  }),
-                                            ],
-                                          ),
-                                        ),
-                                      );
-                                  });
-                            },
-                            onTapDown: (pressing) {
-                              setState(() {
-                                _isUpdatesButton = false;
-                              });
-                            },
-                            onTapUp: (pressing) {
-                              setState(() {
-                                _isUpdatesButton = true;
-                              });
-                            },
-                            child: Container(
-                              height: 24,
-                              width: 174,
-                              decoration: BoxDecoration(
-                                gradient: RadialGradient(
-                                  tileMode: TileMode.mirror,
-                                  focalRadius: 10,
-                                  radius: 2,
-                                  colors: [
-                                    _isUpdatesButton ? Color(0xffD3D3D3) : Color(0xff7E040A),
-                                    _isUpdatesButton ? Colors.white : Color(0xff81040A),
-                                  ],
+                                                  ElevatedButton(
+                                                      child: Text(
+                                                        "SUBMIT",
+                                                        style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            color:
+                                                                Colors.white),
+                                                      ),
+                                                      style: ElevatedButton
+                                                          .styleFrom(
+                                                        side: BorderSide(
+                                                          color: Colors.white,
+                                                          width: 2.0,
+                                                        ),
+                                                        shape:
+                                                            RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius.circular(
+                                                                  15), // <-- Radius
+                                                        ),
+                                                        primary:
+                                                            Color(0xff8D3030),
+                                                      ),
+                                                      onPressed: () {
+                                                        Navigator.pop(context);
+                                                      }),
+                                                ],
+                                              ),
+                                            ),
+                                          );
+                                        });
+                                  },
+                                  onTapDown: (pressing) {
+                                    setState(() {
+                                      _isUpdatesButton = false;
+                                    });
+                                  },
+                                  onTapUp: (pressing) {
+                                    setState(() {
+                                      _isUpdatesButton = true;
+                                    });
+                                  },
+                                  child: Container(
+                                    height: 24,
+                                    width: 174,
+                                    decoration: BoxDecoration(
+                                      gradient: RadialGradient(
+                                        tileMode: TileMode.mirror,
+                                        focalRadius: 10,
+                                        radius: 2,
+                                        colors: [
+                                          _isUpdatesButton
+                                              ? Color(0xffD3D3D3)
+                                              : Color(0xff7E040A),
+                                          _isUpdatesButton
+                                              ? Colors.white
+                                              : Color(0xff81040A),
+                                        ],
+                                      ),
+                                      boxShadow: [
+                                        BoxShadow(
+                                            blurRadius: 10,
+                                            offset: Offset(1, 1),
+                                            color: Color(0xff000000)
+                                                .withOpacity(0.60)),
+                                        // BoxShadow(
+                                        //     blurRadius: 10,
+                                        //     offset: -Offset(1, 1),
+                                        //     color: Color(0xff000000).withOpacity(0.30)),
+                                      ],
+                                      // color: Color(0xffECECEC),
+                                      borderRadius: BorderRadius.circular(12.5),
+                                    ),
+                                    alignment: Alignment(-0.20, 0),
+                                    child: Text(
+                                      'UPDATES',
+                                      style: TextStyle(
+                                          color: _isUpdatesButton
+                                              ? Color(0XFF81040A)
+                                              : Colors.white,
+                                          fontFamily: 'Roboto',
+                                          fontWeight: FontWeight.w900,
+                                          fontSize: 14),
+                                    ),
+                                  ),
+                                )
+                                // UpdatesButton(),
                                 ),
-                                boxShadow: [
-                                  BoxShadow(
-                                      blurRadius: 10,
-                                      offset: Offset(1, 1),
-                                      color: Color(0xff000000).withOpacity(0.60)),
-                                  // BoxShadow(
-                                  //     blurRadius: 10,
-                                  //     offset: -Offset(1, 1),
-                                  //     color: Color(0xff000000).withOpacity(0.30)),
-                                ],
-                                // color: Color(0xffECECEC),
-                                borderRadius: BorderRadius.circular(12.5),
-                              ),
-                              alignment: Alignment(-0.20, 0),
-                              child: Text(
-                                'UPDATES',
-                                style: TextStyle(
-                                    color: _isUpdatesButton ? Color(0XFF81040A) : Colors.white,
-                                    fontFamily: 'Roboto',
-                                    fontWeight: FontWeight.w900,
-                                    fontSize: 14),
-                              ),
-                            ),
-                          )
-                          // UpdatesButton(),
-                        ),
-                      ),
-
-                      Visibility(
-                        visible: _enterAction,
-                        child: AnimatedPositioned(
-                          curve: Curves.fastOutSlowIn,
-                            left: _buttonPosition
+                          ),
+                          Visibility(
+                            visible: _enterAction,
+                            child: AnimatedPositioned(
+                                curve: Curves.fastOutSlowIn,
+                                left: _buttonPosition
+                                    ? 150
+                                    : MediaQuery.of(context).size.width + 175,
+                                top: 174,
+                                duration: Duration(milliseconds: 850),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      _enterAction = false;
+                                    });
+                                  },
+                                  onTapDown: (pressing) {
+                                    setState(() {
+                                      _isActionsButton = false;
+                                    });
+                                  },
+                                  onTapUp: (pressing) {
+                                    setState(() {
+                                      _isActionsButton = true;
+                                    });
+                                  },
+                                  child: Container(
+                                    height: 24,
+                                    width: 174,
+                                    decoration: BoxDecoration(
+                                      gradient: RadialGradient(
+                                        tileMode: TileMode.mirror,
+                                        focalRadius: 10,
+                                        radius: 2,
+                                        colors: [
+                                          _isActionsButton
+                                              ? Color(0xffD3D3D3)
+                                              : Color(0xff7E040A),
+                                          _isActionsButton
+                                              ? Colors.white
+                                              : Color(0xff81040A),
+                                        ],
+                                      ),
+                                      boxShadow: [
+                                        BoxShadow(
+                                            blurRadius: 10,
+                                            offset: Offset(1, 1),
+                                            color: Color(0xff000000)
+                                                .withOpacity(0.60)),
+                                        // BoxShadow(
+                                        //     blurRadius: 10,
+                                        //     offset: -Offset(1, 1),
+                                        //     color: Color(0xff000000).withOpacity(0.30)),
+                                      ],
+                                      // color: Color(0xffECECEC),
+                                      borderRadius: BorderRadius.circular(12.5),
+                                    ),
+                                    alignment: Alignment(-0.255, 0),
+                                    child: Text(
+                                      'ACTIONS',
+                                      style: TextStyle(
+                                          color: _isActionsButton
+                                              ? Color(0XFF81040A)
+                                              : Colors.white,
+                                          fontFamily: 'Roboto',
+                                          fontWeight: FontWeight.w900,
+                                          fontSize: 14),
+                                    ),
+                                  ),
+                                )
+                                // ActionsButton(),
+                                ),
+                          ),
+                          AnimatedPositioned(
+                            curve: Curves.fastOutSlowIn,
+                            left: _enterAction == false
                                 ? 150
-                                : MediaQuery
-                                .of(context)
-                                .size
-                                .width +
-                                175,
-                          top: 174,
-                          duration: Duration(milliseconds: 850),
-                          child: GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                _enterAction = false;
-                              });
-                            },
-                            onTapDown: (pressing) {
-                              setState(() {
-                                _isActionsButton = false;
-                              });
-                            },
-                            onTapUp: (pressing) {
-                              setState(() {
-                                _isActionsButton = true;
-                              });
-                            },
-                            child: Container(
-                              height: 24,
-                              width: 174,
-                              decoration: BoxDecoration(
-                                gradient: RadialGradient(
-                                  tileMode: TileMode.mirror,
-                                  focalRadius: 10,
-                                  radius: 2,
-                                  colors: [
-                                    _isActionsButton ? Color(0xffD3D3D3) : Color(0xff7E040A),
-                                    _isActionsButton ? Colors.white : Color(0xff81040A),
-                                  ],
-                                ),
-                                boxShadow: [
-                                  BoxShadow(
-                                      blurRadius: 10,
-                                      offset: Offset(1, 1),
-                                      color: Color(0xff000000).withOpacity(0.60)),
-                                  // BoxShadow(
-                                  //     blurRadius: 10,
-                                  //     offset: -Offset(1, 1),
-                                  //     color: Color(0xff000000).withOpacity(0.30)),
-                                ],
-                                // color: Color(0xffECECEC),
-                                borderRadius: BorderRadius.circular(12.5),
-                              ),
-                              alignment: Alignment(-0.255, 0),
-                              child: Text(
-                                'ACTIONS',
-                                style: TextStyle(
-                                    color: _isActionsButton ? Color(0XFF81040A) : Colors.white,
-                                    fontFamily: 'Roboto',
-                                    fontWeight: FontWeight.w900,
-                                    fontSize: 14),
-                              ),
-                            ),
-                          )
-                          // ActionsButton(),
-                        ),
+                                : MediaQuery.of(context).size.width + 175,
+                            top: 18,
+                            duration: Duration(milliseconds: 250),
+                            child: GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    _enterAction = true;
+                                  });
+                                },
+                                child: RedActionButton()),
+                          ),
+                          AnimatedPositioned(
+                            curve: Curves.fastOutSlowIn,
+                            left: _enterAction == false
+                                ? 150
+                                : MediaQuery.of(context).size.width + 175,
+                            top: 44,
+                            duration: Duration(milliseconds: 350),
+                            child: ForwardButton(),
+                          ),
+                          AnimatedPositioned(
+                            curve: Curves.fastOutSlowIn,
+                            left: _enterAction == false
+                                ? 150
+                                : MediaQuery.of(context).size.width + 175,
+                            top: 70,
+                            duration: Duration(milliseconds: 450),
+                            child: PendingButton(),
+                          ),
+                          AnimatedPositioned(
+                            curve: Curves.fastOutSlowIn,
+                            left: _enterAction == false
+                                ? 150
+                                : MediaQuery.of(context).size.width + 175,
+                            top: 96,
+                            duration: Duration(milliseconds: 550),
+                            child: UnAvailableButton(),
+                          ),
+                          AnimatedPositioned(
+                            curve: Curves.fastOutSlowIn,
+                            left: _enterAction == false
+                                ? 150
+                                : MediaQuery.of(context).size.width + 175,
+                            top: 122,
+                            duration: Duration(milliseconds: 650),
+                            child: ResolveButton(),
+                          ),
+                          AnimatedPositioned(
+                            curve: Curves.fastOutSlowIn,
+                            left: _enterAction == false
+                                ? 150
+                                : MediaQuery.of(context).size.width + 175,
+                            top: 148,
+                            duration: Duration(milliseconds: 750),
+                            child: ActionCloseButton(),
+                          ),
+                        ],
                       ),
-
-                      AnimatedPositioned(
-                        curve: Curves.fastOutSlowIn,
-                        left: _enterAction==false? 150
-                            : MediaQuery
-                            .of(context)
-                            .size
-                            .width +
-                            175,
-                        top: 18,
-                        duration: Duration(milliseconds: 250),
-                        child: GestureDetector(
-                          onTap: (){
-                            setState(() {
-                              _enterAction = true;
-                            });
-                          },
-                            child: RedActionButton()
-                        ),
-                      ),
-
-                      AnimatedPositioned(
-                        curve: Curves.fastOutSlowIn,
-                        left: _enterAction==false? 150
-                            : MediaQuery
-                            .of(context)
-                            .size
-                            .width +
-                            175,
-                        top: 44,
-                        duration: Duration(milliseconds: 350),
-                        child: ForwardButton(),
-                      ),
-
-                      AnimatedPositioned(
-                        curve: Curves.fastOutSlowIn,
-                        left: _enterAction==false? 150
-                            : MediaQuery
-                            .of(context)
-                            .size
-                            .width +
-                            175,
-                        top: 70,
-                        duration: Duration(milliseconds: 450),
-                        child: PendingButton(),
-                      ),
-
-                      AnimatedPositioned(
-                        curve: Curves.fastOutSlowIn,
-                        left: _enterAction==false? 150
-                            : MediaQuery
-                            .of(context)
-                            .size
-                            .width +
-                            175,
-                        top: 96,
-                        duration: Duration(milliseconds: 550),
-                        child: UnAvailableButton(),
-                      ),
-
-                      AnimatedPositioned(
-                        curve: Curves.fastOutSlowIn,
-                        left: _enterAction==false? 150
-                            : MediaQuery
-                            .of(context)
-                            .size
-                            .width +
-                            175,
-                        top: 122,
-                        duration: Duration(milliseconds: 650),
-                        child: ResolveButton(),
-                      ),
-
-                      AnimatedPositioned(
-                        curve: Curves.fastOutSlowIn,
-                        left: _enterAction==false? 150
-                            : MediaQuery
-                            .of(context)
-                            .size
-                            .width +
-                            175,
-                        top: 148,
-                        duration: Duration(milliseconds: 750),
-                        child: ActionCloseButton(),
-                      ),
-
-                    ],
-                  ),
-                ),
-              );
-            }
-          )
-        ),
+                    ),
+                  );
+                })),
         Positioned.fill(
           child: Align(
             alignment: Alignment.centerRight,
@@ -3851,11 +4024,14 @@ class _MatrixPageState extends State<MatrixPage> {
                       }
                     });*/
                   });
-                  print(memorybar);
+                  // print(memorybar);
+                  /*print(_sysNumber);*/
+                  /*print(_index);*/
+                  /*print(_foundTicket[_index]['sysNumber']);*/
                 },
                 child: AnimatedContainer(
                   constraints: BoxConstraints(
-                    // maxWidth: double.infinity,
+                      // maxWidth: double.infinity,
                       minWidth: 25),
                   duration: Duration(milliseconds: 0),
                   decoration: BoxDecoration(
@@ -3886,152 +4062,153 @@ class _MatrixPageState extends State<MatrixPage> {
                     child: ListView(
                       shrinkWrap: true,
                       scrollDirection: Axis.horizontal,
-                      padding:  EdgeInsets.all(4.0),
+                      padding: EdgeInsets.all(4.0),
                       children: [
                         AnimatedSwitcher(
                           duration: Duration(milliseconds: 500),
                           child: flag
                               ? GestureDetector(
-                            key: Key('2'),
-                            onTap: () {
-                              setState(() {
-                                flag = !flag;
-                              });
-                            },
-                            child: Card(
-                              color: Colors.transparent,
-                              elevation: 5,
-                              child: Container(
-                                // width: 150,
-                                decoration: BoxDecoration(
-                                    borderRadius:
-                                    BorderRadius.circular(25),
-                                    color: Colors.black.withOpacity(0.5),
-                                    boxShadow: [
-                                      BoxShadow(
-                                          blurRadius: 0,
-                                          offset: Offset(2, 4),
-                                          color: Colors.black12
-                                              .withOpacity(
-                                              0.15)), //3dright
-                                    ]),
-                                child: Row(children: [
-                                  SizedBox(
-                                    width: 20,
-                                  ),
-                                  Center(
+                                  key: Key('2'),
+                                  onTap: () {
+                                    setState(() {
+                                      flag = !flag;
+                                    });
+                                  },
+                                  child: Card(
+                                    color: Colors.transparent,
+                                    elevation: 5,
                                     child: Container(
-                                        width: 150,
-                                        child: TextField(
-                                          onChanged: (value) => _runFilter(value),
-                                          autofocus: true,
-                                          cursorColor: Colors.white24,
-                                          keyboardType:
-                                          TextInputType.text,
-                                          style: TextStyle(
-                                              fontFamily:
-                                              'fonts/Roboto-Bold.ttf',
-                                              fontSize: 18,
-                                              color: Colors.white),
-                                          textAlign: TextAlign.center,
-                                          decoration:
-                                          InputDecoration.collapsed(
-                                            hintText: "Search",
-                                            hintStyle: TextStyle(
-                                                color: Colors.white70),
-                                            border: InputBorder.none,
+                                      // width: 150,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(25),
+                                          color: Colors.black.withOpacity(0.5),
+                                          boxShadow: [
+                                            BoxShadow(
+                                                blurRadius: 0,
+                                                offset: Offset(2, 4),
+                                                color: Colors.black12
+                                                    .withOpacity(
+                                                        0.15)), //3dright
+                                          ]),
+                                      child: Row(children: [
+                                        SizedBox(
+                                          width: 20,
+                                        ),
+                                        Center(
+                                          child: Container(
+                                              width: 150,
+                                              child: TextField(
+                                                onChanged: (value) =>
+                                                    _runFilter(value),
+                                                autofocus: true,
+                                                cursorColor: Colors.white24,
+                                                keyboardType:
+                                                    TextInputType.text,
+                                                style: TextStyle(
+                                                    fontFamily:
+                                                        'fonts/Roboto-Bold.ttf',
+                                                    fontSize: 18,
+                                                    color: Colors.white),
+                                                textAlign: TextAlign.center,
+                                                decoration:
+                                                    InputDecoration.collapsed(
+                                                  hintText: "Search",
+                                                  hintStyle: TextStyle(
+                                                      color: Colors.white70),
+                                                  border: InputBorder.none,
+                                                ),
+                                              )
+                                              // Text(
+                                              //   'Light',
+                                              //   style: TextStyle(
+                                              //       fontFamily: 'fonts/Roboto-Light.ttf',
+                                              //       fontWeight: FontWeight.w400,
+                                              //       fontSize: 16,
+                                              //       color: Colors.white.withOpacity(0.75)
+                                              //   ),
+                                              // ),
+                                              ),
+                                        ),
+                                        SizedBox(
+                                          width: 2.5,
+                                        ),
+                                        SizedBox(
+                                          height: 24.5,
+                                          child: Icon(
+                                            Icons.search_sharp,
+                                            color: Colors.white,
+                                            size: 27,
                                           ),
-                                        )
-                                      // Text(
-                                      //   'Light',
-                                      //   style: TextStyle(
-                                      //       fontFamily: 'fonts/Roboto-Light.ttf',
-                                      //       fontWeight: FontWeight.w400,
-                                      //       fontSize: 16,
-                                      //       color: Colors.white.withOpacity(0.75)
-                                      //   ),
-                                      // ),
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                      ]),
                                     ),
                                   ),
-                                  SizedBox(
-                                    width: 2.5,
-                                  ),
-                                  SizedBox(
-                                    height: 24.5,
-                                    child: Icon(
-                                      Icons.search_sharp,
-                                      color: Colors.white,
-                                      size: 27,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                ]),
-                              ),
-                            ),
-                          )
+                                )
                               : GestureDetector(
-                            key: Key('1'),
-                            onTap: () {
-                              setState(() {
-                                flag = !flag;
-                              });
-                            },
-                            child: Card(
-                              // shape: StadiumBorder(
-                              //   side: BorderSide(
-                              //     color: Colors.black26,
-                              //     width: 2.0,
-                              //   ),
-                              // ),
-                              // shadowColor: Colors.black,
-                              color: Colors.transparent,
-                              elevation: 5,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                    borderRadius:
-                                    BorderRadius.circular(25),
-                                    color: Colors.black.withOpacity(0.5),
-                                    boxShadow: [
-                                      BoxShadow(
-                                          blurRadius: 0,
-                                          offset: Offset(2, 4),
-                                          color: Colors.black12
-                                              .withOpacity(
-                                              0.15)), //3dright
-                                    ]),
-                                child: Row(children: [
-                                  SizedBox(
-                                    width: 3,
-                                  ),
-                                  SizedBox(
-                                    height: 22.5,
-                                    child: Icon(
-                                      Icons.search_sharp,
-                                      color: Colors.white,
-                                      size: 27,
+                                  key: Key('1'),
+                                  onTap: () {
+                                    setState(() {
+                                      flag = !flag;
+                                    });
+                                  },
+                                  child: Card(
+                                    // shape: StadiumBorder(
+                                    //   side: BorderSide(
+                                    //     color: Colors.black26,
+                                    //     width: 2.0,
+                                    //   ),
+                                    // ),
+                                    // shadowColor: Colors.black,
+                                    color: Colors.transparent,
+                                    elevation: 5,
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(25),
+                                          color: Colors.black.withOpacity(0.5),
+                                          boxShadow: [
+                                            BoxShadow(
+                                                blurRadius: 0,
+                                                offset: Offset(2, 4),
+                                                color: Colors.black12
+                                                    .withOpacity(
+                                                        0.15)), //3dright
+                                          ]),
+                                      child: Row(children: [
+                                        SizedBox(
+                                          width: 3,
+                                        ),
+                                        SizedBox(
+                                          height: 22.5,
+                                          child: Icon(
+                                            Icons.search_sharp,
+                                            color: Colors.white,
+                                            size: 27,
+                                          ),
+                                        ),
+                                        Center(
+                                          child: Text(
+                                            'Search',
+                                            style: TextStyle(
+                                                fontFamily:
+                                                    'fonts/Roboto-Light.ttf',
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 16,
+                                                color: Colors.white
+                                                    .withOpacity(0.75)),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                      ]),
                                     ),
                                   ),
-                                  Center(
-                                    child: Text(
-                                      'Search',
-                                      style: TextStyle(
-                                          fontFamily:
-                                          'fonts/Roboto-Light.ttf',
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 16,
-                                          color: Colors.white
-                                              .withOpacity(0.75)),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                ]),
-                              ),
-                            ),
-                          ),
+                                ),
                         ),
                         Card(
                           // shape: StadiumBorder(
@@ -4053,10 +4230,10 @@ class _MatrixPageState extends State<MatrixPage> {
                                   builder: (BuildContext context) {
                                     return AlertDialog(
                                       actionsAlignment:
-                                      MainAxisAlignment.center,
+                                          MainAxisAlignment.center,
                                       shape: RoundedRectangleBorder(
                                         borderRadius:
-                                        BorderRadius.circular(15.0),
+                                            BorderRadius.circular(15.0),
                                       ),
                                       actionsOverflowButtonSpacing: 10,
                                       elevation: 5,
@@ -4075,7 +4252,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                             padding: EdgeInsets.only(left: 15),
                                             decoration: BoxDecoration(
                                                 borderRadius:
-                                                BorderRadius.circular(10),
+                                                    BorderRadius.circular(10),
                                                 border: Border.all(
                                                     color: Colors.black
                                                         .withOpacity(0.55))),
@@ -4115,7 +4292,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                             padding: EdgeInsets.only(left: 15),
                                             decoration: BoxDecoration(
                                                 borderRadius:
-                                                BorderRadius.circular(10),
+                                                    BorderRadius.circular(10),
                                                 border: Border.all(
                                                     color: Colors.black
                                                         .withOpacity(0.55))),
@@ -4145,8 +4322,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                                   labelStyle: TextStyle(
                                                     color: Colors.black
                                                         .withOpacity(0.6),
-                                                  )
-                                              ),
+                                                  )),
                                             ),
                                           ),
                                           /*TextField(
@@ -4179,82 +4355,83 @@ class _MatrixPageState extends State<MatrixPage> {
                                           ),
                                           Center(
                                               child: Column(
-                                                children: [
-                                                  Container(
-                                                    decoration: BoxDecoration(
-                                                        borderRadius:
+                                            children: [
+                                              Container(
+                                                decoration: BoxDecoration(
+                                                    borderRadius:
                                                         BorderRadius.all(
                                                             Radius.circular(
                                                                 10)),
-                                                        color: Color(0xffC4C4C4)
-                                                            .withOpacity(0.20),
-                                                        border: Border.all(
-                                                            color: Colors.black87)),
-                                                    width: 350,
-                                                    /*width: MediaQuery.of(context)
+                                                    color: Color(0xffC4C4C4)
+                                                        .withOpacity(0.20),
+                                                    border: Border.all(
+                                                        color: Colors.black87)),
+                                                width: 350,
+                                                /*width: MediaQuery.of(context)
                                                         .size
                                                         .width *
                                                     0.90,*/
-                                                    // color: Color(0xffC4C4C4)
-                                                    //     .withOpacity(0.20),
-                                                    height: 70,
-                                                    alignment: Alignment(0, -0.5),
-                                                    child: TextField(
-                                                      minLines: 1,
-                                                      maxLines: 3,
-                                                      scrollPadding:
+                                                // color: Color(0xffC4C4C4)
+                                                //     .withOpacity(0.20),
+                                                height: 70,
+                                                alignment: Alignment(0, -0.5),
+                                                child: TextField(
+                                                  minLines: 1,
+                                                  maxLines: 3,
+                                                  scrollPadding:
                                                       EdgeInsets.only(top: 40),
-                                                      showCursor: true,
-                                                      cursorColor: Colors.white70,
-                                                      // onTap: (){
-                                                      //   if(MediaQuery.of(context).viewInsets.vertical ==0){
-                                                      //     scroll=true;
-                                                      //   }else{
-                                                      //     scroll=false;
-                                                      //   }
-                                                      // },
-                                                      keyboardType: TextInputType.multiline,
-                                                      textInputAction:
+                                                  showCursor: true,
+                                                  cursorColor: Colors.white70,
+                                                  // onTap: (){
+                                                  //   if(MediaQuery.of(context).viewInsets.vertical ==0){
+                                                  //     scroll=true;
+                                                  //   }else{
+                                                  //     scroll=false;
+                                                  //   }
+                                                  // },
+                                                  keyboardType:
+                                                      TextInputType.multiline,
+                                                  textInputAction:
                                                       TextInputAction.done,
-                                                      style: TextStyle(
-                                                        fontFamily:
+                                                  style: TextStyle(
+                                                    fontFamily:
                                                         'fonts/Roboto-Bold.ttf',
-                                                        fontSize: 18,
-                                                      ),
-                                                      textAlign: TextAlign.center,
-                                                      decoration:
+                                                    fontSize: 18,
+                                                  ),
+                                                  textAlign: TextAlign.center,
+                                                  decoration:
                                                       InputDecoration.collapsed(
-                                                        hintText: "Notes",
-                                                        border: InputBorder.none,
-                                                      ),
-                                                    ),
+                                                    hintText: "Notes",
+                                                    border: InputBorder.none,
                                                   ),
-                                                  SizedBox(
-                                                    height: 9,
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                height: 9,
+                                              ),
+                                              ElevatedButton(
+                                                  child: Text(
+                                                    "SUBMIT",
+                                                    style: TextStyle(
+                                                        color: Colors.black
+                                                            .withOpacity(0.75)),
                                                   ),
-                                                  ElevatedButton(
-                                                      child: Text(
-                                                        "SUBMIT",
-                                                        style: TextStyle(
-                                                            color: Colors.black
-                                                                .withOpacity(0.75)),
-                                                      ),
-                                                      style:
+                                                  style:
                                                       ElevatedButton.styleFrom(
-                                                        primary: Colors.white70,
-                                                      ),
-                                                      onPressed: () {
-                                                        Navigator.pop(context);
-                                                      }),
-                                                  // Container(
-                                                  //   height: 25,
-                                                  //   width: 100,
-                                                  //   child: Center(
-                                                  //     child: Text('SUBMIT'),
-                                                  //   ),
-                                                  // )
-                                                ],
-                                              )),
+                                                    primary: Colors.white70,
+                                                  ),
+                                                  onPressed: () {
+                                                    Navigator.pop(context);
+                                                  }),
+                                              // Container(
+                                              //   height: 25,
+                                              //   width: 100,
+                                              //   child: Center(
+                                              //     child: Text('SUBMIT'),
+                                              //   ),
+                                              // )
+                                            ],
+                                          )),
                                         ],
                                       ),
                                       /*actions: [
@@ -4844,90 +5021,85 @@ class _MatrixPageState extends State<MatrixPage> {
       onTap: () {
         showDialog(
             context: context,
-            builder: (BuildContext context){
-              return
-                AlertDialog(
-                  shape: RoundedRectangleBorder(
-                    borderRadius:
-                    BorderRadius.circular(30.0),
+            builder: (BuildContext context) {
+              return AlertDialog(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30.0),
+                ),
+                scrollable: true,
+                insetPadding: EdgeInsets.all(50),
+                contentPadding: EdgeInsets.all(0),
+                backgroundColor: Colors.white60,
+                content: Container(
+                  height: 260,
+                  width: 300,
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.black.withOpacity(0.8),
+                      width: 3,
+                    ),
+                    // color: Color(0xffB5B5B5),
+                    borderRadius: BorderRadius.circular(30.0),
                   ),
-                  scrollable: true,
-                  insetPadding: EdgeInsets.all(50),
-                  contentPadding: EdgeInsets.all(0),
-                  backgroundColor: Colors.white60,
-                  content: Container(
-                    height: 260,
-                    width: 300,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.black.withOpacity(0.8),
-                        width: 3,
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 5,
                       ),
-                      // color: Color(0xffB5B5B5),
-                      borderRadius:
-                      BorderRadius.circular(30.0),
-                    ),
-                    child: Column(
-                      children: [
-                        SizedBox(height: 5,),
-                        Text(
-                          'Forward',
-                          style: TextStyle(
-                              fontSize: 17,
+                      Text(
+                        'Forward',
+                        style: TextStyle(
+                            fontSize: 17,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(left: 15, right: 15),
+                        decoration: BoxDecoration(
+                            color: Colors.white.withOpacity(0.8),
+                            borderRadius: BorderRadius.circular(15)),
+                        height: 170,
+                        margin: EdgeInsets.only(
+                            left: 15, right: 15, top: 5, bottom: 5),
+                        child: TextField(
+                          minLines: 1,
+                          maxLines: 250,
+                          keyboardType: TextInputType.multiline,
+                          textInputAction: TextInputAction.done,
+                          cursorColor: Colors.black.withOpacity(0.2),
+                          showCursor: true,
+                          decoration: InputDecoration(
+                              border: InputBorder.none,
+                              labelStyle: TextStyle(
+                                color: Colors.black.withOpacity(0.6),
+                              )),
+                        ),
+                      ),
+                      ElevatedButton(
+                          child: Text(
+                            "SUBMIT",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            side: BorderSide(
                               color: Colors.white,
-                              fontWeight: FontWeight.bold
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.only(left: 15,right: 15),
-                          decoration: BoxDecoration(
-                              color: Colors.white.withOpacity(0.8),
-                              borderRadius: BorderRadius.circular(15)
-                          ),
-                          height: 170,
-                          margin: EdgeInsets.only(left: 15,right: 15,top: 5,bottom: 5),
-                          child: TextField(
-                            minLines: 1,
-                            maxLines: 250,
-                            keyboardType: TextInputType.multiline,
-                            textInputAction: TextInputAction.done,
-                            cursorColor: Colors.black.withOpacity(0.2),
-                            showCursor: true,
-                            decoration: InputDecoration(
-                                border: InputBorder.none,
-                                labelStyle: TextStyle(
-                                  color: Colors.black
-                                      .withOpacity(0.6),
-                                )
+                              width: 2.0,
                             ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.circular(15), // <-- Radius
+                            ),
+                            primary: Color(0xff8D3030),
                           ),
-                        ),
-                        ElevatedButton(
-                            child: Text(
-                              "SUBMIT",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white
-                              ),
-                            ),
-                            style:
-                            ElevatedButton.styleFrom(
-                              side: BorderSide(
-                                color: Colors.white,
-                                width: 2.0,
-                              ),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(15), // <-- Radius
-                              ),
-                              primary: Color(0xff8D3030),
-                            ),
-                            onPressed: () {
-                              Navigator.pop(context);
-                            }),
-                      ],
-                    ),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          }),
+                    ],
                   ),
-                );
+                ),
+              );
             });
       },
       onTapDown: (pressing) {
@@ -4984,90 +5156,85 @@ class _MatrixPageState extends State<MatrixPage> {
       onTap: () {
         showDialog(
             context: context,
-            builder: (BuildContext context){
-              return
-                AlertDialog(
-                  shape: RoundedRectangleBorder(
-                    borderRadius:
-                    BorderRadius.circular(30.0),
+            builder: (BuildContext context) {
+              return AlertDialog(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30.0),
+                ),
+                scrollable: true,
+                insetPadding: EdgeInsets.all(50),
+                contentPadding: EdgeInsets.all(0),
+                backgroundColor: Colors.white60,
+                content: Container(
+                  height: 260,
+                  width: 300,
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.black.withOpacity(0.8),
+                      width: 3,
+                    ),
+                    // color: Color(0xffB5B5B5),
+                    borderRadius: BorderRadius.circular(30.0),
                   ),
-                  scrollable: true,
-                  insetPadding: EdgeInsets.all(50),
-                  contentPadding: EdgeInsets.all(0),
-                  backgroundColor: Colors.white60,
-                  content: Container(
-                    height: 260,
-                    width: 300,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.black.withOpacity(0.8),
-                        width: 3,
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 5,
                       ),
-                      // color: Color(0xffB5B5B5),
-                      borderRadius:
-                      BorderRadius.circular(30.0),
-                    ),
-                    child: Column(
-                      children: [
-                        SizedBox(height: 5,),
-                        Text(
-                          'Pending',
-                          style: TextStyle(
-                              fontSize: 17,
+                      Text(
+                        'Pending',
+                        style: TextStyle(
+                            fontSize: 17,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(left: 15, right: 15),
+                        decoration: BoxDecoration(
+                            color: Colors.white.withOpacity(0.8),
+                            borderRadius: BorderRadius.circular(15)),
+                        height: 170,
+                        margin: EdgeInsets.only(
+                            left: 15, right: 15, top: 5, bottom: 5),
+                        child: TextField(
+                          minLines: 1,
+                          maxLines: 250,
+                          keyboardType: TextInputType.multiline,
+                          textInputAction: TextInputAction.done,
+                          cursorColor: Colors.black.withOpacity(0.2),
+                          showCursor: true,
+                          decoration: InputDecoration(
+                              border: InputBorder.none,
+                              labelStyle: TextStyle(
+                                color: Colors.black.withOpacity(0.6),
+                              )),
+                        ),
+                      ),
+                      ElevatedButton(
+                          child: Text(
+                            "SUBMIT",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            side: BorderSide(
                               color: Colors.white,
-                              fontWeight: FontWeight.bold
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.only(left: 15,right: 15),
-                          decoration: BoxDecoration(
-                              color: Colors.white.withOpacity(0.8),
-                              borderRadius: BorderRadius.circular(15)
-                          ),
-                          height: 170,
-                          margin: EdgeInsets.only(left: 15,right: 15,top: 5,bottom: 5),
-                          child: TextField(
-                            minLines: 1,
-                            maxLines: 250,
-                            keyboardType: TextInputType.multiline,
-                            textInputAction: TextInputAction.done,
-                            cursorColor: Colors.black.withOpacity(0.2),
-                            showCursor: true,
-                            decoration: InputDecoration(
-                                border: InputBorder.none,
-                                labelStyle: TextStyle(
-                                  color: Colors.black
-                                      .withOpacity(0.6),
-                                )
+                              width: 2.0,
                             ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.circular(15), // <-- Radius
+                            ),
+                            primary: Color(0xff8D3030),
                           ),
-                        ),
-                        ElevatedButton(
-                            child: Text(
-                              "SUBMIT",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white
-                              ),
-                            ),
-                            style:
-                            ElevatedButton.styleFrom(
-                              side: BorderSide(
-                                color: Colors.white,
-                                width: 2.0,
-                              ),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(15), // <-- Radius
-                              ),
-                              primary: Color(0xff8D3030),
-                            ),
-                            onPressed: () {
-                              Navigator.pop(context);
-                            }),
-                      ],
-                    ),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          }),
+                    ],
                   ),
-                );
+                ),
+              );
             });
       },
       onTapDown: (pressing) {
@@ -5124,90 +5291,85 @@ class _MatrixPageState extends State<MatrixPage> {
       onTap: () {
         showDialog(
             context: context,
-            builder: (BuildContext context){
-              return
-                AlertDialog(
-                  shape: RoundedRectangleBorder(
-                    borderRadius:
-                    BorderRadius.circular(30.0),
+            builder: (BuildContext context) {
+              return AlertDialog(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30.0),
+                ),
+                scrollable: true,
+                insetPadding: EdgeInsets.all(50),
+                contentPadding: EdgeInsets.all(0),
+                backgroundColor: Colors.white60,
+                content: Container(
+                  height: 260,
+                  width: 300,
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.black.withOpacity(0.8),
+                      width: 3,
+                    ),
+                    // color: Color(0xffB5B5B5),
+                    borderRadius: BorderRadius.circular(30.0),
                   ),
-                  scrollable: true,
-                  insetPadding: EdgeInsets.all(50),
-                  contentPadding: EdgeInsets.all(0),
-                  backgroundColor: Colors.white60,
-                  content: Container(
-                    height: 260,
-                    width: 300,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.black.withOpacity(0.8),
-                        width: 3,
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 5,
                       ),
-                      // color: Color(0xffB5B5B5),
-                      borderRadius:
-                      BorderRadius.circular(30.0),
-                    ),
-                    child: Column(
-                      children: [
-                        SizedBox(height: 5,),
-                        Text(
-                          'UnAvailable',
-                          style: TextStyle(
-                              fontSize: 17,
+                      Text(
+                        'UnAvailable',
+                        style: TextStyle(
+                            fontSize: 17,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(left: 15, right: 15),
+                        decoration: BoxDecoration(
+                            color: Colors.white.withOpacity(0.8),
+                            borderRadius: BorderRadius.circular(15)),
+                        height: 170,
+                        margin: EdgeInsets.only(
+                            left: 15, right: 15, top: 5, bottom: 5),
+                        child: TextField(
+                          minLines: 1,
+                          maxLines: 250,
+                          keyboardType: TextInputType.multiline,
+                          textInputAction: TextInputAction.done,
+                          cursorColor: Colors.black.withOpacity(0.2),
+                          showCursor: true,
+                          decoration: InputDecoration(
+                              border: InputBorder.none,
+                              labelStyle: TextStyle(
+                                color: Colors.black.withOpacity(0.6),
+                              )),
+                        ),
+                      ),
+                      ElevatedButton(
+                          child: Text(
+                            "SUBMIT",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            side: BorderSide(
                               color: Colors.white,
-                              fontWeight: FontWeight.bold
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.only(left: 15,right: 15),
-                          decoration: BoxDecoration(
-                              color: Colors.white.withOpacity(0.8),
-                              borderRadius: BorderRadius.circular(15)
-                          ),
-                          height: 170,
-                          margin: EdgeInsets.only(left: 15,right: 15,top: 5,bottom: 5),
-                          child: TextField(
-                            minLines: 1,
-                            maxLines: 250,
-                            keyboardType: TextInputType.multiline,
-                            textInputAction: TextInputAction.done,
-                            cursorColor: Colors.black.withOpacity(0.2),
-                            showCursor: true,
-                            decoration: InputDecoration(
-                                border: InputBorder.none,
-                                labelStyle: TextStyle(
-                                  color: Colors.black
-                                      .withOpacity(0.6),
-                                )
+                              width: 2.0,
                             ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.circular(15), // <-- Radius
+                            ),
+                            primary: Color(0xff8D3030),
                           ),
-                        ),
-                        ElevatedButton(
-                            child: Text(
-                              "SUBMIT",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white
-                              ),
-                            ),
-                            style:
-                            ElevatedButton.styleFrom(
-                              side: BorderSide(
-                                color: Colors.white,
-                                width: 2.0,
-                              ),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(15), // <-- Radius
-                              ),
-                              primary: Color(0xff8D3030),
-                            ),
-                            onPressed: () {
-                              Navigator.pop(context);
-                            }),
-                      ],
-                    ),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          }),
+                    ],
                   ),
-                );
+                ),
+              );
             });
       },
       onTapDown: (pressing) {
@@ -5264,90 +5426,85 @@ class _MatrixPageState extends State<MatrixPage> {
       onTap: () {
         showDialog(
             context: context,
-            builder: (BuildContext context){
-              return
-                AlertDialog(
-                  shape: RoundedRectangleBorder(
-                    borderRadius:
-                    BorderRadius.circular(30.0),
+            builder: (BuildContext context) {
+              return AlertDialog(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30.0),
+                ),
+                scrollable: true,
+                insetPadding: EdgeInsets.all(50),
+                contentPadding: EdgeInsets.all(0),
+                backgroundColor: Colors.white60,
+                content: Container(
+                  height: 260,
+                  width: 300,
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.black.withOpacity(0.8),
+                      width: 3,
+                    ),
+                    // color: Color(0xffB5B5B5),
+                    borderRadius: BorderRadius.circular(30.0),
                   ),
-                  scrollable: true,
-                  insetPadding: EdgeInsets.all(50),
-                  contentPadding: EdgeInsets.all(0),
-                  backgroundColor: Colors.white60,
-                  content: Container(
-                    height: 260,
-                    width: 300,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.black.withOpacity(0.8),
-                        width: 3,
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 5,
                       ),
-                      // color: Color(0xffB5B5B5),
-                      borderRadius:
-                      BorderRadius.circular(30.0),
-                    ),
-                    child: Column(
-                      children: [
-                        SizedBox(height: 5,),
-                        Text(
-                          'Resolve',
-                          style: TextStyle(
-                              fontSize: 17,
+                      Text(
+                        'Resolve',
+                        style: TextStyle(
+                            fontSize: 17,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(left: 15, right: 15),
+                        decoration: BoxDecoration(
+                            color: Colors.white.withOpacity(0.8),
+                            borderRadius: BorderRadius.circular(15)),
+                        height: 170,
+                        margin: EdgeInsets.only(
+                            left: 15, right: 15, top: 5, bottom: 5),
+                        child: TextField(
+                          minLines: 1,
+                          maxLines: 250,
+                          keyboardType: TextInputType.multiline,
+                          textInputAction: TextInputAction.done,
+                          cursorColor: Colors.black.withOpacity(0.2),
+                          showCursor: true,
+                          decoration: InputDecoration(
+                              border: InputBorder.none,
+                              labelStyle: TextStyle(
+                                color: Colors.black.withOpacity(0.6),
+                              )),
+                        ),
+                      ),
+                      ElevatedButton(
+                          child: Text(
+                            "SUBMIT",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            side: BorderSide(
                               color: Colors.white,
-                              fontWeight: FontWeight.bold
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.only(left: 15,right: 15),
-                          decoration: BoxDecoration(
-                              color: Colors.white.withOpacity(0.8),
-                              borderRadius: BorderRadius.circular(15)
-                          ),
-                          height: 170,
-                          margin: EdgeInsets.only(left: 15,right: 15,top: 5,bottom: 5),
-                          child: TextField(
-                            minLines: 1,
-                            maxLines: 250,
-                            keyboardType: TextInputType.multiline,
-                            textInputAction: TextInputAction.done,
-                            cursorColor: Colors.black.withOpacity(0.2),
-                            showCursor: true,
-                            decoration: InputDecoration(
-                                border: InputBorder.none,
-                                labelStyle: TextStyle(
-                                  color: Colors.black
-                                      .withOpacity(0.6),
-                                )
+                              width: 2.0,
                             ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.circular(15), // <-- Radius
+                            ),
+                            primary: Color(0xff8D3030),
                           ),
-                        ),
-                        ElevatedButton(
-                            child: Text(
-                              "SUBMIT",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white
-                              ),
-                            ),
-                            style:
-                            ElevatedButton.styleFrom(
-                              side: BorderSide(
-                                color: Colors.white,
-                                width: 2.0,
-                              ),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(15), // <-- Radius
-                              ),
-                              primary: Color(0xff8D3030),
-                            ),
-                            onPressed: () {
-                              Navigator.pop(context);
-                            }),
-                      ],
-                    ),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          }),
+                    ],
                   ),
-                );
+                ),
+              );
             });
       },
       onTapDown: (pressing) {
@@ -5404,90 +5561,85 @@ class _MatrixPageState extends State<MatrixPage> {
       onTap: () {
         showDialog(
             context: context,
-            builder: (BuildContext context){
-              return
-                AlertDialog(
-                  shape: RoundedRectangleBorder(
-                    borderRadius:
-                    BorderRadius.circular(30.0),
+            builder: (BuildContext context) {
+              return AlertDialog(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30.0),
+                ),
+                scrollable: true,
+                insetPadding: EdgeInsets.all(50),
+                contentPadding: EdgeInsets.all(0),
+                backgroundColor: Colors.white60,
+                content: Container(
+                  height: 260,
+                  width: 300,
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.black.withOpacity(0.8),
+                      width: 3,
+                    ),
+                    // color: Color(0xffB5B5B5),
+                    borderRadius: BorderRadius.circular(30.0),
                   ),
-                  scrollable: true,
-                  insetPadding: EdgeInsets.all(50),
-                  contentPadding: EdgeInsets.all(0),
-                  backgroundColor: Colors.white60,
-                  content: Container(
-                    height: 260,
-                    width: 300,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.black.withOpacity(0.8),
-                        width: 3,
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 5,
                       ),
-                      // color: Color(0xffB5B5B5),
-                      borderRadius:
-                      BorderRadius.circular(30.0),
-                    ),
-                    child: Column(
-                      children: [
-                        SizedBox(height: 5,),
-                        Text(
-                          'Close',
-                          style: TextStyle(
-                              fontSize: 17,
+                      Text(
+                        'Close',
+                        style: TextStyle(
+                            fontSize: 17,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(left: 15, right: 15),
+                        decoration: BoxDecoration(
+                            color: Colors.white.withOpacity(0.8),
+                            borderRadius: BorderRadius.circular(15)),
+                        height: 170,
+                        margin: EdgeInsets.only(
+                            left: 15, right: 15, top: 5, bottom: 5),
+                        child: TextField(
+                          minLines: 1,
+                          maxLines: 250,
+                          keyboardType: TextInputType.multiline,
+                          textInputAction: TextInputAction.done,
+                          cursorColor: Colors.black.withOpacity(0.2),
+                          showCursor: true,
+                          decoration: InputDecoration(
+                              border: InputBorder.none,
+                              labelStyle: TextStyle(
+                                color: Colors.black.withOpacity(0.6),
+                              )),
+                        ),
+                      ),
+                      ElevatedButton(
+                          child: Text(
+                            "SUBMIT",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            side: BorderSide(
                               color: Colors.white,
-                              fontWeight: FontWeight.bold
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.only(left: 15,right: 15),
-                          decoration: BoxDecoration(
-                              color: Colors.white.withOpacity(0.8),
-                              borderRadius: BorderRadius.circular(15)
-                          ),
-                          height: 170,
-                          margin: EdgeInsets.only(left: 15,right: 15,top: 5,bottom: 5),
-                          child: TextField(
-                            minLines: 1,
-                            maxLines: 250,
-                            keyboardType: TextInputType.multiline,
-                            textInputAction: TextInputAction.done,
-                            cursorColor: Colors.black.withOpacity(0.2),
-                            showCursor: true,
-                            decoration: InputDecoration(
-                                border: InputBorder.none,
-                                labelStyle: TextStyle(
-                                  color: Colors.black
-                                      .withOpacity(0.6),
-                                )
+                              width: 2.0,
                             ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.circular(15), // <-- Radius
+                            ),
+                            primary: Color(0xff8D3030),
                           ),
-                        ),
-                        ElevatedButton(
-                            child: Text(
-                              "SUBMIT",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white
-                              ),
-                            ),
-                            style:
-                            ElevatedButton.styleFrom(
-                              side: BorderSide(
-                                color: Colors.white,
-                                width: 2.0,
-                              ),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(15), // <-- Radius
-                              ),
-                              primary: Color(0xff8D3030),
-                            ),
-                            onPressed: () {
-                              Navigator.pop(context);
-                            }),
-                      ],
-                    ),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          }),
+                    ],
                   ),
-                );
+                ),
+              );
             });
       },
       onTapDown: (pressing) {
@@ -5539,545 +5691,572 @@ class _MatrixPageState extends State<MatrixPage> {
     );
   }
 
-  Widget getUnAssignedTicket(){
-    return MeasuredSize(
-      onChange: (Size size) {
-        mySize =size;
-      },
-      child: Expanded(
-        child: ClipRRect(
-          borderRadius: BorderRadius.only(
-              topRight: Radius.elliptical(40, 100),
-              topLeft: Radius.elliptical(40, 100),
-              bottomRight: Radius.elliptical(40, 100),
-              bottomLeft: Radius.elliptical(40, 100)),
-          child: GroupedListView<dynamic, String>(
-            sort: false,
-            padding:  EdgeInsets.symmetric(vertical: 0,horizontal: 15),
-            elements: _elements,
-            groupBy: (_element) => _element['group'],
-            order: GroupedListOrder.DESC,
-            useStickyGroupSeparators: true,
-            stickyHeaderBackgroundColor: Colors.transparent,
-            groupSeparatorBuilder: (String value) {
-              return Padding(
-                padding: EdgeInsets.all(0.0),
-                child: Container(
-                  width: 50,
-                  decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(0.3),
-                    borderRadius: BorderRadius.circular(50),
-                  ),
-                  child: Text(
-                    value,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontSize: 16,
-                        fontFamily: 'fonts/Roboto-Light.ttf',
-                        fontWeight: FontWeight.normal,
-                        color: Colors.white.withOpacity(0.65)),
-                  ),
+  Widget getUnAssignedTicket() {
+    return Expanded(
+      child: ClipRRect(
+        borderRadius: BorderRadius.only(
+            topRight: Radius.elliptical(40, 100),
+            topLeft: Radius.elliptical(40, 100),
+            bottomRight: Radius.elliptical(40, 100),
+            bottomLeft: Radius.elliptical(40, 100)),
+        child: GroupedListView<dynamic, String>(
+          sort: false,
+          padding: EdgeInsets.symmetric(vertical: 0, horizontal: 15),
+          elements: _elements,
+          groupBy: (_element) => _element['group'],
+          order: GroupedListOrder.DESC,
+          useStickyGroupSeparators: true,
+          stickyHeaderBackgroundColor: Colors.transparent,
+          groupSeparatorBuilder: (String value) {
+            return Padding(
+              padding: EdgeInsets.all(0.0),
+              child: Container(
+                width: 50,
+                decoration: BoxDecoration(
+                  color: Colors.black.withOpacity(0.3),
+                  borderRadius: BorderRadius.circular(50),
                 ),
-              );
-            },
-            itemBuilder: (context, element) {
-              return GestureDetector(
-                onLongPress: (){
-                  showDialog(
-                      context: context,
-                      builder: (BuildContext context){
-                        return AlertDialog(
-                            contentPadding: EdgeInsets.only(left: 0,right: 0),
-                            insetPadding: EdgeInsets.only(left: 15,right: 15),
-                            shape: RoundedRectangleBorder(
+                child: Text(
+                  value,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontSize: 16,
+                      fontFamily: 'fonts/Roboto-Light.ttf',
+                      fontWeight: FontWeight.normal,
+                      color: Colors.white.withOpacity(0.65)),
+                ),
+              ),
+            );
+          },
+          itemBuilder: (context, element) {
+            return GestureDetector(
+              onLongPress: () {
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                          contentPadding: EdgeInsets.only(left: 0, right: 0),
+                          insetPadding: EdgeInsets.only(left: 15, right: 15),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(15),
+                              topRight: Radius.circular(15),
+                              bottomLeft: Radius.circular(20),
+                              bottomRight: Radius.circular(20),
+                            ),
+                          ),
+                          elevation: 50,
+                          backgroundColor: Colors.white,
+                          scrollable: true,
+                          content: ClipRRect(
                               borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(15),
                                 topRight: Radius.circular(15),
                                 bottomLeft: Radius.circular(20),
                                 bottomRight: Radius.circular(20),
                               ),
-                            ),
-                            elevation: 50,
-                            backgroundColor: Colors.white,
-                            scrollable: true,
-                            content:
-                            ClipRRect(
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(15),
-                                  topRight: Radius.circular(15),
-                                  bottomLeft: Radius.circular(20),
-                                  bottomRight: Radius.circular(20),
-                                ),
-                                child: Container(
-                                  height: 260,
-                                  width: 365,
-                                  decoration: BoxDecoration(
-                                      image: DecorationImage(
+                              child: Container(
+                                height: 260,
+                                width: 365,
+                                decoration: BoxDecoration(
+                                    image: DecorationImage(
                                         // opacity: 0.75,
-                                          fit: BoxFit.fill,
-                                          image: AssetImage('assets/unassignedticketimage.png')
-                                      )
-                                  ),
-                                  child:
-                                  Stack(
-                                    children: [
-                                      Center(
-                                        child: Container(
-                                          height: 210,
-                                          width: 345,
-                                          decoration: BoxDecoration(
-                                            // color: Colors.transparent.withOpacity(0.1),
-                                            borderRadius: BorderRadius.only(
-                                              topLeft: Radius.circular(20),
-                                              topRight: Radius.circular(20),
-                                              bottomLeft: Radius.circular(20),
-                                              bottomRight: Radius.circular(20),
-                                            ),
+                                        fit: BoxFit.fill,
+                                        image: AssetImage(
+                                            'assets/unassignedticketimage.png'))),
+                                child: Stack(
+                                  children: [
+                                    Center(
+                                      child: Container(
+                                        height: 210,
+                                        width: 345,
+                                        decoration: BoxDecoration(
+                                          // color: Colors.transparent.withOpacity(0.1),
+                                          borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(20),
+                                            topRight: Radius.circular(20),
+                                            bottomLeft: Radius.circular(20),
+                                            bottomRight: Radius.circular(20),
                                           ),
                                         ),
                                       ),
-                                      Column(
-                                        // mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        children: <Widget>[
-                                          SizedBox(height: 10,),
-                                          Row(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            children: [
-                                              Card(
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius: BorderRadius.circular(7.5),
-                                                ),
-                                                elevation: 5,
-                                                child: Container(
-                                                    padding: EdgeInsets.symmetric(horizontal: 10.0),
-                                                    decoration: BoxDecoration(
-                                                      color: element['Color'].withOpacity(0.5),
-                                                      borderRadius: BorderRadius.all(Radius.circular(7.5)),
-                                                    ),
-                                                    child: Text(element['SystemNumber'],
-                                                      style: TextStyle(
-                                                          fontSize: 20,
-                                                          fontWeight: FontWeight.bold
-                                                      ),
-                                                    )),
+                                    ),
+                                    Column(
+                                      // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: <Widget>[
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Card(
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(7.5),
                                               ),
-                                            ],
-                                          ),
-                                          SizedBox(height: 7.5,),
-                                          Row(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            children: [
-                                              Text(element['group'],
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.w400,
-                                                    fontSize: 16,
-                                                    color: Colors.black.withOpacity(0.5)
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                width: 5,
-                                              ),
-                                              Text(element['Time'],
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.w400,
-                                                    fontSize: 16,
-                                                    color: Colors.black.withOpacity(0.5)
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          SizedBox(height: 10,),
-                                          Container(
-                                            decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.circular(20),
-                                            ),
-                                            height: 120,
-                                            width: 330,
-                                            child: Center(
-                                              child: SingleChildScrollView(
-                                                scrollDirection: Axis.vertical,
-                                                child: Text(
-                                                  'Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working ',
-                                                  textAlign: TextAlign.center,
-                                                  style: TextStyle(
-                                                      fontSize: 17,
-                                                      color: Colors.black.withOpacity(0.75),
-                                                      fontWeight: FontWeight.w500
+                                              elevation: 5,
+                                              child: Container(
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal: 10.0),
+                                                  decoration: BoxDecoration(
+                                                    color: element['Color']
+                                                        .withOpacity(0.5),
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                7.5)),
                                                   ),
-                                                ),
-                                              ),
+                                                  child: Text(
+                                                    element['SystemNumber'],
+                                                    style: TextStyle(
+                                                        fontSize: 20,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  )),
                                             ),
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height: 7.5,
+                                        ),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              element['group'],
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: 16,
+                                                  color: Colors.black
+                                                      .withOpacity(0.5)),
+                                            ),
+                                            SizedBox(
+                                              width: 5,
+                                            ),
+                                            Text(
+                                              element['Time'],
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: 16,
+                                                  color: Colors.black
+                                                      .withOpacity(0.5)),
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(20),
                                           ),
-                                          SizedBox(height: 10,),
-                                          Card(
-                                            color: Colors.black,
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(20),
-                                            ),
-                                            elevation: 5,
-                                            shadowColor: Colors.transparent.withOpacity(0.9),
-                                            child: Container(
-                                              decoration: BoxDecoration(
-                                                  color: Color(0xff1A8118),
-                                                  // Color(0xff1A8118),
-                                                  borderRadius: BorderRadius.circular(20)
-                                              ),
-                                              padding: EdgeInsets.only(
-                                                left: 15,
-                                                right: 15,
-                                                top: 5,
-                                                bottom: 5,
-                                              ),
+                                          height: 120,
+                                          width: 330,
+                                          child: Center(
+                                            child: SingleChildScrollView(
+                                              scrollDirection: Axis.vertical,
                                               child: Text(
-                                                'ACCEPT TICKET',
+                                                'Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working ',
+                                                textAlign: TextAlign.center,
                                                 style: TextStyle(
-                                                  shadows: [
-                                                    Shadow(
-                                                      offset: Offset(1, 1),
-                                                      blurRadius: 2,
-                                                      color: Colors.black,
-                                                    ),
-                                                  ],
-                                                  fontSize: 18,
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
+                                                    fontSize: 17,
+                                                    color: Colors.black
+                                                        .withOpacity(0.75),
+                                                    fontWeight:
+                                                        FontWeight.w500),
                                               ),
                                             ),
                                           ),
-                                          SizedBox(height: 2,)
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                )
-                            )
-                        );}
-                  );
-                },
-                onTap: (){
-                  showModalBottomSheet(
-                      constraints: BoxConstraints(
-                        maxWidth:MediaQuery.of(context).size.width *0.95,
-                      ),
-                      isScrollControlled: true,
-                      backgroundColor: Colors.transparent,
-                      context: context,
-                      builder: (BuildContext context){
-                        return
-                          Container(
-                            constraints: BoxConstraints(
-                              maxHeight: MediaQuery.of(context).size.height -316,
-                            ),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                topRight: Radius.circular(45),
-                                topLeft: Radius.circular(45),
-                                bottomRight: Radius.circular(30),
-                                bottomLeft: Radius.circular(30),
-                              ),
-                              // color: Colors.transparent,
-                              image: DecorationImage(
-                                  fit: BoxFit.cover, image: AssetImage('assets/problemclick.png')),
-                            ),
-                            child: SingleChildScrollView(
-                              reverse: true,
-                              child: ConstrainedBox(
-                                constraints: BoxConstraints(
-                                  minHeight: MediaQuery.of(context).size.height-316,
-                                ),
-                                child: IntrinsicHeight(
-                                  child: Column(
-                                    children: [
-                                      Padding(padding: EdgeInsets.only(bottom: 10.0)),
-                                      Center(
-                                        child: Text(element['SystemNumber'],
-                                          style: TextStyle(
-                                              fontFamily: 'fonts/Roboto-Bold.ttf',
-                                              fontWeight: FontWeight.w900,
-                                              fontSize: 24),),
-                                      ),
-                                      Expanded(
-                                          child: Container()
-                                      ),
-                                      Row(
-                                        children: [
-                                          Expanded(
-                                              child: Container()
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        Card(
+                                          color: Colors.black,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(20),
                                           ),
-                                          Flexible(
-                                            flex: 4,
-                                            fit: FlexFit.tight,
-                                            child: Text('HostName',
-                                              style: TextStyle(
-                                                  fontFamily: 'fonts/Roboto-Bold.ttf',
-                                                  fontWeight: FontWeight.w400,
-                                                  fontSize: 18),
+                                          elevation: 5,
+                                          shadowColor: Colors.transparent
+                                              .withOpacity(0.9),
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                                color: Color(0xff1A8118),
+                                                // Color(0xff1A8118),
+                                                borderRadius:
+                                                    BorderRadius.circular(20)),
+                                            padding: EdgeInsets.only(
+                                              left: 15,
+                                              right: 15,
+                                              top: 5,
+                                              bottom: 5,
                                             ),
-                                          ),
-                                          Flexible(
-                                            flex: 4,
-                                            fit: FlexFit.tight,
-                                            child: Text('HostName',
+                                            child: Text(
+                                              'ACCEPT TICKET',
                                               style: TextStyle(
-                                                  fontFamily: 'fonts/Roboto-Bold.ttf',
-                                                  fontWeight: FontWeight.w400,
-                                                  fontSize: 18),
-                                            ),
-                                          ),
-                                          Expanded(
-                                              child: Container()
-                                          ),
-                                        ],
-                                      ),
-                                      Expanded(
-                                          child: Container()
-                                      ),
-                                      Row(
-                                        children: [
-                                          Expanded(
-                                              child: Container()
-                                          ),
-                                          Flexible(
-                                            flex: 4,
-                                            fit: FlexFit.tight,
-                                            child: Text('IP Address',
-                                              style: TextStyle(
-                                                  fontFamily: 'fonts/Roboto-Bold.ttf',
-                                                  fontWeight: FontWeight.w400,
-                                                  fontSize: 18),
-                                            ),
-                                          ),
-                                          Flexible(
-                                            flex: 4,
-                                            fit: FlexFit.tight,
-                                            child: Text('IP Address',
-                                              style: TextStyle(
-                                                  fontFamily: 'fonts/Roboto-Bold.ttf',
-                                                  fontWeight: FontWeight.w400,
-                                                  fontSize: 18),
-                                            ),
-                                          ),
-                                          Expanded(
-                                              child: Container()
-                                          ),
-                                        ],
-                                      ),
-                                      Expanded(
-                                          child: Container()
-                                      ),
-                                      Row(
-                                        children: [
-                                          Expanded(
-                                              child: Container()
-                                          ),
-                                          Flexible(
-                                            flex: 4,
-                                            fit: FlexFit.tight,
-                                            child: Text('Date & Time',
-                                              style: TextStyle(
-                                                  fontFamily: 'fonts/Roboto-Bold.ttf',
-                                                  fontWeight: FontWeight.w400,
-                                                  fontSize: 18),
-                                            ),
-                                          ),
-                                          Flexible(
-                                            flex: 4,
-                                            fit: FlexFit.tight,
-                                            child: Text('Date & Time',
-                                              style: TextStyle(
-                                                  fontFamily: 'fonts/Roboto-Bold.ttf',
-                                                  fontWeight: FontWeight.w400,
-                                                  fontSize: 18),
-                                            ),
-                                          ),
-                                          Expanded(
-                                              child: Container()
-                                          ),
-                                        ],
-                                      ),
-                                      Expanded(
-                                          child: Container()
-                                      ),
-                                      Row(
-                                        children: [
-                                          Expanded(
-                                              child: Container()
-                                          ),
-                                          Flexible(
-                                            flex: 4,
-                                            fit: FlexFit.tight,
-                                            child: Text('Severity',
-                                              style: TextStyle(
-                                                  fontFamily: 'fonts/Roboto-Bold.ttf',
-                                                  fontWeight: FontWeight.w400,
-                                                  fontSize: 18),
-                                            ),
-                                          ),
-                                          Flexible(
-                                            flex: 4,
-                                            fit: FlexFit.tight,
-                                            child: Text('Severity',
-                                              style: TextStyle(
-                                                  fontFamily: 'fonts/Roboto-Bold.ttf',
-                                                  fontWeight: FontWeight.w400,
-                                                  fontSize: 18),
-                                            ),
-                                          ),
-                                          Expanded(
-                                              child: Container()
-                                          ),
-                                        ],
-                                      ),
-                                      Expanded(
-                                          child: Container()
-                                      ),
-                                      Row(
-                                        children: [
-                                          Expanded(
-                                              child: Container()
-                                          ),
-                                          Flexible(
-                                            flex: 4,
-                                            fit: FlexFit.tight,
-                                            child: Text('Notes',
-                                              style: TextStyle(
-                                                  fontFamily: 'fonts/Roboto-Bold.ttf',
-                                                  fontWeight: FontWeight.w400,
-                                                  fontSize: 18),
-                                            ),
-                                          ),
-                                          Flexible(
-                                            flex: 4,
-                                            fit: FlexFit.tight,
-                                            child: Text(element['ErrorText'],
-                                              style: TextStyle(
-                                                  fontFamily: 'fonts/Roboto-Bold.ttf',
-                                                  fontWeight: FontWeight.w400,
-                                                  fontSize: 18),
-                                            ),
-                                          ),
-                                          Expanded(
-                                              child: Container()
-                                          ),
-                                        ],
-                                      ),
-                                      Padding(padding: EdgeInsets.only(bottom: 15.0)),
-                                      Center(
-                                          child: ClipRRect(
-                                            borderRadius: BorderRadius.all(Radius.circular(10)),
-                                            child: Column(
-                                              children: [
-                                                Container(
-                                                  width: MediaQuery.of(context).size.width*0.90,
-                                                  color: Color(0xffC4C4C4).withOpacity(0.20),
-                                                  height: 70,
-                                                  child: TextField(
-                                                    scrollPadding: EdgeInsets.only(top:40),
-                                                    showCursor: true,
-                                                    cursorColor: Colors.white70,
-                                                    keyboardType: TextInputType.text,
-                                                    textInputAction: TextInputAction.done,
-                                                    style: TextStyle(
-                                                      fontFamily: 'fonts/Roboto-Bold.ttf',
-                                                      fontSize: 18,
-                                                    ),
-                                                    textAlign: TextAlign.center,
-                                                    decoration: InputDecoration.collapsed(
-                                                      hintText: "Notes",
-                                                      border: InputBorder.none,
-                                                    ),
+                                                shadows: [
+                                                  Shadow(
+                                                    offset: Offset(1, 1),
+                                                    blurRadius: 2,
+                                                    color: Colors.black,
                                                   ),
-                                                ),
-                                                Container(
-                                                  width: MediaQuery.of(context).size.width*0.90,
-                                                  color: Color(0xff486C7B),
-                                                  child: Text('Update',
-                                                    textAlign:TextAlign.center,
-                                                    style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontFamily: 'fonts/Roboto-Bold.ttf',
-                                                      fontWeight: FontWeight.w600,
-                                                      fontSize: 18,
-                                                    ),
-                                                  ),
-                                                )
-                                              ],
+                                                ],
+                                                fontSize: 18,
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.bold,
+                                              ),
                                             ),
-                                          )
-                                      ),
-                                      SizedBox(
-                                        height: MediaQuery.of(context).viewInsets.bottom,
-                                      ),
-                                      Padding(padding: EdgeInsets.only(bottom: 10.0)),
-                                    ],
-                                  ),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: 2,
+                                        )
+                                      ],
+                                    ),
+                                  ],
                                 ),
-                              ),
-                            ),
-                            // ),
-                          );
-                      }
-                  );
-                },
-                child: Card(
-                  elevation: 5.0,
-                  color: Colors.transparent,
-                  shadowColor: Colors.black,
-                  margin: EdgeInsets.symmetric(horizontal: 0.0, vertical: 3.0),
-                  child: Container(
-                    height: 35,
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                            blurRadius: 0,
-                            offset: Offset(0, 1.0),
-                            color: Colors.black.withOpacity(0.3)),
-                      ],
-                      image: DecorationImage(
-                          fit: BoxFit.fill,
-                          // image: AssetImage('assets/rectangleproblem.png')),
-                          image: AssetImage('assets/problembarinnershadowleft.png')),
+                              )));
+                    });
+              },
+              onTap: () {
+                showModalBottomSheet(
+                    constraints: BoxConstraints(
+                      maxWidth: MediaQuery.of(context).size.width * 0.95,
                     ),
-                    child: Row(
-                      children: [
-                        Container(
-                            padding: EdgeInsets.symmetric(horizontal: 12.0),
-                            child: Text(element['Time'])),
-                        Container(
-                            padding: EdgeInsets.symmetric(horizontal: 10.0),
-                            decoration: BoxDecoration(
-                              color: element['Color'].withOpacity(0.5),
-                              borderRadius: BorderRadius.all(Radius.circular(5)),
-                            ),
-                            child: Text(element['SystemNumber'])),
-                        Expanded(
-                          child: Container(
-                              padding: EdgeInsets.symmetric(horizontal: 10.0),
-                              child: SingleChildScrollView(
-                                scrollDirection: Axis.horizontal,
-                                child: Text(
-                                  element['ErrorText'],
-                                  maxLines: 1,
-                                  // overflow: TextOverflow.ellipsis,
-                                  // softWrap: false
-                                ),
-                              )),
+                    isScrollControlled: true,
+                    backgroundColor: Colors.transparent,
+                    context: context,
+                    builder: (BuildContext context) {
+                      return Container(
+                        constraints: BoxConstraints(
+                          maxHeight: MediaQuery.of(context).size.height - 316,
                         ),
-                      ],
-                    ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(45),
+                            topLeft: Radius.circular(45),
+                            bottomRight: Radius.circular(30),
+                            bottomLeft: Radius.circular(30),
+                          ),
+                          // color: Colors.transparent,
+                          image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: AssetImage('assets/problemclick.png')),
+                        ),
+                        child: SingleChildScrollView(
+                          reverse: true,
+                          child: ConstrainedBox(
+                            constraints: BoxConstraints(
+                              minHeight:
+                                  MediaQuery.of(context).size.height - 316,
+                            ),
+                            child: IntrinsicHeight(
+                              child: Column(
+                                children: [
+                                  Padding(
+                                      padding: EdgeInsets.only(bottom: 10.0)),
+                                  Center(
+                                    child: Text(
+                                      element['SystemNumber'],
+                                      style: TextStyle(
+                                          fontFamily: 'fonts/Roboto-Bold.ttf',
+                                          fontWeight: FontWeight.w900,
+                                          fontSize: 24),
+                                    ),
+                                  ),
+                                  Expanded(child: Container()),
+                                  Row(
+                                    children: [
+                                      Expanded(child: Container()),
+                                      Flexible(
+                                        flex: 4,
+                                        fit: FlexFit.tight,
+                                        child: Text(
+                                          'HostName',
+                                          style: TextStyle(
+                                              fontFamily:
+                                                  'fonts/Roboto-Bold.ttf',
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 18),
+                                        ),
+                                      ),
+                                      Flexible(
+                                        flex: 4,
+                                        fit: FlexFit.tight,
+                                        child: Text(
+                                          'HostName',
+                                          style: TextStyle(
+                                              fontFamily:
+                                                  'fonts/Roboto-Bold.ttf',
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 18),
+                                        ),
+                                      ),
+                                      Expanded(child: Container()),
+                                    ],
+                                  ),
+                                  Expanded(child: Container()),
+                                  Row(
+                                    children: [
+                                      Expanded(child: Container()),
+                                      Flexible(
+                                        flex: 4,
+                                        fit: FlexFit.tight,
+                                        child: Text(
+                                          'IP Address',
+                                          style: TextStyle(
+                                              fontFamily:
+                                                  'fonts/Roboto-Bold.ttf',
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 18),
+                                        ),
+                                      ),
+                                      Flexible(
+                                        flex: 4,
+                                        fit: FlexFit.tight,
+                                        child: Text(
+                                          'IP Address',
+                                          style: TextStyle(
+                                              fontFamily:
+                                                  'fonts/Roboto-Bold.ttf',
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 18),
+                                        ),
+                                      ),
+                                      Expanded(child: Container()),
+                                    ],
+                                  ),
+                                  Expanded(child: Container()),
+                                  Row(
+                                    children: [
+                                      Expanded(child: Container()),
+                                      Flexible(
+                                        flex: 4,
+                                        fit: FlexFit.tight,
+                                        child: Text(
+                                          'Date & Time',
+                                          style: TextStyle(
+                                              fontFamily:
+                                                  'fonts/Roboto-Bold.ttf',
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 18),
+                                        ),
+                                      ),
+                                      Flexible(
+                                        flex: 4,
+                                        fit: FlexFit.tight,
+                                        child: Text(
+                                          'Date & Time',
+                                          style: TextStyle(
+                                              fontFamily:
+                                                  'fonts/Roboto-Bold.ttf',
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 18),
+                                        ),
+                                      ),
+                                      Expanded(child: Container()),
+                                    ],
+                                  ),
+                                  Expanded(child: Container()),
+                                  Row(
+                                    children: [
+                                      Expanded(child: Container()),
+                                      Flexible(
+                                        flex: 4,
+                                        fit: FlexFit.tight,
+                                        child: Text(
+                                          'Severity',
+                                          style: TextStyle(
+                                              fontFamily:
+                                                  'fonts/Roboto-Bold.ttf',
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 18),
+                                        ),
+                                      ),
+                                      Flexible(
+                                        flex: 4,
+                                        fit: FlexFit.tight,
+                                        child: Text(
+                                          'Severity',
+                                          style: TextStyle(
+                                              fontFamily:
+                                                  'fonts/Roboto-Bold.ttf',
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 18),
+                                        ),
+                                      ),
+                                      Expanded(child: Container()),
+                                    ],
+                                  ),
+                                  Expanded(child: Container()),
+                                  Row(
+                                    children: [
+                                      Expanded(child: Container()),
+                                      Flexible(
+                                        flex: 4,
+                                        fit: FlexFit.tight,
+                                        child: Text(
+                                          'Notes',
+                                          style: TextStyle(
+                                              fontFamily:
+                                                  'fonts/Roboto-Bold.ttf',
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 18),
+                                        ),
+                                      ),
+                                      Flexible(
+                                        flex: 4,
+                                        fit: FlexFit.tight,
+                                        child: Text(
+                                          element['ErrorText'],
+                                          style: TextStyle(
+                                              fontFamily:
+                                                  'fonts/Roboto-Bold.ttf',
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 18),
+                                        ),
+                                      ),
+                                      Expanded(child: Container()),
+                                    ],
+                                  ),
+                                  Padding(
+                                      padding: EdgeInsets.only(bottom: 15.0)),
+                                  Center(
+                                      child: ClipRRect(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10)),
+                                    child: Column(
+                                      children: [
+                                        Container(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.90,
+                                          color: Color(0xffC4C4C4)
+                                              .withOpacity(0.20),
+                                          height: 70,
+                                          child: TextField(
+                                            scrollPadding:
+                                                EdgeInsets.only(top: 40),
+                                            showCursor: true,
+                                            cursorColor: Colors.white70,
+                                            keyboardType: TextInputType.text,
+                                            textInputAction:
+                                                TextInputAction.done,
+                                            style: TextStyle(
+                                              fontFamily:
+                                                  'fonts/Roboto-Bold.ttf',
+                                              fontSize: 18,
+                                            ),
+                                            textAlign: TextAlign.center,
+                                            decoration:
+                                                InputDecoration.collapsed(
+                                              hintText: "Notes",
+                                              border: InputBorder.none,
+                                            ),
+                                          ),
+                                        ),
+                                        Container(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.90,
+                                          color: Color(0xff486C7B),
+                                          child: Text(
+                                            'Update',
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontFamily:
+                                                  'fonts/Roboto-Bold.ttf',
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 18,
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  )),
+                                  SizedBox(
+                                    height: MediaQuery.of(context)
+                                        .viewInsets
+                                        .bottom,
+                                  ),
+                                  Padding(
+                                      padding: EdgeInsets.only(bottom: 10.0)),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        // ),
+                      );
+                    });
+              },
+              child: Card(
+                elevation: 5.0,
+                color: Colors.transparent,
+                shadowColor: Colors.black,
+                margin: EdgeInsets.symmetric(horizontal: 0.0, vertical: 3.0),
+                child: Container(
+                  height: 35,
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                          blurRadius: 0,
+                          offset: Offset(0, 1.0),
+                          color: Colors.black.withOpacity(0.3)),
+                    ],
+                    image: DecorationImage(
+                        fit: BoxFit.fill,
+                        // image: AssetImage('assets/rectangleproblem.png')),
+                        image:
+                            AssetImage('assets/problembarinnershadowleft.png')),
+                  ),
+                  child: Row(
+                    children: [
+                      Container(
+                          padding: EdgeInsets.symmetric(horizontal: 12.0),
+                          child: Text(element['Time'])),
+                      Container(
+                          padding: EdgeInsets.symmetric(horizontal: 10.0),
+                          decoration: BoxDecoration(
+                            color: element['Color'].withOpacity(0.5),
+                            borderRadius: BorderRadius.all(Radius.circular(5)),
+                          ),
+                          child: Text(element['SystemNumber'])),
+                      Expanded(
+                        child: Container(
+                            padding: EdgeInsets.symmetric(horizontal: 10.0),
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Text(
+                                element['ErrorText'],
+                                maxLines: 1,
+                                // overflow: TextOverflow.ellipsis,
+                                // softWrap: false
+                              ),
+                            )),
+                      ),
+                    ],
                   ),
                 ),
-              );
-            },
-          ),
+              ),
+            );
+          },
         ),
       ),
     );
   }
 
-  Widget sample(){
+  Widget sample() {
     return Text('Hello');
   }
 }

@@ -39,8 +39,9 @@ dependencies:
   grouped_list: ^4.2.0
   delayed_display: ^2.0.0
   custom_pop_up_menu: ^1.2.3+1
+#  flutter_spinkit: ^5.1.0
 
-  measured_size: ^1.0.0
+#  measured_size: ^1.0.0
   badges: ^2.0.2
 #  flutter_badged: ^2.0.2
 #  loading_animation_widget: ^1.1.0+3
