@@ -488,7 +488,6 @@ class _MatrixPageState extends State<MatrixPage> {
 
   Map<String, Set<String>> memorybar = Map();                     // Memorybar Data
 
-  Set<Widget> _widgetMemory = {};
 
   @override
   initState() {
@@ -642,10 +641,20 @@ class _MatrixPageState extends State<MatrixPage> {
         children: [
           Container(
             decoration: BoxDecoration(
-                gradient: LinearGradient(
+                /*image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image:
+                    AssetImage('assets/rectangle.png')),*/
+                /*gradient: LinearGradient(
                     colors: [Colors.blueGrey, Colors.black87],
                     begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter)),
+                    end: Alignment.bottomCenter)*/
+          gradient: LinearGradient(
+              colors: [Color(0xff8D6679), Color(0xff19547b)],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter),
+              // color: Colors.black87
+            ),
           ),
           Container(
             width: 250,
@@ -876,6 +885,7 @@ class _MatrixPageState extends State<MatrixPage> {
   Widget getDashboard() {
     return WillPopScope(
       onWillPop: () async {
+        print('hello');
         return false;
       },
       child: Scaffold(
@@ -1047,7 +1057,7 @@ class _MatrixPageState extends State<MatrixPage> {
   }
 
   Widget getIncident() {
-    DateTime _lastExitTime = DateTime.now();
+    /*DateTime _lastExitTime = DateTime.now();*/
     return WillPopScope(
       onWillPop: () async {
         if(_remote==true){
@@ -1081,18 +1091,28 @@ class _MatrixPageState extends State<MatrixPage> {
           });
           return false;
         }else{
-          if (DateTime.now().difference(_lastExitTime) >= Duration(milliseconds: 500)) {
+          return true;
+          /*if (DateTime.now().difference(_lastExitTime) >= Duration(milliseconds: 750)) {
             //showing message to user
             final snack =  SnackBar(
-              content:  Text("Press the back button again to exit"),
-              duration: Duration(seconds: 2),
+              elevation: 6,
+              margin: EdgeInsets.all(10),
+              behavior: SnackBarBehavior.floating,
+              backgroundColor: Colors.black87,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(20))),
+              content:  Text(
+                  "Press the back button again to exit",
+                style: TextStyle(color: Colors.white70),
+              ),
+              duration: Duration(seconds: 1),
             );
             ScaffoldMessenger.of(context).showSnackBar(snack);
             _lastExitTime = DateTime.now();
             return false; // disable back press
           } else {
             return true; //  exit the app
-          }
+          }*/
         }
       },
       child: Scaffold(
@@ -1108,10 +1128,10 @@ class _MatrixPageState extends State<MatrixPage> {
                 gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
-                    colors: [Color(0xff497D7D), Color(0xff8D6679)])),
+                    colors: [Color(0xff19547b), Color(0xff8D6679)])),
             child: Column(
               children: [
-                Padding(padding: EdgeInsets.only(bottom: 42.5)),
+                Padding(padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewPadding.top)),
                 getIncidentAppbar(),
 
                 Visibility(
@@ -1125,7 +1145,7 @@ class _MatrixPageState extends State<MatrixPage> {
                     width: MediaQuery.of(context).size.width,
                     padding: EdgeInsets.symmetric(horizontal: 20),
                     margin:
-                        EdgeInsets.only(top: 7.5, left: 0, right: 0, bottom: 5),
+                        EdgeInsets.only(top: 7.5, bottom: 5, left: 0, right: 0),
                     child: DecoratedBox(
                       decoration: BoxDecoration(
                         image: DecorationImage(
@@ -1173,6 +1193,9 @@ class _MatrixPageState extends State<MatrixPage> {
                                         } else if (value.toList()[index] ==
                                             'assets/remoteiconpadding.png') {            // Turning ON and OFF Remote
                                           _remote = !_remote;
+                                        } else if (value.toList()[index] ==
+                                            'assets/callicongreenpadding.png'){
+                                          Caller();
                                         }
                                         /*for (String i in value.toList()){
                                           if(i=='assets/chaticon250.png'){
@@ -1252,7 +1275,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                     child: Container(
                                       height: 32.5,
                                       width: 32.5,
-                                      margin: EdgeInsets.only(left: 5),
+                                      margin: EdgeInsets.only(left: 12.5),
                                       child: Image.asset(
                                         memorybar[_sysNumber]!.elementAt(index),
                                       ),
@@ -1261,7 +1284,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                   child: Container(
                                     height: 32.5,
                                     width: 32.5,
-                                    margin: EdgeInsets.only(left: 5),
+                                    margin: EdgeInsets.only(left: 12.5),
                                     child: Image.asset(
                                         memorybar[_sysNumber]!.elementAt(index),
                                     ),
@@ -1568,8 +1591,9 @@ class _MatrixPageState extends State<MatrixPage> {
                   gradient: LinearGradient(
                       colors: [
                         // Color(0xffB0C8C8),
-                        Color(0xff497D7D).withOpacity(0.8),
-                        Color(0xff91BBD2).withOpacity(0.35),
+                        Color(0xff19547b),
+                        // Color(0xff497D7D).withOpacity(0.8),
+                        // Color(0xff91BBD2).withOpacity(0.35),
                         Color(0xff8D6679).withOpacity(0.8),
                       ],
                       // stops: [0.0,1.0],
@@ -1597,7 +1621,8 @@ class _MatrixPageState extends State<MatrixPage> {
                           borderRadius: BorderRadius.circular(10),
                           gradient: LinearGradient(
                               colors: [
-                                Color(0xff497D7D).withOpacity(1),
+                                Color(0xff19547b),
+                                // Color(0xff497D7D).withOpacity(1),
                                 Color(0xff91BBD2).withOpacity(1),
                               ],
                               begin: Alignment.topCenter,
@@ -1637,229 +1662,226 @@ class _MatrixPageState extends State<MatrixPage> {
               ),
             ),
           ),
-          IgnorePointer(
-            ignoring: _remote,
-            child: Container(
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                        blurRadius: 3,
-                        offset: Offset(1, 0),
-                        color: Colors.black.withOpacity(0.4)),
-                    //3dright
-                    BoxShadow(
-                        blurRadius: 3,
-                        offset: Offset(0, 1),
-                        color: Colors.black.withOpacity(0.4)),
-                    // 3dbottom
-                    // BoxShadow(
-                    //     blurRadius: 1,
-                    //     offset: -Offset(1, 0),
-                    //     color: Colors.black.withOpacity(0.5)),
-                    //3dleft
-                    // BoxShadow(
-                    //     blurRadius: 1,
-                    //     offset: -Offset(0, 1),
-                    //     color: Colors.black.withOpacity(0.9)),
+          Container(
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                      blurRadius: 3,
+                      offset: Offset(1, 0),
+                      color: Colors.black.withOpacity(0.4)),
+                  //3dright
+                  BoxShadow(
+                      blurRadius: 3,
+                      offset: Offset(0, 1),
+                      color: Colors.black.withOpacity(0.4)),
+                  // 3dbottom
+                  // BoxShadow(
+                  //     blurRadius: 1,
+                  //     offset: -Offset(1, 0),
+                  //     color: Colors.black.withOpacity(0.5)),
+                  //3dleft
+                  // BoxShadow(
+                  //     blurRadius: 1,
+                  //     offset: -Offset(0, 1),
+                  //     color: Colors.black.withOpacity(0.9)),
+                ],
+                borderRadius: BorderRadius.circular(50),
+                gradient: LinearGradient(colors: [
+                  Color(0xffEAE2E2).withOpacity(0.9),
+                  Color(0xffABA4A4)
+                  // Colors.white,
+                  // Colors.black,
+                ], stops: [
+                  0.6,
+                  1.0
+                ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
+                color: Colors.black,
+              ),
+              margin: EdgeInsets.only(left: 15, right: 15, bottom: 7.5),
+              child: Container(
+                padding: EdgeInsets.only(left: 5, right: 5),
+                child: Row(
+                  children: [
+                    CustomPopupMenu(
+                      arrowColor: Colors.transparent,
+                      horizontalMargin: 17.5,
+                      verticalMargin: 5,
+                      child: Icon(
+                        Icons.add_circle_outline_rounded,
+                        color: Color(0xff1A5099).withOpacity(1),
+                        size: 32.5,
+                      ),
+                      menuBuilder: () {
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            DelayedDisplay(
+                              delay: Duration(milliseconds: 300),
+                              child: Card(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(15.0),
+                                ),
+                                color: Colors.transparent,
+                                elevation: 8,
+                                child: Container(
+                                  height: 45,
+                                  width: 45,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(100),
+                                    gradient: LinearGradient(
+                                        colors: [
+                                          Color(0xffEAE2E2).withOpacity(0.9),
+                                          Color(0xffABA4A4)
+                                          // Colors.white,
+                                          // Colors.black,
+                                        ],
+                                        stops: [
+                                          0.6,
+                                          1.0
+                                        ],
+                                        begin: Alignment.topCenter,
+                                        end: Alignment.bottomCenter),
+                                  ),
+                                  child: Center(
+                                    child: Icon(
+                                      Icons.insert_photo_outlined,
+                                      color: Color(0xff1A5099).withOpacity(1),
+                                      size: 32.5,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            DelayedDisplay(
+                              delay: Duration(milliseconds: 200),
+                              child: Card(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(15.0),
+                                ),
+                                color: Colors.transparent,
+                                elevation: 8,
+                                child: Container(
+                                  height: 45,
+                                  width: 45,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(100),
+                                    gradient: LinearGradient(
+                                        colors: [
+                                          Color(0xffEAE2E2).withOpacity(0.9),
+                                          Color(0xffABA4A4)
+                                          // Colors.white,
+                                          // Colors.black,
+                                        ],
+                                        stops: [
+                                          0.6,
+                                          1.0
+                                        ],
+                                        begin: Alignment.topCenter,
+                                        end: Alignment.bottomCenter),
+                                  ),
+                                  child: Center(
+                                    child: Icon(
+                                      Icons.ondemand_video_outlined,
+                                      color: Color(0xff1A5099).withOpacity(1),
+                                      size: 32.5,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            DelayedDisplay(
+                              delay: Duration(milliseconds: 100),
+                              child: Card(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(15.0),
+                                ),
+                                color: Colors.transparent,
+                                elevation: 8,
+                                child: Container(
+                                  height: 45,
+                                  width: 45,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(100),
+                                    gradient: LinearGradient(
+                                        colors: [
+                                          Color(0xffEAE2E2).withOpacity(0.9),
+                                          Color(0xffABA4A4)
+                                          // Colors.white,
+                                          // Colors.black,
+                                        ],
+                                        stops: [
+                                          0.6,
+                                          1.0
+                                        ],
+                                        begin: Alignment.topCenter,
+                                        end: Alignment.bottomCenter),
+                                  ),
+                                  child: Center(
+                                    child: Icon(
+                                      Icons.folder_outlined,
+                                      color: Color(0xff1A5099).withOpacity(1),
+                                      size: 32.5,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        );
+                      },
+                      pressType: PressType.singleClick,
+                    ),
+                    /*Icon(
+                    Icons.add_circle_outline_rounded,
+                    color: Color(0xff1A5099).withOpacity(1),
+                    size: 32.5,
+                  ),*/
+                    Expanded(
+                      child: Container(
+                        // height: 40,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        margin: EdgeInsets.only(left: 5, right: 5),
+                        padding: EdgeInsets.only(left: 7.5, right: 7.5),
+                        width: 50,
+                        child: TextField(
+                          minLines: 1,
+                          maxLines: 4,
+                          keyboardType: TextInputType.multiline,
+                          textInputAction: TextInputAction.done,
+                          cursorColor: Colors.black.withOpacity(0.25),
+                          showCursor: true,
+                          decoration: InputDecoration(
+                              hintText: 'Message',
+                              border: InputBorder.none,
+                              labelStyle: TextStyle(
+                                color: Colors.black.withOpacity(0.6),
+                              )),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                        padding: EdgeInsets.only(right: 5),
+                        child: Image.asset(
+                          'assets/send1.png',
+                          height: 31,
+                        )),
+                    /*Icon(
+                    Icons.send_rounded,
+                    color: Color(0xff1A5099).withOpacity(1),
+                    size: 32.5,
+                  ),*/
                   ],
-                  borderRadius: BorderRadius.circular(50),
-                  gradient: LinearGradient(colors: [
-                    Color(0xffEAE2E2).withOpacity(0.9),
-                    Color(0xffABA4A4)
-                    // Colors.white,
-                    // Colors.black,
-                  ], stops: [
-                    0.6,
-                    1.0
-                  ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
-                  color: Colors.black,
                 ),
-                margin: EdgeInsets.only(left: 15, right: 15, bottom: 7.5),
-                child: Container(
-                  padding: EdgeInsets.only(left: 5, right: 5),
-                  child: Row(
-                    children: [
-                      CustomPopupMenu(
-                        arrowColor: Colors.transparent,
-                        horizontalMargin: 17.5,
-                        verticalMargin: 5,
-                        child: Icon(
-                          Icons.add_circle_outline_rounded,
-                          color: Color(0xff1A5099).withOpacity(1),
-                          size: 32.5,
-                        ),
-                        menuBuilder: () {
-                          return Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              DelayedDisplay(
-                                delay: Duration(milliseconds: 300),
-                                child: Card(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(15.0),
-                                  ),
-                                  color: Colors.transparent,
-                                  elevation: 8,
-                                  child: Container(
-                                    height: 45,
-                                    width: 45,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(100),
-                                      gradient: LinearGradient(
-                                          colors: [
-                                            Color(0xffEAE2E2).withOpacity(0.9),
-                                            Color(0xffABA4A4)
-                                            // Colors.white,
-                                            // Colors.black,
-                                          ],
-                                          stops: [
-                                            0.6,
-                                            1.0
-                                          ],
-                                          begin: Alignment.topCenter,
-                                          end: Alignment.bottomCenter),
-                                    ),
-                                    child: Center(
-                                      child: Icon(
-                                        Icons.insert_photo_outlined,
-                                        color: Color(0xff1A5099).withOpacity(1),
-                                        size: 32.5,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              DelayedDisplay(
-                                delay: Duration(milliseconds: 200),
-                                child: Card(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(15.0),
-                                  ),
-                                  color: Colors.transparent,
-                                  elevation: 8,
-                                  child: Container(
-                                    height: 45,
-                                    width: 45,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(100),
-                                      gradient: LinearGradient(
-                                          colors: [
-                                            Color(0xffEAE2E2).withOpacity(0.9),
-                                            Color(0xffABA4A4)
-                                            // Colors.white,
-                                            // Colors.black,
-                                          ],
-                                          stops: [
-                                            0.6,
-                                            1.0
-                                          ],
-                                          begin: Alignment.topCenter,
-                                          end: Alignment.bottomCenter),
-                                    ),
-                                    child: Center(
-                                      child: Icon(
-                                        Icons.ondemand_video_outlined,
-                                        color: Color(0xff1A5099).withOpacity(1),
-                                        size: 32.5,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              DelayedDisplay(
-                                delay: Duration(milliseconds: 100),
-                                child: Card(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(15.0),
-                                  ),
-                                  color: Colors.transparent,
-                                  elevation: 8,
-                                  child: Container(
-                                    height: 45,
-                                    width: 45,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(100),
-                                      gradient: LinearGradient(
-                                          colors: [
-                                            Color(0xffEAE2E2).withOpacity(0.9),
-                                            Color(0xffABA4A4)
-                                            // Colors.white,
-                                            // Colors.black,
-                                          ],
-                                          stops: [
-                                            0.6,
-                                            1.0
-                                          ],
-                                          begin: Alignment.topCenter,
-                                          end: Alignment.bottomCenter),
-                                    ),
-                                    child: Center(
-                                      child: Icon(
-                                        Icons.folder_outlined,
-                                        color: Color(0xff1A5099).withOpacity(1),
-                                        size: 32.5,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          );
-                        },
-                        pressType: PressType.singleClick,
-                      ),
-                      /*Icon(
-                      Icons.add_circle_outline_rounded,
-                      color: Color(0xff1A5099).withOpacity(1),
-                      size: 32.5,
-                    ),*/
-                      Expanded(
-                        child: Container(
-                          // height: 40,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          margin: EdgeInsets.only(left: 5, right: 5),
-                          padding: EdgeInsets.only(left: 7.5, right: 7.5),
-                          width: 50,
-                          child: TextField(
-                            minLines: 1,
-                            maxLines: 4,
-                            keyboardType: TextInputType.multiline,
-                            textInputAction: TextInputAction.done,
-                            cursorColor: Colors.black.withOpacity(0.25),
-                            showCursor: true,
-                            decoration: InputDecoration(
-                                hintText: 'Message',
-                                border: InputBorder.none,
-                                labelStyle: TextStyle(
-                                  color: Colors.black.withOpacity(0.6),
-                                )),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                          padding: EdgeInsets.only(right: 5),
-                          child: Image.asset(
-                            'assets/send1.png',
-                            height: 31,
-                          )),
-                      /*Icon(
-                      Icons.send_rounded,
-                      color: Color(0xff1A5099).withOpacity(1),
-                      size: 32.5,
-                    ),*/
-                    ],
-                  ),
-                )),
-          ),
+              )),
           SizedBox(
             height: MediaQuery.of(context).viewInsets.vertical,
           ),
@@ -1883,8 +1905,9 @@ class _MatrixPageState extends State<MatrixPage> {
             gradient: LinearGradient(
                 colors: [
                   // Color(0xffB0C8C8),
-                  Color(0xff497D7D).withOpacity(0.8),
-                  Color(0xff91BBD2).withOpacity(0.35),
+                  Color(0xff19547b),
+                  // Color(0xff497D7D).withOpacity(0.8),
+                  // Color(0xff91BBD2).withOpacity(0.35),
                   // Color(0xff9A85B4),
                   // Color(0xffA3818F)
                   Color(0xff8D6679).withOpacity(0.8),
@@ -1904,7 +1927,8 @@ class _MatrixPageState extends State<MatrixPage> {
                 Text(
                   'Notification',
                   style: TextStyle(
-                      color: Colors.white70,
+                      fontFamily: 'Roboto',
+                      color: Colors.white.withOpacity(0.9),
                       fontWeight: FontWeight.bold,
                       fontSize: 16),
                 )
@@ -3394,6 +3418,9 @@ class _MatrixPageState extends State<MatrixPage> {
                                     // ChatButton(),
                                   ),
                                 ),
+
+
+
                                 Visibility(
                                   visible: _enterAction,
                                   child: AnimatedPositioned(
@@ -3405,9 +3432,9 @@ class _MatrixPageState extends State<MatrixPage> {
                                       duration: Duration(milliseconds: 350),
                                       child: GestureDetector(
                                         onTap: () {
-                                          setState(() {
+                                          Caller();
 
-                                            _widgetMemory.add(callIcon());
+                                          setState(() {
 
                                             /*this.memoryWidgets.add('assets/calliconpadding.png');*/
                                             /*memorybar.addEntries([
@@ -3423,11 +3450,11 @@ class _MatrixPageState extends State<MatrixPage> {
                                                 ticket[index]['sysNumber']) ==
                                                 true) {
                                               memorybar[ticket[index]['sysNumber']]
-                                                  ?.add('assets/calliconpadding.png');
+                                                  ?.add('assets/callicongreenpadding.png');
                                             } else {
                                               memorybar.addEntries([
                                                 MapEntry(ticket[index]['sysNumber'],
-                                                    {'assets/calliconpadding.png'})
+                                                    {'assets/callicongreenpadding.png'})
                                               ]);
                                             }
                                           });
@@ -3786,7 +3813,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                                     BorderRadius.circular(30.0),
                                                   ),
                                                   scrollable: true,
-                                                  insetPadding: EdgeInsets.all(50),
+                                                  insetPadding: EdgeInsets.all(40),
                                                   contentPadding: EdgeInsets.all(0),
                                                   backgroundColor: Colors.white60,
                                                   content: Container(
@@ -3804,16 +3831,23 @@ class _MatrixPageState extends State<MatrixPage> {
                                                     ),
                                                     child: Column(
                                                       children: [
-                                                        SizedBox(
-                                                          height: 5,
-                                                        ),
-                                                        Text(
-                                                          'Updates',
-                                                          style: TextStyle(
-                                                              fontSize: 17,
-                                                              color: Colors.white,
-                                                              fontWeight:
-                                                              FontWeight.bold),
+                                                        Expanded(
+                                                          child: Container(
+                                                            decoration: BoxDecoration(
+                                                              color: Color(0xff8D3030),
+                                                              borderRadius: BorderRadius.only(topLeft: Radius.circular(25),topRight: Radius.circular(25))
+                                                            ),
+                                                            child: Center(
+                                                              child: Text(
+                                                                'Updates',
+                                                                style: TextStyle(
+                                                                    fontSize: 17,
+                                                                    color: Colors.white,
+                                                                    fontWeight:
+                                                                    FontWeight.bold),
+                                                              ),
+                                                            ),
+                                                          ),
                                                         ),
                                                         Container(
                                                           padding: EdgeInsets.only(
@@ -3824,12 +3858,12 @@ class _MatrixPageState extends State<MatrixPage> {
                                                               borderRadius:
                                                               BorderRadius
                                                                   .circular(15)),
-                                                          height: 170,
+                                                          height: 176,
                                                           margin: EdgeInsets.only(
-                                                              left: 15,
-                                                              right: 15,
+                                                              left: 7.5,
+                                                              right: 7.5,
                                                               top: 5,
-                                                              bottom: 5),
+                                                              bottom: 0),
                                                           child: TextField(
                                                             minLines: 1,
                                                             maxLines: 250,
@@ -3855,6 +3889,30 @@ class _MatrixPageState extends State<MatrixPage> {
                                                                 )),
                                                           ),
                                                         ),
+                                                        /*Container(
+                                                          height: 35,
+                                                          width: 85,
+                                                          decoration: BoxDecoration(
+                                                            color: Color(0xff8D3030),
+                                                            borderRadius: BorderRadius.circular(15),
+                                                            border: Border.all(
+                                                              color: Colors.white,
+                                                              width: 2.0,
+                                                            ),
+                                                          ),
+                                                          child: Center(
+                                                            child: Text(
+                                                              "SUBMIT",
+                                                              style: TextStyle(
+                                                                  fontFamily: 'Roboto',
+                                                                fontSize: 14.5,
+                                                                  fontWeight:
+                                                                  FontWeight.bold,
+                                                                  color:
+                                                                  Colors.white),
+                                                            ),
+                                                          ),
+                                                        ),*/
                                                         ElevatedButton(
                                                             child: Text(
                                                               "SUBMIT",
@@ -3881,7 +3939,8 @@ class _MatrixPageState extends State<MatrixPage> {
                                                             ),
                                                             onPressed: () {
                                                               Navigator.pop(context);
-                                                            }),
+                                                            }
+                                                            ),
                                                       ],
                                                     ),
                                                   ),
@@ -4132,7 +4191,8 @@ class _MatrixPageState extends State<MatrixPage> {
                   print(WidgetsBinding.instance?.window.physicalSize.height);
                   print(MediaQuery.of(context).orientation);*/
 
-                        print(_widgetMemory);
+                        print(window.viewPadding.top);
+                        print(memorybar);
 
                         /*print(Platform.isIOS);*/
                         // print(memorybar);
@@ -5156,24 +5216,31 @@ class _MatrixPageState extends State<MatrixPage> {
                   ),
                   child: Column(
                     children: [
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        'Forward',
-                        style: TextStyle(
-                            fontSize: 17,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold),
+                      Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: Color(0xff8D3030),
+                              borderRadius: BorderRadius.only(topLeft: Radius.circular(25),topRight: Radius.circular(25))
+                          ),
+                          child: Center(
+                            child: Text(
+                              'Forward',
+                              style: TextStyle(
+                                  fontSize: 17,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ),
                       ),
                       Container(
                         padding: EdgeInsets.only(left: 15, right: 15),
                         decoration: BoxDecoration(
                             color: Colors.white.withOpacity(0.8),
                             borderRadius: BorderRadius.circular(15)),
-                        height: 170,
+                        height: 176,
                         margin: EdgeInsets.only(
-                            left: 15, right: 15, top: 5, bottom: 5),
+                            left: 7.5, right: 7.5, top: 5, bottom: 0),
                         child: TextField(
                           minLines: 1,
                           maxLines: 250,
@@ -5291,24 +5358,31 @@ class _MatrixPageState extends State<MatrixPage> {
                   ),
                   child: Column(
                     children: [
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        'Pending',
-                        style: TextStyle(
-                            fontSize: 17,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold),
+                      Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: Color(0xff8D3030),
+                              borderRadius: BorderRadius.only(topLeft: Radius.circular(25),topRight: Radius.circular(25))
+                          ),
+                          child: Center(
+                            child: Text(
+                              'Pending',
+                              style: TextStyle(
+                                  fontSize: 17,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ),
                       ),
                       Container(
                         padding: EdgeInsets.only(left: 15, right: 15),
                         decoration: BoxDecoration(
                             color: Colors.white.withOpacity(0.8),
                             borderRadius: BorderRadius.circular(15)),
-                        height: 170,
+                        height: 176,
                         margin: EdgeInsets.only(
-                            left: 15, right: 15, top: 5, bottom: 5),
+                            left: 7.5, right: 7.5, top: 5, bottom: 0),
                         child: TextField(
                           minLines: 1,
                           maxLines: 250,
@@ -5426,24 +5500,31 @@ class _MatrixPageState extends State<MatrixPage> {
                   ),
                   child: Column(
                     children: [
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        'UnAvailable',
-                        style: TextStyle(
-                            fontSize: 17,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold),
+                      Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: Color(0xff8D3030),
+                              borderRadius: BorderRadius.only(topLeft: Radius.circular(25),topRight: Radius.circular(25))
+                          ),
+                          child: Center(
+                            child: Text(
+                              'UnAvailable',
+                              style: TextStyle(
+                                  fontSize: 17,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ),
                       ),
                       Container(
                         padding: EdgeInsets.only(left: 15, right: 15),
                         decoration: BoxDecoration(
                             color: Colors.white.withOpacity(0.8),
                             borderRadius: BorderRadius.circular(15)),
-                        height: 170,
+                        height: 176,
                         margin: EdgeInsets.only(
-                            left: 15, right: 15, top: 5, bottom: 5),
+                            left: 7.5, right: 7.5, top: 5, bottom: 0),
                         child: TextField(
                           minLines: 1,
                           maxLines: 250,
@@ -5561,24 +5642,31 @@ class _MatrixPageState extends State<MatrixPage> {
                   ),
                   child: Column(
                     children: [
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        'Resolve',
-                        style: TextStyle(
-                            fontSize: 17,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold),
+                      Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: Color(0xff8D3030),
+                              borderRadius: BorderRadius.only(topLeft: Radius.circular(25),topRight: Radius.circular(25))
+                          ),
+                          child: Center(
+                            child: Text(
+                              'Resolve',
+                              style: TextStyle(
+                                  fontSize: 17,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ),
                       ),
                       Container(
                         padding: EdgeInsets.only(left: 15, right: 15),
                         decoration: BoxDecoration(
                             color: Colors.white.withOpacity(0.8),
                             borderRadius: BorderRadius.circular(15)),
-                        height: 170,
+                        height: 176,
                         margin: EdgeInsets.only(
-                            left: 15, right: 15, top: 5, bottom: 5),
+                            left: 7.5, right: 7.5, top: 5, bottom: 0),
                         child: TextField(
                           minLines: 1,
                           maxLines: 250,
@@ -5696,24 +5784,31 @@ class _MatrixPageState extends State<MatrixPage> {
                   ),
                   child: Column(
                     children: [
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        'Close',
-                        style: TextStyle(
-                            fontSize: 17,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold),
+                      Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: Color(0xff8D3030),
+                              borderRadius: BorderRadius.only(topLeft: Radius.circular(25),topRight: Radius.circular(25))
+                          ),
+                          child: Center(
+                            child: Text(
+                              'Close',
+                              style: TextStyle(
+                                  fontSize: 17,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ),
                       ),
                       Container(
                         padding: EdgeInsets.only(left: 15, right: 15),
                         decoration: BoxDecoration(
                             color: Colors.white.withOpacity(0.8),
                             borderRadius: BorderRadius.circular(15)),
-                        height: 170,
+                        height: 176,
                         margin: EdgeInsets.only(
-                            left: 15, right: 15, top: 5, bottom: 5),
+                            left: 7.5, right: 7.5, top: 5, bottom: 0),
                         child: TextField(
                           minLines: 1,
                           maxLines: 250,
@@ -6382,18 +6477,168 @@ class _MatrixPageState extends State<MatrixPage> {
     );
   }
 
-  Widget callIcon() {
-    return Container(
-      height: 32.5,
-      width: 32.5,
-      margin: EdgeInsets.only(left: 5),
-      /*decoration: BoxDecoration(
-        image: DecorationImage(
-            image: AssetImage(
-                'assets/calliconpadding.png',
-            )),
-      ),*/
-      child: Image.asset('assets/calliconpadding.png',color: Colors.red ),
+  Future<Object?> Caller(){
+    return showGeneralDialog(
+      barrierLabel: "showGeneralDialog",
+      barrierDismissible: true,
+      barrierColor: Colors.black.withOpacity(0.6),
+      transitionDuration: const Duration(milliseconds: 400),
+      context: context,
+      pageBuilder: (context, _, __) {
+        return Align(
+          alignment: Alignment.bottomCenter,
+          child: IntrinsicHeight(
+            child: Container(
+              margin: EdgeInsets.only(left: 2.5,right: 2.5),
+              height: 300,
+              clipBehavior: Clip.antiAlias,
+              padding: const EdgeInsets.all(16),
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/call.png'),
+                  fit: BoxFit.fill,
+                ),
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20),
+                  topRight: Radius.circular(20),
+                ),
+              ),
+              child: Material(
+                color: Colors.transparent,
+                child: Column(
+                  children: [
+                    Expanded(
+                        child: Container()
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          child: Container(
+                            height: 45,
+                              margin: EdgeInsets.only(right: 2.5),
+                              decoration: BoxDecoration(
+                                color: Color(0xff483B3B),
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(25),
+                                    bottomLeft: Radius.circular(25)
+                                )
+                              ),
+                              child: Center(
+                                child: Text(
+                                    'HOLD',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20
+                                  ),
+                                ),
+                              )
+                          ),
+                        ),
+                        Expanded(
+                          child: Container(
+                              height: 45,
+                              margin: EdgeInsets.only(left: 2.5),
+                              decoration: BoxDecoration(
+                                color: Color(0xffB91B1B),
+                                  borderRadius: BorderRadius.only(
+                                      topRight: Radius.circular(25),
+                                      bottomRight: Radius.circular(25)
+                                  )
+                              ),
+                              child: Center(
+                                child: Text(
+                                  'HANGOUT',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18
+                                  ),
+                                ),
+                              )
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+      transitionBuilder: (_, animation1, __, child) {
+        return SlideTransition(
+          position: Tween(
+            begin: const Offset(0, 1),
+            end: const Offset(0, 0),
+          ).animate(animation1),
+          child: child,
+        );
+      },
     );
   }
+
 }
+
+
+/*class CallDialog{
+  void showBottomDialog(BuildContext context){
+    showGeneralDialog(
+      barrierLabel: "showGeneralDialog",
+      barrierDismissible: true,
+      barrierColor: Colors.black.withOpacity(0.6),
+      transitionDuration: const Duration(milliseconds: 400),
+      context: context,
+      pageBuilder: (context, _, __) {
+        return Align(
+          alignment: Alignment.bottomCenter,
+          child: IntrinsicHeight(
+            child: Container(
+              margin: EdgeInsets.only(left: 2.5,right: 2.5),
+              height: 300,
+              clipBehavior: Clip.antiAlias,
+              padding: const EdgeInsets.all(16),
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/call.png'),
+                  fit: BoxFit.fill,
+                ),
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20),
+                  topRight: Radius.circular(20),
+                ),
+              ),
+              child: Column(
+                children: [
+                  Expanded(
+                      child: Container(
+
+                      )
+                  ),
+                  Row(
+                    children: [
+
+                    ],
+                  )
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+      transitionBuilder: (_, animation1, __, child) {
+        return SlideTransition(
+          position: Tween(
+            begin: const Offset(0, 1),
+            end: const Offset(0, 0),
+          ).animate(animation1),
+          child: child,
+        );
+      },
+    );
+  }
+}*/
