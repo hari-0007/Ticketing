@@ -10,6 +10,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_animator/flutter_animator.dart';
 import 'package:grouped_list/grouped_list.dart';
 import 'package:loading_indicator/loading_indicator.dart';
+import 'package:measured_size/measured_size.dart';
 
 // import 'package:measured_size/measured_size.dart';
 import 'package:shimmer/shimmer.dart';
@@ -542,12 +543,14 @@ class _MatrixPageState extends State<MatrixPage> {
   bool width = true;                                                    // Search at getAssignedTicket Expand
   bool flag = false;                                                    // Search at getAssignedTicket AnimatedSwitcher
 
-  // Size mySize = Size.zero;
+  Size mySize = Size.zero;
 
   bool _remote = false;                                                  // Remote Visible <-> Invisible
   var _sysNumber;
 
   var _index ;
+
+  bool _callIgnore = false;
 
   /*var memoryWidgets = <String>[];
   var _memoryWidgets = [];*/
@@ -562,7 +565,7 @@ class _MatrixPageState extends State<MatrixPage> {
     }
   }
 
-  double target() {
+  /*double target() {
     if (_remote == false &&
         _foundTicket[_index]['loadingIndicator'] == false &&
         _ticketExpand == false) {
@@ -585,17 +588,8 @@ class _MatrixPageState extends State<MatrixPage> {
     } else {
       return 0;
     }
-  }
-
-  /*double target(){
-    if(_remote==false){
-      return MediaQuery.of(context).size.height -348;
-    }else if(_remote==true){
-      return MediaQuery.of(context).size.height -595;
-    }else{
-      return 0;
-    }
   }*/
+
 
   @override
   Widget build(BuildContext context) {
@@ -650,7 +644,12 @@ class _MatrixPageState extends State<MatrixPage> {
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter)*/
           gradient: LinearGradient(
-              colors: [Color(0xff8D6679), Color(0xff19547b)],
+              colors: [
+                Color(0xffB0C8C8),
+                // Color(0xffCE90AE),
+                // Color(0xff8D6679),
+                Color(0xff19547b),
+              ],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter),
               // color: Colors.black87
@@ -1091,6 +1090,9 @@ class _MatrixPageState extends State<MatrixPage> {
           });
           return false;
         }else{
+          _foundTicket.forEach((element) {
+            element["loadingIndicator"]=false;
+          });
           return true;
           /*if (DateTime.now().difference(_lastExitTime) >= Duration(milliseconds: 750)) {
             //showing message to user
@@ -1122,13 +1124,20 @@ class _MatrixPageState extends State<MatrixPage> {
             duration: Duration(milliseconds: 250),
             curve: Curves.easeInOut,
             decoration: BoxDecoration(
+              color: Color(0xffB0C8C8),
                 borderRadius: value == 1
                     ? BorderRadius.circular(40)
                     : BorderRadius.circular(0),
                 gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
-                    colors: [Color(0xff19547b), Color(0xff8D6679)])),
+                    colors: [
+                      Color(0xff19547b),
+                      Color(0xffB0C8C8),
+                     /* Color(0xff8D6679),
+                      Color(0xff7EB4F2),
+                      Color(0xff8D6679),*/])
+            ),
             child: Column(
               children: [
                 Padding(padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewPadding.top)),
@@ -1196,6 +1205,8 @@ class _MatrixPageState extends State<MatrixPage> {
                                         } else if (value.toList()[index] ==
                                             'assets/callicongreenpadding.png'){
                                           Caller();
+                                        } else if (value.toList()[index] == 'assets/calliconpadding.png'){
+                                          Caller();
                                         }
                                         /*for (String i in value.toList()){
                                           if(i=='assets/chaticon250.png'){
@@ -1232,11 +1243,17 @@ class _MatrixPageState extends State<MatrixPage> {
                                       content: DragTarget(
                                         onAccept: (remove) {
                                           setState(() {
+                                           if(memorybar[_sysNumber]?.contains('assets/callicongreenpadding.png')==true){
+                                             _callIgnore=false;
+                                           } else if(memorybar[_sysNumber]?.contains('assets/calliconpadding.png')==true){
+                                             _callIgnore=false;
+                                           }
                                             memorybar.forEach((key, value) {
                                               if (key == _sysNumber) {
                                                 value.remove(
                                                     memorybar[_sysNumber]!
                                                         .toList()[index]);
+
                                                 /*value.remove(memorybar[_sysNumber]?.toList()[index]);*/
                                                 selectedIncidentWidgetMarker =
                                                     IncidentMarker.main;
@@ -1594,7 +1611,8 @@ class _MatrixPageState extends State<MatrixPage> {
                         Color(0xff19547b),
                         // Color(0xff497D7D).withOpacity(0.8),
                         // Color(0xff91BBD2).withOpacity(0.35),
-                        Color(0xff8D6679).withOpacity(0.8),
+                        Color(0xff91BBD2).withOpacity(0.8),
+                        // Color(0xff8D6679).withOpacity(0.8),
                       ],
                       // stops: [0.0,1.0],
                       begin: Alignment.topCenter,
@@ -1910,7 +1928,8 @@ class _MatrixPageState extends State<MatrixPage> {
                   // Color(0xff91BBD2).withOpacity(0.35),
                   // Color(0xff9A85B4),
                   // Color(0xffA3818F)
-                  Color(0xff8D6679).withOpacity(0.8),
+                  Color(0xff91BBD2).withOpacity(0.8),
+                  // Color(0xff8D6679).withOpacity(0.8),
                 ],
                 // stops: [0.0,1.0],
                 begin: Alignment.topCenter,
@@ -2027,6 +2046,7 @@ class _MatrixPageState extends State<MatrixPage> {
                         onTap: () {
                           /*Navigator.of(context).pop();*/
                           setState(() {
+                            print(_foundTicket[0]['loadingIndicator']);
                             selectedIncidentWidgetMarker = IncidentMarker.main;
                           });
                         },
@@ -2041,7 +2061,7 @@ class _MatrixPageState extends State<MatrixPage> {
                             //     color: Colors.black.withOpacity(0.5),
                             //   ),
                             // ],
-                            color: Color(0XFF81040A),
+                            color: Color(0XFF81040A).withOpacity(0.75),
                             fontFamily: 'Roboto',
                             fontWeight: FontWeight.w900,
                             fontSize: 18,
@@ -2061,6 +2081,13 @@ class _MatrixPageState extends State<MatrixPage> {
                     _remote = false;
                     basicAnimation.currentState!.forward();
                     setState(() {
+
+                      _selectedTicketIndex = true;
+                      selectedIndex = (_index==null)?0:_index;
+
+                      _buttonPosition = false;
+                      _ticketExpand = false;
+
                       selectedIncidentWidgetMarker =
                           IncidentMarker.notification;
                     });
@@ -2097,9 +2124,6 @@ class _MatrixPageState extends State<MatrixPage> {
   Widget getAssignedTicket() {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
-        if(constraints.maxWidth>500){
-          return Container(height: 500);
-        }else{
           return Stack(
             children: [
               Container(
@@ -2129,7 +2153,6 @@ class _MatrixPageState extends State<MatrixPage> {
                                 GestureDetector(
                                   onTap: () {
                                     print(index);
-                                    print(_index);
                                     setState(() {
                                       _selectedTicketIndex = !_selectedTicketIndex;
                                       selectedIndex = index;
@@ -2871,8 +2894,8 @@ class _MatrixPageState extends State<MatrixPage> {
                                               // }
                                             },
                                             builder: (context, _, __) => SizedBox(
-                                                height: target(),
-                                                /*(mySize.height.toDouble())-25.5,*/
+                                                height: (mySize.height.toDouble())-25.5,
+                                                /* target(),*/
                                                 /*height: MediaQuery.of(context).size.height-338,*/
                                                 // 508.07142857142856-30,
                                                 child: Center(
@@ -3430,93 +3453,96 @@ class _MatrixPageState extends State<MatrixPage> {
                                           : MediaQuery.of(context).size.width + 175,
                                       top: 44,
                                       duration: Duration(milliseconds: 350),
-                                      child: GestureDetector(
-                                        onTap: () {
-                                          Caller();
+                                      child: IgnorePointer(
+                                        ignoring: _callIgnore,
+                                        child: GestureDetector(
+                                          onTap: () {
+                                            Caller();
+                                            _callIgnore=true;
+                                            setState(() {
 
-                                          setState(() {
-
-                                            /*this.memoryWidgets.add('assets/calliconpadding.png');*/
-                                            /*memorybar.addEntries([
+                                              /*this.memoryWidgets.add('assets/calliconpadding.png');*/
+                                              /*memorybar.addEntries([
                                   MapEntry(ticket[index]['sysNumber'],['Call'])
                                 ]);*/
-                                            // memorybar[ticket[index]['sysNumber']];
-                                            /*memorybar[ticket[index]['sysNumber']] = ['Call'];*/
-                                            /*memorybar.forEach((key, value) {
+                                              // memorybar[ticket[index]['sysNumber']];
+                                              /*memorybar[ticket[index]['sysNumber']] = ['Call'];*/
+                                              /*memorybar.forEach((key, value) {
 
                                 });*/
-                                            /*memorybar[ticket[index]['sysNumber']]?.insertAll(memorybar[ticket[index]['sysNumber']]!.length,['Call']);*/
-                                            if (memorybar.containsKey(
-                                                ticket[index]['sysNumber']) ==
-                                                true) {
-                                              memorybar[ticket[index]['sysNumber']]
-                                                  ?.add('assets/callicongreenpadding.png');
-                                            } else {
-                                              memorybar.addEntries([
-                                                MapEntry(ticket[index]['sysNumber'],
-                                                    {'assets/callicongreenpadding.png'})
-                                              ]);
-                                            }
-                                          });
-                                          // memorybar.forEach((k,v) => print('${k}: ${v}'));
-                                          // print(memorybar[ticket[index]['sysNumber']]?.toList());
-                                          /*memorybar.forEach((key, value) {
+                                              /*memorybar[ticket[index]['sysNumber']]?.insertAll(memorybar[ticket[index]['sysNumber']]!.length,['Call']);*/
+                                              if (memorybar.containsKey(
+                                                  ticket[index]['sysNumber']) ==
+                                                  true) {
+                                                memorybar[ticket[index]['sysNumber']]
+                                                    ?.add('assets/callicongreenpadding.png');
+                                              } else {
+                                                memorybar.addEntries([
+                                                  MapEntry(ticket[index]['sysNumber'],
+                                                      {'assets/callicongreenpadding.png'})
+                                                ]);
+                                              }
+                                            });
+                                            // memorybar.forEach((k,v) => print('${k}: ${v}'));
+                                            // print(memorybar[ticket[index]['sysNumber']]?.toList());
+                                            /*memorybar.forEach((key, value) {
                                 print('${key}: ${value.toList()}');
                               });*/
 
-                                          /*print(memorybar['C0001']?.elementAt(1));*/
-                                        },
-                                        onTapDown: (pressing) {
-                                          setState(() {
-                                            _isCallButton = false;
-                                          });
-                                        },
-                                        onTapUp: (pressing) {
-                                          setState(() {
-                                            _isCallButton = true;
-                                          });
-                                        },
-                                        child: Container(
-                                          height: 24,
-                                          width: 174,
-                                          decoration: BoxDecoration(
-                                            gradient: RadialGradient(
-                                              tileMode: TileMode.mirror,
-                                              focalRadius: 10,
-                                              radius: 2,
-                                              colors: [
-                                                _isCallButton
-                                                    ? Color(0xffD3D3D3)
-                                                    : Color(0xff7E040A),
-                                                _isCallButton
-                                                    ? Colors.white
-                                                    : Color(0xff81040A),
+                                            /*print(memorybar['C0001']?.elementAt(1));*/
+                                          },
+                                          onTapDown: (pressing) {
+                                            setState(() {
+                                              _isCallButton = false;
+                                            });
+                                          },
+                                          onTapUp: (pressing) {
+                                            setState(() {
+                                              _isCallButton = true;
+                                            });
+                                          },
+                                          child: Container(
+                                            height: 24,
+                                            width: 174,
+                                            decoration: BoxDecoration(
+                                              gradient: RadialGradient(
+                                                tileMode: TileMode.mirror,
+                                                focalRadius: 10,
+                                                radius: 2,
+                                                colors: [
+                                                  _isCallButton
+                                                      ? Color(0xffD3D3D3)
+                                                      : Color(0xff7E040A),
+                                                  _isCallButton
+                                                      ? Colors.white
+                                                      : Color(0xff81040A),
+                                                ],
+                                              ),
+                                              boxShadow: [
+                                                BoxShadow(
+                                                    blurRadius: 10,
+                                                    offset: Offset(1, 1),
+                                                    color: Color(0xff000000)
+                                                        .withOpacity(0.60)),
+                                                // BoxShadow(
+                                                //     blurRadius: 10,
+                                                //     offset: -Offset(1, 1),
+                                                //     color: Color(0xff000000).withOpacity(0.30)),
                                               ],
+                                              // color: Color(0xffECECEC),
+                                              borderRadius: BorderRadius.circular(12.5),
                                             ),
-                                            boxShadow: [
-                                              BoxShadow(
-                                                  blurRadius: 10,
-                                                  offset: Offset(1, 1),
-                                                  color: Color(0xff000000)
-                                                      .withOpacity(0.60)),
-                                              // BoxShadow(
-                                              //     blurRadius: 10,
-                                              //     offset: -Offset(1, 1),
-                                              //     color: Color(0xff000000).withOpacity(0.30)),
-                                            ],
-                                            // color: Color(0xffECECEC),
-                                            borderRadius: BorderRadius.circular(12.5),
-                                          ),
-                                          alignment: Alignment(-0.40, 0),
-                                          child: Text(
-                                            'CALL',
-                                            style: TextStyle(
-                                                color: _isCallButton
-                                                    ? Color(0XFF81040A)
-                                                    : Colors.white,
-                                                fontFamily: 'Roboto',
-                                                fontWeight: FontWeight.w900,
-                                                fontSize: 14),
+                                            alignment: Alignment(-0.40, 0),
+                                            child: Text(
+                                              'CALL',
+                                              style: TextStyle(
+                                                  color: _isCallButton
+                                                      ? Color(0XFF81040A)
+                                                      : Colors.white,
+                                                  fontFamily: 'Roboto',
+                                                  fontWeight: FontWeight.w900,
+                                                  fontSize: 14),
+                                            ),
                                           ),
                                         ),
                                       )
@@ -4169,6 +4195,7 @@ class _MatrixPageState extends State<MatrixPage> {
                     // ),
                     InkWell(
                       onTap: () {
+                        /*print(memorybar[_sysNumber]?.contains('assets/callicongreenpadding.png'));*/
                         setState(() {
                           // height=height+10;
                           // width!=15.0?width=15.0:width=150;
@@ -4191,8 +4218,7 @@ class _MatrixPageState extends State<MatrixPage> {
                   print(WidgetsBinding.instance?.window.physicalSize.height);
                   print(MediaQuery.of(context).orientation);*/
 
-                        print(window.viewPadding.top);
-                        print(memorybar);
+                        /*print(window.viewPadding.top);*/
 
                         /*print(Platform.isIOS);*/
                         // print(memorybar);
@@ -4686,7 +4712,6 @@ class _MatrixPageState extends State<MatrixPage> {
               ),
             ],
           );
-        }
       },);
   }
 
@@ -5900,578 +5925,589 @@ class _MatrixPageState extends State<MatrixPage> {
   }
 
   Widget getUnAssignedTicket() {
-    return Expanded(
-      key: UniqueKey(),
-      child: ClipRRect(
-        borderRadius: BorderRadius.only(
-            topRight: Radius.elliptical(40, 100),
-            topLeft: Radius.elliptical(40, 100),
-            bottomRight: Radius.elliptical(40, 100),
-            bottomLeft: Radius.elliptical(40, 100)),
-        child: GroupedListView<dynamic, String>(
-          sort: false,
-          padding: EdgeInsets.symmetric(vertical: 0, horizontal: 15),
-          elements: _elements,
-          groupBy: (_element) => _element['group'],
-          order: GroupedListOrder.DESC,
-          useStickyGroupSeparators: true,
-          /*groupHeaderBuilder: (_element) => SizedBox(
-            height: 40,
-            child: Center(
-              child: Card(
-                color: Theme.of(context).primaryColor,
-                child: Padding(
-                  padding: const EdgeInsets.all(8),
-                  child: Text(_element['group']),
+    return MeasuredSize(
+      onChange: (Size size) {
+        mySize =size;
+      },
+      child: Expanded(
+        /*key: UniqueKey(),*/
+        child: ClipRRect(
+          borderRadius: BorderRadius.only(
+              topRight: Radius.elliptical(40, 100),
+              topLeft: Radius.elliptical(40, 100),
+              bottomRight: Radius.elliptical(40, 100),
+              bottomLeft: Radius.elliptical(40, 100)),
+          child: GroupedListView<dynamic, String>(
+            sort: false,
+            padding: EdgeInsets.symmetric(vertical: 0, horizontal: 15),
+            elements: _elements,
+            groupBy: (_element) => _element['group'],
+            order: GroupedListOrder.DESC,
+            useStickyGroupSeparators: true,
+            /*groupHeaderBuilder: (_element) => SizedBox(
+              height: 40,
+              child: Center(
+                child: Card(
+                  color: Theme.of(context).primaryColor,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: Text(_element['group']),
+                  ),
                 ),
               ),
-            ),
-          ),*/
-          stickyHeaderBackgroundColor: Colors.transparent,
-          groupSeparatorBuilder: (String value) {
-            return Padding(
-              padding: EdgeInsets.all(0.0),
-              child: Container(
-                width: 50,
-                decoration: BoxDecoration(
-                  color: Colors.black.withOpacity(0.3),
-                  borderRadius: BorderRadius.circular(50),
+            ),*/
+            stickyHeaderBackgroundColor: Colors.transparent,
+            groupSeparatorBuilder: (String value) {
+              return Padding(
+                padding: EdgeInsets.all(0.0),
+                child: Container(
+                  width: 50,
+                  decoration: BoxDecoration(
+                    color: Colors.black.withOpacity(0.3),
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                  child: Text(
+                    value,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontSize: 16,
+                        fontFamily: 'fonts/Roboto-Light.ttf',
+                        fontWeight: FontWeight.normal,
+                        color: Colors.white.withOpacity(0.875)),
+                  ),
                 ),
-                child: Text(
-                  value,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      fontSize: 16,
-                      fontFamily: 'fonts/Roboto-Light.ttf',
-                      fontWeight: FontWeight.normal,
-                      color: Colors.white.withOpacity(0.65)),
-                ),
-              ),
-            );
-          },
-          itemBuilder: (context, element) {
-            return GestureDetector(
-              onLongPress: () {
-                showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return AlertDialog(
-                          contentPadding: EdgeInsets.only(left: 0, right: 0),
-                          insetPadding: EdgeInsets.only(left: 15, right: 15),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(15),
-                              topRight: Radius.circular(15),
-                              bottomLeft: Radius.circular(20),
-                              bottomRight: Radius.circular(20),
-                            ),
-                          ),
-                          elevation: 50,
-                          backgroundColor: Colors.white,
-                          scrollable: true,
-                          content: ClipRRect(
+              );
+            },
+            itemBuilder: (context, element) {
+              return GestureDetector(
+                onLongPress: () {
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                            contentPadding: EdgeInsets.only(left: 0, right: 0),
+                            insetPadding: EdgeInsets.only(left: 15, right: 15),
+                            shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(15),
                                 topRight: Radius.circular(15),
                                 bottomLeft: Radius.circular(20),
                                 bottomRight: Radius.circular(20),
                               ),
-                              child: Container(
-                                height: 260,
-                                width: 365,
-                                decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                        // opacity: 0.75,
-                                        fit: BoxFit.fill,
-                                        image: AssetImage(
-                                            'assets/unassignedticketimage.png'))),
-                                child: Stack(
-                                  children: [
-                                    Center(
-                                      child: Container(
-                                        height: 210,
-                                        width: 345,
-                                        decoration: BoxDecoration(
-                                          // color: Colors.transparent.withOpacity(0.1),
-                                          borderRadius: BorderRadius.only(
-                                            topLeft: Radius.circular(20),
-                                            topRight: Radius.circular(20),
-                                            bottomLeft: Radius.circular(20),
-                                            bottomRight: Radius.circular(20),
+                            ),
+                            elevation: 50,
+                            backgroundColor: Colors.white,
+                            scrollable: true,
+                            content: ClipRRect(
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(15),
+                                  topRight: Radius.circular(15),
+                                  bottomLeft: Radius.circular(20),
+                                  bottomRight: Radius.circular(20),
+                                ),
+                                child: Container(
+                                  height: 260,
+                                  width: 365,
+                                  decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                          // opacity: 0.75,
+                                          fit: BoxFit.fill,
+                                          image: AssetImage(
+                                              'assets/unassignedticketimage.png'))),
+                                  child: Stack(
+                                    children: [
+                                      Center(
+                                        child: Container(
+                                          height: 210,
+                                          width: 345,
+                                          decoration: BoxDecoration(
+                                            // color: Colors.transparent.withOpacity(0.1),
+                                            borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(20),
+                                              topRight: Radius.circular(20),
+                                              bottomLeft: Radius.circular(20),
+                                              bottomRight: Radius.circular(20),
+                                            ),
                                           ),
                                         ),
                                       ),
-                                    ),
-                                    Column(
-                                      // mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: <Widget>[
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Card(
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(7.5),
-                                              ),
-                                              elevation: 5,
-                                              child: Container(
-                                                  padding: EdgeInsets.symmetric(
-                                                      horizontal: 10.0),
-                                                  decoration: BoxDecoration(
-                                                    color: element['Color']
-                                                        .withOpacity(0.5),
-                                                    borderRadius:
-                                                        BorderRadius.all(
-                                                            Radius.circular(
-                                                                7.5)),
-                                                  ),
-                                                  child: Text(
-                                                    element['SystemNumber'],
-                                                    style: TextStyle(
-                                                        fontSize: 20,
-                                                        fontWeight:
-                                                            FontWeight.bold),
-                                                  )),
-                                            ),
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: 7.5,
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Text(
-                                              element['group'],
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.w400,
-                                                  fontSize: 16,
-                                                  color: Colors.black
-                                                      .withOpacity(0.5)),
-                                            ),
-                                            SizedBox(
-                                              width: 5,
-                                            ),
-                                            Text(
-                                              element['Time'],
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.w400,
-                                                  fontSize: 16,
-                                                  color: Colors.black
-                                                      .withOpacity(0.5)),
-                                            ),
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        Container(
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(20),
+                                      Column(
+                                        // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: <Widget>[
+                                          SizedBox(
+                                            height: 10,
                                           ),
-                                          height: 120,
-                                          width: 330,
-                                          child: Center(
-                                            child: SingleChildScrollView(
-                                              scrollDirection: Axis.vertical,
-                                              child: Text(
-                                                'Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working ',
-                                                textAlign: TextAlign.center,
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Card(
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(7.5),
+                                                ),
+                                                elevation: 5,
+                                                child: Container(
+                                                    padding: EdgeInsets.symmetric(
+                                                        horizontal: 10.0),
+                                                    decoration: BoxDecoration(
+                                                      color: element['Color']
+                                                          .withOpacity(0.5),
+                                                      borderRadius:
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  7.5)),
+                                                    ),
+                                                    child: Text(
+                                                      element['SystemNumber'],
+                                                      style: TextStyle(
+                                                          fontSize: 20,
+                                                          fontWeight:
+                                                              FontWeight.bold),
+                                                    )),
+                                              ),
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: 7.5,
+                                          ),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                element['group'],
                                                 style: TextStyle(
-                                                    fontSize: 17,
+                                                    fontWeight: FontWeight.w400,
+                                                    fontSize: 16,
                                                     color: Colors.black
-                                                        .withOpacity(0.75),
-                                                    fontWeight:
-                                                        FontWeight.w500),
+                                                        .withOpacity(0.5)),
                                               ),
-                                            ),
+                                              SizedBox(
+                                                width: 5,
+                                              ),
+                                              Text(
+                                                element['Time'],
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.w400,
+                                                    fontSize: 16,
+                                                    color: Colors.black
+                                                        .withOpacity(0.5)),
+                                              ),
+                                            ],
                                           ),
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        Card(
-                                          color: Colors.black,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(20),
+                                          SizedBox(
+                                            height: 10,
                                           ),
-                                          elevation: 5,
-                                          shadowColor: Colors.transparent
-                                              .withOpacity(0.9),
-                                          child: Container(
+                                          Container(
                                             decoration: BoxDecoration(
-                                                color: Color(0xff1A8118),
-                                                // Color(0xff1A8118),
-                                                borderRadius:
-                                                    BorderRadius.circular(20)),
-                                            padding: EdgeInsets.only(
-                                              left: 15,
-                                              right: 15,
-                                              top: 5,
-                                              bottom: 5,
+                                              borderRadius:
+                                                  BorderRadius.circular(20),
                                             ),
-                                            child: Text(
-                                              'ACCEPT TICKET',
-                                              style: TextStyle(
-                                                shadows: [
-                                                  Shadow(
-                                                    offset: Offset(1, 1),
-                                                    blurRadius: 2,
-                                                    color: Colors.black,
-                                                  ),
-                                                ],
-                                                fontSize: 18,
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.bold,
+                                            height: 120,
+                                            width: 330,
+                                            child: Center(
+                                              child: SingleChildScrollView(
+                                                scrollDirection: Axis.vertical,
+                                                child: Text(
+                                                  'Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working ',
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                      fontSize: 17,
+                                                      color: Colors.black
+                                                          .withOpacity(0.75),
+                                                      fontWeight:
+                                                          FontWeight.w500),
+                                                ),
                                               ),
                                             ),
                                           ),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          Card(
+                                            color: Colors.black,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(20),
+                                            ),
+                                            elevation: 5,
+                                            shadowColor: Colors.transparent
+                                                .withOpacity(0.9),
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                  color: Color(0xff1A8118),
+                                                  // Color(0xff1A8118),
+                                                  borderRadius:
+                                                      BorderRadius.circular(20)),
+                                              padding: EdgeInsets.only(
+                                                left: 15,
+                                                right: 15,
+                                                top: 5,
+                                                bottom: 5,
+                                              ),
+                                              child: Text(
+                                                'ACCEPT TICKET',
+                                                style: TextStyle(
+                                                  shadows: [
+                                                    Shadow(
+                                                      offset: Offset(1, 1),
+                                                      blurRadius: 2,
+                                                      color: Colors.black,
+                                                    ),
+                                                  ],
+                                                  fontSize: 18,
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 2,
+                                          )
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                )));
+                      });
+                },
+                onTap: () {
+                  showModalBottomSheet(
+                      constraints: BoxConstraints(
+                        maxWidth: MediaQuery.of(context).size.width * 0.95,
+                      ),
+                      isScrollControlled: true,
+                      backgroundColor: Colors.transparent,
+                      context: context,
+                      builder: (BuildContext context) {
+                        return Container(
+                          constraints: BoxConstraints(
+                            maxHeight: MediaQuery.of(context).size.height - 316,
+                          ),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(45),
+                              topLeft: Radius.circular(45),
+                              bottomRight: Radius.circular(30),
+                              bottomLeft: Radius.circular(30),
+                            ),
+                            // color: Colors.transparent,
+                            image: DecorationImage(
+                                fit: BoxFit.cover,
+                                image: AssetImage('assets/problemclick.png')),
+                          ),
+                          child: SingleChildScrollView(
+                            reverse: true,
+                            child: ConstrainedBox(
+                              constraints: BoxConstraints(
+                                minHeight:
+                                    MediaQuery.of(context).size.height - 316,
+                              ),
+                              child: IntrinsicHeight(
+                                child: Column(
+                                  children: [
+                                    Padding(
+                                        padding: EdgeInsets.only(bottom: 10.0)),
+                                    Center(
+                                      child: Text(
+                                        element['SystemNumber'],
+                                        style: TextStyle(
+                                            fontFamily: 'fonts/Roboto-Bold.ttf',
+                                            fontWeight: FontWeight.w900,
+                                            fontSize: 24),
+                                      ),
+                                    ),
+                                    Expanded(child: Container()),
+                                    Row(
+                                      children: [
+                                        Expanded(child: Container()),
+                                        Flexible(
+                                          flex: 4,
+                                          fit: FlexFit.tight,
+                                          child: Text(
+                                            'HostName',
+                                            style: TextStyle(
+                                                fontFamily:
+                                                    'fonts/Roboto-Bold.ttf',
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 18),
+                                          ),
                                         ),
-                                        SizedBox(
-                                          height: 2,
-                                        )
+                                        Flexible(
+                                          flex: 4,
+                                          fit: FlexFit.tight,
+                                          child: Text(
+                                            'HostName',
+                                            style: TextStyle(
+                                                fontFamily:
+                                                    'fonts/Roboto-Bold.ttf',
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 18),
+                                          ),
+                                        ),
+                                        Expanded(child: Container()),
                                       ],
                                     ),
+                                    Expanded(child: Container()),
+                                    Row(
+                                      children: [
+                                        Expanded(child: Container()),
+                                        Flexible(
+                                          flex: 4,
+                                          fit: FlexFit.tight,
+                                          child: Text(
+                                            'IP Address',
+                                            style: TextStyle(
+                                                fontFamily:
+                                                    'fonts/Roboto-Bold.ttf',
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 18),
+                                          ),
+                                        ),
+                                        Flexible(
+                                          flex: 4,
+                                          fit: FlexFit.tight,
+                                          child: Text(
+                                            'IP Address',
+                                            style: TextStyle(
+                                                fontFamily:
+                                                    'fonts/Roboto-Bold.ttf',
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 18),
+                                          ),
+                                        ),
+                                        Expanded(child: Container()),
+                                      ],
+                                    ),
+                                    Expanded(child: Container()),
+                                    Row(
+                                      children: [
+                                        Expanded(child: Container()),
+                                        Flexible(
+                                          flex: 4,
+                                          fit: FlexFit.tight,
+                                          child: Text(
+                                            'Date & Time',
+                                            style: TextStyle(
+                                                fontFamily:
+                                                    'fonts/Roboto-Bold.ttf',
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 18),
+                                          ),
+                                        ),
+                                        Flexible(
+                                          flex: 4,
+                                          fit: FlexFit.tight,
+                                          child: Text(
+                                            'Date & Time',
+                                            style: TextStyle(
+                                                fontFamily:
+                                                    'fonts/Roboto-Bold.ttf',
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 18),
+                                          ),
+                                        ),
+                                        Expanded(child: Container()),
+                                      ],
+                                    ),
+                                    Expanded(child: Container()),
+                                    Row(
+                                      children: [
+                                        Expanded(child: Container()),
+                                        Flexible(
+                                          flex: 4,
+                                          fit: FlexFit.tight,
+                                          child: Text(
+                                            'Severity',
+                                            style: TextStyle(
+                                                fontFamily:
+                                                    'fonts/Roboto-Bold.ttf',
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 18),
+                                          ),
+                                        ),
+                                        Flexible(
+                                          flex: 4,
+                                          fit: FlexFit.tight,
+                                          child: Text(
+                                            'Severity',
+                                            style: TextStyle(
+                                                fontFamily:
+                                                    'fonts/Roboto-Bold.ttf',
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 18),
+                                          ),
+                                        ),
+                                        Expanded(child: Container()),
+                                      ],
+                                    ),
+                                    Expanded(child: Container()),
+                                    Row(
+                                      children: [
+                                        Expanded(child: Container()),
+                                        Flexible(
+                                          flex: 4,
+                                          fit: FlexFit.tight,
+                                          child: Text(
+                                            'Notes',
+                                            style: TextStyle(
+                                                fontFamily:
+                                                    'fonts/Roboto-Bold.ttf',
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 18),
+                                          ),
+                                        ),
+                                        Flexible(
+                                          flex: 4,
+                                          fit: FlexFit.tight,
+                                          child: Text(
+                                            element['ErrorText'],
+                                            style: TextStyle(
+                                                fontFamily:
+                                                    'fonts/Roboto-Bold.ttf',
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 18),
+                                          ),
+                                        ),
+                                        Expanded(child: Container()),
+                                      ],
+                                    ),
+                                    Padding(
+                                        padding: EdgeInsets.only(bottom: 15.0)),
+                                    Center(
+                                        child: ClipRRect(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(10)),
+                                      child: Column(
+                                        children: [
+                                          Container(
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.90,
+                                            color: Color(0xffC4C4C4)
+                                                .withOpacity(0.20),
+                                            height: 70,
+                                            child: TextField(
+                                              scrollPadding:
+                                                  EdgeInsets.only(top: 40),
+                                              showCursor: true,
+                                              cursorColor: Colors.white70,
+                                              keyboardType: TextInputType.text,
+                                              textInputAction:
+                                                  TextInputAction.done,
+                                              style: TextStyle(
+                                                fontFamily:
+                                                    'fonts/Roboto-Bold.ttf',
+                                                fontSize: 18,
+                                              ),
+                                              textAlign: TextAlign.center,
+                                              decoration:
+                                                  InputDecoration.collapsed(
+                                                hintText: "Notes",
+                                                border: InputBorder.none,
+                                              ),
+                                            ),
+                                          ),
+                                          Container(
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.90,
+                                            color: Color(0xff486C7B),
+                                            child: Text(
+                                              'Update',
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontFamily:
+                                                    'fonts/Roboto-Bold.ttf',
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 18,
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    )),
+                                    SizedBox(
+                                      height: MediaQuery.of(context)
+                                          .viewInsets
+                                          .bottom,
+                                    ),
+                                    Padding(
+                                        padding: EdgeInsets.only(bottom: 10.0)),
                                   ],
                                 ),
-                              )));
-                    });
-              },
-              onTap: () {
-                showModalBottomSheet(
-                    constraints: BoxConstraints(
-                      maxWidth: MediaQuery.of(context).size.width * 0.95,
+                              ),
+                            ),
+                          ),
+                          // ),
+                        );
+                      });
+                },
+                child: Card(
+                  elevation: 5.0,
+                  color: Colors.transparent,
+                  shadowColor: Colors.black,
+                  margin: EdgeInsets.symmetric(horizontal: 0.0, vertical: 3.0),
+                  child: Container(
+                    height: 35,
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                            blurRadius: 0,
+                            offset: Offset(0, 1.0),
+                            color: Colors.black.withOpacity(0.3)),
+                      ],
+                      image: DecorationImage(
+                          fit: BoxFit.fill,
+                          // image: AssetImage('assets/rectangleproblem.png')),
+                          image:
+                              AssetImage('assets/problembarinnershadowleft.png')),
                     ),
-                    isScrollControlled: true,
-                    backgroundColor: Colors.transparent,
-                    context: context,
-                    builder: (BuildContext context) {
-                      return Container(
-                        constraints: BoxConstraints(
-                          maxHeight: MediaQuery.of(context).size.height - 316,
-                        ),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(45),
-                            topLeft: Radius.circular(45),
-                            bottomRight: Radius.circular(30),
-                            bottomLeft: Radius.circular(30),
+                    child: Row(
+                      children: [
+                        Container(
+                            padding: EdgeInsets.symmetric(horizontal: 12.0),
+                            child: Text(element['Time'])),
+                        Card(
+                          elevation: 5,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(7.5),
                           ),
-                          // color: Colors.transparent,
-                          image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: AssetImage('assets/problemclick.png')),
-                        ),
-                        child: SingleChildScrollView(
-                          reverse: true,
-                          child: ConstrainedBox(
-                            constraints: BoxConstraints(
-                              minHeight:
-                                  MediaQuery.of(context).size.height - 316,
-                            ),
-                            child: IntrinsicHeight(
-                              child: Column(
-                                children: [
-                                  Padding(
-                                      padding: EdgeInsets.only(bottom: 10.0)),
-                                  Center(
-                                    child: Text(
-                                      element['SystemNumber'],
-                                      style: TextStyle(
-                                          fontFamily: 'fonts/Roboto-Bold.ttf',
-                                          fontWeight: FontWeight.w900,
-                                          fontSize: 24),
-                                    ),
-                                  ),
-                                  Expanded(child: Container()),
-                                  Row(
-                                    children: [
-                                      Expanded(child: Container()),
-                                      Flexible(
-                                        flex: 4,
-                                        fit: FlexFit.tight,
-                                        child: Text(
-                                          'HostName',
-                                          style: TextStyle(
-                                              fontFamily:
-                                                  'fonts/Roboto-Bold.ttf',
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 18),
-                                        ),
-                                      ),
-                                      Flexible(
-                                        flex: 4,
-                                        fit: FlexFit.tight,
-                                        child: Text(
-                                          'HostName',
-                                          style: TextStyle(
-                                              fontFamily:
-                                                  'fonts/Roboto-Bold.ttf',
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 18),
-                                        ),
-                                      ),
-                                      Expanded(child: Container()),
-                                    ],
-                                  ),
-                                  Expanded(child: Container()),
-                                  Row(
-                                    children: [
-                                      Expanded(child: Container()),
-                                      Flexible(
-                                        flex: 4,
-                                        fit: FlexFit.tight,
-                                        child: Text(
-                                          'IP Address',
-                                          style: TextStyle(
-                                              fontFamily:
-                                                  'fonts/Roboto-Bold.ttf',
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 18),
-                                        ),
-                                      ),
-                                      Flexible(
-                                        flex: 4,
-                                        fit: FlexFit.tight,
-                                        child: Text(
-                                          'IP Address',
-                                          style: TextStyle(
-                                              fontFamily:
-                                                  'fonts/Roboto-Bold.ttf',
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 18),
-                                        ),
-                                      ),
-                                      Expanded(child: Container()),
-                                    ],
-                                  ),
-                                  Expanded(child: Container()),
-                                  Row(
-                                    children: [
-                                      Expanded(child: Container()),
-                                      Flexible(
-                                        flex: 4,
-                                        fit: FlexFit.tight,
-                                        child: Text(
-                                          'Date & Time',
-                                          style: TextStyle(
-                                              fontFamily:
-                                                  'fonts/Roboto-Bold.ttf',
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 18),
-                                        ),
-                                      ),
-                                      Flexible(
-                                        flex: 4,
-                                        fit: FlexFit.tight,
-                                        child: Text(
-                                          'Date & Time',
-                                          style: TextStyle(
-                                              fontFamily:
-                                                  'fonts/Roboto-Bold.ttf',
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 18),
-                                        ),
-                                      ),
-                                      Expanded(child: Container()),
-                                    ],
-                                  ),
-                                  Expanded(child: Container()),
-                                  Row(
-                                    children: [
-                                      Expanded(child: Container()),
-                                      Flexible(
-                                        flex: 4,
-                                        fit: FlexFit.tight,
-                                        child: Text(
-                                          'Severity',
-                                          style: TextStyle(
-                                              fontFamily:
-                                                  'fonts/Roboto-Bold.ttf',
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 18),
-                                        ),
-                                      ),
-                                      Flexible(
-                                        flex: 4,
-                                        fit: FlexFit.tight,
-                                        child: Text(
-                                          'Severity',
-                                          style: TextStyle(
-                                              fontFamily:
-                                                  'fonts/Roboto-Bold.ttf',
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 18),
-                                        ),
-                                      ),
-                                      Expanded(child: Container()),
-                                    ],
-                                  ),
-                                  Expanded(child: Container()),
-                                  Row(
-                                    children: [
-                                      Expanded(child: Container()),
-                                      Flexible(
-                                        flex: 4,
-                                        fit: FlexFit.tight,
-                                        child: Text(
-                                          'Notes',
-                                          style: TextStyle(
-                                              fontFamily:
-                                                  'fonts/Roboto-Bold.ttf',
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 18),
-                                        ),
-                                      ),
-                                      Flexible(
-                                        flex: 4,
-                                        fit: FlexFit.tight,
-                                        child: Text(
-                                          element['ErrorText'],
-                                          style: TextStyle(
-                                              fontFamily:
-                                                  'fonts/Roboto-Bold.ttf',
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 18),
-                                        ),
-                                      ),
-                                      Expanded(child: Container()),
-                                    ],
-                                  ),
-                                  Padding(
-                                      padding: EdgeInsets.only(bottom: 15.0)),
-                                  Center(
-                                      child: ClipRRect(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(10)),
-                                    child: Column(
-                                      children: [
-                                        Container(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.90,
-                                          color: Color(0xffC4C4C4)
-                                              .withOpacity(0.20),
-                                          height: 70,
-                                          child: TextField(
-                                            scrollPadding:
-                                                EdgeInsets.only(top: 40),
-                                            showCursor: true,
-                                            cursorColor: Colors.white70,
-                                            keyboardType: TextInputType.text,
-                                            textInputAction:
-                                                TextInputAction.done,
-                                            style: TextStyle(
-                                              fontFamily:
-                                                  'fonts/Roboto-Bold.ttf',
-                                              fontSize: 18,
-                                            ),
-                                            textAlign: TextAlign.center,
-                                            decoration:
-                                                InputDecoration.collapsed(
-                                              hintText: "Notes",
-                                              border: InputBorder.none,
-                                            ),
-                                          ),
-                                        ),
-                                        Container(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.90,
-                                          color: Color(0xff486C7B),
-                                          child: Text(
-                                            'Update',
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontFamily:
-                                                  'fonts/Roboto-Bold.ttf',
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: 18,
-                                            ),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  )),
-                                  SizedBox(
-                                    height: MediaQuery.of(context)
-                                        .viewInsets
-                                        .bottom,
-                                  ),
-                                  Padding(
-                                      padding: EdgeInsets.only(bottom: 10.0)),
-                                ],
+                          child: Container(
+                              padding: EdgeInsets.symmetric(horizontal: 10.0),
+                              decoration: BoxDecoration(
+                                color: element['Color'].withOpacity(0.6),
+                                borderRadius: BorderRadius.all(Radius.circular(7.5)),
                               ),
-                            ),
-                          ),
+                              child: Text(element['SystemNumber'])),
                         ),
-                        // ),
-                      );
-                    });
-              },
-              child: Card(
-                elevation: 5.0,
-                color: Colors.transparent,
-                shadowColor: Colors.black,
-                margin: EdgeInsets.symmetric(horizontal: 0.0, vertical: 3.0),
-                child: Container(
-                  height: 35,
-                  decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                          blurRadius: 0,
-                          offset: Offset(0, 1.0),
-                          color: Colors.black.withOpacity(0.3)),
-                    ],
-                    image: DecorationImage(
-                        fit: BoxFit.fill,
-                        // image: AssetImage('assets/rectangleproblem.png')),
-                        image:
-                            AssetImage('assets/problembarinnershadowleft.png')),
-                  ),
-                  child: Row(
-                    children: [
-                      Container(
-                          padding: EdgeInsets.symmetric(horizontal: 12.0),
-                          child: Text(element['Time'])),
-                      Container(
-                          padding: EdgeInsets.symmetric(horizontal: 10.0),
-                          decoration: BoxDecoration(
-                            color: element['Color'].withOpacity(0.5),
-                            borderRadius: BorderRadius.all(Radius.circular(5)),
-                          ),
-                          child: Text(element['SystemNumber'])),
-                      Expanded(
-                        child: Container(
-                            padding: EdgeInsets.symmetric(horizontal: 10.0),
-                            child: SingleChildScrollView(
-                              scrollDirection: Axis.horizontal,
-                              child: Text(
-                                element['ErrorText'],
-                                maxLines: 1,
-                                // overflow: TextOverflow.ellipsis,
-                                // softWrap: false
-                              ),
-                            )),
-                      ),
-                    ],
+                        Expanded(
+                          child: Container(
+                              padding: EdgeInsets.symmetric(horizontal: 10.0),
+                              child: SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                child: Text(
+                                  element['ErrorText'],
+                                  maxLines: 1,
+                                  // overflow: TextOverflow.ellipsis,
+                                  // softWrap: false
+                                ),
+                              )),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            );
-          },
+              );
+            },
+          ),
         ),
       ),
     );
@@ -6489,7 +6525,7 @@ class _MatrixPageState extends State<MatrixPage> {
           alignment: Alignment.bottomCenter,
           child: IntrinsicHeight(
             child: Container(
-              margin: EdgeInsets.only(left: 2.5,right: 2.5),
+              margin: EdgeInsets.only(left: 15,right: 15,bottom: 5),
               height: 300,
               clipBehavior: Clip.antiAlias,
               padding: const EdgeInsets.all(16),
@@ -6499,14 +6535,51 @@ class _MatrixPageState extends State<MatrixPage> {
                   fit: BoxFit.fill,
                 ),
                 borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20),
-                  topRight: Radius.circular(20),
+                  topLeft: Radius.circular(30),
+                  topRight: Radius.circular(30),
+                  bottomLeft: Radius.circular(20),
+                  bottomRight: Radius.circular(20),
                 ),
               ),
               child: Material(
                 color: Colors.transparent,
                 child: Column(
                   children: [
+                    GestureDetector(
+                      onTap: (){
+                        Navigator.of(context).pop();
+                      },
+                      child: Card(
+                        elevation: 5,
+                        color: Colors.white,
+                        shape: BeveledRectangleBorder(
+                          borderRadius: BorderRadius.circular(60.0),
+                        ),
+                        child: Container(
+                          height: 35,
+                          width: 110,
+                          padding: EdgeInsets.only(left: 15,right: 15,top: 5,bottom: 5),
+                            child: Center(
+                              child: Text(
+                                _sysNumber,
+                                style: TextStyle(
+                                  color: Colors.black.withOpacity(0.85),
+                                    shadows: [
+                                      Shadow(
+                                        offset: Offset(1.0, 1.0),
+                                        blurRadius: 3,
+                                        color: Colors.grey.withOpacity(0.5),
+                                      ),
+                                    ],
+                                    fontFamily: 'Roboto',
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18
+                                ),
+                              ),
+                            )
+                        ),
+                      ),
+                    ),
                     Expanded(
                         child: Container()
                     ),
@@ -6515,49 +6588,94 @@ class _MatrixPageState extends State<MatrixPage> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Expanded(
-                          child: Container(
-                            height: 45,
-                              margin: EdgeInsets.only(right: 2.5),
-                              decoration: BoxDecoration(
-                                color: Color(0xff483B3B),
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(25),
-                                    bottomLeft: Radius.circular(25)
-                                )
-                              ),
-                              child: Center(
-                                child: Text(
-                                    'HOLD',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 20
-                                  ),
+                          child: GestureDetector(
+                            onTap: (){
+                              setState(() {
+                                memorybar.forEach((key, value) {
+                                  if (key == _sysNumber) {
+                                    for (final i in memorybar[_sysNumber]!.toList()){
+                                      if (i=='assets/callicongreenpadding.png'){
+                                        value.remove(i);
+                                        value.add('assets/calliconpadding.png');
+                                      }else if(i=='assets/calliconpadding.png'){
+                                        value.remove(i);
+                                        value.add('assets/callicongreenpadding.png');
+                                      }
+                                    }
+                                    /*value.remove(
+                                        memorybar[_sysNumber]!
+                                            .toList()[0]);*/
+                                  }
+                                });
+                              });
+                            },
+                            child: Container(
+                              height: 37.5,
+                                margin: EdgeInsets.only(right: 2.5),
+                                decoration: BoxDecoration(
+                                  color: Color(0xff483B3B),
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(25),
+                                      bottomLeft: Radius.circular(25)
+                                  )
                                 ),
-                              )
+                                child: Center(
+                                  child: Text(
+                                      'HOLD',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20
+                                    ),
+                                  ),
+                                )
+                            ),
                           ),
                         ),
                         Expanded(
-                          child: Container(
-                              height: 45,
-                              margin: EdgeInsets.only(left: 2.5),
-                              decoration: BoxDecoration(
-                                color: Color(0xffB91B1B),
-                                  borderRadius: BorderRadius.only(
-                                      topRight: Radius.circular(25),
-                                      bottomRight: Radius.circular(25)
-                                  )
-                              ),
-                              child: Center(
-                                child: Text(
-                                  'HANGOUT',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18
-                                  ),
+                          child: GestureDetector(
+                            onTap: (){
+                              _callIgnore=false;
+                              Navigator.of(context).pop();
+                              print( memorybar[_sysNumber]);
+                              setState(() {
+                                memorybar.forEach((key, value) {
+                                  if (key == _sysNumber) {
+                                    for (final i in memorybar[_sysNumber]!.toList()){
+                                      if (i=='assets/callicongreenpadding.png'){
+                                        value.remove(i);
+                                      }else if (i=='assets/calliconpadding.png'){
+                                        value.remove(i);
+                                      }
+                                    }
+                                    /*value.remove(
+                                        memorybar[_sysNumber]!
+                                            .toList()[0]);*/
+                                  }
+                                });
+                              });
+                            },
+                            child: Container(
+                                height: 37.5,
+                                margin: EdgeInsets.only(left: 2.5),
+                                decoration: BoxDecoration(
+                                  color: Color(0xffB91B1B),
+                                    borderRadius: BorderRadius.only(
+                                        topRight: Radius.circular(25),
+                                        bottomRight: Radius.circular(25)
+                                    )
                                 ),
-                              )
+                                child: Center(
+                                  child: Text(
+                                    'HANGOUT',
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18
+                                    ),
+                                  ),
+                                )
+                            ),
                           ),
                         ),
                       ],

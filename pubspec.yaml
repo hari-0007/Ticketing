@@ -43,7 +43,7 @@ dependencies:
 
   flutter_animator: ^3.2.1
 
-#  measured_size: ^1.0.0
+  measured_size: ^1.0.0
   badges: ^2.0.2
 #  flutter_badged: ^2.0.2
 #  loading_animation_widget: ^1.1.0+3
