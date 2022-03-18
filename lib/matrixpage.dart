@@ -14,6 +14,7 @@ import 'package:measured_size/measured_size.dart';
 
 // import 'package:measured_size/measured_size.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 final List<Map<String, dynamic>> ticket = [
   {
@@ -471,7 +472,7 @@ List _elements = [
 ];
 
 enum WidgetMarker { dashboard, incident }                          // Drawer
-enum IncidentMarker { main, chat, notification }                   // Inside Incident
+enum IncidentMarker { main, chat, notification, script, terminal}                   // Inside Incident
 
 class MatrixPage extends StatefulWidget {
   const MatrixPage({Key? key}) : super(key: key);
@@ -546,7 +547,7 @@ class _MatrixPageState extends State<MatrixPage> {
   Size mySize = Size.zero;
 
   bool _remote = false;                                                  // Remote Visible <-> Invisible
-  var _sysNumber;
+  var _sysNumber = "System Number";
 
   var _index ;
 
@@ -1052,6 +1053,10 @@ class _MatrixPageState extends State<MatrixPage> {
         return getChatContainer();
       case IncidentMarker.notification:
         return getNotification();
+      case IncidentMarker.script:
+        return getScript();
+      case IncidentMarker.terminal:
+        return getTerminal();
     }
   }
 
@@ -1140,7 +1145,7 @@ class _MatrixPageState extends State<MatrixPage> {
             ),
             child: Column(
               children: [
-                Padding(padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewPadding.top)),
+                Padding(padding: EdgeInsets.only(top: MediaQuery.of(context).viewPadding.top+20)),
                 getIncidentAppbar(),
 
                 Visibility(
@@ -1172,143 +1177,190 @@ class _MatrixPageState extends State<MatrixPage> {
                         ],
                         borderRadius: BorderRadius.all(Radius.circular(70)),
                       ),
-                      child: Container(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 7.5, vertical: 0.5),
-                        child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: memorybar.containsKey(_sysNumber)
-                                ? memorybar[_sysNumber]!.length
-                                : 0,
-                            itemBuilder: (context, index) {
-                              return GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    // memorybar.remove('C0001');
-                                    memorybar.forEach((key, value) {
-                                      if (key == _sysNumber) {                            //Switching on Visible MemoryBar only Remote and Chat Added
-                                        /*value.remove('assets/calliconpadding.png');*/
-                                        if (value.toList()[index] ==
-                                            'assets/chaticon250.png') {
-                                          if (selectedIncidentWidgetMarker ==
-                                              IncidentMarker.main) {                      // Switching Between Main and Chat Container
-                                            selectedIncidentWidgetMarker =
-                                                IncidentMarker.chat;
-                                            _remote = false;
-                                          } else {
-                                            selectedIncidentWidgetMarker =
-                                                IncidentMarker.main;
-                                          }
-                                        } else if (value.toList()[index] ==
-                                            'assets/remoteiconpadding.png') {            // Turning ON and OFF Remote
-                                          _remote = !_remote;
-                                        } else if (value.toList()[index] ==
-                                            'assets/callicongreenpadding.png'){
-                                          Caller();
-                                        } else if (value.toList()[index] == 'assets/calliconpadding.png'){
-                                          Caller();
-                                        }
-                                        /*for (String i in value.toList()){
-                                          if(i=='assets/chaticon250.png'){
-                                            if(selectedIncidentWidgetMarker == IncidentMarker.main){
-                                              selectedIncidentWidgetMarker = IncidentMarker.chat;
-                                            }else{
-                                              selectedIncidentWidgetMarker = IncidentMarker.main;
-                                            }
-                                          }else if(i=='assets/remoteiconpadding.png'){
-                                            _remote = !_remote;
-                                          }
-                                        }*/
-                                      }
-                                    });
-                                  });
-                                  // print(memorybar[_sysNumber]);
-                                },
-                                child: LongPressDraggable(
-                                  data: memorybar[_sysNumber],
-                                  onDragStarted: () {
-                                    ScaffoldMessenger.of(context)
-                                        .showSnackBar(SnackBar(
-                                      duration: Duration(seconds: 60),
-                                      padding: EdgeInsets.zero,
-                                      backgroundColor: Colors.transparent,
-                                      behavior: SnackBarBehavior.floating,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(24),
-                                      ),
-                                      margin: EdgeInsets.only(
-                                          bottom:
-                                              MediaQuery.of(context).size.height -
-                                                  62.5),
-                                      content: DragTarget(
-                                        onAccept: (remove) {
-                                          setState(() {
-                                           if(memorybar[_sysNumber]?.contains('assets/callicongreenpadding.png')==true){
-                                             _callIgnore=false;
-                                           } else if(memorybar[_sysNumber]?.contains('assets/calliconpadding.png')==true){
-                                             _callIgnore=false;
-                                           }
-                                            memorybar.forEach((key, value) {
-                                              if (key == _sysNumber) {
-                                                value.remove(
-                                                    memorybar[_sysNumber]!
-                                                        .toList()[index]);
-
-                                                /*value.remove(memorybar[_sysNumber]?.toList()[index]);*/
-                                                selectedIncidentWidgetMarker =
-                                                    IncidentMarker.main;
-                                                _remote = false;
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Container(
+                              padding:
+                                  EdgeInsets.symmetric(horizontal: 7.5, vertical: 0.5),
+                              child: ListView.builder(
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: memorybar.containsKey(_sysNumber)
+                                      ? memorybar[_sysNumber]!.length
+                                      : 0,
+                                  itemBuilder: (context, index) {
+                                    return GestureDetector(
+                                      onTap: () {
+                                        setState(() {
+                                          // memorybar.remove('C0001');
+                                          memorybar.forEach((key, value) {
+                                            if (key == _sysNumber) {                            //Switching on Visible MemoryBar only Remote and Chat Added
+                                              /*value.remove('assets/calliconpadding.png');*/
+                                              if (value.toList()[index] ==
+                                                  'assets/chaticon250.png') {
+                                                if (selectedIncidentWidgetMarker ==
+                                                    IncidentMarker.main) {                      // Switching Between Main and Chat Container
+                                                  selectedIncidentWidgetMarker =
+                                                      IncidentMarker.chat;
+                                                  _remote = false;
+                                                } else {
+                                                  selectedIncidentWidgetMarker =
+                                                      IncidentMarker.main;
+                                                  _remote = false;
+                                                }
+                                              } else if (value.toList()[index] ==
+                                                  'assets/remoteiconpadding.png') {            // Turning ON and OFF Remote
+                                                _remote = !_remote;
+                                              } else if (value.toList()[index] ==
+                                                  'assets/callicongreenpadding.png'){
+                                                Caller();
+                                              } else if (value.toList()[index] == 'assets/calliconpadding.png'){
+                                                Caller();
+                                              } else if (value.toList()[index] == 'assets/scripticonpadding.png'){
+                                                if (selectedIncidentWidgetMarker ==
+                                                    IncidentMarker.main){
+                                                  selectedIncidentWidgetMarker =
+                                                      IncidentMarker.script;
+                                                  _remote = false;
+                                                }else {
+                                                  selectedIncidentWidgetMarker =
+                                                      IncidentMarker.main;
+                                                  _remote = false;
+                                                }
+                                              } else if(value.toList()[index] == 'assets/terminaliconpadding.png'){
+                                                if (selectedIncidentWidgetMarker == IncidentMarker.main){
+                                                  selectedIncidentWidgetMarker = IncidentMarker.terminal;
+                                                  _remote = false;
+                                                }else {
+                                                  selectedIncidentWidgetMarker =
+                                                      IncidentMarker.main;
+                                                  _remote = false;
+                                                }
                                               }
-                                            });
+                                              /*for (String i in value.toList()){
+                                                if(i=='assets/chaticon250.png'){
+                                                  if(selectedIncidentWidgetMarker == IncidentMarker.main){
+                                                    selectedIncidentWidgetMarker = IncidentMarker.chat;
+                                                  }else{
+                                                    selectedIncidentWidgetMarker = IncidentMarker.main;
+                                                  }
+                                                }else if(i=='assets/remoteiconpadding.png'){
+                                                  _remote = !_remote;
+                                                }
+                                              }*/
+                                            }
                                           });
-                                          print(memorybar[_sysNumber]!
-                                              .toList()
-                                              .length);
+                                        });
+                                        // print(memorybar[_sysNumber]);
+                                      },
+                                      child: LongPressDraggable(
+                                        data: memorybar[_sysNumber],
+                                        onDragStarted: () {
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(SnackBar(
+                                            duration: Duration(seconds: 60),
+                                            padding: EdgeInsets.zero,
+                                            backgroundColor: Colors.transparent,
+                                            behavior: SnackBarBehavior.floating,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(24),
+                                            ),
+                                            margin: EdgeInsets.only(
+                                                bottom:
+                                                    MediaQuery.of(context).size.height -
+                                                        62.5),
+                                            content: DragTarget(
+                                              onAccept: (remove) {
+                                                setState(() {
+                                                 if(memorybar[_sysNumber]?.contains('assets/callicongreenpadding.png')==true){
+                                                   _callIgnore=false;
+                                                 } else if(memorybar[_sysNumber]?.contains('assets/calliconpadding.png')==true){
+                                                   _callIgnore=false;
+                                                 }
+                                                  memorybar.forEach((key, value) {
+                                                    if (key == _sysNumber) {
+                                                      value.remove(
+                                                          memorybar[_sysNumber]!
+                                                              .toList()[index]);
+
+                                                      /*value.remove(memorybar[_sysNumber]?.toList()[index]);*/
+                                                      selectedIncidentWidgetMarker =
+                                                          IncidentMarker.main;
+                                                      _remote = false;
+                                                    }
+                                                  });
+                                                });
+                                                print(memorybar[_sysNumber]!
+                                                    .toList()
+                                                    .length);
+                                              },
+                                              builder: (context, _, __) => Container(
+                                                height: 62.5,
+                                                width:
+                                                    MediaQuery.of(context).size.width,
+                                                decoration: BoxDecoration(
+                                                    gradient: LinearGradient(
+                                                        colors: [
+                                                      Color(0xffE35353),
+                                                      Color(0xffE35353)
+                                                          .withOpacity(0.0),
+                                                    ],
+                                                        begin: Alignment.topCenter,
+                                                        end: Alignment.bottomCenter)),
+                                              ),
+                                            ),
+                                          ));
                                         },
-                                        builder: (context, _, __) => Container(
-                                          height: 62.5,
-                                          width:
-                                              MediaQuery.of(context).size.width,
-                                          decoration: BoxDecoration(
-                                              gradient: LinearGradient(
-                                                  colors: [
-                                                Color(0xffE35353),
-                                                Color(0xffE35353)
-                                                    .withOpacity(0.0),
-                                              ],
-                                                  begin: Alignment.topCenter,
-                                                  end: Alignment.bottomCenter)),
+                                        onDragEnd: (remove) {
+                                          ScaffoldMessenger.of(context)
+                                              .hideCurrentSnackBar();
+                                        },
+                                        childWhenDragging: SizedBox(width: 16.25),
+                                        feedback: Material(
+                                          color: Colors.transparent,
+                                          child: Container(
+                                            height: 32.5,
+                                            width: 32.5,
+                                            margin: EdgeInsets.only(left: 12.5),
+                                            child: Image.asset(
+                                              memorybar[_sysNumber]!.elementAt(index),
+                                            ),
+                                          ),
+                                        ),
+                                        child: Container(
+                                          height: 32.5,
+                                          width: 32.5,
+                                          margin: EdgeInsets.only(left: 12.5),
+                                          child: Image.asset(
+                                              memorybar[_sysNumber]!.elementAt(index),
+                                          ),
                                         ),
                                       ),
-                                    ));
-                                  },
-                                  onDragEnd: (remove) {
-                                    ScaffoldMessenger.of(context)
-                                        .hideCurrentSnackBar();
-                                  },
-                                  childWhenDragging: SizedBox(width: 16.25),
-                                  feedback: Material(
-                                    color: Colors.transparent,
-                                    child: Container(
-                                      height: 32.5,
-                                      width: 32.5,
-                                      margin: EdgeInsets.only(left: 12.5),
-                                      child: Image.asset(
-                                        memorybar[_sysNumber]!.elementAt(index),
-                                      ),
-                                    ),
+                                    );
+                                  }),
+                            ),
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(right: 12.5),
+                            child: Text(
+                              _sysNumber,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                shadows: [
+                                  Shadow(
+                                    offset: Offset(1.0, 1.0),
+                                    blurRadius: 3,
+                                    color: Colors.black,
                                   ),
-                                  child: Container(
-                                    height: 32.5,
-                                    width: 32.5,
-                                    margin: EdgeInsets.only(left: 12.5),
-                                    child: Image.asset(
-                                        memorybar[_sysNumber]!.elementAt(index),
-                                    ),
-                                  ),
-                                ),
-                              );
-                            }),
+                                ],
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                                fontFamily: 'Roboto',
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
@@ -1649,29 +1701,26 @@ class _MatrixPageState extends State<MatrixPage> {
                           // color: Color(0xff91BBD2).withOpacity(0.35),
                           ),
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Expanded(child: Container()),
-                          Align(
-                            alignment: Alignment.center,
-                            child: Text(
-                              _sysNumber,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                shadows: [
-                                  Shadow(
-                                    offset: Offset(1.0, 1.0),
-                                    blurRadius: 3,
-                                    color: Colors.black,
-                                  ),
-                                ],
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18,
-                                fontFamily: 'Roboto',
-                              ),
+                          Text(
+                            _sysNumber,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              shadows: [
+                                Shadow(
+                                  offset: Offset(1.0, 1.0),
+                                  blurRadius: 3,
+                                  color: Colors.black,
+                                ),
+                              ],
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                              fontFamily: 'Roboto',
                             ),
-                          ),
-                          Expanded(child: Container()),
+                          )
                         ],
                       ),
                     ),
@@ -1959,11 +2008,189 @@ class _MatrixPageState extends State<MatrixPage> {
     );
   }
 
+  Widget getScript(){
+    return Expanded(
+      child: Column(
+        children: [
+          Expanded(
+            child: Container(
+              // height: MediaQuery.of(context).size.height-100,
+              // color: Colors.blueGrey,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(
+                    style: BorderStyle.solid,
+                    color: Colors.white70.withOpacity(0.1),
+                    width: 0.5,
+                  ),
+                  gradient: LinearGradient(
+                      colors: [
+                        Colors.white.withOpacity(0.5),
+                        Colors.white.withOpacity(0.1),
+                        // Color(0xffB0C8C8),
+                        // Color(0xff19547b),
+                        // Color(0xff497D7D).withOpacity(0.8),
+                        // Color(0xff91BBD2).withOpacity(0.35),
+                        // Color(0xff9A85B4),
+                        // Color(0xffA3818F)
+                        // Color(0xff91BBD2).withOpacity(0.8),
+                        // Color(0xff8D6679).withOpacity(0.8),
+                      ],
+                      // stops: [0.0,1.0],
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter)
+              ),
+              margin: EdgeInsets.only(left: 15, right: 15, top: 0, bottom: 10),
+              child: Column(
+                children: [
+                  Align(
+                    alignment: Alignment.topCenter,
+                    child: Container(
+                      height: 30,
+                      width: MediaQuery.of(context).size.width,
+                      margin: EdgeInsets.only(top: 7.5, left: 15, right: 15),
+                      padding: EdgeInsets.only(
+                          left: 7.5, right: 7.5, top: 2.5, bottom: 2.5),
+                      decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                                blurRadius: 1,
+                                offset: Offset(1, 0),
+                                color: Colors.black.withOpacity(0.65)),
+                          ],
+                          borderRadius: BorderRadius.circular(10),
+                          gradient: LinearGradient(
+                              colors: [
+                                Color(0xff19547b),
+                                // Color(0xff497D7D).withOpacity(1),
+                                Color(0xff91BBD2).withOpacity(1),
+                              ],
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                              stops: [0.5, 1])
+                        // color: Color(0xff91BBD2).withOpacity(0.35),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            _sysNumber,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              shadows: [
+                                Shadow(
+                                  offset: Offset(1.0, 1.0),
+                                  blurRadius: 3,
+                                  color: Colors.black,
+                                ),
+                              ],
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                              fontFamily: 'Roboto',
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Container(
+                    height: 50,
+                    width: 50,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('assets/sparklesfolderblank.png'),
+                          fit: BoxFit.fill,
+                        )
+                    ),
+                  ),
+                  Container(
+                    height: 100,
+                    width: 100,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('assets/folderblue.png'),
+                          fit: BoxFit.fill,
+                        )
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(left: 15,right: 20,bottom: 2),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Card(
+                  elevation: 4,
+                  color: Colors.transparent,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Container(
+                    padding: EdgeInsets.only(left: 10,right: 10,top: 5,bottom: 5),
+                    margin: EdgeInsets.only(bottom: 3),
+                    decoration: BoxDecoration(
+                      color: Color(0xff19547b),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Center(
+                      child: Text(
+                        "SUBMIT",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          shadows: [
+                            Shadow(
+                              offset: Offset(1.0, 1.0),
+                              blurRadius: 3,
+                              color: Colors.black,
+                            ),
+                          ],
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 17.5,
+                          fontFamily: 'Roboto',
+                        ),
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget getTerminal(){
+    return Expanded(
+      child: Container(
+        // height: MediaQuery.of(context).size.height-100,
+        // color: Colors.blueGrey,
+        decoration: BoxDecoration(
+          color: Colors.black,
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(
+              style: BorderStyle.solid,
+              color: Colors.white70.withOpacity(0.1),
+              width: 0.5,
+            ),
+        ),
+        margin: EdgeInsets.only(left: 15, right: 15, top: 0, bottom: 10),
+
+      ),
+    );
+  }
+
   Widget getIncidentAppbar() {
     return Container(
       height: 40,
       padding: EdgeInsets.symmetric(horizontal: 7.5),
-      margin: EdgeInsets.only(bottom: 5),
+      margin: EdgeInsets.only(bottom: 9),
       child: DecoratedBox(
           decoration: BoxDecoration(
             image: DecorationImage(
@@ -2046,27 +2273,69 @@ class _MatrixPageState extends State<MatrixPage> {
                         onTap: () {
                           /*Navigator.of(context).pop();*/
                           setState(() {
-                            print(_foundTicket[0]['loadingIndicator']);
+                            /*print(_foundTicket[0]['loadingIndicator']);*/
+                            print( selectedIncidentWidgetMarker == IncidentMarker.main);
                             selectedIncidentWidgetMarker = IncidentMarker.main;
                           });
                         },
-                        child: Text(
+                        child: GradientText(
                           'INCIDENTS',
+                          gradientType: GradientType.linear,
+                          gradientDirection: GradientDirection.ttb,
+                          colors: [
+                            // Color(0xFFffffff),
+                            Colors.grey,
+                            Color(0xFF063D61),
+                          ],
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            // shadows: [
-                            //   Shadow(
-                            //     offset: Offset(1, 1),
-                            //     blurRadius: 2,
-                            //     color: Colors.black.withOpacity(0.5),
-                            //   ),
-                            // ],
-                            color: Color(0XFF81040A).withOpacity(0.75),
-                            fontFamily: 'Roboto',
+                            /*shadows: [
+                              Shadow(
+                                offset: Offset(0.5, 0.5),
+                                blurRadius: 1,
+                                color: Colors.black.withOpacity(0.25),
+                              ),
+                            ],*/
+                            /*color:Color(0xff451618),*//*Colors.black.withOpacity(0.85),*//* Color(0XFF19547B).withOpacity(1),*/
+                            fontFamily: 'Roboto-Thin',
                             fontWeight: FontWeight.w900,
-                            fontSize: 18,
+                            fontSize: 19,
                           ),
                         ),
+                          /*Shimmer(
+                            enabled: true,
+                            period: Duration(seconds: 3),
+                            gradient: LinearGradient(
+                                colors: [
+                                  Color(0xFF19547B),
+                                  Color(0xFF19547B),
+                                  Color(0xFF19547B),
+                                  Color(0xFF19547B),
+                                  Colors.white,
+                                  Color(0xFF19547B),
+                                  Color(0xFF19547B),
+                                  Color(0xFF19547B),
+                                  Color(0xFF19547B),
+                                ]
+                            ),
+                            child: Text(
+                              'INCIDENTS',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                // shadows: [
+                                //   Shadow(
+                                //     offset: Offset(1, 1),
+                                //     blurRadius: 2,
+                                //     color: Colors.black.withOpacity(0.5),
+                                //   ),
+                                // ],
+                                *//*color:Color(0xff451618),*//**//*Colors.black.withOpacity(0.85),*//**//* Color(0XFF19547B).withOpacity(1),*//*
+                                fontFamily: 'Roboto-Thin',
+                                fontWeight: FontWeight.w900,
+                                fontSize: 19,
+                              ),
+                            ),
+                          )*/
                       ),
                     ],
                   ),
@@ -3267,6 +3536,9 @@ class _MatrixPageState extends State<MatrixPage> {
                                                                 Colors.green
                                                                     .withOpacity(
                                                                     0.9),
+                                                                /*Color(0xff3B8DC2)
+                                                                    .withOpacity(
+                                                                    1),*/
                                                               ],
                                                             ),
                                                           ),
@@ -3275,6 +3547,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                                             width: 7.5,
                                                             decoration: BoxDecoration(
                                                                 color: Colors.green,
+                                                                /*Color(0XFF19547B),*/
                                                                 borderRadius:
                                                                 BorderRadius
                                                                     .circular(
@@ -3646,7 +3919,11 @@ class _MatrixPageState extends State<MatrixPage> {
                                       duration: Duration(milliseconds: 550),
                                       child: GestureDetector(
                                         onTap: () {
+                                          _remote = false;
                                           setState(() {
+
+                                            selectedIncidentWidgetMarker =
+                                                IncidentMarker.script;
                                             /*this.memoryWidgets.add('assets/scripticonpadding.png');*/
                                             /*memorybar.addEntries([
                                   MapEntry(ticket[index]['sysNumber'],['Script'])
@@ -3737,8 +4014,11 @@ class _MatrixPageState extends State<MatrixPage> {
                                       duration: Duration(milliseconds: 650),
                                       child: GestureDetector(
                                         onTap: () {
+                                          _remote = false;
                                           setState(() {
                                             /*this.memoryWidgets.add('assets/terminaliconpadding.png');*/
+                                            selectedIncidentWidgetMarker =
+                                                IncidentMarker.terminal;
 
                                             if (memorybar.containsKey(
                                                 ticket[index]['sysNumber']) ==
@@ -5926,8 +6206,8 @@ class _MatrixPageState extends State<MatrixPage> {
 
   Widget getUnAssignedTicket() {
     return MeasuredSize(
-      onChange: (Size size) {
-        mySize =size;
+      onChange: (Size) {
+        mySize =Size;
       },
       child: Expanded(
         /*key: UniqueKey(),*/
