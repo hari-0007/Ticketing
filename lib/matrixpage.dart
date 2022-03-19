@@ -2,6 +2,7 @@ import 'dart:math';
 import 'dart:ui';
 /*import 'dart:io' show Platform;*/
 // import 'dart:html';
+import 'package:allitson/script.dart';
 import 'package:badges/badges.dart';
 import 'package:custom_pop_up_menu/custom_pop_up_menu.dart';
 import 'package:delayed_display/delayed_display.dart';
@@ -1271,28 +1272,39 @@ class _MatrixPageState extends State<MatrixPage> {
                                                         62.5),
                                             content: DragTarget(
                                               onAccept: (remove) {
+
                                                 setState(() {
-                                                 if(memorybar[_sysNumber]?.contains('assets/callicongreenpadding.png')==true){
-                                                   _callIgnore=false;
-                                                 } else if(memorybar[_sysNumber]?.contains('assets/calliconpadding.png')==true){
-                                                   _callIgnore=false;
-                                                 }
+
+                                                  /*if(memorybar[_sysNumber]?.contains('assets/callicongreenpadding.png')==true){
+                                                    print('_callIgnore1=false');
+                                                    _callIgnore=false;
+                                                  } else if(memorybar[_sysNumber]?.contains('assets/calliconpadding.png')==true){
+                                                    print('_callIgnore2=false');
+                                                    _callIgnore=false;
+                                                  }*/
+
                                                   memorybar.forEach((key, value) {
                                                     if (key == _sysNumber) {
                                                       value.remove(
-                                                          memorybar[_sysNumber]!
-                                                              .toList()[index]);
+                                                          memorybar[_sysNumber]!.toList()[index]);
 
-                                                      /*value.remove(memorybar[_sysNumber]?.toList()[index]);*/
+                                                      if(value.contains('assets/callicongreenpadding.png')){
+                                                        print('hello');
+                                                        _callIgnore=true;
+                                                      }else if(value.contains('assets/calliconpadding.png')){
+                                                        print('hello');
+                                                        _callIgnore=true;
+                                                      }else{
+                                                        _callIgnore=false;
+                                                      }
+
                                                       selectedIncidentWidgetMarker =
                                                           IncidentMarker.main;
                                                       _remote = false;
                                                     }
                                                   });
                                                 });
-                                                print(memorybar[_sysNumber]!
-                                                    .toList()
-                                                    .length);
+                                                // print(memorybar[_sysNumber]);
                                               },
                                               builder: (context, _, __) => Container(
                                                 height: 62.5,
@@ -1315,13 +1327,13 @@ class _MatrixPageState extends State<MatrixPage> {
                                           ScaffoldMessenger.of(context)
                                               .hideCurrentSnackBar();
                                         },
-                                        childWhenDragging: SizedBox(width: 16.25),
+                                        childWhenDragging: SizedBox(width: 45),
                                         feedback: Material(
                                           color: Colors.transparent,
                                           child: Container(
-                                            height: 32.5,
-                                            width: 32.5,
-                                            margin: EdgeInsets.only(left: 12.5),
+                                            height: 50,
+                                            width: 50,
+                                            margin: EdgeInsets.only(left: 8.5),
                                             child: Image.asset(
                                               memorybar[_sysNumber]!.elementAt(index),
                                             ),
@@ -1330,7 +1342,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                         child: Container(
                                           height: 32.5,
                                           width: 32.5,
-                                          margin: EdgeInsets.only(left: 12.5),
+                                          margin: EdgeInsets.only(left: 10),
                                           child: Image.asset(
                                               memorybar[_sysNumber]!.elementAt(index),
                                           ),
@@ -2009,6 +2021,7 @@ class _MatrixPageState extends State<MatrixPage> {
   }
 
   Widget getScript(){
+    List _myListStrings = ['Linux','Windows','Ubuntu','RedHat','CentOS','Mac','Android','ParrotOS'];
     return Expanded(
       child: Column(
         children: [
@@ -2041,84 +2054,22 @@ class _MatrixPageState extends State<MatrixPage> {
                       end: Alignment.bottomCenter)
               ),
               margin: EdgeInsets.only(left: 15, right: 15, top: 0, bottom: 10),
-              child: Column(
+              child:Column(
                 children: [
-                  Align(
-                    alignment: Alignment.topCenter,
-                    child: Container(
-                      height: 30,
-                      width: MediaQuery.of(context).size.width,
-                      margin: EdgeInsets.only(top: 7.5, left: 15, right: 15),
-                      padding: EdgeInsets.only(
-                          left: 7.5, right: 7.5, top: 2.5, bottom: 2.5),
-                      decoration: BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                                blurRadius: 1,
-                                offset: Offset(1, 0),
-                                color: Colors.black.withOpacity(0.65)),
-                          ],
-                          borderRadius: BorderRadius.circular(10),
-                          gradient: LinearGradient(
-                              colors: [
-                                Color(0xff19547b),
-                                // Color(0xff497D7D).withOpacity(1),
-                                Color(0xff91BBD2).withOpacity(1),
-                              ],
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                              stops: [0.5, 1])
-                        // color: Color(0xff91BBD2).withOpacity(0.35),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(
-                            _sysNumber,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              shadows: [
-                                Shadow(
-                                  offset: Offset(1.0, 1.0),
-                                  blurRadius: 3,
-                                  color: Colors.black,
-                                ),
-                              ],
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18,
-                              fontFamily: 'Roboto',
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                  Row(),
+                  Wrap(
+                    alignment: WrapAlignment.start,
+                    runSpacing: 10,
+                    spacing: 10,
+                    children: [
+                      for(var item in _myListStrings)
+                        MyContainerWidget(text: item),
+                    ],
                   ),
-                  Container(
-                    height: 50,
-                    width: 50,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage('assets/sparklesfolderblank.png'),
-                          fit: BoxFit.fill,
-                        )
-                    ),
-                  ),
-                  Container(
-                    height: 100,
-                    width: 100,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage('assets/folderblue.png'),
-                          fit: BoxFit.fill,
-                        )
-                    ),
-                  )
                 ],
+              )
               ),
             ),
-          ),
           Container(
             margin: EdgeInsets.only(left: 15,right: 20,bottom: 2),
             child: Row(
@@ -2168,20 +2119,39 @@ class _MatrixPageState extends State<MatrixPage> {
 
   Widget getTerminal(){
     return Expanded(
-      child: Container(
-        // height: MediaQuery.of(context).size.height-100,
-        // color: Colors.blueGrey,
-        decoration: BoxDecoration(
-          color: Colors.black,
-            borderRadius: BorderRadius.circular(10),
-            border: Border.all(
-              style: BorderStyle.solid,
-              color: Colors.white70.withOpacity(0.1),
-              width: 0.5,
+      child: Column(
+        children: [
+          Expanded(
+            child: Container(
+              // height: MediaQuery.of(context).size.height-100,
+              // color: Colors.blueGrey,
+              decoration: BoxDecoration(
+                color: Colors.black,
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(
+                    style: BorderStyle.solid,
+                    color: Colors.white70.withOpacity(0.1),
+                    width: 0.5,
+                  ),
+              ),
+              padding: EdgeInsets.only(left: 10,right: 10),
+              margin: EdgeInsets.only(left: 15, right: 15, top: 0, bottom: 10),
+              child: TextField(
+                maxLines:null,
+                cursorColor: Colors.white,
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                ),
+                style: TextStyle(
+                  color: Colors.white
+                ),
+              ),
             ),
-        ),
-        margin: EdgeInsets.only(left: 15, right: 15, top: 0, bottom: 10),
-
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).viewInsets.vertical,
+          ),
+        ],
       ),
     );
   }
@@ -2421,7 +2391,7 @@ class _MatrixPageState extends State<MatrixPage> {
                               children: [
                                 GestureDetector(
                                   onTap: () {
-                                    print(index);
+                                    /*print(index);*/
                                     setState(() {
                                       _selectedTicketIndex = !_selectedTicketIndex;
                                       selectedIndex = index;
@@ -3630,7 +3600,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                   child: AnimatedPositioned(
                                       curve: Curves.fastOutSlowIn,
                                       left: _buttonPosition
-                                          ? 150
+                                          ? 152
                                           : MediaQuery.of(context).size.width + 175,
                                       top: 18,
                                       duration: Duration(milliseconds: 250),
@@ -3722,7 +3692,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                   child: AnimatedPositioned(
                                       curve: Curves.fastOutSlowIn,
                                       left: _buttonPosition
-                                          ? 150
+                                          ? 152
                                           : MediaQuery.of(context).size.width + 175,
                                       top: 44,
                                       duration: Duration(milliseconds: 350),
@@ -3827,7 +3797,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                   child: AnimatedPositioned(
                                       curve: Curves.fastOutSlowIn,
                                       left: _buttonPosition
-                                          ? 150
+                                          ? 152
                                           : MediaQuery.of(context).size.width + 175,
                                       top: 70,
                                       duration: Duration(milliseconds: 450),
@@ -3913,7 +3883,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                   child: AnimatedPositioned(
                                       curve: Curves.fastOutSlowIn,
                                       left: _buttonPosition
-                                          ? 150
+                                          ? 152
                                           : MediaQuery.of(context).size.width + 175,
                                       top: 96,
                                       duration: Duration(milliseconds: 550),
@@ -4008,7 +3978,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                   child: AnimatedPositioned(
                                       curve: Curves.fastOutSlowIn,
                                       left: _buttonPosition
-                                          ? 150
+                                          ? 152
                                           : MediaQuery.of(context).size.width + 175,
                                       top: 122,
                                       duration: Duration(milliseconds: 650),
@@ -4104,7 +4074,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                   child: AnimatedPositioned(
                                       curve: Curves.fastOutSlowIn,
                                       left: _buttonPosition
-                                          ? 150
+                                          ? 152
                                           : MediaQuery.of(context).size.width + 175,
                                       top: 148,
                                       duration: Duration(milliseconds: 750),
@@ -4163,16 +4133,16 @@ class _MatrixPageState extends State<MatrixPage> {
                                                                   .withOpacity(0.8),
                                                               borderRadius:
                                                               BorderRadius
-                                                                  .circular(15)),
+                                                                  .circular(0)),
                                                           height: 176,
                                                           margin: EdgeInsets.only(
-                                                              left: 7.5,
-                                                              right: 7.5,
-                                                              top: 5,
+                                                              left: 0,
+                                                              right: 0,
+                                                              top: 0,
                                                               bottom: 0),
                                                           child: TextField(
-                                                            minLines: 1,
-                                                            maxLines: 250,
+                                                            minLines: null,
+                                                            maxLines: null,
                                                             keyboardType:
                                                             TextInputType
                                                                 .multiline,
@@ -4315,7 +4285,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                   child: AnimatedPositioned(
                                       curve: Curves.fastOutSlowIn,
                                       left: _buttonPosition
-                                          ? 150
+                                          ? 152
                                           : MediaQuery.of(context).size.width + 175,
                                       top: 174,
                                       duration: Duration(milliseconds: 850),
@@ -4385,7 +4355,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                 AnimatedPositioned(
                                   curve: Curves.fastOutSlowIn,
                                   left: _enterAction == false
-                                      ? 150
+                                      ? 152
                                       : MediaQuery.of(context).size.width + 175,
                                   top: 18,
                                   duration: Duration(milliseconds: 250),
@@ -4400,7 +4370,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                 AnimatedPositioned(
                                   curve: Curves.fastOutSlowIn,
                                   left: _enterAction == false
-                                      ? 150
+                                      ? 152
                                       : MediaQuery.of(context).size.width + 175,
                                   top: 44,
                                   duration: Duration(milliseconds: 350),
@@ -4409,7 +4379,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                 AnimatedPositioned(
                                   curve: Curves.fastOutSlowIn,
                                   left: _enterAction == false
-                                      ? 150
+                                      ? 152
                                       : MediaQuery.of(context).size.width + 175,
                                   top: 70,
                                   duration: Duration(milliseconds: 450),
@@ -4418,7 +4388,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                 AnimatedPositioned(
                                   curve: Curves.fastOutSlowIn,
                                   left: _enterAction == false
-                                      ? 150
+                                      ? 152
                                       : MediaQuery.of(context).size.width + 175,
                                   top: 96,
                                   duration: Duration(milliseconds: 550),
@@ -4427,7 +4397,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                 AnimatedPositioned(
                                   curve: Curves.fastOutSlowIn,
                                   left: _enterAction == false
-                                      ? 150
+                                      ? 152
                                       : MediaQuery.of(context).size.width + 175,
                                   top: 122,
                                   duration: Duration(milliseconds: 650),
@@ -4436,7 +4406,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                 AnimatedPositioned(
                                   curve: Curves.fastOutSlowIn,
                                   left: _enterAction == false
-                                      ? 150
+                                      ? 152
                                       : MediaQuery.of(context).size.width + 175,
                                   top: 148,
                                   duration: Duration(milliseconds: 750),
@@ -4476,6 +4446,7 @@ class _MatrixPageState extends State<MatrixPage> {
                     InkWell(
                       onTap: () {
                         /*print(memorybar[_sysNumber]?.contains('assets/callicongreenpadding.png'));*/
+                        print(memorybar[_sysNumber]);
                         setState(() {
                           // height=height+10;
                           // width!=15.0?width=15.0:width=150;
@@ -5542,13 +5513,13 @@ class _MatrixPageState extends State<MatrixPage> {
                         padding: EdgeInsets.only(left: 15, right: 15),
                         decoration: BoxDecoration(
                             color: Colors.white.withOpacity(0.8),
-                            borderRadius: BorderRadius.circular(15)),
+                            borderRadius: BorderRadius.circular(0)),
                         height: 176,
                         margin: EdgeInsets.only(
-                            left: 7.5, right: 7.5, top: 5, bottom: 0),
+                            left: 0, right: 0, top: 0, bottom: 0),
                         child: TextField(
-                          minLines: 1,
-                          maxLines: 250,
+                          minLines: null,
+                          maxLines: null,
                           keyboardType: TextInputType.multiline,
                           textInputAction: TextInputAction.done,
                           cursorColor: Colors.black.withOpacity(0.2),
@@ -5684,13 +5655,13 @@ class _MatrixPageState extends State<MatrixPage> {
                         padding: EdgeInsets.only(left: 15, right: 15),
                         decoration: BoxDecoration(
                             color: Colors.white.withOpacity(0.8),
-                            borderRadius: BorderRadius.circular(15)),
+                            borderRadius: BorderRadius.circular(0)),
                         height: 176,
                         margin: EdgeInsets.only(
-                            left: 7.5, right: 7.5, top: 5, bottom: 0),
+                            left: 0, right: 0, top: 0, bottom: 0),
                         child: TextField(
-                          minLines: 1,
-                          maxLines: 250,
+                          minLines: null,
+                          maxLines: null,
                           keyboardType: TextInputType.multiline,
                           textInputAction: TextInputAction.done,
                           cursorColor: Colors.black.withOpacity(0.2),
@@ -5826,13 +5797,13 @@ class _MatrixPageState extends State<MatrixPage> {
                         padding: EdgeInsets.only(left: 15, right: 15),
                         decoration: BoxDecoration(
                             color: Colors.white.withOpacity(0.8),
-                            borderRadius: BorderRadius.circular(15)),
+                            borderRadius: BorderRadius.circular(0)),
                         height: 176,
                         margin: EdgeInsets.only(
-                            left: 7.5, right: 7.5, top: 5, bottom: 0),
+                            left: 0, right: 0, top: 0, bottom: 0),
                         child: TextField(
-                          minLines: 1,
-                          maxLines: 250,
+                          minLines: null,
+                          maxLines: null,
                           keyboardType: TextInputType.multiline,
                           textInputAction: TextInputAction.done,
                           cursorColor: Colors.black.withOpacity(0.2),
@@ -5968,13 +5939,13 @@ class _MatrixPageState extends State<MatrixPage> {
                         padding: EdgeInsets.only(left: 15, right: 15),
                         decoration: BoxDecoration(
                             color: Colors.white.withOpacity(0.8),
-                            borderRadius: BorderRadius.circular(15)),
+                            borderRadius: BorderRadius.circular(0)),
                         height: 176,
                         margin: EdgeInsets.only(
-                            left: 7.5, right: 7.5, top: 5, bottom: 0),
+                            left: 0, right: 0, top: 0, bottom: 0),
                         child: TextField(
-                          minLines: 1,
-                          maxLines: 250,
+                          minLines: null,
+                          maxLines: null,
                           keyboardType: TextInputType.multiline,
                           textInputAction: TextInputAction.done,
                           cursorColor: Colors.black.withOpacity(0.2),
@@ -6110,13 +6081,13 @@ class _MatrixPageState extends State<MatrixPage> {
                         padding: EdgeInsets.only(left: 15, right: 15),
                         decoration: BoxDecoration(
                             color: Colors.white.withOpacity(0.8),
-                            borderRadius: BorderRadius.circular(15)),
+                            borderRadius: BorderRadius.circular(0)),
                         height: 176,
                         margin: EdgeInsets.only(
-                            left: 7.5, right: 7.5, top: 5, bottom: 0),
+                            left: 0, right: 0, top: 0, bottom: 0),
                         child: TextField(
-                          minLines: 1,
-                          maxLines: 250,
+                          minLines: null,
+                          maxLines: null,
                           keyboardType: TextInputType.multiline,
                           textInputAction: TextInputAction.done,
                           cursorColor: Colors.black.withOpacity(0.2),
