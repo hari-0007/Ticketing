@@ -1,6 +1,5 @@
 import 'dart:math';
 import 'dart:ui';
-/*import 'dart:io' show Platform;*/
 // import 'dart:html';
 import 'package:allitson/script.dart';
 import 'package:badges/badges.dart';
@@ -9,6 +8,7 @@ import 'package:delayed_display/delayed_display.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animator/flutter_animator.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:grouped_list/grouped_list.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 import 'package:measured_size/measured_size.dart';
@@ -473,7 +473,7 @@ List _elements = [
 ];
 
 enum WidgetMarker { dashboard, incident }                          // Drawer
-enum IncidentMarker { main, chat, notification, script, terminal}                   // Inside Incident
+enum IncidentMarker { main, chat, notification, script, scripting, terminal}                   // Inside Incident
 
 class MatrixPage extends StatefulWidget {
   const MatrixPage({Key? key}) : super(key: key);
@@ -1056,6 +1056,8 @@ class _MatrixPageState extends State<MatrixPage> {
         return getNotification();
       case IncidentMarker.script:
         return getScript();
+      case IncidentMarker.scripting:
+        return getScripting();
       case IncidentMarker.terminal:
         return getTerminal();
     }
@@ -1078,6 +1080,16 @@ class _MatrixPageState extends State<MatrixPage> {
         }else if(selectedIncidentWidgetMarker == IncidentMarker.notification){
           setState(() {
             selectedIncidentWidgetMarker = IncidentMarker.main;
+          });
+          return false;
+        }else if(selectedIncidentWidgetMarker == IncidentMarker.script){
+          setState(() {
+            selectedIncidentWidgetMarker = IncidentMarker.main;
+          });
+          return false;
+        }else if(selectedIncidentWidgetMarker == IncidentMarker.scripting){
+          setState(() {
+            selectedIncidentWidgetMarker = IncidentMarker.script;
           });
           return false;
         }/*else if(_buttonPosition==true){
@@ -2063,7 +2075,16 @@ class _MatrixPageState extends State<MatrixPage> {
                     spacing: 10,
                     children: [
                       for(var item in _myListStrings)
-                        MyContainerWidget(text: item),
+                        GestureDetector(
+                          onTap: (){
+                            if(item == 'Windows'){
+                              setState(() {
+                                selectedIncidentWidgetMarker = IncidentMarker.scripting;
+                              });
+                            }
+                          },
+                            child: MyContainerWidget(text: item)
+                        ),
                     ],
                   ),
                 ],
@@ -2117,7 +2138,509 @@ class _MatrixPageState extends State<MatrixPage> {
     );
   }
 
+  Widget getScripting(){
+    return Expanded(
+      child: Container(
+        // height: MediaQuery.of(context).size.height-100,
+        // color: Colors.blueGrey,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(
+                style: BorderStyle.solid,
+                color: Colors.white70.withOpacity(0.1),
+                width: 0.5,
+              ),
+              gradient: LinearGradient(
+                  colors: [
+                    Colors.white.withOpacity(0.5),
+                    Colors.white.withOpacity(0.1),
+                    // Color(0xffB0C8C8),
+                    // Color(0xff19547b),
+                    // Color(0xff497D7D).withOpacity(0.8),
+                    // Color(0xff91BBD2).withOpacity(0.35),
+                    // Color(0xff9A85B4),
+                    // Color(0xffA3818F)
+                    // Color(0xff91BBD2).withOpacity(0.8),
+                    // Color(0xff8D6679).withOpacity(0.8),
+                  ],
+                  // stops: [0.0,1.0],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter)
+          ),
+          margin: EdgeInsets.only(left: 15, right: 15, top: 0, bottom: 10),
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Column(
+            children: [
+              SizedBox(height: 15,),
+              GestureDetector(
+                onTap: (){
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          shape: RoundedRectangleBorder(
+                            borderRadius:
+                            BorderRadius.circular(30.0),
+                          ),
+                          scrollable: true,
+                          insetPadding: EdgeInsets.all(40),
+                          contentPadding: EdgeInsets.all(0),
+                          backgroundColor: Colors.white60,
+                          content: Container(
+                            height: 300,
+                            width: 320,
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: Colors.black
+                                    .withOpacity(0.8),
+                                width: 3,
+                              ),
+                              // color: Color(0xffB5B5B5),
+                              borderRadius:
+                              BorderRadius.circular(30.0),
+                            ),
+                            child: Column(
+                              children: [
+                                Expanded(
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        color: Color(0xff19547b),
+                                        borderRadius: BorderRadius.only(topLeft: Radius.circular(25),topRight: Radius.circular(25))
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        'ShutDown',
+                                        style: TextStyle(
+                                            fontSize: 17,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  padding: EdgeInsets.only(left: 5, right: 5),
+                                  decoration: BoxDecoration(
+                                      color: Colors.white.withOpacity(0.8),
+                                      borderRadius: BorderRadius.circular(0),
+                                    border: Border.all(
+                                        style: BorderStyle.solid,
+                                        color: Colors.black.withOpacity(0.2),
+                                        width: 1),
+                                  ),
+                                  height: 100,
+                                  margin: EdgeInsets.only(
+                                      left: 0,
+                                      right: 0,
+                                      top: 0,
+                                      bottom: 0),
+                                  child: Column(
+                                    children: [
+                                      SizedBox(height: 5,),
+                                      Row(
+                                        children: [
+                                          Text(
+                                            'Script:',
+                                            style: TextStyle(
+                                            color: Colors.black87.withOpacity(0.5),
+                                            fontSize: 15.5,
+                                            fontWeight: FontWeight.w700,
+                                            fontFamily: 'fonts/Roboto-Regular.ttf',
+                                          ),)
+                                        ],
+                                      ),
+                                      TextField(
+                                        minLines: null,
+                                        maxLines: null,
+                                        keyboardType:
+                                        TextInputType.multiline,
+                                        textInputAction:
+                                        TextInputAction.done,
+                                        cursorColor: Colors.black.withOpacity(0.2),
+                                        showCursor: true,
+                                        decoration: InputDecoration(
+                                            border: InputBorder.none,
+                                            labelStyle:
+                                            TextStyle(
+                                              color: Colors.black.withOpacity(0.6),
+                                            )
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Container(
+                                  padding: EdgeInsets.only(left: 5, right: 5),
+                                  decoration: BoxDecoration(
+                                      color: Colors.white.withOpacity(0.8),
+                                      borderRadius: BorderRadius.circular(0),
+                                    border: Border.all(
+                                        style: BorderStyle.solid,
+                                        color: Colors.black.withOpacity(0.2),
+                                        width: 1),
+                                  ),
+                                  height: 100,
+                                  margin: EdgeInsets.only(
+                                      left: 0,
+                                      right: 0,
+                                      top: 0,
+                                      bottom: 0),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      SizedBox(height: 5,),
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                              'Description:',
+                                            style: TextStyle(
+                                              color: Colors.black87.withOpacity(0.5),
+                                              fontSize: 15.5,
+                                              fontWeight: FontWeight.w700,
+                                              fontFamily: 'fonts/Roboto-Regular.ttf',
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                      SizedBox(height: 10,),
+                                      Container(
+                                        padding: EdgeInsets.only(left: 10,right: 10),
+                                        child: Text(
+                                          'To Shutdown the Computer in schedule time',
+                                          style: TextStyle(
+                                            color: Colors.black87.withOpacity(0.6),
+                                            fontSize: 13,
+                                            fontWeight: FontWeight.w400,
+                                            fontFamily: 'fonts/Roboto-Regular.ttf',
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  )
+                                ),
+                                ElevatedButton(
+                                    child: Text(
+                                      "RUN SCRIPT",
+                                      style: TextStyle(
+                                          fontWeight:
+                                          FontWeight.bold,
+                                          color:
+                                          Colors.white),
+                                    ),
+                                    style: ElevatedButton.styleFrom(
+                                      elevation: 5,
+                                      side: BorderSide(
+                                        color: Colors.white,
+                                        width: 2.0,
+                                      ),
+                                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15), // <-- Radius
+                                      ),
+                                      primary: Color(0xff19547b),
+                                    ),
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    }
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      });
+                },
+                child: ListTile(
+                  leading: SvgPicture.asset(
+                    'assets/scriptdocument1.svg',
+                    height: 60,
+                    width: 60,
+                    color: Color(0xff19547b),
+                  ),
+                  title:Text("ShutDown",style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black.withOpacity(0.75),
+                  ),),
+                  subtitle: Text('To Shutdown the Computer in schedule time'),
+                ),
+              ),
+              SizedBox(height: 10,),
+              ListTile(
+                leading: SvgPicture.asset(
+                  'assets/scriptdocument1.svg',
+                  height: 60,
+                  width: 60,
+                  color: Color(0xff19547b),
+                ),
+                title:Text("LockScreen",style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black.withOpacity(0.75),
+                ),),
+                subtitle: Text('To Shutdown the Computer in schedule time'),
+              ),
+              SizedBox(height: 10,),
+              ListTile(
+                leading: SvgPicture.asset(
+                  'assets/scriptdocument1.svg',
+                  height: 60,
+                  width: 60,
+                  color: Color(0xff19547b),
+                ),
+                title:Text("Sleep",style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black.withOpacity(0.75),
+                ),),
+                subtitle: Text('To Shutdown the Computer in schedule time'),
+              ),
+              SizedBox(height: 10,),
+              ListTile(
+                leading: SvgPicture.asset(
+                  'assets/scriptdocument1.svg',
+                  height: 60,
+                  width: 60,
+                  color: Color(0xff19547b),
+                ),
+                title:Text("Windows Update",style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black.withOpacity(0.75),
+                ),),
+                subtitle: Text('To Shutdown the Computer in schedule time'),
+              ),
+              SizedBox(height: 10,),
+              ListTile(
+                leading: SvgPicture.asset(
+                  'assets/scriptdocument1.svg',
+                  height: 60,
+                  width: 60,
+                  color: Color(0xff19547b),
+                ),
+                title:Text("Windows Defender Update",style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black.withOpacity(0.75),
+                ),),
+                subtitle: Text('To Shutdown the Computer in schedule time'),
+              ),
+              SizedBox(height: 10,),
+              ListTile(
+                leading: SvgPicture.asset(
+                  'assets/scriptdocument1.svg',
+                  height: 60,
+                  width: 60,
+                  color: Color(0xff19547b),
+                ),
+                title:Text("ShutDown",style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black.withOpacity(0.75),
+                ),),
+                subtitle: Text('To Shutdown the Computer in schedule time'),
+              ),
+              SizedBox(height: 10,),
+              ListTile(
+                leading: SvgPicture.asset(
+                  'assets/scriptdocument1.svg',
+                  height: 60,
+                  width: 60,
+                  color: Color(0xff19547b),
+                ),
+                title:Text("LockScreen",style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black.withOpacity(0.75),
+                ),),
+                subtitle: Text('To Shutdown the Computer in schedule time'),
+              ),
+              SizedBox(height: 10,),
+              ListTile(
+                leading: SvgPicture.asset(
+                  'assets/scriptdocument1.svg',
+                  height: 60,
+                  width: 60,
+                  color: Color(0xff19547b),
+                ),
+                title:Text("Sleep",style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black.withOpacity(0.75),
+                ),),
+                subtitle: Text('To Shutdown the Computer in schedule time'),
+              ),
+              SizedBox(height: 10,),
+              ListTile(
+                leading: SvgPicture.asset(
+                  'assets/scriptdocument1.svg',
+                  height: 60,
+                  width: 60,
+                  color: Color(0xff19547b),
+                ),
+                title:Text("Windows Update",style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black.withOpacity(0.75),
+                ),),
+                subtitle: Text('To Shutdown the Computer in schedule time'),
+              ),
+              SizedBox(height: 10,),
+              ListTile(
+                leading: SvgPicture.asset(
+                  'assets/scriptdocument1.svg',
+                  height: 60,
+                  width: 60,
+                  color: Color(0xff19547b),
+                ),
+                title:Text("Windows Defender Update",style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black.withOpacity(0.75),
+                ),),
+                subtitle: Text('To Shutdown the Computer in schedule time'),
+              ),
+              SizedBox(height: 10,),
+              ListTile(
+                leading: SvgPicture.asset(
+                  'assets/scriptdocument1.svg',
+                  height: 60,
+                  width: 60,
+                  color: Color(0xff19547b),
+                ),
+                title:Text("ShutDown",style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black.withOpacity(0.75),
+                ),),
+                subtitle: Text('To Shutdown the Computer in schedule time'),
+              ),
+              SizedBox(height: 10,),
+              ListTile(
+                leading: SvgPicture.asset(
+                  'assets/scriptdocument1.svg',
+                  height: 60,
+                  width: 60,
+                  color: Color(0xff19547b),
+                ),
+                title:Text("LockScreen",style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black.withOpacity(0.75),
+                ),),
+                subtitle: Text('To Shutdown the Computer in schedule time'),
+              ),
+              SizedBox(height: 10,),
+              ListTile(
+                leading: SvgPicture.asset(
+                  'assets/scriptdocument1.svg',
+                  height: 60,
+                  width: 60,
+                  color: Color(0xff19547b),
+                ),
+                title:Text("Sleep",style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black.withOpacity(0.75),
+                ),),
+                subtitle: Text('To Shutdown the Computer in schedule time'),
+              ),
+              SizedBox(height: 10,),
+              ListTile(
+                leading: SvgPicture.asset(
+                  'assets/scriptdocument1.svg',
+                  height: 60,
+                  width: 60,
+                  color: Color(0xff19547b),
+                ),
+                title:Text("Windows Update",style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black.withOpacity(0.75),
+                ),),
+                subtitle: Text('To Shutdown the Computer in schedule time'),
+              ),
+              SizedBox(height: 10,),
+              ListTile(
+                leading: SvgPicture.asset(
+                  'assets/scriptdocument1.svg',
+                  height: 60,
+                  width: 60,
+                  color: Color(0xff19547b),
+                ),
+                title:Text("Windows Defender Update",style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black.withOpacity(0.75),
+                ),),
+                subtitle: Text('To Shutdown the Computer in schedule time'),
+              ),
+              SizedBox(height: 10,),
+              ListTile(
+                leading: SvgPicture.asset(
+                  'assets/scriptdocument1.svg',
+                  height: 60,
+                  width: 60,
+                  color: Color(0xff19547b),
+                ),
+                title:Text("ShutDown",style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black.withOpacity(0.75),
+                ),),
+                subtitle: Text('To Shutdown the Computer in schedule time'),
+              ),
+              SizedBox(height: 10,),
+              ListTile(
+                leading: SvgPicture.asset(
+                  'assets/scriptdocument1.svg',
+                  height: 60,
+                  width: 60,
+                  color: Color(0xff19547b),
+                ),
+                title:Text("LockScreen",style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black.withOpacity(0.75),
+                ),),
+                subtitle: Text('To Shutdown the Computer in schedule time'),
+              ),
+              SizedBox(height: 10,),
+              ListTile(
+                leading: SvgPicture.asset(
+                  'assets/scriptdocument1.svg',
+                  height: 60,
+                  width: 60,
+                  color: Color(0xff19547b),
+                ),
+                title:Text("Sleep",style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black.withOpacity(0.75),
+                ),),
+                subtitle: Text('To Shutdown the Computer in schedule time'),
+              ),
+              SizedBox(height: 10,),
+              ListTile(
+                leading: SvgPicture.asset(
+                  'assets/scriptdocument1.svg',
+                  height: 60,
+                  width: 60,
+                  color: Color(0xff19547b),
+                ),
+                title:Text("Windows Update",style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black.withOpacity(0.75),
+                ),),
+                subtitle: Text('To Shutdown the Computer in schedule time'),
+              ),
+              SizedBox(height: 10,),
+              ListTile(
+                leading: SvgPicture.asset(
+                  'assets/scriptdocument1.svg',
+                  height: 60,
+                  width: 60,
+                  color: Color(0xff19547b),
+                ),
+                title:Text("Windows Defender Update",style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black.withOpacity(0.75),
+                ),),
+                subtitle: Text('To Shutdown the Computer in schedule time'),
+              ),
+            ],
+          ),
+        )
+      ),
+    );
+  }
+
   Widget getTerminal(){
+
+    final _controllerFirstName = TextEditingController();
+    _controllerFirstName.text = 'Microsoft Windows [Version 10.0.19044.1586]\n(c) Microsoft Corporation. All rights reserved.\n\nC:\Users\ADMIN>';
+
     return Expanded(
       child: Column(
         children: [
@@ -2138,6 +2661,10 @@ class _MatrixPageState extends State<MatrixPage> {
               margin: EdgeInsets.only(left: 15, right: 15, top: 0, bottom: 10),
               child: TextField(
                 maxLines:null,
+                controller: _controllerFirstName,
+                onChanged: (value){
+                  print(_controllerFirstName.value);
+                },
                 cursorColor: Colors.white,
                 decoration: InputDecoration(
                   border: InputBorder.none,
