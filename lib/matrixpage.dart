@@ -8,14 +8,13 @@ import 'package:delayed_display/delayed_display.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animator/flutter_animator.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:grouped_list/grouped_list.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 import 'package:measured_size/measured_size.dart';
 
-// import 'package:measured_size/measured_size.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
+import 'package:dp_stopwatch/dp_stopwatch.dart';
 
 final List<Map<String, dynamic>> ticket = [
   {
@@ -484,6 +483,13 @@ class MatrixPage extends StatefulWidget {
 
 class _MatrixPageState extends State<MatrixPage> {
 
+  final stopwatchViewModel = DPStopwatchViewModel(
+    clockTextStyle: const TextStyle(
+      color: Colors.black,
+      fontSize: 32,
+    ),
+  );
+
   final GlobalKey<AnimatorWidgetState> basicAnimation =
   GlobalKey<AnimatorWidgetState>();
 
@@ -553,6 +559,9 @@ class _MatrixPageState extends State<MatrixPage> {
   var _index ;
 
   bool _callIgnore = false;
+
+  bool mic = false;
+  bool speaker = false;
 
   /*var memoryWidgets = <String>[];
   var _memoryWidgets = [];*/
@@ -1225,7 +1234,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                                   'assets/remoteiconpadding.png') {            // Turning ON and OFF Remote
                                                 _remote = !_remote;
                                               } else if (value.toList()[index] ==
-                                                  'assets/callicongreenpadding.png'){
+                                                  'assets/callicongreenpadding1.gif'){
                                                 Caller();
                                               } else if (value.toList()[index] == 'assets/calliconpadding.png'){
                                                 Caller();
@@ -1287,7 +1296,7 @@ class _MatrixPageState extends State<MatrixPage> {
 
                                                 setState(() {
 
-                                                  /*if(memorybar[_sysNumber]?.contains('assets/callicongreenpadding.png')==true){
+                                                  /*if(memorybar[_sysNumber]?.contains('assets/callicongreenpadding1.gif')==true){
                                                     print('_callIgnore1=false');
                                                     _callIgnore=false;
                                                   } else if(memorybar[_sysNumber]?.contains('assets/calliconpadding.png')==true){
@@ -1300,11 +1309,11 @@ class _MatrixPageState extends State<MatrixPage> {
                                                       value.remove(
                                                           memorybar[_sysNumber]!.toList()[index]);
 
-                                                      if(value.contains('assets/callicongreenpadding.png')){
-                                                        print('hello');
+                                                      if(value.contains('assets/callicongreenpadding1.gif')){
+                                                        print('$key , hello1');
                                                         _callIgnore=true;
                                                       }else if(value.contains('assets/calliconpadding.png')){
-                                                        print('hello');
+                                                        print('$key , hello2');
                                                         _callIgnore=true;
                                                       }else{
                                                         _callIgnore=false;
@@ -2139,6 +2148,10 @@ class _MatrixPageState extends State<MatrixPage> {
   }
 
   Widget getScripting(){
+
+    final _controllerScripting = TextEditingController();
+    _controllerScripting.text = "Scripting";
+
     return Expanded(
       child: Container(
         // height: MediaQuery.of(context).size.height-100,
@@ -2222,8 +2235,8 @@ class _MatrixPageState extends State<MatrixPage> {
                                 Container(
                                   padding: EdgeInsets.only(left: 5, right: 5),
                                   decoration: BoxDecoration(
-                                      color: Colors.white.withOpacity(0.8),
-                                      borderRadius: BorderRadius.circular(0),
+                                    color: Colors.white.withOpacity(0.8),
+                                    borderRadius: BorderRadius.circular(0),
                                     border: Border.all(
                                         style: BorderStyle.solid,
                                         color: Colors.black.withOpacity(0.2),
@@ -2243,26 +2256,26 @@ class _MatrixPageState extends State<MatrixPage> {
                                           Text(
                                             'Script:',
                                             style: TextStyle(
-                                            color: Colors.black87.withOpacity(0.5),
-                                            fontSize: 15.5,
-                                            fontWeight: FontWeight.w700,
-                                            fontFamily: 'fonts/Roboto-Regular.ttf',
-                                          ),)
+                                              color: Colors.black87.withOpacity(0.5),
+                                              fontSize: 15.5,
+                                              fontWeight: FontWeight.w700,
+                                              fontFamily: 'fonts/Roboto-Regular.ttf',
+                                            ),)
                                         ],
                                       ),
                                       TextField(
+                                        controller: _controllerScripting,
                                         minLines: null,
                                         maxLines: null,
-                                        keyboardType:
-                                        TextInputType.multiline,
-                                        textInputAction:
-                                        TextInputAction.done,
+                                        keyboardType: TextInputType.multiline,
+                                        textInputAction: TextInputAction.done,
                                         cursorColor: Colors.black.withOpacity(0.2),
                                         showCursor: true,
                                         decoration: InputDecoration(
                                             border: InputBorder.none,
                                             labelStyle:
                                             TextStyle(
+                                              fontFamily: 'raster',
                                               color: Colors.black.withOpacity(0.6),
                                             )
                                         ),
@@ -2271,54 +2284,54 @@ class _MatrixPageState extends State<MatrixPage> {
                                   ),
                                 ),
                                 Container(
-                                  padding: EdgeInsets.only(left: 5, right: 5),
-                                  decoration: BoxDecoration(
+                                    padding: EdgeInsets.only(left: 5, right: 5),
+                                    decoration: BoxDecoration(
                                       color: Colors.white.withOpacity(0.8),
                                       borderRadius: BorderRadius.circular(0),
-                                    border: Border.all(
-                                        style: BorderStyle.solid,
-                                        color: Colors.black.withOpacity(0.2),
-                                        width: 1),
-                                  ),
-                                  height: 100,
-                                  margin: EdgeInsets.only(
-                                      left: 0,
-                                      right: 0,
-                                      top: 0,
-                                      bottom: 0),
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: [
-                                      SizedBox(height: 5,),
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
-                                        children: [
-                                          Text(
+                                      border: Border.all(
+                                          style: BorderStyle.solid,
+                                          color: Colors.black.withOpacity(0.2),
+                                          width: 1),
+                                    ),
+                                    height: 100,
+                                    margin: EdgeInsets.only(
+                                        left: 0,
+                                        right: 0,
+                                        top: 0,
+                                        bottom: 0),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: [
+                                        SizedBox(height: 5,),
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          children: [
+                                            Text(
                                               'Description:',
+                                              style: TextStyle(
+                                                color: Colors.black87.withOpacity(0.5),
+                                                fontSize: 15.5,
+                                                fontWeight: FontWeight.w700,
+                                                fontFamily: 'fonts/Roboto-Regular.ttf',
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                        SizedBox(height: 10,),
+                                        Container(
+                                          padding: EdgeInsets.only(left: 10,right: 10),
+                                          child: Text(
+                                            'To Shutdown the Computer in schedule time',
                                             style: TextStyle(
-                                              color: Colors.black87.withOpacity(0.5),
-                                              fontSize: 15.5,
-                                              fontWeight: FontWeight.w700,
+                                              color: Colors.black87.withOpacity(0.6),
+                                              fontSize: 13,
+                                              fontWeight: FontWeight.w400,
                                               fontFamily: 'fonts/Roboto-Regular.ttf',
                                             ),
-                                          )
-                                        ],
-                                      ),
-                                      SizedBox(height: 10,),
-                                      Container(
-                                        padding: EdgeInsets.only(left: 10,right: 10),
-                                        child: Text(
-                                          'To Shutdown the Computer in schedule time',
-                                          style: TextStyle(
-                                            color: Colors.black87.withOpacity(0.6),
-                                            fontSize: 13,
-                                            fontWeight: FontWeight.w400,
-                                            fontFamily: 'fonts/Roboto-Regular.ttf',
                                           ),
-                                        ),
-                                      )
-                                    ],
-                                  )
+                                        )
+                                      ],
+                                    )
                                 ),
                                 ElevatedButton(
                                     child: Text(
@@ -2350,11 +2363,10 @@ class _MatrixPageState extends State<MatrixPage> {
                       });
                 },
                 child: ListTile(
-                  leading: SvgPicture.asset(
-                    'assets/scriptdocument1.svg',
+                  leading: Image.asset(
+                    'assets/scriptscripting.png',
                     height: 60,
                     width: 60,
-                    color: Color(0xff19547b),
                   ),
                   title:Text("ShutDown",style: TextStyle(
                     fontWeight: FontWeight.bold,
@@ -2365,11 +2377,10 @@ class _MatrixPageState extends State<MatrixPage> {
               ),
               SizedBox(height: 10,),
               ListTile(
-                leading: SvgPicture.asset(
-                  'assets/scriptdocument1.svg',
+                leading: Image.asset(
+                  'assets/scriptscripting.png',
                   height: 60,
                   width: 60,
-                  color: Color(0xff19547b),
                 ),
                 title:Text("LockScreen",style: TextStyle(
                   fontWeight: FontWeight.bold,
@@ -2379,11 +2390,10 @@ class _MatrixPageState extends State<MatrixPage> {
               ),
               SizedBox(height: 10,),
               ListTile(
-                leading: SvgPicture.asset(
-                  'assets/scriptdocument1.svg',
+                leading: Image.asset(
+                  'assets/scriptscripting.png',
                   height: 60,
                   width: 60,
-                  color: Color(0xff19547b),
                 ),
                 title:Text("Sleep",style: TextStyle(
                   fontWeight: FontWeight.bold,
@@ -2393,11 +2403,10 @@ class _MatrixPageState extends State<MatrixPage> {
               ),
               SizedBox(height: 10,),
               ListTile(
-                leading: SvgPicture.asset(
-                  'assets/scriptdocument1.svg',
+                leading: Image.asset(
+                  'assets/scriptscripting.png',
                   height: 60,
                   width: 60,
-                  color: Color(0xff19547b),
                 ),
                 title:Text("Windows Update",style: TextStyle(
                   fontWeight: FontWeight.bold,
@@ -2407,11 +2416,10 @@ class _MatrixPageState extends State<MatrixPage> {
               ),
               SizedBox(height: 10,),
               ListTile(
-                leading: SvgPicture.asset(
-                  'assets/scriptdocument1.svg',
+                leading: Image.asset(
+                  'assets/scriptscripting.png',
                   height: 60,
                   width: 60,
-                  color: Color(0xff19547b),
                 ),
                 title:Text("Windows Defender Update",style: TextStyle(
                   fontWeight: FontWeight.bold,
@@ -2421,11 +2429,10 @@ class _MatrixPageState extends State<MatrixPage> {
               ),
               SizedBox(height: 10,),
               ListTile(
-                leading: SvgPicture.asset(
-                  'assets/scriptdocument1.svg',
+                leading: Image.asset(
+                  'assets/scriptscripting.png',
                   height: 60,
                   width: 60,
-                  color: Color(0xff19547b),
                 ),
                 title:Text("ShutDown",style: TextStyle(
                   fontWeight: FontWeight.bold,
@@ -2435,11 +2442,10 @@ class _MatrixPageState extends State<MatrixPage> {
               ),
               SizedBox(height: 10,),
               ListTile(
-                leading: SvgPicture.asset(
-                  'assets/scriptdocument1.svg',
+                leading: Image.asset(
+                  'assets/scriptscripting.png',
                   height: 60,
                   width: 60,
-                  color: Color(0xff19547b),
                 ),
                 title:Text("LockScreen",style: TextStyle(
                   fontWeight: FontWeight.bold,
@@ -2449,11 +2455,10 @@ class _MatrixPageState extends State<MatrixPage> {
               ),
               SizedBox(height: 10,),
               ListTile(
-                leading: SvgPicture.asset(
-                  'assets/scriptdocument1.svg',
+                leading: Image.asset(
+                  'assets/scriptscripting.png',
                   height: 60,
                   width: 60,
-                  color: Color(0xff19547b),
                 ),
                 title:Text("Sleep",style: TextStyle(
                   fontWeight: FontWeight.bold,
@@ -2463,11 +2468,10 @@ class _MatrixPageState extends State<MatrixPage> {
               ),
               SizedBox(height: 10,),
               ListTile(
-                leading: SvgPicture.asset(
-                  'assets/scriptdocument1.svg',
+                leading: Image.asset(
+                  'assets/scriptscripting.png',
                   height: 60,
                   width: 60,
-                  color: Color(0xff19547b),
                 ),
                 title:Text("Windows Update",style: TextStyle(
                   fontWeight: FontWeight.bold,
@@ -2477,11 +2481,10 @@ class _MatrixPageState extends State<MatrixPage> {
               ),
               SizedBox(height: 10,),
               ListTile(
-                leading: SvgPicture.asset(
-                  'assets/scriptdocument1.svg',
+                leading: Image.asset(
+                  'assets/scriptscripting.png',
                   height: 60,
                   width: 60,
-                  color: Color(0xff19547b),
                 ),
                 title:Text("Windows Defender Update",style: TextStyle(
                   fontWeight: FontWeight.bold,
@@ -2491,11 +2494,10 @@ class _MatrixPageState extends State<MatrixPage> {
               ),
               SizedBox(height: 10,),
               ListTile(
-                leading: SvgPicture.asset(
-                  'assets/scriptdocument1.svg',
+                leading: Image.asset(
+                  'assets/scriptscripting.png',
                   height: 60,
                   width: 60,
-                  color: Color(0xff19547b),
                 ),
                 title:Text("ShutDown",style: TextStyle(
                   fontWeight: FontWeight.bold,
@@ -2505,11 +2507,10 @@ class _MatrixPageState extends State<MatrixPage> {
               ),
               SizedBox(height: 10,),
               ListTile(
-                leading: SvgPicture.asset(
-                  'assets/scriptdocument1.svg',
+                leading: Image.asset(
+                  'assets/scriptscripting.png',
                   height: 60,
                   width: 60,
-                  color: Color(0xff19547b),
                 ),
                 title:Text("LockScreen",style: TextStyle(
                   fontWeight: FontWeight.bold,
@@ -2519,11 +2520,10 @@ class _MatrixPageState extends State<MatrixPage> {
               ),
               SizedBox(height: 10,),
               ListTile(
-                leading: SvgPicture.asset(
-                  'assets/scriptdocument1.svg',
+                leading: Image.asset(
+                  'assets/scriptscripting.png',
                   height: 60,
                   width: 60,
-                  color: Color(0xff19547b),
                 ),
                 title:Text("Sleep",style: TextStyle(
                   fontWeight: FontWeight.bold,
@@ -2533,11 +2533,10 @@ class _MatrixPageState extends State<MatrixPage> {
               ),
               SizedBox(height: 10,),
               ListTile(
-                leading: SvgPicture.asset(
-                  'assets/scriptdocument1.svg',
+                leading: Image.asset(
+                  'assets/scriptscripting.png',
                   height: 60,
                   width: 60,
-                  color: Color(0xff19547b),
                 ),
                 title:Text("Windows Update",style: TextStyle(
                   fontWeight: FontWeight.bold,
@@ -2547,11 +2546,10 @@ class _MatrixPageState extends State<MatrixPage> {
               ),
               SizedBox(height: 10,),
               ListTile(
-                leading: SvgPicture.asset(
-                  'assets/scriptdocument1.svg',
+                leading: Image.asset(
+                  'assets/scriptscripting.png',
                   height: 60,
                   width: 60,
-                  color: Color(0xff19547b),
                 ),
                 title:Text("Windows Defender Update",style: TextStyle(
                   fontWeight: FontWeight.bold,
@@ -2561,11 +2559,10 @@ class _MatrixPageState extends State<MatrixPage> {
               ),
               SizedBox(height: 10,),
               ListTile(
-                leading: SvgPicture.asset(
-                  'assets/scriptdocument1.svg',
+                leading: Image.asset(
+                  'assets/scriptscripting.png',
                   height: 60,
                   width: 60,
-                  color: Color(0xff19547b),
                 ),
                 title:Text("ShutDown",style: TextStyle(
                   fontWeight: FontWeight.bold,
@@ -2575,11 +2572,10 @@ class _MatrixPageState extends State<MatrixPage> {
               ),
               SizedBox(height: 10,),
               ListTile(
-                leading: SvgPicture.asset(
-                  'assets/scriptdocument1.svg',
+                leading: Image.asset(
+                  'assets/scriptscripting.png',
                   height: 60,
                   width: 60,
-                  color: Color(0xff19547b),
                 ),
                 title:Text("LockScreen",style: TextStyle(
                   fontWeight: FontWeight.bold,
@@ -2589,11 +2585,10 @@ class _MatrixPageState extends State<MatrixPage> {
               ),
               SizedBox(height: 10,),
               ListTile(
-                leading: SvgPicture.asset(
-                  'assets/scriptdocument1.svg',
+                leading: Image.asset(
+                  'assets/scriptscripting.png',
                   height: 60,
                   width: 60,
-                  color: Color(0xff19547b),
                 ),
                 title:Text("Sleep",style: TextStyle(
                   fontWeight: FontWeight.bold,
@@ -2603,11 +2598,10 @@ class _MatrixPageState extends State<MatrixPage> {
               ),
               SizedBox(height: 10,),
               ListTile(
-                leading: SvgPicture.asset(
-                  'assets/scriptdocument1.svg',
+                leading: Image.asset(
+                  'assets/scriptscripting.png',
                   height: 60,
                   width: 60,
-                  color: Color(0xff19547b),
                 ),
                 title:Text("Windows Update",style: TextStyle(
                   fontWeight: FontWeight.bold,
@@ -2617,11 +2611,10 @@ class _MatrixPageState extends State<MatrixPage> {
               ),
               SizedBox(height: 10,),
               ListTile(
-                leading: SvgPicture.asset(
-                  'assets/scriptdocument1.svg',
+                leading: Image.asset(
+                  'assets/scriptscripting.png',
                   height: 60,
                   width: 60,
-                  color: Color(0xff19547b),
                 ),
                 title:Text("Windows Defender Update",style: TextStyle(
                   fontWeight: FontWeight.bold,
@@ -2638,8 +2631,8 @@ class _MatrixPageState extends State<MatrixPage> {
 
   Widget getTerminal(){
 
-    final _controllerFirstName = TextEditingController();
-    _controllerFirstName.text = 'Microsoft Windows [Version 10.0.19044.1586]\n(c) Microsoft Corporation. All rights reserved.\n\nC:\Users\ADMIN>';
+    final _controllerTerminal = TextEditingController();
+    _controllerTerminal.text = 'Microsoft Windows [Version 10.0.19044.1586]\n(c) Microsoft Corporation. All rights reserved.\n\nC:\Users\ADMIN>';
 
     return Expanded(
       child: Column(
@@ -2661,9 +2654,9 @@ class _MatrixPageState extends State<MatrixPage> {
               margin: EdgeInsets.only(left: 15, right: 15, top: 0, bottom: 10),
               child: TextField(
                 maxLines:null,
-                controller: _controllerFirstName,
+                controller: _controllerTerminal,
                 onChanged: (value){
-                  print(_controllerFirstName.value);
+                 print( _controllerTerminal.text);
                 },
                 cursorColor: Colors.white,
                 decoration: InputDecoration(
@@ -4245,11 +4238,11 @@ class _MatrixPageState extends State<MatrixPage> {
                                                   ticket[index]['sysNumber']) ==
                                                   true) {
                                                 memorybar[ticket[index]['sysNumber']]
-                                                    ?.add('assets/callicongreenpadding.png');
+                                                    ?.add('assets/callicongreenpadding1.gif');
                                               } else {
                                                 memorybar.addEntries([
                                                   MapEntry(ticket[index]['sysNumber'],
-                                                      {'assets/callicongreenpadding.png'})
+                                                      {'assets/callicongreenpadding1.gif'})
                                                 ]);
                                               }
                                             });
@@ -4972,8 +4965,9 @@ class _MatrixPageState extends State<MatrixPage> {
                     // ),
                     InkWell(
                       onTap: () {
-                        /*print(memorybar[_sysNumber]?.contains('assets/callicongreenpadding.png'));*/
-                        print(memorybar[_sysNumber]);
+                        /*print(memorybar[_sysNumber]?.contains('assets/callicongreenpadding1.gif'));*/
+                        print(memorybar);
+
                         setState(() {
                           // height=height+10;
                           // width!=15.0?width=15.0:width=150;
@@ -7298,173 +7292,249 @@ class _MatrixPageState extends State<MatrixPage> {
       barrierColor: Colors.black.withOpacity(0.6),
       transitionDuration: const Duration(milliseconds: 400),
       context: context,
-      pageBuilder: (context, _, __) {
-        return Align(
-          alignment: Alignment.bottomCenter,
-          child: IntrinsicHeight(
-            child: Container(
-              margin: EdgeInsets.only(left: 15,right: 15,bottom: 5),
-              height: 300,
-              clipBehavior: Clip.antiAlias,
-              padding: const EdgeInsets.all(16),
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/call.png'),
-                  fit: BoxFit.fill,
+      pageBuilder: (context, _, __) => StatefulBuilder(
+        builder: (BuildContext context, void Function(void Function()) setState) =>
+        Align(
+            alignment: Alignment.bottomCenter,
+            child: IntrinsicHeight(
+              child: Container(
+                margin: EdgeInsets.only(left: 15,right: 15,bottom: 5),
+                height: 300,
+                clipBehavior: Clip.antiAlias,
+                padding: const EdgeInsets.all(16),
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/call.png'),
+                    fit: BoxFit.fill,
+                  ),
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30),
+                    bottomLeft: Radius.circular(20),
+                    bottomRight: Radius.circular(20),
+                  ),
                 ),
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(30),
-                  topRight: Radius.circular(30),
-                  bottomLeft: Radius.circular(20),
-                  bottomRight: Radius.circular(20),
-                ),
-              ),
-              child: Material(
-                color: Colors.transparent,
-                child: Column(
-                  children: [
-                    GestureDetector(
-                      onTap: (){
-                        Navigator.of(context).pop();
-                      },
-                      child: Card(
-                        elevation: 5,
-                        color: Colors.white,
-                        shape: BeveledRectangleBorder(
-                          borderRadius: BorderRadius.circular(60.0),
-                        ),
-                        child: Container(
-                          height: 35,
-                          width: 110,
-                          padding: EdgeInsets.only(left: 15,right: 15,top: 5,bottom: 5),
-                            child: Center(
-                              child: Text(
-                                _sysNumber,
-                                style: TextStyle(
-                                  color: Colors.black.withOpacity(0.85),
-                                    shadows: [
-                                      Shadow(
-                                        offset: Offset(1.0, 1.0),
-                                        blurRadius: 3,
-                                        color: Colors.grey.withOpacity(0.5),
-                                      ),
-                                    ],
-                                    fontFamily: 'Roboto',
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18
+                child: Material(
+                  color: Colors.transparent,
+                  child: Column(
+                    children: [
+                      /*GestureDetector(
+                        onTap: (){
+                          Navigator.of(context).pop();
+                        },
+                        child: Card(
+                          elevation: 5,
+                          color: Colors.white,
+                          shape: BeveledRectangleBorder(
+                            borderRadius: BorderRadius.circular(60.0),
+                          ),
+                          child: Container(
+                            height: 35,
+                            width: 110,
+                            padding: EdgeInsets.only(left: 15,right: 15,top: 5,bottom: 5),
+                              child: Center(
+                                child: Text(
+                                  _sysNumber,
+                                  style: TextStyle(
+                                    color: Colors.black.withOpacity(0.85),
+                                      shadows: [
+                                        Shadow(
+                                          offset: Offset(1.0, 1.0),
+                                          blurRadius: 3,
+                                          color: Colors.grey.withOpacity(0.5),
+                                        ),
+                                      ],
+                                      fontFamily: 'Roboto',
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18
+                                  ),
                                 ),
-                              ),
-                            )
+                              )
+                          ),
+                        ),
+                      ),*/
+                      Text(
+                        _sysNumber,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          shadows: [
+                            Shadow(
+                              offset: Offset(1.0, 1.0),
+                              blurRadius: 3,
+                              color: Colors.black,
+                            ),
+                          ],
+                          color: Colors.blue,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          fontFamily: 'Roboto',
                         ),
                       ),
-                    ),
-                    Expanded(
-                        child: Container()
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          child: GestureDetector(
-                            onTap: (){
-                              setState(() {
-                                memorybar.forEach((key, value) {
-                                  if (key == _sysNumber) {
-                                    for (final i in memorybar[_sysNumber]!.toList()){
-                                      if (i=='assets/callicongreenpadding.png'){
-                                        value.remove(i);
-                                        value.add('assets/calliconpadding.png');
-                                      }else if(i=='assets/calliconpadding.png'){
-                                        value.remove(i);
-                                        value.add('assets/callicongreenpadding.png');
-                                      }
-                                    }
-                                    /*value.remove(
-                                        memorybar[_sysNumber]!
-                                            .toList()[0]);*/
-                                  }
+                      DPStopWatchWidget(
+                        stopwatchViewModel,
+                      ),
+                      Spacer(),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          AnimatedSwitcher(
+                            duration: Duration(milliseconds: 200),
+                            child: mic?GestureDetector(
+                              onTap: (){
+                                setState(() {
+                                  mic=!mic;
                                 });
-                              });
-                            },
-                            child: Container(
-                              height: 37.5,
-                                margin: EdgeInsets.only(right: 2.5),
-                                decoration: BoxDecoration(
-                                  color: Color(0xff483B3B),
-                                  borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(25),
-                                      bottomLeft: Radius.circular(25)
-                                  )
-                                ),
-                                child: Center(
-                                  child: Text(
-                                      'HOLD',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 20
-                                    ),
-                                  ),
-                                )
+                              },
+                              key: Key('M2'),
+                              child: Icon(
+                                Icons.mic_off_rounded,
+                                size: 50,
+                              ),
+                            ):GestureDetector(
+                              onTap: (){
+                                setState(() {
+                                  mic=!mic;
+                                });
+                              },
+                              key: Key('M1'),
+                              child: Icon(
+                                Icons.mic,
+                                size: 50,),
                             ),
                           ),
-                        ),
-                        Expanded(
-                          child: GestureDetector(
-                            onTap: (){
-                              _callIgnore=false;
-                              Navigator.of(context).pop();
-                              print( memorybar[_sysNumber]);
-                              setState(() {
-                                memorybar.forEach((key, value) {
-                                  if (key == _sysNumber) {
-                                    for (final i in memorybar[_sysNumber]!.toList()){
-                                      if (i=='assets/callicongreenpadding.png'){
-                                        value.remove(i);
-                                      }else if (i=='assets/calliconpadding.png'){
-                                        value.remove(i);
-                                      }
-                                    }
-                                    /*value.remove(
-                                        memorybar[_sysNumber]!
-                                            .toList()[0]);*/
-                                  }
+                          AnimatedSwitcher(
+                            duration: Duration(milliseconds: 200),
+                            child:speaker? GestureDetector(
+                              onTap: (){
+                                setState((){
+                                  speaker=!speaker;
                                 });
-                              });
-                            },
-                            child: Container(
+                              },
+                              key: Key('S2'),
+                              child: Icon(
+                                Icons.volume_up_rounded,
+                                size: 50,
+                              ),
+                            ):GestureDetector(
+                              onTap: (){
+                                setState((){
+                                  speaker=!speaker;
+                                });
+                              },
+                              key: Key('S1'),
+                              child: Icon(
+                                Icons.volume_off,
+                                size: 50,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            child: GestureDetector(
+                              onTap: (){
+                                this.setState(() {
+                                  memorybar.forEach((key, value) {
+                                    if (key == _sysNumber) {
+                                      for (final i in memorybar[_sysNumber]!.toList()){
+                                        if (i=='assets/callicongreenpadding1.gif'){
+                                          value.remove(i);
+                                          value.add('assets/calliconpadding.png');
+                                        }else if(i=='assets/calliconpadding.png'){
+                                          value.remove(i);
+                                          value.add('assets/callicongreenpadding1.gif');
+                                        }
+                                      }
+                                      /*value.remove(
+                                          memorybar[_sysNumber]!
+                                              .toList()[0]);*/
+                                    }
+                                  });
+                                });
+                              },
+                              child: Container(
                                 height: 37.5,
-                                margin: EdgeInsets.only(left: 2.5),
-                                decoration: BoxDecoration(
-                                  color: Color(0xffB91B1B),
+                                  margin: EdgeInsets.only(right: 2.5),
+                                  decoration: BoxDecoration(
+                                    color: Color(0xff483B3B),
                                     borderRadius: BorderRadius.only(
-                                        topRight: Radius.circular(25),
-                                        bottomRight: Radius.circular(25)
+                                        topLeft: Radius.circular(25),
+                                        bottomLeft: Radius.circular(25)
                                     )
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    'HANGOUT',
-                                    style: TextStyle(
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                        'HOLD',
+                                      style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 18
+                                        fontSize: 20
+                                      ),
                                     ),
-                                  ),
-                                )
+                                  )
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    )
-                  ],
+                          Expanded(
+                            child: GestureDetector(
+                              onTap: (){
+                                stopwatchViewModel.stop?.call();
+                                _callIgnore=false;
+                                Navigator.of(context).pop();
+                                print( memorybar[_sysNumber]);
+                                this.setState(() {
+                                  memorybar.forEach((key, value) {
+                                    if (key == _sysNumber) {
+                                      for (final i in memorybar[_sysNumber]!.toList()){
+                                        if (i=='assets/callicongreenpadding1.gif'){
+                                          value.remove(i);
+                                        }else if (i=='assets/calliconpadding.png'){
+                                          value.remove(i);
+                                        }
+                                      }
+                                      /*value.remove(
+                                          memorybar[_sysNumber]!
+                                              .toList()[0]);*/
+                                    }
+                                  });
+                                });
+                              },
+                              child: Container(
+                                  height: 37.5,
+                                  margin: EdgeInsets.only(left: 2.5),
+                                  decoration: BoxDecoration(
+                                    color: Color(0xffB91B1B),
+                                      borderRadius: BorderRadius.only(
+                                          topRight: Radius.circular(25),
+                                          bottomRight: Radius.circular(25)
+                                      )
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      'HANGOUT',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 18
+                                      ),
+                                    ),
+                                  )
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),
           ),
-        );
-      },
+      ),
       transitionBuilder: (_, animation1, __, child) {
         return SlideTransition(
           position: Tween(
