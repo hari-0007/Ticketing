@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:allitson/script.dart';
 import 'package:badges/badges.dart';
 import 'package:custom_pop_up_menu/custom_pop_up_menu.dart';
+import 'package:custom_timer/custom_timer.dart';
 import 'package:delayed_display/delayed_display.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -14,7 +15,6 @@ import 'package:measured_size/measured_size.dart';
 
 import 'package:shimmer/shimmer.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
-import 'package:dp_stopwatch/dp_stopwatch.dart';
 
 final List<Map<String, dynamic>> ticket = [
   {
@@ -483,12 +483,13 @@ class MatrixPage extends StatefulWidget {
 
 class _MatrixPageState extends State<MatrixPage> {
 
-  final stopwatchViewModel = DPStopwatchViewModel(
-    clockTextStyle: const TextStyle(
-      color: Colors.black,
-      fontSize: 32,
-    ),
-  );
+  final CustomTimerController _controllerTime = CustomTimerController();
+
+  @override
+  void dispose() {
+    _controllerTime.dispose();
+    super.dispose();
+  }
 
   final GlobalKey<AnimatorWidgetState> basicAnimation =
   GlobalKey<AnimatorWidgetState>();
@@ -562,6 +563,9 @@ class _MatrixPageState extends State<MatrixPage> {
 
   bool mic = false;
   bool speaker = false;
+  bool call = false;
+
+  bool _callVisibility = false;
 
   /*var memoryWidgets = <String>[];
   var _memoryWidgets = [];*/
@@ -1165,216 +1169,582 @@ class _MatrixPageState extends State<MatrixPage> {
                       Color(0xff7EB4F2),
                       Color(0xff8D6679),*/])
             ),
-            child: Column(
+            child: Stack(
               children: [
-                Padding(padding: EdgeInsets.only(top: MediaQuery.of(context).viewPadding.top+20)),
-                getIncidentAppbar(),
+                GestureDetector(
+                  onTap: (){
+                    print('hello');
+                    setState(() {
+                      if(_callVisibility==true){
+                        _callVisibility=false;
+                      }else{
+                        print("Helo1");
+                      }
+                    });
+                  },
+                ),
+                IgnorePointer(
+                  ignoring: _callVisibility==true?true:false,
+                  child: Column(
+                    children: [
+                      Padding(padding: EdgeInsets.only(top: MediaQuery.of(context).viewPadding.top+20)),
+                      getIncidentAppbar(),
 
-                Visibility(
-                  visible: (memory() && _ticketExpand == true),
-                  /*(memorybar[_sysNumber]?.length!=null||memorybar[_sysNumber]?.length==0),*/
-                  /*memorybar[_sysNumber]?.length==null?false:true,*/
-                  /*memorybar[_sysNumber]?.length != null?true:false,*/
-                  // memorybar.containsKey(_sysNumber)?true:false,
-                  child: Container(
-                    height: 35,
-                    width: MediaQuery.of(context).size.width,
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    margin:
-                        EdgeInsets.only(top: 7.5, bottom: 5, left: 0, right: 0),
-                    child: DecoratedBox(
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: AssetImage('assets/incidentappbar.png')),
-                        boxShadow: [
-                          BoxShadow(
-                              blurRadius: 10,
-                              offset: Offset(1, 1),
-                              color: Color(0xff000000).withOpacity(0.30)),
-                          BoxShadow(
-                              blurRadius: 10,
-                              offset: -Offset(1, 1),
-                              color: Color(0xff000000).withOpacity(0.30)),
-                        ],
-                        borderRadius: BorderRadius.all(Radius.circular(70)),
-                      ),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Container(
-                              padding:
-                                  EdgeInsets.symmetric(horizontal: 7.5, vertical: 0.5),
-                              child: ListView.builder(
-                                  scrollDirection: Axis.horizontal,
-                                  itemCount: memorybar.containsKey(_sysNumber)
-                                      ? memorybar[_sysNumber]!.length
-                                      : 0,
-                                  itemBuilder: (context, index) {
-                                    return GestureDetector(
-                                      onTap: () {
-                                        setState(() {
-                                          // memorybar.remove('C0001');
-                                          memorybar.forEach((key, value) {
-                                            if (key == _sysNumber) {                            //Switching on Visible MemoryBar only Remote and Chat Added
-                                              /*value.remove('assets/calliconpadding.png');*/
-                                              if (value.toList()[index] ==
-                                                  'assets/chaticon250.png') {
-                                                if (selectedIncidentWidgetMarker ==
-                                                    IncidentMarker.main) {                      // Switching Between Main and Chat Container
-                                                  selectedIncidentWidgetMarker =
-                                                      IncidentMarker.chat;
-                                                  _remote = false;
-                                                } else {
-                                                  selectedIncidentWidgetMarker =
-                                                      IncidentMarker.main;
-                                                  _remote = false;
-                                                }
-                                              } else if (value.toList()[index] ==
-                                                  'assets/remoteiconpadding.png') {            // Turning ON and OFF Remote
-                                                _remote = !_remote;
-                                              } else if (value.toList()[index] ==
-                                                  'assets/callicongreenpadding1.gif'){
-                                                Caller();
-                                              } else if (value.toList()[index] == 'assets/calliconpadding.png'){
-                                                Caller();
-                                              } else if (value.toList()[index] == 'assets/scripticonpadding.png'){
-                                                if (selectedIncidentWidgetMarker ==
-                                                    IncidentMarker.main){
-                                                  selectedIncidentWidgetMarker =
-                                                      IncidentMarker.script;
-                                                  _remote = false;
-                                                }else {
-                                                  selectedIncidentWidgetMarker =
-                                                      IncidentMarker.main;
-                                                  _remote = false;
-                                                }
-                                              } else if(value.toList()[index] == 'assets/terminaliconpadding.png'){
-                                                if (selectedIncidentWidgetMarker == IncidentMarker.main){
-                                                  selectedIncidentWidgetMarker = IncidentMarker.terminal;
-                                                  _remote = false;
-                                                }else {
-                                                  selectedIncidentWidgetMarker =
-                                                      IncidentMarker.main;
-                                                  _remote = false;
-                                                }
-                                              }
-                                              /*for (String i in value.toList()){
-                                                if(i=='assets/chaticon250.png'){
-                                                  if(selectedIncidentWidgetMarker == IncidentMarker.main){
-                                                    selectedIncidentWidgetMarker = IncidentMarker.chat;
-                                                  }else{
-                                                    selectedIncidentWidgetMarker = IncidentMarker.main;
+                      Visibility(
+                        visible: (memory() && _ticketExpand == true),
+                        /*(memorybar[_sysNumber]?.length!=null||memorybar[_sysNumber]?.length==0),*/
+                        /*memorybar[_sysNumber]?.length==null?false:true,*/
+                        /*memorybar[_sysNumber]?.length != null?true:false,*/
+                        // memorybar.containsKey(_sysNumber)?true:false,
+                        child: Container(
+                          height: 35,
+                          width: MediaQuery.of(context).size.width,
+                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          margin:
+                              EdgeInsets.only(top: 7.5, bottom: 5, left: 0, right: 0),
+                          child: DecoratedBox(
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: AssetImage('assets/incidentappbar.png')),
+                              boxShadow: [
+                                BoxShadow(
+                                    blurRadius: 10,
+                                    offset: Offset(1, 1),
+                                    color: Color(0xff000000).withOpacity(0.30)),
+                                BoxShadow(
+                                    blurRadius: 10,
+                                    offset: -Offset(1, 1),
+                                    color: Color(0xff000000).withOpacity(0.30)),
+                              ],
+                              borderRadius: BorderRadius.all(Radius.circular(70)),
+                            ),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: Container(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 7.5, vertical: 0.5),
+                                    child: ListView.builder(
+                                        scrollDirection: Axis.horizontal,
+                                        itemCount: memorybar.containsKey(_sysNumber)
+                                            ? memorybar[_sysNumber]!.length
+                                            : 0,
+                                        itemBuilder: (context, index) {
+                                          return GestureDetector(
+                                            onTap: () {
+                                              setState(() {
+                                                // memorybar.remove('C0001');
+                                                memorybar.forEach((key, value) {
+                                                  if (key == _sysNumber) {                            //Switching on Visible MemoryBar only Remote and Chat Added
+                                                    /*value.remove('assets/calliconpadding.png');*/
+                                                    if (value.toList()[index] ==
+                                                        'assets/chaticon250.png') {
+                                                      if (selectedIncidentWidgetMarker ==
+                                                          IncidentMarker.main) {                      // Switching Between Main and Chat Container
+                                                        selectedIncidentWidgetMarker =
+                                                            IncidentMarker.chat;
+                                                        _remote = false;
+                                                      } else {
+                                                        selectedIncidentWidgetMarker =
+                                                            IncidentMarker.main;
+                                                        _remote = false;
+                                                      }
+                                                    } else if (value.toList()[index] ==
+                                                        'assets/remoteiconpadding.png') {            // Turning ON and OFF Remote
+                                                      _remote = !_remote;
+                                                    } else if (value.toList()[index] ==
+                                                        'assets/callicongreenpadding1.gif'){
+                                                      _callVisibility=!_callVisibility;
+                                                    } else if (value.toList()[index] == 'assets/calliconpadding.png'){
+                                                      _callVisibility=!_callVisibility;
+                                                    } else if (value.toList()[index] == 'assets/scripticonpadding.png'){
+                                                      if (selectedIncidentWidgetMarker ==
+                                                          IncidentMarker.main){
+                                                        selectedIncidentWidgetMarker =
+                                                            IncidentMarker.script;
+                                                        _remote = false;
+                                                      }else {
+                                                        selectedIncidentWidgetMarker =
+                                                            IncidentMarker.main;
+                                                        _remote = false;
+                                                      }
+                                                    } else if(value.toList()[index] == 'assets/terminaliconpadding.png'){
+                                                      if (selectedIncidentWidgetMarker == IncidentMarker.main){
+                                                        selectedIncidentWidgetMarker = IncidentMarker.terminal;
+                                                        _remote = false;
+                                                      }else {
+                                                        selectedIncidentWidgetMarker =
+                                                            IncidentMarker.main;
+                                                        _remote = false;
+                                                      }
+                                                    }
+                                                    /*for (String i in value.toList()){
+                                                      if(i=='assets/chaticon250.png'){
+                                                        if(selectedIncidentWidgetMarker == IncidentMarker.main){
+                                                          selectedIncidentWidgetMarker = IncidentMarker.chat;
+                                                        }else{
+                                                          selectedIncidentWidgetMarker = IncidentMarker.main;
+                                                        }
+                                                      }else if(i=='assets/remoteiconpadding.png'){
+                                                        _remote = !_remote;
+                                                      }
+                                                    }*/
                                                   }
-                                                }else if(i=='assets/remoteiconpadding.png'){
-                                                  _remote = !_remote;
-                                                }
-                                              }*/
-                                            }
-                                          });
-                                        });
-                                        // print(memorybar[_sysNumber]);
-                                      },
-                                      child: LongPressDraggable(
-                                        data: memorybar[_sysNumber],
-                                        onDragStarted: () {
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(SnackBar(
-                                            duration: Duration(seconds: 60),
-                                            padding: EdgeInsets.zero,
-                                            backgroundColor: Colors.transparent,
+                                                });
+                                              });
+                                              // print(memorybar[_sysNumber]);
+                                            },
+                                            child: LongPressDraggable(
+                                              data: memorybar[_sysNumber],
+                                              onDragStarted: () {
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(SnackBar(
+                                                  duration: Duration(seconds: 60),
+                                                  padding: EdgeInsets.zero,
+                                                  backgroundColor: Colors.transparent,
+                                                  behavior: SnackBarBehavior.floating,
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius: BorderRadius.circular(24),
+                                                  ),
+                                                  margin: EdgeInsets.only(
+                                                      bottom:
+                                                          MediaQuery.of(context).size.height -
+                                                              62.5),
+                                                  content: DragTarget(
+                                                    onAccept: (remove) {
+
+                                                      setState(() {
+
+                                                        /*if(memorybar[_sysNumber]?.contains('assets/callicongreenpadding1.gif')==true){
+                                                          print('_callIgnore1=false');
+                                                          _callIgnore=false;
+                                                        } else if(memorybar[_sysNumber]?.contains('assets/calliconpadding.png')==true){
+                                                          print('_callIgnore2=false');
+                                                          _callIgnore=false;
+                                                        }*/
+
+                                                        memorybar.forEach((key, value) {
+                                                          if (key == _sysNumber) {
+                                                            value.remove(
+                                                                memorybar[_sysNumber]!.toList()[index]);
+
+                                                            if(value.contains('assets/callicongreenpadding1.gif')){
+                                                              print('$key , hello1');
+                                                              _callIgnore=true;
+                                                            }else if(value.contains('assets/calliconpadding.png')){
+                                                              print('$key , hello2');
+                                                              _callIgnore=true;
+                                                            }else{
+                                                              _callIgnore=false;
+                                                              _controllerTime.reset();
+                                                            }
+
+                                                            selectedIncidentWidgetMarker =
+                                                                IncidentMarker.main;
+                                                            _remote = false;
+                                                          }
+                                                        });
+                                                      });
+                                                      // print(memorybar[_sysNumber]);
+                                                    },
+                                                    builder: (context, _, __) => Container(
+                                                      height: 62.5,
+                                                      width:
+                                                          MediaQuery.of(context).size.width,
+                                                      decoration: BoxDecoration(
+                                                          gradient: LinearGradient(
+                                                              colors: [
+                                                            Color(0xffE35353),
+                                                            Color(0xffE35353)
+                                                                .withOpacity(0.0),
+                                                          ],
+                                                              begin: Alignment.topCenter,
+                                                              end: Alignment.bottomCenter)),
+                                                    ),
+                                                  ),
+                                                ));
+                                              },
+                                              onDragEnd: (remove) {
+                                                ScaffoldMessenger.of(context)
+                                                    .hideCurrentSnackBar();
+                                              },
+                                              childWhenDragging: SizedBox(width: 45),
+                                              feedback: Material(
+                                                color: Colors.transparent,
+                                                child: Transform.scale(
+                                                  alignment: Alignment(0,1.25),
+                                                  scale: 2.5,
+                                                  child: Container(
+                                                    height: 30,
+                                                    width: 30,
+                                                    margin: EdgeInsets.only(left: 8.5),
+                                                    child: Image.asset(
+                                                      memorybar[_sysNumber]!.elementAt(index),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              child: Container(
+                                                height: 32.5,
+                                                width: 32.5,
+                                                margin: EdgeInsets.only(left: 10),
+                                                child: Image.asset(
+                                                    memorybar[_sysNumber]!.elementAt(index),
+                                                ),
+                                              ),
+                                            ),
+                                          );
+                                        }),
+                                  ),
+                                ),
+                                Container(
+                                  margin: EdgeInsets.only(right: 12.5),
+                                  child: Text(
+                                    _sysNumber,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      shadows: [
+                                        Shadow(
+                                          offset: Offset(1.0, 1.0),
+                                          blurRadius: 3,
+                                          color: Colors.black,
+                                        ),
+                                      ],
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18,
+                                      fontFamily: 'Roboto',
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+
+                      /*Container(
+                        height: 35,
+                        width: MediaQuery.of(context).size.width,
+                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        margin: EdgeInsets.only(top: 7.5, left: 0, right: 0, bottom: 5),
+                        child: DecoratedBox(
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                                fit: BoxFit.cover,
+                                image: AssetImage('assets/incidentappbar.png')),
+                            boxShadow: [
+                              BoxShadow(
+                                  blurRadius: 10,
+                                  offset: Offset(1, 1),
+                                  color: Color(0xff000000).withOpacity(0.30)),
+                              BoxShadow(
+                                  blurRadius: 10,
+                                  offset: -Offset(1, 1),
+                                  color: Color(0xff000000).withOpacity(0.30)),
+                            ],
+                            borderRadius: BorderRadius.all(Radius.circular(70)),
+                          ),
+                          child: Row(
+                            children: _widgetMemory.toList()
+                          ),
+                      ),
+                      ),*/
+
+                      /*Visibility(
+                        visible: _memoryWidgets.length!=0?true:false,
+                        child: DelayedDisplay(
+                          slidingBeginOffset: Offset(0, -0.20),
+                          fadeIn: true,
+                          child: Container(
+                            height: 35,
+                            width: MediaQuery.of(context).size.width,
+                            padding: EdgeInsets.symmetric(horizontal: 20),
+                            margin: EdgeInsets.only(top: 7.5,left: 0,right: 0,bottom: 5),
+                            child: DecoratedBox(
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    fit: BoxFit.cover,
+                                    image: AssetImage('assets/incidentappbar.png')),
+                                boxShadow: [
+                                  BoxShadow(
+                                      blurRadius: 10,
+                                      offset: Offset(1, 1),
+                                      color: Color(0xff000000).withOpacity(0.30)),
+                                  BoxShadow(
+                                      blurRadius: 10,
+                                      offset: -Offset(1, 1),
+                                      color: Color(0xff000000).withOpacity(0.30)),
+                                ],
+                                borderRadius: BorderRadius.all(Radius.circular(70)),
+                              ),
+                              child: Container(
+                                padding: EdgeInsets.symmetric(horizontal: 7.5,vertical: 0.5),
+                                child: ListView.builder(
+                                    scrollDirection: Axis.horizontal,
+                                  itemCount: _memoryWidgets.length,
+                                    itemBuilder: (context, index){
+                                      return LongPressDraggable(
+                                        data: memoryWidgets,
+                                        onDragEnd: (remove){
+                                          ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                                        },
+                                        onDragStarted: (){
+                                          ScaffoldMessenger.of(context).showSnackBar(
+                                              SnackBar(
+                                                duration: Duration(seconds: 60),
+                                                padding: EdgeInsets.zero,
+                                                backgroundColor: Colors.transparent,
                                             behavior: SnackBarBehavior.floating,
                                             shape: RoundedRectangleBorder(
                                               borderRadius: BorderRadius.circular(24),
                                             ),
                                             margin: EdgeInsets.only(
-                                                bottom:
-                                                    MediaQuery.of(context).size.height -
-                                                        62.5),
-                                            content: DragTarget(
-                                              onAccept: (remove) {
-
-                                                setState(() {
-
-                                                  /*if(memorybar[_sysNumber]?.contains('assets/callicongreenpadding1.gif')==true){
-                                                    print('_callIgnore1=false');
-                                                    _callIgnore=false;
-                                                  } else if(memorybar[_sysNumber]?.contains('assets/calliconpadding.png')==true){
-                                                    print('_callIgnore2=false');
-                                                    _callIgnore=false;
-                                                  }*/
-
-                                                  memorybar.forEach((key, value) {
-                                                    if (key == _sysNumber) {
-                                                      value.remove(
-                                                          memorybar[_sysNumber]!.toList()[index]);
-
-                                                      if(value.contains('assets/callicongreenpadding1.gif')){
-                                                        print('$key , hello1');
-                                                        _callIgnore=true;
-                                                      }else if(value.contains('assets/calliconpadding.png')){
-                                                        print('$key , hello2');
-                                                        _callIgnore=true;
-                                                      }else{
-                                                        _callIgnore=false;
-                                                      }
-
-                                                      selectedIncidentWidgetMarker =
-                                                          IncidentMarker.main;
-                                                      _remote = false;
-                                                    }
-                                                  });
-                                                });
-                                                // print(memorybar[_sysNumber]);
-                                              },
-                                              builder: (context, _, __) => Container(
-                                                height: 62.5,
-                                                width:
-                                                    MediaQuery.of(context).size.width,
-                                                decoration: BoxDecoration(
-                                                    gradient: LinearGradient(
-                                                        colors: [
-                                                      Color(0xffE35353),
-                                                      Color(0xffE35353)
-                                                          .withOpacity(0.0),
-                                                    ],
-                                                        begin: Alignment.topCenter,
-                                                        end: Alignment.bottomCenter)),
-                                              ),
+                                              bottom:  MediaQuery.of(context).size.height - 62.5
                                             ),
+                                                content: DragTarget(
+                                                  onAccept: (remove){
+                                                    setState(() {
+                                                      this.memoryWidgets.removeAt(index);
+                                                    });
+                                                  },
+                                                  builder: (context, _, __) => Container(
+                                                    height: 62.5,
+                                                    width: MediaQuery.of(context).size.width,
+                                                    decoration: BoxDecoration(
+                                                      gradient: LinearGradient(
+                                                        colors: [
+                                                          Color(0xffE35353),
+                                                          Color(0xffE35353).withOpacity(0.0),
+                                                        ],
+                                                        begin: Alignment.topCenter,
+                                                        end: Alignment.bottomCenter
+                                                      )
+                                                    ),
+                                                  ),
+                                                ),
                                           ));
                                         },
-                                        onDragEnd: (remove) {
-                                          ScaffoldMessenger.of(context)
-                                              .hideCurrentSnackBar();
-                                        },
-                                        childWhenDragging: SizedBox(width: 45),
+                                        childWhenDragging: Container(),
                                         feedback: Material(
                                           color: Colors.transparent,
                                           child: Container(
-                                            height: 50,
-                                            width: 50,
-                                            margin: EdgeInsets.only(left: 8.5),
-                                            child: Image.asset(
-                                              memorybar[_sysNumber]!.elementAt(index),
+                                            height: 32.5,
+                                            width: 32.5,
+                                            margin: EdgeInsets.only(left: 5),
+                                            decoration: BoxDecoration(
+                                                image: DecorationImage(
+                                                    image: AssetImage(_memoryWidgets[index])
+                                                )
                                             ),
                                           ),
                                         ),
                                         child: Container(
                                           height: 32.5,
                                           width: 32.5,
-                                          margin: EdgeInsets.only(left: 10),
-                                          child: Image.asset(
-                                              memorybar[_sysNumber]!.elementAt(index),
+                                          margin: EdgeInsets.only(left: 5),
+                                          decoration: BoxDecoration(
+                                            image: DecorationImage(
+                                              image: AssetImage(_memoryWidgets[index])
+                                            )
                                           ),
                                         ),
-                                      ),
-                                    );
-                                  }),
-                            ),
+                                      );
+                            }),
+                              )
+                              */ /*Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [Container()]*/ /**/ /*this.memoryWidgets.toSet().toList()*/ /**/ /*
+                              ),*/ /*
                           ),
-                          Container(
-                            margin: EdgeInsets.only(right: 12.5),
+                          ),
+                        ),
+                      ),*/
+
+                      Container(
+                        padding:
+                            EdgeInsets.only(top: 0, left: 17.5, right: 17.5, bottom: 0),
+                        margin: EdgeInsets.only(top: 2.5),
+                        child: Column(
+                          children: [
+                            Visibility(
+                              visible: _remote,
+                              child: DelayedDisplay(
+                                slidingBeginOffset: Offset(-0.5, 0.0),
+                                fadingDuration: Duration(milliseconds: 750),
+                                fadeIn: _remote,
+                                child: Card(
+                                  shadowColor: Colors.black,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15.0),
+                                  ),
+                                  color: Colors.transparent,
+                                  elevation: 5,
+                                  child: Stack(
+                                    children: [
+                                      ClipRRect(
+                                        borderRadius: BorderRadius.circular(15),
+                                        child: Image.asset(
+                                          'assets/monitor.png',
+                                        ),
+                                      ),
+                                      /*AnimatedContainer(
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(15),
+                                          image: DecorationImage(
+                                            image: AssetImage('assets/screenshot.png'),
+                                            fit: BoxFit.contain
+                                          )
+                                        ),
+                                        duration: Duration(milliseconds: 1000),
+                                        // margin: EdgeInsets.only(top: 7.5,left: 20,right: 20,bottom: 7.5),
+                                        height: _remote?210:0,
+                                        width: _remote?MediaQuery.of(context).size.width:0,
+                                      ),*/
+                                      Positioned(
+                                        top: 6,
+                                        right: 5,
+                                        child: DelayedDisplay(
+                                          fadingDuration: Duration(milliseconds: 2750),
+                                          fadeIn: _remote,
+                                          child: Icon(
+                                            Icons.fullscreen,
+                                            color: Colors.white,
+                                            size: 21,
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Visibility(
+                              visible: _remote,
+                              child: DelayedDisplay(
+                                fadingDuration: Duration(milliseconds: 1250),
+                                fadeIn: _remote,
+                                child: Align(
+                                  alignment: Alignment(1, 0),
+                                  child: Card(
+                                    shadowColor: Colors.black,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(15.0),
+                                    ),
+                                    color: Colors.transparent,
+                                    elevation: 5,
+                                    child: AnimatedContainer(
+                                      duration: Duration(milliseconds: 1000),
+                                      height: 22,
+                                      width: 170,
+                                      decoration: BoxDecoration(
+                                          color: Color(0xff6F0309),
+                                          borderRadius: BorderRadius.circular(25)),
+                                      child: Row(
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          Container(
+                                            margin:
+                                                EdgeInsets.only(left: 7.5, bottom: 0),
+                                            child: Icon(
+                                              Icons.fullscreen,
+                                              color: Colors.white,
+                                              size: 21,
+                                            ),
+                                          ),
+                                          Container(
+                                              margin: EdgeInsets.only(left: 7.5),
+                                              child: Text(
+                                                'View on Full screen',
+                                                style: TextStyle(
+                                                    fontSize: 14, color: Colors.white),
+                                              ))
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+
+                      getIncidentSwitchContainer(),
+                      // getAssignedTicket(),
+                      // getUnAssignedTicket(),
+                    ],
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: BackdropFilter(
+                    filter:  ImageFilter.blur(sigmaX: _callVisibility?5:0, sigmaY: _callVisibility?5:0),
+                    child: AnimatedContainer(
+                      duration: Duration(milliseconds: 350),
+                      height: _callVisibility?300:0,
+                      margin: EdgeInsets.only(left: 15,right: 15,bottom: 5),
+                      clipBehavior: Clip.antiAlias,
+                      padding: const EdgeInsets.only(left: 16,right: 16,top:12.5,bottom: 10),
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('assets/call.png'),
+                          fit: BoxFit.fill,
+                        ),
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(30),
+                          topRight: Radius.circular(30),
+                          bottomLeft: Radius.circular(20),
+                          bottomRight: Radius.circular(20),
+                        ),
+                      ),
+                      child: ListView(
+                        itemExtent: 57.5,
+                        padding: EdgeInsets.only(top:0),
+                        children: [
+                          /*GestureDetector(
+                        onTap: (){
+                          Navigator.of(context).pop();
+                        },
+                        child: Card(
+                          elevation: 5,
+                          color: Colors.white,
+                          shape: BeveledRectangleBorder(
+                            borderRadius: BorderRadius.circular(60.0),
+                          ),
+                          child: Container(
+                            height: 35,
+                            width: 110,
+                            padding: EdgeInsets.only(left: 15,right: 15,top: 5,bottom: 5),
+                              child: Center(
+                                child: Text(
+                                  _sysNumber,
+                                  style: TextStyle(
+                                    color: Colors.black.withOpacity(0.85),
+                                      shadows: [
+                                        Shadow(
+                                          offset: Offset(1.0, 1.0),
+                                          blurRadius: 3,
+                                          color: Colors.grey.withOpacity(0.5),
+                                        ),
+                                      ],
+                                      fontFamily: 'Roboto',
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18
+                                  ),
+                                ),
+                              )
+                          ),
+                        ),
+                      ),*/
+                          GestureDetector(
+                            onTap: (){
+                              setState(() {
+                                _callVisibility=!_callVisibility;
+                              });
+                            },
                             child: Text(
                               _sysNumber,
                               textAlign: TextAlign.center,
@@ -1386,270 +1756,251 @@ class _MatrixPageState extends State<MatrixPage> {
                                     color: Colors.black,
                                   ),
                                 ],
-                                color: Colors.white,
+                                color: Color(0xffE4E9FA),
                                 fontWeight: FontWeight.bold,
-                                fontSize: 18,
+                                fontSize: 24,
                                 fontFamily: 'Roboto',
                               ),
                             ),
                           ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SizedBox(
+                                height: 35,
+                                width: 35,
+                                child: LoadingIndicator(
+                                  indicatorType: Indicator.ballClipRotatePulse,
+                                  colors: [
+                                    Colors.red,
+                                  ],
+                                ),
+                              ),
+                              SizedBox(width: 5,),
+                              Text(
+                                "Rec",
+                                style: TextStyle(
+                                  fontSize: 20
+                                ),
+                              )
+                            ],
+                          ),
+                          Center(
+                            child: CustomTimer(
+                            controller: _controllerTime,
+                            begin: Duration(),
+                            end: Duration(minutes: 60),
+                            builder: (time) {
+                              return Text(
+                                  "${time.minutes}:${time.seconds}",
+                                  style: TextStyle(fontSize: 24.0));
+                            },
+                            ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              AnimatedSwitcher(
+                                duration: Duration(milliseconds: 200),
+                                child: mic?GestureDetector(
+                                  onTap: (){
+                                    setState(() {
+                                      mic=!mic;
+                                    });
+                                  },
+                                  key: Key('M2'),
+                                  child: Icon(
+                                    Icons.mic_off_rounded,
+                                    size: 50,
+                                  ),
+                                ):GestureDetector(
+                                  onTap: (){
+                                    setState(() {
+                                      mic=!mic;
+                                    });
+                                  },
+                                  key: Key('M1'),
+                                  child: Icon(
+                                    Icons.mic,
+                                    size: 45,),
+                                ),
+                              ),
+                              AnimatedSwitcher(
+                                duration: Duration(milliseconds: 200),
+                                child:speaker? GestureDetector(
+                                  onTap: (){
+                                    setState((){
+                                      speaker=!speaker;
+                                    });
+                                  },
+                                  key: Key('S2'),
+                                  child: Icon(
+                                    Icons.volume_up_rounded,
+                                    size: 45,
+                                  ),
+                                ):GestureDetector(
+                                  onTap: (){
+                                    setState((){
+                                      speaker=!speaker;
+                                    });
+                                  },
+                                  key: Key('S1'),
+                                  child: Icon(
+                                    Icons.volume_off,
+                                    size: 50,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Expanded(
+                                child: AnimatedSwitcher(
+                                  duration: Duration(microseconds: 200),
+                                  child:call? GestureDetector(
+                                    onTap: (){
+                                      _controllerTime.start();
+                                      setState((){
+                                        call=!call;
+                                      });
+                                      setState((){
+                                        memorybar.forEach((key, value) {
+                                          if(key==_sysNumber){
+                                            for(final i in memorybar[_sysNumber]!.toList()){
+                                              if(i=='assets/calliconpadding.png'){
+                                                value.remove(i);
+                                                value.add('assets/callicongreenpadding1.gif');
+                                              }
+                                            }
+                                          }
+                                        });
+                                      });
+                                    },
+                                    key: Key('C2'),
+                                    child: Container(
+                                        height: 37.5,
+                                        margin: EdgeInsets.only(right: 2.5),
+                                        decoration: BoxDecoration(
+                                            color: Color(0xff483B3B),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(25),
+                                                bottomLeft: Radius.circular(25)
+                                            )
+                                        ),
+                                        child: Center(
+                                          child: Text(
+                                            'RESUME',
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 20
+                                            ),
+                                          ),
+                                        )
+                                    ),
+                                  ):GestureDetector(
+                                    onTap: (){
+                                      _controllerTime.pause();
+                                      setState((){
+                                        call=!call;
+                                      });
+                                      setState((){
+                                        memorybar.forEach((key, value) {
+                                          if(key==_sysNumber){
+                                            for(final i in memorybar[_sysNumber]!.toList()){
+                                              if(i=='assets/callicongreenpadding1.gif'){
+                                                value.remove(i);
+                                                value.add('assets/calliconpadding.png');
+                                              }
+                                            }
+                                          }
+                                        });
+                                      });
+                                    },
+                                    key: Key('C1'),
+                                    child: Container(
+                                        height: 37.5,
+                                        margin: EdgeInsets.only(right: 2.5),
+                                        decoration: BoxDecoration(
+                                            color: Color(0xff483B3B),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(25),
+                                                bottomLeft: Radius.circular(25)
+                                            )
+                                        ),
+                                        child: Center(
+                                          child: Text(
+                                            'HOLD',
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 20
+                                            ),
+                                          ),
+                                        )
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: GestureDetector(
+                                  onTap: (){
+                                    _callIgnore=false;
+                                    _controllerTime.reset();
+                                    print(_controllerTime);
+                                    setState(() {
+                                      _callVisibility=!_callVisibility;
+                                    });
+                                    setState(() {
+                                      memorybar.forEach((key, value) {
+                                        if (key == _sysNumber) {
+                                          for (final i in memorybar[_sysNumber]!.toList()){
+                                            if (i=='assets/callicongreenpadding1.gif'){
+                                              value.remove(i);
+                                            }else if (i=='assets/calliconpadding.png'){
+                                              value.remove(i);
+                                            }
+                                          }
+                                          /*value.remove(
+                                          memorybar[_sysNumber]!
+                                              .toList()[0]);*/
+                                        }
+                                      });
+                                    });
+                                  },
+                                  child: Container(
+                                      height: 37.5,
+                                      margin: EdgeInsets.only(left: 2.5),
+                                      decoration: BoxDecoration(
+                                          color: Color(0xffB91B1B),
+                                          borderRadius: BorderRadius.only(
+                                              topRight: Radius.circular(25),
+                                              bottomRight: Radius.circular(25)
+                                          )
+                                      ),
+                                      child: Center(
+                                        child: Text(
+                                          'HANGOUT',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 18
+                                          ),
+                                        ),
+                                      )
+                                  ),
+                                ),
+                              ),
+                            ],
+                          )
                         ],
                       ),
                     ),
                   ),
-                ),
-
-                /*Container(
-                  height: 35,
-                  width: MediaQuery.of(context).size.width,
-                  padding: EdgeInsets.symmetric(horizontal: 20),
-                  margin: EdgeInsets.only(top: 7.5, left: 0, right: 0, bottom: 5),
-                  child: DecoratedBox(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: AssetImage('assets/incidentappbar.png')),
-                      boxShadow: [
-                        BoxShadow(
-                            blurRadius: 10,
-                            offset: Offset(1, 1),
-                            color: Color(0xff000000).withOpacity(0.30)),
-                        BoxShadow(
-                            blurRadius: 10,
-                            offset: -Offset(1, 1),
-                            color: Color(0xff000000).withOpacity(0.30)),
-                      ],
-                      borderRadius: BorderRadius.all(Radius.circular(70)),
-                    ),
-                    child: Row(
-                      children: _widgetMemory.toList()
-                    ),
-                ),
-                ),*/
-
-                /*Visibility(
-                  visible: _memoryWidgets.length!=0?true:false,
-                  child: DelayedDisplay(
-                    slidingBeginOffset: Offset(0, -0.20),
-                    fadeIn: true,
-                    child: Container(
-                      height: 35,
-                      width: MediaQuery.of(context).size.width,
-                      padding: EdgeInsets.symmetric(horizontal: 20),
-                      margin: EdgeInsets.only(top: 7.5,left: 0,right: 0,bottom: 5),
-                      child: DecoratedBox(
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: AssetImage('assets/incidentappbar.png')),
-                          boxShadow: [
-                            BoxShadow(
-                                blurRadius: 10,
-                                offset: Offset(1, 1),
-                                color: Color(0xff000000).withOpacity(0.30)),
-                            BoxShadow(
-                                blurRadius: 10,
-                                offset: -Offset(1, 1),
-                                color: Color(0xff000000).withOpacity(0.30)),
-                          ],
-                          borderRadius: BorderRadius.all(Radius.circular(70)),
-                        ),
-                        child: Container(
-                          padding: EdgeInsets.symmetric(horizontal: 7.5,vertical: 0.5),
-                          child: ListView.builder(
-                              scrollDirection: Axis.horizontal,
-                            itemCount: _memoryWidgets.length,
-                              itemBuilder: (context, index){
-                                return LongPressDraggable(
-                                  data: memoryWidgets,
-                                  onDragEnd: (remove){
-                                    ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                                  },
-                                  onDragStarted: (){
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                        SnackBar(
-                                          duration: Duration(seconds: 60),
-                                          padding: EdgeInsets.zero,
-                                          backgroundColor: Colors.transparent,
-                                      behavior: SnackBarBehavior.floating,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(24),
-                                      ),
-                                      margin: EdgeInsets.only(
-                                        bottom:  MediaQuery.of(context).size.height - 62.5
-                                      ),
-                                          content: DragTarget(
-                                            onAccept: (remove){
-                                              setState(() {
-                                                this.memoryWidgets.removeAt(index);
-                                              });
-                                            },
-                                            builder: (context, _, __) => Container(
-                                              height: 62.5,
-                                              width: MediaQuery.of(context).size.width,
-                                              decoration: BoxDecoration(
-                                                gradient: LinearGradient(
-                                                  colors: [
-                                                    Color(0xffE35353),
-                                                    Color(0xffE35353).withOpacity(0.0),
-                                                  ],
-                                                  begin: Alignment.topCenter,
-                                                  end: Alignment.bottomCenter
-                                                )
-                                              ),
-                                            ),
-                                          ),
-                                    ));
-                                  },
-                                  childWhenDragging: Container(),
-                                  feedback: Material(
-                                    color: Colors.transparent,
-                                    child: Container(
-                                      height: 32.5,
-                                      width: 32.5,
-                                      margin: EdgeInsets.only(left: 5),
-                                      decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                              image: AssetImage(_memoryWidgets[index])
-                                          )
-                                      ),
-                                    ),
-                                  ),
-                                  child: Container(
-                                    height: 32.5,
-                                    width: 32.5,
-                                    margin: EdgeInsets.only(left: 5),
-                                    decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                        image: AssetImage(_memoryWidgets[index])
-                                      )
-                                    ),
-                                  ),
-                                );
-                      }),
-                        )
-                        */ /*Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [Container()]*/ /**/ /*this.memoryWidgets.toSet().toList()*/ /**/ /*
-                        ),*/ /*
-                    ),
-                    ),
-                  ),
-                ),*/
-
-                Container(
-                  padding:
-                      EdgeInsets.only(top: 0, left: 17.5, right: 17.5, bottom: 0),
-                  margin: EdgeInsets.only(top: 2.5),
-                  child: Column(
-                    children: [
-                      Visibility(
-                        visible: _remote,
-                        child: DelayedDisplay(
-                          slidingBeginOffset: Offset(-0.5, 0.0),
-                          fadingDuration: Duration(milliseconds: 750),
-                          fadeIn: _remote,
-                          child: Card(
-                            shadowColor: Colors.black,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15.0),
-                            ),
-                            color: Colors.transparent,
-                            elevation: 5,
-                            child: Stack(
-                              children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(15),
-                                  child: Image.asset(
-                                    'assets/monitor.png',
-                                  ),
-                                ),
-                                /*AnimatedContainer(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(15),
-                                    image: DecorationImage(
-                                      image: AssetImage('assets/screenshot.png'),
-                                      fit: BoxFit.contain
-                                    )
-                                  ),
-                                  duration: Duration(milliseconds: 1000),
-                                  // margin: EdgeInsets.only(top: 7.5,left: 20,right: 20,bottom: 7.5),
-                                  height: _remote?210:0,
-                                  width: _remote?MediaQuery.of(context).size.width:0,
-                                ),*/
-                                Positioned(
-                                  top: 6,
-                                  right: 5,
-                                  child: DelayedDisplay(
-                                    fadingDuration: Duration(milliseconds: 2750),
-                                    fadeIn: _remote,
-                                    child: Icon(
-                                      Icons.fullscreen,
-                                      color: Colors.white,
-                                      size: 21,
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      Visibility(
-                        visible: _remote,
-                        child: DelayedDisplay(
-                          fadingDuration: Duration(milliseconds: 1250),
-                          fadeIn: _remote,
-                          child: Align(
-                            alignment: Alignment(1, 0),
-                            child: Card(
-                              shadowColor: Colors.black,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(15.0),
-                              ),
-                              color: Colors.transparent,
-                              elevation: 5,
-                              child: AnimatedContainer(
-                                duration: Duration(milliseconds: 1000),
-                                height: 22,
-                                width: 170,
-                                decoration: BoxDecoration(
-                                    color: Color(0xff6F0309),
-                                    borderRadius: BorderRadius.circular(25)),
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                      margin:
-                                          EdgeInsets.only(left: 7.5, bottom: 0),
-                                      child: Icon(
-                                        Icons.fullscreen,
-                                        color: Colors.white,
-                                        size: 21,
-                                      ),
-                                    ),
-                                    Container(
-                                        margin: EdgeInsets.only(left: 7.5),
-                                        child: Text(
-                                          'View on Full screen',
-                                          style: TextStyle(
-                                              fontSize: 14, color: Colors.white),
-                                        ))
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-
-                getIncidentSwitchContainer(),
-                // getAssignedTicket(),
-                // getUnAssignedTicket(),
+                )
               ],
             )),
       ),
@@ -1703,63 +2054,6 @@ class _MatrixPageState extends State<MatrixPage> {
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter)),
               margin: EdgeInsets.only(left: 15, right: 15, top: 0, bottom: 10),
-              child: Stack(
-                // clipBehavior: Clip.none,
-                children: [
-                  Align(
-                    alignment: Alignment.topCenter,
-                    child: Container(
-                      height: 30,
-                      width: MediaQuery.of(context).size.width,
-                      margin: EdgeInsets.only(top: 7.5, left: 15, right: 15),
-                      padding: EdgeInsets.only(
-                          left: 7.5, right: 7.5, top: 2.5, bottom: 2.5),
-                      decoration: BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                                blurRadius: 1,
-                                offset: Offset(1, 0),
-                                color: Colors.black.withOpacity(0.65)),
-                          ],
-                          borderRadius: BorderRadius.circular(10),
-                          gradient: LinearGradient(
-                              colors: [
-                                Color(0xff19547b),
-                                // Color(0xff497D7D).withOpacity(1),
-                                Color(0xff91BBD2).withOpacity(1),
-                              ],
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                              stops: [0.5, 1])
-                          // color: Color(0xff91BBD2).withOpacity(0.35),
-                          ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(
-                            _sysNumber,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              shadows: [
-                                Shadow(
-                                  offset: Offset(1.0, 1.0),
-                                  blurRadius: 3,
-                                  color: Colors.black,
-                                ),
-                              ],
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18,
-                              fontFamily: 'Roboto',
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
             ),
           ),
           Container(
@@ -2888,7 +3182,7 @@ class _MatrixPageState extends State<MatrixPage> {
               Container(
                   alignment: Alignment.center,
                   height: 230,
-                  padding: EdgeInsets.only(left: 15, right: 15),
+                  margin: EdgeInsets.only(left: 15, right: 15,top: 2.5),
                   color: Colors.transparent,
                   child: ListView.builder(
                     /*separatorBuilder: (BuildContext context, int index) {
@@ -3934,7 +4228,8 @@ class _MatrixPageState extends State<MatrixPage> {
                                               child: Container(
                                                 color: Colors.transparent,
                                               ),
-                                            ))
+                                            )
+                                        )
                                       ],
                                     ),
                                     child: Card(
@@ -4168,10 +4463,10 @@ class _MatrixPageState extends State<MatrixPage> {
                                               colors: [
                                                 _isChatButton
                                                     ? Color(0xffD3D3D3)
-                                                    : Color(0xff7E040A),
+                                                    : Color(0xff19547b),
                                                 _isChatButton
                                                     ? Colors.white
-                                                    : Color(0xff81040A),
+                                                    : Color(0xff467695),
                                               ],
                                             ),
                                             boxShadow: [
@@ -4193,7 +4488,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                             'CHAT',
                                             style: TextStyle(
                                                 color: _isChatButton
-                                                    ? Color(0XFF81040A)
+                                                    ? Color(0xff467695)
                                                     : Colors.white,
                                                 fontFamily: 'Roboto',
                                                 fontWeight: FontWeight.w900,
@@ -4220,9 +4515,10 @@ class _MatrixPageState extends State<MatrixPage> {
                                         ignoring: _callIgnore,
                                         child: GestureDetector(
                                           onTap: () {
-                                            Caller();
+                                            _controllerTime.start();
                                             _callIgnore=true;
                                             setState(() {
+                                              _callVisibility=!_callVisibility;
 
                                               /*this.memoryWidgets.add('assets/calliconpadding.png');*/
                                               /*memorybar.addEntries([
@@ -4275,10 +4571,10 @@ class _MatrixPageState extends State<MatrixPage> {
                                                 colors: [
                                                   _isCallButton
                                                       ? Color(0xffD3D3D3)
-                                                      : Color(0xff7E040A),
+                                                      : Color(0xff19547b),
                                                   _isCallButton
                                                       ? Colors.white
-                                                      : Color(0xff81040A),
+                                                      : Color(0xff467695),
                                                 ],
                                               ),
                                               boxShadow: [
@@ -4300,7 +4596,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                               'CALL',
                                               style: TextStyle(
                                                   color: _isCallButton
-                                                      ? Color(0XFF81040A)
+                                                      ? Color(0xff467695)
                                                       : Colors.white,
                                                   fontFamily: 'Roboto',
                                                   fontWeight: FontWeight.w900,
@@ -4362,10 +4658,10 @@ class _MatrixPageState extends State<MatrixPage> {
                                               colors: [
                                                 _isRemoteButton
                                                     ? Color(0xffD3D3D3)
-                                                    : Color(0xff7E040A),
+                                                    : Color(0xff19547b),
                                                 _isRemoteButton
                                                     ? Colors.white
-                                                    : Color(0xff81040A),
+                                                    : Color(0xff467695),
                                               ],
                                             ),
                                             boxShadow: [
@@ -4387,7 +4683,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                             'REMOTE',
                                             style: TextStyle(
                                                 color: _isRemoteButton
-                                                    ? Color(0XFF81040A)
+                                                    ? Color(0xff467695)
                                                     : Colors.white,
                                                 fontFamily: 'Roboto',
                                                 fontWeight: FontWeight.w900,
@@ -4457,10 +4753,10 @@ class _MatrixPageState extends State<MatrixPage> {
                                               colors: [
                                                 _isScriptButton
                                                     ? Color(0xffD3D3D3)
-                                                    : Color(0xff7E040A),
+                                                    : Color(0xff19547b),
                                                 _isScriptButton
                                                     ? Colors.white
-                                                    : Color(0xff81040A),
+                                                    : Color(0xff467695),
                                               ],
                                             ),
                                             boxShadow: [
@@ -4482,7 +4778,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                             'SCRIPT',
                                             style: TextStyle(
                                                 color: _isScriptButton
-                                                    ? Color(0XFF81040A)
+                                                    ? Color(0xff467695)
                                                     : Colors.white,
                                                 fontFamily: 'Roboto',
                                                 fontWeight: FontWeight.w900,
@@ -4553,10 +4849,10 @@ class _MatrixPageState extends State<MatrixPage> {
                                               colors: [
                                                 _isTerminalButton
                                                     ? Color(0xffD3D3D3)
-                                                    : Color(0xff7E040A),
+                                                    : Color(0xff19547b),
                                                 _isTerminalButton
                                                     ? Colors.white
-                                                    : Color(0xff81040A),
+                                                    : Color(0xff467695),
                                               ],
                                             ),
                                             boxShadow: [
@@ -4578,7 +4874,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                             'TERMINAL',
                                             style: TextStyle(
                                                 color: _isTerminalButton
-                                                    ? Color(0XFF81040A)
+                                                    ? Color(0xff467695)
                                                     : Colors.white,
                                                 fontFamily: 'Roboto',
                                                 fontWeight: FontWeight.w900,
@@ -4630,7 +4926,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                                         Expanded(
                                                           child: Container(
                                                             decoration: BoxDecoration(
-                                                              color: Color(0xff8D3030),
+                                                              color: Color(0xff19547b),
                                                               borderRadius: BorderRadius.only(topLeft: Radius.circular(25),topRight: Radius.circular(25))
                                                             ),
                                                             child: Center(
@@ -4731,7 +5027,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                                                     15), // <-- Radius
                                                               ),
                                                               primary:
-                                                              Color(0xff8D3030),
+                                                              Color(0xff19547b),
                                                             ),
                                                             onPressed: () {
                                                               Navigator.pop(context);
@@ -4764,10 +5060,10 @@ class _MatrixPageState extends State<MatrixPage> {
                                               colors: [
                                                 _isUpdatesButton
                                                     ? Color(0xffD3D3D3)
-                                                    : Color(0xff7E040A),
+                                                    : Color(0xff19547b),
                                                 _isUpdatesButton
                                                     ? Colors.white
-                                                    : Color(0xff81040A),
+                                                    : Color(0xff467695),
                                               ],
                                             ),
                                             boxShadow: [
@@ -4789,7 +5085,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                             'UPDATES',
                                             style: TextStyle(
                                                 color: _isUpdatesButton
-                                                    ? Color(0XFF81040A)
+                                                    ? Color(0xff467695)
                                                     : Colors.white,
                                                 fontFamily: 'Roboto',
                                                 fontWeight: FontWeight.w900,
@@ -4836,10 +5132,10 @@ class _MatrixPageState extends State<MatrixPage> {
                                               colors: [
                                                 _isActionsButton
                                                     ? Color(0xffD3D3D3)
-                                                    : Color(0xff7E040A),
+                                                    : Color(0xff19547b),
                                                 _isActionsButton
                                                     ? Colors.white
-                                                    : Color(0xff81040A),
+                                                    : Color(0xff467695),
                                               ],
                                             ),
                                             boxShadow: [
@@ -4861,7 +5157,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                             'ACTIONS',
                                             style: TextStyle(
                                                 color: _isActionsButton
-                                                    ? Color(0XFF81040A)
+                                                    ? Color(0xff467695)
                                                     : Colors.white,
                                                 fontFamily: 'Roboto',
                                                 fontWeight: FontWeight.w900,
@@ -5957,8 +6253,8 @@ class _MatrixPageState extends State<MatrixPage> {
           focalRadius: 10,
           radius: 2,
           colors: [
-            Color(0xff7E040A),
-            Color(0xff81040A),
+            Color(0xff19547b),
+            Color(0xff467695),
           ],
         ),
         boxShadow: [
@@ -6016,7 +6312,7 @@ class _MatrixPageState extends State<MatrixPage> {
                       Expanded(
                         child: Container(
                           decoration: BoxDecoration(
-                              color: Color(0xff8D3030),
+                              color: Color(0xff19547b),
                               borderRadius: BorderRadius.only(topLeft: Radius.circular(25),topRight: Radius.circular(25))
                           ),
                           child: Center(
@@ -6068,7 +6364,7 @@ class _MatrixPageState extends State<MatrixPage> {
                               borderRadius:
                                   BorderRadius.circular(15), // <-- Radius
                             ),
-                            primary: Color(0xff8D3030),
+                            primary: Color(0xff19547b),
                           ),
                           onPressed: () {
                             Navigator.pop(context);
@@ -6098,8 +6394,8 @@ class _MatrixPageState extends State<MatrixPage> {
             focalRadius: 10,
             radius: 2,
             colors: [
-              _isForwardButton ? Color(0xffD3D3D3) : Color(0xff7E040A),
-              _isForwardButton ? Colors.white : Color(0xff81040A),
+              _isForwardButton ? Color(0xffD3D3D3) : Color(0xff19547b),
+              _isForwardButton ? Colors.white : Color(0xff467695),
             ],
           ),
           boxShadow: [
@@ -6119,7 +6415,7 @@ class _MatrixPageState extends State<MatrixPage> {
         child: Text(
           'FORWARD',
           style: TextStyle(
-              color: _isForwardButton ? Color(0XFF81040A) : Colors.white,
+              color: _isForwardButton ? Color(0xff467695): Colors.white,
               fontFamily: 'Roboto',
               fontWeight: FontWeight.w900,
               fontSize: 14),
@@ -6158,7 +6454,7 @@ class _MatrixPageState extends State<MatrixPage> {
                       Expanded(
                         child: Container(
                           decoration: BoxDecoration(
-                              color: Color(0xff8D3030),
+                              color: Color(0xff19547b),
                               borderRadius: BorderRadius.only(topLeft: Radius.circular(25),topRight: Radius.circular(25))
                           ),
                           child: Center(
@@ -6210,7 +6506,7 @@ class _MatrixPageState extends State<MatrixPage> {
                               borderRadius:
                                   BorderRadius.circular(15), // <-- Radius
                             ),
-                            primary: Color(0xff8D3030),
+                            primary: Color(0xff19547b),
                           ),
                           onPressed: () {
                             Navigator.pop(context);
@@ -6240,8 +6536,8 @@ class _MatrixPageState extends State<MatrixPage> {
             focalRadius: 10,
             radius: 2,
             colors: [
-              _isPendingButton ? Color(0xffD3D3D3) : Color(0xff7E040A),
-              _isPendingButton ? Colors.white : Color(0xff81040A),
+              _isPendingButton ? Color(0xffD3D3D3) : Color(0xff19547b),
+              _isPendingButton ? Colors.white : Color(0xff467695),
             ],
           ),
           boxShadow: [
@@ -6261,7 +6557,7 @@ class _MatrixPageState extends State<MatrixPage> {
         child: Text(
           'PENDING',
           style: TextStyle(
-              color: _isPendingButton ? Color(0XFF81040A) : Colors.white,
+              color: _isPendingButton ? Color(0xff467695) : Colors.white,
               fontFamily: 'Roboto',
               fontWeight: FontWeight.w900,
               fontSize: 14),
@@ -6300,7 +6596,7 @@ class _MatrixPageState extends State<MatrixPage> {
                       Expanded(
                         child: Container(
                           decoration: BoxDecoration(
-                              color: Color(0xff8D3030),
+                              color: Color(0xff19547b),
                               borderRadius: BorderRadius.only(topLeft: Radius.circular(25),topRight: Radius.circular(25))
                           ),
                           child: Center(
@@ -6352,7 +6648,7 @@ class _MatrixPageState extends State<MatrixPage> {
                               borderRadius:
                                   BorderRadius.circular(15), // <-- Radius
                             ),
-                            primary: Color(0xff8D3030),
+                            primary: Color(0xff19547b),
                           ),
                           onPressed: () {
                             Navigator.pop(context);
@@ -6382,8 +6678,8 @@ class _MatrixPageState extends State<MatrixPage> {
             focalRadius: 10,
             radius: 2,
             colors: [
-              _isUnAvailableButton ? Color(0xffD3D3D3) : Color(0xff7E040A),
-              _isUnAvailableButton ? Colors.white : Color(0xff81040A),
+              _isUnAvailableButton ? Color(0xffD3D3D3) : Color(0xff19547b),
+              _isUnAvailableButton ? Colors.white : Color(0xff467695),
             ],
           ),
           boxShadow: [
@@ -6403,7 +6699,7 @@ class _MatrixPageState extends State<MatrixPage> {
         child: Text(
           'UNAVAILABLE',
           style: TextStyle(
-              color: _isUnAvailableButton ? Color(0XFF81040A) : Colors.white,
+              color: _isUnAvailableButton ? Color(0xff467695): Colors.white,
               fontFamily: 'Roboto',
               fontWeight: FontWeight.w900,
               fontSize: 14),
@@ -6442,7 +6738,7 @@ class _MatrixPageState extends State<MatrixPage> {
                       Expanded(
                         child: Container(
                           decoration: BoxDecoration(
-                              color: Color(0xff8D3030),
+                              color: Color(0xff19547b),
                               borderRadius: BorderRadius.only(topLeft: Radius.circular(25),topRight: Radius.circular(25))
                           ),
                           child: Center(
@@ -6494,7 +6790,7 @@ class _MatrixPageState extends State<MatrixPage> {
                               borderRadius:
                                   BorderRadius.circular(15), // <-- Radius
                             ),
-                            primary: Color(0xff8D3030),
+                            primary: Color(0xff19547b),
                           ),
                           onPressed: () {
                             Navigator.pop(context);
@@ -6524,8 +6820,8 @@ class _MatrixPageState extends State<MatrixPage> {
             focalRadius: 10,
             radius: 2,
             colors: [
-              _isResolveButton ? Color(0xffD3D3D3) : Color(0xff7E040A),
-              _isResolveButton ? Colors.white : Color(0xff81040A),
+              _isResolveButton ?  Color(0xffD3D3D3): Color(0xff19547b),
+              _isResolveButton ? Colors.white : Color(0xff467695),
             ],
           ),
           boxShadow: [
@@ -6545,7 +6841,7 @@ class _MatrixPageState extends State<MatrixPage> {
         child: Text(
           'RESOLVE',
           style: TextStyle(
-              color: _isResolveButton ? Color(0XFF81040A) : Colors.white,
+              color: _isResolveButton ? Color(0xff467695): Colors.white,
               fontFamily: 'Roboto',
               fontWeight: FontWeight.w900,
               fontSize: 14),
@@ -6584,7 +6880,7 @@ class _MatrixPageState extends State<MatrixPage> {
                       Expanded(
                         child: Container(
                           decoration: BoxDecoration(
-                              color: Color(0xff8D3030),
+                              color: Color(0xff19547b),
                               borderRadius: BorderRadius.only(topLeft: Radius.circular(25),topRight: Radius.circular(25))
                           ),
                           child: Center(
@@ -6636,7 +6932,7 @@ class _MatrixPageState extends State<MatrixPage> {
                               borderRadius:
                                   BorderRadius.circular(15), // <-- Radius
                             ),
-                            primary: Color(0xff8D3030),
+                            primary: Color(0xff19547b),
                           ),
                           onPressed: () {
                             Navigator.pop(context);
@@ -6666,8 +6962,8 @@ class _MatrixPageState extends State<MatrixPage> {
             focalRadius: 10,
             radius: 2,
             colors: [
-              _isActionCloseButton ? Color(0xffD3D3D3) : Color(0xff7E040A),
-              _isActionCloseButton ? Colors.white : Color(0xff81040A),
+              _isActionCloseButton ?  Color(0xffD3D3D3): Color(0xff19547b),
+              _isActionCloseButton ? Colors.white : Color(0xff467695),
             ],
           ),
           boxShadow: [
@@ -6687,7 +6983,7 @@ class _MatrixPageState extends State<MatrixPage> {
         child: Text(
           'CLOSE',
           style: TextStyle(
-              color: _isActionCloseButton ? Color(0XFF81040A) : Colors.white,
+              color: _isActionCloseButton ? Color(0xff467695) : Colors.white,
               fontFamily: 'Roboto',
               fontWeight: FontWeight.w900,
               fontSize: 14),
@@ -7285,7 +7581,7 @@ class _MatrixPageState extends State<MatrixPage> {
     );
   }
 
-  Future<Object?> Caller(){
+  /*Future<Object?> Caller(){
     return showGeneralDialog(
       barrierLabel: "showGeneralDialog",
       barrierDismissible: true,
@@ -7318,7 +7614,7 @@ class _MatrixPageState extends State<MatrixPage> {
                   color: Colors.transparent,
                   child: Column(
                     children: [
-                      /*GestureDetector(
+                      *//*GestureDetector(
                         onTap: (){
                           Navigator.of(context).pop();
                         },
@@ -7352,7 +7648,7 @@ class _MatrixPageState extends State<MatrixPage> {
                               )
                           ),
                         ),
-                      ),*/
+                      ),*//*
                       Text(
                         _sysNumber,
                         textAlign: TextAlign.center,
@@ -7364,15 +7660,23 @@ class _MatrixPageState extends State<MatrixPage> {
                               color: Colors.black,
                             ),
                           ],
-                          color: Colors.blue,
+                          color: Color(0xffE4E9FA),
                           fontWeight: FontWeight.bold,
-                          fontSize: 20,
+                          fontSize: 24,
                           fontFamily: 'Roboto',
                         ),
                       ),
-                      DPStopWatchWidget(
-                        stopwatchViewModel,
-                      ),
+                      SizedBox(height: 10),
+                      *//*CustomTimer(
+                          controller: _controllerTime,
+                          begin: Duration(),
+                          end: Duration(minutes: 60),
+                          builder: (time) {
+                            return Text(
+                                "${time.minutes}:${time.seconds}",
+                                style: TextStyle(fontSize: 24.0));
+                          },
+                          ),*//*
                       Spacer(),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -7435,55 +7739,98 @@ class _MatrixPageState extends State<MatrixPage> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Expanded(
-                            child: GestureDetector(
-                              onTap: (){
-                                this.setState(() {
-                                  memorybar.forEach((key, value) {
-                                    if (key == _sysNumber) {
-                                      for (final i in memorybar[_sysNumber]!.toList()){
-                                        if (i=='assets/callicongreenpadding1.gif'){
-                                          value.remove(i);
-                                          value.add('assets/calliconpadding.png');
-                                        }else if(i=='assets/calliconpadding.png'){
-                                          value.remove(i);
-                                          value.add('assets/callicongreenpadding1.gif');
+                            child: AnimatedSwitcher(
+                                duration: Duration(microseconds: 200),
+                              child:call? GestureDetector(
+                                onTap: (){
+                                  _controllerTime.start();
+                                  setState((){
+                                    call=!call;
+                                  });
+                                  this.setState((){
+                                    memorybar.forEach((key, value) {
+                                      if(key==_sysNumber){
+                                        for(final i in memorybar[_sysNumber]!.toList()){
+                                          if(i=='assets/calliconpadding.png'){
+                                            value.remove(i);
+                                            value.add('assets/callicongreenpadding1.gif');
+                                          }
                                         }
                                       }
-                                      /*value.remove(
-                                          memorybar[_sysNumber]!
-                                              .toList()[0]);*/
-                                    }
+                                    });
                                   });
-                                });
-                              },
-                              child: Container(
-                                height: 37.5,
-                                  margin: EdgeInsets.only(right: 2.5),
-                                  decoration: BoxDecoration(
-                                    color: Color(0xff483B3B),
-                                    borderRadius: BorderRadius.only(
-                                        topLeft: Radius.circular(25),
-                                        bottomLeft: Radius.circular(25)
-                                    )
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                        'HOLD',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 20
-                                      ),
+                                },
+                                key: Key('C2'),
+                                child: Container(
+                                    height: 37.5,
+                                    margin: EdgeInsets.only(right: 2.5),
+                                    decoration: BoxDecoration(
+                                        color: Color(0xff483B3B),
+                                        borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(25),
+                                            bottomLeft: Radius.circular(25)
+                                        )
                                     ),
-                                  )
+                                    child: Center(
+                                      child: Text(
+                                        'RESUME',
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 20
+                                        ),
+                                      ),
+                                    )
+                                ),
+                              ):GestureDetector(
+                                onTap: (){
+                                  _controllerTime.pause();
+                                  setState((){
+                                    call=!call;
+                                  });
+                                  this.setState((){
+                                    memorybar.forEach((key, value) {
+                                      if(key==_sysNumber){
+                                        for(final i in memorybar[_sysNumber]!.toList()){
+                                          if(i=='assets/callicongreenpadding1.gif'){
+                                            value.remove(i);
+                                            value.add('assets/calliconpadding.png');
+                                          }
+                                        }
+                                      }
+                                    });
+                                  });
+                                },
+                                key: Key('C1'),
+                                child: Container(
+                                    height: 37.5,
+                                    margin: EdgeInsets.only(right: 2.5),
+                                    decoration: BoxDecoration(
+                                        color: Color(0xff483B3B),
+                                        borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(25),
+                                            bottomLeft: Radius.circular(25)
+                                        )
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        'HOLD',
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 20
+                                        ),
+                                      ),
+                                    )
+                                ),
                               ),
                             ),
                           ),
                           Expanded(
                             child: GestureDetector(
                               onTap: (){
-                                stopwatchViewModel.stop?.call();
                                 _callIgnore=false;
+                                _controllerTime.reset();
                                 Navigator.of(context).pop();
                                 print( memorybar[_sysNumber]);
                                 this.setState(() {
@@ -7496,9 +7843,9 @@ class _MatrixPageState extends State<MatrixPage> {
                                           value.remove(i);
                                         }
                                       }
-                                      /*value.remove(
+                                      *//*value.remove(
                                           memorybar[_sysNumber]!
-                                              .toList()[0]);*/
+                                              .toList()[0]);*//*
                                     }
                                   });
                                 });
@@ -7545,7 +7892,7 @@ class _MatrixPageState extends State<MatrixPage> {
         );
       },
     );
-  }
+  }*/
 
 }
 

@@ -64,6 +64,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.3+1"
+  custom_timer:
+    dependency: "direct main"
+    description:
+      name: custom_timer
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.1"
   delayed_display:
     dependency: "direct main"
     description:
@@ -71,13 +78,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
-  dp_stopwatch:
-    dependency: "direct main"
-    description:
-      name: dp_stopwatch
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.0.3"
   fake_async:
     dependency: transitive
     description:
