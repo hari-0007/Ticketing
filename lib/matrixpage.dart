@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 import 'dart:ui';
 // import 'dart:html';
@@ -71,7 +72,7 @@ final List<Map<String, dynamic>> ticket = [
 List _elements = [
   {
     'Time': '8:00 AM',
-    'Color': Color(0xffE20000),
+    'Color': Color(0xff9B4244),
     'Severity': 'High',
     'SystemNumber': 'A0001',
     'ErrorText': 'System is not booting, it shows no boot files found.',
@@ -79,7 +80,7 @@ List _elements = [
   },
   {
     'Time': '8:00 AM',
-    'Color': Color(0xff8CE95E),
+    'Color': Color(0xff569556),
     'Severity': 'Medium',
     'SystemNumber': 'A0002',
     'ErrorText': 'System is not booting, it show an unknow error ',
@@ -87,7 +88,7 @@ List _elements = [
   },
   {
     'Time': '8:00 AM',
-    'Color': Color(0xffEDE13D),
+    'Color': Color(0xffB7AA5E),
     'Severity': 'Low',
     'SystemNumber': 'A0003',
     'ErrorText': 'System is not booting, it shows no boot files found.',
@@ -95,7 +96,7 @@ List _elements = [
   },
   {
     'Time': '8:00 AM',
-    'Color': Color(0xffFDFDFD),
+    'Color': Color(0xffA66A40),
     'Severity': 'Information',
     'SystemNumber': 'A0004',
     'ErrorText': 'System is not booting, it show an unknow error ',
@@ -103,7 +104,7 @@ List _elements = [
   },
   {
     'Time': '8:00 AM',
-    'Color': Color(0xff99E9EE),
+    'Color': Color(0xff4C709A),
     'Severity': 'Average',
     'SystemNumber': 'A0005',
     'ErrorText': 'System is not booting, it shows no boot files found.',
@@ -1173,12 +1174,9 @@ class _MatrixPageState extends State<MatrixPage> {
               children: [
                 GestureDetector(
                   onTap: (){
-                    print('hello');
                     setState(() {
                       if(_callVisibility==true){
                         _callVisibility=false;
-                      }else{
-                        print("Helo1");
                       }
                     });
                   },
@@ -1681,18 +1679,22 @@ class _MatrixPageState extends State<MatrixPage> {
                 Align(
                   alignment: Alignment.bottomCenter,
                   child: BackdropFilter(
-                    filter:  ImageFilter.blur(sigmaX: _callVisibility?5:0, sigmaY: _callVisibility?5:0),
+                    filter:  ImageFilter.blur(sigmaX: _callVisibility?2:0, sigmaY: _callVisibility?2:0),
                     child: AnimatedContainer(
                       duration: Duration(milliseconds: 350),
                       height: _callVisibility?300:0,
                       margin: EdgeInsets.only(left: 15,right: 15,bottom: 5),
                       clipBehavior: Clip.antiAlias,
-                      padding: const EdgeInsets.only(left: 16,right: 16,top:12.5,bottom: 10),
-                      decoration: const BoxDecoration(
+                      padding:  EdgeInsets.only(left: 16,right: 16,top:12.5,bottom: 10),
+                      decoration:  BoxDecoration(
                         image: DecorationImage(
                           image: AssetImage('assets/call.png'),
                           fit: BoxFit.fill,
                         ),
+                        border: Border.all(
+                            style: BorderStyle.solid,
+                            color: Colors.black.withOpacity(0.7),
+                            width: 3),
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(30),
                           topRight: Radius.circular(30),
@@ -1701,7 +1703,7 @@ class _MatrixPageState extends State<MatrixPage> {
                         ),
                       ),
                       child: ListView(
-                        itemExtent: 57.5,
+                        // itemExtent: 56,
                         padding: EdgeInsets.only(top:0),
                         children: [
                           /*GestureDetector(
@@ -1739,30 +1741,55 @@ class _MatrixPageState extends State<MatrixPage> {
                           ),
                         ),
                       ),*/
-                          GestureDetector(
-                            onTap: (){
-                              setState(() {
-                                _callVisibility=!_callVisibility;
-                              });
-                            },
-                            child: Text(
-                              _sysNumber,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                shadows: [
-                                  Shadow(
-                                    offset: Offset(1.0, 1.0),
-                                    blurRadius: 3,
-                                    color: Colors.black,
+                          SizedBox(height: 5,),
+                          PhysicalModel(
+                            color: Colors.transparent,
+                            elevation: 5,
+                            borderRadius: BorderRadius.circular(10),
+                            child: Container(
+                              height: 30,
+                              decoration: BoxDecoration(
+                                  boxShadow: [
+                                    BoxShadow(
+                                        blurRadius: 1,
+                                        offset: Offset(1, 0),
+                                        color: Colors.black.withOpacity(0.65)),
+                                  ],
+                                  borderRadius: BorderRadius.circular(10),
+                                  gradient: LinearGradient(
+                                      colors: [
+                                        Color(0xff19547b),
+                                        // Color(0xff497D7D).withOpacity(1),
+                                        Color(0xff91BBD2).withOpacity(1),
+                                      ],
+                                      begin: Alignment.topCenter,
+                                      end: Alignment.bottomCenter,
+                                      stops: [0.5, 1]
+                                  )
+                                // color: Color(0xff91BBD2).withOpacity(0.35),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  _sysNumber,
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    shadows: [
+                                      Shadow(
+                                        offset: Offset(1.0, 1.0),
+                                        blurRadius: 3,
+                                        color: Colors.black,
+                                      ),
+                                    ],
+                                    color: Color(0xffE4E9FA),
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18,
+                                    fontFamily: 'Roboto',
                                   ),
-                                ],
-                                color: Color(0xffE4E9FA),
-                                fontWeight: FontWeight.bold,
-                                fontSize: 24,
-                                fontFamily: 'Roboto',
+                                ),
                               ),
                             ),
                           ),
+                          SizedBox(height: 30,),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -1785,6 +1812,7 @@ class _MatrixPageState extends State<MatrixPage> {
                               )
                             ],
                           ),
+                          SizedBox(height: 20,),
                           Center(
                             child: CustomTimer(
                             controller: _controllerTime,
@@ -1797,6 +1825,7 @@ class _MatrixPageState extends State<MatrixPage> {
                             },
                             ),
                           ),
+                          SizedBox(height: 20,),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
@@ -1811,7 +1840,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                   key: Key('M2'),
                                   child: Icon(
                                     Icons.mic_off_rounded,
-                                    size: 50,
+                                    size: 45,
                                   ),
                                 ):GestureDetector(
                                   onTap: (){
@@ -1847,12 +1876,13 @@ class _MatrixPageState extends State<MatrixPage> {
                                   key: Key('S1'),
                                   child: Icon(
                                     Icons.volume_off,
-                                    size: 50,
+                                    size: 45,
                                   ),
                                 ),
                               ),
                             ],
                           ),
+                          SizedBox(height: 10,),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -1960,8 +1990,22 @@ class _MatrixPageState extends State<MatrixPage> {
                                           for (final i in memorybar[_sysNumber]!.toList()){
                                             if (i=='assets/callicongreenpadding1.gif'){
                                               value.remove(i);
+                                              value.add('assets/calliconredpadding.gif');
+                                              Timer(Duration(seconds: 2),(){
+                                                setState(() {
+                                                  print('hello11');
+                                                  value.remove('assets/calliconredpadding.gif');
+                                                });
+                                              });
                                             }else if (i=='assets/calliconpadding.png'){
                                               value.remove(i);
+                                              value.add('assets/calliconredpadding.gif');
+                                              Timer(Duration(seconds: 2),(){
+                                                setState(() {
+                                                  print('hello123');
+                                                  value.remove('assets/calliconredpadding.gif');
+                                                });
+                                              });
                                             }
                                           }
                                           /*value.remove(
@@ -2948,9 +2992,14 @@ class _MatrixPageState extends State<MatrixPage> {
               margin: EdgeInsets.only(left: 15, right: 15, top: 0, bottom: 10),
               child: TextField(
                 maxLines:null,
+                focusNode: FocusNode(),
+                textInputAction: TextInputAction.go,
                 controller: _controllerTerminal,
-                onChanged: (value){
-                 print( _controllerTerminal.text);
+                // onChanged: (value){
+                //  print( _controllerTerminal.text);
+                // },
+                onSubmitted: (value){
+                  print( _controllerTerminal.text);
                 },
                 cursorColor: Colors.white,
                 decoration: InputDecoration(
@@ -4365,12 +4414,43 @@ class _MatrixPageState extends State<MatrixPage> {
                                                   padding:
                                                   EdgeInsets.only(top: 13.0)),
                                               Row(
-                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                                 crossAxisAlignment: CrossAxisAlignment.center,
                                                 children: [
-                                                  Expanded(
-                                                    child: Container(),
+
+                                                  /*Visibility(
+                                                    visible: true,
+                                                    child: Badge(
+                                                      position: BadgePosition(top: 3,end: 3),
+                                                      toAnimate: true,
+                                                      padding: EdgeInsets.all(2.5),
+                                                      shape: BadgeShape.circle,
+                                                      alignment: Alignment(1,-1),
+                                                      showBadge: true,
+                                                      elevation: 2,
+                                                      animationType: BadgeAnimationType.fade,
+                                                      badgeColor: Colors.white.withOpacity(0.4),
+                                                      badgeContent: Text(
+                                                        '10',
+                                                        style: TextStyle(
+                                                            fontSize: 10,
+                                                            color: Colors.black.withOpacity(0.7),
+                                                            fontWeight: FontWeight.bold
+                                                        ),
+                                                      ),
+                                                      child: Icon(
+                                                        Icons.mail_outline_rounded,
+                                                        color: Colors.black.withOpacity(0.65),
+                                                        size: 26,
+                                                      ),
+                                                    ),
+                                                  ),*/
+                                                  Icon(
+                                                    Icons.mail_outline_rounded,
+                                                    color: Color(0xff19547b),
+                                                    size: 26,
                                                   ),
+
                                                   Text(
                                                     _foundTicket[index]['problemTime'],
                                                     textAlign: TextAlign.center,
@@ -4379,15 +4459,9 @@ class _MatrixPageState extends State<MatrixPage> {
                                                         fontWeight: FontWeight.w400,
                                                         fontSize: 18),
                                                   ),
-                                                  Expanded(
-                                                    child: Visibility(
-                                                      visible: false,
-                                                      child: Icon(
-                                                        Icons.messenger_outline_outlined,
-                                                        color: Colors.black.withOpacity(0.85),
-                                                      ),
-                                                    ),
-                                                  ),
+
+                                                  SizedBox(width: 3,),
+
                                                 ],
                                               ),
                                               Padding(
@@ -7540,10 +7614,25 @@ class _MatrixPageState extends State<MatrixPage> {
                     ),
                     child: Row(
                       children: [
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 12.0),
+                          child: PhysicalModel(
+                            color: Colors.transparent,
+                            shadowColor: Colors.black.withOpacity(0.55),
+                            elevation: 5,
+                            child: Text(
+                              element['SystemNumber'],
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 14
+                              ),
+                            ),
+                          ),
+                        ),
                         Container(
-                            padding: EdgeInsets.symmetric(horizontal: 12.0),
+                            padding: EdgeInsets.symmetric(horizontal: 5.0),
                             child: Text(element['Time'])),
-                        Card(
+                        /*Card(
                           elevation: 5,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(7.5),
@@ -7551,11 +7640,13 @@ class _MatrixPageState extends State<MatrixPage> {
                           child: Container(
                               padding: EdgeInsets.symmetric(horizontal: 10.0),
                               decoration: BoxDecoration(
-                                color: element['Color'].withOpacity(0.6),
+                                color: element['Color']*//*.withOpacity(0.6)*//*,
                                 borderRadius: BorderRadius.all(Radius.circular(7.5)),
                               ),
-                              child: Text(element['SystemNumber'])),
-                        ),
+                              child: */
+
+                          /*),
+                        ),*/
                         Expanded(
                           child: Container(
                               padding: EdgeInsets.symmetric(horizontal: 10.0),
