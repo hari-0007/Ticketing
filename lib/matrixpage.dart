@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:math';
 import 'dart:ui';
 // import 'dart:html';
-import 'package:allitson/script.dart';
+// import 'package:allitson/script.dart';
 import 'package:badges/badges.dart';
 import 'package:custom_pop_up_menu/custom_pop_up_menu.dart';
 import 'package:custom_timer/custom_timer.dart';
@@ -472,8 +472,8 @@ List _elements = [
   },
 ];
 
-enum WidgetMarker { dashboard, incident }                          // Drawer
-enum IncidentMarker { main, chat, notification, script, scripting, terminal}                   // Inside Incident
+enum WidgetMarker { dashboard, incident, devices }                          // Drawer
+enum IncidentMarker { main, chat, notification, script, terminal}                   // Inside Incident
 
 class MatrixPage extends StatefulWidget {
   const MatrixPage({Key? key}) : super(key: key);
@@ -784,7 +784,12 @@ class _MatrixPageState extends State<MatrixPage> {
                         ),
                       ),
                       ListTile(
-                        onTap: () {},
+                        onTap: () {
+                          setState(() {
+                            selectedWidgetMarker = WidgetMarker.devices;
+                            value = 0;
+                          });
+                        },
                         leading: SizedBox(
                           height: 25,
                           width: 25,
@@ -881,7 +886,15 @@ class _MatrixPageState extends State<MatrixPage> {
                       ..setEntry(3, 2, 0.0019)
                       ..setEntry(0, 3, 260 * val)
                       ..rotateY((pi / 12) * val),
-                    child: getSelectedDrawer());
+                    child: Stack(
+                      children: [
+
+                        getSelectedDrawer(),
+
+                        Caller(),
+                      ],
+                    )
+                );
               })
         ],
       ),
@@ -894,6 +907,8 @@ class _MatrixPageState extends State<MatrixPage> {
         return getDashboard();
       case WidgetMarker.incident:
         return getIncident();
+      case WidgetMarker.devices:
+        return getDevices();
     }
   }
 
@@ -924,7 +939,7 @@ class _MatrixPageState extends State<MatrixPage> {
                     ])),
             child: Column(
               children: [
-                Padding(padding: EdgeInsets.only(bottom: 40.0)),
+                Padding(padding: EdgeInsets.only(top: MediaQuery.of(context).viewPadding.top+20)),
                 getDashboardAppbar(),
               ],
             )
@@ -1026,21 +1041,28 @@ class _MatrixPageState extends State<MatrixPage> {
                               MaterialPageRoute(
                                   builder: (context) => MatrixIncident()));*/
                         },
-                        child: Text(
+                        child: GradientText(
                           'DASHBOARD',
+                          gradientType: GradientType.linear,
+                          gradientDirection: GradientDirection.ttb,
+                          colors: [
+                            // Color(0xFFffffff),
+                            Colors.grey,
+                            Color(0xFF063D61),
+                          ],
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            // shadows: [
-                            //   Shadow(
-                            //     offset: Offset(1, 1),
-                            //     blurRadius: 2,
-                            //     color: Colors.black.withOpacity(0.5),
-                            //   ),
-                            // ],
-                            color: Color(0XFF81040A),
-                            fontFamily: 'Roboto',
+                            /*shadows: [
+                              Shadow(
+                                offset: Offset(0.5, 0.5),
+                                blurRadius: 1,
+                                color: Colors.black.withOpacity(0.25),
+                              ),
+                            ],*/
+                            /*color:Color(0xff451618),*//*Colors.black.withOpacity(0.85),*//* Color(0XFF19547B).withOpacity(1),*/
+                            fontFamily: 'Roboto-Thin',
                             fontWeight: FontWeight.w900,
-                            fontSize: 18,
+                            fontSize: 19,
                           ),
                         ),
                       ),
@@ -1070,8 +1092,6 @@ class _MatrixPageState extends State<MatrixPage> {
         return getNotification();
       case IncidentMarker.script:
         return getScript();
-      case IncidentMarker.scripting:
-        return getScripting();
       case IncidentMarker.terminal:
         return getTerminal();
     }
@@ -1101,11 +1121,6 @@ class _MatrixPageState extends State<MatrixPage> {
             selectedIncidentWidgetMarker = IncidentMarker.main;
           });
           return false;
-        }else if(selectedIncidentWidgetMarker == IncidentMarker.scripting){
-          setState(() {
-            selectedIncidentWidgetMarker = IncidentMarker.script;
-          });
-          return false;
         }/*else if(_buttonPosition==true){
           print('hello');
           setState(() {
@@ -1119,6 +1134,11 @@ class _MatrixPageState extends State<MatrixPage> {
         }*/else if(_enterAction==false){
           setState(() {
             _enterAction=true;
+          });
+          return false;
+        }else if(_callVisibility == true){
+          setState(() {
+            _callVisibility = false;
           });
           return false;
         }else{
@@ -1676,377 +1696,9 @@ class _MatrixPageState extends State<MatrixPage> {
                     ],
                   ),
                 ),
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: BackdropFilter(
-                    filter:  ImageFilter.blur(sigmaX: _callVisibility?2:0, sigmaY: _callVisibility?2:0),
-                    child: AnimatedContainer(
-                      duration: Duration(milliseconds: 350),
-                      height: _callVisibility?300:0,
-                      margin: EdgeInsets.only(left: 15,right: 15,bottom: 5),
-                      clipBehavior: Clip.antiAlias,
-                      padding:  EdgeInsets.only(left: 16,right: 16,top:12.5,bottom: 10),
-                      decoration:  BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage('assets/call.png'),
-                          fit: BoxFit.fill,
-                        ),
-                        border: Border.all(
-                            style: BorderStyle.solid,
-                            color: Colors.black.withOpacity(0.7),
-                            width: 3),
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(30),
-                          topRight: Radius.circular(30),
-                          bottomLeft: Radius.circular(20),
-                          bottomRight: Radius.circular(20),
-                        ),
-                      ),
-                      child: ListView(
-                        // itemExtent: 56,
-                        padding: EdgeInsets.only(top:0),
-                        children: [
-                          /*GestureDetector(
-                        onTap: (){
-                          Navigator.of(context).pop();
-                        },
-                        child: Card(
-                          elevation: 5,
-                          color: Colors.white,
-                          shape: BeveledRectangleBorder(
-                            borderRadius: BorderRadius.circular(60.0),
-                          ),
-                          child: Container(
-                            height: 35,
-                            width: 110,
-                            padding: EdgeInsets.only(left: 15,right: 15,top: 5,bottom: 5),
-                              child: Center(
-                                child: Text(
-                                  _sysNumber,
-                                  style: TextStyle(
-                                    color: Colors.black.withOpacity(0.85),
-                                      shadows: [
-                                        Shadow(
-                                          offset: Offset(1.0, 1.0),
-                                          blurRadius: 3,
-                                          color: Colors.grey.withOpacity(0.5),
-                                        ),
-                                      ],
-                                      fontFamily: 'Roboto',
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 18
-                                  ),
-                                ),
-                              )
-                          ),
-                        ),
-                      ),*/
-                          SizedBox(height: 5,),
-                          PhysicalModel(
-                            color: Colors.transparent,
-                            elevation: 5,
-                            borderRadius: BorderRadius.circular(10),
-                            child: Container(
-                              height: 30,
-                              decoration: BoxDecoration(
-                                  boxShadow: [
-                                    BoxShadow(
-                                        blurRadius: 1,
-                                        offset: Offset(1, 0),
-                                        color: Colors.black.withOpacity(0.65)),
-                                  ],
-                                  borderRadius: BorderRadius.circular(10),
-                                  gradient: LinearGradient(
-                                      colors: [
-                                        Color(0xff19547b),
-                                        // Color(0xff497D7D).withOpacity(1),
-                                        Color(0xff91BBD2).withOpacity(1),
-                                      ],
-                                      begin: Alignment.topCenter,
-                                      end: Alignment.bottomCenter,
-                                      stops: [0.5, 1]
-                                  )
-                                // color: Color(0xff91BBD2).withOpacity(0.35),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  _sysNumber,
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    shadows: [
-                                      Shadow(
-                                        offset: Offset(1.0, 1.0),
-                                        blurRadius: 3,
-                                        color: Colors.black,
-                                      ),
-                                    ],
-                                    color: Color(0xffE4E9FA),
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 18,
-                                    fontFamily: 'Roboto',
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(height: 30,),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              SizedBox(
-                                height: 35,
-                                width: 35,
-                                child: LoadingIndicator(
-                                  indicatorType: Indicator.ballClipRotatePulse,
-                                  colors: [
-                                    Colors.red,
-                                  ],
-                                ),
-                              ),
-                              SizedBox(width: 5,),
-                              Text(
-                                "Rec",
-                                style: TextStyle(
-                                  fontSize: 20
-                                ),
-                              )
-                            ],
-                          ),
-                          SizedBox(height: 20,),
-                          Center(
-                            child: CustomTimer(
-                            controller: _controllerTime,
-                            begin: Duration(),
-                            end: Duration(minutes: 60),
-                            builder: (time) {
-                              return Text(
-                                  "${time.minutes}:${time.seconds}",
-                                  style: TextStyle(fontSize: 24.0));
-                            },
-                            ),
-                          ),
-                          SizedBox(height: 20,),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              AnimatedSwitcher(
-                                duration: Duration(milliseconds: 200),
-                                child: mic?GestureDetector(
-                                  onTap: (){
-                                    setState(() {
-                                      mic=!mic;
-                                    });
-                                  },
-                                  key: Key('M2'),
-                                  child: Icon(
-                                    Icons.mic_off_rounded,
-                                    size: 45,
-                                  ),
-                                ):GestureDetector(
-                                  onTap: (){
-                                    setState(() {
-                                      mic=!mic;
-                                    });
-                                  },
-                                  key: Key('M1'),
-                                  child: Icon(
-                                    Icons.mic,
-                                    size: 45,),
-                                ),
-                              ),
-                              AnimatedSwitcher(
-                                duration: Duration(milliseconds: 200),
-                                child:speaker? GestureDetector(
-                                  onTap: (){
-                                    setState((){
-                                      speaker=!speaker;
-                                    });
-                                  },
-                                  key: Key('S2'),
-                                  child: Icon(
-                                    Icons.volume_up_rounded,
-                                    size: 45,
-                                  ),
-                                ):GestureDetector(
-                                  onTap: (){
-                                    setState((){
-                                      speaker=!speaker;
-                                    });
-                                  },
-                                  key: Key('S1'),
-                                  child: Icon(
-                                    Icons.volume_off,
-                                    size: 45,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 10,),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Expanded(
-                                child: AnimatedSwitcher(
-                                  duration: Duration(microseconds: 200),
-                                  child:call? GestureDetector(
-                                    onTap: (){
-                                      _controllerTime.start();
-                                      setState((){
-                                        call=!call;
-                                      });
-                                      setState((){
-                                        memorybar.forEach((key, value) {
-                                          if(key==_sysNumber){
-                                            for(final i in memorybar[_sysNumber]!.toList()){
-                                              if(i=='assets/calliconpadding.png'){
-                                                value.remove(i);
-                                                value.add('assets/callicongreenpadding1.gif');
-                                              }
-                                            }
-                                          }
-                                        });
-                                      });
-                                    },
-                                    key: Key('C2'),
-                                    child: Container(
-                                        height: 37.5,
-                                        margin: EdgeInsets.only(right: 2.5),
-                                        decoration: BoxDecoration(
-                                            color: Color(0xff483B3B),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(25),
-                                                bottomLeft: Radius.circular(25)
-                                            )
-                                        ),
-                                        child: Center(
-                                          child: Text(
-                                            'RESUME',
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 20
-                                            ),
-                                          ),
-                                        )
-                                    ),
-                                  ):GestureDetector(
-                                    onTap: (){
-                                      _controllerTime.pause();
-                                      setState((){
-                                        call=!call;
-                                      });
-                                      setState((){
-                                        memorybar.forEach((key, value) {
-                                          if(key==_sysNumber){
-                                            for(final i in memorybar[_sysNumber]!.toList()){
-                                              if(i=='assets/callicongreenpadding1.gif'){
-                                                value.remove(i);
-                                                value.add('assets/calliconpadding.png');
-                                              }
-                                            }
-                                          }
-                                        });
-                                      });
-                                    },
-                                    key: Key('C1'),
-                                    child: Container(
-                                        height: 37.5,
-                                        margin: EdgeInsets.only(right: 2.5),
-                                        decoration: BoxDecoration(
-                                            color: Color(0xff483B3B),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(25),
-                                                bottomLeft: Radius.circular(25)
-                                            )
-                                        ),
-                                        child: Center(
-                                          child: Text(
-                                            'HOLD',
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 20
-                                            ),
-                                          ),
-                                        )
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                child: GestureDetector(
-                                  onTap: (){
-                                    _callIgnore=false;
-                                    _controllerTime.reset();
-                                    print(_controllerTime);
-                                    setState(() {
-                                      _callVisibility=!_callVisibility;
-                                    });
-                                    setState(() {
-                                      memorybar.forEach((key, value) {
-                                        if (key == _sysNumber) {
-                                          for (final i in memorybar[_sysNumber]!.toList()){
-                                            if (i=='assets/callicongreenpadding1.gif'){
-                                              value.remove(i);
-                                              value.add('assets/calliconredpadding.gif');
-                                              Timer(Duration(seconds: 2),(){
-                                                setState(() {
-                                                  print('hello11');
-                                                  value.remove('assets/calliconredpadding.gif');
-                                                });
-                                              });
-                                            }else if (i=='assets/calliconpadding.png'){
-                                              value.remove(i);
-                                              value.add('assets/calliconredpadding.gif');
-                                              Timer(Duration(seconds: 2),(){
-                                                setState(() {
-                                                  print('hello123');
-                                                  value.remove('assets/calliconredpadding.gif');
-                                                });
-                                              });
-                                            }
-                                          }
-                                          /*value.remove(
-                                          memorybar[_sysNumber]!
-                                              .toList()[0]);*/
-                                        }
-                                      });
-                                    });
-                                  },
-                                  child: Container(
-                                      height: 37.5,
-                                      margin: EdgeInsets.only(left: 2.5),
-                                      decoration: BoxDecoration(
-                                          color: Color(0xffB91B1B),
-                                          borderRadius: BorderRadius.only(
-                                              topRight: Radius.circular(25),
-                                              bottomRight: Radius.circular(25)
-                                          )
-                                      ),
-                                      child: Center(
-                                        child: Text(
-                                          'HANGOUT',
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 18
-                                          ),
-                                        ),
-                                      )
-                                  ),
-                                ),
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                )
               ],
-            )),
+            )
+        ),
       ),
     );
   }
@@ -2380,113 +2032,6 @@ class _MatrixPageState extends State<MatrixPage> {
   }
 
   Widget getScript(){
-    List _myListStrings = ['Linux','Windows','Ubuntu','RedHat','CentOS','Mac','Android','ParrotOS'];
-    return Expanded(
-      child: Column(
-        children: [
-          Expanded(
-            child: Container(
-              // height: MediaQuery.of(context).size.height-100,
-              // color: Colors.blueGrey,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(
-                    style: BorderStyle.solid,
-                    color: Colors.white70.withOpacity(0.1),
-                    width: 0.5,
-                  ),
-                  gradient: LinearGradient(
-                      colors: [
-                        Colors.white.withOpacity(0.5),
-                        Colors.white.withOpacity(0.1),
-                        // Color(0xffB0C8C8),
-                        // Color(0xff19547b),
-                        // Color(0xff497D7D).withOpacity(0.8),
-                        // Color(0xff91BBD2).withOpacity(0.35),
-                        // Color(0xff9A85B4),
-                        // Color(0xffA3818F)
-                        // Color(0xff91BBD2).withOpacity(0.8),
-                        // Color(0xff8D6679).withOpacity(0.8),
-                      ],
-                      // stops: [0.0,1.0],
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter)
-              ),
-              margin: EdgeInsets.only(left: 15, right: 15, top: 0, bottom: 10),
-              child:Column(
-                children: [
-                  Row(),
-                  Wrap(
-                    alignment: WrapAlignment.start,
-                    runSpacing: 10,
-                    spacing: 10,
-                    children: [
-                      for(var item in _myListStrings)
-                        GestureDetector(
-                          onTap: (){
-                            if(item == 'Windows'){
-                              setState(() {
-                                selectedIncidentWidgetMarker = IncidentMarker.scripting;
-                              });
-                            }
-                          },
-                            child: MyContainerWidget(text: item)
-                        ),
-                    ],
-                  ),
-                ],
-              )
-              ),
-            ),
-          Container(
-            margin: EdgeInsets.only(left: 15,right: 20,bottom: 2),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Card(
-                  elevation: 4,
-                  color: Colors.transparent,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Container(
-                    padding: EdgeInsets.only(left: 10,right: 10,top: 5,bottom: 5),
-                    margin: EdgeInsets.only(bottom: 3),
-                    decoration: BoxDecoration(
-                      color: Color(0xff19547b),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Center(
-                      child: Text(
-                        "SUBMIT",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          shadows: [
-                            Shadow(
-                              offset: Offset(1.0, 1.0),
-                              blurRadius: 3,
-                              color: Colors.black,
-                            ),
-                          ],
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 17.5,
-                          fontFamily: 'Roboto',
-                        ),
-                      ),
-                    ),
-                  ),
-                )
-              ],
-            ),
-          )
-        ],
-      ),
-    );
-  }
-
-  Widget getScripting(){
-
     final _controllerScripting = TextEditingController();
     _controllerScripting.text = "Scripting";
 
@@ -2519,109 +2064,58 @@ class _MatrixPageState extends State<MatrixPage> {
                   end: Alignment.bottomCenter)
           ),
           margin: EdgeInsets.only(left: 15, right: 15, top: 0, bottom: 10),
-        child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Column(
-            children: [
-              SizedBox(height: 15,),
-              GestureDetector(
-                onTap: (){
-                  showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          shape: RoundedRectangleBorder(
-                            borderRadius:
-                            BorderRadius.circular(30.0),
-                          ),
-                          scrollable: true,
-                          insetPadding: EdgeInsets.all(40),
-                          contentPadding: EdgeInsets.all(0),
-                          backgroundColor: Colors.white60,
-                          content: Container(
-                            height: 300,
-                            width: 320,
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                color: Colors.black
-                                    .withOpacity(0.8),
-                                width: 3,
-                              ),
-                              // color: Color(0xffB5B5B5),
+          child: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Column(
+              children: [
+                SizedBox(height: 15,),
+                GestureDetector(
+                  onTap: (){
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            shape: RoundedRectangleBorder(
                               borderRadius:
                               BorderRadius.circular(30.0),
                             ),
-                            child: Column(
-                              children: [
-                                Expanded(
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                        color: Color(0xff19547b),
-                                        borderRadius: BorderRadius.only(topLeft: Radius.circular(25),topRight: Radius.circular(25))
-                                    ),
-                                    child: Center(
-                                      child: Text(
-                                        'ShutDown',
-                                        style: TextStyle(
-                                            fontSize: 17,
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ),
-                                  ),
+                            scrollable: true,
+                            insetPadding: EdgeInsets.all(40),
+                            contentPadding: EdgeInsets.all(0),
+                            backgroundColor: Colors.white60,
+                            content: Container(
+                              height: 300,
+                              width: 320,
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: Colors.black
+                                      .withOpacity(0.8),
+                                  width: 3,
                                 ),
-                                Container(
-                                  padding: EdgeInsets.only(left: 5, right: 5),
-                                  decoration: BoxDecoration(
-                                    color: Colors.white.withOpacity(0.8),
-                                    borderRadius: BorderRadius.circular(0),
-                                    border: Border.all(
-                                        style: BorderStyle.solid,
-                                        color: Colors.black.withOpacity(0.2),
-                                        width: 1),
-                                  ),
-                                  height: 100,
-                                  margin: EdgeInsets.only(
-                                      left: 0,
-                                      right: 0,
-                                      top: 0,
-                                      bottom: 0),
-                                  child: Column(
-                                    children: [
-                                      SizedBox(height: 5,),
-                                      Row(
-                                        children: [
-                                          Text(
-                                            'Script:',
-                                            style: TextStyle(
-                                              color: Colors.black87.withOpacity(0.5),
-                                              fontSize: 15.5,
-                                              fontWeight: FontWeight.w700,
-                                              fontFamily: 'fonts/Roboto-Regular.ttf',
-                                            ),)
-                                        ],
+                                // color: Color(0xffB5B5B5),
+                                borderRadius:
+                                BorderRadius.circular(30.0),
+                              ),
+                              child: Column(
+                                children: [
+                                  Expanded(
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          color: Color(0xff19547b),
+                                          borderRadius: BorderRadius.only(topLeft: Radius.circular(25),topRight: Radius.circular(25))
                                       ),
-                                      TextField(
-                                        controller: _controllerScripting,
-                                        minLines: null,
-                                        maxLines: null,
-                                        keyboardType: TextInputType.multiline,
-                                        textInputAction: TextInputAction.done,
-                                        cursorColor: Colors.black.withOpacity(0.2),
-                                        showCursor: true,
-                                        decoration: InputDecoration(
-                                            border: InputBorder.none,
-                                            labelStyle:
-                                            TextStyle(
-                                              fontFamily: 'raster',
-                                              color: Colors.black.withOpacity(0.6),
-                                            )
+                                      child: Center(
+                                        child: Text(
+                                          'ShutDown',
+                                          style: TextStyle(
+                                              fontSize: 17,
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold),
                                         ),
                                       ),
-                                    ],
+                                    ),
                                   ),
-                                ),
-                                Container(
+                                  Container(
                                     padding: EdgeInsets.only(left: 5, right: 5),
                                     decoration: BoxDecoration(
                                       color: Colors.white.withOpacity(0.8),
@@ -2638,69 +2132,186 @@ class _MatrixPageState extends State<MatrixPage> {
                                         top: 0,
                                         bottom: 0),
                                     child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.center,
                                       children: [
                                         SizedBox(height: 5,),
                                         Row(
-                                          mainAxisAlignment: MainAxisAlignment.start,
                                           children: [
                                             Text(
-                                              'Description:',
+                                              'Script:',
                                               style: TextStyle(
                                                 color: Colors.black87.withOpacity(0.5),
                                                 fontSize: 15.5,
                                                 fontWeight: FontWeight.w700,
                                                 fontFamily: 'fonts/Roboto-Regular.ttf',
-                                              ),
-                                            )
+                                              ),)
                                           ],
                                         ),
-                                        SizedBox(height: 10,),
-                                        Container(
-                                          padding: EdgeInsets.only(left: 10,right: 10),
-                                          child: Text(
-                                            'To Shutdown the Computer in schedule time',
-                                            style: TextStyle(
-                                              color: Colors.black87.withOpacity(0.6),
-                                              fontSize: 13,
-                                              fontWeight: FontWeight.w400,
-                                              fontFamily: 'fonts/Roboto-Regular.ttf',
-                                            ),
+                                        TextField(
+                                          controller: _controllerScripting,
+                                          minLines: null,
+                                          maxLines: null,
+                                          keyboardType: TextInputType.multiline,
+                                          textInputAction: TextInputAction.done,
+                                          cursorColor: Colors.black.withOpacity(0.2),
+                                          showCursor: true,
+                                          decoration: InputDecoration(
+                                              border: InputBorder.none,
+                                              labelStyle:
+                                              TextStyle(
+                                                fontFamily: 'raster',
+                                                color: Colors.black.withOpacity(0.6),
+                                              )
                                           ),
-                                        )
+                                        ),
                                       ],
-                                    )
-                                ),
-                                ElevatedButton(
-                                    child: Text(
-                                      "RUN SCRIPT",
-                                      style: TextStyle(
-                                          fontWeight:
-                                          FontWeight.bold,
-                                          color:
-                                          Colors.white),
                                     ),
-                                    style: ElevatedButton.styleFrom(
-                                      elevation: 5,
-                                      side: BorderSide(
-                                        color: Colors.white,
-                                        width: 2.0,
+                                  ),
+                                  Container(
+                                      padding: EdgeInsets.only(left: 5, right: 5),
+                                      decoration: BoxDecoration(
+                                        color: Colors.white.withOpacity(0.8),
+                                        borderRadius: BorderRadius.circular(0),
+                                        border: Border.all(
+                                            style: BorderStyle.solid,
+                                            color: Colors.black.withOpacity(0.2),
+                                            width: 1),
                                       ),
-                                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15), // <-- Radius
+                                      height: 100,
+                                      margin: EdgeInsets.only(
+                                          left: 0,
+                                          right: 0,
+                                          top: 0,
+                                          bottom: 0),
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          SizedBox(height: 5,),
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                'Description:',
+                                                style: TextStyle(
+                                                  color: Colors.black87.withOpacity(0.5),
+                                                  fontSize: 15.5,
+                                                  fontWeight: FontWeight.w700,
+                                                  fontFamily: 'fonts/Roboto-Regular.ttf',
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                          SizedBox(height: 10,),
+                                          Container(
+                                            padding: EdgeInsets.only(left: 10,right: 10),
+                                            child: Text(
+                                              'To Shutdown the Computer in schedule time',
+                                              style: TextStyle(
+                                                color: Colors.black87.withOpacity(0.6),
+                                                fontSize: 13,
+                                                fontWeight: FontWeight.w400,
+                                                fontFamily: 'fonts/Roboto-Regular.ttf',
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      )
+                                  ),
+                                  ElevatedButton(
+                                      child: Text(
+                                        "RUN SCRIPT",
+                                        style: TextStyle(
+                                            fontWeight:
+                                            FontWeight.bold,
+                                            color:
+                                            Colors.white),
                                       ),
-                                      primary: Color(0xff19547b),
-                                    ),
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    }
-                                ),
-                              ],
+                                      style: ElevatedButton.styleFrom(
+                                        elevation: 5,
+                                        side: BorderSide(
+                                          color: Colors.white,
+                                          width: 2.0,
+                                        ),
+                                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15), // <-- Radius
+                                        ),
+                                        primary: Color(0xff19547b),
+                                      ),
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      }
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        );
-                      });
-                },
-                child: ListTile(
+                          );
+                        });
+                  },
+                  child: ListTile(
+                    leading: Image.asset(
+                      'assets/scriptscripting.png',
+                      height: 60,
+                      width: 60,
+                    ),
+                    title:Text("ShutDown",style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black.withOpacity(0.75),
+                    ),),
+                    subtitle: Text('To Shutdown the Computer in schedule time'),
+                  ),
+                ),
+                SizedBox(height: 10,),
+                ListTile(
+                  leading: Image.asset(
+                    'assets/scriptscripting.png',
+                    height: 60,
+                    width: 60,
+                  ),
+                  title:Text("LockScreen",style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black.withOpacity(0.75),
+                  ),),
+                  subtitle: Text('To Shutdown the Computer in schedule time'),
+                ),
+                SizedBox(height: 10,),
+                ListTile(
+                  leading: Image.asset(
+                    'assets/scriptscripting.png',
+                    height: 60,
+                    width: 60,
+                  ),
+                  title:Text("Sleep",style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black.withOpacity(0.75),
+                  ),),
+                  subtitle: Text('To Shutdown the Computer in schedule time'),
+                ),
+                SizedBox(height: 10,),
+                ListTile(
+                  leading: Image.asset(
+                    'assets/scriptscripting.png',
+                    height: 60,
+                    width: 60,
+                  ),
+                  title:Text("Windows Update",style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black.withOpacity(0.75),
+                  ),),
+                  subtitle: Text('To Shutdown the Computer in schedule time'),
+                ),
+                SizedBox(height: 10,),
+                ListTile(
+                  leading: Image.asset(
+                    'assets/scriptscripting.png',
+                    height: 60,
+                    width: 60,
+                  ),
+                  title:Text("Windows Defender Update",style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black.withOpacity(0.75),
+                  ),),
+                  subtitle: Text('To Shutdown the Computer in schedule time'),
+                ),
+                SizedBox(height: 10,),
+                ListTile(
                   leading: Image.asset(
                     'assets/scriptscripting.png',
                     height: 60,
@@ -2712,257 +2323,191 @@ class _MatrixPageState extends State<MatrixPage> {
                   ),),
                   subtitle: Text('To Shutdown the Computer in schedule time'),
                 ),
-              ),
-              SizedBox(height: 10,),
-              ListTile(
-                leading: Image.asset(
-                  'assets/scriptscripting.png',
-                  height: 60,
-                  width: 60,
+                SizedBox(height: 10,),
+                ListTile(
+                  leading: Image.asset(
+                    'assets/scriptscripting.png',
+                    height: 60,
+                    width: 60,
+                  ),
+                  title:Text("LockScreen",style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black.withOpacity(0.75),
+                  ),),
+                  subtitle: Text('To Shutdown the Computer in schedule time'),
                 ),
-                title:Text("LockScreen",style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black.withOpacity(0.75),
-                ),),
-                subtitle: Text('To Shutdown the Computer in schedule time'),
-              ),
-              SizedBox(height: 10,),
-              ListTile(
-                leading: Image.asset(
-                  'assets/scriptscripting.png',
-                  height: 60,
-                  width: 60,
+                SizedBox(height: 10,),
+                ListTile(
+                  leading: Image.asset(
+                    'assets/scriptscripting.png',
+                    height: 60,
+                    width: 60,
+                  ),
+                  title:Text("Sleep",style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black.withOpacity(0.75),
+                  ),),
+                  subtitle: Text('To Shutdown the Computer in schedule time'),
                 ),
-                title:Text("Sleep",style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black.withOpacity(0.75),
-                ),),
-                subtitle: Text('To Shutdown the Computer in schedule time'),
-              ),
-              SizedBox(height: 10,),
-              ListTile(
-                leading: Image.asset(
-                  'assets/scriptscripting.png',
-                  height: 60,
-                  width: 60,
+                SizedBox(height: 10,),
+                ListTile(
+                  leading: Image.asset(
+                    'assets/scriptscripting.png',
+                    height: 60,
+                    width: 60,
+                  ),
+                  title:Text("Windows Update",style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black.withOpacity(0.75),
+                  ),),
+                  subtitle: Text('To Shutdown the Computer in schedule time'),
                 ),
-                title:Text("Windows Update",style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black.withOpacity(0.75),
-                ),),
-                subtitle: Text('To Shutdown the Computer in schedule time'),
-              ),
-              SizedBox(height: 10,),
-              ListTile(
-                leading: Image.asset(
-                  'assets/scriptscripting.png',
-                  height: 60,
-                  width: 60,
+                SizedBox(height: 10,),
+                ListTile(
+                  leading: Image.asset(
+                    'assets/scriptscripting.png',
+                    height: 60,
+                    width: 60,
+                  ),
+                  title:Text("Windows Defender Update",style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black.withOpacity(0.75),
+                  ),),
+                  subtitle: Text('To Shutdown the Computer in schedule time'),
                 ),
-                title:Text("Windows Defender Update",style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black.withOpacity(0.75),
-                ),),
-                subtitle: Text('To Shutdown the Computer in schedule time'),
-              ),
-              SizedBox(height: 10,),
-              ListTile(
-                leading: Image.asset(
-                  'assets/scriptscripting.png',
-                  height: 60,
-                  width: 60,
+                SizedBox(height: 10,),
+                ListTile(
+                  leading: Image.asset(
+                    'assets/scriptscripting.png',
+                    height: 60,
+                    width: 60,
+                  ),
+                  title:Text("ShutDown",style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black.withOpacity(0.75),
+                  ),),
+                  subtitle: Text('To Shutdown the Computer in schedule time'),
                 ),
-                title:Text("ShutDown",style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black.withOpacity(0.75),
-                ),),
-                subtitle: Text('To Shutdown the Computer in schedule time'),
-              ),
-              SizedBox(height: 10,),
-              ListTile(
-                leading: Image.asset(
-                  'assets/scriptscripting.png',
-                  height: 60,
-                  width: 60,
+                SizedBox(height: 10,),
+                ListTile(
+                  leading: Image.asset(
+                    'assets/scriptscripting.png',
+                    height: 60,
+                    width: 60,
+                  ),
+                  title:Text("LockScreen",style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black.withOpacity(0.75),
+                  ),),
+                  subtitle: Text('To Shutdown the Computer in schedule time'),
                 ),
-                title:Text("LockScreen",style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black.withOpacity(0.75),
-                ),),
-                subtitle: Text('To Shutdown the Computer in schedule time'),
-              ),
-              SizedBox(height: 10,),
-              ListTile(
-                leading: Image.asset(
-                  'assets/scriptscripting.png',
-                  height: 60,
-                  width: 60,
+                SizedBox(height: 10,),
+                ListTile(
+                  leading: Image.asset(
+                    'assets/scriptscripting.png',
+                    height: 60,
+                    width: 60,
+                  ),
+                  title:Text("Sleep",style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black.withOpacity(0.75),
+                  ),),
+                  subtitle: Text('To Shutdown the Computer in schedule time'),
                 ),
-                title:Text("Sleep",style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black.withOpacity(0.75),
-                ),),
-                subtitle: Text('To Shutdown the Computer in schedule time'),
-              ),
-              SizedBox(height: 10,),
-              ListTile(
-                leading: Image.asset(
-                  'assets/scriptscripting.png',
-                  height: 60,
-                  width: 60,
+                SizedBox(height: 10,),
+                ListTile(
+                  leading: Image.asset(
+                    'assets/scriptscripting.png',
+                    height: 60,
+                    width: 60,
+                  ),
+                  title:Text("Windows Update",style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black.withOpacity(0.75),
+                  ),),
+                  subtitle: Text('To Shutdown the Computer in schedule time'),
                 ),
-                title:Text("Windows Update",style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black.withOpacity(0.75),
-                ),),
-                subtitle: Text('To Shutdown the Computer in schedule time'),
-              ),
-              SizedBox(height: 10,),
-              ListTile(
-                leading: Image.asset(
-                  'assets/scriptscripting.png',
-                  height: 60,
-                  width: 60,
+                SizedBox(height: 10,),
+                ListTile(
+                  leading: Image.asset(
+                    'assets/scriptscripting.png',
+                    height: 60,
+                    width: 60,
+                  ),
+                  title:Text("Windows Defender Update",style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black.withOpacity(0.75),
+                  ),),
+                  subtitle: Text('To Shutdown the Computer in schedule time'),
                 ),
-                title:Text("Windows Defender Update",style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black.withOpacity(0.75),
-                ),),
-                subtitle: Text('To Shutdown the Computer in schedule time'),
-              ),
-              SizedBox(height: 10,),
-              ListTile(
-                leading: Image.asset(
-                  'assets/scriptscripting.png',
-                  height: 60,
-                  width: 60,
+                SizedBox(height: 10,),
+                ListTile(
+                  leading: Image.asset(
+                    'assets/scriptscripting.png',
+                    height: 60,
+                    width: 60,
+                  ),
+                  title:Text("ShutDown",style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black.withOpacity(0.75),
+                  ),),
+                  subtitle: Text('To Shutdown the Computer in schedule time'),
                 ),
-                title:Text("ShutDown",style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black.withOpacity(0.75),
-                ),),
-                subtitle: Text('To Shutdown the Computer in schedule time'),
-              ),
-              SizedBox(height: 10,),
-              ListTile(
-                leading: Image.asset(
-                  'assets/scriptscripting.png',
-                  height: 60,
-                  width: 60,
+                SizedBox(height: 10,),
+                ListTile(
+                  leading: Image.asset(
+                    'assets/scriptscripting.png',
+                    height: 60,
+                    width: 60,
+                  ),
+                  title:Text("LockScreen",style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black.withOpacity(0.75),
+                  ),),
+                  subtitle: Text('To Shutdown the Computer in schedule time'),
                 ),
-                title:Text("LockScreen",style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black.withOpacity(0.75),
-                ),),
-                subtitle: Text('To Shutdown the Computer in schedule time'),
-              ),
-              SizedBox(height: 10,),
-              ListTile(
-                leading: Image.asset(
-                  'assets/scriptscripting.png',
-                  height: 60,
-                  width: 60,
+                SizedBox(height: 10,),
+                ListTile(
+                  leading: Image.asset(
+                    'assets/scriptscripting.png',
+                    height: 60,
+                    width: 60,
+                  ),
+                  title:Text("Sleep",style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black.withOpacity(0.75),
+                  ),),
+                  subtitle: Text('To Shutdown the Computer in schedule time'),
                 ),
-                title:Text("Sleep",style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black.withOpacity(0.75),
-                ),),
-                subtitle: Text('To Shutdown the Computer in schedule time'),
-              ),
-              SizedBox(height: 10,),
-              ListTile(
-                leading: Image.asset(
-                  'assets/scriptscripting.png',
-                  height: 60,
-                  width: 60,
+                SizedBox(height: 10,),
+                ListTile(
+                  leading: Image.asset(
+                    'assets/scriptscripting.png',
+                    height: 60,
+                    width: 60,
+                  ),
+                  title:Text("Windows Update",style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black.withOpacity(0.75),
+                  ),),
+                  subtitle: Text('To Shutdown the Computer in schedule time'),
                 ),
-                title:Text("Windows Update",style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black.withOpacity(0.75),
-                ),),
-                subtitle: Text('To Shutdown the Computer in schedule time'),
-              ),
-              SizedBox(height: 10,),
-              ListTile(
-                leading: Image.asset(
-                  'assets/scriptscripting.png',
-                  height: 60,
-                  width: 60,
+                SizedBox(height: 10,),
+                ListTile(
+                  leading: Image.asset(
+                    'assets/scriptscripting.png',
+                    height: 60,
+                    width: 60,
+                  ),
+                  title:Text("Windows Defender Update",style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black.withOpacity(0.75),
+                  ),),
+                  subtitle: Text('To Shutdown the Computer in schedule time'),
                 ),
-                title:Text("Windows Defender Update",style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black.withOpacity(0.75),
-                ),),
-                subtitle: Text('To Shutdown the Computer in schedule time'),
-              ),
-              SizedBox(height: 10,),
-              ListTile(
-                leading: Image.asset(
-                  'assets/scriptscripting.png',
-                  height: 60,
-                  width: 60,
-                ),
-                title:Text("ShutDown",style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black.withOpacity(0.75),
-                ),),
-                subtitle: Text('To Shutdown the Computer in schedule time'),
-              ),
-              SizedBox(height: 10,),
-              ListTile(
-                leading: Image.asset(
-                  'assets/scriptscripting.png',
-                  height: 60,
-                  width: 60,
-                ),
-                title:Text("LockScreen",style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black.withOpacity(0.75),
-                ),),
-                subtitle: Text('To Shutdown the Computer in schedule time'),
-              ),
-              SizedBox(height: 10,),
-              ListTile(
-                leading: Image.asset(
-                  'assets/scriptscripting.png',
-                  height: 60,
-                  width: 60,
-                ),
-                title:Text("Sleep",style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black.withOpacity(0.75),
-                ),),
-                subtitle: Text('To Shutdown the Computer in schedule time'),
-              ),
-              SizedBox(height: 10,),
-              ListTile(
-                leading: Image.asset(
-                  'assets/scriptscripting.png',
-                  height: 60,
-                  width: 60,
-                ),
-                title:Text("Windows Update",style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black.withOpacity(0.75),
-                ),),
-                subtitle: Text('To Shutdown the Computer in schedule time'),
-              ),
-              SizedBox(height: 10,),
-              ListTile(
-                leading: Image.asset(
-                  'assets/scriptscripting.png',
-                  height: 60,
-                  width: 60,
-                ),
-                title:Text("Windows Defender Update",style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black.withOpacity(0.75),
-                ),),
-                subtitle: Text('To Shutdown the Computer in schedule time'),
-              ),
-            ],
-          ),
-        )
+              ],
+            ),
+          )
       ),
     );
   }
@@ -4445,10 +3990,16 @@ class _MatrixPageState extends State<MatrixPage> {
                                                       ),
                                                     ),
                                                   ),*/
-                                                  Icon(
-                                                    Icons.mail_outline_rounded,
-                                                    color: Color(0xff19547b),
-                                                    size: 26,
+                                                  Visibility(
+                                                    visible: false,
+                                                    child: Padding(
+                                                      padding: EdgeInsets.only(left: 2),
+                                                      child: Icon(
+                                                        Icons.mail_rounded,
+                                                        color: /*Color(0xff134074),*/Color(0xff19547b),
+                                                        size: 26,
+                                                      ),
+                                                    ),
                                                   ),
 
                                                   Text(
@@ -7081,7 +6632,7 @@ class _MatrixPageState extends State<MatrixPage> {
               bottomLeft: Radius.elliptical(40, 100)),
           child: GroupedListView<dynamic, String>(
             sort: false,
-            padding: EdgeInsets.symmetric(vertical: 0, horizontal: 15),
+            padding: EdgeInsets.symmetric(vertical: 0, horizontal: 12.5),
             elements: _elements,
             groupBy: (_element) => _element['group'],
             order: GroupedListOrder.DESC,
@@ -7103,19 +6654,21 @@ class _MatrixPageState extends State<MatrixPage> {
               return Padding(
                 padding: EdgeInsets.all(0.0),
                 child: Container(
-                  width: 50,
+                  height: 27,
                   decoration: BoxDecoration(
                     color: Colors.black.withOpacity(0.3),
                     borderRadius: BorderRadius.circular(50),
                   ),
-                  child: Text(
-                    value,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontSize: 16,
-                        fontFamily: 'fonts/Roboto-Light.ttf',
-                        fontWeight: FontWeight.normal,
-                        color: Colors.white.withOpacity(0.875)),
+                  child: Center(
+                    child: Text(
+                      value,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontFamily: 'fonts/Roboto-Light.ttf',
+                          fontWeight: FontWeight.normal,
+                          color: Colors.white.withOpacity(0.875)),
+                    ),
                   ),
                 ),
               );
@@ -7598,7 +7151,7 @@ class _MatrixPageState extends State<MatrixPage> {
                   shadowColor: Colors.black,
                   margin: EdgeInsets.symmetric(horizontal: 0.0, vertical: 3.0),
                   child: Container(
-                    height: 35,
+                    height: 42.5,
                     decoration: BoxDecoration(
                       boxShadow: [
                         BoxShadow(
@@ -7669,6 +7222,544 @@ class _MatrixPageState extends State<MatrixPage> {
           ),
         ),
       ),
+    );
+  }
+
+  Widget Caller(){
+    return Align(
+      alignment: Alignment.bottomCenter,
+      child: BackdropFilter(
+        filter:  ImageFilter.blur(sigmaX: _callVisibility?2:0, sigmaY: _callVisibility?2:0),
+        child: AnimatedContainer(
+          duration: Duration(milliseconds: 350),
+          height: _callVisibility?300:0,
+          margin: EdgeInsets.only(left: 15,right: 15,bottom: 5),
+          clipBehavior: Clip.antiAlias,
+          padding:  EdgeInsets.only(left: 16,right: 16,top:12.5,bottom: 10),
+          decoration:  BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/call.png'),
+              fit: BoxFit.fill,
+            ),
+            border: Border.all(
+                style: BorderStyle.solid,
+                color: Colors.black.withOpacity(0.7),
+                width: 1),
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(30),
+              topRight: Radius.circular(30),
+              bottomLeft: Radius.circular(20),
+              bottomRight: Radius.circular(20),
+            ),
+          ),
+          child: ListView(
+            // itemExtent: 56,
+            padding: EdgeInsets.only(top:0),
+            children: [
+              /*GestureDetector(
+                        onTap: (){
+                          Navigator.of(context).pop();
+                        },
+                        child: Card(
+                          elevation: 5,
+                          color: Colors.white,
+                          shape: BeveledRectangleBorder(
+                            borderRadius: BorderRadius.circular(60.0),
+                          ),
+                          child: Container(
+                            height: 35,
+                            width: 110,
+                            padding: EdgeInsets.only(left: 15,right: 15,top: 5,bottom: 5),
+                              child: Center(
+                                child: Text(
+                                  _sysNumber,
+                                  style: TextStyle(
+                                    color: Colors.black.withOpacity(0.85),
+                                      shadows: [
+                                        Shadow(
+                                          offset: Offset(1.0, 1.0),
+                                          blurRadius: 3,
+                                          color: Colors.grey.withOpacity(0.5),
+                                        ),
+                                      ],
+                                      fontFamily: 'Roboto',
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18
+                                  ),
+                                ),
+                              )
+                          ),
+                        ),
+                      ),*/
+              SizedBox(height: 5,),
+              PhysicalModel(
+                color: Colors.transparent,
+                elevation: 5,
+                borderRadius: BorderRadius.circular(10),
+                child: Center(
+                  child: Text(
+                    _sysNumber,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      shadows: [
+                        Shadow(
+                          offset: Offset(1.0, 1.0),
+                          blurRadius: 3,
+                          color: Colors.black,
+                        ),
+                      ],
+                      color: Color(0xffE4E9FA),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 19,
+                      fontFamily: 'Roboto',
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 35,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    height: 35,
+                    width: 35,
+                    child: LoadingIndicator(
+                      indicatorType: Indicator.ballClipRotatePulse,
+                      colors: [
+                        Colors.red,
+                      ],
+                    ),
+                  ),
+                  SizedBox(width: 5,),
+                  Text(
+                    "Rec",
+                    style: TextStyle(
+                        fontSize: 20
+                    ),
+                  )
+                ],
+              ),
+              SizedBox(height: 20,),
+              Center(
+                child: CustomTimer(
+                  controller: _controllerTime,
+                  begin: Duration(),
+                  end: Duration(minutes: 60),
+                  builder: (time) {
+                    return Text(
+                        "${time.minutes}:${time.seconds}",
+                        style: TextStyle(fontSize: 24.0));
+                  },
+                ),
+              ),
+              SizedBox(height: 25,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  AnimatedSwitcher(
+                    duration: Duration(milliseconds: 200),
+                    child: mic?GestureDetector(
+                      onTap: (){
+                        setState(() {
+                          mic=!mic;
+                        });
+                      },
+                      key: Key('M2'),
+                      child: Icon(
+                        Icons.mic_off_rounded,
+                        size: 45,
+                      ),
+                    ):GestureDetector(
+                      onTap: (){
+                        setState(() {
+                          mic=!mic;
+                        });
+                      },
+                      key: Key('M1'),
+                      child: Icon(
+                        Icons.mic,
+                        size: 45,),
+                    ),
+                  ),
+                  AnimatedSwitcher(
+                    duration: Duration(milliseconds: 200),
+                    child:speaker? GestureDetector(
+                      onTap: (){
+                        setState((){
+                          speaker=!speaker;
+                        });
+                      },
+                      key: Key('S2'),
+                      child: Icon(
+                        Icons.volume_up_rounded,
+                        size: 45,
+                      ),
+                    ):GestureDetector(
+                      onTap: (){
+                        setState((){
+                          speaker=!speaker;
+                        });
+                      },
+                      key: Key('S1'),
+                      child: Icon(
+                        Icons.volume_off,
+                        size: 45,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 15,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: AnimatedSwitcher(
+                      duration: Duration(microseconds: 200),
+                      child:call? GestureDetector(
+                        onTap: (){
+                          _controllerTime.start();
+                          setState((){
+                            call=!call;
+                          });
+                          setState((){
+                            memorybar.forEach((key, value) {
+                              if(key==_sysNumber){
+                                for(final i in memorybar[_sysNumber]!.toList()){
+                                  if(i=='assets/calliconpadding.png'){
+                                    value.remove(i);
+                                    value.add('assets/callicongreenpadding1.gif');
+                                  }
+                                }
+                              }
+                            });
+                          });
+                        },
+                        key: Key('C2'),
+                        child: Container(
+                            height: 37.5,
+                            margin: EdgeInsets.only(right: 2.5),
+                            decoration: BoxDecoration(
+                                color: Color(0xff483B3B),
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(25),
+                                    bottomLeft: Radius.circular(25)
+                                )
+                            ),
+                            child: Center(
+                              child: Text(
+                                'RESUME',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20
+                                ),
+                              ),
+                            )
+                        ),
+                      ):GestureDetector(
+                        onTap: (){
+                          _controllerTime.pause();
+                          setState((){
+                            call=!call;
+                          });
+                          setState((){
+                            memorybar.forEach((key, value) {
+                              if(key==_sysNumber){
+                                for(final i in memorybar[_sysNumber]!.toList()){
+                                  if(i=='assets/callicongreenpadding1.gif'){
+                                    value.remove(i);
+                                    value.add('assets/calliconpadding.png');
+                                  }
+                                }
+                              }
+                            });
+                          });
+                        },
+                        key: Key('C1'),
+                        child: Container(
+                            height: 37.5,
+                            margin: EdgeInsets.only(right: 2.5),
+                            decoration: BoxDecoration(
+                                color: Color(0xff483B3B),
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(25),
+                                    bottomLeft: Radius.circular(25)
+                                )
+                            ),
+                            child: Center(
+                              child: Text(
+                                'HOLD',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20
+                                ),
+                              ),
+                            )
+                        ),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: GestureDetector(
+                      onTap: (){
+                        _callIgnore=false;
+                        _controllerTime.reset();
+                        setState(() {
+                          _callVisibility=!_callVisibility;
+                        });
+                        setState(() {
+                          memorybar.forEach((key, value) {
+                            if (key == _sysNumber) {
+                              for (final i in memorybar[_sysNumber]!.toList()){
+                                if (i=='assets/callicongreenpadding1.gif'){
+                                  value.remove(i);
+                                  value.add('assets/calliconredpadding.gif');
+                                  Timer(Duration(seconds: 2),(){
+                                    setState(() {
+                                      print('hello11');
+                                      value.remove('assets/calliconredpadding.gif');
+                                    });
+                                  });
+                                }else if (i=='assets/calliconpadding.png'){
+                                  value.remove(i);
+                                  value.add('assets/calliconredpadding.gif');
+                                  Timer(Duration(seconds: 2),(){
+                                    setState(() {
+                                      print('hello123');
+                                      value.remove('assets/calliconredpadding.gif');
+                                    });
+                                  });
+                                }
+                              }
+                              /*value.remove(
+                                          memorybar[_sysNumber]!
+                                              .toList()[0]);*/
+                            }
+                          });
+                        });
+                      },
+                      child: Container(
+                          height: 37.5,
+                          margin: EdgeInsets.only(left: 2.5),
+                          decoration: BoxDecoration(
+                              color: Color(0xffB91B1B),
+                              borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(25),
+                                  bottomRight: Radius.circular(25)
+                              )
+                          ),
+                          child: Center(
+                            child: Text(
+                              'HANGOUT',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18
+                              ),
+                            ),
+                          )
+                      ),
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget getDevices() {
+    return WillPopScope(
+      onWillPop: () async {
+        print('hello');
+        return false;
+      },
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        backgroundColor: Colors.transparent,
+        body: AnimatedContainer(
+            duration: Duration(milliseconds: 250),
+            curve: Curves.easeInOut,
+            decoration: BoxDecoration(
+                borderRadius: value == 1
+                    ? BorderRadius.circular(40)
+                    : BorderRadius.circular(0),
+                gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Color(0xff19547b),
+                      Color(0xffB0C8C8),
+                    ])),
+            child: Column(
+              children: [
+                Padding(padding: EdgeInsets.only(top: MediaQuery.of(context).viewPadding.top+20)),
+                getDevicesAppbar(),
+                PhysicalModel(
+                  elevation: 2,
+                  color: Colors.white,
+                  child: Column(
+                    children: [
+                      Text('Devices: '),
+                      Text('Disabled: '),
+                    ],
+                  ),
+                ),
+                Expanded(
+                    child:Container(
+                        margin: EdgeInsets.only(left: 15,right: 15,top: 5,bottom: 0),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(topLeft: Radius.circular(30),topRight: Radius.circular(30),bottomLeft: Radius.circular(30),bottomRight: Radius.circular(30)),
+                          border: Border.all(
+                            style: BorderStyle.solid,
+                            color: Colors.white70.withOpacity(0.1),
+                            width: 0.5,
+                          ),
+                          gradient: LinearGradient(
+                              colors: [
+                                Colors.white.withOpacity(0.5),
+                                Colors.white.withOpacity(0.1),
+                              ],
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter)
+                      ),
+                    )
+                ),
+              ],
+            )
+          // GestureDetector(
+          //   onTap: (){
+          //     setState(() {
+          //       value==0 ? value=1 : value=0;
+          //     });
+          //   },
+          // )
+        ),
+      ),
+    );
+  }
+
+  Widget getDevicesAppbar() {
+    return Container(
+      height: 40,
+      padding: EdgeInsets.symmetric(horizontal: 10.0),
+      child: DecoratedBox(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+                fit: BoxFit.cover,
+                image: AssetImage('assets/incidentappbar.png')),
+            boxShadow: [
+              BoxShadow(
+                  blurRadius: 10,
+                  offset: Offset(1, 1),
+                  color: Color(0xff000000).withOpacity(0.30)),
+              BoxShadow(
+                  blurRadius: 10,
+                  offset: -Offset(1, 1),
+                  color: Color(0xff000000).withOpacity(0.30)),
+            ],
+            borderRadius: BorderRadius.all(Radius.circular(70)),
+          ),
+          child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Container(
+                  child: Row(
+                    children: <Widget>[
+                      SizedBox(width: 5),
+                      AnimatedSwitcher(
+                        switchInCurve: Curves.linear,
+                        switchOutCurve: Curves.easeOut,
+                        duration: Duration(milliseconds: 750),
+                        reverseDuration: Duration(milliseconds: 0),
+                        transitionBuilder: (child, animation) =>
+                            RotationTransition(
+                              child: child,
+                              turns: animation,
+                            ),
+                        child: value == 1
+                            ? GestureDetector(
+                          key: Key('2'),
+                          onTap: () {
+                            setState(() {
+                              value == 0 ? value = 1 : value = 0;
+                            });
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              border: Border.all(
+                                  style: BorderStyle.solid,
+                                  color: Colors.black.withOpacity(0.7),
+                                  width: 3),
+                            ),
+                            child: Icon(
+                              Icons.clear_rounded,
+                              color: Colors.black.withOpacity(0.7),
+                              size: 26.5,
+                            ),
+                          ),
+                        )
+                            : GestureDetector(
+                          key: Key('1'),
+                          onTap: () {
+                            setState(() {
+                              value == 0 ? value = 1 : value = 0;
+                            });
+                          },
+                          child: Image.asset(
+                            'assets/menu12.png',
+                            width: 32,
+                            height: 32,
+                            color: Colors.black.withOpacity(0.7),
+                            // color: Colors.black,
+                          ),
+                        ),
+                      ),
+                      Padding(padding: EdgeInsets.only(left: 7.5)),
+                      GestureDetector(
+                        onTap: () {
+                          /*Navigator.of(context).pop();*/
+                          /*Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => MatrixIncident()));*/
+                        },
+                        child: GradientText(
+                          'DEVICES',
+                          gradientType: GradientType.linear,
+                          gradientDirection: GradientDirection.ttb,
+                          colors: [
+                            // Color(0xFFffffff),
+                            Colors.grey,
+                            Color(0xFF063D61),
+                          ],
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            /*shadows: [
+                              Shadow(
+                                offset: Offset(0.5, 0.5),
+                                blurRadius: 1,
+                                color: Colors.black.withOpacity(0.25),
+                              ),
+                            ],*/
+                            /*color:Color(0xff451618),*//*Colors.black.withOpacity(0.85),*//* Color(0XFF19547B).withOpacity(1),*/
+                            fontFamily: 'Roboto-Thin',
+                            fontWeight: FontWeight.w900,
+                            fontSize: 19,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ])),
     );
   }
 
