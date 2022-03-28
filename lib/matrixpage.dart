@@ -3,6 +3,7 @@ import 'dart:math';
 import 'dart:ui';
 // import 'dart:html';
 // import 'package:allitson/script.dart';
+import 'package:allitson/chart.dart';
 import 'package:badges/badges.dart';
 import 'package:custom_pop_up_menu/custom_pop_up_menu.dart';
 import 'package:custom_timer/custom_timer.dart';
@@ -529,7 +530,7 @@ class _MatrixPageState extends State<MatrixPage> {
 
   double value = 0;
   IncidentMarker selectedIncidentWidgetMarker = IncidentMarker.main;   //Inside Incident Starting home
-  WidgetMarker selectedWidgetMarker = WidgetMarker.incident;           // Drawer Starting home
+  WidgetMarker selectedWidgetMarker = WidgetMarker.devices;           // Drawer Starting home
 
   bool _ticketExpand = false;                                           // getAssignedTicket
   bool _isChatButton = true;                                            // getAssignedTicket -> Stack -> Red:White
@@ -3610,8 +3611,17 @@ class _MatrixPageState extends State<MatrixPage> {
                                                 padding: EdgeInsets.only(top: 10.0)),
                                             Row(
                                               children: [
-                                                Image.asset(
-                                                    _foundTicket[index]["Image"]),
+                                                if(_foundTicket[index]["Severity"]=="High") ...[
+                                                  Image.asset("assets/vectorright.png")
+                                                ]else if(_foundTicket[index]["Severity"]=="Medium") ...[
+                                                  Image.asset("assets/greenticket.png")
+                                                ]else if(_foundTicket[index]["Severity"]=="Low") ...[
+                                                  Image.asset("assets/yellowticket.png")
+                                                ]else if(_foundTicket[index]["Severity"]=="Information") ...[
+                                                  Image.asset("assets/whiteticket.png")
+                                                ],
+                                                /*Image.asset(
+                                                    _foundTicket[index]["Image"]),*/
                                                 Padding(
                                                     padding:
                                                     EdgeInsets.only(right: 5.0)),
@@ -3735,8 +3745,17 @@ class _MatrixPageState extends State<MatrixPage> {
                                                   EdgeInsets.only(top: 10.0)),
                                               Row(
                                                 children: [
-                                                  Image.asset(
-                                                      _foundTicket[index]["Image"]),
+                                                  if(_foundTicket[index]["Severity"]=="High") ...[
+                                                    Image.asset("assets/vectorright.png")
+                                                  ]else if(_foundTicket[index]["Severity"]=="Medium") ...[
+                                                    Image.asset("assets/greenticket.png")
+                                                  ]else if(_foundTicket[index]["Severity"]=="Low") ...[
+                                                    Image.asset("assets/yellowticket.png")
+                                                  ]else if(_foundTicket[index]["Severity"]=="Information") ...[
+                                                    Image.asset("assets/whiteticket.png")
+                                                  ],
+                                                  /*Image.asset(
+                                                      _foundTicket[index]["Image"]),*/
                                                   Padding(
                                                       padding: EdgeInsets.only(
                                                           right: 5.0)),
@@ -3880,8 +3899,17 @@ class _MatrixPageState extends State<MatrixPage> {
                                                   EdgeInsets.only(top: 10.0)),
                                               Row(
                                                 children: [
-                                                  Image.asset(
-                                                      _foundTicket[index]["Image"]),
+                                                  if(_foundTicket[index]["Severity"]=="High") ...[
+                                                    Image.asset("assets/vectorright.png")
+                                                  ]else if(_foundTicket[index]["Severity"]=="Medium") ...[
+                                                    Image.asset("assets/greenticket.png")
+                                                  ]else if(_foundTicket[index]["Severity"]=="Low") ...[
+                                                    Image.asset("assets/yellowticket.png")
+                                                  ]else if(_foundTicket[index]["Severity"]=="Information") ...[
+                                                    Image.asset("assets/whiteticket.png")
+                                                  ],
+                                                  /*Image.asset(
+                                                      _foundTicket[index]["Image"]),*/
                                                   Padding(
                                                       padding: EdgeInsets.only(
                                                           right: 5.0)),
@@ -7595,32 +7623,21 @@ class _MatrixPageState extends State<MatrixPage> {
                     colors: [
                       Color(0xff19547b),
                       Color(0xffB0C8C8),
-                    ])),
+                    ]
+                )
+            ),
             child: Column(
               children: [
                 Padding(padding: EdgeInsets.only(top: MediaQuery.of(context).viewPadding.top+20)),
                 getDevicesAppbar(),
-                PhysicalModel(
-                  elevation: 2,
-                  color: Colors.white,
-                  child: Column(
-                    children: [
-                      Text('Devices: '),
-                      Text('Disabled: '),
-                    ],
-                  ),
-                ),
+                Chart(),
                 Expanded(
                     child:Container(
-                        margin: EdgeInsets.only(left: 15,right: 15,top: 5,bottom: 0),
+                        margin: EdgeInsets.only(left: 15,right: 15,top: 0,bottom: 0),
+                      padding: EdgeInsets.only(top: 10,bottom: 10),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.only(topLeft: Radius.circular(30),topRight: Radius.circular(30),bottomLeft: Radius.circular(30),bottomRight: Radius.circular(30)),
-                          border: Border.all(
-                            style: BorderStyle.solid,
-                            color: Colors.white70.withOpacity(0.1),
-                            width: 0.5,
-                          ),
                           gradient: LinearGradient(
                               colors: [
                                 Colors.white.withOpacity(0.5),
@@ -7628,6 +7645,21 @@ class _MatrixPageState extends State<MatrixPage> {
                               ],
                               begin: Alignment.topCenter,
                               end: Alignment.bottomCenter)
+                      ),
+                      child: ListView.builder(
+                        padding: EdgeInsets.zero,
+                        shrinkWrap: true,
+                        itemCount: 20,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Card(
+                            elevation: 8.0,
+                            margin: EdgeInsets.only(left: 10,right: 10,top: 6,bottom: 6),
+                            child: Container(
+                              height: 47.5,
+                              decoration: BoxDecoration(color: Color(0xff404b60).withOpacity(0.9)),
+                            ),
+                          );
+                        },
                       ),
                     )
                 ),
