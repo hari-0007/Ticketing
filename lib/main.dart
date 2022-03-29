@@ -41,6 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   bool image =true; //logo image
   FocusNode myFocusNode = new FocusNode();
+  final formKey = GlobalKey<FormState >();
 
   @override
   Widget build(BuildContext context) {
@@ -60,233 +61,117 @@ class _MyHomePageState extends State<MyHomePage> {
             constraints: BoxConstraints(
                 maxWidth: 450
             ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                AnimatedSwitcher(
-                  duration: Duration(milliseconds: 750),
-                  child: image? GestureDetector(
-                    key: Key('2'),
-                    onTap: (){
-                      setState(() {
-                        image=!image;
-                      });
-                    },
-                    child: Stack(
-                      children: [
-                        Card(
-                            semanticContainer: false,
-                            borderOnForeground: true,
-                            elevation: 20,
-                            color: Colors.transparent,
-                            shadowColor: Colors.transparent,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.elliptical(60,120),
-                                topRight: Radius.elliptical(60,120),
+            child: Form(
+              key: formKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  AnimatedSwitcher(
+                    duration: Duration(milliseconds: 750),
+                    child: image? GestureDetector(
+                      key: Key('2'),
+                      onTap: (){
+                        setState(() {
+                          image=!image;
+                        });
+                      },
+                      child: Stack(
+                        children: [
+                          Card(
+                              semanticContainer: false,
+                              borderOnForeground: true,
+                              elevation: 20,
+                              color: Colors.transparent,
+                              shadowColor: Colors.transparent,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.elliptical(60,120),
+                                  topRight: Radius.elliptical(60,120),
+                                ),
                               ),
-                            ),
+                              child: Shimmer.fromColors(
+                                highlightColor:Color(0xffB50005),
+                                baseColor: Color(0xff333333),
+                                enabled: true,
+                                direction: ShimmerDirection.ltr,
+                                child: Image.asset(
+                                  'assets/allitson.png',
+                                  width: 120,
+                                  height: 120,
+                                  fit: BoxFit.fill,
+                                ),
+                              )
+                          ),
+                          Positioned(
+                            left: 4,
+                            bottom: 3.9,
                             child: Shimmer.fromColors(
-                              highlightColor:Color(0xffB50005),
+                              highlightColor: Colors.white,
                               baseColor: Color(0xff333333),
                               enabled: true,
                               direction: ShimmerDirection.ltr,
-                              child: Image.asset(
-                                'assets/allitson.png',
-                                width: 120,
-                                height: 120,
+                              child:
+                              Image.asset(
+                                'assets/allitsonname.png',
+                                width: 119.9,
+                                height: 23,
                                 fit: BoxFit.fill,
                               ),
-                            )
-                        ),
-                        Positioned(
-                          left: 4,
-                          bottom: 3.9,
-                          child: Shimmer.fromColors(
-                            highlightColor: Colors.white,
-                            baseColor: Color(0xff333333),
-                            enabled: true,
-                            direction: ShimmerDirection.ltr,
-                            child:
-                            Image.asset(
-                              'assets/allitsonname.png',
-                              width: 119.9,
-                              height: 23,
-                              fit: BoxFit.fill,
                             ),
                           ),
-                        ),
-                        Positioned(
-                          left: 64.3,
-                          top: 41.7,
-                          child: Shimmer.fromColors(
-                            highlightColor: Colors.white,
-                            baseColor: Color(0xff333333),
-                            enabled: true,
-                            direction: ShimmerDirection.ltr,
-                            child:
-                            Image.asset(
-                              'assets/onlykey.png',
-                              width:16.7,
-                              // fit: BoxFit.fill,
+                          Positioned(
+                            left: 64.3,
+                            top: 41.7,
+                            child: Shimmer.fromColors(
+                              highlightColor: Colors.white,
+                              baseColor: Color(0xff333333),
+                              enabled: true,
+                              direction: ShimmerDirection.ltr,
+                              child:
+                              Image.asset(
+                                'assets/onlykey.png',
+                                width:16.7,
+                                // fit: BoxFit.fill,
+                              ),
                             ),
+                          )
+                        ],
+                      ),
+                    ):GestureDetector(
+                      key: Key('1'),
+                      onTap: (){
+                        setState(() {
+                          image=!image;
+                        });
+                      },
+                      child: Card(
+                        semanticContainer: false,
+                        borderOnForeground: true,
+                        elevation: 20,
+                        color: Colors.transparent,
+                        shadowColor: Colors.transparent,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.elliptical(60,120),
+                            topRight: Radius.elliptical(60,120),
                           ),
-                        )
-                      ],
-                    ),
-                  ):GestureDetector(
-                    key: Key('1'),
-                    onTap: (){
-                      setState(() {
-                        image=!image;
-                      });
-                    },
-                    child: Card(
-                      semanticContainer: false,
-                      borderOnForeground: true,
-                      elevation: 20,
-                      color: Colors.transparent,
-                      shadowColor: Colors.transparent,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.elliptical(60,120),
-                          topRight: Radius.elliptical(60,120),
+                        ),
+                        child: Image.asset(
+                          'assets/allitson.png',
+                          width: 120,
+                          height: 120,
+                          fit: BoxFit.fill,
                         ),
                       ),
-                      child: Image.asset(
-                        'assets/allitson.png',
-                        width: 120,
-                        height: 120,
-                        fit: BoxFit.fill,
-                      ),
                     ),
                   ),
-                ),
 
-                SizedBox(height: 25),
+                  SizedBox(height: 25),
 
-                Container(
-                  height: 45,
-                  margin: EdgeInsets.symmetric(horizontal: 50),
-                  decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                            blurRadius: 5,
-                            offset: Offset(1, 0),
-                            color: Colors.black.withOpacity(0.4)),//3dright
-                        BoxShadow(
-                            blurRadius: 0,
-                            offset: Offset(0, 1),
-                            color: Colors.black.withOpacity(0.4)),//3dbottom
-                        BoxShadow(
-                            blurRadius: 5,
-                            offset: -Offset(1, 0),
-                            color: Colors.black.withOpacity(0.4)),//3dleft
-                        BoxShadow(
-                            blurRadius: 0,
-                            offset: -Offset(0, 1),
-                            color: Colors.black.withOpacity(0.4)),
-                      ],
-                      borderRadius: BorderRadius.circular(15),
-                      image: DecorationImage(
-                        image: AssetImage('assets/userword.png'),
-                        fit: BoxFit.fill,
-                      )
-                  ),
-                  padding: const EdgeInsets.symmetric(horizontal: 15),
-                  child: TextField(
-                    focusNode: myFocusNode,
-                    cursorColor: Colors.white,
-                    autofocus: false,
-                    decoration: InputDecoration(
-                      icon: Icon(
-                        Icons.account_circle,
-                        color: Colors.black.withOpacity(0.6),
-                      ),
-                      hintText: 'Username',
-                      labelStyle: TextStyle(
-                          color: Colors.black.withOpacity(0.6)
-                      ),
-                      border: InputBorder.none,
-                    ),
-                  ),
-                ),
-
-                SizedBox(height: 15,),
-
-                Container(
-                  height: 45,
-                  margin: EdgeInsets.symmetric(horizontal: 50),
-                  decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                            blurRadius: 5,
-                            offset: Offset(1, 0),
-                            color: Colors.black.withOpacity(0.4)),//3dright
-                        BoxShadow(
-                            blurRadius: 0,
-                            offset: Offset(0, 1),
-                            color: Colors.black.withOpacity(0.4)),//3dbottom
-                        BoxShadow(
-                            blurRadius: 5,
-                            offset: -Offset(1, 0),
-                            color: Colors.black.withOpacity(0.4)),//3dleft
-                        BoxShadow(
-                            blurRadius: 0,
-                            offset: -Offset(0, 1),
-                            color: Colors.black.withOpacity(0.4)),
-                      ],
-                      borderRadius: BorderRadius.circular(15),
-                      image: DecorationImage(
-                        image: AssetImage('assets/userword.png'),
-                        fit: BoxFit.fill,
-                      )
-                  ),
-                  padding: const EdgeInsets.symmetric(horizontal: 15),
-                  child: TextField(
-                    cursorColor: Colors.white,
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      icon: Icon(
-                        Icons.lock,
-                        color: Colors.black.withOpacity(0.6),
-                      ),
-                      hintText: 'Password',
-                      labelStyle: TextStyle(
-                          color: Colors.black.withOpacity(0.6)
-                      ),
-                      border: InputBorder.none,
-                    ),
-                  ),
-                ),
-
-                SizedBox(height: 12.5,),
-
-                GestureDetector(
-                  onTap: (){},
-                  child: Text(
-                    'Forgot Password?',
-                    style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        color: Colors.black.withOpacity(0.6)
-                    ),
-                  ),
-                ),
-
-                SizedBox(height: 12.5,),
-
-                GestureDetector(
-                  onTap: (){
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context)=>  MatrixPage()
-                        )
-                    );
-                  },
-                  child: Container(
-                    height: 32,
-                    width: 175,
+                  Container(
+                    height: 45,
+                    margin: EdgeInsets.symmetric(horizontal: 50),
                     decoration: BoxDecoration(
                         boxShadow: [
                           BoxShadow(
@@ -306,27 +191,157 @@ class _MyHomePageState extends State<MyHomePage> {
                               offset: -Offset(0, 1),
                               color: Colors.black.withOpacity(0.4)),
                         ],
-                        borderRadius: BorderRadius.circular(25),
+                        borderRadius: BorderRadius.circular(15),
                         image: DecorationImage(
-                          image: AssetImage('assets/loginbutton.png'),
+                          image: AssetImage('assets/userword.png'),
                           fit: BoxFit.fill,
                         )
                     ),
-                    child: Center(
-                      child: Text(
-                        'Login',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            color: Colors.white,
-                            fontSize: 18
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                    child: TextFormField(
+                      focusNode: myFocusNode,
+                      cursorColor: Colors.white,
+                      autofocus: false,
+                      decoration: InputDecoration(
+                        icon: Icon(
+                          Icons.account_circle,
+                          color: Colors.black.withOpacity(0.6),
                         ),
+                        hintText: 'Username',
+                        labelStyle: TextStyle(
+                            color: Colors.black.withOpacity(0.6)
+                        ),
+                        border: InputBorder.none,
+                      ),
+                      validator: (value){
+                        if(value!.length<4){
+                          return "Enter";
+                        }else{
+                          return null;
+                        }
+                      },
+                    ),
+                  ),
+
+                  SizedBox(height: 15,),
+
+                  Container(
+                    height: 45,
+                    margin: EdgeInsets.symmetric(horizontal: 50),
+                    decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                              blurRadius: 5,
+                              offset: Offset(1, 0),
+                              color: Colors.black.withOpacity(0.4)),//3dright
+                          BoxShadow(
+                              blurRadius: 0,
+                              offset: Offset(0, 1),
+                              color: Colors.black.withOpacity(0.4)),//3dbottom
+                          BoxShadow(
+                              blurRadius: 5,
+                              offset: -Offset(1, 0),
+                              color: Colors.black.withOpacity(0.4)),//3dleft
+                          BoxShadow(
+                              blurRadius: 0,
+                              offset: -Offset(0, 1),
+                              color: Colors.black.withOpacity(0.4)),
+                        ],
+                        borderRadius: BorderRadius.circular(15),
+                        image: DecorationImage(
+                          image: AssetImage('assets/userword.png'),
+                          fit: BoxFit.fill,
+                        )
+                    ),
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                    child: TextField(
+                      cursorColor: Colors.white,
+                      obscureText: true,
+                      decoration: InputDecoration(
+                        icon: Icon(
+                          Icons.lock,
+                          color: Colors.black.withOpacity(0.6),
+                        ),
+                        hintText: 'Password',
+                        labelStyle: TextStyle(
+                            color: Colors.black.withOpacity(0.6)
+                        ),
+                        border: InputBorder.none,
                       ),
                     ),
                   ),
-                )
 
-              ],
+                  SizedBox(height: 12.5,),
+
+                  GestureDetector(
+                    onTap: (){},
+                    child: Text(
+                      'Forgot Password?',
+                      style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          color: Colors.black.withOpacity(0.6)
+                      ),
+                    ),
+                  ),
+
+                  SizedBox(height: 12.5,),
+
+                  GestureDetector(
+                    onTap: (){
+                      final isValid =formKey.currentState?.validate();
+                      if(isValid ?? false){
+                        formKey.currentState?.save();
+                      }
+                      /*Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context)=>  MatrixPage()
+                          )
+                      );*/
+                    },
+                    child: Container(
+                      height: 32,
+                      width: 175,
+                      decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                                blurRadius: 5,
+                                offset: Offset(1, 0),
+                                color: Colors.black.withOpacity(0.4)),//3dright
+                            BoxShadow(
+                                blurRadius: 0,
+                                offset: Offset(0, 1),
+                                color: Colors.black.withOpacity(0.4)),//3dbottom
+                            BoxShadow(
+                                blurRadius: 5,
+                                offset: -Offset(1, 0),
+                                color: Colors.black.withOpacity(0.4)),//3dleft
+                            BoxShadow(
+                                blurRadius: 0,
+                                offset: -Offset(0, 1),
+                                color: Colors.black.withOpacity(0.4)),
+                          ],
+                          borderRadius: BorderRadius.circular(25),
+                          image: DecorationImage(
+                            image: AssetImage('assets/loginbutton.png'),
+                            fit: BoxFit.fill,
+                          )
+                      ),
+                      child: Center(
+                        child: Text(
+                          'Login',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontWeight: FontWeight.w700,
+                              color: Colors.white,
+                              fontSize: 18
+                          ),
+                        ),
+                      ),
+                    ),
+                  )
+
+                ],
+              ),
             ),
           ),
         ),

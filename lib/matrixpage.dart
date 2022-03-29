@@ -7634,7 +7634,7 @@ class _MatrixPageState extends State<MatrixPage> {
                 Expanded(
                     child:Container(
                         margin: EdgeInsets.only(left: 15,right: 15,top: 0,bottom: 0),
-                      padding: EdgeInsets.only(top: 10,bottom: 10),
+                      padding: EdgeInsets.only(top: 5,bottom: 10),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.only(topLeft: Radius.circular(30),topRight: Radius.circular(30),bottomLeft: Radius.circular(30),bottomRight: Radius.circular(30)),
@@ -7646,20 +7646,61 @@ class _MatrixPageState extends State<MatrixPage> {
                               begin: Alignment.topCenter,
                               end: Alignment.bottomCenter)
                       ),
-                      child: ListView.builder(
-                        padding: EdgeInsets.zero,
-                        shrinkWrap: true,
-                        itemCount: 20,
-                        itemBuilder: (BuildContext context, int index) {
-                          return Card(
-                            elevation: 8.0,
-                            margin: EdgeInsets.only(left: 10,right: 10,top: 6,bottom: 6),
-                            child: Container(
-                              height: 47.5,
-                              decoration: BoxDecoration(color: Color(0xff404b60).withOpacity(0.9)),
-                            ),
-                          );
-                        },
+                      child: Column(
+                        children: [
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Flexible(
+                                  child: Container(
+                                    height: 20,
+                                    margin: EdgeInsets.only(left: 7.5,right: 1),
+                                    decoration: BoxDecoration(
+                                      color: Colors.blueGrey,
+                                      borderRadius: BorderRadius.only(topLeft: Radius.circular(20))
+                                    ),
+                                    child: Center(child: Text("1"),
+                                    ),
+                                  ),
+                              ),
+                              Flexible(
+                                  child: Container(
+                                    height: 20,
+                                    margin: EdgeInsets.only(left: 1,right: 7.5),
+                                    decoration: BoxDecoration(
+                                        color: Colors.blueGrey,
+                                      borderRadius: BorderRadius.only(topRight: Radius.circular(20))
+                                    ),
+                                    child: Center(
+                                        child: Text("2")
+                                    ),
+                                  )
+                              )
+                            ],
+                          ),
+                          Expanded(
+                              child: Container(
+                                margin: EdgeInsets.only(left: 0,right: 0,top: 5,bottom: 0),
+                                color: Colors.transparent,
+                                child: ListView.builder(
+                                  padding: EdgeInsets.zero,
+                                  shrinkWrap: true,
+                                  itemCount: 20,
+                                  itemBuilder: (BuildContext context, int index) {
+                                    return Card(
+                                      elevation: 8.0,
+                                      margin: EdgeInsets.only(left: 10,right: 10,top: 5,bottom: 5),
+                                      child: Container(
+                                        height: 47.5,
+                                        decoration: BoxDecoration(color: Color(0xff404b60).withOpacity(0.9)),
+                                      ),
+                                    );
+                                  },
+                                ),
+                              )
+                          )
+                        ],
                       ),
                     )
                 ),

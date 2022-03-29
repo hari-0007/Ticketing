@@ -40,7 +40,7 @@ class _ChartState extends State<Chart> {
       tooltipBehavior: _tooltip,
       legend: Legend(
         isVisible: true,
-        overflowMode: LegendItemOverflowMode.wrap,
+        overflowMode: LegendItemOverflowMode.none,
         alignment: ChartAlignment.center,
         textStyle: TextStyle(
             color: Colors.white,
@@ -55,7 +55,7 @@ class _ChartState extends State<Chart> {
             ]
         ),
         iconWidth: 10,
-        iconHeight:25
+        iconHeight:30
       ),
       // title: ChartTitle(text: "Demo chart"),
       annotations: [
@@ -73,46 +73,24 @@ class _ChartState extends State<Chart> {
                         borderRadius: BorderRadius.circular(100),
                         image: DecorationImage(
                           image: AssetImage('assets/rectangle.png'),
-                          fit: BoxFit.fill,
+                          fit: BoxFit.cover,
                         )
                       ),
                       child: Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            /*Text(
-                                "Devices",
-                              textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: Color(0xff19547b).withOpacity(0.7),
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 22,
-                                    *//*shadows: [
-                                      Shadow(
-                                        offset: Offset(1, 1),
-                                        blurRadius: 1,
-                                        color: Colors.black.withOpacity(0.8),
-                                      ),
-                                    ]*//*
-                                )
-                            ),*/
-                            Text(
-                              "50",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 40,
-                                  shadows: [
-                                    Shadow(
-                                      offset: Offset(1, 1),
-                                      blurRadius: 1,
-                                      color: Colors.black.withOpacity(0.8),
-                                    ),
-                                  ]
-                              ),
-                            )
-                          ],
+                        child: Text(
+                          "50",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 40,
+                              shadows: [
+                                Shadow(
+                                  offset: Offset(1, 1),
+                                  blurRadius: 1,
+                                  color: Colors.black.withOpacity(0.8),
+                                ),
+                              ]
+                          ),
                         ),
                       ),
                     )
@@ -133,7 +111,6 @@ class _ChartState extends State<Chart> {
             radius: "80%",
             innerRadius: "70%",
             explode: true,
-
             dataSource: chartData,
             pointColorMapper: (ChartData data, _) => data.color,
             xValueMapper: (ChartData data, _) => data.x,
