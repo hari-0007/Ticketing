@@ -66,14 +66,15 @@ class _ChartState extends State<Chart> {
                 shape: BoxShape.circle,
                 elevation: 10,
                 shadowColor: Colors.black,
-                color: Color(0xffe6e6e6),
+                color: Colors.transparent,/*Color(0xffe6e6e6),*/
                 child: Center(
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(100),
                         image: DecorationImage(
                           image: AssetImage('assets/rectangle.png'),
-                          fit: BoxFit.cover,
+                          fit: BoxFit.fill,
+                          opacity: 0.4
                         )
                       ),
                       child: Center(

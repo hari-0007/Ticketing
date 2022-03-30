@@ -48,6 +48,7 @@ dependencies:
   simple_gradient_text: ^1.2.2
   custom_timer: ^0.1.1
   syncfusion_flutter_charts: ^19.4.56
+  http: ^0.13.4
 #  dp_stopwatch: ^0.0.3
 #  flutter_badged: ^2.0.2
 #  loading_animation_widget: ^1.1.0+3

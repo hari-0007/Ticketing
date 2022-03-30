@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:allitson/matrixpage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:http/http.dart' as http;
 
 void main() {
 
@@ -40,8 +43,14 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
 
   bool image =true; //logo image
-  FocusNode myFocusNode = new FocusNode();
-  final formKey = GlobalKey<FormState >();
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+  late LoginRequestModel loginRequestModel;
+
+  @override
+  void initState() {
+    super.initState();
+    loginRequestModel = LoginRequestModel(email: '',password: '',);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,291 +70,427 @@ class _MyHomePageState extends State<MyHomePage> {
             constraints: BoxConstraints(
                 maxWidth: 450
             ),
-            child: Form(
-              key: formKey,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  AnimatedSwitcher(
-                    duration: Duration(milliseconds: 750),
-                    child: image? GestureDetector(
-                      key: Key('2'),
-                      onTap: (){
-                        setState(() {
-                          image=!image;
-                        });
-                      },
-                      child: Stack(
-                        children: [
-                          Card(
-                              semanticContainer: false,
-                              borderOnForeground: true,
-                              elevation: 20,
-                              color: Colors.transparent,
-                              shadowColor: Colors.transparent,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.elliptical(60,120),
-                                  topRight: Radius.elliptical(60,120),
-                                ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                AnimatedSwitcher(
+                  duration: Duration(milliseconds: 750),
+                  child: image? GestureDetector(
+                    key: Key('2'),
+                    onTap: (){
+                      setState(() {
+                        image=!image;
+                      });
+                    },
+                    child: Stack(
+                      children: [
+                        Card(
+                            semanticContainer: false,
+                            borderOnForeground: true,
+                            elevation: 20,
+                            color: Colors.transparent,
+                            shadowColor: Colors.transparent,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.elliptical(60,120),
+                                topRight: Radius.elliptical(60,120),
                               ),
-                              child: Shimmer.fromColors(
-                                highlightColor:Color(0xffB50005),
-                                baseColor: Color(0xff333333),
-                                enabled: true,
-                                direction: ShimmerDirection.ltr,
-                                child: Image.asset(
-                                  'assets/allitson.png',
-                                  width: 120,
-                                  height: 120,
-                                  fit: BoxFit.fill,
-                                ),
-                              )
-                          ),
-                          Positioned(
-                            left: 4,
-                            bottom: 3.9,
+                            ),
                             child: Shimmer.fromColors(
-                              highlightColor: Colors.white,
+                              highlightColor:Color(0xffB50005),
                               baseColor: Color(0xff333333),
                               enabled: true,
                               direction: ShimmerDirection.ltr,
-                              child:
-                              Image.asset(
-                                'assets/allitsonname.png',
-                                width: 119.9,
-                                height: 23,
+                              child: Image.asset(
+                                'assets/allitson.png',
+                                width: 120,
+                                height: 120,
                                 fit: BoxFit.fill,
                               ),
+                            )
+                        ),
+                        Positioned(
+                          left: 4,
+                          bottom: 3.9,
+                          child: Shimmer.fromColors(
+                            highlightColor: Colors.white,
+                            baseColor: Color(0xff333333),
+                            enabled: true,
+                            direction: ShimmerDirection.ltr,
+                            child:
+                            Image.asset(
+                              'assets/allitsonname.png',
+                              width: 119.9,
+                              height: 23,
+                              fit: BoxFit.fill,
                             ),
                           ),
-                          Positioned(
-                            left: 64.3,
-                            top: 41.7,
-                            child: Shimmer.fromColors(
-                              highlightColor: Colors.white,
-                              baseColor: Color(0xff333333),
-                              enabled: true,
-                              direction: ShimmerDirection.ltr,
-                              child:
-                              Image.asset(
-                                'assets/onlykey.png',
-                                width:16.7,
-                                // fit: BoxFit.fill,
-                              ),
+                        ),
+                        Positioned(
+                          left: 64.3,
+                          top: 41.7,
+                          child: Shimmer.fromColors(
+                            highlightColor: Colors.white,
+                            baseColor: Color(0xff333333),
+                            enabled: true,
+                            direction: ShimmerDirection.ltr,
+                            child:
+                            Image.asset(
+                              'assets/onlykey.png',
+                              width:16.7,
+                              // fit: BoxFit.fill,
                             ),
-                          )
-                        ],
-                      ),
-                    ):GestureDetector(
-                      key: Key('1'),
-                      onTap: (){
-                        setState(() {
-                          image=!image;
-                        });
-                      },
-                      child: Card(
-                        semanticContainer: false,
-                        borderOnForeground: true,
-                        elevation: 20,
-                        color: Colors.transparent,
-                        shadowColor: Colors.transparent,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.elliptical(60,120),
-                            topRight: Radius.elliptical(60,120),
                           ),
-                        ),
-                        child: Image.asset(
-                          'assets/allitson.png',
-                          width: 120,
-                          height: 120,
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                    ),
-                  ),
-
-                  SizedBox(height: 25),
-
-                  Container(
-                    height: 45,
-                    margin: EdgeInsets.symmetric(horizontal: 50),
-                    decoration: BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                              blurRadius: 5,
-                              offset: Offset(1, 0),
-                              color: Colors.black.withOpacity(0.4)),//3dright
-                          BoxShadow(
-                              blurRadius: 0,
-                              offset: Offset(0, 1),
-                              color: Colors.black.withOpacity(0.4)),//3dbottom
-                          BoxShadow(
-                              blurRadius: 5,
-                              offset: -Offset(1, 0),
-                              color: Colors.black.withOpacity(0.4)),//3dleft
-                          BoxShadow(
-                              blurRadius: 0,
-                              offset: -Offset(0, 1),
-                              color: Colors.black.withOpacity(0.4)),
-                        ],
-                        borderRadius: BorderRadius.circular(15),
-                        image: DecorationImage(
-                          image: AssetImage('assets/userword.png'),
-                          fit: BoxFit.fill,
                         )
+                      ],
                     ),
-                    padding: const EdgeInsets.symmetric(horizontal: 15),
-                    child: TextFormField(
-                      focusNode: myFocusNode,
-                      cursorColor: Colors.white,
-                      autofocus: false,
-                      decoration: InputDecoration(
-                        icon: Icon(
-                          Icons.account_circle,
-                          color: Colors.black.withOpacity(0.6),
+                  ):GestureDetector(
+                    key: Key('1'),
+                    onTap: (){
+                      setState(() {
+                        image=!image;
+                      });
+                    },
+                    child: Card(
+                      semanticContainer: false,
+                      borderOnForeground: true,
+                      elevation: 20,
+                      color: Colors.transparent,
+                      shadowColor: Colors.transparent,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.elliptical(60,120),
+                          topRight: Radius.elliptical(60,120),
                         ),
-                        hintText: 'Username',
-                        labelStyle: TextStyle(
-                            color: Colors.black.withOpacity(0.6)
-                        ),
-                        border: InputBorder.none,
                       ),
-                      validator: (value){
-                        if(value!.length<4){
-                          return "Enter";
-                        }else{
-                          return null;
-                        }
-                      },
-                    ),
-                  ),
-
-                  SizedBox(height: 15,),
-
-                  Container(
-                    height: 45,
-                    margin: EdgeInsets.symmetric(horizontal: 50),
-                    decoration: BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                              blurRadius: 5,
-                              offset: Offset(1, 0),
-                              color: Colors.black.withOpacity(0.4)),//3dright
-                          BoxShadow(
-                              blurRadius: 0,
-                              offset: Offset(0, 1),
-                              color: Colors.black.withOpacity(0.4)),//3dbottom
-                          BoxShadow(
-                              blurRadius: 5,
-                              offset: -Offset(1, 0),
-                              color: Colors.black.withOpacity(0.4)),//3dleft
-                          BoxShadow(
-                              blurRadius: 0,
-                              offset: -Offset(0, 1),
-                              color: Colors.black.withOpacity(0.4)),
-                        ],
-                        borderRadius: BorderRadius.circular(15),
-                        image: DecorationImage(
-                          image: AssetImage('assets/userword.png'),
-                          fit: BoxFit.fill,
-                        )
-                    ),
-                    padding: const EdgeInsets.symmetric(horizontal: 15),
-                    child: TextField(
-                      cursorColor: Colors.white,
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        icon: Icon(
-                          Icons.lock,
-                          color: Colors.black.withOpacity(0.6),
-                        ),
-                        hintText: 'Password',
-                        labelStyle: TextStyle(
-                            color: Colors.black.withOpacity(0.6)
-                        ),
-                        border: InputBorder.none,
+                      child: Image.asset(
+                        'assets/allitson.png',
+                        width: 120,
+                        height: 120,
+                        fit: BoxFit.fill,
                       ),
                     ),
                   ),
+                ),
 
-                  SizedBox(height: 12.5,),
+                SizedBox(height: 25),
 
-                  GestureDetector(
-                    onTap: (){},
-                    child: Text(
-                      'Forgot Password?',
-                      style: TextStyle(
-                          fontWeight: FontWeight.w500,
+                Container(
+                  height: 45,
+                  margin: EdgeInsets.symmetric(horizontal: 50),
+                  decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                            blurRadius: 5,
+                            offset: Offset(1, 0),
+                            color: Colors.black.withOpacity(0.4)),//3dright
+                        BoxShadow(
+                            blurRadius: 0,
+                            offset: Offset(0, 1),
+                            color: Colors.black.withOpacity(0.4)),//3dbottom
+                        BoxShadow(
+                            blurRadius: 5,
+                            offset: -Offset(1, 0),
+                            color: Colors.black.withOpacity(0.4)),//3dleft
+                        BoxShadow(
+                            blurRadius: 0,
+                            offset: -Offset(0, 1),
+                            color: Colors.black.withOpacity(0.4)),
+                      ],
+                      borderRadius: BorderRadius.circular(15),
+                      image: DecorationImage(
+                        image: AssetImage('assets/userword.png'),
+                        fit: BoxFit.fill,
+                      )
+                  ),
+                  padding: EdgeInsets.symmetric(horizontal: 15),
+                  child: TextField(
+                    cursorColor: Colors.white,
+                    obscureText: false,
+                    decoration: InputDecoration(
+                      icon: Icon(
+                        Icons.account_circle,
+                        color: Colors.black.withOpacity(0.6),
+                      ),
+                      hintText: 'Username',
+                      labelStyle: TextStyle(
                           color: Colors.black.withOpacity(0.6)
                       ),
+                      border: InputBorder.none,
+                    ),
+                    onChanged: (input){
+                      setState(() {
+                        loginRequestModel.email = input.trim();
+                      });
+                    },
+                  ),
+                ),
+
+                SizedBox(height: 15,),
+
+                Container(
+                  height: 45,
+                  margin: EdgeInsets.symmetric(horizontal: 50),
+                  decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                            blurRadius: 5,
+                            offset: Offset(1, 0),
+                            color: Colors.black.withOpacity(0.4)),//3dright
+                        BoxShadow(
+                            blurRadius: 0,
+                            offset: Offset(0, 1),
+                            color: Colors.black.withOpacity(0.4)),//3dbottom
+                        BoxShadow(
+                            blurRadius: 5,
+                            offset: -Offset(1, 0),
+                            color: Colors.black.withOpacity(0.4)),//3dleft
+                        BoxShadow(
+                            blurRadius: 0,
+                            offset: -Offset(0, 1),
+                            color: Colors.black.withOpacity(0.4)),
+                      ],
+                      borderRadius: BorderRadius.circular(15),
+                      image: DecorationImage(
+                        image: AssetImage('assets/userword.png'),
+                        fit: BoxFit.fill,
+                      )
+                  ),
+                  padding: EdgeInsets.symmetric(horizontal: 15),
+                  child: TextField(
+                    cursorColor: Colors.white,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      icon: Icon(
+                        Icons.lock,
+                        color: Colors.black.withOpacity(0.6),
+                      ),
+                      hintText: 'Password',
+                      labelStyle: TextStyle(
+                          color: Colors.black.withOpacity(0.6)
+                      ),
+                      border: InputBorder.none,
+                    ),
+                    onChanged: (input){
+                      setState(() {
+                        loginRequestModel.password = input.trim();
+                      });
+                    },
+                  ),
+                ),
+
+                SizedBox(height: 12.5,),
+
+                GestureDetector(
+                  onTap: (){},
+                  child: Text(
+                    'Forgot Password?',
+                    style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black.withOpacity(0.6)
                     ),
                   ),
+                ),
 
-                  SizedBox(height: 12.5,),
+                SizedBox(height: 12.5,),
 
-                  GestureDetector(
-                    onTap: (){
-                      final isValid =formKey.currentState?.validate();
-                      if(isValid ?? false){
-                        formKey.currentState?.save();
-                      }
-                      /*Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context)=>  MatrixPage()
-                          )
-                      );*/
-                    },
-                    child: Container(
-                      height: 32,
-                      width: 175,
-                      decoration: BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                                blurRadius: 5,
-                                offset: Offset(1, 0),
-                                color: Colors.black.withOpacity(0.4)),//3dright
-                            BoxShadow(
-                                blurRadius: 0,
-                                offset: Offset(0, 1),
-                                color: Colors.black.withOpacity(0.4)),//3dbottom
-                            BoxShadow(
-                                blurRadius: 5,
-                                offset: -Offset(1, 0),
-                                color: Colors.black.withOpacity(0.4)),//3dleft
-                            BoxShadow(
-                                blurRadius: 0,
-                                offset: -Offset(0, 1),
-                                color: Colors.black.withOpacity(0.4)),
-                          ],
-                          borderRadius: BorderRadius.circular(25),
-                          image: DecorationImage(
-                            image: AssetImage('assets/loginbutton.png'),
-                            fit: BoxFit.fill,
-                          )
-                      ),
-                      child: Center(
-                        child: Text(
-                          'Login',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontWeight: FontWeight.w700,
-                              color: Colors.white,
-                              fontSize: 18
-                          ),
+                GestureDetector(
+                  onTap: () {
+                    sendRequest();
+                    // print(emailController.text);
+                    FocusManager.instance.primaryFocus?.unfocus();
+                    print(loginRequestModel.toJson());
+                    /*Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context)=>  MatrixPage()
+                        )
+                    );*/
+                  },
+                  child: Container(
+                    height: 32,
+                    width: 175,
+                    decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                              blurRadius: 5,
+                              offset: Offset(1, 0),
+                              color: Colors.black.withOpacity(0.4)),//3dright
+                          BoxShadow(
+                              blurRadius: 0,
+                              offset: Offset(0, 1),
+                              color: Colors.black.withOpacity(0.4)),//3dbottom
+                          BoxShadow(
+                              blurRadius: 5,
+                              offset: -Offset(1, 0),
+                              color: Colors.black.withOpacity(0.4)),//3dleft
+                          BoxShadow(
+                              blurRadius: 0,
+                              offset: -Offset(0, 1),
+                              color: Colors.black.withOpacity(0.4)),
+                        ],
+                        borderRadius: BorderRadius.circular(25),
+                        image: DecorationImage(
+                          image: AssetImage('assets/loginbutton.png'),
+                          fit: BoxFit.fill,
+                        )
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Login',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            color: Colors.white,
+                            fontSize: 18
                         ),
                       ),
                     ),
-                  )
+                  ),
+                )
 
-                ],
-              ),
+              ],
             ),
           ),
         ),
       ),
     );
   }
+
+
+  sendRequest() async {
+
+    Map data = {
+      "method" : "user.login",
+      "jsonrpc" : "2.0",
+      "username" : "keerthi",
+      "password" : "123",
+      "id" : "1"
+    };
+
+    var url = 'http://192.168.0.104:8000/';
+    var response = await http.post(Uri.parse(url), body: loginRequestModel.toJson(),);
+    //     .then((response) {
+    //   if(response.statusCode==200){
+    //     ScaffoldMessenger.of(context)
+    //         .showSnackBar(SnackBar(content: Text('Login Successful'),));
+    //   }else{
+    //     ScaffoldMessenger.of(context)
+    //         .showSnackBar(SnackBar(content: Text('Login UnSuccessful'),));
+    //   }
+    //   print(response.statusCode);
+    //   print(response.body);
+    //   print(response.request);
+    //   print(response.reasonPhrase);
+    //   print(response.persistentConnection);
+    //   print(response.isRedirect);
+    // });
+    if(response.statusCode==200){
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(
+        duration: Duration(milliseconds: 500),
+        content: Text('Login Successful'),
+      ));
+      Timer(Duration(seconds: 1),(){
+        Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context)=>  MatrixPage()
+            )
+        );
+      });
+    }else{
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(
+        duration: Duration(milliseconds: 500),
+        content: Text('Login UnSuccessful'),
+      ));
+    }
+    print(response.statusCode);
+    print(response.body);
+    print(response.request);
+    print(response.reasonPhrase);
+    print(response.persistentConnection);
+    print(response.isRedirect);
+  }
+
+  /*sendRequest() async {
+
+    Map data = {
+      "method" : "user.login",
+      "jsonrpc" : "2.0",
+      "username" : "keerthi",
+      "password" : "123",
+      "id" : "1"
+    };
+
+    var url = 'http://192.168.0.104:8000/';
+    http.post(Uri.parse(url), body: data)
+        .then((response) {
+      print(response.statusCode);
+      if(response.statusCode==200){
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text('Login Successful'),));
+    }else{
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text('Login UnSuccessful'),));
+    }
+      print(response.body);
+      print(response.request);
+      print(response.reasonPhrase);
+      print(response.persistentConnection);
+      print(response.isRedirect);
+    });
+  }*/
+
+}
+
+class LoginRequestModel {
+  String email;
+  String password;
+
+  LoginRequestModel({
+    required this.email,
+    required this.password,
+  });
+
+  Map<String, dynamic> toJson() {
+    Map<String, dynamic> map = {
+      "method" : "user.login",
+      "jsonrpc" : "2.0",
+      'username': email,
+      'password': password,
+      "id" : "1"
+    };
+
+    return map;
+  }
+}
+
+sendRequest() async {
+
+  Map data = {
+    "method" : "user.login",
+    "jsonrpc" : "2.0",
+    "username" : "keerthi",
+    "password" : "123",
+    "id" : "1"
+  };
+
+  var url = 'http://192.168.0.104:8000/';
+  http.post(Uri.parse(url), body: data)
+      .then((response) {
+    print(response.statusCode);
+    /*if(response.statusCode==200){
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text('Login Successful'),));
+    }else{
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text('Login UnSuccessful'),));
+    }*/
+    print(response.body);
+    print(response.request);
+    print(response.reasonPhrase);
+    print(response.persistentConnection);
+    print(response.isRedirect);
+  });
 }

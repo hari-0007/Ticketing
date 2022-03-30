@@ -474,7 +474,8 @@ List _elements = [
 ];
 
 enum WidgetMarker { dashboard, incident, devices }                          // Drawer
-enum IncidentMarker { main, chat, notification, script, terminal}                   // Inside Incident
+enum IncidentMarker { main, chat, notification, script, terminal} // Inside Incident
+enum DevicesMarker {discover, discovered}
 
 class MatrixPage extends StatefulWidget {
   const MatrixPage({Key? key}) : super(key: key);
@@ -531,6 +532,7 @@ class _MatrixPageState extends State<MatrixPage> {
   double value = 0;
   IncidentMarker selectedIncidentWidgetMarker = IncidentMarker.main;   //Inside Incident Starting home
   WidgetMarker selectedWidgetMarker = WidgetMarker.devices;           // Drawer Starting home
+  DevicesMarker selectedDevicesMarker = DevicesMarker.discover;
 
   bool _ticketExpand = false;                                           // getAssignedTicket
   bool _isChatButton = true;                                            // getAssignedTicket -> Stack -> Red:White
@@ -1709,7 +1711,89 @@ class _MatrixPageState extends State<MatrixPage> {
       child: Column(
         children: [
           getAssignedTicket(),
-          getUnAssignedTicket(),
+          // getUnAssignedTicket(),
+          Expanded(
+              child:Container(
+                margin: EdgeInsets.only(left: 7.5,right: 7.5,top: 15,bottom: 0),
+                padding: EdgeInsets.only(top: 5,bottom: 10),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(topLeft: Radius.circular(30),topRight: Radius.circular(30),bottomLeft: Radius.circular(30),bottomRight: Radius.circular(30)),
+                    gradient: LinearGradient(
+                        colors: [
+                          Colors.white.withOpacity(0.5),
+                          Colors.white.withOpacity(0.1),
+                        ],
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter)
+                ),
+                child: Column(
+                  children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Flexible(
+                          child: GestureDetector(
+                            onTap : (){
+                              setState(() {
+                                selectedDevicesMarker = DevicesMarker.discover;
+                              });
+                            },
+                            child: Container(
+                              height: 22.5,
+                              margin: EdgeInsets.only(left: 7.5,right: 1),
+                              decoration: BoxDecoration(
+                                  color: (selectedDevicesMarker == DevicesMarker.discover)?Colors.blueGrey:Colors.transparent,
+                                  borderRadius: BorderRadius.only(topLeft: Radius.circular(20))
+                              ),
+                              child: Center(
+                                child: Text(
+                                  "Discover",
+                                  style: TextStyle(
+                                    color: (selectedDevicesMarker == DevicesMarker.discover)?Colors.white:Colors.black,
+                                    // fontWeight: FontWeight.w400,
+                                    // fontFamily: 'Roboto',
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Flexible(
+                            child: GestureDetector(
+                              onTap : (){
+                                setState(() {
+                                  selectedDevicesMarker = DevicesMarker.discovered;
+                                });
+                              },
+                              child: Container(
+                                height: 22.5,
+                                margin: EdgeInsets.only(left: 1,right: 7.5),
+                                decoration: BoxDecoration(
+                                    color: (selectedDevicesMarker == DevicesMarker.discovered)?Colors.blueGrey:Colors.transparent,
+                                    borderRadius: BorderRadius.only(topRight: Radius.circular(20))
+                                ),
+                                child: Center(
+                                    child: Text(
+                                      "Discovered",
+                                      style: TextStyle(
+                                        color: (selectedDevicesMarker == DevicesMarker.discovered)?Colors.white:Colors.black,
+                                        // fontWeight: FontWeight.w400,
+                                        // fontFamily: 'Roboto',
+                                      ),
+                                    )
+                                ),
+                              ),
+                            )
+                        )
+                      ],
+                    ),
+                    getDevicesSwitchContainer(),
+                  ],
+                ),
+              )
+          ),
         ],
       )
     );
@@ -6651,7 +6735,7 @@ class _MatrixPageState extends State<MatrixPage> {
         mySize =Size;
       },
       child: Expanded(
-        /*key: UniqueKey(),*/
+        /*key: UniqueKey(),dd*/
         child: ClipRRect(
           borderRadius: BorderRadius.only(
               topRight: Radius.elliptical(40, 100),
@@ -7181,7 +7265,8 @@ class _MatrixPageState extends State<MatrixPage> {
                   child: Container(
                     height: 42.5,
                     decoration: BoxDecoration(
-                      boxShadow: [
+                        color: Colors.blueGrey.withOpacity(1)
+                      /*boxShadow: [
                         BoxShadow(
                             blurRadius: 0,
                             offset: Offset(0, 1.0),
@@ -7191,7 +7276,7 @@ class _MatrixPageState extends State<MatrixPage> {
                           fit: BoxFit.fill,
                           // image: AssetImage('assets/rectangleproblem.png')),
                           image:
-                              AssetImage('assets/problembarinnershadowleft.png')),
+                              AssetImage('assets/problembarinnershadowleft.png')),*/
                     ),
                     child: Row(
                       children: [
@@ -7204,7 +7289,8 @@ class _MatrixPageState extends State<MatrixPage> {
                             child: Text(
                               element['SystemNumber'],
                               style: TextStyle(
-                                  fontWeight: FontWeight.w500,
+                                color: Colors.white.withOpacity(0.9),
+                                  fontWeight: FontWeight.bold,
                                   fontSize: 14
                               ),
                             ),
@@ -7212,7 +7298,12 @@ class _MatrixPageState extends State<MatrixPage> {
                         ),
                         Container(
                             padding: EdgeInsets.symmetric(horizontal: 5.0),
-                            child: Text(element['Time'])),
+                            child: Text(
+                              element['Time'],
+                              style: TextStyle(
+                                color: Colors.white.withOpacity(0.9),
+                              ),
+                            )),
                         /*Card(
                           elevation: 5,
                           shape: RoundedRectangleBorder(
@@ -7238,6 +7329,9 @@ class _MatrixPageState extends State<MatrixPage> {
                                   maxLines: 1,
                                   // overflow: TextOverflow.ellipsis,
                                   // softWrap: false
+                                  style: TextStyle(
+                                    color: Colors.white.withOpacity(0.9),
+                                  ),
                                 ),
                               )),
                         ),
@@ -7653,53 +7747,62 @@ class _MatrixPageState extends State<MatrixPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Flexible(
-                                  child: Container(
-                                    height: 20,
-                                    margin: EdgeInsets.only(left: 7.5,right: 1),
-                                    decoration: BoxDecoration(
-                                      color: Colors.blueGrey,
-                                      borderRadius: BorderRadius.only(topLeft: Radius.circular(20))
-                                    ),
-                                    child: Center(child: Text("1"),
+                                  child: GestureDetector(
+                                    onTap : (){
+                                      setState(() {
+                                        selectedDevicesMarker = DevicesMarker.discover;
+                                      });
+                                    },
+                                    child: Container(
+                                      height: 22.5,
+                                      margin: EdgeInsets.only(left: 7.5,right: 1),
+                                      decoration: BoxDecoration(
+                                        color: (selectedDevicesMarker == DevicesMarker.discover)?Colors.blueGrey:Colors.transparent,
+                                        borderRadius: BorderRadius.only(topLeft: Radius.circular(20))
+                                      ),
+                                      child: Center(
+                                        child: Text(
+                                        "Discover",
+                                        style: TextStyle(
+                                          color: (selectedDevicesMarker == DevicesMarker.discover)?Colors.white:Colors.black,
+                                          // fontWeight: FontWeight.w400,
+                                          // fontFamily: 'Roboto',
+                                        ),
+                                      ),
+                                      ),
                                     ),
                                   ),
                               ),
                               Flexible(
-                                  child: Container(
-                                    height: 20,
-                                    margin: EdgeInsets.only(left: 1,right: 7.5),
-                                    decoration: BoxDecoration(
-                                        color: Colors.blueGrey,
-                                      borderRadius: BorderRadius.only(topRight: Radius.circular(20))
-                                    ),
-                                    child: Center(
-                                        child: Text("2")
+                                  child: GestureDetector(
+                                    onTap : (){
+                                      setState(() {
+                                        selectedDevicesMarker = DevicesMarker.discovered;
+                                      });
+                                    },
+                                    child: Container(
+                                      height: 22.5,
+                                      margin: EdgeInsets.only(left: 1,right: 7.5),
+                                      decoration: BoxDecoration(
+                                          color: (selectedDevicesMarker == DevicesMarker.discovered)?Colors.blueGrey:Colors.transparent,
+                                        borderRadius: BorderRadius.only(topRight: Radius.circular(20))
+                                      ),
+                                      child: Center(
+                                          child: Text(
+                                            "Discovered",
+                                            style: TextStyle(
+                                              color: (selectedDevicesMarker == DevicesMarker.discovered)?Colors.white:Colors.black,
+                                              // fontWeight: FontWeight.w400,
+                                              // fontFamily: 'Roboto',
+                                            ),
+                                          )
+                                      ),
                                     ),
                                   )
                               )
                             ],
                           ),
-                          Expanded(
-                              child: Container(
-                                margin: EdgeInsets.only(left: 0,right: 0,top: 5,bottom: 0),
-                                color: Colors.transparent,
-                                child: ListView.builder(
-                                  padding: EdgeInsets.zero,
-                                  shrinkWrap: true,
-                                  itemCount: 20,
-                                  itemBuilder: (BuildContext context, int index) {
-                                    return Card(
-                                      elevation: 8.0,
-                                      margin: EdgeInsets.only(left: 10,right: 10,top: 5,bottom: 5),
-                                      child: Container(
-                                        height: 47.5,
-                                        decoration: BoxDecoration(color: Color(0xff404b60).withOpacity(0.9)),
-                                      ),
-                                    );
-                                  },
-                                ),
-                              )
-                          )
+                          getDevicesSwitchContainer(),
                         ],
                       ),
                     )
@@ -7715,6 +7818,63 @@ class _MatrixPageState extends State<MatrixPage> {
           // )
         ),
       ),
+    );
+  }
+
+  Widget getDevicesSwitchContainer(){
+    switch (selectedDevicesMarker) {
+      case DevicesMarker.discover:
+        return getDiscover();
+      case DevicesMarker.discovered:
+        return getDiscovered();
+    }
+  }
+
+  Widget getDiscover(){
+    return Expanded(
+        child: Container(
+          margin: EdgeInsets.only(left: 0,right: 0,top: 2.5,bottom: 0),
+          color: Colors.transparent,
+          child: ListView.builder(
+            padding: EdgeInsets.zero,
+            shrinkWrap: true,
+            itemCount: 20,
+            itemBuilder: (BuildContext context, int index) {
+              return Card(
+                elevation: 8.0,
+                margin: EdgeInsets.only(left: 10,right: 10,top: 5,bottom: 5),
+                child: Container(
+                  height: 47.5,
+                  decoration: BoxDecoration(color: Color(0xff404b60).withOpacity(0.9)),
+                ),
+              );
+            },
+          ),
+        )
+    );
+  }
+
+  Widget getDiscovered(){
+    return Expanded(
+        child: Container(
+          margin: EdgeInsets.only(left: 0,right: 0,top: 2.5,bottom: 0),
+          color: Colors.transparent,
+          child: ListView.builder(
+            padding: EdgeInsets.zero,
+            shrinkWrap: true,
+            itemCount: 20,
+            itemBuilder: (BuildContext context, int index) {
+              return Card(
+                elevation: 8.0,
+                margin: EdgeInsets.only(left: 10,right: 10,top: 5,bottom: 5),
+                child: Container(
+                  height: 47.5,
+                  decoration: BoxDecoration(color:Color(0xff19547b).withOpacity(0.85), /*Colors.blueGrey.withOpacity(0.9)*/),
+                ),
+              );
+            },
+          ),
+        )
     );
   }
 
