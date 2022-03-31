@@ -3,7 +3,7 @@ import 'dart:math';
 import 'dart:ui';
 // import 'dart:html';
 // import 'package:allitson/script.dart';
-import 'package:allitson/chart.dart';
+// import 'package:allitson/chart.dart';
 import 'package:badges/badges.dart';
 import 'package:custom_pop_up_menu/custom_pop_up_menu.dart';
 import 'package:custom_timer/custom_timer.dart';
@@ -17,8 +17,602 @@ import 'package:measured_size/measured_size.dart';
 
 import 'package:shimmer/shimmer.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
+
 
 final List<Map<String, dynamic>> ticket = [
+  {
+    "Ticket":"Assigned",
+    "SystemNumber":"C0001",
+    "HostName":"PCAL0050",
+    "Time":"04:53",
+    "Severity":"High",
+    "Type":"Manual",
+    "ProblemText":"Browser not opening tried to fix but not possible Browser not opening tried to fix but not possible Browser not opening tried to fix but not possible ",
+    "DateTime":"01-12-2021 8.00 AM",
+    'group': 'Today',
+    "Status": 'Resolved',
+    "loadingIndicator": false,
+  },
+  {
+    "Ticket":"Assigned",
+    "SystemNumber":"C0002",
+    "HostName":"PCAL0051",
+    "Time":"04:53",
+    "Severity":"Medium",
+    "Type":"Automatic",
+    "ProblemText":"Browser not opening tried to fix but not possible",
+    "DateTime":"01-12-2021 8.00 AM",
+    'group': 'Today',
+    "Status": 'Not Resolved',
+    "loadingIndicator": false,
+  },
+  {
+    "Ticket":"Assigned",
+    "SystemNumber":"C0003",
+    "HostName":"PCAL0052",
+    "Time":"04:53",
+    "Severity":"Low",
+    "Type":"Manual",
+    "ProblemText":"Browser not opening tried to fix but not possible",
+    "DateTime":"01-12-2021 8.00 AM",
+    'group': 'Today',
+    "Status": 'Resolved',
+    "loadingIndicator": false,
+  },
+  {
+    "Ticket":"Assigned",
+    "SystemNumber":"C0004",
+    "HostName":"PCAL0053",
+    "Time":"04:53",
+    "Severity":"Information",
+    "Type":"Automatic",
+    "ProblemText":"Browser not opening tried to fix but not possible",
+    "DateTime":"01-12-2021 8.00 AM",
+    'group': 'Today',
+    "Status": 'Not Resolved',
+    "loadingIndicator": false,
+  },
+
+
+
+  {
+    "Ticket":"UnAssigned",
+    "SystemNumber":"A0001",
+    "HostName":"PCAL0100",
+    "Time":"8:00 AM",
+    "Severity":"High",
+    "Type":"Manual",
+    "ProblemText":"System is not booting, it shows no boot files found.",
+    "DateTime":"01-12-2021 8.00 AM",
+    'group': 'Today',
+    "Status": 'UnResolved',
+    "loadingIndicator": false,
+  },
+  {
+    "Ticket":"UnAssigned",
+    "SystemNumber":"A0002",
+    "HostName":"PCAL0101",
+    "Time":"8:00 AM",
+    "Severity":"Medium",
+    "Type":"Automatic",
+    "ProblemText":"System is not booting, it show an unknow error",
+    "DateTime":"01-12-2021 8.00 AM",
+    'group': 'Today',
+    "Status": 'UnResolved',
+    "loadingIndicator": false,
+  },
+  {
+    "Ticket":"UnAssigned",
+    "SystemNumber":"A0003",
+    "HostName":"PCAL0102",
+    "Time":"8:00 AM",
+    "Severity":"Low",
+    "Type":"Manual",
+    "ProblemText":"System is not booting, it shows no boot files found.",
+    "DateTime":"01-12-2021 8.00 AM",
+    'group': 'Today',
+    "Status": 'UnResolved',
+    "loadingIndicator": false,
+  },
+  {
+    "Ticket":"UnAssigned",
+    "SystemNumber":"A0004",
+    "HostName":"PCAL0103",
+    "Time":"8:00 AM",
+    "Severity":"Information",
+    "Type":"Automatic",
+    "ProblemText":"System is not booting, it show an unknow error",
+    "DateTime":"01-12-2021 8.00 AM",
+    'group': 'Today',
+    "Status": 'UnResolved',
+    "loadingIndicator": false,
+  },
+  {
+    "Ticket":"UnAssigned",
+    "SystemNumber":"A0005",
+    "HostName":"PCAL0104",
+    "Time":"8:00 AM",
+    "Severity":"High",
+    "Type":"Manual",
+    "ProblemText":"System is not booting, it shows no boot files found.",
+    "DateTime":"01-12-2021 8.00 AM",
+    'group': 'Today',
+    "Status": 'UnResolved',
+    "loadingIndicator": false,
+  },
+  {
+    "Ticket":"UnAssigned",
+    "SystemNumber":"A0006",
+    "HostName":"PCAL0105",
+    "Time":"8:00 AM",
+    "Severity":"Medium",
+    "Type":"Automatic",
+    "ProblemText":"System is not booting, it show an unknow error",
+    "DateTime":"01-12-2021 8.00 AM",
+    'group': 'Today',
+    "Status": 'UnResolved',
+    "loadingIndicator": false,
+  },
+  {
+    "Ticket":"UnAssigned",
+    "SystemNumber":"A0007",
+    "HostName":"PCAL0106",
+    "Time":"8:00 AM",
+    "Severity":"Low",
+    "Type":"Manual",
+    "ProblemText":"System is not booting, it shows no boot files found.",
+    "DateTime":"01-12-2021 8.00 AM",
+    'group': 'Today',
+    "Status": 'UnResolved',
+    "loadingIndicator": false,
+  },
+  {
+    "Ticket":"UnAssigned",
+    "SystemNumber":"A0008",
+    "HostName":"PCAL0107",
+    "Time":"8:00 AM",
+    "Severity":"Information",
+    "Type":"Automatic",
+    "ProblemText":"System is not booting, it show an unknow error",
+    "DateTime":"01-12-2021 8.00 AM",
+    'group': 'Today',
+    "Status": 'UnResolved',
+    "loadingIndicator": false,
+  },
+
+
+
+  {
+    "Ticket":"UnAssigned",
+    "SystemNumber":"A0009",
+    "HostName":"PCAL0108",
+    "Time":"8:00 AM",
+    "Severity":"High",
+    "Type":"Manual",
+    "ProblemText":"System is not booting, it shows no boot files found.",
+    "DateTime":"01-12-2021 8.00 AM",
+    'group': '03-02-2022',
+    "Status": 'UnResolved',
+    "loadingIndicator": false,
+  },
+  {
+    "Ticket":"UnAssigned",
+    "SystemNumber":"A0010",
+    "HostName":"PCAL0109",
+    "Time":"8:00 AM",
+    "Severity":"Medium",
+    "Type":"Automatic",
+    "ProblemText":"System is not booting, it show an unknow error",
+    "DateTime":"01-12-2021 8.00 AM",
+    'group': '03-02-2022',
+    "Status": 'UnResolved',
+    "loadingIndicator": false,
+  },
+  {
+    "Ticket":"UnAssigned",
+    "SystemNumber":"A0011",
+    "HostName":"PCAL0110",
+    "Time":"8:00 AM",
+    "Severity":"Low",
+    "Type":"Manual",
+    "ProblemText":"System is not booting, it shows no boot files found.",
+    "DateTime":"01-12-2021 8.00 AM",
+    'group': '03-02-2022',
+    "Status": 'UnResolved',
+    "loadingIndicator": false,
+  },
+  {
+    "Ticket":"UnAssigned",
+    "SystemNumber":"A0012",
+    "HostName":"PCAL0111",
+    "Time":"8:00 AM",
+    "Severity":"Information",
+    "Type":"Automatic",
+    "ProblemText":"System is not booting, it show an unknow error",
+    "DateTime":"01-12-2021 8.00 AM",
+    'group': '03-02-2022',
+    "Status": 'UnResolved',
+    "loadingIndicator": false,
+  },
+  {
+    "Ticket":"UnAssigned",
+    "SystemNumber":"A0013",
+    "HostName":"PCAL0112",
+    "Time":"8:00 AM",
+    "Severity":"High",
+    "Type":"Manual",
+    "ProblemText":"System is not booting, it shows no boot files found.",
+    "DateTime":"01-12-2021 8.00 AM",
+    'group': '03-02-2022',
+    "Status": 'UnResolved',
+    "loadingIndicator": false,
+  },
+  {
+    "Ticket":"UnAssigned",
+    "SystemNumber":"A0014",
+    "HostName":"PCAL0113",
+    "Time":"8:00 AM",
+    "Severity":"Medium",
+    "Type":"Automatic",
+    "ProblemText":"System is not booting, it show an unknow error",
+    "DateTime":"01-12-2021 8.00 AM",
+    'group': '03-02-2022',
+    "Status": 'UnResolved',
+    "loadingIndicator": false,
+  },
+  {
+    "Ticket":"UnAssigned",
+    "SystemNumber":"A0015",
+    "HostName":"PCAL0114",
+    "Time":"8:00 AM",
+    "Severity":"Low",
+    "Type":"Manual",
+    "ProblemText":"System is not booting, it shows no boot files found.",
+    "DateTime":"01-12-2021 8.00 AM",
+    'group': '03-02-2022',
+    "Status": 'UnResolved',
+    "loadingIndicator": false,
+  },
+  {
+    "Ticket":"UnAssigned",
+    "SystemNumber":"A0016",
+    "HostName":"PCAL0115",
+    "Time":"8:00 AM",
+    "Severity":"Information",
+    "Type":"Automatic",
+    "ProblemText":"System is not booting, it show an unknow error",
+    "DateTime":"01-12-2021 8.00 AM",
+    'group': '03-02-2022',
+    "Status": 'UnResolved',
+    "loadingIndicator": false,
+  },
+
+
+
+
+  {
+    "Ticket":"UnAssigned",
+    "SystemNumber":"A0017",
+    "HostName":"PCAL0116",
+    "Time":"8:00 AM",
+    "Severity":"High",
+    "Type":"Manual",
+    "ProblemText":"System is not booting, it shows no boot files found.",
+    "DateTime":"01-12-2021 8.00 AM",
+    'group': '02-02-2022',
+    "Status": 'UnResolved',
+    "loadingIndicator": false,
+  },
+  {
+    "Ticket":"UnAssigned",
+    "SystemNumber":"A0018",
+    "HostName":"PCAL0117",
+    "Time":"8:00 AM",
+    "Severity":"Medium",
+    "Type":"Automatic",
+    "ProblemText":"System is not booting, it show an unknow error",
+    "DateTime":"01-12-2021 8.00 AM",
+    'group': '02-02-2022',
+    "Status": 'UnResolved',
+    "loadingIndicator": false,
+  },
+  {
+    "Ticket":"UnAssigned",
+    "SystemNumber":"A0019",
+    "HostName":"PCAL0118",
+    "Time":"8:00 AM",
+    "Severity":"Low",
+    "Type":"Manual",
+    "ProblemText":"System is not booting, it shows no boot files found.",
+    "DateTime":"01-12-2021 8.00 AM",
+    'group': '02-02-2022',
+    "Status": 'UnResolved',
+    "loadingIndicator": false,
+  },
+  {
+    "Ticket":"UnAssigned",
+    "SystemNumber":"A0020",
+    "HostName":"PCAL0119",
+    "Time":"8:00 AM",
+    "Severity":"Information",
+    "Type":"Automatic",
+    "ProblemText":"System is not booting, it show an unknow error",
+    "DateTime":"01-12-2021 8.00 AM",
+    'group': '02-02-2022',
+    "Status": 'UnResolved',
+    "loadingIndicator": false,
+  },
+  {
+    "Ticket":"UnAssigned",
+    "SystemNumber":"A0021",
+    "HostName":"PCAL0120",
+    "Time":"8:00 AM",
+    "Severity":"High",
+    "Type":"Manual",
+    "ProblemText":"System is not booting, it shows no boot files found.",
+    "DateTime":"01-12-2021 8.00 AM",
+    'group': '02-02-2022',
+    "Status": 'UnResolved',
+    "loadingIndicator": false,
+  },
+  {
+    "Ticket":"UnAssigned",
+    "SystemNumber":"A0022",
+    "HostName":"PCAL0121",
+    "Time":"8:00 AM",
+    "Severity":"Medium",
+    "Type":"Automatic",
+    "ProblemText":"System is not booting, it show an unknow error",
+    "DateTime":"01-12-2021 8.00 AM",
+    'group': '02-02-2022',
+    "Status": 'UnResolved',
+    "loadingIndicator": false,
+  },
+  {
+    "Ticket":"UnAssigned",
+    "SystemNumber":"A0023",
+    "HostName":"PCAL0122",
+    "Time":"8:00 AM",
+    "Severity":"Low",
+    "Type":"Manual",
+    "ProblemText":"System is not booting, it shows no boot files found.",
+    "DateTime":"01-12-2021 8.00 AM",
+    'group': '02-02-2022',
+    "Status": 'UnResolved',
+    "loadingIndicator": false,
+  },
+  {
+    "Ticket":"UnAssigned",
+    "SystemNumber":"A0024",
+    "HostName":"PCAL0123",
+    "Time":"8:00 AM",
+    "Severity":"Information",
+    "Type":"Automatic",
+    "ProblemText":"System is not booting, it show an unknow error",
+    "DateTime":"01-12-2021 8.00 AM",
+    'group': '02-02-2022',
+    "Status": 'UnResolved',
+    "loadingIndicator": false,
+  },
+
+
+
+  {
+    "Ticket":"UnAssigned",
+    "SystemNumber":"A0025",
+    "HostName":"PCAL0124",
+    "Time":"8:00 AM",
+    "Severity":"High",
+    "Type":"Manual",
+    "ProblemText":"System is not booting, it shows no boot files found.",
+    "DateTime":"01-12-2021 8.00 AM",
+    'group': '01-02-2022',
+    "Status": 'UnResolved',
+    "loadingIndicator": false,
+  },
+  {
+    "Ticket":"UnAssigned",
+    "SystemNumber":"A0026",
+    "HostName":"PCAL0125",
+    "Time":"8:00 AM",
+    "Severity":"Medium",
+    "Type":"Automatic",
+    "ProblemText":"System is not booting, it show an unknow error",
+    "DateTime":"01-12-2021 8.00 AM",
+    'group': '01-02-2022',
+    "Status": 'UnResolved',
+    "loadingIndicator": false,
+  },
+  {
+    "Ticket":"UnAssigned",
+    "SystemNumber":"A0027",
+    "HostName":"PCAL0126",
+    "Time":"8:00 AM",
+    "Severity":"Low",
+    "Type":"Manual",
+    "ProblemText":"System is not booting, it shows no boot files found.",
+    "DateTime":"01-12-2021 8.00 AM",
+    'group': '01-02-2022',
+    "Status": 'UnResolved',
+    "loadingIndicator": false,
+  },
+  {
+    "Ticket":"UnAssigned",
+    "SystemNumber":"A0028",
+    "HostName":"PCAL0127",
+    "Time":"8:00 AM",
+    "Severity":"Information",
+    "Type":"Automatic",
+    "ProblemText":"System is not booting, it show an unknow error",
+    "DateTime":"01-12-2021 8.00 AM",
+    'group': '01-02-2022',
+    "Status": 'UnResolved',
+    "loadingIndicator": false,
+  },
+  {
+    "Ticket":"UnAssigned",
+    "SystemNumber":"A0029",
+    "HostName":"PCAL0128",
+    "Time":"8:00 AM",
+    "Severity":"High",
+    "Type":"Manual",
+    "ProblemText":"System is not booting, it shows no boot files found.",
+    "DateTime":"01-12-2021 8.00 AM",
+    'group': '01-02-2022',
+    "Status": 'UnResolved',
+    "loadingIndicator": false,
+  },
+  {
+    "Ticket":"UnAssigned",
+    "SystemNumber":"A0030",
+    "HostName":"PCAL0129",
+    "Time":"8:00 AM",
+    "Severity":"Medium",
+    "Type":"Automatic",
+    "ProblemText":"System is not booting, it show an unknow error",
+    "DateTime":"01-12-2021 8.00 AM",
+    'group': '01-02-2022',
+    "Status": 'UnResolved',
+    "loadingIndicator": false,
+  },
+  {
+    "Ticket":"UnAssigned",
+    "SystemNumber":"A0031",
+    "HostName":"PCAL0130",
+    "Time":"8:00 AM",
+    "Severity":"Low",
+    "Type":"Manual",
+    "ProblemText":"System is not booting, it shows no boot files found.",
+    "DateTime":"01-12-2021 8.00 AM",
+    'group': '01-02-2022',
+    "Status": 'UnResolved',
+    "loadingIndicator": false,
+  },
+  {
+    "Ticket":"UnAssigned",
+    "SystemNumber":"A0032",
+    "HostName":"PCAL0131",
+    "Time":"8:00 AM",
+    "Severity":"Information",
+    "Type":"Automatic",
+    "ProblemText":"System is not booting, it show an unknow error",
+    "DateTime":"01-12-2021 8.00 AM",
+    'group': '01-02-2022',
+    "Status": 'UnResolved',
+    "loadingIndicator": false,
+  },
+
+
+
+  {
+    "Ticket":"UnAssigned",
+    "SystemNumber":"A0025",
+    "HostName":"PCAL0124",
+    "Time":"8:00 AM",
+    "Severity":"High",
+    "Type":"Manual",
+    "ProblemText":"System is not booting, it shows no boot files found.",
+    "DateTime":"01-12-2021 8.00 AM",
+    'group': '31-02-2022',
+    "Status": 'UnResolved',
+    "loadingIndicator": false,
+  },
+  {
+    "Ticket":"UnAssigned",
+    "SystemNumber":"A0026",
+    "HostName":"PCAL0125",
+    "Time":"8:00 AM",
+    "Severity":"Medium",
+    "Type":"Automatic",
+    "ProblemText":"System is not booting, it show an unknow error",
+    "DateTime":"01-12-2021 8.00 AM",
+    'group': '31-02-2022',
+    "Status": 'UnResolved',
+    "loadingIndicator": false,
+  },
+  {
+    "Ticket":"UnAssigned",
+    "SystemNumber":"A0027",
+    "HostName":"PCAL0126",
+    "Time":"8:00 AM",
+    "Severity":"Low",
+    "Type":"Manual",
+    "ProblemText":"System is not booting, it shows no boot files found.",
+    "DateTime":"01-12-2021 8.00 AM",
+    'group': '31-02-2022',
+    "Status": 'UnResolved',
+    "loadingIndicator": false,
+  },
+  {
+    "Ticket":"UnAssigned",
+    "SystemNumber":"A0028",
+    "HostName":"PCAL0127",
+    "Time":"8:00 AM",
+    "Severity":"Information",
+    "Type":"Automatic",
+    "ProblemText":"System is not booting, it show an unknow error",
+    "DateTime":"01-12-2021 8.00 AM",
+    'group': '31-02-2022',
+    "Status": 'UnResolved',
+    "loadingIndicator": false,
+  },
+  {
+    "Ticket":"UnAssigned",
+    "SystemNumber":"A0029",
+    "HostName":"PCAL0128",
+    "Time":"8:00 AM",
+    "Severity":"High",
+    "Type":"Manual",
+    "ProblemText":"System is not booting, it shows no boot files found.",
+    "DateTime":"01-12-2021 8.00 AM",
+    'group': '31-02-2022',
+    "Status": 'UnResolved',
+    "loadingIndicator": false,
+  },
+  {
+    "Ticket":"UnAssigned",
+    "SystemNumber":"A0030",
+    "HostName":"PCAL0129",
+    "Time":"8:00 AM",
+    "Severity":"Medium",
+    "Type":"Automatic",
+    "ProblemText":"System is not booting, it show an unknow error",
+    "DateTime":"01-12-2021 8.00 AM",
+    'group': '31-02-2022',
+    "Status": 'UnResolved',
+    "loadingIndicator": false,
+  },
+  {
+    "Ticket":"UnAssigned",
+    "SystemNumber":"A0031",
+    "Time":"8:00 AM",
+    "Severity":"Low",
+    "ProblemText":"System is not booting, it shows no boot files found.",
+    'group': '31-02-2022',
+    "HostName":"PCAL0130",
+    "Type":"Manual",
+    "DateTime":"01-12-2021 8.00 AM",
+    "Status": 'UnResolved',
+    "loadingIndicator": false,
+  },
+  {
+    "Ticket":"UnAssigned",
+    "SystemNumber":"A0032",
+    "Time":"8:00 AM",
+    "Severity":"Information",
+    "ProblemText":"System is not booting, it show an unknow error",
+    'group': '31-02-2022',
+    "HostName":"PCAL0131",
+    "Type":"Automatic",
+    "DateTime":"01-12-2021 8.00 AM",
+    "Status": 'UnResolved',
+    "loadingIndicator": false,
+  },
+];
+
+
+/*final List<Map<String, dynamic>> ticket = [
   {
     "HostName": "PCAL0050",
     "Image": "assets/vectorright.png",
@@ -471,7 +1065,7 @@ List _elements = [
     'ErrorText': 'System is not booting, it show an unknow error ',
     'group': '31-01-2022'
   },
-];
+];*/
 
 enum WidgetMarker { dashboard, incident, devices }                          // Drawer
 enum IncidentMarker { main, chat, notification, script, terminal} // Inside Incident
@@ -506,6 +1100,9 @@ class _MatrixPageState extends State<MatrixPage> {
   initState() {
     // at the beginning, all users are shown
     _foundTicket = ticket;
+
+    _tooltip=TooltipBehavior(enable: true,);
+
     super.initState();
   }
 
@@ -516,7 +1113,7 @@ class _MatrixPageState extends State<MatrixPage> {
       results = ticket;
     } else {
       results = ticket
-          .where((user) => user["sysNumber"]
+          .where((user) => user["SystemNumber"]
               .toLowerCase()
               .contains(enteredKeyword.toLowerCase()))
           .toList();
@@ -574,6 +1171,12 @@ class _MatrixPageState extends State<MatrixPage> {
   /*var memoryWidgets = <String>[];
   var _memoryWidgets = [];*/
 
+  late List<ChartData> data;
+  late TooltipBehavior _tooltip;
+
+  bool _deviceWidth = true;
+  bool _deviceflag = false;
+
   bool memory() {
     if (memorybar[_sysNumber]?.length == null) {
       return false;
@@ -614,7 +1217,7 @@ class _MatrixPageState extends State<MatrixPage> {
   Widget build(BuildContext context) {
 
     memorybar.forEach((key, value) {
-      if (key == _foundTicket[_index]['sysNumber']) {
+      if (key == _foundTicket[_index]['SystemNumber']) {
         if (value.length > 0) {
           _foundTicket[_index]['loadingIndicator'] = true;
         } else {
@@ -1711,89 +2314,7 @@ class _MatrixPageState extends State<MatrixPage> {
       child: Column(
         children: [
           getAssignedTicket(),
-          // getUnAssignedTicket(),
-          Expanded(
-              child:Container(
-                margin: EdgeInsets.only(left: 7.5,right: 7.5,top: 15,bottom: 0),
-                padding: EdgeInsets.only(top: 5,bottom: 10),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(topLeft: Radius.circular(30),topRight: Radius.circular(30),bottomLeft: Radius.circular(30),bottomRight: Radius.circular(30)),
-                    gradient: LinearGradient(
-                        colors: [
-                          Colors.white.withOpacity(0.5),
-                          Colors.white.withOpacity(0.1),
-                        ],
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter)
-                ),
-                child: Column(
-                  children: [
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Flexible(
-                          child: GestureDetector(
-                            onTap : (){
-                              setState(() {
-                                selectedDevicesMarker = DevicesMarker.discover;
-                              });
-                            },
-                            child: Container(
-                              height: 22.5,
-                              margin: EdgeInsets.only(left: 7.5,right: 1),
-                              decoration: BoxDecoration(
-                                  color: (selectedDevicesMarker == DevicesMarker.discover)?Colors.blueGrey:Colors.transparent,
-                                  borderRadius: BorderRadius.only(topLeft: Radius.circular(20))
-                              ),
-                              child: Center(
-                                child: Text(
-                                  "Discover",
-                                  style: TextStyle(
-                                    color: (selectedDevicesMarker == DevicesMarker.discover)?Colors.white:Colors.black,
-                                    // fontWeight: FontWeight.w400,
-                                    // fontFamily: 'Roboto',
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Flexible(
-                            child: GestureDetector(
-                              onTap : (){
-                                setState(() {
-                                  selectedDevicesMarker = DevicesMarker.discovered;
-                                });
-                              },
-                              child: Container(
-                                height: 22.5,
-                                margin: EdgeInsets.only(left: 1,right: 7.5),
-                                decoration: BoxDecoration(
-                                    color: (selectedDevicesMarker == DevicesMarker.discovered)?Colors.blueGrey:Colors.transparent,
-                                    borderRadius: BorderRadius.only(topRight: Radius.circular(20))
-                                ),
-                                child: Center(
-                                    child: Text(
-                                      "Discovered",
-                                      style: TextStyle(
-                                        color: (selectedDevicesMarker == DevicesMarker.discovered)?Colors.white:Colors.black,
-                                        // fontWeight: FontWeight.w400,
-                                        // fontFamily: 'Roboto',
-                                      ),
-                                    )
-                                ),
-                              ),
-                            )
-                        )
-                      ],
-                    ),
-                    getDevicesSwitchContainer(),
-                  ],
-                ),
-              )
-          ),
+          getUnAssignedTicket(),
         ],
       )
     );
@@ -2871,7 +3392,7 @@ class _MatrixPageState extends State<MatrixPage> {
                       scrollDirection: Axis.horizontal,
                       itemCount: _foundTicket.length,
                       itemBuilder: (context, index) {
-                        return Visibility(
+                        return _foundTicket[index].containsValue("Assigned")?Visibility(
                           visible: (_selectedTicketIndex || selectedIndex == index)
                               ? true
                               : false,
@@ -2898,7 +3419,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                         _enterAction = true;
                                       }
                                       _index = index;
-                                      _sysNumber = ticket[index]['sysNumber'];
+                                      _sysNumber = ticket[index]['SystemNumber'];
                                     });
 
                                     /*setState(() {
@@ -2920,7 +3441,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                                   Radius.circular(30))),
                                           behavior: SnackBarBehavior.floating,
                                           margin:
-                                          EdgeInsets.symmetric(horizontal: 15),
+                                          EdgeInsets.symmetric(horizontal: 7),
                                           backgroundColor:
                                           Colors.transparent.withOpacity(0.2),
                                           content: DragTarget(
@@ -2989,7 +3510,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                                                     child: Text(
                                                                       _foundTicket[
                                                                       index][
-                                                                      "sysNumber"],
+                                                                      "SystemNumber"],
                                                                       style: TextStyle(
                                                                           fontFamily:
                                                                           'fonts/Roboto-Bold.ttf',
@@ -3205,7 +3726,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                                                     child: Text(
                                                                       _foundTicket[
                                                                       index][
-                                                                      "dateTime"],
+                                                                      "DateTime"],
                                                                       style: TextStyle(
                                                                           fontFamily:
                                                                           'fonts/Roboto-Bold.ttf',
@@ -3419,7 +3940,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                                                     child: Text(
                                                                       _foundTicket[
                                                                       index][
-                                                                      "problemText"],
+                                                                      "ProblemText"],
                                                                       style: TextStyle(
                                                                           fontFamily:
                                                                           'fonts/Roboto-Bold.ttf',
@@ -3626,7 +4147,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                               // }
                                             },
                                             builder: (context, _, __) => SizedBox(
-                                                height: (mySize.height.toDouble())-25.5,
+                                                height: (mySize.height.toDouble())-27,
                                                 /* target(),*/
                                                 /*height: MediaQuery.of(context).size.height-338,*/
                                                 // 508.07142857142856-30,
@@ -3710,7 +4231,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                                     padding:
                                                     EdgeInsets.only(right: 5.0)),
                                                 Text(
-                                                  _foundTicket[index]['sysNumber'],
+                                                  _foundTicket[index]['SystemNumber'],
                                                   textAlign: TextAlign.center,
                                                   style: TextStyle(
                                                       fontFamily:
@@ -3746,7 +4267,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                               child: SingleChildScrollView(
                                                 scrollDirection: Axis.vertical,
                                                 child: Text(
-                                                  _foundTicket[index]['problemText'],
+                                                  _foundTicket[index]['ProblemText'],
                                                   textAlign: TextAlign.center,
                                                   style: TextStyle(
                                                       fontFamily: 'Roboto',
@@ -3757,7 +4278,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                             Padding(
                                                 padding: EdgeInsets.only(top: 13.0)),
                                             Text(
-                                              _foundTicket[index]['problemTime'],
+                                              _foundTicket[index]['Time'],
                                               textAlign: TextAlign.center,
                                               style: TextStyle(
                                                   fontFamily: 'Roboto',
@@ -3767,7 +4288,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                             Padding(
                                                 padding: EdgeInsets.only(top: 1.5)),
                                             Text(
-                                              _foundTicket[index]['dateTime'],
+                                              _foundTicket[index]['DateTime'],
                                               textAlign: TextAlign.center,
                                               style: TextStyle(
                                                   color: Color(0xff000000)
@@ -3844,7 +4365,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                                       padding: EdgeInsets.only(
                                                           right: 5.0)),
                                                   Text(
-                                                    _foundTicket[index]['sysNumber'],
+                                                    _foundTicket[index]['SystemNumber'],
                                                     textAlign: TextAlign.center,
                                                     style: TextStyle(
                                                         fontFamily:
@@ -3883,7 +4404,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                                   scrollDirection: Axis.vertical,
                                                   child: Text(
                                                     _foundTicket[index]
-                                                    ['problemText'],
+                                                    ['ProblemText'],
                                                     textAlign: TextAlign.center,
                                                     style: TextStyle(
                                                         fontFamily: 'Roboto',
@@ -3895,7 +4416,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                                   padding:
                                                   EdgeInsets.only(top: 13.0)),
                                               Text(
-                                                _foundTicket[index]['problemTime'],
+                                                _foundTicket[index]['Time'],
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
                                                     fontFamily: 'Roboto',
@@ -3905,7 +4426,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                               Padding(
                                                   padding: EdgeInsets.only(top: 1.5)),
                                               Text(
-                                                _foundTicket[index]['dateTime'],
+                                                _foundTicket[index]['DateTime'],
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
                                                     color: Color(0xff000000)
@@ -3998,7 +4519,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                                       padding: EdgeInsets.only(
                                                           right: 5.0)),
                                                   Text(
-                                                    _foundTicket[index]['sysNumber'],
+                                                    _foundTicket[index]['SystemNumber'],
                                                     textAlign: TextAlign.center,
                                                     style: TextStyle(
                                                         fontFamily:
@@ -4059,7 +4580,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                                   scrollDirection: Axis.vertical,
                                                   child: Text(
                                                     _foundTicket[index]
-                                                    ['problemText'],
+                                                    ['ProblemText'],
                                                     textAlign: TextAlign.center,
                                                     style: TextStyle(
                                                         fontFamily: 'Roboto',
@@ -4115,7 +4636,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                                   ),
 
                                                   Text(
-                                                    _foundTicket[index]['problemTime'],
+                                                    _foundTicket[index]['Time'],
                                                     textAlign: TextAlign.center,
                                                     style: TextStyle(
                                                         fontFamily: 'Roboto',
@@ -4130,7 +4651,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                               Padding(
                                                   padding: EdgeInsets.only(top: 1.5)),
                                               Text(
-                                                _foundTicket[index]['dateTime'],
+                                                _foundTicket[index]['DateTime'],
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
                                                     color: Color(0xff000000)
@@ -4167,13 +4688,13 @@ class _MatrixPageState extends State<MatrixPage> {
                                             /*memorybar[ticket[index]['sysNumber']] = ['Call'];*/
 
                                             if (memorybar.containsKey(
-                                                ticket[index]['sysNumber']) ==
+                                                ticket[index]['SystemNumber']) ==
                                                 true) {
-                                              memorybar[ticket[index]['sysNumber']]
+                                              memorybar[ticket[index]['SystemNumber']]
                                                   ?.add('assets/chaticon250.png');
                                             } else {
                                               memorybar.addEntries([
-                                                MapEntry(ticket[index]['sysNumber'],
+                                                MapEntry(ticket[index]['SystemNumber'],
                                                     {'assets/chaticon250.png'})
                                               ]);
                                             }
@@ -4268,13 +4789,13 @@ class _MatrixPageState extends State<MatrixPage> {
                                 });*/
                                               /*memorybar[ticket[index]['sysNumber']]?.insertAll(memorybar[ticket[index]['sysNumber']]!.length,['Call']);*/
                                               if (memorybar.containsKey(
-                                                  ticket[index]['sysNumber']) ==
+                                                  ticket[index]['SystemNumber']) ==
                                                   true) {
-                                                memorybar[ticket[index]['sysNumber']]
+                                                memorybar[ticket[index]['SystemNumber']]
                                                     ?.add('assets/callicongreenpadding1.gif');
                                               } else {
                                                 memorybar.addEntries([
-                                                  MapEntry(ticket[index]['sysNumber'],
+                                                  MapEntry(ticket[index]['SystemNumber'],
                                                       {'assets/callicongreenpadding1.gif'})
                                                 ]);
                                               }
@@ -4361,14 +4882,14 @@ class _MatrixPageState extends State<MatrixPage> {
                                             /*this.memoryWidgets.add('assets/remoteiconpadding.png');*/
 
                                             if (memorybar.containsKey(
-                                                ticket[index]['sysNumber']) ==
+                                                ticket[index]['SystemNumber']) ==
                                                 true) {
-                                              memorybar[ticket[index]['sysNumber']]
+                                              memorybar[ticket[index]['SystemNumber']]
                                                   ?.add(
                                                   'assets/remoteiconpadding.png');
                                             } else {
                                               memorybar.addEntries([
-                                                MapEntry(ticket[index]['sysNumber'],
+                                                MapEntry(ticket[index]['SystemNumber'],
                                                     {'assets/remoteiconpadding.png'})
                                               ]);
                                             }
@@ -4455,14 +4976,14 @@ class _MatrixPageState extends State<MatrixPage> {
                                             /*memorybar[ticket[index]['sysNumber']] = ['script'];*/
                                             /* memorybar[ticket[index]['sysNumber']]?.insertAll(memorybar[ticket[index]['sysNumber']]!.length,['Script']);*/
                                             if (memorybar.containsKey(
-                                                ticket[index]['sysNumber']) ==
+                                                ticket[index]['SystemNumber']) ==
                                                 true) {
-                                              memorybar[ticket[index]['sysNumber']]
+                                              memorybar[ticket[index]['SystemNumber']]
                                                   ?.add(
                                                   'assets/scripticonpadding.png');
                                             } else {
                                               memorybar.addEntries([
-                                                MapEntry(ticket[index]['sysNumber'],
+                                                MapEntry(ticket[index]['SystemNumber'],
                                                     {'assets/scripticonpadding.png'})
                                               ]);
                                             }
@@ -4544,14 +5065,14 @@ class _MatrixPageState extends State<MatrixPage> {
                                                 IncidentMarker.terminal;
 
                                             if (memorybar.containsKey(
-                                                ticket[index]['sysNumber']) ==
+                                                ticket[index]['SystemNumber']) ==
                                                 true) {
-                                              memorybar[ticket[index]['sysNumber']]
+                                              memorybar[ticket[index]['SystemNumber']]
                                                   ?.add(
                                                   'assets/terminaliconpadding.png');
                                             } else {
                                               memorybar.addEntries([
-                                                MapEntry(ticket[index]['sysNumber'], {
+                                                MapEntry(ticket[index]['SystemNumber'], {
                                                   'assets/terminaliconpadding.png'
                                                 })
                                               ]);
@@ -4968,7 +5489,7 @@ class _MatrixPageState extends State<MatrixPage> {
                               ],
                             ),
                           ),
-                        );
+                        ):Container();
                       })),
               Positioned.fill(
                 child: Align(
@@ -6737,38 +7258,86 @@ class _MatrixPageState extends State<MatrixPage> {
       child: Expanded(
         /*key: UniqueKey(),dd*/
         child: ClipRRect(
-          borderRadius: BorderRadius.only(
-              topRight: Radius.elliptical(40, 100),
-              topLeft: Radius.elliptical(40, 100),
-              bottomRight: Radius.elliptical(40, 100),
-              bottomLeft: Radius.elliptical(40, 100)),
-          child: GroupedListView<dynamic, String>(
-            sort: false,
-            padding: EdgeInsets.symmetric(vertical: 0, horizontal: 12.5),
-            elements: _elements,
-            groupBy: (_element) => _element['group'],
-            order: GroupedListOrder.DESC,
-            useStickyGroupSeparators: true,
-            /*groupHeaderBuilder: (_element) => SizedBox(
-              height: 40,
-              child: Center(
-                child: Card(
-                  color: Theme.of(context).primaryColor,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8),
-                    child: Text(_element['group']),
+            borderRadius: BorderRadius.only(
+                topRight: Radius.elliptical(30, 50),
+                topLeft: Radius.elliptical(30, 50),
+                bottomRight: Radius.elliptical(30, 50),
+                bottomLeft: Radius.elliptical(30, 50)
+            ),
+          child: Container(
+            margin: EdgeInsets.only(left: 7.5,right: 7.5),
+            decoration: BoxDecoration(
+              /*borderRadius: BorderRadius.only(
+                topRight: Radius.elliptical(40, 100),
+                topLeft: Radius.elliptical(40, 100),
+                bottomRight: Radius.elliptical(40, 100),
+                bottomLeft: Radius.elliptical(40, 100)),*/
+              // borderRadius: BorderRadius.only(
+              //     topLeft: Radius.circular(30),
+              //     topRight: Radius.circular(30),
+              //     bottomLeft: Radius.circular(30),
+              //     bottomRight: Radius.circular(30)
+              // ),
+                gradient: LinearGradient(
+                    colors: [
+                      Colors.white.withOpacity(0.5),
+                      Colors.white.withOpacity(0.1),
+                    ],
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter),
+            ),
+            child: GroupedListView<dynamic, String>(
+              sort: false,
+              padding: EdgeInsets.symmetric(vertical: 0, horizontal:0),
+              elements: _foundTicket,
+              groupBy: (_element) => _element['group'],
+              order: GroupedListOrder.DESC,
+              useStickyGroupSeparators: true,
+              groupHeaderBuilder: (_element) => Container(
+                height: 35,
+                  margin: EdgeInsets.only(top: 0,bottom: 2.5),
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        colors: [
+                          Colors.white.withOpacity(0.5),
+                          Colors.white.withOpacity(0.1),
+                        ],
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter),
+                  ),
+                  child: Center(
+                      child: Text(
+                          _element['group'],
+                        style: TextStyle(
+                          color: Color(0xff404b60).withOpacity(1),
+                          fontSize: 16,
+                        ),
+                      ),
+                  )
+              ),
+              /*groupHeaderBuilder: (_element) => SizedBox(
+                height: 40,
+                child: Center(
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    color: Color(0xff404b60).withOpacity(0.9),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: Text(_element['group']),
+                    ),
                   ),
                 ),
-              ),
-            ),*/
-            stickyHeaderBackgroundColor: Colors.transparent,
-            groupSeparatorBuilder: (String value) {
-              return Padding(
-                padding: EdgeInsets.all(0.0),
-                child: Container(
+              ),*/
+              stickyHeaderBackgroundColor: Colors.transparent,
+              // stickyHeaderBackgroundColor: Color(0xff404b60).withOpacity(0.9),
+              /*groupSeparatorBuilder: (String value) {
+                return Container(
                   height: 27,
+                  margin: EdgeInsets.only(top: 5, bottom: 5),
                   decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(0.3),
+                    // color: Colors.black.withOpacity(0.3),
                     borderRadius: BorderRadius.circular(50),
                   ),
                   child: Center(
@@ -6782,565 +7351,566 @@ class _MatrixPageState extends State<MatrixPage> {
                           color: Colors.white.withOpacity(0.875)),
                     ),
                   ),
-                ),
-              );
-            },
-            itemBuilder: (context, element) {
-              return GestureDetector(
-                onLongPress: () {
-                  showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                            contentPadding: EdgeInsets.only(left: 0, right: 0),
-                            insetPadding: EdgeInsets.only(left: 15, right: 15),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(15),
-                                topRight: Radius.circular(15),
-                                bottomLeft: Radius.circular(20),
-                                bottomRight: Radius.circular(20),
-                              ),
-                            ),
-                            elevation: 50,
-                            backgroundColor: Colors.white,
-                            scrollable: true,
-                            content: ClipRRect(
+                );
+              },*/
+              itemBuilder: (context, element) {
+                return element.toString().contains("UnAssigned")?GestureDetector(
+                  onLongPress: () {
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                              contentPadding: EdgeInsets.only(left: 0, right: 0),
+                              insetPadding: EdgeInsets.only(left: 15, right: 15),
+                              shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(15),
                                   topRight: Radius.circular(15),
                                   bottomLeft: Radius.circular(20),
                                   bottomRight: Radius.circular(20),
                                 ),
-                                child: Container(
-                                  height: 260,
-                                  width: 365,
-                                  decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                          // opacity: 0.75,
-                                          fit: BoxFit.fill,
-                                          image: AssetImage(
-                                              'assets/unassignedticketimage.png'))),
-                                  child: Stack(
-                                    children: [
-                                      Center(
-                                        child: Container(
-                                          height: 210,
-                                          width: 345,
-                                          decoration: BoxDecoration(
-                                            // color: Colors.transparent.withOpacity(0.1),
-                                            borderRadius: BorderRadius.only(
-                                              topLeft: Radius.circular(20),
-                                              topRight: Radius.circular(20),
-                                              bottomLeft: Radius.circular(20),
-                                              bottomRight: Radius.circular(20),
+                              ),
+                              elevation: 50,
+                              backgroundColor: Colors.white,
+                              scrollable: true,
+                              content: ClipRRect(
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(15),
+                                    topRight: Radius.circular(15),
+                                    bottomLeft: Radius.circular(20),
+                                    bottomRight: Radius.circular(20),
+                                  ),
+                                  child: Container(
+                                    height: 260,
+                                    width: 365,
+                                    decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                            // opacity: 0.75,
+                                            fit: BoxFit.fill,
+                                            image: AssetImage(
+                                                'assets/unassignedticketimage.png'))),
+                                    child: Stack(
+                                      children: [
+                                        Center(
+                                          child: Container(
+                                            height: 210,
+                                            width: 345,
+                                            decoration: BoxDecoration(
+                                              // color: Colors.transparent.withOpacity(0.1),
+                                              borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(20),
+                                                topRight: Radius.circular(20),
+                                                bottomLeft: Radius.circular(20),
+                                                bottomRight: Radius.circular(20),
+                                              ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                      Column(
-                                        // mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: <Widget>[
-                                          SizedBox(
-                                            height: 10,
-                                          ),
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Card(
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(7.5),
-                                                ),
-                                                elevation: 5,
-                                                child: Container(
-                                                    padding: EdgeInsets.symmetric(
-                                                        horizontal: 10.0),
-                                                    decoration: BoxDecoration(
-                                                      color: element['Color']
-                                                          .withOpacity(0.5),
-                                                      borderRadius:
-                                                          BorderRadius.all(
-                                                              Radius.circular(
-                                                                  7.5)),
-                                                    ),
-                                                    child: Text(
-                                                      element['SystemNumber'],
-                                                      style: TextStyle(
-                                                          fontSize: 20,
-                                                          fontWeight:
-                                                              FontWeight.bold),
-                                                    )),
-                                              ),
-                                            ],
-                                          ),
-                                          SizedBox(
-                                            height: 7.5,
-                                          ),
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Text(
-                                                element['group'],
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.w400,
-                                                    fontSize: 16,
-                                                    color: Colors.black
-                                                        .withOpacity(0.5)),
-                                              ),
-                                              SizedBox(
-                                                width: 5,
-                                              ),
-                                              Text(
-                                                element['Time'],
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.w400,
-                                                    fontSize: 16,
-                                                    color: Colors.black
-                                                        .withOpacity(0.5)),
-                                              ),
-                                            ],
-                                          ),
-                                          SizedBox(
-                                            height: 10,
-                                          ),
-                                          Container(
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(20),
+                                        Column(
+                                          // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: <Widget>[
+                                            SizedBox(
+                                              height: 10,
                                             ),
-                                            height: 120,
-                                            width: 330,
-                                            child: Center(
-                                              child: SingleChildScrollView(
-                                                scrollDirection: Axis.vertical,
-                                                child: Text(
-                                                  'Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working ',
-                                                  textAlign: TextAlign.center,
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Card(
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(7.5),
+                                                  ),
+                                                  elevation: 5,
+                                                  child: Container(
+                                                      padding: EdgeInsets.symmetric(
+                                                          horizontal: 10.0),
+                                                      decoration: BoxDecoration(
+                                                        color: Colors.black.withOpacity(0.5),
+                                                        /*color: element['Color']
+                                                            .withOpacity(0.5),*/
+                                                        borderRadius:
+                                                            BorderRadius.all(
+                                                                Radius.circular(
+                                                                    7.5)),
+                                                      ),
+                                                      child: Text(
+                                                        element['SystemNumber'],
+                                                        style: TextStyle(
+                                                            fontSize: 20,
+                                                            fontWeight:
+                                                                FontWeight.bold),
+                                                      )),
+                                                ),
+                                              ],
+                                            ),
+                                            SizedBox(
+                                              height: 7.5,
+                                            ),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Text(
+                                                  element['group'],
                                                   style: TextStyle(
-                                                      fontSize: 17,
+                                                      fontWeight: FontWeight.w400,
+                                                      fontSize: 16,
                                                       color: Colors.black
-                                                          .withOpacity(0.75),
-                                                      fontWeight:
-                                                          FontWeight.w500),
+                                                          .withOpacity(0.5)),
                                                 ),
-                                              ),
+                                                SizedBox(
+                                                  width: 5,
+                                                ),
+                                                Text(
+                                                  element['Time'],
+                                                  style: TextStyle(
+                                                      fontWeight: FontWeight.w400,
+                                                      fontSize: 16,
+                                                      color: Colors.black
+                                                          .withOpacity(0.5)),
+                                                ),
+                                              ],
                                             ),
-                                          ),
-                                          SizedBox(
-                                            height: 10,
-                                          ),
-                                          Card(
-                                            color: Colors.black,
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(20),
+                                            SizedBox(
+                                              height: 10,
                                             ),
-                                            elevation: 5,
-                                            shadowColor: Colors.transparent
-                                                .withOpacity(0.9),
-                                            child: Container(
+                                            Container(
                                               decoration: BoxDecoration(
-                                                  color: Color(0xff1A8118),
-                                                  // Color(0xff1A8118),
-                                                  borderRadius:
-                                                      BorderRadius.circular(20)),
-                                              padding: EdgeInsets.only(
-                                                left: 15,
-                                                right: 15,
-                                                top: 5,
-                                                bottom: 5,
+                                                borderRadius:
+                                                    BorderRadius.circular(20),
                                               ),
-                                              child: Text(
-                                                'ACCEPT TICKET',
-                                                style: TextStyle(
-                                                  shadows: [
-                                                    Shadow(
-                                                      offset: Offset(1, 1),
-                                                      blurRadius: 2,
-                                                      color: Colors.black,
-                                                    ),
-                                                  ],
-                                                  fontSize: 18,
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.bold,
+                                              height: 120,
+                                              width: 330,
+                                              child: Center(
+                                                child: SingleChildScrollView(
+                                                  scrollDirection: Axis.vertical,
+                                                  child: Text(
+                                                    'Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working ',
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                        fontSize: 17,
+                                                        color: Colors.black
+                                                            .withOpacity(0.75),
+                                                        fontWeight:
+                                                            FontWeight.w500),
+                                                  ),
                                                 ),
                                               ),
                                             ),
+                                            SizedBox(
+                                              height: 10,
+                                            ),
+                                            Card(
+                                              color: Colors.black,
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(20),
+                                              ),
+                                              elevation: 5,
+                                              shadowColor: Colors.transparent
+                                                  .withOpacity(0.9),
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                    color: Color(0xff1A8118),
+                                                    // Color(0xff1A8118),
+                                                    borderRadius:
+                                                        BorderRadius.circular(20)),
+                                                padding: EdgeInsets.only(
+                                                  left: 15,
+                                                  right: 15,
+                                                  top: 5,
+                                                  bottom: 5,
+                                                ),
+                                                child: Text(
+                                                  'ACCEPT TICKET',
+                                                  style: TextStyle(
+                                                    shadows: [
+                                                      Shadow(
+                                                        offset: Offset(1, 1),
+                                                        blurRadius: 2,
+                                                        color: Colors.black,
+                                                      ),
+                                                    ],
+                                                    fontSize: 18,
+                                                    color: Colors.white,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: 2,
+                                            )
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  )));
+                        });
+                  },
+                  onTap: () {
+                    showModalBottomSheet(
+                        constraints: BoxConstraints(
+                          maxWidth: MediaQuery.of(context).size.width * 0.95,
+                        ),
+                        isScrollControlled: true,
+                        backgroundColor: Colors.transparent,
+                        context: context,
+                        builder: (BuildContext context) {
+                          return Container(
+                            constraints: BoxConstraints(
+                              maxHeight: MediaQuery.of(context).size.height - 316,
+                            ),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                topRight: Radius.circular(45),
+                                topLeft: Radius.circular(45),
+                                bottomRight: Radius.circular(30),
+                                bottomLeft: Radius.circular(30),
+                              ),
+                              // color: Colors.transparent,
+                              image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: AssetImage('assets/problemclick.png')),
+                            ),
+                            child: SingleChildScrollView(
+                              reverse: true,
+                              child: ConstrainedBox(
+                                constraints: BoxConstraints(
+                                  minHeight:
+                                      MediaQuery.of(context).size.height - 316,
+                                ),
+                                child: IntrinsicHeight(
+                                  child: Column(
+                                    children: [
+                                      Padding(
+                                          padding: EdgeInsets.only(bottom: 10.0)),
+                                      Center(
+                                        child: Text(
+                                          element['SystemNumber'],
+                                          style: TextStyle(
+                                              fontFamily: 'fonts/Roboto-Bold.ttf',
+                                              fontWeight: FontWeight.w900,
+                                              fontSize: 24),
+                                        ),
+                                      ),
+                                      Expanded(child: Container()),
+                                      Row(
+                                        children: [
+                                          Expanded(child: Container()),
+                                          Flexible(
+                                            flex: 4,
+                                            fit: FlexFit.tight,
+                                            child: Text(
+                                              'HostName',
+                                              style: TextStyle(
+                                                  fontFamily:
+                                                      'fonts/Roboto-Bold.ttf',
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: 18),
+                                            ),
                                           ),
-                                          SizedBox(
-                                            height: 2,
-                                          )
+                                          Flexible(
+                                            flex: 4,
+                                            fit: FlexFit.tight,
+                                            child: Text(
+                                              element['HostName'],
+                                              style: TextStyle(
+                                                  fontFamily:
+                                                      'fonts/Roboto-Bold.ttf',
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: 18),
+                                            ),
+                                          ),
+                                          Expanded(child: Container()),
                                         ],
                                       ),
+                                      Expanded(child: Container()),
+                                      Row(
+                                        children: [
+                                          Expanded(child: Container()),
+                                          Flexible(
+                                            flex: 4,
+                                            fit: FlexFit.tight,
+                                            child: Text(
+                                              'IP Address',
+                                              style: TextStyle(
+                                                  fontFamily:
+                                                      'fonts/Roboto-Bold.ttf',
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: 18),
+                                            ),
+                                          ),
+                                          Flexible(
+                                            flex: 4,
+                                            fit: FlexFit.tight,
+                                            child: Text(
+                                              'IP Address',
+                                              style: TextStyle(
+                                                  fontFamily:
+                                                      'fonts/Roboto-Bold.ttf',
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: 18),
+                                            ),
+                                          ),
+                                          Expanded(child: Container()),
+                                        ],
+                                      ),
+                                      Expanded(child: Container()),
+                                      Row(
+                                        children: [
+                                          Expanded(child: Container()),
+                                          Flexible(
+                                            flex: 4,
+                                            fit: FlexFit.tight,
+                                            child: Text(
+                                              'Date & Time',
+                                              style: TextStyle(
+                                                  fontFamily:
+                                                      'fonts/Roboto-Bold.ttf',
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: 18),
+                                            ),
+                                          ),
+                                          Flexible(
+                                            flex: 4,
+                                            fit: FlexFit.tight,
+                                            child: Text(
+                                              element['DateTime'],
+                                              style: TextStyle(
+                                                  fontFamily:
+                                                      'fonts/Roboto-Bold.ttf',
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: 18),
+                                            ),
+                                          ),
+                                          Expanded(child: Container()),
+                                        ],
+                                      ),
+                                      Expanded(child: Container()),
+                                      Row(
+                                        children: [
+                                          Expanded(child: Container()),
+                                          Flexible(
+                                            flex: 4,
+                                            fit: FlexFit.tight,
+                                            child: Text(
+                                              'Severity',
+                                              style: TextStyle(
+                                                  fontFamily:
+                                                      'fonts/Roboto-Bold.ttf',
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: 18),
+                                            ),
+                                          ),
+                                          Flexible(
+                                            flex: 4,
+                                            fit: FlexFit.tight,
+                                            child: Text(
+                                              element['Severity'],
+                                              style: TextStyle(
+                                                  fontFamily:
+                                                      'fonts/Roboto-Bold.ttf',
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: 18),
+                                            ),
+                                          ),
+                                          Expanded(child: Container()),
+                                        ],
+                                      ),
+                                      Expanded(child: Container()),
+                                      Row(
+                                        children: [
+                                          Expanded(child: Container()),
+                                          Flexible(
+                                            flex: 4,
+                                            fit: FlexFit.tight,
+                                            child: Text(
+                                              'Notes',
+                                              style: TextStyle(
+                                                  fontFamily:
+                                                      'fonts/Roboto-Bold.ttf',
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: 18),
+                                            ),
+                                          ),
+                                          Flexible(
+                                            flex: 4,
+                                            fit: FlexFit.tight,
+                                            child: Text(
+                                              element['ProblemText'],
+                                              style: TextStyle(
+                                                  fontFamily:
+                                                      'fonts/Roboto-Bold.ttf',
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: 18),
+                                            ),
+                                          ),
+                                          Expanded(child: Container()),
+                                        ],
+                                      ),
+                                      Padding(
+                                          padding: EdgeInsets.only(bottom: 15.0)),
+                                      Center(
+                                          child: ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.all(Radius.circular(10)),
+                                        child: Column(
+                                          children: [
+                                            Container(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.90,
+                                              color: Color(0xffC4C4C4)
+                                                  .withOpacity(0.20),
+                                              height: 70,
+                                              child: TextField(
+                                                scrollPadding:
+                                                    EdgeInsets.only(top: 40),
+                                                showCursor: true,
+                                                cursorColor: Colors.white70,
+                                                keyboardType: TextInputType.text,
+                                                textInputAction:
+                                                    TextInputAction.done,
+                                                style: TextStyle(
+                                                  fontFamily:
+                                                      'fonts/Roboto-Bold.ttf',
+                                                  fontSize: 18,
+                                                ),
+                                                textAlign: TextAlign.center,
+                                                decoration:
+                                                    InputDecoration.collapsed(
+                                                  hintText: "Notes",
+                                                  border: InputBorder.none,
+                                                ),
+                                              ),
+                                            ),
+                                            Container(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.90,
+                                              color: Color(0xff486C7B),
+                                              child: Text(
+                                                'Update',
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontFamily:
+                                                      'fonts/Roboto-Bold.ttf',
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: 18,
+                                                ),
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      )),
+                                      SizedBox(
+                                        height: MediaQuery.of(context)
+                                            .viewInsets
+                                            .bottom,
+                                      ),
+                                      Padding(
+                                          padding: EdgeInsets.only(bottom: 10.0)),
                                     ],
                                   ),
-                                )));
-                      });
-                },
-                onTap: () {
-                  showModalBottomSheet(
-                      constraints: BoxConstraints(
-                        maxWidth: MediaQuery.of(context).size.width * 0.95,
-                      ),
-                      isScrollControlled: true,
-                      backgroundColor: Colors.transparent,
-                      context: context,
-                      builder: (BuildContext context) {
-                        return Container(
-                          constraints: BoxConstraints(
-                            maxHeight: MediaQuery.of(context).size.height - 316,
-                          ),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(45),
-                              topLeft: Radius.circular(45),
-                              bottomRight: Radius.circular(30),
-                              bottomLeft: Radius.circular(30),
-                            ),
-                            // color: Colors.transparent,
-                            image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image: AssetImage('assets/problemclick.png')),
-                          ),
-                          child: SingleChildScrollView(
-                            reverse: true,
-                            child: ConstrainedBox(
-                              constraints: BoxConstraints(
-                                minHeight:
-                                    MediaQuery.of(context).size.height - 316,
+                                ),
                               ),
-                              child: IntrinsicHeight(
-                                child: Column(
-                                  children: [
-                                    Padding(
-                                        padding: EdgeInsets.only(bottom: 10.0)),
-                                    Center(
-                                      child: Text(
-                                        element['SystemNumber'],
-                                        style: TextStyle(
-                                            fontFamily: 'fonts/Roboto-Bold.ttf',
-                                            fontWeight: FontWeight.w900,
-                                            fontSize: 24),
-                                      ),
-                                    ),
-                                    Expanded(child: Container()),
-                                    Row(
-                                      children: [
-                                        Expanded(child: Container()),
-                                        Flexible(
-                                          flex: 4,
-                                          fit: FlexFit.tight,
-                                          child: Text(
-                                            'HostName',
-                                            style: TextStyle(
-                                                fontFamily:
-                                                    'fonts/Roboto-Bold.ttf',
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 18),
-                                          ),
-                                        ),
-                                        Flexible(
-                                          flex: 4,
-                                          fit: FlexFit.tight,
-                                          child: Text(
-                                            'HostName',
-                                            style: TextStyle(
-                                                fontFamily:
-                                                    'fonts/Roboto-Bold.ttf',
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 18),
-                                          ),
-                                        ),
-                                        Expanded(child: Container()),
-                                      ],
-                                    ),
-                                    Expanded(child: Container()),
-                                    Row(
-                                      children: [
-                                        Expanded(child: Container()),
-                                        Flexible(
-                                          flex: 4,
-                                          fit: FlexFit.tight,
-                                          child: Text(
-                                            'IP Address',
-                                            style: TextStyle(
-                                                fontFamily:
-                                                    'fonts/Roboto-Bold.ttf',
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 18),
-                                          ),
-                                        ),
-                                        Flexible(
-                                          flex: 4,
-                                          fit: FlexFit.tight,
-                                          child: Text(
-                                            'IP Address',
-                                            style: TextStyle(
-                                                fontFamily:
-                                                    'fonts/Roboto-Bold.ttf',
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 18),
-                                          ),
-                                        ),
-                                        Expanded(child: Container()),
-                                      ],
-                                    ),
-                                    Expanded(child: Container()),
-                                    Row(
-                                      children: [
-                                        Expanded(child: Container()),
-                                        Flexible(
-                                          flex: 4,
-                                          fit: FlexFit.tight,
-                                          child: Text(
-                                            'Date & Time',
-                                            style: TextStyle(
-                                                fontFamily:
-                                                    'fonts/Roboto-Bold.ttf',
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 18),
-                                          ),
-                                        ),
-                                        Flexible(
-                                          flex: 4,
-                                          fit: FlexFit.tight,
-                                          child: Text(
-                                            'Date & Time',
-                                            style: TextStyle(
-                                                fontFamily:
-                                                    'fonts/Roboto-Bold.ttf',
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 18),
-                                          ),
-                                        ),
-                                        Expanded(child: Container()),
-                                      ],
-                                    ),
-                                    Expanded(child: Container()),
-                                    Row(
-                                      children: [
-                                        Expanded(child: Container()),
-                                        Flexible(
-                                          flex: 4,
-                                          fit: FlexFit.tight,
-                                          child: Text(
-                                            'Severity',
-                                            style: TextStyle(
-                                                fontFamily:
-                                                    'fonts/Roboto-Bold.ttf',
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 18),
-                                          ),
-                                        ),
-                                        Flexible(
-                                          flex: 4,
-                                          fit: FlexFit.tight,
-                                          child: Text(
-                                            'Severity',
-                                            style: TextStyle(
-                                                fontFamily:
-                                                    'fonts/Roboto-Bold.ttf',
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 18),
-                                          ),
-                                        ),
-                                        Expanded(child: Container()),
-                                      ],
-                                    ),
-                                    Expanded(child: Container()),
-                                    Row(
-                                      children: [
-                                        Expanded(child: Container()),
-                                        Flexible(
-                                          flex: 4,
-                                          fit: FlexFit.tight,
-                                          child: Text(
-                                            'Notes',
-                                            style: TextStyle(
-                                                fontFamily:
-                                                    'fonts/Roboto-Bold.ttf',
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 18),
-                                          ),
-                                        ),
-                                        Flexible(
-                                          flex: 4,
-                                          fit: FlexFit.tight,
-                                          child: Text(
-                                            element['ErrorText'],
-                                            style: TextStyle(
-                                                fontFamily:
-                                                    'fonts/Roboto-Bold.ttf',
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 18),
-                                          ),
-                                        ),
-                                        Expanded(child: Container()),
-                                      ],
-                                    ),
-                                    Padding(
-                                        padding: EdgeInsets.only(bottom: 15.0)),
-                                    Center(
-                                        child: ClipRRect(
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(10)),
-                                      child: Column(
-                                        children: [
-                                          Container(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.90,
-                                            color: Color(0xffC4C4C4)
-                                                .withOpacity(0.20),
-                                            height: 70,
-                                            child: TextField(
-                                              scrollPadding:
-                                                  EdgeInsets.only(top: 40),
-                                              showCursor: true,
-                                              cursorColor: Colors.white70,
-                                              keyboardType: TextInputType.text,
-                                              textInputAction:
-                                                  TextInputAction.done,
-                                              style: TextStyle(
-                                                fontFamily:
-                                                    'fonts/Roboto-Bold.ttf',
-                                                fontSize: 18,
-                                              ),
-                                              textAlign: TextAlign.center,
-                                              decoration:
-                                                  InputDecoration.collapsed(
-                                                hintText: "Notes",
-                                                border: InputBorder.none,
-                                              ),
-                                            ),
-                                          ),
-                                          Container(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.90,
-                                            color: Color(0xff486C7B),
-                                            child: Text(
-                                              'Update',
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                                fontFamily:
-                                                    'fonts/Roboto-Bold.ttf',
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: 18,
-                                              ),
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    )),
-                                    SizedBox(
-                                      height: MediaQuery.of(context)
-                                          .viewInsets
-                                          .bottom,
-                                    ),
-                                    Padding(
-                                        padding: EdgeInsets.only(bottom: 10.0)),
-                                  ],
+                            ),
+                            // ),
+                          );
+                        });
+                  },
+                  child: Card(
+                    elevation: 5.0,
+                    color: Colors.transparent,
+                    shadowColor: Colors.black,
+                    margin: EdgeInsets.symmetric(horizontal: 0.0, vertical: 5),
+                    child: Container(
+                      height: 42.5,
+                      decoration: BoxDecoration(
+                          color: /*Colors.blueGrey.withOpacity(1)*/Color(0xff19547b).withOpacity(0.85),
+                        /*boxShadow: [
+                          BoxShadow(
+                              blurRadius: 0,
+                              offset: Offset(0, 1.0),
+                              color: Colors.black.withOpacity(0.3)),
+                        ],
+                        image: DecorationImage(
+                            fit: BoxFit.fill,
+                            // image: AssetImage('assets/rectangleproblem.png')),
+                            image:
+                                AssetImage('assets/problembarinnershadowleft.png')),*/
+                      ),
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 12.0),
+                            child: PhysicalModel(
+                              color: Colors.transparent,
+                              shadowColor: Colors.black.withOpacity(0.55),
+                              elevation: 5,
+                              child: Text(
+                                element['SystemNumber'],
+                                style: TextStyle(
+                                  color: Colors.white.withOpacity(0.9),
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 14
                                 ),
                               ),
                             ),
                           ),
-                          // ),
-                        );
-                      });
-                },
-                child: Card(
-                  elevation: 5.0,
-                  color: Colors.transparent,
-                  shadowColor: Colors.black,
-                  margin: EdgeInsets.symmetric(horizontal: 0.0, vertical: 3.0),
-                  child: Container(
-                    height: 42.5,
-                    decoration: BoxDecoration(
-                        color: Colors.blueGrey.withOpacity(1)
-                      /*boxShadow: [
-                        BoxShadow(
-                            blurRadius: 0,
-                            offset: Offset(0, 1.0),
-                            color: Colors.black.withOpacity(0.3)),
-                      ],
-                      image: DecorationImage(
-                          fit: BoxFit.fill,
-                          // image: AssetImage('assets/rectangleproblem.png')),
-                          image:
-                              AssetImage('assets/problembarinnershadowleft.png')),*/
-                    ),
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 12.0),
-                          child: PhysicalModel(
-                            color: Colors.transparent,
-                            shadowColor: Colors.black.withOpacity(0.55),
-                            elevation: 5,
-                            child: Text(
-                              element['SystemNumber'],
-                              style: TextStyle(
-                                color: Colors.white.withOpacity(0.9),
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14
-                              ),
-                            ),
-                          ),
-                        ),
-                        Container(
-                            padding: EdgeInsets.symmetric(horizontal: 5.0),
-                            child: Text(
-                              element['Time'],
-                              style: TextStyle(
-                                color: Colors.white.withOpacity(0.9),
-                              ),
-                            )),
-                        /*Card(
-                          elevation: 5,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(7.5),
-                          ),
-                          child: Container(
-                              padding: EdgeInsets.symmetric(horizontal: 10.0),
-                              decoration: BoxDecoration(
-                                color: element['Color']*//*.withOpacity(0.6)*//*,
-                                borderRadius: BorderRadius.all(Radius.circular(7.5)),
-                              ),
-                              child: */
-
-                          /*),
-                        ),*/
-                        Expanded(
-                          child: Container(
-                              padding: EdgeInsets.symmetric(horizontal: 10.0),
-                              child: SingleChildScrollView(
-                                scrollDirection: Axis.horizontal,
-                                child: Text(
-                                  element['ErrorText'],
-                                  maxLines: 1,
-                                  // overflow: TextOverflow.ellipsis,
-                                  // softWrap: false
-                                  style: TextStyle(
-                                    color: Colors.white.withOpacity(0.9),
-                                  ),
+                          Container(
+                              padding: EdgeInsets.symmetric(horizontal: 5.0),
+                              child: Text(
+                                element['Time'],
+                                style: TextStyle(
+                                  color: Colors.white.withOpacity(0.9),
                                 ),
                               )),
-                        ),
-                      ],
+                          /*Card(
+                            elevation: 5,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(7.5),
+                            ),
+                            child: Container(
+                                padding: EdgeInsets.symmetric(horizontal: 10.0),
+                                decoration: BoxDecoration(
+                                  color: element['Color']*//*.withOpacity(0.6)*//*,
+                                  borderRadius: BorderRadius.all(Radius.circular(7.5)),
+                                ),
+                                child: */
+
+                            /*),
+                          ),*/
+                          Expanded(
+                            child: Container(
+                                padding: EdgeInsets.symmetric(horizontal: 10.0),
+                                child: SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: Text(
+                                    element['ProblemText'],
+                                    maxLines: 1,
+                                    // overflow: TextOverflow.ellipsis,
+                                    // softWrap: false
+                                    style: TextStyle(
+                                      color: Colors.white.withOpacity(0.9),
+                                    ),
+                                  ),
+                                )),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              );
-            },
+                ):SizedBox();
+              },
+            ),
           ),
         ),
       ),
@@ -7724,7 +8294,9 @@ class _MatrixPageState extends State<MatrixPage> {
               children: [
                 Padding(padding: EdgeInsets.only(top: MediaQuery.of(context).viewPadding.top+20)),
                 getDevicesAppbar(),
-                Chart(),
+
+                DoughnutChart(),
+
                 Expanded(
                     child:Container(
                         margin: EdgeInsets.only(left: 15,right: 15,top: 0,bottom: 0),
@@ -7993,6 +8565,497 @@ class _MatrixPageState extends State<MatrixPage> {
                   ),
                 ),
               ])),
+    );
+  }
+
+  Widget DoughnutChart(){
+
+    var _chart = {
+      "Online":15,
+      "Offline":15,
+      "Disabled":20
+    };
+
+    final List<ChartData> chartData = [
+      ChartData(_chart.keys.toList()[0], _chart["Online"]!.toInt(), Color(0xff001F61)),
+      ChartData(_chart.keys.toList()[1],  _chart["Offline"]!.toInt(), Color(0xff0247BA)),
+      ChartData(_chart.keys.toList()[2],  _chart["Disabled"]!.toInt(), Color(0xff0068D7)),
+    ];
+
+    return Stack(
+      children: [
+        SfCircularChart(
+          margin: EdgeInsets.zero,
+          tooltipBehavior: _tooltip,
+          legend: Legend(
+              isVisible: true,
+              overflowMode: LegendItemOverflowMode.none,
+              alignment: ChartAlignment.center,
+              textStyle: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                  shadows: [
+                    Shadow(
+                      offset: Offset(1, 1),
+                      blurRadius: 1,
+                      color: Colors.black.withOpacity(0.8),
+                    ),
+                  ]
+              ),
+              iconWidth: 10,
+              iconHeight:30
+          ),
+          // title: ChartTitle(text: "Demo chart"),
+          annotations: [
+            CircularChartAnnotation(
+                width: "100%",
+                height: "100%",
+                widget: PhysicalModel(
+                    shape: BoxShape.circle,
+                    elevation: 10,
+                    shadowColor: Colors.black,
+                    color: Colors.transparent,/*Color(0xffe6e6e6),*/
+                    child: Center(
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(100),
+                              image: DecorationImage(
+                                  image: AssetImage('assets/rectangle.png'),
+                                  fit: BoxFit.fill,
+                                  opacity: 0.4
+                              )
+                          ),
+                          child: Center(
+                            child: Text(
+                              "50",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 40,
+                                  shadows: [
+                                    Shadow(
+                                      offset: Offset(1, 1),
+                                      blurRadius: 1,
+                                      color: Colors.black.withOpacity(0.8),
+                                    ),
+                                  ]
+                              ),
+                            ),
+                          ),
+                        )
+                    )
+                )
+            )
+          ],
+          series: <CircularSeries>[
+            // Renders doughnut chart
+            DoughnutSeries<ChartData, String>(
+                startAngle: 0,
+                endAngle: 360,
+                explodeIndex: 55,
+                strokeColor: Colors.transparent,
+                dataLabelMapper: (ChartData data, _) => data.y.toString(),
+                dataLabelSettings: DataLabelSettings(isVisible: true,overflowMode: OverflowMode.shift),
+                enableTooltip: true,
+                radius: "80%",
+                innerRadius: "70%",
+                explode: true,
+                dataSource: chartData,
+                pointColorMapper: (ChartData data, _) => data.color,
+                xValueMapper: (ChartData data, _) => data.x,
+                yValueMapper: (ChartData data, _) => data.y
+            )
+          ],
+        ),
+
+        Positioned.fill(
+          child: Align(
+            alignment: Alignment.centerRight,
+            child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+              InkWell(
+                onTap: () {
+
+                  setState(() {
+
+                    _deviceWidth = !_deviceWidth;
+                    _deviceflag = false;
+
+                  });
+
+                },
+                child: AnimatedContainer(
+                  constraints: BoxConstraints(
+                      minWidth: 25),
+                  duration: Duration(milliseconds: 0),
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Colors.white.withOpacity(0.5),
+                        Colors.white.withOpacity(0.2)
+                      ],
+                      stops: [0.0, 1.0],
+                    ),
+                    // color: Colors.white60,
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(15),
+                        bottomLeft: Radius.circular(15)),
+                  ),
+                  // width: !width? null : 15,
+                  height: 50,
+                  child: Visibility(
+                    visible: !_deviceWidth,
+                    child: ListView(
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      padding: EdgeInsets.all(4.0),
+                      children: [
+                        AnimatedSwitcher(
+                          duration: Duration(milliseconds: 500),
+                          child: _deviceflag
+                              ? GestureDetector(
+                            key: Key('2'),
+                            onTap: () {
+                              setState(() {
+                                _deviceflag = !_deviceflag;
+                              });
+                            },
+                            child: Card(
+                              color: Colors.transparent,
+                              elevation: 5,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    borderRadius:
+                                    BorderRadius.circular(25),
+                                    color: Colors.black.withOpacity(0.5),
+                                    boxShadow: [
+                                      BoxShadow(
+                                          blurRadius: 0,
+                                          offset: Offset(2, 4),
+                                          color: Colors.black12
+                                              .withOpacity(
+                                              0.15)), //3dright
+                                    ]),
+                                child: Row(children: [
+                                  SizedBox(
+                                    width: 20,
+                                  ),
+                                  Center(
+                                    child: Container(
+                                        width: 150,
+                                        child: TextField(
+                                          onChanged: (value) =>
+                                              _runFilter(value),
+                                          autofocus: true,
+                                          cursorColor: Colors.white24,
+                                          keyboardType:
+                                          TextInputType.text,
+                                          style: TextStyle(
+                                              fontFamily:
+                                              'fonts/Roboto-Bold.ttf',
+                                              fontSize: 18,
+                                              color: Colors.white),
+                                          textAlign: TextAlign.center,
+                                          decoration:
+                                          InputDecoration.collapsed(
+                                            hintText: "Search",
+                                            hintStyle: TextStyle(
+                                                color: Colors.white70),
+                                            border: InputBorder.none,
+                                          ),
+                                        )
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 2.5,
+                                  ),
+                                  SizedBox(
+                                    height: 24.5,
+                                    child: Icon(
+                                      Icons.search_sharp,
+                                      color: Colors.white,
+                                      size: 27,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                ]),
+                              ),
+                            ),
+                          )
+                              : GestureDetector(
+                            key: Key('1'),
+                            onTap: () {
+                              setState(() {
+                                _deviceflag = !_deviceflag;
+                              });
+                            },
+                            child: Card(
+                              color: Colors.transparent,
+                              elevation: 5,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    borderRadius:
+                                    BorderRadius.circular(25),
+                                    color: Colors.black.withOpacity(0.5),
+                                    boxShadow: [
+                                      BoxShadow(
+                                          blurRadius: 0,
+                                          offset: Offset(2, 4),
+                                          color: Colors.black12
+                                              .withOpacity(
+                                              0.15)), //3dright
+                                    ]),
+                                child: Row(children: [
+                                  SizedBox(
+                                    width: 3,
+                                  ),
+                                  SizedBox(
+                                    height: 22.5,
+                                    child: Icon(
+                                      Icons.search_sharp,
+                                      color: Colors.white,
+                                      size: 27,
+                                    ),
+                                  ),
+                                  Center(
+                                    child: Text(
+                                      'Search',
+                                      style: TextStyle(
+                                          fontFamily:
+                                          'fonts/Roboto-Light.ttf',
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 16,
+                                          color: Colors.white
+                                              .withOpacity(0.75)),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                ]),
+                              ),
+                            ),
+                          ),
+                        ),
+                        /*Card(
+                          color: Colors.transparent,
+                          elevation: 5,
+                          child: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                _deviceWidth  = !_deviceWidth ;
+                              });
+                              showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      actionsAlignment:
+                                      MainAxisAlignment.center,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(15.0),
+                                      ),
+                                      actionsOverflowButtonSpacing: 10,
+                                      elevation: 5,
+                                      backgroundColor: Colors.white70,
+                                      // context: context,
+                                      // title: "CREATE",
+                                      scrollable: true,
+                                      title: Text(
+                                        'Create',
+                                        textAlign: TextAlign.center,
+                                      ),
+                                      content: Column(
+                                        children: <Widget>[
+                                          Container(
+                                            height: 47,
+                                            padding: EdgeInsets.only(left: 15),
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                BorderRadius.circular(10),
+                                                border: Border.all(
+                                                    color: Colors.black
+                                                        .withOpacity(0.55))),
+                                            child: TextField(
+                                              cursorColor: Colors.white,
+                                              autofocus: false,
+                                              decoration: InputDecoration(
+                                                border: InputBorder.none,
+                                                icon: Icon(
+                                                  Icons.email_outlined,
+                                                  color: Colors.black
+                                                      .withOpacity(0.6),
+                                                ),
+                                                hintText: 'Email',
+                                                labelStyle: TextStyle(
+                                                    color: Colors.black
+                                                        .withOpacity(0.6)),
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 9,
+                                          ),
+                                          Container(
+                                            height: 47,
+                                            padding: EdgeInsets.only(left: 15),
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                BorderRadius.circular(10),
+                                                border: Border.all(
+                                                    color: Colors.black
+                                                        .withOpacity(0.55))),
+                                            child: TextField(
+                                              cursorColor: Colors.white,
+                                              obscureText: false,
+                                              decoration: InputDecoration(
+                                                  border: InputBorder.none,
+                                                  icon: Icon(
+                                                    Icons
+                                                        .account_circle_outlined,
+                                                    color: Colors.black
+                                                        .withOpacity(0.6),
+                                                  ),
+                                                  hintText: 'Agent ID',
+                                                  labelStyle: TextStyle(
+                                                    color: Colors.black
+                                                        .withOpacity(0.6),
+                                                  )),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 9,
+                                          ),
+                                          Center(
+                                              child: Column(
+                                                children: [
+                                                  Container(
+                                                    decoration: BoxDecoration(
+                                                        borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                10)),
+                                                        color: Color(0xffC4C4C4)
+                                                            .withOpacity(0.20),
+                                                        border: Border.all(
+                                                            color: Colors.black87)),
+                                                    width: 350,
+                                                    height: 70,
+                                                    alignment: Alignment(0, -0.5),
+                                                    child: TextField(
+                                                      minLines: 1,
+                                                      maxLines: 3,
+                                                      scrollPadding:
+                                                      EdgeInsets.only(top: 40),
+                                                      showCursor: true,
+                                                      cursorColor: Colors.white70,
+                                                      keyboardType:
+                                                      TextInputType.multiline,
+                                                      textInputAction:
+                                                      TextInputAction.done,
+                                                      style: TextStyle(
+                                                        fontFamily:
+                                                        'fonts/Roboto-Bold.ttf',
+                                                        fontSize: 18,
+                                                      ),
+                                                      textAlign: TextAlign.center,
+                                                      decoration:
+                                                      InputDecoration.collapsed(
+                                                        hintText: "Notes",
+                                                        border: InputBorder.none,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    height: 9,
+                                                  ),
+                                                  ElevatedButton(
+                                                      child: Text(
+                                                        "SUBMIT",
+                                                        style: TextStyle(
+                                                            color: Colors.black
+                                                                .withOpacity(0.75)),
+                                                      ),
+                                                      style:
+                                                      ElevatedButton.styleFrom(
+                                                        primary: Colors.white70,
+                                                      ),
+                                                      onPressed: () {
+                                                        Navigator.pop(context);
+                                                      }),
+                                                  // Container(
+                                                  //   height: 25,
+                                                  //   width: 100,
+                                                  //   child: Center(
+                                                  //     child: Text('SUBMIT'),
+                                                  //   ),
+                                                  // )
+                                                ],
+                                              )),
+                                        ],
+                                      ),
+                                    );
+                                  });
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(25),
+                                  color: Colors.black.withOpacity(0.5),
+                                  boxShadow: [
+                                    BoxShadow(
+                                        blurRadius: 0,
+                                        offset: Offset(2, 4),
+                                        color: Colors.black12
+                                            .withOpacity(0.15)), //3dright
+                                  ]),
+                              child: Row(children: [
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                SizedBox(
+                                  height: 30.5,
+                                  child: Icon(
+                                    Icons.add_circle_outline,
+                                    color: Colors.white,
+                                    size: 27,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 4,
+                                ),
+                                Center(
+                                  child: Text(
+                                    'Create',
+                                    style: TextStyle(
+                                        fontFamily: 'fonts/Roboto-Light.ttf',
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 16,
+                                        color: Colors.white.withOpacity(0.75)),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 7.5,
+                                ),
+                              ]),
+                            ),
+                          ),
+                        ),*/
+                        Icon(
+                          Icons.keyboard_arrow_right_sharp,
+                          color: Colors.white,
+                          size: 25,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ]),
+          ),
+        )
+      ],
     );
   }
 
@@ -8309,6 +9372,13 @@ class _MatrixPageState extends State<MatrixPage> {
     );
   }*/
 
+}
+
+class ChartData {
+  ChartData(this.x, this.y,this.color);
+  final String x;
+  final int y;
+  final Color color;
 }
 
 

@@ -360,16 +360,20 @@ class _MyHomePageState extends State<MyHomePage> {
 
   sendRequest() async {
 
-    Map data = {
+    var data = {
       "method" : "user.login",
       "jsonrpc" : "2.0",
-      "username" : "keerthi",
-      "password" : "123",
+      "params" : [
+        {
+          "username": "keerthi",
+          "password": "123"
+        }
+      ],
       "id" : "1"
     };
 
-    var url = 'http://192.168.0.104:8000/';
-    var response = await http.post(Uri.parse(url), body: loginRequestModel.toJson(),);
+    var url = 'http://192.168.0.102:8000/';
+    var response = await http.post(Uri.parse(url), body: data/*loginRequestModel.toJson(),*/);
     //     .then((response) {
     //   if(response.statusCode==200){
     //     ScaffoldMessenger.of(context)
@@ -402,7 +406,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(
         duration: Duration(milliseconds: 500),
-        content: Text('Login UnSuccessful'),
+        content: Text(response.reasonPhrase.toString()),
       ));
     }
     print(response.statusCode);
@@ -457,15 +461,18 @@ class LoginRequestModel {
     Map<String, dynamic> map = {
       "method" : "user.login",
       "jsonrpc" : "2.0",
-      'username': email,
-      'password': password,
-      "id" : "1"
+      "params" : {
+        "username": email.trim(),
+        "password": password.trim()
+      },
+      "id" : 1
     };
 
     return map;
   }
 }
 
+/*
 sendRequest() async {
 
   Map data = {
@@ -480,13 +487,15 @@ sendRequest() async {
   http.post(Uri.parse(url), body: data)
       .then((response) {
     print(response.statusCode);
-    /*if(response.statusCode==200){
+    */
+/*if(response.statusCode==200){
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text('Login Successful'),));
     }else{
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text('Login UnSuccessful'),));
-    }*/
+    }*//*
+
     print(response.body);
     print(response.request);
     print(response.reasonPhrase);
@@ -494,3 +503,4 @@ sendRequest() async {
     print(response.isRedirect);
   });
 }
+*/
