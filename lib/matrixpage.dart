@@ -17,7 +17,7 @@ import 'package:measured_size/measured_size.dart';
 
 import 'package:shimmer/shimmer.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
+import 'chart.dart';
 
 
 final List<Map<String, dynamic>> ticket = [
@@ -611,465 +611,8 @@ final List<Map<String, dynamic>> ticket = [
   },
 ];
 
-
-/*final List<Map<String, dynamic>> ticket = [
-  {
-    "HostName": "PCAL0050",
-    "Image": "assets/vectorright.png",
-    "Severity": "High",
-    "Type": "Manual",
-    "sysNumber": "C0001",
-    "problemText":
-        "Browser not opening tried to fix but not possible Browser not opening tried to fix but not possible Browser not opening tried to fix but not possible ",
-    "problemTime": "04:53",
-    "dateTime": "01-12-2021 8.00 AM",
-    "Status": "Not Resolved",
-    "loadingIndicator": false,
-  },
-  {
-    "HostName": "PCAL0051",
-    "Image": "assets/greenticket.png",
-    "Severity": "Medium",
-    "Type": "Automatic",
-    "sysNumber": "C0002",
-    "problemText": "Browser not opening tried to fix but not possible",
-    "problemTime": "04:53",
-    "dateTime": "01-12-2021 8.00 AM",
-    "Status": "Resolved",
-    "loadingIndicator": false,
-  },
-  {
-    "HostName": "PCAL0052",
-    "Image": "assets/yellowticket.png",
-    "Severity": "Low",
-    "Type": "Manual",
-    "sysNumber": "C0003",
-    "problemText": "Browser not opening tried to fix but not possible",
-    "problemTime": "04:53",
-    "dateTime": '01-12-2021 8.00 AM',
-    "Status": 'Not Resolved',
-    "loadingIndicator": false,
-  },
-  {
-    "HostName": "PCAL0053",
-    "Image": 'assets/whiteticket.png',
-    "Severity": 'Information',
-    "Type": 'Automatic',
-    "sysNumber": 'C0004',
-    "problemText": 'Browser not opening tried to fix but not possible',
-    "problemTime": '04:53',
-    "dateTime": '01-12-2021 8.00 AM',
-    "Status": 'Resolved',
-    "loadingIndicator": false,
-  },
-];
-
-List _elements = [
-  {
-    'Time': '8:00 AM',
-    'Color': Color(0xff9B4244),
-    'Severity': 'High',
-    'SystemNumber': 'A0001',
-    'ErrorText': 'System is not booting, it shows no boot files found.',
-    'group': 'Today'
-  },
-  {
-    'Time': '8:00 AM',
-    'Color': Color(0xff569556),
-    'Severity': 'Medium',
-    'SystemNumber': 'A0002',
-    'ErrorText': 'System is not booting, it show an unknow error ',
-    'group': 'Today'
-  },
-  {
-    'Time': '8:00 AM',
-    'Color': Color(0xffB7AA5E),
-    'Severity': 'Low',
-    'SystemNumber': 'A0003',
-    'ErrorText': 'System is not booting, it shows no boot files found.',
-    'group': 'Today'
-  },
-  {
-    'Time': '8:00 AM',
-    'Color': Color(0xffA66A40),
-    'Severity': 'Information',
-    'SystemNumber': 'A0004',
-    'ErrorText': 'System is not booting, it show an unknow error ',
-    'group': 'Today'
-  },
-  {
-    'Time': '8:00 AM',
-    'Color': Color(0xff4C709A),
-    'Severity': 'Average',
-    'SystemNumber': 'A0005',
-    'ErrorText': 'System is not booting, it shows no boot files found.',
-    'group': 'Today'
-  },
-  {
-    'Time': '8:00 AM',
-    'Color': Color(0xffE20000),
-    'Severity': 'High',
-    'SystemNumber': 'A0006',
-    'ErrorText': 'System is not booting, it show an unknow error ',
-    'group': 'Today'
-  },
-  {
-    'Time': '8:00 AM',
-    'Color': Color(0xff8CE95E),
-    'Severity': 'Medium',
-    'SystemNumber': 'A0007',
-    'ErrorText': 'System is not booting, it shows no boot files found.',
-    'group': 'Today'
-  },
-  {
-    'Time': '8:00 AM',
-    'Color': Color(0xffEDE13D),
-    'Severity': 'Low',
-    'SystemNumber': 'A0008',
-    'ErrorText': 'System is not booting, it show an unknow error ',
-    'group': 'Today'
-  },
-  {
-    'Time': '8:00 AM',
-    'Color': Color(0xffFDFDFD),
-    'Severity': 'Information',
-    'SystemNumber': 'A0009',
-    'ErrorText': 'System is not booting, it shows no boot files found.',
-    'group': 'Today'
-  },
-  {
-    'Time': '8:00 AM',
-    'Color': Color(0xff99E9EE),
-    'Severity': 'Average',
-    'SystemNumber': 'A0010',
-    'ErrorText': 'System is not booting, it show an unknow error ',
-    'group': 'Today'
-  }, //
-  {
-    'Time': '8:00 AM',
-    'Color': Color(0xffE20000),
-    'Severity': 'High',
-    'SystemNumber': 'A0011',
-    'ErrorText': 'System is not booting, it shows no boot files found.',
-    'group': '03-02-2022'
-  },
-  {
-    'Time': '8:00 AM',
-    'Color': Color(0xff8CE95E),
-    'Severity': 'Medium',
-    'SystemNumber': 'A0012',
-    'ErrorText': 'System is not booting, it show an unknow error ',
-    'group': '03-02-2022'
-  },
-  {
-    'Time': '8:00 AM',
-    'Color': Color(0xffEDE13D),
-    'Severity': 'Low',
-    'SystemNumber': 'A0013',
-    'ErrorText': 'System is not booting, it shows no boot files found.',
-    'group': '03-02-2022'
-  },
-  {
-    'Time': '8:00 AM',
-    'Color': Color(0xffFDFDFD),
-    'Severity': 'Information',
-    'SystemNumber': 'A0014',
-    'ErrorText': 'System is not booting, it show an unknow error ',
-    'group': '03-02-2022'
-  },
-  {
-    'Time': '8:00 AM',
-    'Color': Color(0xff99E9EE),
-    'Severity': 'Average',
-    'SystemNumber': 'A0015',
-    'ErrorText': 'System is not booting, it shows no boot files found.',
-    'group': '03-02-2022'
-  },
-  {
-    'Time': '8:00 AM',
-    'Color': Color(0xffE20000),
-    'Severity': 'High',
-    'SystemNumber': 'A0016',
-    'ErrorText': 'System is not booting, it show an unknow error ',
-    'group': '03-02-2022'
-  },
-  {
-    'Time': '8:00 AM',
-    'Color': Color(0xff8CE95E),
-    'Severity': 'Medium',
-    'SystemNumber': 'A0017',
-    'ErrorText': 'System is not booting, it shows no boot files found.',
-    'group': '03-02-2022'
-  },
-  {
-    'Time': '8:00 AM',
-    'Color': Color(0xffEDE13D),
-    'Severity': 'Low',
-    'SystemNumber': 'A0018',
-    'ErrorText': 'System is not booting, it show an unknow error ',
-    'group': '03-02-2022'
-  },
-  {
-    'Time': '8:00 AM',
-    'Color': Color(0xffFDFDFD),
-    'Severity': 'Information',
-    'SystemNumber': 'A0019',
-    'ErrorText': 'System is not booting, it shows no boot files found.',
-    'group': '03-02-2022'
-  },
-  {
-    'Time': '8:00 AM',
-    'Color': Color(0xff99E9EE),
-    'Severity': 'Average',
-    'SystemNumber': 'A0020',
-    'ErrorText': 'System is not booting, it show an unknow error ',
-    'group': '03-02-2022'
-  }, //
-  {
-    'Time': '8:00 AM',
-    'Color': Color(0xffE20000),
-    'Severity': 'High',
-    'SystemNumber': 'A0001',
-    'ErrorText': 'System is not booting, it shows no boot files found.',
-    'group': '02-02-2022'
-  },
-  {
-    'Time': '8:00 AM',
-    'Color': Color(0xff8CE95E),
-    'Severity': 'Medium',
-    'SystemNumber': 'A0001',
-    'ErrorText': 'System is not booting, it show an unknow error ',
-    'group': '02-02-2022'
-  },
-  {
-    'Time': '8:00 AM',
-    'Color': Color(0xffEDE13D),
-    'Severity': 'Low',
-    'SystemNumber': 'A0001',
-    'ErrorText': 'System is not booting, it shows no boot files found.',
-    'group': '02-02-2022'
-  },
-  {
-    'Time': '8:00 AM',
-    'Color': Color(0xffFDFDFD),
-    'Severity': 'Information',
-    'SystemNumber': 'A0001',
-    'ErrorText': 'System is not booting, it show an unknow error ',
-    'group': '02-02-2022'
-  },
-  {
-    'Time': '8:00 AM',
-    'Color': Color(0xff99E9EE),
-    'Severity': 'Average',
-    'SystemNumber': 'A0001',
-    'ErrorText': 'System is not booting, it shows no boot files found.',
-    'group': '02-02-2022'
-  },
-  {
-    'Time': '8:00 AM',
-    'Color': Color(0xffE20000),
-    'Severity': 'High',
-    'SystemNumber': 'A0001',
-    'ErrorText': 'System is not booting, it show an unknow error ',
-    'group': '02-02-2022'
-  },
-  {
-    'Time': '8:00 AM',
-    'Color': Color(0xff8CE95E),
-    'Severity': 'Medium',
-    'SystemNumber': 'A0001',
-    'ErrorText': 'System is not booting, it shows no boot files found.',
-    'group': '02-02-2022'
-  },
-  {
-    'Time': '8:00 AM',
-    'Color': Color(0xffEDE13D),
-    'Severity': 'Low',
-    'SystemNumber': 'A0001',
-    'ErrorText': 'System is not booting, it show an unknow error ',
-    'group': '02-02-2022'
-  },
-  {
-    'Time': '8:00 AM',
-    'Color': Color(0xffFDFDFD),
-    'Severity': 'Information',
-    'SystemNumber': 'A0001',
-    'ErrorText': 'System is not booting, it shows no boot files found.',
-    'group': '02-02-2022'
-  },
-  {
-    'Time': '8:00 AM',
-    'Color': Color(0xff99E9EE),
-    'Severity': 'Average',
-    'SystemNumber': 'A0001',
-    'ErrorText': 'System is not booting, it show an unknow error ',
-    'group': '02-02-2022'
-  }, //
-  {
-    'Time': '8:00 AM',
-    'Color': Color(0xffE20000),
-    'Severity': 'High',
-    'SystemNumber': 'A0001',
-    'ErrorText': 'System is not booting, it shows no boot files found.',
-    'group': '01-02-2022'
-  },
-  {
-    'Time': '8:00 AM',
-    'Color': Color(0xff8CE95E),
-    'Severity': 'Medium',
-    'SystemNumber': 'A0001',
-    'ErrorText': 'System is not booting, it show an unknow error ',
-    'group': '01-02-2022'
-  },
-  {
-    'Time': '8:00 AM',
-    'Color': Color(0xffEDE13D),
-    'Severity': 'Low',
-    'SystemNumber': 'A0001',
-    'ErrorText': 'System is not booting, it shows no boot files found.',
-    'group': '01-02-2022'
-  },
-  {
-    'Time': '8:00 AM',
-    'Color': Color(0xffFDFDFD),
-    'Severity': 'Information',
-    'SystemNumber': 'A0001',
-    'ErrorText': 'System is not booting, it show an unknow error ',
-    'group': '01-02-2022'
-  },
-  {
-    'Time': '8:00 AM',
-    'Color': Color(0xff99E9EE),
-    'Severity': 'Average',
-    'SystemNumber': 'A0001',
-    'ErrorText': 'System is not booting, it shows no boot files found.',
-    'group': '01-02-2022'
-  },
-  {
-    'Time': '8:00 AM',
-    'Color': Color(0xffE20000),
-    'Severity': 'High',
-    'SystemNumber': 'A0001',
-    'ErrorText': 'System is not booting, it show an unknow error ',
-    'group': '01-02-2022'
-  },
-  {
-    'Time': '8:00 AM',
-    'Color': Color(0xff8CE95E),
-    'Severity': 'Medium',
-    'SystemNumber': 'A0001',
-    'ErrorText': 'System is not booting, it shows no boot files found.',
-    'group': '01-02-2022'
-  },
-  {
-    'Time': '8:00 AM',
-    'Color': Color(0xffEDE13D),
-    'Severity': 'Low',
-    'SystemNumber': 'A0001',
-    'ErrorText': 'System is not booting, it show an unknow error ',
-    'group': '01-02-2022'
-  },
-  {
-    'Time': '8:00 AM',
-    'Color': Color(0xffFDFDFD),
-    'Severity': 'Information',
-    'SystemNumber': 'A0001',
-    'ErrorText': 'System is not booting, it shows no boot files found.',
-    'group': '01-02-2022'
-  },
-  {
-    'Time': '8:00 AM',
-    'Color': Color(0xff99E9EE),
-    'Severity': 'Average',
-    'SystemNumber': 'A0001',
-    'ErrorText': 'System is not booting, it show an unknow error ',
-    'group': '01-02-2022'
-  }, //
-  {
-    'Time': '8:00 AM',
-    'Color': Color(0xffE20000),
-    'Severity': 'High',
-    'SystemNumber': 'A0001',
-    'ErrorText': 'System is not booting, it shows no boot files found.',
-    'group': '31-01-2022'
-  },
-  {
-    'Time': '8:00 AM',
-    'Color': Color(0xff8CE95E),
-    'Severity': 'Medium',
-    'SystemNumber': 'A0001',
-    'ErrorText': 'System is not booting, it show an unknow error ',
-    'group': '31-01-2022'
-  },
-  {
-    'Time': '8:00 AM',
-    'Color': Color(0xffEDE13D),
-    'Severity': 'Low',
-    'SystemNumber': 'A0001',
-    'ErrorText': 'System is not booting, it shows no boot files found.',
-    'group': '31-01-2022'
-  },
-  {
-    'Time': '8:00 AM',
-    'Color': Color(0xffFDFDFD),
-    'Severity': 'Information',
-    'SystemNumber': 'A0001',
-    'ErrorText': 'System is not booting, it show an unknow error ',
-    'group': '31-01-2022'
-  },
-  {
-    'Time': '8:00 AM',
-    'Color': Color(0xff99E9EE),
-    'Severity': 'Average',
-    'SystemNumber': 'A0001',
-    'ErrorText': 'System is not booting, it shows no boot files found.',
-    'group': '31-01-2022'
-  },
-  {
-    'Time': '8:00 AM',
-    'Color': Color(0xffE20000),
-    'Severity': 'High',
-    'SystemNumber': 'A0001',
-    'ErrorText': 'System is not booting, it show an unknow error ',
-    'group': '31-01-2022'
-  },
-  {
-    'Time': '8:00 AM',
-    'Color': Color(0xff8CE95E),
-    'Severity': 'Medium',
-    'SystemNumber': 'A0001',
-    'ErrorText': 'System is not booting, it shows no boot files found.',
-    'group': '31-01-2022'
-  },
-  {
-    'Time': '8:00 AM',
-    'Color': Color(0xffEDE13D),
-    'Severity': 'Low',
-    'SystemNumber': 'A0001',
-    'ErrorText': 'System is not booting, it show an unknow error ',
-    'group': '31-01-2022'
-  },
-  {
-    'Time': '8:00 AM',
-    'Color': Color(0xffFDFDFD),
-    'Severity': 'Information',
-    'SystemNumber': 'A0001',
-    'ErrorText': 'System is not booting, it shows no boot files found.',
-    'group': '31-01-2022'
-  },
-  {
-    'Time': '8:00 AM',
-    'Color': Color(0xff99E9EE),
-    'Severity': 'Average',
-    'SystemNumber': 'A0001',
-    'ErrorText': 'System is not booting, it show an unknow error ',
-    'group': '31-01-2022'
-  },
-];*/
-
-enum WidgetMarker { dashboard, incident, devices }                          // Drawer
+enum WidgetMarker { dashboard, incident, devices }                 // Drawer
 enum IncidentMarker { main, chat, notification, script, terminal} // Inside Incident
-enum DevicesMarker {discover, discovered}
 
 class MatrixPage extends StatefulWidget {
   const MatrixPage({Key? key}) : super(key: key);
@@ -1088,8 +631,7 @@ class _MatrixPageState extends State<MatrixPage> {
     super.dispose();
   }
 
-  final GlobalKey<AnimatorWidgetState> basicAnimation =
-  GlobalKey<AnimatorWidgetState>();
+  final GlobalKey<AnimatorWidgetState> basicAnimation = GlobalKey<AnimatorWidgetState>();
 
   List<Map<String, dynamic>> _foundTicket = [];                   //Search at getAssignedTicket
 
@@ -1100,9 +642,6 @@ class _MatrixPageState extends State<MatrixPage> {
   initState() {
     // at the beginning, all users are shown
     _foundTicket = ticket;
-
-    _tooltip=TooltipBehavior(enable: true,);
-
     super.initState();
   }
 
@@ -1129,7 +668,6 @@ class _MatrixPageState extends State<MatrixPage> {
   double value = 0;
   IncidentMarker selectedIncidentWidgetMarker = IncidentMarker.main;   //Inside Incident Starting home
   WidgetMarker selectedWidgetMarker = WidgetMarker.devices;           // Drawer Starting home
-  DevicesMarker selectedDevicesMarker = DevicesMarker.discover;
 
   bool _ticketExpand = false;                                           // getAssignedTicket
   bool _isChatButton = true;                                            // getAssignedTicket -> Stack -> Red:White
@@ -1171,11 +709,6 @@ class _MatrixPageState extends State<MatrixPage> {
   /*var memoryWidgets = <String>[];
   var _memoryWidgets = [];*/
 
-  late List<ChartData> data;
-  late TooltipBehavior _tooltip;
-
-  bool _deviceWidth = true;
-  bool _deviceflag = false;
 
   bool memory() {
     if (memorybar[_sysNumber]?.length == null) {
@@ -1293,9 +826,8 @@ class _MatrixPageState extends State<MatrixPage> {
                           'https://static.wikia.nocookie.net/dcanimated/images/2/21/Batman_%28BTAS%29.png/revision/latest?cb=20191206112827',
                           width: 100,
                           height: 100,
-                          fit: BoxFit.cover, loadingBuilder:
-                              (BuildContext context, Widget child,
-                                  ImageChunkEvent? loadingProgress) {
+                          fit: BoxFit.cover,
+                          loadingBuilder: (BuildContext context, Widget child,ImageChunkEvent? loadingProgress) {
                         if (loadingProgress == null) return child;
                         return ClipOval(
                           child: Shimmer(
@@ -1346,10 +878,13 @@ class _MatrixPageState extends State<MatrixPage> {
                     Text(
                       'USERNAME',
                       style: TextStyle(
-                          color: Colors.white.withOpacity(0.8), fontSize: 20),
+                          color: Colors.white.withOpacity(0.8),
+                          fontSize: 20
+                      ),
                     ),
                   ],
-                )),
+                )
+                ),
                 Expanded(
                   child: Column(
                     children: [
@@ -1531,9 +1066,7 @@ class _MatrixPageState extends State<MatrixPage> {
             duration: Duration(milliseconds: 250),
             curve: Curves.easeInOut,
             decoration: BoxDecoration(
-                borderRadius: value == 1
-                    ? BorderRadius.circular(40)
-                    : BorderRadius.circular(0),
+                borderRadius: value == 1 ? BorderRadius.circular(40) : BorderRadius.circular(0),
                 gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
@@ -1594,13 +1127,11 @@ class _MatrixPageState extends State<MatrixPage> {
                         switchOutCurve: Curves.easeOut,
                         duration: Duration(milliseconds: 750),
                         reverseDuration: Duration(milliseconds: 0),
-                        transitionBuilder: (child, animation) =>
-                            RotationTransition(
+                        transitionBuilder: (child, animation) => RotationTransition(
                           child: child,
                           turns: animation,
                         ),
-                        child: value == 1
-                            ? GestureDetector(
+                        child: value == 1 ? GestureDetector(
                                 key: Key('2'),
                                 onTap: () {
                                   setState(() {
@@ -1783,9 +1314,7 @@ class _MatrixPageState extends State<MatrixPage> {
             curve: Curves.easeInOut,
             decoration: BoxDecoration(
               color: Color(0xffB0C8C8),
-                borderRadius: value == 1
-                    ? BorderRadius.circular(40)
-                    : BorderRadius.circular(0),
+                borderRadius: value == 1 ? BorderRadius.circular(40) : BorderRadius.circular(0),
                 gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
@@ -1794,8 +1323,7 @@ class _MatrixPageState extends State<MatrixPage> {
                       Color(0xffB0C8C8),
                      /* Color(0xff8D6679),
                       Color(0xff7EB4F2),
-                      Color(0xff8D6679),*/])
-            ),
+                      Color(0xff8D6679),*/])),
             child: Stack(
               children: [
                 GestureDetector(
@@ -1851,9 +1379,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                         EdgeInsets.symmetric(horizontal: 7.5, vertical: 0.5),
                                     child: ListView.builder(
                                         scrollDirection: Axis.horizontal,
-                                        itemCount: memorybar.containsKey(_sysNumber)
-                                            ? memorybar[_sysNumber]!.length
-                                            : 0,
+                                        itemCount: memorybar.containsKey(_sysNumber) ? memorybar[_sysNumber]!.length : 0,
                                         itemBuilder: (context, index) {
                                           return GestureDetector(
                                             onTap: () {
@@ -1862,35 +1388,26 @@ class _MatrixPageState extends State<MatrixPage> {
                                                 memorybar.forEach((key, value) {
                                                   if (key == _sysNumber) {                            //Switching on Visible MemoryBar only Remote and Chat Added
                                                     /*value.remove('assets/calliconpadding.png');*/
-                                                    if (value.toList()[index] ==
-                                                        'assets/chaticon250.png') {
-                                                      if (selectedIncidentWidgetMarker ==
-                                                          IncidentMarker.main) {                      // Switching Between Main and Chat Container
-                                                        selectedIncidentWidgetMarker =
-                                                            IncidentMarker.chat;
+                                                    if (value.toList()[index] == 'assets/chaticon250.png') {
+                                                      if (selectedIncidentWidgetMarker == IncidentMarker.main) {                      // Switching Between Main and Chat Container
+                                                        selectedIncidentWidgetMarker = IncidentMarker.chat;
                                                         _remote = false;
                                                       } else {
-                                                        selectedIncidentWidgetMarker =
-                                                            IncidentMarker.main;
+                                                        selectedIncidentWidgetMarker = IncidentMarker.main;
                                                         _remote = false;
                                                       }
-                                                    } else if (value.toList()[index] ==
-                                                        'assets/remoteiconpadding.png') {            // Turning ON and OFF Remote
+                                                    } else if (value.toList()[index] == 'assets/remoteiconpadding.png') {            // Turning ON and OFF Remote
                                                       _remote = !_remote;
-                                                    } else if (value.toList()[index] ==
-                                                        'assets/callicongreenpadding1.gif'){
+                                                    } else if (value.toList()[index] == 'assets/callicongreenpadding1.gif'){
                                                       _callVisibility=!_callVisibility;
                                                     } else if (value.toList()[index] == 'assets/calliconpadding.png'){
                                                       _callVisibility=!_callVisibility;
                                                     } else if (value.toList()[index] == 'assets/scripticonpadding.png'){
-                                                      if (selectedIncidentWidgetMarker ==
-                                                          IncidentMarker.main){
-                                                        selectedIncidentWidgetMarker =
-                                                            IncidentMarker.script;
+                                                      if (selectedIncidentWidgetMarker == IncidentMarker.main){
+                                                        selectedIncidentWidgetMarker = IncidentMarker.script;
                                                         _remote = false;
                                                       }else {
-                                                        selectedIncidentWidgetMarker =
-                                                            IncidentMarker.main;
+                                                        selectedIncidentWidgetMarker = IncidentMarker.main;
                                                         _remote = false;
                                                       }
                                                     } else if(value.toList()[index] == 'assets/terminaliconpadding.png'){
@@ -1898,8 +1415,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                                         selectedIncidentWidgetMarker = IncidentMarker.terminal;
                                                         _remote = false;
                                                       }else {
-                                                        selectedIncidentWidgetMarker =
-                                                            IncidentMarker.main;
+                                                        selectedIncidentWidgetMarker = IncidentMarker.main;
                                                         _remote = false;
                                                       }
                                                     }
@@ -1922,8 +1438,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                             child: LongPressDraggable(
                                               data: memorybar[_sysNumber],
                                               onDragStarted: () {
-                                                ScaffoldMessenger.of(context)
-                                                    .showSnackBar(SnackBar(
+                                                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                                   duration: Duration(seconds: 60),
                                                   padding: EdgeInsets.zero,
                                                   backgroundColor: Colors.transparent,
@@ -1932,9 +1447,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                                     borderRadius: BorderRadius.circular(24),
                                                   ),
                                                   margin: EdgeInsets.only(
-                                                      bottom:
-                                                          MediaQuery.of(context).size.height -
-                                                              62.5),
+                                                      bottom: MediaQuery.of(context).size.height - 62.5),
                                                   content: DragTarget(
                                                     onAccept: (remove) {
 
@@ -1950,8 +1463,7 @@ class _MatrixPageState extends State<MatrixPage> {
 
                                                         memorybar.forEach((key, value) {
                                                           if (key == _sysNumber) {
-                                                            value.remove(
-                                                                memorybar[_sysNumber]!.toList()[index]);
+                                                            value.remove(memorybar[_sysNumber]!.toList()[index]);
 
                                                             if(value.contains('assets/callicongreenpadding1.gif')){
                                                               print('$key , hello1');
@@ -1964,8 +1476,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                                               _controllerTime.reset();
                                                             }
 
-                                                            selectedIncidentWidgetMarker =
-                                                                IncidentMarker.main;
+                                                            selectedIncidentWidgetMarker = IncidentMarker.main;
                                                             _remote = false;
                                                           }
                                                         });
@@ -1990,8 +1501,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                                 ));
                                               },
                                               onDragEnd: (remove) {
-                                                ScaffoldMessenger.of(context)
-                                                    .hideCurrentSnackBar();
+                                                ScaffoldMessenger.of(context).hideCurrentSnackBar();
                                               },
                                               childWhenDragging: SizedBox(width: 45),
                                               feedback: Material(
@@ -2188,8 +1698,7 @@ class _MatrixPageState extends State<MatrixPage> {
                       ),*/
 
                       Container(
-                        padding:
-                            EdgeInsets.only(top: 0, left: 17.5, right: 17.5, bottom: 0),
+                        padding: EdgeInsets.only(top: 0, left: 17.5, right: 17.5, bottom: 0),
                         margin: EdgeInsets.only(top: 2.5),
                         child: Column(
                           children: [
@@ -2382,15 +1891,19 @@ class _MatrixPageState extends State<MatrixPage> {
                   //     color: Colors.black.withOpacity(0.9)),
                 ],
                 borderRadius: BorderRadius.circular(50),
-                gradient: LinearGradient(colors: [
+                gradient: LinearGradient(
+                    colors: [
                   Color(0xffEAE2E2).withOpacity(0.9),
                   Color(0xffABA4A4)
                   // Colors.white,
                   // Colors.black,
-                ], stops: [
+                ],
+                    stops: [
                   0.6,
                   1.0
-                ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
+                ],
+                    begin: Alignment.topCenter, end: Alignment.bottomCenter
+                ),
                 color: Colors.black,
               ),
               margin: EdgeInsets.only(left: 15, right: 15, bottom: 7.5),
@@ -2449,9 +1962,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                 ),
                               ),
                             ),
-                            SizedBox(
-                              height: 5,
-                            ),
+                            SizedBox(height: 5,),
                             DelayedDisplay(
                               delay: Duration(milliseconds: 200),
                               child: Card(
@@ -2489,9 +2000,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                 ),
                               ),
                             ),
-                            SizedBox(
-                              height: 5,
-                            ),
+                            SizedBox(height: 5,),
                             DelayedDisplay(
                               delay: Duration(milliseconds: 100),
                               child: Card(
@@ -2578,9 +2087,7 @@ class _MatrixPageState extends State<MatrixPage> {
                   ],
                 ),
               )),
-          SizedBox(
-            height: MediaQuery.of(context).viewInsets.vertical,
-          ),
+          SizedBox(height: MediaQuery.of(context).viewInsets.vertical,),
         ],
       ),
     );
@@ -2615,9 +2122,7 @@ class _MatrixPageState extends State<MatrixPage> {
         margin: EdgeInsets.only(left: 15, right: 15, top: 10, bottom: 10),
         child: Column(
           children: [
-            SizedBox(
-              height: 5,
-            ),
+            SizedBox(height: 5,),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -2682,8 +2187,7 @@ class _MatrixPageState extends State<MatrixPage> {
                         builder: (BuildContext context) {
                           return AlertDialog(
                             shape: RoundedRectangleBorder(
-                              borderRadius:
-                              BorderRadius.circular(30.0),
+                              borderRadius: BorderRadius.circular(30.0),
                             ),
                             scrollable: true,
                             insetPadding: EdgeInsets.all(40),
@@ -2694,13 +2198,11 @@ class _MatrixPageState extends State<MatrixPage> {
                               width: 320,
                               decoration: BoxDecoration(
                                 border: Border.all(
-                                  color: Colors.black
-                                      .withOpacity(0.8),
+                                  color: Colors.black.withOpacity(0.8),
                                   width: 3,
                                 ),
                                 // color: Color(0xffB5B5B5),
-                                borderRadius:
-                                BorderRadius.circular(30.0),
+                                borderRadius: BorderRadius.circular(30.0),
                               ),
                               child: Column(
                                 children: [
@@ -2837,8 +2339,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                           color: Colors.white,
                                           width: 2.0,
                                         ),
-                                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15), // <-- Radius
-                                        ),
+                                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15),),
                                         primary: Color(0xff19547b),
                                       ),
                                       onPressed: () {
@@ -3213,8 +2714,7 @@ class _MatrixPageState extends State<MatrixPage> {
                           child: child,
                           turns: animation,
                         ),
-                        child: value == 1
-                            ? GestureDetector(
+                        child: value == 1 ? GestureDetector(
                                 key: Key('2'),
                                 onTap: () {
                                   setState(() {
@@ -3341,8 +2841,7 @@ class _MatrixPageState extends State<MatrixPage> {
                       _buttonPosition = false;
                       _ticketExpand = false;
 
-                      selectedIncidentWidgetMarker =
-                          IncidentMarker.notification;
+                      selectedIncidentWidgetMarker = IncidentMarker.notification;
                     });
                   },
                   child: Center(
@@ -3393,9 +2892,7 @@ class _MatrixPageState extends State<MatrixPage> {
                       itemCount: _foundTicket.length,
                       itemBuilder: (context, index) {
                         return _foundTicket[index].containsValue("Assigned")?Visibility(
-                          visible: (_selectedTicketIndex || selectedIndex == index)
-                              ? true
-                              : false,
+                          visible: (_selectedTicketIndex || selectedIndex == index) ? true : false,
                           child: Container(
                             // padding: EdgeInsets.only(left: 0),
                             // margin: EdgeInsets.only(top: 10,bottom: 10,left: 10,right: 10),
@@ -3448,14 +2945,8 @@ class _MatrixPageState extends State<MatrixPage> {
                                             onAccept: (receivedContainer) {
                                               showModalBottomSheet(
                                                 constraints: BoxConstraints(
-                                                  maxWidth: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                      0.958,
-                                                  minHeight: MediaQuery.of(context)
-                                                      .size
-                                                      .height *
-                                                      0.80,
+                                                  maxWidth: MediaQuery.of(context).size.width * 0.958,
+                                                  minHeight: MediaQuery.of(context).size.height * 0.80,
                                                 ),
                                                 isScrollControlled: true,
                                                 backgroundColor: Colors.transparent,
@@ -3465,10 +2956,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                                     constraints: BoxConstraints(
                                                       // minHeight: MediaQuery.of(context).size.height *0.80,
                                                       maxHeight:
-                                                      MediaQuery.of(context)
-                                                          .size
-                                                          .height *
-                                                          0.80,
+                                                      MediaQuery.of(context).size.height * 0.80,
                                                     ),
                                                     decoration: BoxDecoration(
                                                       image: DecorationImage(
@@ -3489,10 +2977,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                                       child: ConstrainedBox(
                                                         constraints: BoxConstraints(
                                                             minHeight:
-                                                            MediaQuery.of(context)
-                                                                .size
-                                                                .height *
-                                                                0.80),
+                                                            MediaQuery.of(context).size.height * 0.80),
                                                         child: IntrinsicHeight(
                                                           child: Column(
                                                             children: [
@@ -3530,42 +3015,30 @@ class _MatrixPageState extends State<MatrixPage> {
                                                                         Container(
                                                                           decoration:
                                                                           BoxDecoration(
-                                                                            borderRadius:
-                                                                            BorderRadius.all(
-                                                                                Radius.circular(50)),
+                                                                            borderRadius: BorderRadius.all(Radius.circular(50)),
                                                                             boxShadow: [
                                                                               BoxShadow(
-                                                                                  blurRadius:
-                                                                                  5,
-                                                                                  offset: Offset(8,
-                                                                                      8),
-                                                                                  color:
-                                                                                  Color(0xff000000).withOpacity(0.10)),
+                                                                                  blurRadius: 5,
+                                                                                  offset: Offset(8, 8),
+                                                                                  color: Color(0xff000000).withOpacity(0.10)),
                                                                             ],
                                                                           ),
                                                                           child:
                                                                           ClipRRect(
                                                                             borderRadius:
-                                                                            BorderRadius.all(
-                                                                                Radius.circular(50)),
-                                                                            child:
-                                                                            GestureDetector(
+                                                                            BorderRadius.all(Radius.circular(50)),
+                                                                            child: GestureDetector(
                                                                               onTap:
                                                                                   () {
                                                                                 // Navigator.pop(context, "This string will be passed back to the parent",);
                                                                               },
                                                                               child:
                                                                               Container(
-                                                                                color:
-                                                                                Color(0xff5F4E4E).withOpacity(0.45),
-                                                                                height:
-                                                                                19,
-                                                                                width:
-                                                                                115,
-                                                                                child:
-                                                                                Center(
-                                                                                  child:
-                                                                                  Text(
+                                                                                color: Color(0xff5F4E4E).withOpacity(0.45),
+                                                                                height: 19,
+                                                                                width: 115,
+                                                                                child: Center(
+                                                                                  child: Text(
                                                                                     'Records',
                                                                                     style: TextStyle(
                                                                                       color: Colors.white,
@@ -3585,18 +3058,13 @@ class _MatrixPageState extends State<MatrixPage> {
                                                                 ],
                                                               ),
                                                               Padding(
-                                                                  padding:
-                                                                  EdgeInsets.only(
-                                                                      bottom:
-                                                                      5.0)),
+                                                                  padding: EdgeInsets.only(bottom: 5.0)),
                                                               Expanded(
                                                                   child: Container()),
                                                               Row(
                                                                 children: [
                                                                   // Padding(padding: EdgeInsets.only(right: 15.0)),
-                                                                  Expanded(
-                                                                      child:
-                                                                      Container()),
+                                                                  Expanded(child: Container()),
                                                                   Flexible(
                                                                     flex: 4,
                                                                     fit:
@@ -3604,53 +3072,32 @@ class _MatrixPageState extends State<MatrixPage> {
                                                                     child: Text(
                                                                       'HostName',
                                                                       style: TextStyle(
-                                                                          fontFamily:
-                                                                          'fonts/Roboto-Bold.ttf',
-                                                                          fontWeight:
-                                                                          FontWeight
-                                                                              .w400,
-                                                                          fontSize:
-                                                                          18),
+                                                                          fontFamily: 'fonts/Roboto-Bold.ttf',
+                                                                          fontWeight: FontWeight.w400,
+                                                                          fontSize: 18),
                                                                     ),
                                                                   ),
                                                                   Flexible(
                                                                     flex: 4,
-                                                                    fit:
-                                                                    FlexFit.tight,
+                                                                    fit: FlexFit.tight,
                                                                     child: Text(
-                                                                      _foundTicket[
-                                                                      index][
-                                                                      'HostName'],
+                                                                      _foundTicket[index]['HostName'],
                                                                       style: TextStyle(
-                                                                          fontFamily:
-                                                                          'fonts/Roboto-Bold.ttf',
-                                                                          fontWeight:
-                                                                          FontWeight
-                                                                              .w400,
-                                                                          fontSize:
-                                                                          18),
+                                                                          fontFamily: 'fonts/Roboto-Bold.ttf',
+                                                                          fontWeight: FontWeight.w400,
+                                                                          fontSize: 18),
                                                                     ),
                                                                   ),
-                                                                  Padding(
-                                                                      padding: EdgeInsets
-                                                                          .only(
-                                                                          right:
-                                                                          10.0)),
+                                                                  Padding(padding: EdgeInsets.only(right: 10.0)),
                                                                 ],
                                                               ),
-                                                              Padding(
-                                                                  padding:
-                                                                  EdgeInsets.only(
-                                                                      bottom:
-                                                                      5.0)),
+                                                              Padding(padding: EdgeInsets.only(bottom: 5.0)),
                                                               Expanded(
                                                                   child: Container()),
                                                               Row(
                                                                 children: [
                                                                   // Padding(padding: EdgeInsets.only(right: 15.0)),
-                                                                  Expanded(
-                                                                      child:
-                                                                      Container()),
+                                                                  Expanded(child: Container()),
                                                                   Flexible(
                                                                     flex: 4,
                                                                     fit:
@@ -3658,51 +3105,31 @@ class _MatrixPageState extends State<MatrixPage> {
                                                                     child: Text(
                                                                       'IP Address',
                                                                       style: TextStyle(
-                                                                          fontFamily:
-                                                                          'fonts/Roboto-Bold.ttf',
-                                                                          fontWeight:
-                                                                          FontWeight
-                                                                              .w400,
-                                                                          fontSize:
-                                                                          18),
+                                                                          fontFamily: 'fonts/Roboto-Bold.ttf',
+                                                                          fontWeight: FontWeight.w400,
+                                                                          fontSize: 18),
                                                                     ),
                                                                   ),
                                                                   Flexible(
                                                                     flex: 4,
-                                                                    fit:
-                                                                    FlexFit.tight,
+                                                                    fit: FlexFit.tight,
                                                                     child: Text(
                                                                       'IP Address',
                                                                       style: TextStyle(
-                                                                          fontFamily:
-                                                                          'fonts/Roboto-Bold.ttf',
-                                                                          fontWeight:
-                                                                          FontWeight
-                                                                              .w400,
-                                                                          fontSize:
-                                                                          18),
+                                                                          fontFamily: 'fonts/Roboto-Bold.ttf',
+                                                                          fontWeight: FontWeight.w400,
+                                                                          fontSize: 18),
                                                                     ),
                                                                   ),
-                                                                  Padding(
-                                                                      padding: EdgeInsets
-                                                                          .only(
-                                                                          right:
-                                                                          10.0)),
+                                                                  Padding(padding: EdgeInsets.only(right: 10.0)),
                                                                 ],
                                                               ),
-                                                              Padding(
-                                                                  padding:
-                                                                  EdgeInsets.only(
-                                                                      bottom:
-                                                                      5.0)),
-                                                              Expanded(
-                                                                  child: Container()),
+                                                              Padding(padding: EdgeInsets.only(bottom: 5.0)),
+                                                              Expanded(child: Container()),
                                                               Row(
                                                                 children: [
                                                                   // Padding(padding: EdgeInsets.only(right: 15.0)),
-                                                                  Expanded(
-                                                                      child:
-                                                                      Container()),
+                                                                  Expanded(child: Container()),
                                                                   Flexible(
                                                                     flex: 4,
                                                                     fit:
@@ -3710,53 +3137,31 @@ class _MatrixPageState extends State<MatrixPage> {
                                                                     child: Text(
                                                                       'Date & Time',
                                                                       style: TextStyle(
-                                                                          fontFamily:
-                                                                          'fonts/Roboto-Bold.ttf',
-                                                                          fontWeight:
-                                                                          FontWeight
-                                                                              .w400,
-                                                                          fontSize:
-                                                                          18),
+                                                                          fontFamily: 'fonts/Roboto-Bold.ttf',
+                                                                          fontWeight: FontWeight.w400,
+                                                                          fontSize: 18),
                                                                     ),
                                                                   ),
                                                                   Flexible(
                                                                     flex: 4,
                                                                     fit:
                                                                     FlexFit.tight,
-                                                                    child: Text(
-                                                                      _foundTicket[
-                                                                      index][
-                                                                      "DateTime"],
+                                                                    child: Text(_foundTicket[index]["DateTime"],
                                                                       style: TextStyle(
-                                                                          fontFamily:
-                                                                          'fonts/Roboto-Bold.ttf',
-                                                                          fontWeight:
-                                                                          FontWeight
-                                                                              .w400,
-                                                                          fontSize:
-                                                                          17),
+                                                                          fontFamily: 'fonts/Roboto-Bold.ttf',
+                                                                          fontWeight: FontWeight.w400,
+                                                                          fontSize: 17),
                                                                     ),
                                                                   ),
-                                                                  Padding(
-                                                                      padding: EdgeInsets
-                                                                          .only(
-                                                                          right:
-                                                                          10.0)),
+                                                                  Padding(padding: EdgeInsets.only(right: 10.0)),
                                                                 ],
                                                               ),
-                                                              Padding(
-                                                                  padding:
-                                                                  EdgeInsets.only(
-                                                                      bottom:
-                                                                      5.0)),
-                                                              Expanded(
-                                                                  child: Container()),
+                                                              Padding(padding: EdgeInsets.only(bottom: 5.0)),
+                                                              Expanded(child: Container()),
                                                               Row(
                                                                 children: [
                                                                   // Padding(padding: EdgeInsets.only(right: 15.0)),
-                                                                  Expanded(
-                                                                      child:
-                                                                      Container()),
+                                                                  Expanded(child: Container()),
                                                                   Flexible(
                                                                     flex: 4,
                                                                     fit:
@@ -3764,13 +3169,9 @@ class _MatrixPageState extends State<MatrixPage> {
                                                                     child: Text(
                                                                       'Duration',
                                                                       style: TextStyle(
-                                                                          fontFamily:
-                                                                          'fonts/Roboto-Bold.ttf',
-                                                                          fontWeight:
-                                                                          FontWeight
-                                                                              .w400,
-                                                                          fontSize:
-                                                                          18),
+                                                                          fontFamily: 'fonts/Roboto-Bold.ttf',
+                                                                          fontWeight: FontWeight.w400,
+                                                                          fontSize: 18),
                                                                     ),
                                                                   ),
                                                                   Flexible(
@@ -3780,35 +3181,20 @@ class _MatrixPageState extends State<MatrixPage> {
                                                                     child: Text(
                                                                       'Duration',
                                                                       style: TextStyle(
-                                                                          fontFamily:
-                                                                          'fonts/Roboto-Bold.ttf',
-                                                                          fontWeight:
-                                                                          FontWeight
-                                                                              .w400,
-                                                                          fontSize:
-                                                                          18),
+                                                                          fontFamily: 'fonts/Roboto-Bold.ttf',
+                                                                          fontWeight: FontWeight.w400,
+                                                                          fontSize: 18),
                                                                     ),
                                                                   ),
-                                                                  Padding(
-                                                                      padding: EdgeInsets
-                                                                          .only(
-                                                                          right:
-                                                                          10.0)),
+                                                                  Padding(padding: EdgeInsets.only(right: 10.0)),
                                                                 ],
                                                               ),
-                                                              Padding(
-                                                                  padding:
-                                                                  EdgeInsets.only(
-                                                                      bottom:
-                                                                      5.0)),
-                                                              Expanded(
-                                                                  child: Container()),
+                                                              Padding(padding: EdgeInsets.only(bottom: 5.0)),
+                                                              Expanded(child: Container()),
                                                               Row(
                                                                 children: [
                                                                   // Padding(padding: EdgeInsets.only(right: 15.0)),
-                                                                  Expanded(
-                                                                      child:
-                                                                      Container()),
+                                                                  Expanded(child: Container()),
                                                                   Flexible(
                                                                     flex: 4,
                                                                     fit:
@@ -3816,326 +3202,178 @@ class _MatrixPageState extends State<MatrixPage> {
                                                                     child: Text(
                                                                       'Severity',
                                                                       style: TextStyle(
-                                                                          fontFamily:
-                                                                          'fonts/Roboto-Bold.ttf',
-                                                                          fontWeight:
-                                                                          FontWeight
-                                                                              .w400,
-                                                                          fontSize:
-                                                                          18),
+                                                                          fontFamily: 'fonts/Roboto-Bold.ttf',
+                                                                          fontWeight: FontWeight.w400,
+                                                                          fontSize: 18),
                                                                     ),
                                                                   ),
                                                                   Flexible(
                                                                     flex: 4,
-                                                                    fit:
-                                                                    FlexFit.tight,
+                                                                    fit: FlexFit.tight,
                                                                     child: Text(
-                                                                      _foundTicket[
-                                                                      index][
-                                                                      'Severity'],
+                                                                      _foundTicket[index]['Severity'],
                                                                       style: TextStyle(
-                                                                          fontFamily:
-                                                                          'fonts/Roboto-Bold.ttf',
-                                                                          fontWeight:
-                                                                          FontWeight
-                                                                              .w400,
-                                                                          fontSize:
-                                                                          18),
+                                                                          fontFamily: 'fonts/Roboto-Bold.ttf',
+                                                                          fontWeight: FontWeight.w400,
+                                                                          fontSize: 18),
                                                                     ),
                                                                   ),
-                                                                  Padding(
-                                                                      padding: EdgeInsets
-                                                                          .only(
-                                                                          right:
-                                                                          10.0)),
+                                                                  Padding(padding: EdgeInsets.only(right: 10.0)),
                                                                 ],
                                                               ),
-                                                              Padding(
-                                                                  padding:
-                                                                  EdgeInsets.only(
-                                                                      bottom:
-                                                                      5.0)),
-                                                              Expanded(
-                                                                  child: Container()),
+                                                              Padding(padding: EdgeInsets.only(bottom: 5.0)),
+                                                              Expanded(child: Container()),
                                                               Row(
                                                                 children: [
                                                                   // Padding(padding: EdgeInsets.only(right: 15.0)),
-                                                                  Expanded(
-                                                                      child:
-                                                                      Container()),
+                                                                  Expanded(child: Container()),
                                                                   Flexible(
                                                                     flex: 4,
-                                                                    fit:
-                                                                    FlexFit.tight,
+                                                                    fit: FlexFit.tight,
                                                                     child: Text(
                                                                       'Type',
                                                                       style: TextStyle(
-                                                                          fontFamily:
-                                                                          'fonts/Roboto-Bold.ttf',
-                                                                          fontWeight:
-                                                                          FontWeight
-                                                                              .w400,
-                                                                          fontSize:
-                                                                          18),
+                                                                          fontFamily: 'fonts/Roboto-Bold.ttf',
+                                                                          fontWeight: FontWeight.w400,
+                                                                          fontSize: 18),
                                                                     ),
                                                                   ),
                                                                   Flexible(
                                                                     flex: 4,
                                                                     fit:
                                                                     FlexFit.tight,
-                                                                    child: Text(
-                                                                      _foundTicket[
-                                                                      index]
-                                                                      ["Type"],
+                                                                    child: Text(_foundTicket[index]["Type"],
                                                                       style: TextStyle(
-                                                                          fontFamily:
-                                                                          'fonts/Roboto-Bold.ttf',
-                                                                          fontWeight:
-                                                                          FontWeight
-                                                                              .w400,
-                                                                          fontSize:
-                                                                          18),
+                                                                          fontFamily: 'fonts/Roboto-Bold.ttf',
+                                                                          fontWeight: FontWeight.w400,
+                                                                          fontSize: 18),
                                                                     ),
                                                                   ),
-                                                                  Padding(
-                                                                      padding: EdgeInsets
-                                                                          .only(
-                                                                          right:
-                                                                          10.0)),
+                                                                  Padding(padding: EdgeInsets.only(right: 10.0)),
                                                                 ],
                                                               ),
-                                                              Padding(
-                                                                  padding:
-                                                                  EdgeInsets.only(
-                                                                      bottom:
-                                                                      5.0)),
-                                                              Expanded(
-                                                                  child: Container()),
+                                                              Padding(padding: EdgeInsets.only(bottom: 5.0)),
+                                                              Expanded(child: Container()),
                                                               Row(
                                                                 children: [
                                                                   // Padding(padding: EdgeInsets.only(right: 15.0)),
-                                                                  Expanded(
-                                                                      child:
-                                                                      Container()),
+                                                                  Expanded(child: Container()),
                                                                   Flexible(
                                                                     flex: 4,
-                                                                    fit:
-                                                                    FlexFit.tight,
+                                                                    fit: FlexFit.tight,
                                                                     child: Text(
                                                                       'Notes',
                                                                       style: TextStyle(
-                                                                          fontFamily:
-                                                                          'fonts/Roboto-Bold.ttf',
-                                                                          fontWeight:
-                                                                          FontWeight
-                                                                              .w400,
-                                                                          fontSize:
-                                                                          18),
+                                                                          fontFamily: 'fonts/Roboto-Bold.ttf',
+                                                                          fontWeight: FontWeight.w400,
+                                                                          fontSize: 18),
                                                                     ),
                                                                   ),
                                                                   Flexible(
                                                                     flex: 4,
-                                                                    fit:
-                                                                    FlexFit.tight,
-                                                                    child: Text(
-                                                                      _foundTicket[
-                                                                      index][
-                                                                      "ProblemText"],
+                                                                    fit: FlexFit.tight,
+                                                                    child: Text(_foundTicket[index]["ProblemText"],
                                                                       style: TextStyle(
-                                                                          fontFamily:
-                                                                          'fonts/Roboto-Bold.ttf',
-                                                                          fontWeight:
-                                                                          FontWeight
-                                                                              .w400,
-                                                                          fontSize:
-                                                                          18),
+                                                                          fontFamily: 'fonts/Roboto-Bold.ttf',
+                                                                          fontWeight: FontWeight.w400,
+                                                                          fontSize: 18),
                                                                     ),
                                                                   ),
-                                                                  Padding(
-                                                                      padding: EdgeInsets
-                                                                          .only(
-                                                                          right:
-                                                                          10.0)),
+                                                                  Padding(padding: EdgeInsets.only(right: 10.0)),
                                                                 ],
                                                               ),
-                                                              Padding(
-                                                                  padding:
-                                                                  EdgeInsets.only(
-                                                                      bottom:
-                                                                      5.0)),
-                                                              Expanded(
-                                                                  child: Container()),
+                                                              Padding(padding: EdgeInsets.only(bottom: 5.0)),
+                                                              Expanded(child: Container()),
                                                               Row(
                                                                 children: [
                                                                   // Padding(padding: EdgeInsets.only(right: 15.0)),
-                                                                  Expanded(
-                                                                      child:
-                                                                      Container()),
+                                                                  Expanded(child: Container()),
                                                                   Flexible(
                                                                     flex: 4,
-                                                                    fit:
-                                                                    FlexFit.tight,
+                                                                    fit: FlexFit.tight,
                                                                     child: Text(
                                                                       'Status',
                                                                       style: TextStyle(
-                                                                          fontFamily:
-                                                                          'fonts/Roboto-Bold.ttf',
-                                                                          fontWeight:
-                                                                          FontWeight
-                                                                              .w400,
-                                                                          fontSize:
-                                                                          18),
+                                                                          fontFamily: 'fonts/Roboto-Bold.ttf',
+                                                                          fontWeight: FontWeight.w400,
+                                                                          fontSize: 18),
                                                                     ),
                                                                   ),
                                                                   Flexible(
                                                                     flex: 4,
                                                                     fit:
                                                                     FlexFit.tight,
-                                                                    child: Text(
-                                                                      _foundTicket[
-                                                                      index]
-                                                                      ['Status'],
+                                                                    child: Text(_foundTicket[index]['Status'],
                                                                       style: TextStyle(
-                                                                          fontFamily:
-                                                                          'fonts/Roboto-Bold.ttf',
-                                                                          fontWeight:
-                                                                          FontWeight
-                                                                              .w400,
-                                                                          fontSize:
-                                                                          18),
+                                                                          fontFamily: 'fonts/Roboto-Bold.ttf',
+                                                                          fontWeight: FontWeight.w400,
+                                                                          fontSize: 18),
                                                                     ),
                                                                   ),
-                                                                  Padding(
-                                                                      padding: EdgeInsets
-                                                                          .only(
-                                                                          right:
-                                                                          10.0)),
+                                                                  Padding(padding: EdgeInsets.only(right: 10.0)),
                                                                 ],
                                                               ),
-                                                              Padding(
-                                                                  padding:
-                                                                  EdgeInsets.only(
-                                                                      bottom:
-                                                                      10.0)),
+                                                              Padding(padding: EdgeInsets.only(bottom: 10.0)),
                                                               Center(
                                                                 child:
                                                                 // Padding(padding: EdgeInsets.only(right: 15.0)),
                                                                 Text(
                                                                   'Updates:',
                                                                   style: TextStyle(
-                                                                      fontFamily:
-                                                                      'fonts/Roboto-Bold.ttf',
-                                                                      fontWeight:
-                                                                      FontWeight
-                                                                          .w800,
+                                                                      fontFamily: 'fonts/Roboto-Bold.ttf',
+                                                                      fontWeight: FontWeight.w800,
                                                                       fontSize: 18),
                                                                 ),
                                                               ),
-                                                              Padding(
-                                                                  padding:
-                                                                  EdgeInsets.only(
-                                                                      bottom:
-                                                                      15.0)),
+                                                              Padding(padding: EdgeInsets.only(bottom: 15.0)),
                                                               // TextField(),
                                                               Center(
                                                                   child: ClipRRect(
-                                                                    borderRadius:
-                                                                    BorderRadius.all(
-                                                                        Radius
-                                                                            .circular(
-                                                                            10)),
+                                                                    borderRadius: BorderRadius.all(Radius.circular(10)),
                                                                     child: Column(
                                                                       children: [
                                                                         Container(
-                                                                          width: MediaQuery.of(
-                                                                              context)
-                                                                              .size
-                                                                              .width *
-                                                                              0.90,
-                                                                          color: Color(
-                                                                              0xffC4C4C4)
-                                                                              .withOpacity(
-                                                                              0.20),
+                                                                          width: MediaQuery.of(context).size.width * 0.90,
+                                                                          color: Color(0xffC4C4C4).withOpacity(0.20),
                                                                           height: 70,
                                                                           child:
                                                                           TextField(
-                                                                            scrollPadding:
-                                                                            EdgeInsets
-                                                                                .only(
-                                                                                top: 40),
-                                                                            showCursor:
-                                                                            true,
-                                                                            cursorColor:
-                                                                            Colors
-                                                                                .white70,
-                                                                            keyboardType:
-                                                                            TextInputType
-                                                                                .text,
-                                                                            textInputAction:
-                                                                            TextInputAction
-                                                                                .done,
-                                                                            style:
-                                                                            TextStyle(
-                                                                              fontFamily:
-                                                                              'fonts/Roboto-Bold.ttf',
-                                                                              fontSize:
-                                                                              18,
+                                                                            scrollPadding: EdgeInsets.only(top: 40),
+                                                                            showCursor: true,
+                                                                            cursorColor: Colors.white70,
+                                                                            keyboardType: TextInputType.text,
+                                                                            textInputAction: TextInputAction.done,
+                                                                            style: TextStyle(
+                                                                              fontFamily: 'fonts/Roboto-Bold.ttf',
+                                                                              fontSize: 18,
                                                                             ),
-                                                                            textAlign:
-                                                                            TextAlign
-                                                                                .center,
-                                                                            decoration:
-                                                                            InputDecoration
-                                                                                .collapsed(
-                                                                              hintText:
-                                                                              "Notes",
-                                                                              border:
-                                                                              InputBorder
-                                                                                  .none,
+                                                                            textAlign: TextAlign.center,
+                                                                            decoration: InputDecoration.collapsed(
+                                                                              hintText: "Notes",
+                                                                              border: InputBorder.none,
                                                                             ),
                                                                           ),
                                                                         ),
                                                                         Container(
-                                                                          width: MediaQuery.of(
-                                                                              context)
-                                                                              .size
-                                                                              .width *
-                                                                              0.90,
-                                                                          color: Color(
-                                                                              0xff486C7B),
+                                                                          width: MediaQuery.of(context).size.width * 0.90,
+                                                                          color: Color(0xff486C7B),
                                                                           child: Text(
                                                                             'Update',
-                                                                            textAlign:
-                                                                            TextAlign
-                                                                                .center,
+                                                                            textAlign: TextAlign.center,
                                                                             style:
                                                                             TextStyle(
-                                                                              color: Colors
-                                                                                  .white,
-                                                                              fontFamily:
-                                                                              'fonts/Roboto-Bold.ttf',
-                                                                              fontWeight:
-                                                                              FontWeight
-                                                                                  .w600,
-                                                                              fontSize:
-                                                                              18,
+                                                                              color: Colors.white,
+                                                                              fontFamily: 'fonts/Roboto-Bold.ttf',
+                                                                              fontWeight: FontWeight.w600,
+                                                                              fontSize: 18,
                                                                             ),
                                                                           ),
                                                                         )
                                                                       ],
                                                                     ),
                                                                   )),
-                                                              SizedBox(
-                                                                height: MediaQuery.of(
-                                                                    context)
-                                                                    .viewInsets
-                                                                    .vertical,
-                                                              ),
-                                                              Padding(
-                                                                  padding:
-                                                                  EdgeInsets.only(
-                                                                      bottom:
-                                                                      10.0)),
+                                                              SizedBox(height: MediaQuery.of(context).viewInsets.vertical,),
+                                                              Padding(padding: EdgeInsets.only(bottom: 10.0)),
                                                             ],
                                                           ),
                                                         ),
@@ -4153,35 +3391,32 @@ class _MatrixPageState extends State<MatrixPage> {
                                                 // 508.07142857142856-30,
                                                 child: Center(
                                                     child: Shimmer.fromColors(
-                                                        highlightColor:
-                                                        Color(0xff333333),
+                                                        highlightColor: Color(0xff333333),
                                                         baseColor: Colors.white,
                                                         child: Text(
                                                           'Drop Here For More Info!',
-                                                          style:
-                                                          TextStyle(fontSize: 18),
-                                                        )))),
-                                          ));
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(snackBar);
+                                                          style: TextStyle(fontSize: 18),)
+                                                    )
+                                                )
+                                            ),
+                                          )
+                                      );
+                                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
                                     },
                                     onDraggableCanceled: (a, b) {
                                       setState(() {
-                                        ScaffoldMessenger.of(context)
-                                            .hideCurrentSnackBar();
+                                        ScaffoldMessenger.of(context).hideCurrentSnackBar();
                                       });
                                     },
                                     onDragEnd: (hello) {
-                                      ScaffoldMessenger.of(context)
-                                          .hideCurrentSnackBar();
+                                      ScaffoldMessenger.of(context).hideCurrentSnackBar();
                                     },
                                     feedback: Material(
                                       color: Colors.transparent,
                                       child: Container(
                                         height: 210,
                                         width: 153.94,
-                                        margin: EdgeInsets.only(
-                                            left: 10, right: 10, top: 10, bottom: 10),
+                                        margin: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(12.5),
                                           boxShadow: [
@@ -4207,13 +3442,11 @@ class _MatrixPageState extends State<MatrixPage> {
                                           ],
                                           image: DecorationImage(
                                               fit: BoxFit.cover,
-                                              image:
-                                              AssetImage('assets/rectangle.png')),
+                                              image: AssetImage('assets/rectangle.png')),
                                         ),
                                         child: Column(
                                           children: [
-                                            Padding(
-                                                padding: EdgeInsets.only(top: 10.0)),
+                                            Padding(padding: EdgeInsets.only(top: 10.0)),
                                             Row(
                                               children: [
                                                 if(_foundTicket[index]["Severity"]=="High") ...[
@@ -4227,15 +3460,12 @@ class _MatrixPageState extends State<MatrixPage> {
                                                 ],
                                                 /*Image.asset(
                                                     _foundTicket[index]["Image"]),*/
-                                                Padding(
-                                                    padding:
-                                                    EdgeInsets.only(right: 5.0)),
+                                                Padding(padding: EdgeInsets.only(right: 5.0)),
                                                 Text(
                                                   _foundTicket[index]['SystemNumber'],
                                                   textAlign: TextAlign.center,
                                                   style: TextStyle(
-                                                      fontFamily:
-                                                      'fonts/Roboto-Bold.ttf',
+                                                      fontFamily: 'fonts/Roboto-Bold.ttf',
                                                       fontWeight: FontWeight.w900,
                                                       fontSize: 24),
                                                 ),
@@ -4259,8 +3489,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                           ),*/
                                               ],
                                             ),
-                                            Padding(
-                                                padding: EdgeInsets.only(top: 3.0)),
+                                            Padding(padding: EdgeInsets.only(top: 3.0)),
                                             SizedBox(
                                               height: 108,
                                               width: 112,
@@ -4275,8 +3504,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                                 ),
                                               ),
                                             ),
-                                            Padding(
-                                                padding: EdgeInsets.only(top: 13.0)),
+                                            Padding(padding: EdgeInsets.only(top: 13.0)),
                                             Text(
                                               _foundTicket[index]['Time'],
                                               textAlign: TextAlign.center,
@@ -4285,14 +3513,12 @@ class _MatrixPageState extends State<MatrixPage> {
                                                   fontWeight: FontWeight.w400,
                                                   fontSize: 18),
                                             ),
-                                            Padding(
-                                                padding: EdgeInsets.only(top: 1.5)),
+                                            Padding(padding: EdgeInsets.only(top: 1.5)),
                                             Text(
                                               _foundTicket[index]['DateTime'],
                                               textAlign: TextAlign.center,
                                               style: TextStyle(
-                                                  color: Color(0xff000000)
-                                                      .withOpacity(0.65),
+                                                  color: Color(0xff000000).withOpacity(0.65),
                                                   fontFamily: 'fonts/Roboto-Thin.ttf',
                                                   // fontWeight: FontWeight.normal,
                                                   fontSize: 12),
@@ -4306,11 +3532,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                         Container(
                                           height: 210,
                                           width: 153.94,
-                                          margin: EdgeInsets.only(
-                                              left: 10,
-                                              right: 10,
-                                              top: 10,
-                                              bottom: 0),
+                                          margin: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 0),
                                           decoration: BoxDecoration(
                                             borderRadius: BorderRadius.circular(12.5),
                                             boxShadow: [
@@ -4340,14 +3562,11 @@ class _MatrixPageState extends State<MatrixPage> {
                                             ],
                                             image: DecorationImage(
                                                 fit: BoxFit.cover,
-                                                image: AssetImage(
-                                                    'assets/rectangle.png')),
+                                                image: AssetImage('assets/rectangle.png')),
                                           ),
                                           child: Column(
                                             children: [
-                                              Padding(
-                                                  padding:
-                                                  EdgeInsets.only(top: 10.0)),
+                                              Padding(padding: EdgeInsets.only(top: 10.0)),
                                               Row(
                                                 children: [
                                                   if(_foundTicket[index]["Severity"]=="High") ...[
@@ -4361,15 +3580,12 @@ class _MatrixPageState extends State<MatrixPage> {
                                                   ],
                                                   /*Image.asset(
                                                       _foundTicket[index]["Image"]),*/
-                                                  Padding(
-                                                      padding: EdgeInsets.only(
-                                                          right: 5.0)),
+                                                  Padding(padding: EdgeInsets.only(right: 5.0)),
                                                   Text(
                                                     _foundTicket[index]['SystemNumber'],
                                                     textAlign: TextAlign.center,
                                                     style: TextStyle(
-                                                        fontFamily:
-                                                        'fonts/Roboto-Bold.ttf',
+                                                        fontFamily: 'fonts/Roboto-Bold.ttf',
                                                         fontWeight: FontWeight.w900,
                                                         fontSize: 24),
                                                   ),
@@ -4395,16 +3611,14 @@ class _MatrixPageState extends State<MatrixPage> {
                                             ),*/
                                                 ],
                                               ),
-                                              Padding(
-                                                  padding: EdgeInsets.only(top: 3.0)),
+                                              Padding(padding: EdgeInsets.only(top: 3.0)),
                                               SizedBox(
                                                 height: 108,
                                                 width: 112,
                                                 child: SingleChildScrollView(
                                                   scrollDirection: Axis.vertical,
                                                   child: Text(
-                                                    _foundTicket[index]
-                                                    ['ProblemText'],
+                                                    _foundTicket[index]['ProblemText'],
                                                     textAlign: TextAlign.center,
                                                     style: TextStyle(
                                                         fontFamily: 'Roboto',
@@ -4412,9 +3626,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                                   ),
                                                 ),
                                               ),
-                                              Padding(
-                                                  padding:
-                                                  EdgeInsets.only(top: 13.0)),
+                                              Padding(padding: EdgeInsets.only(top: 13.0)),
                                               Text(
                                                 _foundTicket[index]['Time'],
                                                 textAlign: TextAlign.center,
@@ -4423,16 +3635,13 @@ class _MatrixPageState extends State<MatrixPage> {
                                                     fontWeight: FontWeight.w400,
                                                     fontSize: 18),
                                               ),
-                                              Padding(
-                                                  padding: EdgeInsets.only(top: 1.5)),
+                                              Padding(padding: EdgeInsets.only(top: 1.5)),
                                               Text(
                                                 _foundTicket[index]['DateTime'],
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
-                                                    color: Color(0xff000000)
-                                                        .withOpacity(0.65),
-                                                    fontFamily:
-                                                    'fonts/Roboto-Thin.ttf',
+                                                    color: Color(0xff000000).withOpacity(0.65),
+                                                    fontFamily: 'fonts/Roboto-Thin.ttf',
                                                     // fontWeight: FontWeight.normal,
                                                     fontSize: 12),
                                               ),
@@ -4441,11 +3650,8 @@ class _MatrixPageState extends State<MatrixPage> {
                                         ),
                                         Positioned.fill(
                                             child: BackdropFilter(
-                                              filter:
-                                              ImageFilter.blur(sigmaX: 1, sigmaY: 1),
-                                              child: Container(
-                                                color: Colors.transparent,
-                                              ),
+                                              filter: ImageFilter.blur(sigmaX: 1, sigmaY: 1),
+                                              child: Container(color: Colors.transparent,),
                                             )
                                         )
                                       ],
@@ -4463,45 +3669,38 @@ class _MatrixPageState extends State<MatrixPage> {
                                         child: Container(
                                           height: 210,
                                           width: 153.94,
-                                          margin: EdgeInsets.only(
-                                              left: 10, right: 10, top: 0, bottom: 5),
+                                          margin: EdgeInsets.only(left: 10, right: 10, top: 0, bottom: 5),
                                           decoration: BoxDecoration(
                                             borderRadius: BorderRadius.circular(12.5),
                                             boxShadow: [
                                               BoxShadow(
                                                   blurRadius: 5,
                                                   offset: Offset(1, 0),
-                                                  color:
-                                                  Colors.black.withOpacity(0.8)),
+                                                  color: Colors.black.withOpacity(0.8)),
                                               //3dright
                                               BoxShadow(
                                                   blurRadius: 0,
                                                   offset: Offset(0, 1),
-                                                  color:
-                                                  Colors.black.withOpacity(0.9)),
+                                                  color: Colors.black.withOpacity(0.9)),
                                               //3dbottom
                                               BoxShadow(
                                                   blurRadius: 5,
                                                   offset: -Offset(1, 0),
-                                                  color:
-                                                  Colors.black.withOpacity(0.8)),
+                                                  color: Colors.black.withOpacity(0.8)),
                                               //3dleft
                                               BoxShadow(
                                                   blurRadius: 0,
                                                   offset: -Offset(0, 1),
-                                                  color:
-                                                  Colors.black.withOpacity(0.9)),
+                                                  color: Colors.black.withOpacity(0.9)),
                                             ],
                                             image: DecorationImage(
                                                 fit: BoxFit.cover,
-                                                image: AssetImage(
-                                                    'assets/rectangle.png')),
+                                                image: AssetImage('assets/rectangle.png',),
+                                            ),
                                           ),
                                           child: Column(
                                             children: [
-                                              Padding(
-                                                  padding:
-                                                  EdgeInsets.only(top: 10.0)),
+                                              Padding(padding: EdgeInsets.only(top: 10.0)),
                                               Row(
                                                 children: [
                                                   if(_foundTicket[index]["Severity"]=="High") ...[
@@ -4515,26 +3714,19 @@ class _MatrixPageState extends State<MatrixPage> {
                                                   ],
                                                   /*Image.asset(
                                                       _foundTicket[index]["Image"]),*/
-                                                  Padding(
-                                                      padding: EdgeInsets.only(
-                                                          right: 5.0)),
+                                                  Padding(padding: EdgeInsets.only(right: 5.0)),
                                                   Text(
                                                     _foundTicket[index]['SystemNumber'],
                                                     textAlign: TextAlign.center,
                                                     style: TextStyle(
-                                                        fontFamily:
-                                                        'fonts/Roboto-Bold.ttf',
+                                                        fontFamily: 'fonts/Roboto-Bold.ttf',
                                                         fontWeight: FontWeight.w900,
                                                         fontSize: 24),
                                                   ),
                                                   Visibility(
-                                                    visible: _foundTicket[index]
-                                                    ['loadingIndicator'],
+                                                    visible: _foundTicket[index]['loadingIndicator'],
                                                     child: Padding(
-                                                      padding: EdgeInsets.only(
-                                                          top: 0.0,
-                                                          bottom: 2.5,
-                                                          left: 5),
+                                                      padding: EdgeInsets.only(top: 0.0, bottom: 2.5, left: 5),
                                                       child: Stack(
                                                         alignment: Alignment.center,
                                                         children: [
@@ -4542,12 +3734,9 @@ class _MatrixPageState extends State<MatrixPage> {
                                                             width: 25,
                                                             height: 25,
                                                             child: LoadingIndicator(
-                                                              indicatorType: Indicator
-                                                                  .ballScaleMultiple,
+                                                              indicatorType: Indicator.ballScaleMultiple,
                                                               colors: [
-                                                                Colors.green
-                                                                    .withOpacity(
-                                                                    0.9),
+                                                                Colors.green.withOpacity(0.9),
                                                                 /*Color(0xff3B8DC2)
                                                                     .withOpacity(
                                                                     1),*/
@@ -4560,10 +3749,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                                             decoration: BoxDecoration(
                                                                 color: Colors.green,
                                                                 /*Color(0XFF19547B),*/
-                                                                borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                    50)),
+                                                                borderRadius: BorderRadius.circular(50)),
                                                           )
                                                         ],
                                                       ),
@@ -4571,16 +3757,14 @@ class _MatrixPageState extends State<MatrixPage> {
                                                   ),
                                                 ],
                                               ),
-                                              Padding(
-                                                  padding: EdgeInsets.only(top: 3.0)),
+                                              Padding(padding: EdgeInsets.only(top: 3.0)),
                                               SizedBox(
                                                 height: 108,
                                                 width: 112,
                                                 child: SingleChildScrollView(
                                                   scrollDirection: Axis.vertical,
                                                   child: Text(
-                                                    _foundTicket[index]
-                                                    ['ProblemText'],
+                                                    _foundTicket[index]['ProblemText'],
                                                     textAlign: TextAlign.center,
                                                     style: TextStyle(
                                                         fontFamily: 'Roboto',
@@ -4588,9 +3772,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                                   ),
                                                 ),
                                               ),
-                                              Padding(
-                                                  padding:
-                                                  EdgeInsets.only(top: 13.0)),
+                                              Padding(padding: EdgeInsets.only(top: 13.0)),
                                               Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -4648,16 +3830,13 @@ class _MatrixPageState extends State<MatrixPage> {
 
                                                 ],
                                               ),
-                                              Padding(
-                                                  padding: EdgeInsets.only(top: 1.5)),
+                                              Padding(padding: EdgeInsets.only(top: 1.5)),
                                               Text(
                                                 _foundTicket[index]['DateTime'],
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
-                                                    color: Color(0xff000000)
-                                                        .withOpacity(0.65),
-                                                    fontFamily:
-                                                    'fonts/Roboto-Thin.ttf',
+                                                    color: Color(0xff000000).withOpacity(0.65),
+                                                    fontFamily: 'fonts/Roboto-Thin.ttf',
                                                     // fontWeight: FontWeight.normal,
                                                     fontSize: 12),
                                               ),
@@ -4672,9 +3851,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                   visible: _enterAction,
                                   child: AnimatedPositioned(
                                       curve: Curves.fastOutSlowIn,
-                                      left: _buttonPosition
-                                          ? 152
-                                          : MediaQuery.of(context).size.width + 175,
+                                      left: _buttonPosition ? 152 : MediaQuery.of(context).size.width + 175,
                                       top: 18,
                                       duration: Duration(milliseconds: 250),
                                       child: GestureDetector(
@@ -4682,20 +3859,14 @@ class _MatrixPageState extends State<MatrixPage> {
                                           /*_sysNumber= ticket[index]['sysNumber'];*/
                                           _remote = false;
                                           setState(() {
-                                            selectedIncidentWidgetMarker =
-                                                IncidentMarker.chat;
+                                            selectedIncidentWidgetMarker = IncidentMarker.chat;
                                             /*this._memoryWidgets.add('assets/chaticon250.png');*/
                                             /*memorybar[ticket[index]['sysNumber']] = ['Call'];*/
 
-                                            if (memorybar.containsKey(
-                                                ticket[index]['SystemNumber']) ==
-                                                true) {
-                                              memorybar[ticket[index]['SystemNumber']]
-                                                  ?.add('assets/chaticon250.png');
+                                            if (memorybar.containsKey(ticket[index]['SystemNumber']) == true) {
+                                              memorybar[ticket[index]['SystemNumber']]?.add('assets/chaticon250.png');
                                             } else {
-                                              memorybar.addEntries([
-                                                MapEntry(ticket[index]['SystemNumber'],
-                                                    {'assets/chaticon250.png'})
+                                              memorybar.addEntries([MapEntry(ticket[index]['SystemNumber'], {'assets/chaticon250.png'})
                                               ]);
                                             }
                                           });
@@ -4719,20 +3890,15 @@ class _MatrixPageState extends State<MatrixPage> {
                                               focalRadius: 10,
                                               radius: 2,
                                               colors: [
-                                                _isChatButton
-                                                    ? Color(0xffD3D3D3)
-                                                    : Color(0xff19547b),
-                                                _isChatButton
-                                                    ? Colors.white
-                                                    : Color(0xff467695),
+                                                _isChatButton ? Color(0xffD3D3D3) : Color(0xff19547b),
+                                                _isChatButton ? Colors.white : Color(0xff467695),
                                               ],
                                             ),
                                             boxShadow: [
                                               BoxShadow(
                                                   blurRadius: 10,
                                                   offset: Offset(1, 1),
-                                                  color: Color(0xff000000)
-                                                      .withOpacity(0.60)),
+                                                  color: Color(0xff000000).withOpacity(0.60)),
                                               // BoxShadow(
                                               //     blurRadius: 10,
                                               //     offset: -Offset(1, 1),
@@ -4745,9 +3911,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                           child: Text(
                                             'CHAT',
                                             style: TextStyle(
-                                                color: _isChatButton
-                                                    ? Color(0xff467695)
-                                                    : Colors.white,
+                                                color: _isChatButton ? Color(0xff467695) : Colors.white,
                                                 fontFamily: 'Roboto',
                                                 fontWeight: FontWeight.w900,
                                                 fontSize: 14),
@@ -4764,9 +3928,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                   visible: _enterAction,
                                   child: AnimatedPositioned(
                                       curve: Curves.fastOutSlowIn,
-                                      left: _buttonPosition
-                                          ? 152
-                                          : MediaQuery.of(context).size.width + 175,
+                                      left: _buttonPosition ? 152 : MediaQuery.of(context).size.width + 175,
                                       top: 44,
                                       duration: Duration(milliseconds: 350),
                                       child: IgnorePointer(
@@ -4788,15 +3950,10 @@ class _MatrixPageState extends State<MatrixPage> {
 
                                 });*/
                                               /*memorybar[ticket[index]['sysNumber']]?.insertAll(memorybar[ticket[index]['sysNumber']]!.length,['Call']);*/
-                                              if (memorybar.containsKey(
-                                                  ticket[index]['SystemNumber']) ==
-                                                  true) {
-                                                memorybar[ticket[index]['SystemNumber']]
-                                                    ?.add('assets/callicongreenpadding1.gif');
+                                              if (memorybar.containsKey(ticket[index]['SystemNumber']) == true) {
+                                                memorybar[ticket[index]['SystemNumber']]?.add('assets/callicongreenpadding1.gif');
                                               } else {
-                                                memorybar.addEntries([
-                                                  MapEntry(ticket[index]['SystemNumber'],
-                                                      {'assets/callicongreenpadding1.gif'})
+                                                memorybar.addEntries([MapEntry(ticket[index]['SystemNumber'], {'assets/callicongreenpadding1.gif'})
                                                 ]);
                                               }
                                             });
@@ -4827,20 +3984,15 @@ class _MatrixPageState extends State<MatrixPage> {
                                                 focalRadius: 10,
                                                 radius: 2,
                                                 colors: [
-                                                  _isCallButton
-                                                      ? Color(0xffD3D3D3)
-                                                      : Color(0xff19547b),
-                                                  _isCallButton
-                                                      ? Colors.white
-                                                      : Color(0xff467695),
+                                                  _isCallButton ? Color(0xffD3D3D3) : Color(0xff19547b),
+                                                  _isCallButton ? Colors.white : Color(0xff467695),
                                                 ],
                                               ),
                                               boxShadow: [
                                                 BoxShadow(
                                                     blurRadius: 10,
                                                     offset: Offset(1, 1),
-                                                    color: Color(0xff000000)
-                                                        .withOpacity(0.60)),
+                                                    color: Color(0xff000000).withOpacity(0.60)),
                                                 // BoxShadow(
                                                 //     blurRadius: 10,
                                                 //     offset: -Offset(1, 1),
@@ -4853,9 +4005,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                             child: Text(
                                               'CALL',
                                               style: TextStyle(
-                                                  color: _isCallButton
-                                                      ? Color(0xff467695)
-                                                      : Colors.white,
+                                                  color: _isCallButton ? Color(0xff467695) : Colors.white,
                                                   fontFamily: 'Roboto',
                                                   fontWeight: FontWeight.w900,
                                                   fontSize: 14),
@@ -4870,9 +4020,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                   visible: _enterAction,
                                   child: AnimatedPositioned(
                                       curve: Curves.fastOutSlowIn,
-                                      left: _buttonPosition
-                                          ? 152
-                                          : MediaQuery.of(context).size.width + 175,
+                                      left: _buttonPosition ? 152 : MediaQuery.of(context).size.width + 175,
                                       top: 70,
                                       duration: Duration(milliseconds: 450),
                                       child: GestureDetector(
@@ -4881,16 +4029,10 @@ class _MatrixPageState extends State<MatrixPage> {
                                           setState(() {
                                             /*this.memoryWidgets.add('assets/remoteiconpadding.png');*/
 
-                                            if (memorybar.containsKey(
-                                                ticket[index]['SystemNumber']) ==
-                                                true) {
-                                              memorybar[ticket[index]['SystemNumber']]
-                                                  ?.add(
-                                                  'assets/remoteiconpadding.png');
+                                            if (memorybar.containsKey(ticket[index]['SystemNumber']) == true) {
+                                              memorybar[ticket[index]['SystemNumber']]?.add('assets/remoteiconpadding.png');
                                             } else {
-                                              memorybar.addEntries([
-                                                MapEntry(ticket[index]['SystemNumber'],
-                                                    {'assets/remoteiconpadding.png'})
+                                              memorybar.addEntries([MapEntry(ticket[index]['SystemNumber'], {'assets/remoteiconpadding.png'})
                                               ]);
                                             }
                                           });
@@ -4914,20 +4056,15 @@ class _MatrixPageState extends State<MatrixPage> {
                                               focalRadius: 10,
                                               radius: 2,
                                               colors: [
-                                                _isRemoteButton
-                                                    ? Color(0xffD3D3D3)
-                                                    : Color(0xff19547b),
-                                                _isRemoteButton
-                                                    ? Colors.white
-                                                    : Color(0xff467695),
+                                                _isRemoteButton ? Color(0xffD3D3D3) : Color(0xff19547b),
+                                                _isRemoteButton ? Colors.white : Color(0xff467695),
                                               ],
                                             ),
                                             boxShadow: [
                                               BoxShadow(
                                                   blurRadius: 10,
                                                   offset: Offset(1, 1),
-                                                  color: Color(0xff000000)
-                                                      .withOpacity(0.60)),
+                                                  color: Color(0xff000000).withOpacity(0.60)),
                                               // BoxShadow(
                                               //     blurRadius: 10,
                                               //     offset: -Offset(1, 1),
@@ -4940,9 +4077,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                           child: Text(
                                             'REMOTE',
                                             style: TextStyle(
-                                                color: _isRemoteButton
-                                                    ? Color(0xff467695)
-                                                    : Colors.white,
+                                                color: _isRemoteButton ? Color(0xff467695) : Colors.white,
                                                 fontFamily: 'Roboto',
                                                 fontWeight: FontWeight.w900,
                                                 fontSize: 14),
@@ -4956,9 +4091,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                   visible: _enterAction,
                                   child: AnimatedPositioned(
                                       curve: Curves.fastOutSlowIn,
-                                      left: _buttonPosition
-                                          ? 152
-                                          : MediaQuery.of(context).size.width + 175,
+                                      left: _buttonPosition ? 152 : MediaQuery.of(context).size.width + 175,
                                       top: 96,
                                       duration: Duration(milliseconds: 550),
                                       child: GestureDetector(
@@ -4966,8 +4099,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                           _remote = false;
                                           setState(() {
 
-                                            selectedIncidentWidgetMarker =
-                                                IncidentMarker.script;
+                                            selectedIncidentWidgetMarker = IncidentMarker.script;
                                             /*this.memoryWidgets.add('assets/scripticonpadding.png');*/
                                             /*memorybar.addEntries([
                                   MapEntry(ticket[index]['sysNumber'],['Script'])
@@ -4975,16 +4107,10 @@ class _MatrixPageState extends State<MatrixPage> {
                                             /*memorybar[ticket[index]['sysNumber']];*/
                                             /*memorybar[ticket[index]['sysNumber']] = ['script'];*/
                                             /* memorybar[ticket[index]['sysNumber']]?.insertAll(memorybar[ticket[index]['sysNumber']]!.length,['Script']);*/
-                                            if (memorybar.containsKey(
-                                                ticket[index]['SystemNumber']) ==
-                                                true) {
-                                              memorybar[ticket[index]['SystemNumber']]
-                                                  ?.add(
-                                                  'assets/scripticonpadding.png');
+                                            if (memorybar.containsKey(ticket[index]['SystemNumber']) == true) {
+                                              memorybar[ticket[index]['SystemNumber']]?.add('assets/scripticonpadding.png');
                                             } else {
-                                              memorybar.addEntries([
-                                                MapEntry(ticket[index]['SystemNumber'],
-                                                    {'assets/scripticonpadding.png'})
+                                              memorybar.addEntries([MapEntry(ticket[index]['SystemNumber'], {'assets/scripticonpadding.png'})
                                               ]);
                                             }
                                           });
@@ -5009,20 +4135,15 @@ class _MatrixPageState extends State<MatrixPage> {
                                               focalRadius: 10,
                                               radius: 2,
                                               colors: [
-                                                _isScriptButton
-                                                    ? Color(0xffD3D3D3)
-                                                    : Color(0xff19547b),
-                                                _isScriptButton
-                                                    ? Colors.white
-                                                    : Color(0xff467695),
+                                                _isScriptButton ? Color(0xffD3D3D3) : Color(0xff19547b),
+                                                _isScriptButton ? Colors.white : Color(0xff467695),
                                               ],
                                             ),
                                             boxShadow: [
                                               BoxShadow(
                                                   blurRadius: 10,
                                                   offset: Offset(1, 1),
-                                                  color: Color(0xff000000)
-                                                      .withOpacity(0.60)),
+                                                  color: Color(0xff000000).withOpacity(0.60)),
                                               // BoxShadow(
                                               //     blurRadius: 10,
                                               //     offset: -Offset(1, 1),
@@ -5035,9 +4156,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                           child: Text(
                                             'SCRIPT',
                                             style: TextStyle(
-                                                color: _isScriptButton
-                                                    ? Color(0xff467695)
-                                                    : Colors.white,
+                                                color: _isScriptButton ? Color(0xff467695) : Colors.white,
                                                 fontFamily: 'Roboto',
                                                 fontWeight: FontWeight.w900,
                                                 fontSize: 14),
@@ -5051,9 +4170,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                   visible: _enterAction,
                                   child: AnimatedPositioned(
                                       curve: Curves.fastOutSlowIn,
-                                      left: _buttonPosition
-                                          ? 152
-                                          : MediaQuery.of(context).size.width + 175,
+                                      left: _buttonPosition ? 152 : MediaQuery.of(context).size.width + 175,
                                       top: 122,
                                       duration: Duration(milliseconds: 650),
                                       child: GestureDetector(
@@ -5061,19 +4178,12 @@ class _MatrixPageState extends State<MatrixPage> {
                                           _remote = false;
                                           setState(() {
                                             /*this.memoryWidgets.add('assets/terminaliconpadding.png');*/
-                                            selectedIncidentWidgetMarker =
-                                                IncidentMarker.terminal;
+                                            selectedIncidentWidgetMarker = IncidentMarker.terminal;
 
-                                            if (memorybar.containsKey(
-                                                ticket[index]['SystemNumber']) ==
-                                                true) {
-                                              memorybar[ticket[index]['SystemNumber']]
-                                                  ?.add(
-                                                  'assets/terminaliconpadding.png');
+                                            if (memorybar.containsKey(ticket[index]['SystemNumber']) == true) {
+                                              memorybar[ticket[index]['SystemNumber']]?.add('assets/terminaliconpadding.png');
                                             } else {
-                                              memorybar.addEntries([
-                                                MapEntry(ticket[index]['SystemNumber'], {
-                                                  'assets/terminaliconpadding.png'
+                                              memorybar.addEntries([MapEntry(ticket[index]['SystemNumber'], {'assets/terminaliconpadding.png'
                                                 })
                                               ]);
                                             }
@@ -5105,20 +4215,15 @@ class _MatrixPageState extends State<MatrixPage> {
                                               focalRadius: 10,
                                               radius: 2,
                                               colors: [
-                                                _isTerminalButton
-                                                    ? Color(0xffD3D3D3)
-                                                    : Color(0xff19547b),
-                                                _isTerminalButton
-                                                    ? Colors.white
-                                                    : Color(0xff467695),
+                                                _isTerminalButton ? Color(0xffD3D3D3) : Color(0xff19547b),
+                                                _isTerminalButton ? Colors.white : Color(0xff467695),
                                               ],
                                             ),
                                             boxShadow: [
                                               BoxShadow(
                                                   blurRadius: 10,
                                                   offset: Offset(1, 1),
-                                                  color: Color(0xff000000)
-                                                      .withOpacity(0.60)),
+                                                  color: Color(0xff000000).withOpacity(0.60)),
                                               // BoxShadow(
                                               //     blurRadius: 10,
                                               //     offset: -Offset(1, 1),
@@ -5131,9 +4236,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                           child: Text(
                                             'TERMINAL',
                                             style: TextStyle(
-                                                color: _isTerminalButton
-                                                    ? Color(0xff467695)
-                                                    : Colors.white,
+                                                color: _isTerminalButton ? Color(0xff467695) : Colors.white,
                                                 fontFamily: 'Roboto',
                                                 fontWeight: FontWeight.w900,
                                                 fontSize: 14),
@@ -5147,9 +4250,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                   visible: _enterAction,
                                   child: AnimatedPositioned(
                                       curve: Curves.fastOutSlowIn,
-                                      left: _buttonPosition
-                                          ? 152
-                                          : MediaQuery.of(context).size.width + 175,
+                                      left: _buttonPosition ? 152 : MediaQuery.of(context).size.width + 175,
                                       top: 148,
                                       duration: Duration(milliseconds: 750),
                                       child: GestureDetector(
@@ -5159,8 +4260,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                               builder: (BuildContext context) {
                                                 return AlertDialog(
                                                   shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                    BorderRadius.circular(30.0),
+                                                    borderRadius: BorderRadius.circular(30.0),
                                                   ),
                                                   scrollable: true,
                                                   insetPadding: EdgeInsets.all(40),
@@ -5171,13 +4271,11 @@ class _MatrixPageState extends State<MatrixPage> {
                                                     width: 300,
                                                     decoration: BoxDecoration(
                                                       border: Border.all(
-                                                        color: Colors.black
-                                                            .withOpacity(0.8),
+                                                        color: Colors.black.withOpacity(0.8),
                                                         width: 3,
                                                       ),
                                                       // color: Color(0xffB5B5B5),
-                                                      borderRadius:
-                                                      BorderRadius.circular(30.0),
+                                                      borderRadius: BorderRadius.circular(30.0),
                                                     ),
                                                     child: Column(
                                                       children: [
@@ -5193,8 +4291,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                                                 style: TextStyle(
                                                                     fontSize: 17,
                                                                     color: Colors.white,
-                                                                    fontWeight:
-                                                                    FontWeight.bold),
+                                                                    fontWeight: FontWeight.bold),
                                                               ),
                                                             ),
                                                           ),
@@ -5203,39 +4300,21 @@ class _MatrixPageState extends State<MatrixPage> {
                                                           padding: EdgeInsets.only(
                                                               left: 15, right: 15),
                                                           decoration: BoxDecoration(
-                                                              color: Colors.white
-                                                                  .withOpacity(0.8),
-                                                              borderRadius:
-                                                              BorderRadius
-                                                                  .circular(0)),
+                                                              color: Colors.white.withOpacity(0.8),
+                                                              borderRadius: BorderRadius.circular(0)),
                                                           height: 176,
-                                                          margin: EdgeInsets.only(
-                                                              left: 0,
-                                                              right: 0,
-                                                              top: 0,
-                                                              bottom: 0),
+                                                          margin: EdgeInsets.only(left: 0, right: 0, top: 0, bottom: 0),
                                                           child: TextField(
                                                             minLines: null,
                                                             maxLines: null,
-                                                            keyboardType:
-                                                            TextInputType
-                                                                .multiline,
-                                                            textInputAction:
-                                                            TextInputAction.done,
-                                                            cursorColor: Colors.black
-                                                                .withOpacity(0.2),
+                                                            keyboardType: TextInputType.multiline,
+                                                            textInputAction: TextInputAction.done,
+                                                            cursorColor: Colors.black.withOpacity(0.2),
                                                             showCursor: true,
-                                                            decoration:
-                                                            InputDecoration(
-                                                                border:
-                                                                InputBorder
-                                                                    .none,
-                                                                labelStyle:
-                                                                TextStyle(
-                                                                  color: Colors
-                                                                      .black
-                                                                      .withOpacity(
-                                                                      0.6),
+                                                            decoration: InputDecoration(
+                                                                border: InputBorder.none,
+                                                                labelStyle: TextStyle(
+                                                                  color: Colors.black.withOpacity(0.6),
                                                                 )),
                                                           ),
                                                         ),
@@ -5267,25 +4346,19 @@ class _MatrixPageState extends State<MatrixPage> {
                                                             child: Text(
                                                               "SUBMIT",
                                                               style: TextStyle(
-                                                                  fontWeight:
-                                                                  FontWeight.bold,
-                                                                  color:
-                                                                  Colors.white),
+                                                                  fontWeight: FontWeight.bold,
+                                                                  color: Colors.white),
                                                             ),
-                                                            style: ElevatedButton
-                                                                .styleFrom(
+                                                            style: ElevatedButton.styleFrom(
                                                               side: BorderSide(
                                                                 color: Colors.white,
                                                                 width: 2.0,
                                                               ),
                                                               shape:
                                                               RoundedRectangleBorder(
-                                                                borderRadius:
-                                                                BorderRadius.circular(
-                                                                    15), // <-- Radius
+                                                                borderRadius: BorderRadius.circular(15), // <-- Radius
                                                               ),
-                                                              primary:
-                                                              Color(0xff19547b),
+                                                              primary: Color(0xff19547b),
                                                             ),
                                                             onPressed: () {
                                                               Navigator.pop(context);
@@ -5316,20 +4389,15 @@ class _MatrixPageState extends State<MatrixPage> {
                                               focalRadius: 10,
                                               radius: 2,
                                               colors: [
-                                                _isUpdatesButton
-                                                    ? Color(0xffD3D3D3)
-                                                    : Color(0xff19547b),
-                                                _isUpdatesButton
-                                                    ? Colors.white
-                                                    : Color(0xff467695),
+                                                _isUpdatesButton ? Color(0xffD3D3D3) : Color(0xff19547b),
+                                                _isUpdatesButton ? Colors.white : Color(0xff467695),
                                               ],
                                             ),
                                             boxShadow: [
                                               BoxShadow(
                                                   blurRadius: 10,
                                                   offset: Offset(1, 1),
-                                                  color: Color(0xff000000)
-                                                      .withOpacity(0.60)),
+                                                  color: Color(0xff000000).withOpacity(0.60)),
                                               // BoxShadow(
                                               //     blurRadius: 10,
                                               //     offset: -Offset(1, 1),
@@ -5342,9 +4410,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                           child: Text(
                                             'UPDATES',
                                             style: TextStyle(
-                                                color: _isUpdatesButton
-                                                    ? Color(0xff467695)
-                                                    : Colors.white,
+                                                color: _isUpdatesButton ? Color(0xff467695) : Colors.white,
                                                 fontFamily: 'Roboto',
                                                 fontWeight: FontWeight.w900,
                                                 fontSize: 14),
@@ -5388,20 +4454,15 @@ class _MatrixPageState extends State<MatrixPage> {
                                               focalRadius: 10,
                                               radius: 2,
                                               colors: [
-                                                _isActionsButton
-                                                    ? Color(0xffD3D3D3)
-                                                    : Color(0xff19547b),
-                                                _isActionsButton
-                                                    ? Colors.white
-                                                    : Color(0xff467695),
+                                                _isActionsButton ? Color(0xffD3D3D3) : Color(0xff19547b),
+                                                _isActionsButton ? Colors.white : Color(0xff467695),
                                               ],
                                             ),
                                             boxShadow: [
                                               BoxShadow(
                                                   blurRadius: 10,
                                                   offset: Offset(1, 1),
-                                                  color: Color(0xff000000)
-                                                      .withOpacity(0.60)),
+                                                  color: Color(0xff000000).withOpacity(0.60)),
                                               // BoxShadow(
                                               //     blurRadius: 10,
                                               //     offset: -Offset(1, 1),
@@ -5414,9 +4475,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                           child: Text(
                                             'ACTIONS',
                                             style: TextStyle(
-                                                color: _isActionsButton
-                                                    ? Color(0xff467695)
-                                                    : Colors.white,
+                                                color: _isActionsButton ? Color(0xff467695) : Colors.white,
                                                 fontFamily: 'Roboto',
                                                 fontWeight: FontWeight.w900,
                                                 fontSize: 14),
@@ -5428,9 +4487,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                 ),
                                 AnimatedPositioned(
                                   curve: Curves.fastOutSlowIn,
-                                  left: _enterAction == false
-                                      ? 152
-                                      : MediaQuery.of(context).size.width + 175,
+                                  left: _enterAction == false ? 152 : MediaQuery.of(context).size.width + 175,
                                   top: 18,
                                   duration: Duration(milliseconds: 250),
                                   child: GestureDetector(
@@ -5443,45 +4500,35 @@ class _MatrixPageState extends State<MatrixPage> {
                                 ),
                                 AnimatedPositioned(
                                   curve: Curves.fastOutSlowIn,
-                                  left: _enterAction == false
-                                      ? 152
-                                      : MediaQuery.of(context).size.width + 175,
+                                  left: _enterAction == false ? 152 : MediaQuery.of(context).size.width + 175,
                                   top: 44,
                                   duration: Duration(milliseconds: 350),
                                   child: ForwardButton(),
                                 ),
                                 AnimatedPositioned(
                                   curve: Curves.fastOutSlowIn,
-                                  left: _enterAction == false
-                                      ? 152
-                                      : MediaQuery.of(context).size.width + 175,
+                                  left: _enterAction == false ? 152 : MediaQuery.of(context).size.width + 175,
                                   top: 70,
                                   duration: Duration(milliseconds: 450),
                                   child: PendingButton(),
                                 ),
                                 AnimatedPositioned(
                                   curve: Curves.fastOutSlowIn,
-                                  left: _enterAction == false
-                                      ? 152
-                                      : MediaQuery.of(context).size.width + 175,
+                                  left: _enterAction == false ? 152 : MediaQuery.of(context).size.width + 175,
                                   top: 96,
                                   duration: Duration(milliseconds: 550),
                                   child: UnAvailableButton(),
                                 ),
                                 AnimatedPositioned(
                                   curve: Curves.fastOutSlowIn,
-                                  left: _enterAction == false
-                                      ? 152
-                                      : MediaQuery.of(context).size.width + 175,
+                                  left: _enterAction == false ? 152 : MediaQuery.of(context).size.width + 175,
                                   top: 122,
                                   duration: Duration(milliseconds: 650),
                                   child: ResolveButton(),
                                 ),
                                 AnimatedPositioned(
                                   curve: Curves.fastOutSlowIn,
-                                  left: _enterAction == false
-                                      ? 152
-                                      : MediaQuery.of(context).size.width + 175,
+                                  left: _enterAction == false ? 152 : MediaQuery.of(context).size.width + 175,
                                   top: 148,
                                   duration: Duration(milliseconds: 750),
                                   child: ActionCloseButton(),
@@ -5494,7 +4541,9 @@ class _MatrixPageState extends State<MatrixPage> {
               Positioned.fill(
                 child: Align(
                   alignment: Alignment.centerRight,
-                  child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
                     // Visibility(
                     //   visible: create,
                     //   child: Expanded(
@@ -5589,8 +4638,7 @@ class _MatrixPageState extends State<MatrixPage> {
                             children: [
                               AnimatedSwitcher(
                                 duration: Duration(milliseconds: 500),
-                                child: flag
-                                    ? GestureDetector(
+                                child: flag ? GestureDetector(
                                   key: Key('2'),
                                   onTap: () {
                                     setState(() {
@@ -5610,32 +4658,25 @@ class _MatrixPageState extends State<MatrixPage> {
                                             BoxShadow(
                                                 blurRadius: 0,
                                                 offset: Offset(2, 4),
-                                                color: Colors.black12
-                                                    .withOpacity(
-                                                    0.15)), //3dright
+                                                color: Colors.black12.withOpacity(0.15)), //3dright
                                           ]),
-                                      child: Row(children: [
-                                        SizedBox(
-                                          width: 20,
-                                        ),
+                                      child: Row(
+                                          children: [
+                                        SizedBox(width: 20,),
                                         Center(
                                           child: Container(
                                               width: 150,
                                               child: TextField(
-                                                onChanged: (value) =>
-                                                    _runFilter(value),
+                                                onChanged: (value) => _runFilter(value),
                                                 autofocus: true,
                                                 cursorColor: Colors.white24,
-                                                keyboardType:
-                                                TextInputType.text,
+                                                keyboardType: TextInputType.text,
                                                 style: TextStyle(
-                                                    fontFamily:
-                                                    'fonts/Roboto-Bold.ttf',
+                                                    fontFamily: 'fonts/Roboto-Bold.ttf',
                                                     fontSize: 18,
                                                     color: Colors.white),
                                                 textAlign: TextAlign.center,
-                                                decoration:
-                                                InputDecoration.collapsed(
+                                                decoration: InputDecoration.collapsed(
                                                   hintText: "Search",
                                                   hintStyle: TextStyle(
                                                       color: Colors.white70),
@@ -5653,9 +4694,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                             // ),
                                           ),
                                         ),
-                                        SizedBox(
-                                          width: 2.5,
-                                        ),
+                                        SizedBox(width: 2.5,),
                                         SizedBox(
                                           height: 24.5,
                                           child: Icon(
@@ -5664,9 +4703,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                             size: 27,
                                           ),
                                         ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
+                                        SizedBox(width: 10,),
                                       ]),
                                     ),
                                   ),
@@ -5697,14 +4734,11 @@ class _MatrixPageState extends State<MatrixPage> {
                                             BoxShadow(
                                                 blurRadius: 0,
                                                 offset: Offset(2, 4),
-                                                color: Colors.black12
-                                                    .withOpacity(
-                                                    0.15)), //3dright
+                                                color: Colors.black12.withOpacity(0.15)), //3dright
                                           ]),
-                                      child: Row(children: [
-                                        SizedBox(
-                                          width: 3,
-                                        ),
+                                      child: Row(
+                                          children: [
+                                        SizedBox(width: 3,),
                                         SizedBox(
                                           height: 22.5,
                                           child: Icon(
@@ -5717,17 +4751,13 @@ class _MatrixPageState extends State<MatrixPage> {
                                           child: Text(
                                             'Search',
                                             style: TextStyle(
-                                                fontFamily:
-                                                'fonts/Roboto-Light.ttf',
+                                                fontFamily: 'fonts/Roboto-Light.ttf',
                                                 fontWeight: FontWeight.w400,
                                                 fontSize: 16,
-                                                color: Colors.white
-                                                    .withOpacity(0.75)),
+                                                color: Colors.white.withOpacity(0.75)),
                                           ),
                                         ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
+                                        SizedBox(width: 10,),
                                       ]),
                                     ),
                                   ),
@@ -5755,8 +4785,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                             actionsAlignment:
                                             MainAxisAlignment.center,
                                             shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                              BorderRadius.circular(15.0),
+                                              borderRadius: BorderRadius.circular(15.0),
                                             ),
                                             actionsOverflowButtonSpacing: 10,
                                             elevation: 5,
@@ -5774,11 +4803,9 @@ class _MatrixPageState extends State<MatrixPage> {
                                                   height: 47,
                                                   padding: EdgeInsets.only(left: 15),
                                                   decoration: BoxDecoration(
-                                                      borderRadius:
-                                                      BorderRadius.circular(10),
+                                                      borderRadius: BorderRadius.circular(10),
                                                       border: Border.all(
-                                                          color: Colors.black
-                                                              .withOpacity(0.55))),
+                                                          color: Colors.black.withOpacity(0.55))),
                                                   child: TextField(
                                                     cursorColor: Colors.white,
                                                     autofocus: false,
@@ -5797,28 +4824,22 @@ class _MatrixPageState extends State<MatrixPage> {
                                                 ),*/
                                                       icon: Icon(
                                                         Icons.email_outlined,
-                                                        color: Colors.black
-                                                            .withOpacity(0.6),
+                                                        color: Colors.black.withOpacity(0.6),
                                                       ),
                                                       hintText: 'Email',
                                                       labelStyle: TextStyle(
-                                                          color: Colors.black
-                                                              .withOpacity(0.6)),
+                                                          color: Colors.black.withOpacity(0.6)),
                                                     ),
                                                   ),
                                                 ),
-                                                SizedBox(
-                                                  height: 9,
-                                                ),
+                                                SizedBox(height: 9,),
                                                 Container(
                                                   height: 47,
                                                   padding: EdgeInsets.only(left: 15),
                                                   decoration: BoxDecoration(
-                                                      borderRadius:
-                                                      BorderRadius.circular(10),
+                                                      borderRadius: BorderRadius.circular(10),
                                                       border: Border.all(
-                                                          color: Colors.black
-                                                              .withOpacity(0.55))),
+                                                          color: Colors.black.withOpacity(0.55))),
                                                   child: TextField(
                                                     cursorColor: Colors.white,
                                                     obscureText: false,
@@ -5836,15 +4857,12 @@ class _MatrixPageState extends State<MatrixPage> {
                                                         color: Colors.black),
                                                   ),*/
                                                         icon: Icon(
-                                                          Icons
-                                                              .account_circle_outlined,
-                                                          color: Colors.black
-                                                              .withOpacity(0.6),
+                                                          Icons.account_circle_outlined,
+                                                          color: Colors.black.withOpacity(0.6),
                                                         ),
                                                         hintText: 'Agent ID',
                                                         labelStyle: TextStyle(
-                                                          color: Colors.black
-                                                              .withOpacity(0.6),
+                                                          color: Colors.black.withOpacity(0.6),
                                                         )),
                                                   ),
                                                 ),
@@ -5873,20 +4891,14 @@ class _MatrixPageState extends State<MatrixPage> {
                                                       .withOpacity(0.6),
                                                 )),
                                           ),*/
-                                                SizedBox(
-                                                  height: 9,
-                                                ),
+                                                SizedBox(height: 9,),
                                                 Center(
                                                     child: Column(
                                                       children: [
                                                         Container(
                                                           decoration: BoxDecoration(
-                                                              borderRadius:
-                                                              BorderRadius.all(
-                                                                  Radius.circular(
-                                                                      10)),
-                                                              color: Color(0xffC4C4C4)
-                                                                  .withOpacity(0.20),
+                                                              borderRadius: BorderRadius.all(Radius.circular(10)),
+                                                              color: Color(0xffC4C4C4).withOpacity(0.20),
                                                               border: Border.all(
                                                                   color: Colors.black87)),
                                                           width: 350,
@@ -5912,32 +4924,25 @@ class _MatrixPageState extends State<MatrixPage> {
                                                             //     scroll=false;
                                                             //   }
                                                             // },
-                                                            keyboardType:
-                                                            TextInputType.multiline,
-                                                            textInputAction:
-                                                            TextInputAction.done,
+                                                            keyboardType: TextInputType.multiline,
+                                                            textInputAction: TextInputAction.done,
                                                             style: TextStyle(
-                                                              fontFamily:
-                                                              'fonts/Roboto-Bold.ttf',
+                                                              fontFamily: 'fonts/Roboto-Bold.ttf',
                                                               fontSize: 18,
                                                             ),
                                                             textAlign: TextAlign.center,
-                                                            decoration:
-                                                            InputDecoration.collapsed(
+                                                            decoration: InputDecoration.collapsed(
                                                               hintText: "Notes",
                                                               border: InputBorder.none,
                                                             ),
                                                           ),
                                                         ),
-                                                        SizedBox(
-                                                          height: 9,
-                                                        ),
+                                                        SizedBox(height: 9,),
                                                         ElevatedButton(
                                                             child: Text(
                                                               "SUBMIT",
                                                               style: TextStyle(
-                                                                  color: Colors.black
-                                                                      .withOpacity(0.75)),
+                                                                  color: Colors.black.withOpacity(0.75)),
                                                             ),
                                                             style:
                                                             ElevatedButton.styleFrom(
@@ -5985,13 +4990,11 @@ class _MatrixPageState extends State<MatrixPage> {
                                           BoxShadow(
                                               blurRadius: 0,
                                               offset: Offset(2, 4),
-                                              color: Colors.black12
-                                                  .withOpacity(0.15)), //3dright
+                                              color: Colors.black12.withOpacity(0.15)), //3dright
                                         ]),
-                                    child: Row(children: [
-                                      SizedBox(
-                                        width: 3,
-                                      ),
+                                    child: Row(
+                                        children: [
+                                      SizedBox(width: 3,),
                                       SizedBox(
                                         height: 30.5,
                                         child: Icon(
@@ -6013,9 +5016,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                               color: Colors.white.withOpacity(0.75)),
                                         ),
                                       ),
-                                      SizedBox(
-                                        width: 7.5,
-                                      ),
+                                      SizedBox(width: 7.5,),
                                     ]),
                                   ),
                                 ),
@@ -6590,8 +5591,7 @@ class _MatrixPageState extends State<MatrixPage> {
                             color: Colors.white.withOpacity(0.8),
                             borderRadius: BorderRadius.circular(0)),
                         height: 176,
-                        margin: EdgeInsets.only(
-                            left: 0, right: 0, top: 0, bottom: 0),
+                        margin: EdgeInsets.only(left: 0, right: 0, top: 0, bottom: 0),
                         child: TextField(
                           minLines: null,
                           maxLines: null,
@@ -6619,8 +5619,7 @@ class _MatrixPageState extends State<MatrixPage> {
                               width: 2.0,
                             ),
                             shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.circular(15), // <-- Radius
+                              borderRadius: BorderRadius.circular(15), // <-- Radius
                             ),
                             primary: Color(0xff19547b),
                           ),
@@ -6732,8 +5731,7 @@ class _MatrixPageState extends State<MatrixPage> {
                             color: Colors.white.withOpacity(0.8),
                             borderRadius: BorderRadius.circular(0)),
                         height: 176,
-                        margin: EdgeInsets.only(
-                            left: 0, right: 0, top: 0, bottom: 0),
+                        margin: EdgeInsets.only(left: 0, right: 0, top: 0, bottom: 0),
                         child: TextField(
                           minLines: null,
                           maxLines: null,
@@ -6761,8 +5759,7 @@ class _MatrixPageState extends State<MatrixPage> {
                               width: 2.0,
                             ),
                             shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.circular(15), // <-- Radius
+                              borderRadius: BorderRadius.circular(15), // <-- Radius
                             ),
                             primary: Color(0xff19547b),
                           ),
@@ -6903,8 +5900,7 @@ class _MatrixPageState extends State<MatrixPage> {
                               width: 2.0,
                             ),
                             shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.circular(15), // <-- Radius
+                              borderRadius: BorderRadius.circular(15), // <-- Radius
                             ),
                             primary: Color(0xff19547b),
                           ),
@@ -7045,8 +6041,7 @@ class _MatrixPageState extends State<MatrixPage> {
                               width: 2.0,
                             ),
                             shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.circular(15), // <-- Radius
+                              borderRadius: BorderRadius.circular(15), // <-- Radius
                             ),
                             primary: Color(0xff19547b),
                           ),
@@ -7187,8 +6182,7 @@ class _MatrixPageState extends State<MatrixPage> {
                               width: 2.0,
                             ),
                             shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.circular(15), // <-- Radius
+                              borderRadius: BorderRadius.circular(15), // <-- Radius
                             ),
                             primary: Color(0xff19547b),
                           ),
@@ -7387,8 +6381,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                         image: DecorationImage(
                                             // opacity: 0.75,
                                             fit: BoxFit.fill,
-                                            image: AssetImage(
-                                                'assets/unassignedticketimage.png'))),
+                                            image: AssetImage('assets/unassignedticketimage.png'))),
                                     child: Stack(
                                       children: [
                                         Center(
@@ -7408,79 +6401,59 @@ class _MatrixPageState extends State<MatrixPage> {
                                         ),
                                         Column(
                                           // mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: <Widget>[
-                                            SizedBox(
-                                              height: 10,
-                                            ),
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          children: [
+                                            SizedBox(height: 10,),
                                             Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
+                                              mainAxisAlignment: MainAxisAlignment.center,
                                               children: [
                                                 Card(
                                                   shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(7.5),
+                                                    borderRadius: BorderRadius.circular(7.5),
                                                   ),
                                                   elevation: 5,
                                                   child: Container(
-                                                      padding: EdgeInsets.symmetric(
-                                                          horizontal: 10.0),
+                                                      padding: EdgeInsets.symmetric(horizontal: 10.0),
                                                       decoration: BoxDecoration(
                                                         color: Colors.black.withOpacity(0.5),
                                                         /*color: element['Color']
                                                             .withOpacity(0.5),*/
-                                                        borderRadius:
-                                                            BorderRadius.all(
-                                                                Radius.circular(
-                                                                    7.5)),
+                                                        borderRadius: BorderRadius.all(Radius.circular(7.5)),
                                                       ),
                                                       child: Text(
                                                         element['SystemNumber'],
                                                         style: TextStyle(
                                                             fontSize: 20,
-                                                            fontWeight:
-                                                                FontWeight.bold),
+                                                            fontWeight: FontWeight.bold),
                                                       )),
                                                 ),
                                               ],
                                             ),
-                                            SizedBox(
-                                              height: 7.5,
-                                            ),
+                                            SizedBox(height: 7.5,),
                                             Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
+                                              mainAxisAlignment: MainAxisAlignment.center,
                                               children: [
                                                 Text(
                                                   element['group'],
                                                   style: TextStyle(
                                                       fontWeight: FontWeight.w400,
                                                       fontSize: 16,
-                                                      color: Colors.black
-                                                          .withOpacity(0.5)),
+                                                      color: Colors.black.withOpacity(0.5)),
                                                 ),
-                                                SizedBox(
-                                                  width: 5,
-                                                ),
+                                                SizedBox(width: 5,),
                                                 Text(
                                                   element['Time'],
                                                   style: TextStyle(
                                                       fontWeight: FontWeight.w400,
                                                       fontSize: 16,
-                                                      color: Colors.black
-                                                          .withOpacity(0.5)),
+                                                      color: Colors.black.withOpacity(0.5)),
                                                 ),
                                               ],
                                             ),
-                                            SizedBox(
-                                              height: 10,
-                                            ),
+                                            SizedBox(height: 10,),
                                             Container(
                                               decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(20),
+                                                borderRadius: BorderRadius.circular(20),
                                               ),
                                               height: 120,
                                               width: 330,
@@ -7492,38 +6465,26 @@ class _MatrixPageState extends State<MatrixPage> {
                                                     textAlign: TextAlign.center,
                                                     style: TextStyle(
                                                         fontSize: 17,
-                                                        color: Colors.black
-                                                            .withOpacity(0.75),
-                                                        fontWeight:
-                                                            FontWeight.w500),
+                                                        color: Colors.black.withOpacity(0.75),
+                                                        fontWeight: FontWeight.w500),
                                                   ),
                                                 ),
                                               ),
                                             ),
-                                            SizedBox(
-                                              height: 10,
-                                            ),
+                                            SizedBox(height: 10,),
                                             Card(
                                               color: Colors.black,
                                               shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(20),
+                                                borderRadius: BorderRadius.circular(20),
                                               ),
                                               elevation: 5,
-                                              shadowColor: Colors.transparent
-                                                  .withOpacity(0.9),
+                                              shadowColor: Colors.transparent.withOpacity(0.9),
                                               child: Container(
                                                 decoration: BoxDecoration(
                                                     color: Color(0xff1A8118),
                                                     // Color(0xff1A8118),
-                                                    borderRadius:
-                                                        BorderRadius.circular(20)),
-                                                padding: EdgeInsets.only(
-                                                  left: 15,
-                                                  right: 15,
-                                                  top: 5,
-                                                  bottom: 5,
-                                                ),
+                                                    borderRadius: BorderRadius.circular(20)),
+                                                padding: EdgeInsets.only(left: 15, right: 15, top: 5, bottom: 5,),
                                                 child: Text(
                                                   'ACCEPT TICKET',
                                                   style: TextStyle(
@@ -7541,9 +6502,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                                 ),
                                               ),
                                             ),
-                                            SizedBox(
-                                              height: 2,
-                                            )
+                                            SizedBox(height: 2,)
                                           ],
                                         ),
                                       ],
@@ -7580,14 +6539,12 @@ class _MatrixPageState extends State<MatrixPage> {
                               reverse: true,
                               child: ConstrainedBox(
                                 constraints: BoxConstraints(
-                                  minHeight:
-                                      MediaQuery.of(context).size.height - 316,
+                                  minHeight: MediaQuery.of(context).size.height - 316,
                                 ),
                                 child: IntrinsicHeight(
                                   child: Column(
                                     children: [
-                                      Padding(
-                                          padding: EdgeInsets.only(bottom: 10.0)),
+                                      Padding(padding: EdgeInsets.only(bottom: 10.0)),
                                       Center(
                                         child: Text(
                                           element['SystemNumber'],
@@ -7607,8 +6564,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                             child: Text(
                                               'HostName',
                                               style: TextStyle(
-                                                  fontFamily:
-                                                      'fonts/Roboto-Bold.ttf',
+                                                  fontFamily: 'fonts/Roboto-Bold.ttf',
                                                   fontWeight: FontWeight.w400,
                                                   fontSize: 18),
                                             ),
@@ -7619,8 +6575,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                             child: Text(
                                               element['HostName'],
                                               style: TextStyle(
-                                                  fontFamily:
-                                                      'fonts/Roboto-Bold.ttf',
+                                                  fontFamily: 'fonts/Roboto-Bold.ttf',
                                                   fontWeight: FontWeight.w400,
                                                   fontSize: 18),
                                             ),
@@ -7638,8 +6593,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                             child: Text(
                                               'IP Address',
                                               style: TextStyle(
-                                                  fontFamily:
-                                                      'fonts/Roboto-Bold.ttf',
+                                                  fontFamily: 'fonts/Roboto-Bold.ttf',
                                                   fontWeight: FontWeight.w400,
                                                   fontSize: 18),
                                             ),
@@ -7650,8 +6604,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                             child: Text(
                                               'IP Address',
                                               style: TextStyle(
-                                                  fontFamily:
-                                                      'fonts/Roboto-Bold.ttf',
+                                                  fontFamily: 'fonts/Roboto-Bold.ttf',
                                                   fontWeight: FontWeight.w400,
                                                   fontSize: 18),
                                             ),
@@ -7669,8 +6622,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                             child: Text(
                                               'Date & Time',
                                               style: TextStyle(
-                                                  fontFamily:
-                                                      'fonts/Roboto-Bold.ttf',
+                                                  fontFamily: 'fonts/Roboto-Bold.ttf',
                                                   fontWeight: FontWeight.w400,
                                                   fontSize: 18),
                                             ),
@@ -7681,8 +6633,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                             child: Text(
                                               element['DateTime'],
                                               style: TextStyle(
-                                                  fontFamily:
-                                                      'fonts/Roboto-Bold.ttf',
+                                                  fontFamily: 'fonts/Roboto-Bold.ttf',
                                                   fontWeight: FontWeight.w400,
                                                   fontSize: 18),
                                             ),
@@ -7700,8 +6651,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                             child: Text(
                                               'Severity',
                                               style: TextStyle(
-                                                  fontFamily:
-                                                      'fonts/Roboto-Bold.ttf',
+                                                  fontFamily: 'fonts/Roboto-Bold.ttf',
                                                   fontWeight: FontWeight.w400,
                                                   fontSize: 18),
                                             ),
@@ -7712,8 +6662,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                             child: Text(
                                               element['Severity'],
                                               style: TextStyle(
-                                                  fontFamily:
-                                                      'fonts/Roboto-Bold.ttf',
+                                                  fontFamily: 'fonts/Roboto-Bold.ttf',
                                                   fontWeight: FontWeight.w400,
                                                   fontSize: 18),
                                             ),
@@ -7731,8 +6680,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                             child: Text(
                                               'Notes',
                                               style: TextStyle(
-                                                  fontFamily:
-                                                      'fonts/Roboto-Bold.ttf',
+                                                  fontFamily: 'fonts/Roboto-Bold.ttf',
                                                   fontWeight: FontWeight.w400,
                                                   fontSize: 18),
                                             ),
@@ -7743,8 +6691,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                             child: Text(
                                               element['ProblemText'],
                                               style: TextStyle(
-                                                  fontFamily:
-                                                      'fonts/Roboto-Bold.ttf',
+                                                  fontFamily: 'fonts/Roboto-Bold.ttf',
                                                   fontWeight: FontWeight.w400,
                                                   fontSize: 18),
                                             ),
@@ -7752,56 +6699,42 @@ class _MatrixPageState extends State<MatrixPage> {
                                           Expanded(child: Container()),
                                         ],
                                       ),
-                                      Padding(
-                                          padding: EdgeInsets.only(bottom: 15.0)),
+                                      Padding(padding: EdgeInsets.only(bottom: 15.0)),
                                       Center(
                                           child: ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.all(Radius.circular(10)),
+                                        borderRadius: BorderRadius.all(Radius.circular(10)),
                                         child: Column(
                                           children: [
                                             Container(
-                                              width: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.90,
-                                              color: Color(0xffC4C4C4)
-                                                  .withOpacity(0.20),
+                                              width: MediaQuery.of(context).size.width * 0.90,
+                                              color: Color(0xffC4C4C4).withOpacity(0.20),
                                               height: 70,
                                               child: TextField(
-                                                scrollPadding:
-                                                    EdgeInsets.only(top: 40),
+                                                scrollPadding: EdgeInsets.only(top: 40),
                                                 showCursor: true,
                                                 cursorColor: Colors.white70,
                                                 keyboardType: TextInputType.text,
-                                                textInputAction:
-                                                    TextInputAction.done,
+                                                textInputAction: TextInputAction.done,
                                                 style: TextStyle(
-                                                  fontFamily:
-                                                      'fonts/Roboto-Bold.ttf',
+                                                  fontFamily: 'fonts/Roboto-Bold.ttf',
                                                   fontSize: 18,
                                                 ),
                                                 textAlign: TextAlign.center,
-                                                decoration:
-                                                    InputDecoration.collapsed(
+                                                decoration: InputDecoration.collapsed(
                                                   hintText: "Notes",
                                                   border: InputBorder.none,
                                                 ),
                                               ),
                                             ),
                                             Container(
-                                              width: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.90,
+                                              width: MediaQuery.of(context).size.width * 0.90,
                                               color: Color(0xff486C7B),
                                               child: Text(
                                                 'Update',
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
                                                   color: Colors.white,
-                                                  fontFamily:
-                                                      'fonts/Roboto-Bold.ttf',
+                                                  fontFamily: 'fonts/Roboto-Bold.ttf',
                                                   fontWeight: FontWeight.w600,
                                                   fontSize: 18,
                                                 ),
@@ -7810,13 +6743,8 @@ class _MatrixPageState extends State<MatrixPage> {
                                           ],
                                         ),
                                       )),
-                                      SizedBox(
-                                        height: MediaQuery.of(context)
-                                            .viewInsets
-                                            .bottom,
-                                      ),
-                                      Padding(
-                                          padding: EdgeInsets.only(bottom: 10.0)),
+                                      SizedBox(height: MediaQuery.of(context).viewInsets.bottom,),
+                                      Padding(padding: EdgeInsets.only(bottom: 10.0)),
                                     ],
                                   ),
                                 ),
@@ -7830,7 +6758,7 @@ class _MatrixPageState extends State<MatrixPage> {
                     elevation: 5.0,
                     color: Colors.transparent,
                     shadowColor: Colors.black,
-                    margin: EdgeInsets.symmetric(horizontal: 0.0, vertical: 5),
+                    margin: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
                     child: Container(
                       height: 42.5,
                       decoration: BoxDecoration(
@@ -8278,9 +7206,7 @@ class _MatrixPageState extends State<MatrixPage> {
             duration: Duration(milliseconds: 250),
             curve: Curves.easeInOut,
             decoration: BoxDecoration(
-                borderRadius: value == 1
-                    ? BorderRadius.circular(40)
-                    : BorderRadius.circular(0),
+                borderRadius: value == 1 ? BorderRadius.circular(40) : BorderRadius.circular(0),
                 gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
@@ -8295,90 +7221,10 @@ class _MatrixPageState extends State<MatrixPage> {
                 Padding(padding: EdgeInsets.only(top: MediaQuery.of(context).viewPadding.top+20)),
                 getDevicesAppbar(),
 
-                DoughnutChart(),
-
                 Expanded(
-                    child:Container(
-                        margin: EdgeInsets.only(left: 15,right: 15,top: 0,bottom: 0),
-                      padding: EdgeInsets.only(top: 5,bottom: 10),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.only(topLeft: Radius.circular(30),topRight: Radius.circular(30),bottomLeft: Radius.circular(30),bottomRight: Radius.circular(30)),
-                          gradient: LinearGradient(
-                              colors: [
-                                Colors.white.withOpacity(0.5),
-                                Colors.white.withOpacity(0.1),
-                              ],
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter)
-                      ),
-                      child: Column(
-                        children: [
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Flexible(
-                                  child: GestureDetector(
-                                    onTap : (){
-                                      setState(() {
-                                        selectedDevicesMarker = DevicesMarker.discover;
-                                      });
-                                    },
-                                    child: Container(
-                                      height: 22.5,
-                                      margin: EdgeInsets.only(left: 7.5,right: 1),
-                                      decoration: BoxDecoration(
-                                        color: (selectedDevicesMarker == DevicesMarker.discover)?Colors.blueGrey:Colors.transparent,
-                                        borderRadius: BorderRadius.only(topLeft: Radius.circular(20))
-                                      ),
-                                      child: Center(
-                                        child: Text(
-                                        "Discover",
-                                        style: TextStyle(
-                                          color: (selectedDevicesMarker == DevicesMarker.discover)?Colors.white:Colors.black,
-                                          // fontWeight: FontWeight.w400,
-                                          // fontFamily: 'Roboto',
-                                        ),
-                                      ),
-                                      ),
-                                    ),
-                                  ),
-                              ),
-                              Flexible(
-                                  child: GestureDetector(
-                                    onTap : (){
-                                      setState(() {
-                                        selectedDevicesMarker = DevicesMarker.discovered;
-                                      });
-                                    },
-                                    child: Container(
-                                      height: 22.5,
-                                      margin: EdgeInsets.only(left: 1,right: 7.5),
-                                      decoration: BoxDecoration(
-                                          color: (selectedDevicesMarker == DevicesMarker.discovered)?Colors.blueGrey:Colors.transparent,
-                                        borderRadius: BorderRadius.only(topRight: Radius.circular(20))
-                                      ),
-                                      child: Center(
-                                          child: Text(
-                                            "Discovered",
-                                            style: TextStyle(
-                                              color: (selectedDevicesMarker == DevicesMarker.discovered)?Colors.white:Colors.black,
-                                              // fontWeight: FontWeight.w400,
-                                              // fontFamily: 'Roboto',
-                                            ),
-                                          )
-                                      ),
-                                    ),
-                                  )
-                              )
-                            ],
-                          ),
-                          getDevicesSwitchContainer(),
-                        ],
-                      ),
-                    )
+                    child: Chart()
                 ),
+
               ],
             )
           // GestureDetector(
@@ -8393,62 +7239,6 @@ class _MatrixPageState extends State<MatrixPage> {
     );
   }
 
-  Widget getDevicesSwitchContainer(){
-    switch (selectedDevicesMarker) {
-      case DevicesMarker.discover:
-        return getDiscover();
-      case DevicesMarker.discovered:
-        return getDiscovered();
-    }
-  }
-
-  Widget getDiscover(){
-    return Expanded(
-        child: Container(
-          margin: EdgeInsets.only(left: 0,right: 0,top: 2.5,bottom: 0),
-          color: Colors.transparent,
-          child: ListView.builder(
-            padding: EdgeInsets.zero,
-            shrinkWrap: true,
-            itemCount: 20,
-            itemBuilder: (BuildContext context, int index) {
-              return Card(
-                elevation: 8.0,
-                margin: EdgeInsets.only(left: 10,right: 10,top: 5,bottom: 5),
-                child: Container(
-                  height: 47.5,
-                  decoration: BoxDecoration(color: Color(0xff404b60).withOpacity(0.9)),
-                ),
-              );
-            },
-          ),
-        )
-    );
-  }
-
-  Widget getDiscovered(){
-    return Expanded(
-        child: Container(
-          margin: EdgeInsets.only(left: 0,right: 0,top: 2.5,bottom: 0),
-          color: Colors.transparent,
-          child: ListView.builder(
-            padding: EdgeInsets.zero,
-            shrinkWrap: true,
-            itemCount: 20,
-            itemBuilder: (BuildContext context, int index) {
-              return Card(
-                elevation: 8.0,
-                margin: EdgeInsets.only(left: 10,right: 10,top: 5,bottom: 5),
-                child: Container(
-                  height: 47.5,
-                  decoration: BoxDecoration(color:Color(0xff19547b).withOpacity(0.85), /*Colors.blueGrey.withOpacity(0.9)*/),
-                ),
-              );
-            },
-          ),
-        )
-    );
-  }
 
   Widget getDevicesAppbar() {
     return Container(
@@ -8483,13 +7273,11 @@ class _MatrixPageState extends State<MatrixPage> {
                         switchOutCurve: Curves.easeOut,
                         duration: Duration(milliseconds: 750),
                         reverseDuration: Duration(milliseconds: 0),
-                        transitionBuilder: (child, animation) =>
-                            RotationTransition(
+                        transitionBuilder: (child, animation) => RotationTransition(
                               child: child,
                               turns: animation,
                             ),
-                        child: value == 1
-                            ? GestureDetector(
+                        child: value == 1 ? GestureDetector(
                           key: Key('2'),
                           onTap: () {
                             setState(() {
@@ -8510,8 +7298,7 @@ class _MatrixPageState extends State<MatrixPage> {
                               size: 26.5,
                             ),
                           ),
-                        )
-                            : GestureDetector(
+                        ) : GestureDetector(
                           key: Key('1'),
                           onTap: () {
                             setState(() {
@@ -8565,497 +7352,6 @@ class _MatrixPageState extends State<MatrixPage> {
                   ),
                 ),
               ])),
-    );
-  }
-
-  Widget DoughnutChart(){
-
-    var _chart = {
-      "Online":15,
-      "Offline":15,
-      "Disabled":20
-    };
-
-    final List<ChartData> chartData = [
-      ChartData(_chart.keys.toList()[0], _chart["Online"]!.toInt(), Color(0xff001F61)),
-      ChartData(_chart.keys.toList()[1],  _chart["Offline"]!.toInt(), Color(0xff0247BA)),
-      ChartData(_chart.keys.toList()[2],  _chart["Disabled"]!.toInt(), Color(0xff0068D7)),
-    ];
-
-    return Stack(
-      children: [
-        SfCircularChart(
-          margin: EdgeInsets.zero,
-          tooltipBehavior: _tooltip,
-          legend: Legend(
-              isVisible: true,
-              overflowMode: LegendItemOverflowMode.none,
-              alignment: ChartAlignment.center,
-              textStyle: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                  shadows: [
-                    Shadow(
-                      offset: Offset(1, 1),
-                      blurRadius: 1,
-                      color: Colors.black.withOpacity(0.8),
-                    ),
-                  ]
-              ),
-              iconWidth: 10,
-              iconHeight:30
-          ),
-          // title: ChartTitle(text: "Demo chart"),
-          annotations: [
-            CircularChartAnnotation(
-                width: "100%",
-                height: "100%",
-                widget: PhysicalModel(
-                    shape: BoxShape.circle,
-                    elevation: 10,
-                    shadowColor: Colors.black,
-                    color: Colors.transparent,/*Color(0xffe6e6e6),*/
-                    child: Center(
-                        child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(100),
-                              image: DecorationImage(
-                                  image: AssetImage('assets/rectangle.png'),
-                                  fit: BoxFit.fill,
-                                  opacity: 0.4
-                              )
-                          ),
-                          child: Center(
-                            child: Text(
-                              "50",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 40,
-                                  shadows: [
-                                    Shadow(
-                                      offset: Offset(1, 1),
-                                      blurRadius: 1,
-                                      color: Colors.black.withOpacity(0.8),
-                                    ),
-                                  ]
-                              ),
-                            ),
-                          ),
-                        )
-                    )
-                )
-            )
-          ],
-          series: <CircularSeries>[
-            // Renders doughnut chart
-            DoughnutSeries<ChartData, String>(
-                startAngle: 0,
-                endAngle: 360,
-                explodeIndex: 55,
-                strokeColor: Colors.transparent,
-                dataLabelMapper: (ChartData data, _) => data.y.toString(),
-                dataLabelSettings: DataLabelSettings(isVisible: true,overflowMode: OverflowMode.shift),
-                enableTooltip: true,
-                radius: "80%",
-                innerRadius: "70%",
-                explode: true,
-                dataSource: chartData,
-                pointColorMapper: (ChartData data, _) => data.color,
-                xValueMapper: (ChartData data, _) => data.x,
-                yValueMapper: (ChartData data, _) => data.y
-            )
-          ],
-        ),
-
-        Positioned.fill(
-          child: Align(
-            alignment: Alignment.centerRight,
-            child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-              InkWell(
-                onTap: () {
-
-                  setState(() {
-
-                    _deviceWidth = !_deviceWidth;
-                    _deviceflag = false;
-
-                  });
-
-                },
-                child: AnimatedContainer(
-                  constraints: BoxConstraints(
-                      minWidth: 25),
-                  duration: Duration(milliseconds: 0),
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        Colors.white.withOpacity(0.5),
-                        Colors.white.withOpacity(0.2)
-                      ],
-                      stops: [0.0, 1.0],
-                    ),
-                    // color: Colors.white60,
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(15),
-                        bottomLeft: Radius.circular(15)),
-                  ),
-                  // width: !width? null : 15,
-                  height: 50,
-                  child: Visibility(
-                    visible: !_deviceWidth,
-                    child: ListView(
-                      shrinkWrap: true,
-                      scrollDirection: Axis.horizontal,
-                      padding: EdgeInsets.all(4.0),
-                      children: [
-                        AnimatedSwitcher(
-                          duration: Duration(milliseconds: 500),
-                          child: _deviceflag
-                              ? GestureDetector(
-                            key: Key('2'),
-                            onTap: () {
-                              setState(() {
-                                _deviceflag = !_deviceflag;
-                              });
-                            },
-                            child: Card(
-                              color: Colors.transparent,
-                              elevation: 5,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                    borderRadius:
-                                    BorderRadius.circular(25),
-                                    color: Colors.black.withOpacity(0.5),
-                                    boxShadow: [
-                                      BoxShadow(
-                                          blurRadius: 0,
-                                          offset: Offset(2, 4),
-                                          color: Colors.black12
-                                              .withOpacity(
-                                              0.15)), //3dright
-                                    ]),
-                                child: Row(children: [
-                                  SizedBox(
-                                    width: 20,
-                                  ),
-                                  Center(
-                                    child: Container(
-                                        width: 150,
-                                        child: TextField(
-                                          onChanged: (value) =>
-                                              _runFilter(value),
-                                          autofocus: true,
-                                          cursorColor: Colors.white24,
-                                          keyboardType:
-                                          TextInputType.text,
-                                          style: TextStyle(
-                                              fontFamily:
-                                              'fonts/Roboto-Bold.ttf',
-                                              fontSize: 18,
-                                              color: Colors.white),
-                                          textAlign: TextAlign.center,
-                                          decoration:
-                                          InputDecoration.collapsed(
-                                            hintText: "Search",
-                                            hintStyle: TextStyle(
-                                                color: Colors.white70),
-                                            border: InputBorder.none,
-                                          ),
-                                        )
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 2.5,
-                                  ),
-                                  SizedBox(
-                                    height: 24.5,
-                                    child: Icon(
-                                      Icons.search_sharp,
-                                      color: Colors.white,
-                                      size: 27,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                ]),
-                              ),
-                            ),
-                          )
-                              : GestureDetector(
-                            key: Key('1'),
-                            onTap: () {
-                              setState(() {
-                                _deviceflag = !_deviceflag;
-                              });
-                            },
-                            child: Card(
-                              color: Colors.transparent,
-                              elevation: 5,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                    borderRadius:
-                                    BorderRadius.circular(25),
-                                    color: Colors.black.withOpacity(0.5),
-                                    boxShadow: [
-                                      BoxShadow(
-                                          blurRadius: 0,
-                                          offset: Offset(2, 4),
-                                          color: Colors.black12
-                                              .withOpacity(
-                                              0.15)), //3dright
-                                    ]),
-                                child: Row(children: [
-                                  SizedBox(
-                                    width: 3,
-                                  ),
-                                  SizedBox(
-                                    height: 22.5,
-                                    child: Icon(
-                                      Icons.search_sharp,
-                                      color: Colors.white,
-                                      size: 27,
-                                    ),
-                                  ),
-                                  Center(
-                                    child: Text(
-                                      'Search',
-                                      style: TextStyle(
-                                          fontFamily:
-                                          'fonts/Roboto-Light.ttf',
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 16,
-                                          color: Colors.white
-                                              .withOpacity(0.75)),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                ]),
-                              ),
-                            ),
-                          ),
-                        ),
-                        /*Card(
-                          color: Colors.transparent,
-                          elevation: 5,
-                          child: GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                _deviceWidth  = !_deviceWidth ;
-                              });
-                              showDialog(
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    return AlertDialog(
-                                      actionsAlignment:
-                                      MainAxisAlignment.center,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(15.0),
-                                      ),
-                                      actionsOverflowButtonSpacing: 10,
-                                      elevation: 5,
-                                      backgroundColor: Colors.white70,
-                                      // context: context,
-                                      // title: "CREATE",
-                                      scrollable: true,
-                                      title: Text(
-                                        'Create',
-                                        textAlign: TextAlign.center,
-                                      ),
-                                      content: Column(
-                                        children: <Widget>[
-                                          Container(
-                                            height: 47,
-                                            padding: EdgeInsets.only(left: 15),
-                                            decoration: BoxDecoration(
-                                                borderRadius:
-                                                BorderRadius.circular(10),
-                                                border: Border.all(
-                                                    color: Colors.black
-                                                        .withOpacity(0.55))),
-                                            child: TextField(
-                                              cursorColor: Colors.white,
-                                              autofocus: false,
-                                              decoration: InputDecoration(
-                                                border: InputBorder.none,
-                                                icon: Icon(
-                                                  Icons.email_outlined,
-                                                  color: Colors.black
-                                                      .withOpacity(0.6),
-                                                ),
-                                                hintText: 'Email',
-                                                labelStyle: TextStyle(
-                                                    color: Colors.black
-                                                        .withOpacity(0.6)),
-                                              ),
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            height: 9,
-                                          ),
-                                          Container(
-                                            height: 47,
-                                            padding: EdgeInsets.only(left: 15),
-                                            decoration: BoxDecoration(
-                                                borderRadius:
-                                                BorderRadius.circular(10),
-                                                border: Border.all(
-                                                    color: Colors.black
-                                                        .withOpacity(0.55))),
-                                            child: TextField(
-                                              cursorColor: Colors.white,
-                                              obscureText: false,
-                                              decoration: InputDecoration(
-                                                  border: InputBorder.none,
-                                                  icon: Icon(
-                                                    Icons
-                                                        .account_circle_outlined,
-                                                    color: Colors.black
-                                                        .withOpacity(0.6),
-                                                  ),
-                                                  hintText: 'Agent ID',
-                                                  labelStyle: TextStyle(
-                                                    color: Colors.black
-                                                        .withOpacity(0.6),
-                                                  )),
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            height: 9,
-                                          ),
-                                          Center(
-                                              child: Column(
-                                                children: [
-                                                  Container(
-                                                    decoration: BoxDecoration(
-                                                        borderRadius:
-                                                        BorderRadius.all(
-                                                            Radius.circular(
-                                                                10)),
-                                                        color: Color(0xffC4C4C4)
-                                                            .withOpacity(0.20),
-                                                        border: Border.all(
-                                                            color: Colors.black87)),
-                                                    width: 350,
-                                                    height: 70,
-                                                    alignment: Alignment(0, -0.5),
-                                                    child: TextField(
-                                                      minLines: 1,
-                                                      maxLines: 3,
-                                                      scrollPadding:
-                                                      EdgeInsets.only(top: 40),
-                                                      showCursor: true,
-                                                      cursorColor: Colors.white70,
-                                                      keyboardType:
-                                                      TextInputType.multiline,
-                                                      textInputAction:
-                                                      TextInputAction.done,
-                                                      style: TextStyle(
-                                                        fontFamily:
-                                                        'fonts/Roboto-Bold.ttf',
-                                                        fontSize: 18,
-                                                      ),
-                                                      textAlign: TextAlign.center,
-                                                      decoration:
-                                                      InputDecoration.collapsed(
-                                                        hintText: "Notes",
-                                                        border: InputBorder.none,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  SizedBox(
-                                                    height: 9,
-                                                  ),
-                                                  ElevatedButton(
-                                                      child: Text(
-                                                        "SUBMIT",
-                                                        style: TextStyle(
-                                                            color: Colors.black
-                                                                .withOpacity(0.75)),
-                                                      ),
-                                                      style:
-                                                      ElevatedButton.styleFrom(
-                                                        primary: Colors.white70,
-                                                      ),
-                                                      onPressed: () {
-                                                        Navigator.pop(context);
-                                                      }),
-                                                  // Container(
-                                                  //   height: 25,
-                                                  //   width: 100,
-                                                  //   child: Center(
-                                                  //     child: Text('SUBMIT'),
-                                                  //   ),
-                                                  // )
-                                                ],
-                                              )),
-                                        ],
-                                      ),
-                                    );
-                                  });
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(25),
-                                  color: Colors.black.withOpacity(0.5),
-                                  boxShadow: [
-                                    BoxShadow(
-                                        blurRadius: 0,
-                                        offset: Offset(2, 4),
-                                        color: Colors.black12
-                                            .withOpacity(0.15)), //3dright
-                                  ]),
-                              child: Row(children: [
-                                SizedBox(
-                                  width: 3,
-                                ),
-                                SizedBox(
-                                  height: 30.5,
-                                  child: Icon(
-                                    Icons.add_circle_outline,
-                                    color: Colors.white,
-                                    size: 27,
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 4,
-                                ),
-                                Center(
-                                  child: Text(
-                                    'Create',
-                                    style: TextStyle(
-                                        fontFamily: 'fonts/Roboto-Light.ttf',
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 16,
-                                        color: Colors.white.withOpacity(0.75)),
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 7.5,
-                                ),
-                              ]),
-                            ),
-                          ),
-                        ),*/
-                        Icon(
-                          Icons.keyboard_arrow_right_sharp,
-                          color: Colors.white,
-                          size: 25,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ]),
-          ),
-        )
-      ],
     );
   }
 
@@ -9374,12 +7670,6 @@ class _MatrixPageState extends State<MatrixPage> {
 
 }
 
-class ChartData {
-  ChartData(this.x, this.y,this.color);
-  final String x;
-  final int y;
-  final Color color;
-}
 
 
 /*class CallDialog{

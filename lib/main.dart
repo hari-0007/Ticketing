@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:allitson/matrixpage.dart';
 import 'package:flutter/material.dart';
@@ -297,15 +298,16 @@ class _MyHomePageState extends State<MyHomePage> {
 
                 GestureDetector(
                   onTap: () {
-                    sendRequest();
+                    // sendRequest();
                     // print(emailController.text);
                     FocusManager.instance.primaryFocus?.unfocus();
-                    print(loginRequestModel.toJson());
-                    /*Navigator.push(
+                    // print(json.encode(loginRequestModel));
+                    // print(json.encode(data));
+                    Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context)=>  MatrixPage()
                         )
-                    );*/
+                    );
                   },
                   child: Container(
                     height: 32,
@@ -360,20 +362,24 @@ class _MyHomePageState extends State<MyHomePage> {
 
   sendRequest() async {
 
-    var data = {
+    /*Map<String, dynamic> data = {
       "method" : "user.login",
       "jsonrpc" : "2.0",
-      "params" : [
-        {
+      "params" : {
           "username": "keerthi",
           "password": "123"
-        }
-      ],
+        },
       "id" : "1"
-    };
+    };*/
 
     var url = 'http://192.168.0.102:8000/';
-    var response = await http.post(Uri.parse(url), body: data/*loginRequestModel.toJson(),*/);
+    var response = await http.post(Uri.parse(url), body: json.encode(loginRequestModel),
+      headers: {
+      'Content-type': 'application/json',
+        'Accept': 'application/json',
+        "Authorization": "Some token"
+      },
+    );
     //     .then((response) {
     //   if(response.statusCode==200){
     //     ScaffoldMessenger.of(context)
@@ -415,6 +421,7 @@ class _MyHomePageState extends State<MyHomePage> {
     print(response.reasonPhrase);
     print(response.persistentConnection);
     print(response.isRedirect);
+    print(Uri.parse(url).isAbsolute);
   }
 
   /*sendRequest() async {
@@ -462,8 +469,8 @@ class LoginRequestModel {
       "method" : "user.login",
       "jsonrpc" : "2.0",
       "params" : {
-        "username": email.trim(),
-        "password": password.trim()
+        "username": email,
+        "password": password
       },
       "id" : 1
     };
@@ -472,35 +479,4 @@ class LoginRequestModel {
   }
 }
 
-/*
-sendRequest() async {
 
-  Map data = {
-    "method" : "user.login",
-    "jsonrpc" : "2.0",
-    "username" : "keerthi",
-    "password" : "123",
-    "id" : "1"
-  };
-
-  var url = 'http://192.168.0.104:8000/';
-  http.post(Uri.parse(url), body: data)
-      .then((response) {
-    print(response.statusCode);
-    */
-/*if(response.statusCode==200){
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text('Login Successful'),));
-    }else{
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text('Login UnSuccessful'),));
-    }*//*
-
-    print(response.body);
-    print(response.request);
-    print(response.reasonPhrase);
-    print(response.persistentConnection);
-    print(response.isRedirect);
-  });
-}
-*/
