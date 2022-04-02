@@ -82,49 +82,51 @@ class _ChartState extends State<Chart> {
               // title: ChartTitle(text: "Demo chart"),
               annotations: [
                 CircularChartAnnotation(
-                    width: "100%",
-                    height: "100%",
-                    widget: GestureDetector(
-                      onTap: (){
-                        setState(() {
-                          print("hello");
-                        });
-                      },
-                      child: PhysicalModel(
-                          shape: BoxShape.circle,
-                          elevation: 10,
-                          shadowColor: Colors.black,
-                          color: Colors.transparent,/*Color(0xffe6e6e6),*/
-                          child: Center(
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(100),
-                                  image: DecorationImage(
-                                    image: AssetImage('assets/rectangle.png'),
-                                    fit: BoxFit.fill,
-                                    opacity: 0.4
-                                  )
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    "50",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 40,
-                                        shadows: [
-                                          Shadow(
-                                            offset: Offset(1, 1),
-                                            blurRadius: 1,
-                                            color: Colors.black.withOpacity(0.8),
-                                          ),
-                                        ]
-                                    ),
-                                  ),
-                                ),
+                    width: "110%",
+                    height: "110%",
+                    widget: PhysicalModel(
+                        shape: BoxShape.circle,
+                        elevation: 10,
+                        shadowColor: Colors.black,
+                        color: Colors.transparent,/*Color(0xffe6e6e6),*/
+                        child: GestureDetector(
+                          onTap: (){
+                            setState(() {
+                              print("hello");
+                            });
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: Colors.white,
+                                width: 5
+                              ),
+                              borderRadius: BorderRadius.circular(100),
+                              image: DecorationImage(
+                                image: AssetImage('assets/rectangle.png'),
+                                fit: BoxFit.fill,
+                                opacity: 0.1
                               )
-                          )
-                      ),
+                            ),
+                            child: Center(
+                              child: Text(
+                                "50",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 40,
+                                    shadows: [
+                                      Shadow(
+                                        offset: Offset(1, 1),
+                                        blurRadius: 1,
+                                        color: Colors.black.withOpacity(0.8),
+                                      ),
+                                    ]
+                                ),
+                              ),
+                            ),
+                          ),
+                        )
                     )
                 )
               ],

@@ -865,7 +865,20 @@ class _MatrixPageState extends State<MatrixPage> {
                             ),
                           ),
                         );
-                      }),
+                      },
+                        errorBuilder: (BuildContext context, Object, StackTrace? errorBuilder){
+                            return ClipOval(
+                              child: SizedBox(
+                                  height: 100,
+                                  width: 100,
+                                  child: CircularProgressIndicator(
+                                    color: Colors.blue.withOpacity(0.7),
+                                    backgroundColor: Colors.white.withOpacity(0.4),
+                                  )
+                              ),
+                            );
+                      },
+                      ),
                     ),
                     //  CircleAvatar(
                     //   radius: 50,
@@ -3695,150 +3708,161 @@ class _MatrixPageState extends State<MatrixPage> {
                                             ],
                                             image: DecorationImage(
                                                 fit: BoxFit.cover,
+                                                opacity: 1,
                                                 image: AssetImage('assets/rectangle.png',),
                                             ),
                                           ),
-                                          child: Column(
+                                          child: Stack(
                                             children: [
-                                              Padding(padding: EdgeInsets.only(top: 10.0)),
-                                              Row(
-                                                children: [
-                                                  if(_foundTicket[index]["Severity"]=="High") ...[
-                                                    Image.asset("assets/vectorright.png")
-                                                  ]else if(_foundTicket[index]["Severity"]=="Medium") ...[
-                                                    Image.asset("assets/greenticket.png")
-                                                  ]else if(_foundTicket[index]["Severity"]=="Low") ...[
-                                                    Image.asset("assets/yellowticket.png")
-                                                  ]else if(_foundTicket[index]["Severity"]=="Information") ...[
-                                                    Image.asset("assets/whiteticket.png")
-                                                  ],
-                                                  /*Image.asset(
-                                                      _foundTicket[index]["Image"]),*/
-                                                  Padding(padding: EdgeInsets.only(right: 5.0)),
-                                                  Text(
-                                                    _foundTicket[index]['SystemNumber'],
-                                                    textAlign: TextAlign.center,
-                                                    style: TextStyle(
-                                                        fontFamily: 'fonts/Roboto-Bold.ttf',
-                                                        fontWeight: FontWeight.w900,
-                                                        fontSize: 24),
-                                                  ),
-                                                  Visibility(
-                                                    visible: _foundTicket[index]['loadingIndicator'],
-                                                    child: Padding(
-                                                      padding: EdgeInsets.only(top: 0.0, bottom: 2.5, left: 5),
-                                                      child: Stack(
-                                                        alignment: Alignment.center,
-                                                        children: [
-                                                          SizedBox(
-                                                            width: 25,
-                                                            height: 25,
-                                                            child: LoadingIndicator(
-                                                              indicatorType: Indicator.ballScaleMultiple,
-                                                              colors: [
-                                                                Colors.green.withOpacity(0.9),
-                                                                /*Color(0xff3B8DC2)
-                                                                    .withOpacity(
-                                                                    1),*/
-                                                              ],
-                                                            ),
-                                                          ),
-                                                          Container(
-                                                            height: 7.5,
-                                                            width: 7.5,
-                                                            decoration: BoxDecoration(
-                                                                color: Colors.green,
-                                                                /*Color(0XFF19547B),*/
-                                                                borderRadius: BorderRadius.circular(50)),
-                                                          )
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
+                                              Positioned.fill(
+                                                  child: BackdropFilter(
+                                                    filter: ImageFilter.blur(sigmaX: 0.5, sigmaY: 0.5),
+                                                    child: Container(color: Colors.transparent,),
+                                                  )
                                               ),
-                                              Padding(padding: EdgeInsets.only(top: 3.0)),
-                                              SizedBox(
-                                                height: 108,
-                                                width: 112,
-                                                child: SingleChildScrollView(
-                                                  scrollDirection: Axis.vertical,
-                                                  child: Text(
-                                                    _foundTicket[index]['ProblemText'],
-                                                    textAlign: TextAlign.center,
-                                                    style: TextStyle(
-                                                        fontFamily: 'Roboto',
-                                                        fontSize: 14),
-                                                  ),
-                                                ),
-                                              ),
-                                              Padding(padding: EdgeInsets.only(top: 13.0)),
-                                              Row(
-                                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                                crossAxisAlignment: CrossAxisAlignment.center,
+                                              Column(
                                                 children: [
-
-                                                  /*Visibility(
-                                                    visible: true,
-                                                    child: Badge(
-                                                      position: BadgePosition(top: 3,end: 3),
-                                                      toAnimate: true,
-                                                      padding: EdgeInsets.all(2.5),
-                                                      shape: BadgeShape.circle,
-                                                      alignment: Alignment(1,-1),
-                                                      showBadge: true,
-                                                      elevation: 2,
-                                                      animationType: BadgeAnimationType.fade,
-                                                      badgeColor: Colors.white.withOpacity(0.4),
-                                                      badgeContent: Text(
-                                                        '10',
+                                                  Padding(padding: EdgeInsets.only(top: 10.0)),
+                                                  Row(
+                                                    children: [
+                                                      if(_foundTicket[index]["Severity"]=="High") ...[
+                                                        Image.asset("assets/vectorright.png")
+                                                      ]else if(_foundTicket[index]["Severity"]=="Medium") ...[
+                                                        Image.asset("assets/greenticket.png")
+                                                      ]else if(_foundTicket[index]["Severity"]=="Low") ...[
+                                                        Image.asset("assets/yellowticket.png")
+                                                      ]else if(_foundTicket[index]["Severity"]=="Information") ...[
+                                                        Image.asset("assets/whiteticket.png")
+                                                      ],
+                                                      /*Image.asset(
+                                                          _foundTicket[index]["Image"]),*/
+                                                      Padding(padding: EdgeInsets.only(right: 5.0)),
+                                                      Text(
+                                                        _foundTicket[index]['SystemNumber'],
+                                                        textAlign: TextAlign.center,
                                                         style: TextStyle(
-                                                            fontSize: 10,
-                                                            color: Colors.black.withOpacity(0.7),
-                                                            fontWeight: FontWeight.bold
+                                                            fontFamily: 'fonts/Roboto-Bold.ttf',
+                                                            fontWeight: FontWeight.w900,
+                                                            fontSize: 24),
+                                                      ),
+                                                      Visibility(
+                                                        visible: _foundTicket[index]['loadingIndicator'],
+                                                        child: Padding(
+                                                          padding: EdgeInsets.only(top: 0.0, bottom: 2.5, left: 5),
+                                                          child: Stack(
+                                                            alignment: Alignment.center,
+                                                            children: [
+                                                              SizedBox(
+                                                                width: 25,
+                                                                height: 25,
+                                                                child: LoadingIndicator(
+                                                                  indicatorType: Indicator.ballScaleMultiple,
+                                                                  colors: [
+                                                                    Colors.green.withOpacity(0.9),
+                                                                    /*Color(0xff3B8DC2)
+                                                                        .withOpacity(
+                                                                        1),*/
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                              Container(
+                                                                height: 7.5,
+                                                                width: 7.5,
+                                                                decoration: BoxDecoration(
+                                                                    color: Colors.green,
+                                                                    /*Color(0XFF19547B),*/
+                                                                    borderRadius: BorderRadius.circular(50)),
+                                                              )
+                                                            ],
+                                                          ),
                                                         ),
                                                       ),
-                                                      child: Icon(
-                                                        Icons.mail_outline_rounded,
-                                                        color: Colors.black.withOpacity(0.65),
-                                                        size: 26,
-                                                      ),
-                                                    ),
-                                                  ),*/
-                                                  Visibility(
-                                                    visible: false,
-                                                    child: Padding(
-                                                      padding: EdgeInsets.only(left: 2),
-                                                      child: Icon(
-                                                        Icons.mail_rounded,
-                                                        color: /*Color(0xff134074),*/Color(0xff19547b),
-                                                        size: 26,
+                                                    ],
+                                                  ),
+                                                  Padding(padding: EdgeInsets.only(top: 3.0)),
+                                                  SizedBox(
+                                                    height: 108,
+                                                    width: 112,
+                                                    child: SingleChildScrollView(
+                                                      scrollDirection: Axis.vertical,
+                                                      child: Text(
+                                                        _foundTicket[index]['ProblemText'],
+                                                        textAlign: TextAlign.center,
+                                                        style: TextStyle(
+                                                            fontFamily: 'Roboto',
+                                                            fontSize: 14),
                                                       ),
                                                     ),
                                                   ),
+                                                  Padding(padding: EdgeInsets.only(top: 13.0)),
+                                                  Row(
+                                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                                    children: [
 
+                                                      /*Visibility(
+                                                        visible: true,
+                                                        child: Badge(
+                                                          position: BadgePosition(top: 3,end: 3),
+                                                          toAnimate: true,
+                                                          padding: EdgeInsets.all(2.5),
+                                                          shape: BadgeShape.circle,
+                                                          alignment: Alignment(1,-1),
+                                                          showBadge: true,
+                                                          elevation: 2,
+                                                          animationType: BadgeAnimationType.fade,
+                                                          badgeColor: Colors.white.withOpacity(0.4),
+                                                          badgeContent: Text(
+                                                            '10',
+                                                            style: TextStyle(
+                                                                fontSize: 10,
+                                                                color: Colors.black.withOpacity(0.7),
+                                                                fontWeight: FontWeight.bold
+                                                            ),
+                                                          ),
+                                                          child: Icon(
+                                                            Icons.mail_outline_rounded,
+                                                            color: Colors.black.withOpacity(0.65),
+                                                            size: 26,
+                                                          ),
+                                                        ),
+                                                      ),*/
+                                                      Visibility(
+                                                        visible: false,
+                                                        child: Padding(
+                                                          padding: EdgeInsets.only(left: 2),
+                                                          child: Icon(
+                                                            Icons.mail_rounded,
+                                                            color: /*Color(0xff134074),*/Color(0xff19547b),
+                                                            size: 26,
+                                                          ),
+                                                        ),
+                                                      ),
+
+                                                      Text(
+                                                        _foundTicket[index]['Time'],
+                                                        textAlign: TextAlign.center,
+                                                        style: TextStyle(
+                                                            fontFamily: 'Roboto',
+                                                            fontWeight: FontWeight.w400,
+                                                            fontSize: 18),
+                                                      ),
+
+                                                      SizedBox(width: 3,),
+
+                                                    ],
+                                                  ),
+                                                  Padding(padding: EdgeInsets.only(top: 1.5)),
                                                   Text(
-                                                    _foundTicket[index]['Time'],
+                                                    _foundTicket[index]['DateTime'],
                                                     textAlign: TextAlign.center,
                                                     style: TextStyle(
-                                                        fontFamily: 'Roboto',
-                                                        fontWeight: FontWeight.w400,
-                                                        fontSize: 18),
+                                                        color: Color(0xff000000).withOpacity(0.65),
+                                                        fontFamily: 'fonts/Roboto-Thin.ttf',
+                                                        // fontWeight: FontWeight.normal,
+                                                        fontSize: 12),
                                                   ),
-
-                                                  SizedBox(width: 3,),
-
                                                 ],
-                                              ),
-                                              Padding(padding: EdgeInsets.only(top: 1.5)),
-                                              Text(
-                                                _foundTicket[index]['DateTime'],
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                    color: Color(0xff000000).withOpacity(0.65),
-                                                    fontFamily: 'fonts/Roboto-Thin.ttf',
-                                                    // fontWeight: FontWeight.normal,
-                                                    fontSize: 12),
                                               ),
                                             ],
                                           ),

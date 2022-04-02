@@ -412,11 +412,12 @@ class _MyHomePageState extends State<MyHomePage> {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(
         duration: Duration(milliseconds: 500),
-        content: Text(response.reasonPhrase.toString()),
+        content: Text(jsonDecode(response.body)["error"]),
       ));
     }
     print(response.statusCode);
-    print(response.body);
+    print(jsonDecode(response.body));
+    print(jsonDecode(response.body)["result"]);
     print(response.request);
     print(response.reasonPhrase);
     print(response.persistentConnection);
