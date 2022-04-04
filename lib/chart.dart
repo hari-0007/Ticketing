@@ -105,7 +105,7 @@ class _ChartState extends State<Chart> {
                               image: DecorationImage(
                                 image: AssetImage('assets/rectangle.png'),
                                 fit: BoxFit.fill,
-                                opacity: 0.1
+                                opacity: 1
                               )
                             ),
                             child: Center(
