@@ -1,6 +1,32 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:grouped_list/grouped_list.dart';
+
+
+List<Map<String, dynamic>> _elements = [
+  {'devices': 'C0001', 'group': 'Online'},
+  {'devices': 'C0002', 'group': 'Online'},
+  {'devices': 'C0003', 'group': 'Online'},
+  {'devices': 'C0004', 'group': 'Online'},
+  {'devices': 'C0005', 'group': 'Online'},
+  {'devices': 'C0006', 'group': 'Online'},
+  {'devices': 'A0001', 'group': 'Offline'},
+  {'devices': 'C0007', 'group': 'Online'},
+  {'devices': 'A0002', 'group': 'Offline'},
+  {'devices': 'A0003', 'group': 'Offline'},
+  {'devices': 'A0004', 'group': 'Offline'},
+  {'devices': 'A0005', 'group': 'Offline'},
+  {'devices': 'A0006', 'group': 'Offline'},
+  {'devices': 'B0001', 'group': 'Disabled'},
+  {'devices': 'A0007', 'group': 'Offline'},
+  {'devices': 'B0002', 'group': 'Disabled'},
+  {'devices': 'B0003', 'group': 'Disabled'},
+  {'devices': 'B0004', 'group': 'Disabled'},
+  {'devices': 'B0005', 'group': 'Disabled'},
+  {'devices': 'B0006', 'group': 'Disabled'},
+  {'devices': 'B0007', 'group': 'Disabled'},
+];
 
 enum DevicesMarker {discover, discovered}
 
@@ -13,6 +39,9 @@ class Chart extends StatefulWidget {
 
 class _ChartState extends State<Chart> {
 
+  List<Map<String, dynamic>> _discover = [];
+
+
   late List<ChartData> data;
   late TooltipBehavior _tooltip;
 
@@ -23,8 +52,30 @@ class _ChartState extends State<Chart> {
 
   @override
   void initState() {
-    _tooltip=TooltipBehavior(enable: true,);
+
+    _discover = _elements;
+
+    _tooltip=TooltipBehavior(enable: true,elevation: 2,color: Colors.blueGrey,duration: 2000,animationDuration: 1000);
+
     super.initState();
+  }
+
+  void _devicesSearch(String enteredKeyword) {
+    List<Map<String, dynamic>> results = [];
+    if (enteredKeyword.isEmpty) {
+      // if the search field is empty or only contains white-space, we'll display all users
+      results = _elements;
+    } else {
+      results = _elements
+          .where((user) =>_deviceflag==true?
+          user["devices"].toLowerCase().contains(enteredKeyword.toLowerCase()) : user["group"].toLowerCase().contains(enteredKeyword.toLowerCase())).toList();
+      // we use the toLowerCase() method to make it case-insensitive
+    }
+
+    // Refresh the UI
+    setState(() {
+      _discover = results;
+    });
   }
 
   @override
@@ -47,6 +98,7 @@ class _ChartState extends State<Chart> {
         Stack(
           children: [
             SfCircularChart(
+
               margin: EdgeInsets.zero,
               tooltipBehavior: _tooltip,
               onLegendTapped: (data){
@@ -80,30 +132,32 @@ class _ChartState extends State<Chart> {
                 iconHeight:30
               ),
               // title: ChartTitle(text: "Demo chart"),
+
               annotations: [
                 CircularChartAnnotation(
-                    width: "110%",
-                    height: "110%",
-                    widget: PhysicalModel(
-                        shape: BoxShape.circle,
-                        elevation: 10,
-                        shadowColor: Colors.black,
-                        color: Colors.transparent,/*Color(0xffe6e6e6),*/
-                        child: GestureDetector(
-                          onTap: (){
-                            setState(() {
-                              print("hello");
-                            });
-                          },
+                    width: /*"111.5%",*/"105%",
+                    height: /*"111.5%",*/"105%",
+                    widget: GestureDetector(
+                      onTap: (){
+                        setState(() {
+                          print("hello");
+                          _devicesSearch("");
+                        });
+                      },
+                      child: PhysicalModel(
+                          shape: BoxShape.circle,
+                          elevation: 10,
+                          shadowColor: Colors.black,
+                          color: Colors.transparent,/*Color(0xffe6e6e6),*/
                           child: Container(
                             decoration: BoxDecoration(
-                              border: Border.all(
+                              /*border: Border.all(
                                 color: Colors.white,
                                 width: 5
-                              ),
+                              ),*/
                               borderRadius: BorderRadius.circular(100),
                               image: DecorationImage(
-                                image: AssetImage('assets/rectangle.png'),
+                                image: AssetImage('assets/rectangleintocircle.png'),
                                 fit: BoxFit.fill,
                                 opacity: 1
                               )
@@ -125,29 +179,55 @@ class _ChartState extends State<Chart> {
                                 ),
                               ),
                             ),
-                          ),
-                        )
+                          )
+                      ),
                     )
-                )
+                ),
+                /*CircularChartAnnotation(
+                    width: *//*"111.5%",*//*"105%",
+                    height: *//*"111.5%",*//*"105%",
+                    widget: GestureDetector(
+                      onTap: (){
+                        setState(() {
+                          print("hello");
+                          _devicesSearch("");
+                        });
+                      },
+                    )
+                )*/
               ],
               series: <CircularSeries>[
                 // Renders doughnut chart
                 DoughnutSeries<ChartData, String>(
-                    onPointTap: (value){
+                    /*onPointTap: (value){
                       setState(() {
                         print(chartData[value.pointIndex!].y);
                       });
+                    },*/
+                    /*onPointDoubleTap: (value){
+                      setState(() {
+                        print(chartData[value.pointIndex!].y);
+                      });
+                    },*/
+                    onPointTap: (value){
+                      setState(() {
+                        _devicesSearch(chartData[value.pointIndex!].x);
+                        print(chartData[value.pointIndex!].x);
+                      });
                     },
-                    startAngle: 0,
-                    endAngle: 360,
-                    explodeIndex: 55,
+                    /*startAngle: 0,
+                    endAngle: 360,*/
+                    explodeOffset: "10%",
                     strokeColor: Colors.transparent,
+                    // explodeAll: false,
                     dataLabelMapper: (ChartData data, _) => data.y.toString(),
                     dataLabelSettings: DataLabelSettings(isVisible: true,overflowMode: OverflowMode.shift),
                     enableTooltip: true,
                     radius: "80%",
-                    innerRadius: "70%",
+                    innerRadius: "60%",
                     explode: true,
+                    // explodeIndex: 1,
+                    explodeGesture: ActivationMode.singleTap,
                     dataSource: chartData,
                     pointColorMapper: (ChartData data, _) => data.color,
                     xValueMapper: (ChartData data, _) => data.x,
@@ -230,8 +310,7 @@ class _ChartState extends State<Chart> {
                                         child: Container(
                                             width: 150,
                                             child: TextField(
-                                              /*onChanged: (value) =>
-                                                  _runFilter(value),*/
+                                              onChanged: (value) => _devicesSearch(value),
                                               autofocus: true,
                                               cursorColor: Colors.white24,
                                               keyboardType:
@@ -293,7 +372,8 @@ class _ChartState extends State<Chart> {
                                                   .withOpacity(
                                                   0.15)), //3dright
                                         ]),
-                                    child: Row(children: [
+                                    child: Row(
+                                        children: [
                                       SizedBox(
                                         width: 3,
                                       ),
@@ -325,209 +405,7 @@ class _ChartState extends State<Chart> {
                                 ),
                               ),
                             ),
-                            /*Card(
-                              color: Colors.transparent,
-                              elevation: 5,
-                              child: GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    _deviceWidth  = !_deviceWidth ;
-                                  });
-                                  showDialog(
-                                      context: context,
-                                      builder: (BuildContext context) {
-                                        return AlertDialog(
-                                          actionsAlignment:
-                                          MainAxisAlignment.center,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                            BorderRadius.circular(15.0),
-                                          ),
-                                          actionsOverflowButtonSpacing: 10,
-                                          elevation: 5,
-                                          backgroundColor: Colors.white70,
-                                          // context: context,
-                                          // title: "CREATE",
-                                          scrollable: true,
-                                          title: Text(
-                                            'Create',
-                                            textAlign: TextAlign.center,
-                                          ),
-                                          content: Column(
-                                            children: <Widget>[
-                                              Container(
-                                                height: 47,
-                                                padding: EdgeInsets.only(left: 15),
-                                                decoration: BoxDecoration(
-                                                    borderRadius:
-                                                    BorderRadius.circular(10),
-                                                    border: Border.all(
-                                                        color: Colors.black
-                                                            .withOpacity(0.55))),
-                                                child: TextField(
-                                                  cursorColor: Colors.white,
-                                                  autofocus: false,
-                                                  decoration: InputDecoration(
-                                                    border: InputBorder.none,
-                                                    icon: Icon(
-                                                      Icons.email_outlined,
-                                                      color: Colors.black
-                                                          .withOpacity(0.6),
-                                                    ),
-                                                    hintText: 'Email',
-                                                    labelStyle: TextStyle(
-                                                        color: Colors.black
-                                                            .withOpacity(0.6)),
-                                                  ),
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                height: 9,
-                                              ),
-                                              Container(
-                                                height: 47,
-                                                padding: EdgeInsets.only(left: 15),
-                                                decoration: BoxDecoration(
-                                                    borderRadius:
-                                                    BorderRadius.circular(10),
-                                                    border: Border.all(
-                                                        color: Colors.black
-                                                            .withOpacity(0.55))),
-                                                child: TextField(
-                                                  cursorColor: Colors.white,
-                                                  obscureText: false,
-                                                  decoration: InputDecoration(
-                                                      border: InputBorder.none,
-                                                      icon: Icon(
-                                                        Icons
-                                                            .account_circle_outlined,
-                                                        color: Colors.black
-                                                            .withOpacity(0.6),
-                                                      ),
-                                                      hintText: 'Agent ID',
-                                                      labelStyle: TextStyle(
-                                                        color: Colors.black
-                                                            .withOpacity(0.6),
-                                                      )),
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                height: 9,
-                                              ),
-                                              Center(
-                                                  child: Column(
-                                                    children: [
-                                                      Container(
-                                                        decoration: BoxDecoration(
-                                                            borderRadius:
-                                                            BorderRadius.all(
-                                                                Radius.circular(
-                                                                    10)),
-                                                            color: Color(0xffC4C4C4)
-                                                                .withOpacity(0.20),
-                                                            border: Border.all(
-                                                                color: Colors.black87)),
-                                                        width: 350,
-                                                        height: 70,
-                                                        alignment: Alignment(0, -0.5),
-                                                        child: TextField(
-                                                          minLines: 1,
-                                                          maxLines: 3,
-                                                          scrollPadding:
-                                                          EdgeInsets.only(top: 40),
-                                                          showCursor: true,
-                                                          cursorColor: Colors.white70,
-                                                          keyboardType:
-                                                          TextInputType.multiline,
-                                                          textInputAction:
-                                                          TextInputAction.done,
-                                                          style: TextStyle(
-                                                            fontFamily:
-                                                            'fonts/Roboto-Bold.ttf',
-                                                            fontSize: 18,
-                                                          ),
-                                                          textAlign: TextAlign.center,
-                                                          decoration:
-                                                          InputDecoration.collapsed(
-                                                            hintText: "Notes",
-                                                            border: InputBorder.none,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      SizedBox(
-                                                        height: 9,
-                                                      ),
-                                                      ElevatedButton(
-                                                          child: Text(
-                                                            "SUBMIT",
-                                                            style: TextStyle(
-                                                                color: Colors.black
-                                                                    .withOpacity(0.75)),
-                                                          ),
-                                                          style:
-                                                          ElevatedButton.styleFrom(
-                                                            primary: Colors.white70,
-                                                          ),
-                                                          onPressed: () {
-                                                            Navigator.pop(context);
-                                                          }),
-                                                      // Container(
-                                                      //   height: 25,
-                                                      //   width: 100,
-                                                      //   child: Center(
-                                                      //     child: Text('SUBMIT'),
-                                                      //   ),
-                                                      // )
-                                                    ],
-                                                  )),
-                                            ],
-                                          ),
-                                        );
-                                      });
-                                },
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(25),
-                                      color: Colors.black.withOpacity(0.5),
-                                      boxShadow: [
-                                        BoxShadow(
-                                            blurRadius: 0,
-                                            offset: Offset(2, 4),
-                                            color: Colors.black12
-                                                .withOpacity(0.15)), //3dright
-                                      ]),
-                                  child: Row(children: [
-                                    SizedBox(
-                                      width: 3,
-                                    ),
-                                    SizedBox(
-                                      height: 30.5,
-                                      child: Icon(
-                                        Icons.add_circle_outline,
-                                        color: Colors.white,
-                                        size: 27,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 4,
-                                    ),
-                                    Center(
-                                      child: Text(
-                                        'Create',
-                                        style: TextStyle(
-                                            fontFamily: 'fonts/Roboto-Light.ttf',
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: 16,
-                                            color: Colors.white.withOpacity(0.75)),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 7.5,
-                                    ),
-                                  ]),
-                                ),
-                              ),
-                            ),*/
+
                             Icon(
                               Icons.keyboard_arrow_right_sharp,
                               color: Colors.white,
@@ -581,7 +459,7 @@ class _ChartState extends State<Chart> {
                             ),
                             child: Center(
                               child: Text(
-                                "Discover",
+                                "Members",
                                 style: TextStyle(
                                   color: (selectedDevicesMarker == DevicesMarker.discover)?Colors.white:Colors.black,
                                   // fontWeight: FontWeight.w400,
@@ -643,9 +521,60 @@ class _ChartState extends State<Chart> {
   Widget getDiscover(){
     return Expanded(
         child: Container(
-          margin: EdgeInsets.only(left: 0,right: 0,top: 2.5,bottom: 0),
+          margin: EdgeInsets.only(left: 3.5,right: 3.5,top: 0,bottom: 0),
           color: Colors.transparent,
-          child: ListView.builder(
+          child: GroupedListView<dynamic, String>(
+            elements: _discover,
+            groupBy: (_element) => _element['group'],
+            sort: true,
+            order: GroupedListOrder.DESC,
+            itemComparator: (item1, item2) => item2['devices'].compareTo(item1['devices']),
+            useStickyGroupSeparators: true,
+            padding: EdgeInsets.symmetric(vertical: 0, horizontal:0),
+            stickyHeaderBackgroundColor: Colors.transparent,
+            floatingHeader: false,
+            groupSeparatorBuilder: (String value) => Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20),bottomRight: Radius.circular(20)),
+                color: Colors.blueGrey,
+                gradient: LinearGradient(
+                  colors: [
+                    Colors.blueGrey,
+                    Colors.white.withOpacity(0.0)
+                  ],
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  stops: [0.497,1]
+                )
+              ),
+              margin: EdgeInsets.only(left: 4,right: 4,top: 0),
+              padding: EdgeInsets.only(top :5,bottom: 5),
+              child: Text(
+                value,
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,),
+              ),
+            ),
+            itemBuilder: (c, element) {
+              return Card(
+                elevation: 8.0,
+                color: Colors.transparent,
+                shadowColor: Colors.black,
+                child: Container(
+                    height: 47.5,
+                    decoration: BoxDecoration(color: Color(0xff404b60).withOpacity(0.9)),
+                    child: Center(
+                      child: Text(
+                          element['devices'],
+                      ),
+                    )
+                ),
+              );
+            },
+          )
+
+
+          /*ListView.builder(
             padding: EdgeInsets.zero,
             shrinkWrap: true,
             itemCount: 20,
@@ -659,7 +588,7 @@ class _ChartState extends State<Chart> {
                 ),
               );
             },
-          ),
+          ),*/
         )
     );
   }
@@ -672,7 +601,8 @@ class _ChartState extends State<Chart> {
           child: ListView.builder(
             padding: EdgeInsets.zero,
             shrinkWrap: true,
-            itemCount: 20,
+            reverse: true,
+            itemCount: _discover.length,
             itemBuilder: (BuildContext context, int index) {
               return Card(
                 elevation: 8.0,
@@ -680,6 +610,9 @@ class _ChartState extends State<Chart> {
                 child: Container(
                   height: 47.5,
                   decoration: BoxDecoration(color:Color(0xff19547b).withOpacity(0.85), /*Colors.blueGrey.withOpacity(0.9)*/),
+                  child: Center(
+                    child: Text(_discover[index]['devices']),
+                  ),
                 ),
               );
             },

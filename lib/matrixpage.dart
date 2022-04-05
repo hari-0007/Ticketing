@@ -1840,14 +1840,6 @@ class _MatrixPageState extends State<MatrixPage> {
         ],
       )
     );
-    /*Expanded(
-      child: Column(
-        children: [
-          getAssignedTicket(),
-          getUnAssignedTicket(),
-        ],
-      ),
-    );*/
   }
 
   Widget getChatContainer() {
@@ -2879,7 +2871,8 @@ class _MatrixPageState extends State<MatrixPage> {
                               size: 32,
                             ),
                           ),
-                        )),
+                        )
+                    ),
                   ),
                 )
               ])),
@@ -7221,7 +7214,7 @@ class _MatrixPageState extends State<MatrixPage> {
     return WillPopScope(
       onWillPop: () async {
         print('hello');
-        return false;
+        return true;
       },
       child: Scaffold(
         resizeToAvoidBottomInset: false,
@@ -7375,6 +7368,38 @@ class _MatrixPageState extends State<MatrixPage> {
                     ],
                   ),
                 ),
+
+                GestureDetector(
+                  onTap: (){
+                    basicAnimation.currentState!.forward();
+                  },
+                  child: Center(
+                    child: Padding(
+                        padding: EdgeInsets.only(right: 5),
+                        child: Badge(
+                          position: BadgePosition.topStart(top: -3),
+                          toAnimate: true,
+                          shape: BadgeShape.circle,
+                          showBadge: false,
+                          animationType: BadgeAnimationType.fade,
+                          badgeColor: Colors.deepPurple,
+                          badgeContent: Text(
+                            '1',
+                            style: TextStyle(fontSize: 12, color: Colors.white),
+                          ),
+                          child: Tada(
+                            key: basicAnimation,
+                            child: Icon(
+                              Icons.notifications_sharp,
+                              color: Colors.black.withOpacity(0.85),
+                              size: 32,
+                            ),
+                          ),
+                        )
+                    ),
+                  ),
+                ),
+
               ])),
     );
   }
