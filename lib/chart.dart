@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+// import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:grouped_list/grouped_list.dart';
@@ -28,7 +28,7 @@ List<Map<String, dynamic>> _elements = [
   {'devices': 'B0007', 'group': 'Disabled'},
 ];
 
-enum DevicesMarker {discover, discovered}
+enum DevicesMarker {members, discovered}
 
 class Chart extends StatefulWidget {
   const Chart({Key? key}) : super(key: key);
@@ -48,7 +48,7 @@ class _ChartState extends State<Chart> {
   bool _deviceWidth = true;
   bool _deviceflag = false;
 
-  DevicesMarker selectedDevicesMarker = DevicesMarker.discover;
+  DevicesMarker selectedDevicesMarker = DevicesMarker.members;
 
   @override
   void initState() {
@@ -422,13 +422,55 @@ class _ChartState extends State<Chart> {
           ],
         ),
 
+        Container(
+          height: 24,
+          width: 174,
+          child: ElevatedButton(
+            child: Text(
+              "CHAT",
+              style: TextStyle(
+                  color: Colors.white/*Color(0xff467695)*/,
+                  fontFamily: 'Roboto',
+                  fontWeight: FontWeight.w900,
+                  fontSize: 14),
+            ),
+            style: ButtonStyle(
+              backgroundColor:  MaterialStateProperty.all(Color(0xffD3D3D3) ),
+                overlayColor:MaterialStateProperty.all(Color(0xff19547b)) ,//change with your color
+                shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ))),
+            onPressed: (){},
+          ),
+        ),
+
+        TextButton(
+          style: ButtonStyle(
+              overlayColor: MaterialStateColor.resolveWith(
+                      (states) => Colors.white.withOpacity(1))),
+          onPressed: () => {},
+          child:
+          Text(
+            'My Button',
+            style: TextStyle(
+                fontSize: 16,
+                color: Colors.black,
+                fontWeight: FontWeight.w400),
+          ),
+        ),
+
         Expanded(
             child:Container(
-              margin: EdgeInsets.only(left: 7.5,right: 7.5,top: 0,bottom: 0),
-              padding: EdgeInsets.only(top: 5,bottom: 10),
+              margin: EdgeInsets.only(left: 12.5,right: 12.5,top: 0,bottom: 5),
+              padding: EdgeInsets.only(top: 0,bottom: 0),
               decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.only(topLeft: Radius.circular(30),topRight: Radius.circular(30),bottomLeft: Radius.circular(30),bottomRight: Radius.circular(30)),
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(30),
+                      topRight: Radius.circular(30),
+                      bottomLeft: Radius.circular(30),
+                      bottomRight: Radius.circular(30)
+                  ),
                   gradient: LinearGradient(
                       colors: [
                         Colors.white.withOpacity(0.5),
@@ -437,70 +479,101 @@ class _ChartState extends State<Chart> {
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter)
               ),
-              child: Column(
-                children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Flexible(
-                        child: GestureDetector(
-                          onTap : (){
-                            setState(() {
-                              selectedDevicesMarker = DevicesMarker.discover;
-                            });
-                          },
-                          child: Container(
-                            height: 22.5,
-                            margin: EdgeInsets.only(left: 7.5,right: 1),
-                            decoration: BoxDecoration(
-                                color: (selectedDevicesMarker == DevicesMarker.discover)?Colors.blueGrey:Colors.transparent,
-                                borderRadius: BorderRadius.only(topLeft: Radius.circular(20))
-                            ),
-                            child: Center(
-                              child: Text(
-                                "Members",
-                                style: TextStyle(
-                                  color: (selectedDevicesMarker == DevicesMarker.discover)?Colors.white:Colors.black,
-                                  // fontWeight: FontWeight.w400,
-                                  // fontFamily: 'Roboto',
+              child: ClipRRect(
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30),
+                    bottomLeft: Radius.circular(30),
+                    bottomRight: Radius.circular(30)
+                ),
+                child: Column(
+                  children: [
+                    getDevicesSwitchContainer(),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Flexible(
+                          child: GestureDetector(
+                            onTap : (){
+                              setState(() {
+                                selectedDevicesMarker = DevicesMarker.members;
+                              });
+                            },
+                            child: Container(
+                              height: 25,
+                              margin: EdgeInsets.only(left: 7.5,right: 1),
+                              decoration: BoxDecoration(
+                                  color: (selectedDevicesMarker == DevicesMarker.members)?Colors.black38:Colors.transparent,
+                                  borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20))
+                              ),
+                              child: Center(
+                                child: Text(
+                                  "Members",
+                                  style: TextStyle(
+                                    color: (selectedDevicesMarker == DevicesMarker.members)?Colors.white:Colors.black,
+                                    // fontWeight: FontWeight.w400,
+                                    // fontFamily: 'Roboto',
+                                  ),
                                 ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                      Flexible(
-                          child: GestureDetector(
-                            onTap : (){
-                              setState(() {
-                                selectedDevicesMarker = DevicesMarker.discovered;
-                              });
-                            },
-                            child: Container(
-                              height: 22.5,
-                              margin: EdgeInsets.only(left: 1,right: 7.5),
-                              decoration: BoxDecoration(
-                                  color: (selectedDevicesMarker == DevicesMarker.discovered)?Colors.blueGrey:Colors.transparent,
-                                  borderRadius: BorderRadius.only(topRight: Radius.circular(20))
+                        Flexible(
+                            child: GestureDetector(
+                              onTap : (){
+                                setState(() {
+                                  selectedDevicesMarker = DevicesMarker.discovered;
+                                });
+                                /*showModalBottomSheet(
+                                    context: context,
+                                    isScrollControlled: true,
+                                    backgroundColor: Colors.transparent,
+                                    builder: (BuildContext context){
+                                  return DraggableScrollableSheet(
+                                    initialChildSize: 0.9,
+                                    minChildSize: 0.2,
+                                    maxChildSize: 0.9,
+                                    builder: (BuildContext context, ScrollController scrollController) {
+                                    return Container(
+                                      color: Colors.white,
+                                        child: ListView(
+                                      controller: scrollController,
+                                      children: [
+                                      Text("hello")
+                                    ],)
+                                    );
+                                  },
+                                  );
+                                }
+                                );*/
+                              },
+                              child: Container(
+                                height: 25,
+                                margin: EdgeInsets.only(left: 1,right: 7.5),
+                                decoration: BoxDecoration(
+                                    color: (selectedDevicesMarker == DevicesMarker.discovered)?Colors.black38:Colors.transparent,
+                                    borderRadius: BorderRadius.only(bottomRight: Radius.circular(20))
+                                ),
+                                child: Center(
+                                    child: Text(
+                                      "Discovered",
+                                      style: TextStyle(
+                                        color: (selectedDevicesMarker == DevicesMarker.discovered)?Colors.white:Colors.black,
+                                        // fontWeight: FontWeight.w400,
+                                        // fontFamily: 'Roboto',
+                                      ),
+                                    )
+                                ),
                               ),
-                              child: Center(
-                                  child: Text(
-                                    "Discovered",
-                                    style: TextStyle(
-                                      color: (selectedDevicesMarker == DevicesMarker.discovered)?Colors.white:Colors.black,
-                                      // fontWeight: FontWeight.w400,
-                                      // fontFamily: 'Roboto',
-                                    ),
-                                  )
-                              ),
-                            ),
-                          )
-                      )
-                    ],
-                  ),
-                  getDevicesSwitchContainer(),
-                ],
+                            )
+                        )
+                      ],
+                    ),
+                    // getDevicesSwitchContainer(),
+                  ],
+                ),
               ),
             )
         ),
@@ -511,57 +584,59 @@ class _ChartState extends State<Chart> {
 
   Widget getDevicesSwitchContainer(){
     switch (selectedDevicesMarker) {
-      case DevicesMarker.discover:
-        return getDiscover();
+      case DevicesMarker.members:
+        return getMembers();
       case DevicesMarker.discovered:
         return getDiscovered();
     }
   }
 
-  Widget getDiscover(){
+  Widget getMembers(){
     return Expanded(
-        child: Container(
-          margin: EdgeInsets.only(left: 3.5,right: 3.5,top: 0,bottom: 0),
-          color: Colors.transparent,
-          child: GroupedListView<dynamic, String>(
-            elements: _discover,
-            groupBy: (_element) => _element['group'],
-            sort: true,
-            order: GroupedListOrder.DESC,
-            itemComparator: (item1, item2) => item2['devices'].compareTo(item1['devices']),
-            useStickyGroupSeparators: true,
-            padding: EdgeInsets.symmetric(vertical: 0, horizontal:0),
-            stickyHeaderBackgroundColor: Colors.transparent,
-            floatingHeader: false,
-            groupSeparatorBuilder: (String value) => Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20),bottomRight: Radius.circular(20)),
-                color: Colors.blueGrey,
-                gradient: LinearGradient(
+        child: GroupedListView<dynamic, String>(
+          elements: _discover,
+          groupBy: (_element) => _element['group'],
+          sort: true,
+          order: GroupedListOrder.DESC,
+          itemComparator: (item1, item2) => item2['devices'].compareTo(item1['devices']),
+          useStickyGroupSeparators: true,
+          padding: EdgeInsets.symmetric(vertical: 0, horizontal:0),
+          stickyHeaderBackgroundColor: Colors.transparent,
+          floatingHeader: false,
+          groupSeparatorBuilder: (String value) => Container(
+            height: 27.5,
+            decoration: BoxDecoration(
+              color: Colors.blueGrey,
+              gradient: LinearGradient(
                   colors: [
-                    Colors.blueGrey,
-                    Colors.white.withOpacity(0.0)
+                    Colors.white.withOpacity(0.5),
+                    Colors.white.withOpacity(1),
                   ],
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
-                  stops: [0.497,1]
-                )
-              ),
-              margin: EdgeInsets.only(left: 4,right: 4,top: 0),
-              padding: EdgeInsets.only(top :5,bottom: 5),
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter),
+            ),
+            child: Center(
               child: Text(
                 value,
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,),
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'fonts/Roboto-Regular.ttf',
+                  color: Colors.black
+                ),
               ),
             ),
-            itemBuilder: (c, element) {
-              return Card(
+          ),
+          itemBuilder: (c, element) {
+            return Padding(
+              padding: EdgeInsets.only(left: 3.5,right: 3.5),
+              child: Card(
                 elevation: 8.0,
                 color: Colors.transparent,
                 shadowColor: Colors.black,
                 child: Container(
-                    height: 47.5,
+                    height: 42.5,
                     decoration: BoxDecoration(color: Color(0xff404b60).withOpacity(0.9)),
                     child: Center(
                       child: Text(
@@ -569,26 +644,9 @@ class _ChartState extends State<Chart> {
                       ),
                     )
                 ),
-              );
-            },
-          )
-
-
-          /*ListView.builder(
-            padding: EdgeInsets.zero,
-            shrinkWrap: true,
-            itemCount: 20,
-            itemBuilder: (BuildContext context, int index) {
-              return Card(
-                elevation: 8.0,
-                margin: EdgeInsets.only(left: 10,right: 10,top: 5,bottom: 5),
-                child: Container(
-                  height: 47.5,
-                  decoration: BoxDecoration(color: Color(0xff404b60).withOpacity(0.9)),
-                ),
-              );
-            },
-          ),*/
+              ),
+            );
+          },
         )
     );
   }
@@ -606,7 +664,7 @@ class _ChartState extends State<Chart> {
             itemBuilder: (BuildContext context, int index) {
               return Card(
                 elevation: 8.0,
-                margin: EdgeInsets.only(left: 10,right: 10,top: 5,bottom: 5),
+                margin: EdgeInsets.only(left: 7.5,right: 7.5,top: 5,bottom: 5),
                 child: Container(
                   height: 47.5,
                   decoration: BoxDecoration(color:Color(0xff19547b).withOpacity(0.85), /*Colors.blueGrey.withOpacity(0.9)*/),

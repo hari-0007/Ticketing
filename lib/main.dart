@@ -301,7 +301,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     // sendRequest();
                     // print(emailController.text);
                     FocusManager.instance.primaryFocus?.unfocus();
-                    // print(json.encode(loginRequestModel));
+                    print(json.encode(loginRequestModel));
                     // print(json.encode(data));
                     Navigator.push(
                         context,
@@ -401,13 +401,13 @@ class _MyHomePageState extends State<MyHomePage> {
         duration: Duration(milliseconds: 500),
         content: Text('Login Successful'),
       ));
-      Timer(Duration(seconds: 1),(){
+      /*Timer(Duration(seconds: 1),(){
         Navigator.push(
             context,
             MaterialPageRoute(builder: (context)=>  MatrixPage()
             )
         );
-      });
+      });*/
     }else{
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(
