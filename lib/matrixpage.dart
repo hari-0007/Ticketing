@@ -1860,7 +1860,53 @@ class _MatrixPageState extends State<MatrixPage> {
       child: Column(
         children: [
           getAssignedTicket(),
+
+          /*Container(
+            height: 24,
+            width: 174,
+            child: ElevatedButton(
+              onPressed: (){},
+              child: Align(
+                alignment: Alignment(0,0),
+                child: Text(
+                  "CHAT",
+                  style: TextStyle(
+                      // color: Colors.white,
+                      fontFamily: 'Roboto',
+                      fontWeight: FontWeight.w900,
+                      fontSize: 14),
+                ),
+              ),
+              style: ButtonStyle(
+                textStyle: MaterialStateProperty.all(const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14
+                )
+                ),
+                  animationDuration: Duration(milliseconds: 0),
+                  foregroundColor: MaterialStateProperty.resolveWith((states){
+                    if(states.contains(MaterialState.pressed)){
+                      return Colors.white;
+                    }
+                    return Color(0xff467695);
+                  }),
+                  backgroundColor:  MaterialStateProperty.resolveWith((states){
+                    if(states.contains(MaterialState.pressed)){
+                      return Color(0xff19547b);
+                    }
+                    return Colors.white;
+                  }),
+                  // MaterialStateProperty.all(Color(0xffD3D3D3)),
+                  overlayColor:MaterialStateProperty.all(Colors.transparent),
+                  shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12.5),
+                  ))),
+            ),
+          ),*/
+
           getPerformance(),
+
           getUnAssignedTicket(),
         ],
       )
@@ -2965,11 +3011,9 @@ class _MatrixPageState extends State<MatrixPage> {
                                       final snackBar = SnackBar(
                                           duration: Duration(seconds: 60),
                                           shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(30))),
+                                              borderRadius: BorderRadius.all(Radius.circular(30))),
                                           behavior: SnackBarBehavior.floating,
-                                          margin:
-                                          EdgeInsets.symmetric(horizontal: 7),
+                                          margin: EdgeInsets.symmetric(horizontal: 11),
                                           backgroundColor:
                                           Colors.transparent.withOpacity(0.2),
                                           content: DragTarget(
@@ -3890,8 +3934,84 @@ class _MatrixPageState extends State<MatrixPage> {
                                     ),
                                   ),
                                 ),
+
                                 Visibility(
                                   visible: _enterAction,
+                                  child: AnimatedPositioned(
+                                    curve: Curves.fastOutSlowIn,
+                                    left: _buttonPosition ? 152 : MediaQuery.of(context).size.width + 175,
+                                    top: 17,
+                                    duration: Duration(milliseconds: 250),
+                                    child: Container(
+                                      height: 24,
+                                      width: 174,
+                                      child: ElevatedButton(
+                                        onPressed: (){
+                                          /*_sysNumber= ticket[index]['sysNumber'];*/
+                                          _remote = false;
+                                          setState(() {
+                                            selectedIncidentWidgetMarker = IncidentMarker.chat;
+                                            /*this._memoryWidgets.add('assets/chaticon250.png');*/
+                                            /*memorybar[ticket[index]['sysNumber']] = ['Call'];*/
+
+                                            if (memorybar.containsKey(ticket[index]['SystemNumber']) == true) {
+                                              memorybar[ticket[index]['SystemNumber']]?.add('assets/chaticon250.png');
+                                            } else {
+                                              memorybar.addEntries([MapEntry(ticket[index]['SystemNumber'], {'assets/chaticon250.png'})
+                                              ]);
+                                            }
+                                          });
+                                        },
+                                        child: Align(
+                                          alignment: Alignment(-0.505, 0),
+                                          child: Text(
+                                            "CHAT",
+                                            style: TextStyle(
+                                              // color: Colors.white,
+                                                fontFamily: 'Roboto',
+                                                fontWeight: FontWeight.w900,
+                                                fontSize: 14),
+                                          ),
+                                        ),
+                                        style: ButtonStyle(
+                                            textStyle: MaterialStateProperty.all( TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 14
+                                            )
+                                            ),
+                                            animationDuration: Duration(milliseconds: 0),
+                                            foregroundColor: MaterialStateProperty.resolveWith((states){
+                                              if(states.contains(MaterialState.pressed)){
+                                                return Colors.white;
+                                              }
+                                              return Color(0xff467695);
+                                            }),
+                                            backgroundColor:  MaterialStateProperty.resolveWith((states){
+                                              if(states.contains(MaterialState.pressed)){
+                                                return Color(0xff19547b);
+                                              }
+                                              return Color(0xffF1F1F1);//0xffE2E2E2
+                                            }),
+                                            // MaterialStateProperty.all(Color(0xffD3D3D3)),
+                                            // /*backgroundColor: MaterialStateProperty.all(Colors.white),
+                                            // overlayColor:MaterialStateProperty.resolveWith((states){
+                                            //   if(states.contains(MaterialState.pressed)){
+                                            //     return Color(0xff19547b);
+                                            //   }
+                                            //   return Colors.white;
+                                            // }),*/
+                                            overlayColor:MaterialStateProperty.all(Colors.transparent),
+                                            shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(12.5),
+                                            ))),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+
+                                /*Visibility(
+                                  visible: false*//*_enterAction*//*,
                                   child: AnimatedPositioned(
                                       curve: Curves.fastOutSlowIn,
                                       left: _buttonPosition ? 152 : MediaQuery.of(context).size.width + 175,
@@ -3899,12 +4019,12 @@ class _MatrixPageState extends State<MatrixPage> {
                                       duration: Duration(milliseconds: 250),
                                       child: GestureDetector(
                                         onTap: () {
-                                          /*_sysNumber= ticket[index]['sysNumber'];*/
+                                          *//*_sysNumber= ticket[index]['sysNumber'];*//*
                                           _remote = false;
                                           setState(() {
                                             selectedIncidentWidgetMarker = IncidentMarker.chat;
-                                            /*this._memoryWidgets.add('assets/chaticon250.png');*/
-                                            /*memorybar[ticket[index]['sysNumber']] = ['Call'];*/
+                                            *//*this._memoryWidgets.add('assets/chaticon250.png');*//*
+                                            *//*memorybar[ticket[index]['sysNumber']] = ['Call'];*//*
 
                                             if (memorybar.containsKey(ticket[index]['SystemNumber']) == true) {
                                               memorybar[ticket[index]['SystemNumber']]?.add('assets/chaticon250.png');
@@ -3963,21 +4083,22 @@ class _MatrixPageState extends State<MatrixPage> {
                                       )
                                     // ChatButton(),
                                   ),
-                                ),
-
-
+                                ),*/
 
                                 Visibility(
                                   visible: _enterAction,
                                   child: AnimatedPositioned(
-                                      curve: Curves.fastOutSlowIn,
-                                      left: _buttonPosition ? 152 : MediaQuery.of(context).size.width + 175,
-                                      top: 44,
-                                      duration: Duration(milliseconds: 350),
-                                      child: IgnorePointer(
-                                        ignoring: _callIgnore,
-                                        child: GestureDetector(
-                                          onTap: () {
+                                    curve: Curves.fastOutSlowIn,
+                                    left: _buttonPosition ? 152 : MediaQuery.of(context).size.width + 175,
+                                    top: 44,
+                                    duration: Duration(milliseconds: 350),
+                                    child: IgnorePointer(
+                                      ignoring: _callIgnore,
+                                      child: Container(
+                                        height: 24,
+                                        width: 174,
+                                        child: ElevatedButton(
+                                          onPressed: (){
                                             _controllerTime.start();
                                             _callIgnore=true;
                                             setState(() {
@@ -4007,6 +4128,89 @@ class _MatrixPageState extends State<MatrixPage> {
                               });*/
 
                                             /*print(memorybar['C0001']?.elementAt(1));*/
+                                          },
+                                          child: Align(
+                                            alignment: Alignment(-0.52, 0),
+                                            child: Text(
+                                              "CALL",
+                                              style: TextStyle(
+                                                // color: Colors.white,
+                                                  fontFamily: 'Roboto',
+                                                  fontWeight: FontWeight.w900,
+                                                  fontSize: 14),
+                                            ),
+                                          ),
+                                          style: ButtonStyle(
+                                              textStyle: MaterialStateProperty.all( TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 14
+                                              )
+                                              ),
+                                              animationDuration: Duration(milliseconds: 0),
+                                              foregroundColor: MaterialStateProperty.resolveWith((states){
+                                                if(states.contains(MaterialState.pressed)){
+                                                  return Colors.white;
+                                                }
+                                                return Color(0xff467695);
+                                              }),
+                                              backgroundColor:  MaterialStateProperty.resolveWith((states){
+                                                if(states.contains(MaterialState.pressed)){
+                                                  return Color(0xff19547b);
+                                                }
+                                                return Color(0xffF1F1F1);
+                                              }),
+                                              // MaterialStateProperty.all(Color(0xffD3D3D3)),
+                                              overlayColor:MaterialStateProperty.all(Colors.transparent),
+                                              shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.circular(12.5),
+                                              ))),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+
+                                /*Visibility(
+                                  visible: false*//*_enterAction*//*,
+                                  child: AnimatedPositioned(
+                                      curve: Curves.fastOutSlowIn,
+                                      left: _buttonPosition ? 152 : MediaQuery.of(context).size.width + 175,
+                                      top: 44,
+                                      duration: Duration(milliseconds: 350),
+                                      child: IgnorePointer(
+                                        ignoring: _callIgnore,
+                                        child: GestureDetector(
+                                          onTap: () {
+                                            _controllerTime.start();
+                                            _callIgnore=true;
+                                            setState(() {
+                                              _callVisibility=!_callVisibility;
+
+                                              *//*this.memoryWidgets.add('assets/calliconpadding.png');*//*
+                                              *//*memorybar.addEntries([
+                                  MapEntry(ticket[index]['sysNumber'],['Call'])
+                                ]);*//*
+                                              // memorybar[ticket[index]['sysNumber']];
+                                              *//*memorybar[ticket[index]['sysNumber']] = ['Call'];*//*
+                                              *//*memorybar.forEach((key, value) {
+
+                                });*//*
+                                              *//*memorybar[ticket[index]['sysNumber']]?.insertAll(memorybar[ticket[index]['sysNumber']]!.length,['Call']);*//*
+                                              if (memorybar.containsKey(ticket[index]['SystemNumber']) == true) {
+                                                memorybar[ticket[index]['SystemNumber']]?.add('assets/callicongreenpadding1.gif');
+                                              } else {
+                                                memorybar.addEntries([MapEntry(ticket[index]['SystemNumber'], {'assets/callicongreenpadding1.gif'})
+                                                ]);
+                                              }
+                                            });
+                                            // memorybar.forEach((k,v) => print('${k}: ${v}'));
+                                            // print(memorybar[ticket[index]['sysNumber']]?.toList());
+                                            *//*memorybar.forEach((key, value) {
+                                print('${key}: ${value.toList()}');
+                              });*//*
+
+                                            *//*print(memorybar['C0001']?.elementAt(1));*//*
                                           },
                                           onTapDown: (pressing) {
                                             setState(() {
@@ -4058,9 +4262,75 @@ class _MatrixPageState extends State<MatrixPage> {
                                       )
                                     // CallButton(),
                                   ),
-                                ),
+                                ),*/
+
                                 Visibility(
-                                  visible: _enterAction,
+                                    visible: _enterAction,
+                                    child: AnimatedPositioned(
+                                      curve: Curves.fastOutSlowIn,
+                                      left: _buttonPosition ? 152 : MediaQuery.of(context).size.width + 175,
+                                      top: 70,
+                                      duration: Duration(milliseconds: 450),
+                                      child: Container(
+                                        height: 24,
+                                        width: 174,
+                                        child: ElevatedButton(
+                                          onPressed: (){
+                                            _remote = !_remote;
+                                            setState(() {
+                                              /*this.memoryWidgets.add('assets/remoteiconpadding.png');*/
+
+                                              if (memorybar.containsKey(ticket[index]['SystemNumber']) == true) {
+                                                memorybar[ticket[index]['SystemNumber']]?.add('assets/remoteiconpadding.png');
+                                              } else {
+                                                memorybar.addEntries([MapEntry(ticket[index]['SystemNumber'], {'assets/remoteiconpadding.png'})
+                                                ]);
+                                              }
+                                            });
+                                          },
+                                          child: Align(
+                                            alignment: Alignment(-0.41, 0),
+                                            child: Text(
+                                              "REMOTE",
+                                              style: TextStyle(
+                                                // color: Colors.white,
+                                                  fontFamily: 'Roboto',
+                                                  fontWeight: FontWeight.w900,
+                                                  fontSize: 14),
+                                            ),
+                                          ),
+                                          style: ButtonStyle(
+                                              textStyle: MaterialStateProperty.all( TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 14
+                                              )
+                                              ),
+                                              animationDuration: Duration(milliseconds: 0),
+                                              foregroundColor: MaterialStateProperty.resolveWith((states){
+                                                if(states.contains(MaterialState.pressed)){
+                                                  return Colors.white;
+                                                }
+                                                return Color(0xff467695);
+                                              }),
+                                              backgroundColor:  MaterialStateProperty.resolveWith((states){
+                                                if(states.contains(MaterialState.pressed)){
+                                                  return Color(0xff19547b);
+                                                }
+                                                return Color(0xffF1F1F1);
+                                              }),
+                                              // MaterialStateProperty.all(Color(0xffD3D3D3)),
+                                              overlayColor:MaterialStateProperty.all(Colors.transparent),
+                                              shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.circular(12.5),
+                                              ))),
+                                        ),
+                                      ),
+                                    )
+                                ),
+
+                                /*Visibility(
+                                  visible: false*//*_enterAction*//*,
                                   child: AnimatedPositioned(
                                       curve: Curves.fastOutSlowIn,
                                       left: _buttonPosition ? 152 : MediaQuery.of(context).size.width + 175,
@@ -4070,7 +4340,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                         onTap: () {
                                           _remote = !_remote;
                                           setState(() {
-                                            /*this.memoryWidgets.add('assets/remoteiconpadding.png');*/
+                                            *//*this.memoryWidgets.add('assets/remoteiconpadding.png');*//*
 
                                             if (memorybar.containsKey(ticket[index]['SystemNumber']) == true) {
                                               memorybar[ticket[index]['SystemNumber']]?.add('assets/remoteiconpadding.png');
@@ -4129,16 +4399,20 @@ class _MatrixPageState extends State<MatrixPage> {
                                       )
                                     // RemoteButton(),
                                   ),
-                                ),
+                                ),*/
+
                                 Visibility(
                                   visible: _enterAction,
                                   child: AnimatedPositioned(
-                                      curve: Curves.fastOutSlowIn,
-                                      left: _buttonPosition ? 152 : MediaQuery.of(context).size.width + 175,
-                                      top: 96,
-                                      duration: Duration(milliseconds: 550),
-                                      child: GestureDetector(
-                                        onTap: () {
+                                    curve: Curves.fastOutSlowIn,
+                                    left: _buttonPosition ? 152 : MediaQuery.of(context).size.width + 175,
+                                    top: 96,
+                                    duration: Duration(milliseconds: 550),
+                                    child: Container(
+                                      height: 24,
+                                      width: 174,
+                                      child: ElevatedButton(
+                                        onPressed: (){
                                           _remote = false;
                                           setState(() {
 
@@ -4158,6 +4432,76 @@ class _MatrixPageState extends State<MatrixPage> {
                                             }
                                           });
                                           /*print(memorybar);*/
+                                        },
+                                        child: Align(
+                                          alignment: Alignment(-0.445, 0),
+                                          child: Text(
+                                            "SCRIPT",
+                                            style: TextStyle(
+                                              // color: Colors.white,
+                                                fontFamily: 'Roboto',
+                                                fontWeight: FontWeight.w900,
+                                                fontSize: 14),
+                                          ),
+                                        ),
+                                        style: ButtonStyle(
+                                            textStyle: MaterialStateProperty.all( TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 14
+                                            )
+                                            ),
+                                            animationDuration: Duration(milliseconds: 0),
+                                            foregroundColor: MaterialStateProperty.resolveWith((states){
+                                              if(states.contains(MaterialState.pressed)){
+                                                return Colors.white;
+                                              }
+                                              return Color(0xff467695);
+                                            }),
+                                            backgroundColor:  MaterialStateProperty.resolveWith((states){
+                                              if(states.contains(MaterialState.pressed)){
+                                                return Color(0xff19547b);
+                                              }
+                                              return Color(0xffF1F1F1);
+                                            }),
+                                            // MaterialStateProperty.all(Color(0xffD3D3D3)),
+                                            overlayColor:MaterialStateProperty.all(Colors.transparent),
+                                            shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(12.5),
+                                            ))),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+
+                                /*Visibility(
+                                  visible: false*//*_enterAction*//*,
+                                  child: AnimatedPositioned(
+                                      curve: Curves.fastOutSlowIn,
+                                      left: _buttonPosition ? 152 : MediaQuery.of(context).size.width + 175,
+                                      top: 96,
+                                      duration: Duration(milliseconds: 550),
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          _remote = false;
+                                          setState(() {
+
+                                            selectedIncidentWidgetMarker = IncidentMarker.script;
+                                            *//*this.memoryWidgets.add('assets/scripticonpadding.png');*//*
+                                            *//*memorybar.addEntries([
+                                  MapEntry(ticket[index]['sysNumber'],['Script'])
+                                ]);*//*
+                                            *//*memorybar[ticket[index]['sysNumber']];*//*
+                                            *//*memorybar[ticket[index]['sysNumber']] = ['script'];*//*
+                                            *//* memorybar[ticket[index]['sysNumber']]?.insertAll(memorybar[ticket[index]['sysNumber']]!.length,['Script']);*//*
+                                            if (memorybar.containsKey(ticket[index]['SystemNumber']) == true) {
+                                              memorybar[ticket[index]['SystemNumber']]?.add('assets/scripticonpadding.png');
+                                            } else {
+                                              memorybar.addEntries([MapEntry(ticket[index]['SystemNumber'], {'assets/scripticonpadding.png'})
+                                              ]);
+                                            }
+                                          });
+                                          *//*print(memorybar);*//*
                                         },
                                         onTapDown: (pressing) {
                                           setState(() {
@@ -4208,16 +4552,20 @@ class _MatrixPageState extends State<MatrixPage> {
                                       )
                                     // ScriptButton(),
                                   ),
-                                ),
+                                ),*/
+
                                 Visibility(
                                   visible: _enterAction,
                                   child: AnimatedPositioned(
-                                      curve: Curves.fastOutSlowIn,
-                                      left: _buttonPosition ? 152 : MediaQuery.of(context).size.width + 175,
-                                      top: 122,
-                                      duration: Duration(milliseconds: 650),
-                                      child: GestureDetector(
-                                        onTap: () {
+                                    curve: Curves.fastOutSlowIn,
+                                    left: _buttonPosition ? 152 : MediaQuery.of(context).size.width + 175,
+                                    top: 122,
+                                    duration: Duration(milliseconds: 650),
+                                    child: Container(
+                                      height: 24,
+                                      width: 174,
+                                      child: ElevatedButton(
+                                        onPressed: (){
                                           _remote = false;
                                           setState(() {
                                             /*this.memoryWidgets.add('assets/terminaliconpadding.png');*/
@@ -4227,7 +4575,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                               memorybar[ticket[index]['SystemNumber']]?.add('assets/terminaliconpadding.png');
                                             } else {
                                               memorybar.addEntries([MapEntry(ticket[index]['SystemNumber'], {'assets/terminaliconpadding.png'
-                                                })
+                                              })
                                               ]);
                                             }
 
@@ -4238,6 +4586,77 @@ class _MatrixPageState extends State<MatrixPage> {
                                             /*memorybar[ticket[index]['sysNumber']] = ['terminal'];*/
                                           });
                                           /*print(memorybar);*/
+                                        },
+                                        child: Align(
+                                          alignment: Alignment(-0.275, 0),
+                                          child: Text(
+                                            "TERMINAL",
+                                            style: TextStyle(
+                                              // color: Colors.white,
+                                                fontFamily: 'Roboto',
+                                                fontWeight: FontWeight.w900,
+                                                fontSize: 14),
+                                          ),
+                                        ),
+                                        style: ButtonStyle(
+                                            textStyle: MaterialStateProperty.all( TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 14
+                                            )
+                                            ),
+                                            animationDuration: Duration(milliseconds: 0),
+                                            foregroundColor: MaterialStateProperty.resolveWith((states){
+                                              if(states.contains(MaterialState.pressed)){
+                                                return Colors.white;
+                                              }
+                                              return Color(0xff467695);
+                                            }),
+                                            backgroundColor:  MaterialStateProperty.resolveWith((states){
+                                              if(states.contains(MaterialState.pressed)){
+                                                return Color(0xff19547b);
+                                              }
+                                              return Color(0xffF1F1F1);
+                                            }),
+                                            // MaterialStateProperty.all(Color(0xffD3D3D3)),
+                                            overlayColor:MaterialStateProperty.all(Colors.transparent),
+                                            shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(12.5),
+                                            ))),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+
+                                /*Visibility(
+                                  visible: false*//*_enterAction*//*,
+                                  child: AnimatedPositioned(
+                                      curve: Curves.fastOutSlowIn,
+                                      left: _buttonPosition ? 152 : MediaQuery.of(context).size.width + 175,
+                                      top: 122,
+                                      duration: Duration(milliseconds: 650),
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          _remote = false;
+                                          setState(() {
+                                            *//*this.memoryWidgets.add('assets/terminaliconpadding.png');*//*
+                                            selectedIncidentWidgetMarker = IncidentMarker.terminal;
+
+                                            if (memorybar.containsKey(ticket[index]['SystemNumber']) == true) {
+                                              memorybar[ticket[index]['SystemNumber']]?.add('assets/terminaliconpadding.png');
+                                            } else {
+                                              memorybar.addEntries([MapEntry(ticket[index]['SystemNumber'], {'assets/terminaliconpadding.png'
+                                                })
+                                              ]);
+                                            }
+
+                                            *//*memorybar.addEntries([
+                                  MapEntry(ticket[index]['sysNumber'],['Terminal'])
+                                ]);*//*
+                                            *//*memorybar[ticket[index]['sysNumber']];*//*
+                                            *//*memorybar[ticket[index]['sysNumber']] = ['terminal'];*//*
+                                          });
+                                          *//*print(memorybar);*//*
                                         },
                                         onTapDown: (pressing) {
                                           setState(() {
@@ -4288,16 +4707,20 @@ class _MatrixPageState extends State<MatrixPage> {
                                       )
                                     // TerminalButton(),
                                   ),
-                                ),
+                                ),*/
+
                                 Visibility(
                                   visible: _enterAction,
                                   child: AnimatedPositioned(
-                                      curve: Curves.fastOutSlowIn,
-                                      left: _buttonPosition ? 152 : MediaQuery.of(context).size.width + 175,
-                                      top: 148,
-                                      duration: Duration(milliseconds: 750),
-                                      child: GestureDetector(
-                                        onTap: () {
+                                    curve: Curves.fastOutSlowIn,
+                                    left: _buttonPosition ? 152 : MediaQuery.of(context).size.width + 175,
+                                    top: 148,
+                                    duration: Duration(milliseconds: 750),
+                                    child: Container(
+                                      height: 24,
+                                      width: 174,
+                                      child: ElevatedButton(
+                                        onPressed: (){
                                           showDialog(
                                               context: context,
                                               builder: (BuildContext context) {
@@ -4325,8 +4748,8 @@ class _MatrixPageState extends State<MatrixPage> {
                                                         Expanded(
                                                           child: Container(
                                                             decoration: BoxDecoration(
-                                                              color: Color(0xff19547b),
-                                                              borderRadius: BorderRadius.only(topLeft: Radius.circular(25),topRight: Radius.circular(25))
+                                                                color: Color(0xff19547b),
+                                                                borderRadius: BorderRadius.only(topLeft: Radius.circular(25),topRight: Radius.circular(25))
                                                             ),
                                                             child: Center(
                                                               child: Text(
@@ -4406,6 +4829,171 @@ class _MatrixPageState extends State<MatrixPage> {
                                                             onPressed: () {
                                                               Navigator.pop(context);
                                                             }
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                );
+                                              });
+                                        },
+                                        child: Align(
+                                          alignment: Alignment(-0.365, 0),
+                                          child: Text(
+                                            "UPDATES",
+                                            style: TextStyle(
+                                              // color: Colors.white,
+                                                fontFamily: 'Roboto',
+                                                fontWeight: FontWeight.w900,
+                                                fontSize: 14),
+                                          ),
+                                        ),
+                                        style: ButtonStyle(
+                                            textStyle: MaterialStateProperty.all(TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 14
+                                            )
+                                            ),
+                                            animationDuration: Duration(milliseconds: 0),
+                                            foregroundColor: MaterialStateProperty.resolveWith((states){
+                                              if(states.contains(MaterialState.pressed)){
+                                                return Colors.white;
+                                              }
+                                              return Color(0xff467695);
+                                            }),
+                                            backgroundColor:  MaterialStateProperty.resolveWith((states){
+                                              if(states.contains(MaterialState.pressed)){
+                                                return Color(0xff19547b);
+                                              }
+                                              return Color(0xffF1F1F1);
+                                            }),
+                                            // MaterialStateProperty.all(Color(0xffD3D3D3)),
+                                            overlayColor:MaterialStateProperty.all(Colors.transparent),
+                                            shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(12.5),
+                                            ))),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+
+                                /*Visibility(
+                                  visible: false*//*_enterAction*//*,
+                                  child: AnimatedPositioned(
+                                      curve: Curves.fastOutSlowIn,
+                                      left: _buttonPosition ? 152 : MediaQuery.of(context).size.width + 175,
+                                      top: 148,
+                                      duration: Duration(milliseconds: 750),
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          showDialog(
+                                              context: context,
+                                              builder: (BuildContext context) {
+                                                return AlertDialog(
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius: BorderRadius.circular(30.0),
+                                                  ),
+                                                  scrollable: true,
+                                                  insetPadding: EdgeInsets.all(40),
+                                                  contentPadding: EdgeInsets.all(0),
+                                                  backgroundColor: Colors.white60,
+                                                  content: Container(
+                                                    height: 260,
+                                                    width: 300,
+                                                    decoration: BoxDecoration(
+                                                      border: Border.all(
+                                                        color: Colors.black.withOpacity(0.8),
+                                                        width: 3,
+                                                      ),
+                                                      // color: Color(0xffB5B5B5),
+                                                      borderRadius: BorderRadius.circular(30.0),
+                                                    ),
+                                                    child: Column(
+                                                      children: [
+                                                        Expanded(
+                                                          child: Container(
+                                                            decoration: BoxDecoration(
+                                                              color: Color(0xff19547b),
+                                                              borderRadius: BorderRadius.only(topLeft: Radius.circular(25),topRight: Radius.circular(25))
+                                                            ),
+                                                            child: Center(
+                                                              child: Text(
+                                                                'Updates',
+                                                                style: TextStyle(
+                                                                    fontSize: 17,
+                                                                    color: Colors.white,
+                                                                    fontWeight: FontWeight.bold),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Container(
+                                                          padding: EdgeInsets.only(
+                                                              left: 15, right: 15),
+                                                          decoration: BoxDecoration(
+                                                              color: Colors.white.withOpacity(0.8),
+                                                              borderRadius: BorderRadius.circular(0)),
+                                                          height: 176,
+                                                          margin: EdgeInsets.only(left: 0, right: 0, top: 0, bottom: 0),
+                                                          child: TextField(
+                                                            minLines: null,
+                                                            maxLines: null,
+                                                            keyboardType: TextInputType.multiline,
+                                                            textInputAction: TextInputAction.done,
+                                                            cursorColor: Colors.black.withOpacity(0.2),
+                                                            showCursor: true,
+                                                            decoration: InputDecoration(
+                                                                border: InputBorder.none,
+                                                                labelStyle: TextStyle(
+                                                                  color: Colors.black.withOpacity(0.6),
+                                                                )),
+                                                          ),
+                                                        ),
+                                                        *//*Container(
+                                                          height: 35,
+                                                          width: 85,
+                                                          decoration: BoxDecoration(
+                                                            color: Color(0xff8D3030),
+                                                            borderRadius: BorderRadius.circular(15),
+                                                            border: Border.all(
+                                                              color: Colors.white,
+                                                              width: 2.0,
+                                                            ),
+                                                          ),
+                                                          child: Center(
+                                                            child: Text(
+                                                              "SUBMIT",
+                                                              style: TextStyle(
+                                                                  fontFamily: 'Roboto',
+                                                                fontSize: 14.5,
+                                                                  fontWeight:
+                                                                  FontWeight.bold,
+                                                                  color:
+                                                                  Colors.white),
+                                                            ),
+                                                          ),
+                                                        ),*//*
+                                                        ElevatedButton(
+                                                            child: Text(
+                                                              "SUBMIT",
+                                                              style: TextStyle(
+                                                                  fontWeight: FontWeight.bold,
+                                                                  color: Colors.white),
+                                                            ),
+                                                            style: ElevatedButton.styleFrom(
+                                                              side: BorderSide(
+                                                                color: Colors.white,
+                                                                width: 2.0,
+                                                              ),
+                                                              shape:
+                                                              RoundedRectangleBorder(
+                                                                borderRadius: BorderRadius.circular(15), // <-- Radius
+                                                              ),
+                                                              primary: Color(0xff19547b),
+                                                            ),
+                                                            onPressed: () {
+                                                              Navigator.pop(context);
+                                                            }
                                                             ),
                                                       ],
                                                     ),
@@ -4462,9 +5050,67 @@ class _MatrixPageState extends State<MatrixPage> {
                                       )
                                     // UpdatesButton(),
                                   ),
-                                ),
+                                ),*/
+
                                 Visibility(
                                   visible: _enterAction,
+                                  child: AnimatedPositioned(
+                                    curve: Curves.fastOutSlowIn,
+                                    left: _buttonPosition ? 152 : MediaQuery.of(context).size.width + 175,
+                                    top: 174,
+                                    duration: Duration(milliseconds: 850),
+                                    child: Container(
+                                      height: 24,
+                                      width: 174,
+                                      child: ElevatedButton(
+                                        onPressed: (){
+                                          setState(() {
+                                            _enterAction = false;
+                                          });
+                                        },
+                                        child: Align(
+                                          alignment: Alignment(-0.355, 0),
+                                          child: Text(
+                                            "ACTIONS",
+                                            style: TextStyle(
+                                              // color: Colors.white,
+                                                fontFamily: 'Roboto',
+                                                fontWeight: FontWeight.w900,
+                                                fontSize: 14),
+                                          ),
+                                        ),
+                                        style: ButtonStyle(
+                                            textStyle: MaterialStateProperty.all(TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 14
+                                            )
+                                            ),
+                                            animationDuration: Duration(milliseconds: 0),
+                                            foregroundColor: MaterialStateProperty.resolveWith((states){
+                                              if(states.contains(MaterialState.pressed)){
+                                                return Colors.white;
+                                              }
+                                              return Color(0xff467695);
+                                            }),
+                                            backgroundColor:  MaterialStateProperty.resolveWith((states){
+                                              if(states.contains(MaterialState.pressed)){
+                                                return Color(0xff19547b);
+                                              }
+                                              return Color(0xffF1F1F1);
+                                            }),
+                                            // MaterialStateProperty.all(Color(0xffD3D3D3)),
+                                            overlayColor:MaterialStateProperty.all(Colors.transparent),
+                                            shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(12.5),
+                                            ))),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+
+                                /*Visibility(
+                                  visible: false*//*_enterAction*//*,
                                   child: AnimatedPositioned(
                                       curve: Curves.fastOutSlowIn,
                                       left: _buttonPosition
@@ -4527,11 +5173,11 @@ class _MatrixPageState extends State<MatrixPage> {
                                       )
                                     // ActionsButton(),
                                   ),
-                                ),
+                                ),*/
                                 AnimatedPositioned(
                                   curve: Curves.fastOutSlowIn,
                                   left: _enterAction == false ? 152 : MediaQuery.of(context).size.width + 175,
-                                  top: 18,
+                                  top: 17,
                                   duration: Duration(milliseconds: 250),
                                   child: GestureDetector(
                                       onTap: () {
@@ -4541,41 +5187,739 @@ class _MatrixPageState extends State<MatrixPage> {
                                       },
                                       child: RedActionButton()),
                                 ),
+
                                 AnimatedPositioned(
                                   curve: Curves.fastOutSlowIn,
                                   left: _enterAction == false ? 152 : MediaQuery.of(context).size.width + 175,
                                   top: 44,
                                   duration: Duration(milliseconds: 350),
-                                  child: ForwardButton(),
+                                  child: Container(
+                                    height: 24,
+                                    width: 174,
+                                    child: ElevatedButton(
+                                      onPressed: (){
+                                        showDialog(
+                                            context: context,
+                                            builder: (BuildContext context) {
+                                              return AlertDialog(
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius: BorderRadius.circular(30.0),
+                                                ),
+                                                scrollable: true,
+                                                insetPadding: EdgeInsets.all(50),
+                                                contentPadding: EdgeInsets.all(0),
+                                                backgroundColor: Colors.white60,
+                                                content: Container(
+                                                  height: 260,
+                                                  width: 300,
+                                                  decoration: BoxDecoration(
+                                                    border: Border.all(
+                                                      color: Colors.black.withOpacity(0.8),
+                                                      width: 3,
+                                                    ),
+                                                    // color: Color(0xffB5B5B5),
+                                                    borderRadius: BorderRadius.circular(30.0),
+                                                  ),
+                                                  child: Column(
+                                                    children: [
+                                                      Expanded(
+                                                        child: Container(
+                                                          decoration: BoxDecoration(
+                                                              color: Color(0xff19547b),
+                                                              borderRadius: BorderRadius.only(topLeft: Radius.circular(25),topRight: Radius.circular(25))
+                                                          ),
+                                                          child: Center(
+                                                            child: Text(
+                                                              'Forward',
+                                                              style: TextStyle(
+                                                                  fontSize: 17,
+                                                                  color: Colors.white,
+                                                                  fontWeight: FontWeight.bold),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Container(
+                                                        padding: EdgeInsets.only(left: 15, right: 15),
+                                                        decoration: BoxDecoration(
+                                                            color: Colors.white.withOpacity(0.8),
+                                                            borderRadius: BorderRadius.circular(0)),
+                                                        height: 176,
+                                                        margin: EdgeInsets.only(left: 0, right: 0, top: 0, bottom: 0),
+                                                        child: TextField(
+                                                          minLines: null,
+                                                          maxLines: null,
+                                                          keyboardType: TextInputType.multiline,
+                                                          textInputAction: TextInputAction.done,
+                                                          cursorColor: Colors.black.withOpacity(0.2),
+                                                          showCursor: true,
+                                                          decoration: InputDecoration(
+                                                              border: InputBorder.none,
+                                                              labelStyle: TextStyle(
+                                                                color: Colors.black.withOpacity(0.6),
+                                                              )),
+                                                        ),
+                                                      ),
+                                                      ElevatedButton(
+                                                          child: Text(
+                                                            "SUBMIT",
+                                                            style: TextStyle(
+                                                                fontWeight: FontWeight.bold,
+                                                                color: Colors.white),
+                                                          ),
+                                                          style: ElevatedButton.styleFrom(
+                                                            side: BorderSide(
+                                                              color: Colors.white,
+                                                              width: 2.0,
+                                                            ),
+                                                            shape: RoundedRectangleBorder(
+                                                              borderRadius: BorderRadius.circular(15), // <-- Radius
+                                                            ),
+                                                            primary: Color(0xff19547b),
+                                                          ),
+                                                          onPressed: () {
+                                                            Navigator.pop(context);
+                                                          }),
+                                                    ],
+                                                  ),
+                                                ),
+                                              );
+                                            });
+                                      },
+                                      child: Align(
+                                        alignment: Alignment.center,
+                                        child: Text(
+                                          "FORWARD",
+                                          style: TextStyle(
+                                            // color: Colors.white,
+                                              fontFamily: 'Roboto',
+                                              fontWeight: FontWeight.w900,
+                                              fontSize: 14),
+                                        ),
+                                      ),
+                                      style: ButtonStyle(
+                                          textStyle: MaterialStateProperty.all(TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 14
+                                          )
+                                          ),
+                                          animationDuration: Duration(milliseconds: 0),
+                                          foregroundColor: MaterialStateProperty.resolveWith((states){
+                                            if(states.contains(MaterialState.pressed)){
+                                              return Colors.white;
+                                            }
+                                            return Color(0xff467695);
+                                          }),
+                                          backgroundColor:  MaterialStateProperty.resolveWith((states){
+                                            if(states.contains(MaterialState.pressed)){
+                                              return Color(0xff19547b);
+                                            }
+                                            return Color(0xffF1F1F1);
+                                          }),
+                                          // MaterialStateProperty.all(Color(0xffD3D3D3)),
+                                          overlayColor:MaterialStateProperty.all(Colors.transparent),
+                                          shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(12.5),
+                                          ))),
+                                    ),
+                                  ),
                                 ),
+
+                                /*AnimatedPositioned(
+                                  curve: Curves.fastOutSlowIn,
+                                  left: _enterAction == false ? 152 : MediaQuery.of(context).size.width + 175,
+                                  top: 44,
+                                  duration: Duration(milliseconds: 350),
+                                  child: ForwardButton(),
+                                ),*/
+
                                 AnimatedPositioned(
                                   curve: Curves.fastOutSlowIn,
                                   left: _enterAction == false ? 152 : MediaQuery.of(context).size.width + 175,
                                   top: 70,
                                   duration: Duration(milliseconds: 450),
-                                  child: PendingButton(),
+                                  child: Container(
+                                    height: 24,
+                                    width: 174,
+                                    child: ElevatedButton(
+                                      onPressed: (){
+                                        showDialog(
+                                            context: context,
+                                            builder: (BuildContext context) {
+                                              return AlertDialog(
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius: BorderRadius.circular(30.0),
+                                                ),
+                                                scrollable: true,
+                                                insetPadding: EdgeInsets.all(50),
+                                                contentPadding: EdgeInsets.all(0),
+                                                backgroundColor: Colors.white60,
+                                                content: Container(
+                                                  height: 260,
+                                                  width: 300,
+                                                  decoration: BoxDecoration(
+                                                    border: Border.all(
+                                                      color: Colors.black.withOpacity(0.8),
+                                                      width: 3,
+                                                    ),
+                                                    // color: Color(0xffB5B5B5),
+                                                    borderRadius: BorderRadius.circular(30.0),
+                                                  ),
+                                                  child: Column(
+                                                    children: [
+                                                      Expanded(
+                                                        child: Container(
+                                                          decoration: BoxDecoration(
+                                                              color: Color(0xff19547b),
+                                                              borderRadius: BorderRadius.only(topLeft: Radius.circular(25),topRight: Radius.circular(25))
+                                                          ),
+                                                          child: Center(
+                                                            child: Text(
+                                                              'Pending',
+                                                              style: TextStyle(
+                                                                  fontSize: 17,
+                                                                  color: Colors.white,
+                                                                  fontWeight: FontWeight.bold),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Container(
+                                                        padding: EdgeInsets.only(left: 15, right: 15),
+                                                        decoration: BoxDecoration(
+                                                            color: Colors.white.withOpacity(0.8),
+                                                            borderRadius: BorderRadius.circular(0)),
+                                                        height: 176,
+                                                        margin: EdgeInsets.only(left: 0, right: 0, top: 0, bottom: 0),
+                                                        child: TextField(
+                                                          minLines: null,
+                                                          maxLines: null,
+                                                          keyboardType: TextInputType.multiline,
+                                                          textInputAction: TextInputAction.done,
+                                                          cursorColor: Colors.black.withOpacity(0.2),
+                                                          showCursor: true,
+                                                          decoration: InputDecoration(
+                                                              border: InputBorder.none,
+                                                              labelStyle: TextStyle(
+                                                                color: Colors.black.withOpacity(0.6),
+                                                              )),
+                                                        ),
+                                                      ),
+                                                      ElevatedButton(
+                                                          child: Text(
+                                                            "SUBMIT",
+                                                            style: TextStyle(
+                                                                fontWeight: FontWeight.bold,
+                                                                color: Colors.white),
+                                                          ),
+                                                          style: ElevatedButton.styleFrom(
+                                                            side: BorderSide(
+                                                              color: Colors.white,
+                                                              width: 2.0,
+                                                            ),
+                                                            shape: RoundedRectangleBorder(
+                                                              borderRadius: BorderRadius.circular(15), // <-- Radius
+                                                            ),
+                                                            primary: Color(0xff19547b),
+                                                          ),
+                                                          onPressed: () {
+                                                            Navigator.pop(context);
+                                                          }),
+                                                    ],
+                                                  ),
+                                                ),
+                                              );
+                                            });
+                                      },
+                                      child: Align(
+                                        alignment: Alignment.center,
+                                        child: Text(
+                                          "PENDING",
+                                          style: TextStyle(
+                                            // color: Colors.white,
+                                              fontFamily: 'Roboto',
+                                              fontWeight: FontWeight.w900,
+                                              fontSize: 14),
+                                        ),
+                                      ),
+                                      style: ButtonStyle(
+                                          textStyle: MaterialStateProperty.all(TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 14
+                                          )
+                                          ),
+                                          animationDuration: Duration(milliseconds: 0),
+                                          foregroundColor: MaterialStateProperty.resolveWith((states){
+                                            if(states.contains(MaterialState.pressed)){
+                                              return Colors.white;
+                                            }
+                                            return Color(0xff467695);
+                                          }),
+                                          backgroundColor:  MaterialStateProperty.resolveWith((states){
+                                            if(states.contains(MaterialState.pressed)){
+                                              return Color(0xff19547b);
+                                            }
+                                            return Color(0xffF1F1F1);
+                                          }),
+                                          // MaterialStateProperty.all(Color(0xffD3D3D3)),
+                                          overlayColor:MaterialStateProperty.all(Colors.transparent),
+                                          shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(12.5),
+                                          ))),
+                                    ),
+                                  ),
                                 ),
+
+                                /*AnimatedPositioned(
+                                  curve: Curves.fastOutSlowIn,
+                                  left: _enterAction == false ? 152 : MediaQuery.of(context).size.width + 175,
+                                  top: 70,
+                                  duration: Duration(milliseconds: 450),
+                                  child: PendingButton(),
+                                ),*/
+
                                 AnimatedPositioned(
                                   curve: Curves.fastOutSlowIn,
                                   left: _enterAction == false ? 152 : MediaQuery.of(context).size.width + 175,
                                   top: 96,
                                   duration: Duration(milliseconds: 550),
-                                  child: UnAvailableButton(),
+                                  child: Container(
+                                    height: 24,
+                                    width: 174,
+                                    child: ElevatedButton(
+                                      onPressed: (){
+                                        showDialog(
+                                            context: context,
+                                            builder: (BuildContext context) {
+                                              return AlertDialog(
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius: BorderRadius.circular(30.0),
+                                                ),
+                                                scrollable: true,
+                                                insetPadding: EdgeInsets.all(50),
+                                                contentPadding: EdgeInsets.all(0),
+                                                backgroundColor: Colors.white60,
+                                                content: Container(
+                                                  height: 260,
+                                                  width: 300,
+                                                  decoration: BoxDecoration(
+                                                    border: Border.all(
+                                                      color: Colors.black.withOpacity(0.8),
+                                                      width: 3,
+                                                    ),
+                                                    // color: Color(0xffB5B5B5),
+                                                    borderRadius: BorderRadius.circular(30.0),
+                                                  ),
+                                                  child: Column(
+                                                    children: [
+                                                      Expanded(
+                                                        child: Container(
+                                                          decoration: BoxDecoration(
+                                                              color: Color(0xff19547b),
+                                                              borderRadius: BorderRadius.only(topLeft: Radius.circular(25),topRight: Radius.circular(25))
+                                                          ),
+                                                          child: Center(
+                                                            child: Text(
+                                                              'UnAvailable',
+                                                              style: TextStyle(
+                                                                  fontSize: 17,
+                                                                  color: Colors.white,
+                                                                  fontWeight: FontWeight.bold),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Container(
+                                                        padding: EdgeInsets.only(left: 15, right: 15),
+                                                        decoration: BoxDecoration(
+                                                            color: Colors.white.withOpacity(0.8),
+                                                            borderRadius: BorderRadius.circular(0)),
+                                                        height: 176,
+                                                        margin: EdgeInsets.only(
+                                                            left: 0, right: 0, top: 0, bottom: 0),
+                                                        child: TextField(
+                                                          minLines: null,
+                                                          maxLines: null,
+                                                          keyboardType: TextInputType.multiline,
+                                                          textInputAction: TextInputAction.done,
+                                                          cursorColor: Colors.black.withOpacity(0.2),
+                                                          showCursor: true,
+                                                          decoration: InputDecoration(
+                                                              border: InputBorder.none,
+                                                              labelStyle: TextStyle(
+                                                                color: Colors.black.withOpacity(0.6),
+                                                              )),
+                                                        ),
+                                                      ),
+                                                      ElevatedButton(
+                                                          child: Text(
+                                                            "SUBMIT",
+                                                            style: TextStyle(
+                                                                fontWeight: FontWeight.bold,
+                                                                color: Colors.white),
+                                                          ),
+                                                          style: ElevatedButton.styleFrom(
+                                                            side: BorderSide(
+                                                              color: Colors.white,
+                                                              width: 2.0,
+                                                            ),
+                                                            shape: RoundedRectangleBorder(
+                                                              borderRadius: BorderRadius.circular(15), // <-- Radius
+                                                            ),
+                                                            primary: Color(0xff19547b),
+                                                          ),
+                                                          onPressed: () {
+                                                            Navigator.pop(context);
+                                                          }),
+                                                    ],
+                                                  ),
+                                                ),
+                                              );
+                                            });
+                                      },
+                                      child: Align(
+                                        alignment: Alignment.center,
+                                        child: Text(
+                                          "UNAVAILABLE",
+                                          style: TextStyle(
+                                            // color: Colors.white,
+                                              fontFamily: 'Roboto',
+                                              fontWeight: FontWeight.w900,
+                                              fontSize: 14),
+                                        ),
+                                      ),
+                                      style: ButtonStyle(
+                                          textStyle: MaterialStateProperty.all(TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 14
+                                          )
+                                          ),
+                                          animationDuration: Duration(milliseconds: 0),
+                                          foregroundColor: MaterialStateProperty.resolveWith((states){
+                                            if(states.contains(MaterialState.pressed)){
+                                              return Colors.white;
+                                            }
+                                            return Color(0xff467695);
+                                          }),
+                                          backgroundColor:  MaterialStateProperty.resolveWith((states){
+                                            if(states.contains(MaterialState.pressed)){
+                                              return Color(0xff19547b);
+                                            }
+                                            return Color(0xffF1F1F1);
+                                          }),
+                                          // MaterialStateProperty.all(Color(0xffD3D3D3)),
+                                          overlayColor:MaterialStateProperty.all(Colors.transparent),
+                                          shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(12.5),
+                                          ))),
+                                    ),
+                                  ),
                                 ),
+
+                                /*AnimatedPositioned(
+                                  curve: Curves.fastOutSlowIn,
+                                  left: _enterAction == false ? 152 : MediaQuery.of(context).size.width + 175,
+                                  top: 96,
+                                  duration: Duration(milliseconds: 550),
+                                  child: UnAvailableButton(),
+                                ),*/
+
                                 AnimatedPositioned(
                                   curve: Curves.fastOutSlowIn,
                                   left: _enterAction == false ? 152 : MediaQuery.of(context).size.width + 175,
                                   top: 122,
                                   duration: Duration(milliseconds: 650),
-                                  child: ResolveButton(),
+                                  child: Container(
+                                    height: 24,
+                                    width: 174,
+                                    child: ElevatedButton(
+                                      onPressed: (){
+                                        showDialog(
+                                            context: context,
+                                            builder: (BuildContext context) {
+                                              return AlertDialog(
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius: BorderRadius.circular(30.0),
+                                                ),
+                                                scrollable: true,
+                                                insetPadding: EdgeInsets.all(50),
+                                                contentPadding: EdgeInsets.all(0),
+                                                backgroundColor: Colors.white60,
+                                                content: Container(
+                                                  height: 260,
+                                                  width: 300,
+                                                  decoration: BoxDecoration(
+                                                    border: Border.all(
+                                                      color: Colors.black.withOpacity(0.8),
+                                                      width: 3,
+                                                    ),
+                                                    // color: Color(0xffB5B5B5),
+                                                    borderRadius: BorderRadius.circular(30.0),
+                                                  ),
+                                                  child: Column(
+                                                    children: [
+                                                      Expanded(
+                                                        child: Container(
+                                                          decoration: BoxDecoration(
+                                                              color: Color(0xff19547b),
+                                                              borderRadius: BorderRadius.only(topLeft: Radius.circular(25),topRight: Radius.circular(25))
+                                                          ),
+                                                          child: Center(
+                                                            child: Text(
+                                                              'Resolve',
+                                                              style: TextStyle(
+                                                                  fontSize: 17,
+                                                                  color: Colors.white,
+                                                                  fontWeight: FontWeight.bold),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Container(
+                                                        padding: EdgeInsets.only(left: 15, right: 15),
+                                                        decoration: BoxDecoration(
+                                                            color: Colors.white.withOpacity(0.8),
+                                                            borderRadius: BorderRadius.circular(0)),
+                                                        height: 176,
+                                                        margin: EdgeInsets.only(
+                                                            left: 0, right: 0, top: 0, bottom: 0),
+                                                        child: TextField(
+                                                          minLines: null,
+                                                          maxLines: null,
+                                                          keyboardType: TextInputType.multiline,
+                                                          textInputAction: TextInputAction.done,
+                                                          cursorColor: Colors.black.withOpacity(0.2),
+                                                          showCursor: true,
+                                                          decoration: InputDecoration(
+                                                              border: InputBorder.none,
+                                                              labelStyle: TextStyle(
+                                                                color: Colors.black.withOpacity(0.6),
+                                                              )),
+                                                        ),
+                                                      ),
+                                                      ElevatedButton(
+                                                          child: Text(
+                                                            "SUBMIT",
+                                                            style: TextStyle(
+                                                                fontWeight: FontWeight.bold,
+                                                                color: Colors.white),
+                                                          ),
+                                                          style: ElevatedButton.styleFrom(
+                                                            side: BorderSide(
+                                                              color: Colors.white,
+                                                              width: 2.0,
+                                                            ),
+                                                            shape: RoundedRectangleBorder(
+                                                              borderRadius: BorderRadius.circular(15), // <-- Radius
+                                                            ),
+                                                            primary: Color(0xff19547b),
+                                                          ),
+                                                          onPressed: () {
+                                                            Navigator.pop(context);
+                                                          }),
+                                                    ],
+                                                  ),
+                                                ),
+                                              );
+                                            });
+                                      },
+                                      child: Align(
+                                        alignment: Alignment.center,
+                                        child: Text(
+                                          "RESOLVE",
+                                          style: TextStyle(
+                                            // color: Colors.white,
+                                              fontFamily: 'Roboto',
+                                              fontWeight: FontWeight.w900,
+                                              fontSize: 14),
+                                        ),
+                                      ),
+                                      style: ButtonStyle(
+                                          textStyle: MaterialStateProperty.all(TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 14
+                                          )
+                                          ),
+                                          animationDuration: Duration(milliseconds: 0),
+                                          foregroundColor: MaterialStateProperty.resolveWith((states){
+                                            if(states.contains(MaterialState.pressed)){
+                                              return Colors.white;
+                                            }
+                                            return Color(0xff467695);
+                                          }),
+                                          backgroundColor:  MaterialStateProperty.resolveWith((states){
+                                            if(states.contains(MaterialState.pressed)){
+                                              return Color(0xff19547b);
+                                            }
+                                            return Color(0xffF1F1F1);
+                                          }),
+                                          // MaterialStateProperty.all(Color(0xffD3D3D3)),
+                                          overlayColor:MaterialStateProperty.all(Colors.transparent),
+                                          shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(12.5),
+                                          ))),
+                                    ),
+                                  ),
                                 ),
+
+                                /*AnimatedPositioned(
+                                  curve: Curves.fastOutSlowIn,
+                                  left: _enterAction == false ? 152 : MediaQuery.of(context).size.width + 175,
+                                  top: 122,
+                                  duration: Duration(milliseconds: 650),
+                                  child: ResolveButton(),
+                                ),*/
+
                                 AnimatedPositioned(
                                   curve: Curves.fastOutSlowIn,
                                   left: _enterAction == false ? 152 : MediaQuery.of(context).size.width + 175,
                                   top: 148,
                                   duration: Duration(milliseconds: 750),
-                                  child: ActionCloseButton(),
+                                  child: Container(
+                                    height: 24,
+                                    width: 174,
+                                    child: ElevatedButton(
+                                      onPressed: (){
+                                        showDialog(
+                                            context: context,
+                                            builder: (BuildContext context) {
+                                              return AlertDialog(
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius: BorderRadius.circular(30.0),
+                                                ),
+                                                scrollable: true,
+                                                insetPadding: EdgeInsets.all(50),
+                                                contentPadding: EdgeInsets.all(0),
+                                                backgroundColor: Colors.white60,
+                                                content: Container(
+                                                  height: 260,
+                                                  width: 300,
+                                                  decoration: BoxDecoration(
+                                                    border: Border.all(
+                                                      color: Colors.black.withOpacity(0.8),
+                                                      width: 3,
+                                                    ),
+                                                    // color: Color(0xffB5B5B5),
+                                                    borderRadius: BorderRadius.circular(30.0),
+                                                  ),
+                                                  child: Column(
+                                                    children: [
+                                                      Expanded(
+                                                        child: Container(
+                                                          decoration: BoxDecoration(
+                                                              color: Color(0xff19547b),
+                                                              borderRadius: BorderRadius.only(topLeft: Radius.circular(25),topRight: Radius.circular(25))
+                                                          ),
+                                                          child: Center(
+                                                            child: Text(
+                                                              'Close',
+                                                              style: TextStyle(
+                                                                  fontSize: 17,
+                                                                  color: Colors.white,
+                                                                  fontWeight: FontWeight.bold),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Container(
+                                                        padding: EdgeInsets.only(left: 15, right: 15),
+                                                        decoration: BoxDecoration(
+                                                            color: Colors.white.withOpacity(0.8),
+                                                            borderRadius: BorderRadius.circular(0)),
+                                                        height: 176,
+                                                        margin: EdgeInsets.only(
+                                                            left: 0, right: 0, top: 0, bottom: 0),
+                                                        child: TextField(
+                                                          minLines: null,
+                                                          maxLines: null,
+                                                          keyboardType: TextInputType.multiline,
+                                                          textInputAction: TextInputAction.done,
+                                                          cursorColor: Colors.black.withOpacity(0.2),
+                                                          showCursor: true,
+                                                          decoration: InputDecoration(
+                                                              border: InputBorder.none,
+                                                              labelStyle: TextStyle(
+                                                                color: Colors.black.withOpacity(0.6),
+                                                              )),
+                                                        ),
+                                                      ),
+                                                      ElevatedButton(
+                                                          child: Text(
+                                                            "SUBMIT",
+                                                            style: TextStyle(
+                                                                fontWeight: FontWeight.bold,
+                                                                color: Colors.white),
+                                                          ),
+                                                          style: ElevatedButton.styleFrom(
+                                                            side: BorderSide(
+                                                              color: Colors.white,
+                                                              width: 2.0,
+                                                            ),
+                                                            shape: RoundedRectangleBorder(
+                                                              borderRadius: BorderRadius.circular(15), // <-- Radius
+                                                            ),
+                                                            primary: Color(0xff19547b),
+                                                          ),
+                                                          onPressed: () {
+                                                            Navigator.pop(context);
+                                                          }),
+                                                    ],
+                                                  ),
+                                                ),
+                                              );
+                                            });
+                                      },
+                                      child: Align(
+                                        alignment: Alignment.center,
+                                        child: Text(
+                                          "CLOSE",
+                                          style: TextStyle(
+                                            // color: Colors.white,
+                                              fontFamily: 'Roboto',
+                                              fontWeight: FontWeight.w900,
+                                              fontSize: 14),
+                                        ),
+                                      ),
+                                      style: ButtonStyle(
+                                          textStyle: MaterialStateProperty.all(TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 14
+                                          )
+                                          ),
+                                          animationDuration: Duration(milliseconds: 0),
+                                          foregroundColor: MaterialStateProperty.resolveWith((states){
+                                            if(states.contains(MaterialState.pressed)){
+                                              return Colors.white;
+                                            }
+                                            return Color(0xff467695);
+                                          }),
+                                          backgroundColor:  MaterialStateProperty.resolveWith((states){
+                                            if(states.contains(MaterialState.pressed)){
+                                              return Color(0xff19547b);
+                                            }
+                                            return Color(0xffF1F1F1);
+                                          }),
+                                          // MaterialStateProperty.all(Color(0xffD3D3D3)),
+                                          overlayColor:MaterialStateProperty.all(Colors.transparent),
+                                          shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(12.5),
+                                          ))),
+                                    ),
+                                  ),
                                 ),
+
+                                /*AnimatedPositioned(
+                                  curve: Curves.fastOutSlowIn,
+                                  left: _enterAction == false ? 152 : MediaQuery.of(context).size.width + 175,
+                                  top: 148,
+                                  duration: Duration(milliseconds: 750),
+                                  child: ActionCloseButton(),
+                                ),*/
                               ],
                             ),
                           ),
@@ -6292,7 +7636,7 @@ class _MatrixPageState extends State<MatrixPage> {
       visible: (!memory()),
       child: Container(
         height: 44,
-        margin: EdgeInsets.only(left: 15,right: 15,bottom: 12.5),
+        margin: EdgeInsets.only(left: 17.5,right: 17.5,bottom: 12.5),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
           gradient: LinearGradient(
@@ -6300,8 +7644,8 @@ class _MatrixPageState extends State<MatrixPage> {
               Colors.white.withOpacity(0.5),
               Colors.white.withOpacity(0.2)
             ],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
           ),
         ),
         child: Row(
@@ -6476,7 +7820,7 @@ class _MatrixPageState extends State<MatrixPage> {
                     ),
                   );
                 },*/
-                itemBuilder: (context, element) {
+                indexedItemBuilder: (context, element, int) {
                   return element.toString().contains("UnAssigned")?GestureDetector(
                     onLongPress: () {
                       showDialog(
@@ -6891,12 +8235,12 @@ class _MatrixPageState extends State<MatrixPage> {
                       child: Container(
                         height: 40,
                         decoration: BoxDecoration(
-                          border: Border.all(
+                          /*border: Border.all(
                             color: Color(0xff19547b),
                             width: 2
-                          ),
+                          ),*/
                             // borderRadius: BorderRadius.circular(10),
-                            color: /*Colors.blueGrey.withOpacity(1)*/Color(0xff19547b).withOpacity(0.6),
+                            color: /*Colors.blueGrey.withOpacity(1)*/(int%2==0)?Color(0xff19547b).withOpacity(1.0):Color(0xff19547b).withOpacity(0.6),
                           /*boxShadow: [
                             BoxShadow(
                                 blurRadius: 0,

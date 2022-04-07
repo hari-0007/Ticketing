@@ -95,6 +95,97 @@ class _ChartState extends State<Chart> {
 
     return Column(
       children: [
+        /*SfCircularChart(
+            onLegendTapped: (data){
+              setState(() {
+                print(chartData[data.pointIndex!].x);
+              });
+            },
+            margin: EdgeInsets.zero,
+            legend: Legend(
+                isVisible: true,
+                overflowMode: LegendItemOverflowMode.wrap,
+                alignment: ChartAlignment.center,
+                textStyle: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                    shadows: [
+                      Shadow(
+                        offset: Offset(1, 1),
+                        blurRadius: 1,
+                        color: Colors.black.withOpacity(0.8),
+                      ),
+                    ]
+                ),
+                iconWidth: 10,
+                iconHeight:30
+            ),
+            annotations: [
+              CircularChartAnnotation(
+                  width: *//*"111.5%",*//*"105%",
+                  height: *//*"111.5%",*//*"105%",
+                  widget: GestureDetector(
+                    onTap: (){
+                      setState(() {
+                        print("hello");
+                        _devicesSearch("");
+                      });
+                    },
+                    child: PhysicalModel(
+                        shape: BoxShape.circle,
+                        elevation: 10,
+                        shadowColor: Colors.black,
+                        color: Colors.transparent,*//*Color(0xffe6e6e6),*//*
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(100),
+                              image: DecorationImage(
+                                  image: AssetImage('assets/rectangleintocircle.png'),
+                                  fit: BoxFit.fill,
+                                  opacity: 1
+                              )
+                          ),
+                          child: Center(
+                            child: Text(
+                              "50",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 40,
+                                  shadows: [
+                                    Shadow(
+                                      offset: Offset(1, 1),
+                                      blurRadius: 1,
+                                      color: Colors.black.withOpacity(0.8),
+                                    ),
+                                  ]
+                              ),
+                            ),
+                          ),
+                        )
+                    ),
+                  )
+              ),
+            ],
+            series: <CircularSeries>[
+              DoughnutSeries<ChartData, String>(
+                *//*onPointTap: (value){
+                  setState(() {
+                    _devicesSearch(chartData[value.pointIndex!].x);
+                    print(chartData[value.pointIndex!].x);
+                  });
+                },*//*
+                radius: "80%",
+                innerRadius: "60%",
+                explode: true,
+                dataSource: chartData,
+                pointColorMapper: (ChartData data, _) => data.color,
+                xValueMapper: (ChartData data, _) => data.x,
+                yValueMapper: (ChartData data, _) => data.y,
+              )
+            ]
+        ),*/
         Stack(
           children: [
             SfCircularChart(
@@ -131,7 +222,7 @@ class _ChartState extends State<Chart> {
                 iconWidth: 10,
                 iconHeight:30
               ),
-              // title: ChartTitle(text: "Demo chart"),
+
 
               annotations: [
                 CircularChartAnnotation(
@@ -151,10 +242,6 @@ class _ChartState extends State<Chart> {
                           color: Colors.transparent,/*Color(0xffe6e6e6),*/
                           child: Container(
                             decoration: BoxDecoration(
-                              /*border: Border.all(
-                                color: Colors.white,
-                                width: 5
-                              ),*/
                               borderRadius: BorderRadius.circular(100),
                               image: DecorationImage(
                                 image: AssetImage('assets/rectangleintocircle.png'),
@@ -183,50 +270,35 @@ class _ChartState extends State<Chart> {
                       ),
                     )
                 ),
-                /*CircularChartAnnotation(
-                    width: *//*"111.5%",*//*"105%",
-                    height: *//*"111.5%",*//*"105%",
-                    widget: GestureDetector(
-                      onTap: (){
-                        setState(() {
-                          print("hello");
-                          _devicesSearch("");
-                        });
-                      },
-                    )
-                )*/
               ],
               series: <CircularSeries>[
-                // Renders doughnut chart
                 DoughnutSeries<ChartData, String>(
-                    /*onPointTap: (value){
-                      setState(() {
-                        print(chartData[value.pointIndex!].y);
-                      });
-                    },*/
-                    /*onPointDoubleTap: (value){
-                      setState(() {
-                        print(chartData[value.pointIndex!].y);
-                      });
-                    },*/
-                    onPointTap: (value){
+                    onPointDoubleTap: (value){
                       setState(() {
                         _devicesSearch(chartData[value.pointIndex!].x);
                         print(chartData[value.pointIndex!].x);
                       });
                     },
-                    /*startAngle: 0,
-                    endAngle: 360,*/
+                    /*onPointTap: (value){
+                      setState(() {
+                        _devicesSearch(chartData[value.pointIndex!].x);
+                        print(chartData[value.pointIndex!].x);
+                      });
+                    },*/
                     explodeOffset: "10%",
                     strokeColor: Colors.transparent,
-                    // explodeAll: false,
                     dataLabelMapper: (ChartData data, _) => data.y.toString(),
-                    dataLabelSettings: DataLabelSettings(isVisible: true,overflowMode: OverflowMode.shift),
+                    dataLabelSettings: DataLabelSettings(
+                        isVisible: true,
+                        overflowMode: OverflowMode.shift,
+                        textStyle: TextStyle(
+                            fontSize: 15.5
+                        )
+                    ),
                     enableTooltip: true,
                     radius: "80%",
                     innerRadius: "60%",
                     explode: true,
-                    // explodeIndex: 1,
                     explodeGesture: ActivationMode.singleTap,
                     dataSource: chartData,
                     pointColorMapper: (ChartData data, _) => data.color,
@@ -422,43 +494,6 @@ class _ChartState extends State<Chart> {
           ],
         ),
 
-        Container(
-          height: 24,
-          width: 174,
-          child: ElevatedButton(
-            child: Text(
-              "CHAT",
-              style: TextStyle(
-                  color: Colors.white/*Color(0xff467695)*/,
-                  fontFamily: 'Roboto',
-                  fontWeight: FontWeight.w900,
-                  fontSize: 14),
-            ),
-            style: ButtonStyle(
-              backgroundColor:  MaterialStateProperty.all(Color(0xffD3D3D3) ),
-                overlayColor:MaterialStateProperty.all(Color(0xff19547b)) ,//change with your color
-                shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ))),
-            onPressed: (){},
-          ),
-        ),
-
-        TextButton(
-          style: ButtonStyle(
-              overlayColor: MaterialStateColor.resolveWith(
-                      (states) => Colors.white.withOpacity(1))),
-          onPressed: () => {},
-          child:
-          Text(
-            'My Button',
-            style: TextStyle(
-                fontSize: 16,
-                color: Colors.black,
-                fontWeight: FontWeight.w400),
-          ),
-        ),
-
         Expanded(
             child:Container(
               margin: EdgeInsets.only(left: 12.5,right: 12.5,top: 0,bottom: 5),
@@ -628,7 +663,8 @@ class _ChartState extends State<Chart> {
               ),
             ),
           ),
-          itemBuilder: (c, element) {
+
+          indexedItemBuilder: (context, element, int){
             return Padding(
               padding: EdgeInsets.only(left: 3.5,right: 3.5),
               child: Card(
@@ -640,13 +676,37 @@ class _ChartState extends State<Chart> {
                     decoration: BoxDecoration(color: Color(0xff404b60).withOpacity(0.9)),
                     child: Center(
                       child: Text(
-                          element['devices'],
+                        element['devices'],
                       ),
                     )
                 ),
               ),
             );
           },
+          /*itemBuilder: (c, element) {
+            return GestureDetector(
+              onTap: (){
+                print(element.toString());
+              },
+              child: Padding(
+                padding: EdgeInsets.only(left: 3.5,right: 3.5),
+                child: Card(
+                  elevation: 8.0,
+                  color: Colors.transparent,
+                  shadowColor: Colors.black,
+                  child: Container(
+                      height: 42.5,
+                      decoration: BoxDecoration(color: Color(0xff404b60).withOpacity(0.9)),
+                      child: Center(
+                        child: Text(
+                            element['devices'],
+                        ),
+                      )
+                  ),
+                ),
+              ),
+            );
+          },*/
         )
     );
   }
@@ -654,7 +714,8 @@ class _ChartState extends State<Chart> {
   Widget getDiscovered(){
     return Expanded(
         child: Container(
-          margin: EdgeInsets.only(left: 0,right: 0,top: 2.5,bottom: 0),
+          margin: EdgeInsets.only(left: 0,right: 0,top:0,bottom: 0),
+          padding: EdgeInsets.only(top: 22.5),
           color: Colors.transparent,
           child: ListView.builder(
             padding: EdgeInsets.zero,
