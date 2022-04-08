@@ -1,4 +1,6 @@
 // import 'package:flutter/cupertino.dart';
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:grouped_list/grouped_list.dart';
@@ -47,6 +49,8 @@ class _ChartState extends State<Chart> {
 
   bool _deviceWidth = true;
   bool _deviceflag = false;
+
+  final disController = ScrollController();
 
   DevicesMarker selectedDevicesMarker = DevicesMarker.members;
 
@@ -558,7 +562,11 @@ class _ChartState extends State<Chart> {
                         Flexible(
                             child: GestureDetector(
                               onTap : (){
+
                                 setState(() {
+                                  Timer(Duration(milliseconds: 200),(){
+                                    disController.animateTo(disController.position.maxScrollExtent, duration: Duration(seconds: 1), curve: Curves.easeIn);
+                                  });
                                   selectedDevicesMarker = DevicesMarker.discovered;
                                 });
                                 /*showModalBottomSheet(
@@ -715,9 +723,10 @@ class _ChartState extends State<Chart> {
     return Expanded(
         child: Container(
           margin: EdgeInsets.only(left: 0,right: 0,top:0,bottom: 0),
-          padding: EdgeInsets.only(top: 22.5),
+          padding: EdgeInsets.only(top: 12.5),
           color: Colors.transparent,
           child: ListView.builder(
+            controller: disController,
             padding: EdgeInsets.zero,
             shrinkWrap: true,
             reverse: true,
