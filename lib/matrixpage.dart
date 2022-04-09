@@ -7923,6 +7923,7 @@ class _MatrixPageState extends State<MatrixPage> {
   }
 
   Widget getUnAssignedTicket() {
+
     return MeasuredSize(
       onChange: (Size) {
         mySize =Size;
@@ -8084,7 +8085,205 @@ class _MatrixPageState extends State<MatrixPage> {
                                             crossAxisAlignment: CrossAxisAlignment.center,
                                             children: [
                                               SizedBox(height: 10,),
-                                              Row(
+
+                                              Stack(
+                                                children: [
+                                                  if(element["Severity"]=="High")...[
+                                                    Card(
+                                                      shape: RoundedRectangleBorder(
+                                                        borderRadius: BorderRadius.circular(7.5),
+                                                      ),
+                                                      color: Colors.transparent,
+                                                      elevation: 5,
+                                                      child: Container(
+                                                        padding: EdgeInsets.symmetric(horizontal: 10.0),
+                                                        decoration: BoxDecoration(
+                                                          color: Color(0xff9B4244),
+                                                          borderRadius: BorderRadius.all(Radius.circular(7.5)),
+                                                        ),
+                                                        child: Text(
+                                                          element['SystemNumber'],
+                                                          style: TextStyle(
+                                                              fontSize: 20,
+                                                              fontWeight: FontWeight.bold,
+                                                              color: Colors.transparent
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Card(
+                                                      shape: RoundedRectangleBorder(
+                                                        borderRadius: BorderRadius.circular(7.5),
+                                                      ),
+                                                      color: Colors.transparent,
+                                                      elevation: 5,
+                                                      child: Container(
+                                                          padding: EdgeInsets.symmetric(horizontal: 10.0),
+                                                          child: Text(
+                                                            element['SystemNumber'],
+                                                            style: TextStyle(
+                                                                fontSize: 20,
+                                                                fontWeight: FontWeight.bold),
+                                                          )),
+                                                    ),
+                                                  ] else if(element["Severity"]=="Medium")...[
+                                                    Card(
+                                                      shape: RoundedRectangleBorder(
+                                                        borderRadius: BorderRadius.circular(7.5),
+                                                      ),
+                                                      color: Colors.transparent,
+                                                      elevation: 5,
+                                                      child: Container(
+                                                        padding: EdgeInsets.symmetric(horizontal: 10.0),
+                                                        decoration: BoxDecoration(
+                                                          color: Color(0xff569556),
+                                                          borderRadius: BorderRadius.all(Radius.circular(7.5)),
+                                                        ),
+                                                        child: Text(
+                                                          element['SystemNumber'],
+                                                          style: TextStyle(
+                                                              fontSize: 20,
+                                                              fontWeight: FontWeight.bold,
+                                                              color: Colors.transparent
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Card(
+                                                      shape: RoundedRectangleBorder(
+                                                        borderRadius: BorderRadius.circular(7.5),
+                                                      ),
+                                                      color: Colors.transparent,
+                                                      elevation: 5,
+                                                      child: Container(
+                                                          padding: EdgeInsets.symmetric(horizontal: 10.0),
+                                                          child: Text(
+                                                            element['SystemNumber'],
+                                                            style: TextStyle(
+                                                                fontSize: 20,
+                                                                fontWeight: FontWeight.bold),
+                                                          )),
+                                                    ),
+                                                  ]else if(element["Severity"]=="Low")...[
+                                                    Card(
+                                                      shape: RoundedRectangleBorder(
+                                                        borderRadius: BorderRadius.circular(7.5),
+                                                      ),
+                                                      color: Colors.transparent,
+                                                      elevation: 5,
+                                                      child: Container(
+                                                        padding: EdgeInsets.symmetric(horizontal: 10.0),
+                                                        decoration: BoxDecoration(
+                                                          color: Color(0xffB7AA5E),
+                                                          borderRadius: BorderRadius.all(Radius.circular(7.5)),
+                                                        ),
+                                                        child: Text(
+                                                          element['SystemNumber'],
+                                                          style: TextStyle(
+                                                              fontSize: 20,
+                                                              fontWeight: FontWeight.bold,
+                                                              color: Colors.transparent
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Card(
+                                                      shape: RoundedRectangleBorder(
+                                                        borderRadius: BorderRadius.circular(7.5),
+                                                      ),
+                                                      color: Colors.transparent,
+                                                      elevation: 5,
+                                                      child: Container(
+                                                          padding: EdgeInsets.symmetric(horizontal: 10.0),
+                                                          child: Text(
+                                                            element['SystemNumber'],
+                                                            style: TextStyle(
+                                                                fontSize: 20,
+                                                                fontWeight: FontWeight.bold),
+                                                          )),
+                                                    ),
+                                                  ]else if(element["Severity"]=="Information")...[
+                                                    Card(
+                                                      shape: RoundedRectangleBorder(
+                                                        borderRadius: BorderRadius.circular(7.5),
+                                                      ),
+                                                      color: Colors.transparent,
+                                                      elevation: 5,
+                                                      child: Container(
+                                                        padding: EdgeInsets.symmetric(horizontal: 10.0),
+                                                        decoration: BoxDecoration(
+                                                          color: Color(0xffF6F6F6),
+                                                          borderRadius: BorderRadius.all(Radius.circular(7.5)),
+                                                        ),
+                                                        child: Text(
+                                                          element['SystemNumber'],
+                                                          style: TextStyle(
+                                                              fontSize: 20,
+                                                              fontWeight: FontWeight.bold,
+                                                              color: Colors.transparent
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Card(
+                                                      shape: RoundedRectangleBorder(
+                                                        borderRadius: BorderRadius.circular(7.5),
+                                                      ),
+                                                      color: Colors.transparent,
+                                                      elevation: 5,
+                                                      child: Container(
+                                                          padding: EdgeInsets.symmetric(horizontal: 10.0),
+                                                          child: Text(
+                                                            element['SystemNumber'],
+                                                            style: TextStyle(
+                                                                fontSize: 20,
+                                                                fontWeight: FontWeight.bold),
+                                                          )),
+                                                    ),
+                                                  ]else...[
+                                                    Card(
+                                                      shape: RoundedRectangleBorder(
+                                                        borderRadius: BorderRadius.circular(7.5),
+                                                      ),
+                                                      color: Colors.transparent,
+                                                      elevation: 5,
+                                                      child: Container(
+                                                        padding: EdgeInsets.symmetric(horizontal: 10.0),
+                                                        decoration: BoxDecoration(
+                                                          color: Color(0xff4C709A),
+                                                          borderRadius: BorderRadius.all(Radius.circular(7.5)),
+                                                        ),
+                                                        child: Text(
+                                                          element['SystemNumber'],
+                                                          style: TextStyle(
+                                                              fontSize: 20,
+                                                              fontWeight: FontWeight.bold,
+                                                              color: Colors.transparent
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Card(
+                                                      shape: RoundedRectangleBorder(
+                                                        borderRadius: BorderRadius.circular(7.5),
+                                                      ),
+                                                      color: Colors.transparent,
+                                                      elevation: 5,
+                                                      child: Container(
+                                                          padding: EdgeInsets.symmetric(horizontal: 10.0),
+                                                          child: Text(
+                                                            element['SystemNumber'],
+                                                            style: TextStyle(
+                                                                fontSize: 20,
+                                                                fontWeight: FontWeight.bold),
+                                                          )),
+                                                    ),
+                                                  ]
+
+                                                ],
+                                              ),
+
+                                              /*Row(
                                                 mainAxisAlignment: MainAxisAlignment.center,
                                                 children: [
                                                   Card(
@@ -8095,10 +8294,10 @@ class _MatrixPageState extends State<MatrixPage> {
                                                     child: Container(
                                                         padding: EdgeInsets.symmetric(horizontal: 10.0),
                                                         decoration: BoxDecoration(
-                                                          color: (element["Severity"]=="High")?Colors.black.withOpacity(0.5):Colors.red.withOpacity(0.5)
-                                                          /*Colors.black.withOpacity(0.5)*/,
-                                                          /*color: element['Color']
-                                                              .withOpacity(0.5),*/
+                                                          color: (element["Severity"]=="High")?Color(0xff9B4244).withOpacity(0.5):Colors.red.withOpacity(0.5),
+                                                          *//*Colors.black.withOpacity(0.5)*//*
+                                                          *//*color: element['Color']
+                                                              .withOpacity(0.5),*//*
                                                           borderRadius: BorderRadius.all(Radius.circular(7.5)),
                                                         ),
                                                         child: Text(
@@ -8109,7 +8308,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                                         )),
                                                   ),
                                                 ],
-                                              ),
+                                              ),*/
                                               SizedBox(height: 7.5,),
                                               Row(
                                                 mainAxisAlignment: MainAxisAlignment.center,

@@ -52,6 +52,11 @@ class _ChartState extends State<Chart> {
 
   final disController = ScrollController();
 
+  int explodeIndex = 0;
+  var explodeIndexAF;
+
+  bool explode = false;
+
   DevicesMarker selectedDevicesMarker = DevicesMarker.members;
 
   @override
@@ -233,12 +238,12 @@ class _ChartState extends State<Chart> {
                     width: /*"111.5%",*/"105%",
                     height: /*"111.5%",*/"105%",
                     widget: GestureDetector(
-                      onTap: (){
+                      /*onTap: (){
                         setState(() {
                           print("hello");
                           _devicesSearch("");
                         });
-                      },
+                      },*/
                       child: PhysicalModel(
                           shape: BoxShape.circle,
                           elevation: 10,
@@ -277,18 +282,66 @@ class _ChartState extends State<Chart> {
               ],
               series: <CircularSeries>[
                 DoughnutSeries<ChartData, String>(
-                    onPointDoubleTap: (value){
-                      setState(() {
-                        _devicesSearch(chartData[value.pointIndex!].x);
-                        print(chartData[value.pointIndex!].x);
-                      });
-                    },
-                    /*onPointTap: (value){
+                    /*onPointDoubleTap: (value){
                       setState(() {
                         _devicesSearch(chartData[value.pointIndex!].x);
                         print(chartData[value.pointIndex!].x);
                       });
                     },*/
+                    onPointTap: (value){
+                      // print(value.pointIndex);
+                      /*print(value.pointIndex);
+                      print(explode);
+                      print(explodeIndex);*/
+                      setState(() {
+                        explodeIndex=value.pointIndex!;
+                        if(explodeIndex == value.pointIndex){
+                          explode = !explode;
+                          if(explode==true){
+                            print("helo");
+                            _devicesSearch(chartData[value.pointIndex!].x);
+                            explodeIndexAF = explodeIndex;
+                          }else{
+                            if(explodeIndexAF != value.pointIndex){
+                              print(explodeIndexAF);
+                              print("helo2");
+                              print(value.pointIndex);
+                              explode = true;
+                              explodeIndexAF = explodeIndex;
+                              _devicesSearch(chartData[value.pointIndex!].x);
+                            }else{
+                              print(value.pointIndex);
+                              print("helo1");
+                              _devicesSearch("");
+                              explode = false;
+                              print(explodeIndexAF);
+                            }
+                            /*print(value.pointIndex);
+                            print("helo1");
+                            _devicesSearch("");
+                            print(explodeIndexAF);*/
+                          }
+                        }/*else{
+                          print("hello2");
+                          explode = false;
+                        }*/
+                      });
+
+                      /*setState(() {
+                        if(explode == false){
+                          _devicesSearch("");
+                        }
+                      });*/
+
+                      // explodeIndex=value.pointIndex!;
+                      // _devicesSearch(chartData[value.pointIndex!].x);
+                      // print(chartData[value.pointIndex!].x);
+                      /*setState(() {
+                        _devicesSearch(chartData[value.pointIndex!].x);
+                        print(chartData[value.pointIndex!].x);
+                      });*/
+                    },
+                    explodeIndex: explodeIndex,
                     explodeOffset: "10%",
                     strokeColor: Colors.transparent,
                     dataLabelMapper: (ChartData data, _) => data.y.toString(),
@@ -302,7 +355,7 @@ class _ChartState extends State<Chart> {
                     enableTooltip: true,
                     radius: "80%",
                     innerRadius: "60%",
-                    explode: true,
+                    explode: explode,
                     explodeGesture: ActivationMode.singleTap,
                     dataSource: chartData,
                     pointColorMapper: (ChartData data, _) => data.color,
@@ -544,7 +597,11 @@ class _ChartState extends State<Chart> {
                               margin: EdgeInsets.only(left: 7.5,right: 1),
                               decoration: BoxDecoration(
                                   color: (selectedDevicesMarker == DevicesMarker.members)?Colors.black38:Colors.transparent,
-                                  borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20))
+                                  borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20)),
+                                border: Border.all(
+                                  color: Colors.white.withOpacity(0.6),
+                                  width: 1
+                                )
                               ),
                               child: Center(
                                 child: Text(
@@ -597,7 +654,11 @@ class _ChartState extends State<Chart> {
                                 margin: EdgeInsets.only(left: 1,right: 7.5),
                                 decoration: BoxDecoration(
                                     color: (selectedDevicesMarker == DevicesMarker.discovered)?Colors.black38:Colors.transparent,
-                                    borderRadius: BorderRadius.only(bottomRight: Radius.circular(20))
+                                    borderRadius: BorderRadius.only(bottomRight: Radius.circular(20)),
+                                    border: Border.all(
+                                        color: Colors.white.withOpacity(0.6),
+                                        width: 1
+                                    )
                                 ),
                                 child: Center(
                                     child: Text(
@@ -681,7 +742,9 @@ class _ChartState extends State<Chart> {
                 shadowColor: Colors.black,
                 child: Container(
                     height: 42.5,
-                    decoration: BoxDecoration(color: Color(0xff404b60).withOpacity(0.9)),
+                    decoration: BoxDecoration(
+                        color: Color(0xff19547b).withOpacity(0.6)/*Color(0xff404b60).withOpacity(0.9)*/
+                    ),
                     child: Center(
                       child: Text(
                         element['devices'],
@@ -737,7 +800,8 @@ class _ChartState extends State<Chart> {
                 margin: EdgeInsets.only(left: 7.5,right: 7.5,top: 5,bottom: 5),
                 child: Container(
                   height: 47.5,
-                  decoration: BoxDecoration(color:Color(0xff19547b).withOpacity(0.85), /*Colors.blueGrey.withOpacity(0.9)*/),
+                  decoration: BoxDecoration(
+                    color:Color(0xff19547b).withOpacity(0.65),/*Color(0xff19547b).withOpacity(0.85),*/ /*Colors.blueGrey.withOpacity(0.9)*/),
                   child: Center(
                     child: Text(_discover[index]['devices']),
                   ),
