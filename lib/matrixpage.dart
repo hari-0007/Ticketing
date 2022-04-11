@@ -670,18 +670,18 @@ class _MatrixPageState extends State<MatrixPage> {
   WidgetMarker selectedWidgetMarker = WidgetMarker.devices;           // Drawer Starting home
 
   bool _ticketExpand = false;                                           // getAssignedTicket
-  bool _isChatButton = true;                                            // getAssignedTicket -> Stack -> Red:White
-  bool _isCallButton = true;                                            // getAssignedTicket -> Stack -> Red:White
-  bool _isRemoteButton = true;                                          // getAssignedTicket -> Stack -> Red:White
-  bool _isScriptButton = true;                                          // getAssignedTicket -> Stack -> Red:White
-  bool _isTerminalButton = true;                                        // getAssignedTicket -> Stack -> Red:White
-  bool _isUpdatesButton = true;                                         // getAssignedTicket -> Stack -> Red:White
-  bool _isActionsButton = true;                                         // getAssignedTicket -> Stack -> Red:White
-  bool _isForwardButton = true;                                         // getAssignedTicket -> Stack -> Red:White
-  bool _isPendingButton = true;                                         // getAssignedTicket -> Stack -> Red:White
-  bool _isUnAvailableButton = true;                                     // getAssignedTicket -> Stack -> Red:White
-  bool _isResolveButton = true;                                         // getAssignedTicket -> Stack -> Red:White
-  bool _isActionCloseButton = true;                                     // getAssignedTicket -> Stack -> Red:White
+  // bool _isChatButton = true;                                            // getAssignedTicket -> Stack -> Red:White
+  // bool _isCallButton = true;                                            // getAssignedTicket -> Stack -> Red:White
+  // bool _isRemoteButton = true;                                          // getAssignedTicket -> Stack -> Red:White
+  // bool _isScriptButton = true;                                          // getAssignedTicket -> Stack -> Red:White
+  // bool _isTerminalButton = true;                                        // getAssignedTicket -> Stack -> Red:White
+  // bool _isUpdatesButton = true;                                         // getAssignedTicket -> Stack -> Red:White
+  // bool _isActionsButton = true;                                         // getAssignedTicket -> Stack -> Red:White
+  // bool _isForwardButton = true;                                         // getAssignedTicket -> Stack -> Red:White
+  // bool _isPendingButton = true;                                         // getAssignedTicket -> Stack -> Red:White
+  // bool _isUnAvailableButton = true;                                     // getAssignedTicket -> Stack -> Red:White
+  // bool _isResolveButton = true;                                         // getAssignedTicket -> Stack -> Red:White
+  // bool _isActionCloseButton = true;                                     // getAssignedTicket -> Stack -> Red:White
   bool _buttonPosition = false;                                         // getAssignedTicket -> Stack -> Red:White
 
   bool _selectedTicketIndex = true;
@@ -1488,6 +1488,8 @@ class _MatrixPageState extends State<MatrixPage> {
                                                   content: DragTarget(
                                                     onAccept: (remove) {
 
+                                                      // print(remove.toString().contains('assets/callicongreenpadding1.gif'));
+
                                                       setState(() {
 
                                                         /*if(memorybar[_sysNumber]?.contains('assets/callicongreenpadding1.gif')==true){
@@ -1498,20 +1500,35 @@ class _MatrixPageState extends State<MatrixPage> {
                                                           _callIgnore=false;
                                                         }*/
 
+                                                        // print(memorybar);
+
+                                                        if(remove.toString().contains('assets/callicongreenpadding1.gif') ){
+                                                          print("helo");
+                                                          _callIgnore=false;
+                                                          _controllerTime.reset();
+                                                        }else if(remove.toString().contains('assets/calliconpadding.png')){
+                                                          print("helo1");
+                                                          _callIgnore=false;
+                                                          _controllerTime.reset();
+                                                        }
+
                                                         memorybar.forEach((key, value) {
                                                           if (key == _sysNumber) {
                                                             value.remove(memorybar[_sysNumber]!.toList()[index]);
 
                                                             if(value.contains('assets/callicongreenpadding1.gif')){
-                                                              print('$key , hello1');
+                                                              // print('$key , hello1');
                                                               _callIgnore=true;
                                                             }else if(value.contains('assets/calliconpadding.png')){
-                                                              print('$key , hello2');
+                                                              // print('$key , hello2');
                                                               _callIgnore=true;
-                                                            }else{
+                                                            }/*else{
+
+                                                              print("hello");
+
                                                               _callIgnore=false;
                                                               _controllerTime.reset();
-                                                            }
+                                                            }*/
 
                                                             selectedIncidentWidgetMarker = IncidentMarker.main;
                                                             _remote = false;
@@ -6163,9 +6180,35 @@ class _MatrixPageState extends State<MatrixPage> {
                     InkWell(
                       onTap: () {
                         /*print(memorybar[_sysNumber]?.contains('assets/callicongreenpadding1.gif'));*/
-                        print(memorybar);
+                        // print(memorybar);
 
                         setState(() {
+
+                          /*memorybar.forEach((key,value){
+                            if(value.contains('assets/callicongreenpadding1.gif')){
+                              print("Green ${value.contains('assets/callicongreenpadding1.gif')}");
+                            }else if(value.contains('assets/calliconpadding.png')){
+                              print("black ${value.contains('assets/calliconpadding.png')}");
+                            }else{
+                              print("_callIgnore=false _controllerTime.reset() ");
+                            }
+                          });*/
+
+                          memorybar.forEach((key, value) {
+                            // print(value.contains('assets/callicongreenpadding1.gif'));
+                            if(value.contains('assets/callicongreenpadding1.gif') == true){
+                              print("true");
+                            }else{
+                              print("false11");
+                            }
+                          });
+
+                          /*for (var i in memorybar.keys){
+
+                            print(i);
+                            print(memorybar[i]?.contains('assets/callicongreenpadding1.gif'));
+                          }*/
+
                           // height=height+10;
                           // width!=15.0?width=15.0:width=150;
                           /*_foundTicket[1];*/
@@ -7135,7 +7178,7 @@ class _MatrixPageState extends State<MatrixPage> {
     );
   }
 
-  Widget ForwardButton() {
+  /*Widget ForwardButton() {
     return GestureDetector(
       onTap: () {
         showDialog(
@@ -7273,9 +7316,9 @@ class _MatrixPageState extends State<MatrixPage> {
         ),
       ),
     );
-  }
+  }*/
 
-  Widget PendingButton() {
+  /*Widget PendingButton() {
     return GestureDetector(
       onTap: () {
         showDialog(
@@ -7413,9 +7456,9 @@ class _MatrixPageState extends State<MatrixPage> {
         ),
       ),
     );
-  }
+  }*/
 
-  Widget UnAvailableButton() {
+  /*Widget UnAvailableButton() {
     return GestureDetector(
       onTap: () {
         showDialog(
@@ -7554,9 +7597,9 @@ class _MatrixPageState extends State<MatrixPage> {
         ),
       ),
     );
-  }
+  }*/
 
-  Widget ResolveButton() {
+  /*Widget ResolveButton() {
     return GestureDetector(
       onTap: () {
         showDialog(
@@ -7695,9 +7738,9 @@ class _MatrixPageState extends State<MatrixPage> {
         ),
       ),
     );
-  }
+  }*/
 
-  Widget ActionCloseButton() {
+  /*Widget ActionCloseButton() {
     return GestureDetector(
       onTap: () {
         showDialog(
@@ -7836,7 +7879,7 @@ class _MatrixPageState extends State<MatrixPage> {
         ),
       ),
     );
-  }
+  }*/
 
   Widget getPerformance(){
     return Visibility(
@@ -7919,6 +7962,50 @@ class _MatrixPageState extends State<MatrixPage> {
           ],
         )
       ),
+    );
+  }
+
+  Widget unAssignedLongPress({required String systemNumber, required Color unAssignedColor}){
+    return Stack(
+      children: [
+        Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(7.5),
+          ),
+          color: Colors.transparent,
+          elevation: 5,
+          child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 10.0),
+            decoration: BoxDecoration(
+              color: unAssignedColor,
+              borderRadius: BorderRadius.all(Radius.circular(7.5)),
+            ),
+            child: Text(
+              systemNumber,
+              style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.transparent
+              ),
+            ),
+          ),
+        ),
+        Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(7.5),
+          ),
+          color: Colors.transparent,
+          elevation: 5,
+          child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 10.0),
+              child: Text(
+                systemNumber,
+                style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold),
+              )),
+        ),
+      ],
     );
   }
 
@@ -8086,9 +8173,22 @@ class _MatrixPageState extends State<MatrixPage> {
                                             children: [
                                               SizedBox(height: 10,),
 
-                                              Stack(
+                                              if(element["Severity"]=="High")...[
+                                                unAssignedLongPress(systemNumber: element['SystemNumber'], unAssignedColor: Color(0xff9B4244)),
+                                              ]else if(element["Severity"]=="Medium")...[
+                                                unAssignedLongPress(systemNumber: element['SystemNumber'], unAssignedColor: Color(0xff569556)),
+                                              ]else if(element["Severity"]=="Low")...[
+                                                unAssignedLongPress(systemNumber: element['SystemNumber'], unAssignedColor: Color(0xffB7AA5E)),
+                                              ]else if(element["Severity"]=="Information")...[
+                                                unAssignedLongPress(systemNumber: element['SystemNumber'], unAssignedColor: Color(0xffF6F6F6)),
+                                              ]else...[
+                                                unAssignedLongPress(systemNumber: element['SystemNumber'], unAssignedColor: Color(0xff4C709A)),
+                                              ],
+
+                                              /*Stack(
                                                 children: [
                                                   if(element["Severity"]=="High")...[
+                                                    unAssignedLongPress(systemNumber: element['SystemNumber'], unAssignedColor: Color(0xff9B4244)),
                                                     Card(
                                                       shape: RoundedRectangleBorder(
                                                         borderRadius: BorderRadius.circular(7.5),
@@ -8281,7 +8381,7 @@ class _MatrixPageState extends State<MatrixPage> {
                                                   ]
 
                                                 ],
-                                              ),
+                                              ),*/
 
                                               /*Row(
                                                 mainAxisAlignment: MainAxisAlignment.center,

@@ -104,97 +104,6 @@ class _ChartState extends State<Chart> {
 
     return Column(
       children: [
-        /*SfCircularChart(
-            onLegendTapped: (data){
-              setState(() {
-                print(chartData[data.pointIndex!].x);
-              });
-            },
-            margin: EdgeInsets.zero,
-            legend: Legend(
-                isVisible: true,
-                overflowMode: LegendItemOverflowMode.wrap,
-                alignment: ChartAlignment.center,
-                textStyle: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                    shadows: [
-                      Shadow(
-                        offset: Offset(1, 1),
-                        blurRadius: 1,
-                        color: Colors.black.withOpacity(0.8),
-                      ),
-                    ]
-                ),
-                iconWidth: 10,
-                iconHeight:30
-            ),
-            annotations: [
-              CircularChartAnnotation(
-                  width: *//*"111.5%",*//*"105%",
-                  height: *//*"111.5%",*//*"105%",
-                  widget: GestureDetector(
-                    onTap: (){
-                      setState(() {
-                        print("hello");
-                        _devicesSearch("");
-                      });
-                    },
-                    child: PhysicalModel(
-                        shape: BoxShape.circle,
-                        elevation: 10,
-                        shadowColor: Colors.black,
-                        color: Colors.transparent,*//*Color(0xffe6e6e6),*//*
-                        child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(100),
-                              image: DecorationImage(
-                                  image: AssetImage('assets/rectangleintocircle.png'),
-                                  fit: BoxFit.fill,
-                                  opacity: 1
-                              )
-                          ),
-                          child: Center(
-                            child: Text(
-                              "50",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 40,
-                                  shadows: [
-                                    Shadow(
-                                      offset: Offset(1, 1),
-                                      blurRadius: 1,
-                                      color: Colors.black.withOpacity(0.8),
-                                    ),
-                                  ]
-                              ),
-                            ),
-                          ),
-                        )
-                    ),
-                  )
-              ),
-            ],
-            series: <CircularSeries>[
-              DoughnutSeries<ChartData, String>(
-                *//*onPointTap: (value){
-                  setState(() {
-                    _devicesSearch(chartData[value.pointIndex!].x);
-                    print(chartData[value.pointIndex!].x);
-                  });
-                },*//*
-                radius: "80%",
-                innerRadius: "60%",
-                explode: true,
-                dataSource: chartData,
-                pointColorMapper: (ChartData data, _) => data.color,
-                xValueMapper: (ChartData data, _) => data.x,
-                yValueMapper: (ChartData data, _) => data.y,
-              )
-            ]
-        ),*/
         Stack(
           children: [
             SfCircularChart(
@@ -237,46 +146,40 @@ class _ChartState extends State<Chart> {
                 CircularChartAnnotation(
                     width: /*"111.5%",*/"105%",
                     height: /*"111.5%",*/"105%",
-                    widget: GestureDetector(
-                      /*onTap: (){
-                        setState(() {
-                          print("hello");
-                          _devicesSearch("");
-                        });
-                      },*/
-                      child: PhysicalModel(
-                          shape: BoxShape.circle,
-                          elevation: 10,
-                          shadowColor: Colors.black,
-                          color: Colors.transparent,/*Color(0xffe6e6e6),*/
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(100),
-                              image: DecorationImage(
-                                image: AssetImage('assets/rectangleintocircle.png'),
-                                fit: BoxFit.fill,
-                                opacity: 1
-                              )
-                            ),
-                            child: Center(
-                              child: Text(
-                                "50",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 40,
-                                    shadows: [
-                                      Shadow(
-                                        offset: Offset(1, 1),
-                                        blurRadius: 1,
-                                        color: Colors.black.withOpacity(0.8),
-                                      ),
-                                    ]
-                                ),
+                    // horizontalAlignment: ChartAlignment.center,
+                    // verticalAlignment: ChartAlignment.center,
+                    widget: PhysicalModel(
+                        shape: BoxShape.circle,
+                        elevation: 10,
+                        shadowColor: Colors.black,
+                        color: Colors.transparent,/*Color(0xffe6e6e6),*/
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(100),
+                            image: DecorationImage(
+                              image: AssetImage('assets/rectangleintocircle.png'),
+                              fit: BoxFit.fill,
+                              opacity: 1
+                            )
+                          ),
+                          child: Center(
+                            child: Text(
+                              "50",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 40,
+                                  shadows: [
+                                    Shadow(
+                                      offset: Offset(1, 1),
+                                      blurRadius: 1,
+                                      color: Colors.black.withOpacity(0.8),
+                                    ),
+                                  ]
                               ),
                             ),
-                          )
-                      ),
+                          ),
+                        )
                     )
                 ),
               ],
@@ -710,7 +613,8 @@ class _ChartState extends State<Chart> {
           groupSeparatorBuilder: (String value) => Container(
             height: 27.5,
             decoration: BoxDecoration(
-              color: Colors.blueGrey,
+              // color: Colors.blueGrey,
+              borderRadius: BorderRadius.circular(30),
               gradient: LinearGradient(
                   colors: [
                     Colors.white.withOpacity(0.5),
