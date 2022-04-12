@@ -613,6 +613,7 @@ final List<Map<String, dynamic>> ticket = [
 
 enum WidgetMarker { dashboard, incident, devices }                 // Drawer
 enum IncidentMarker { main, chat, notification, script, terminal} // Inside Incident
+enum DeviceMarker {devicemain, devicenotification}
 
 class MatrixPage extends StatefulWidget {
   const MatrixPage({Key? key}) : super(key: key);
@@ -621,7 +622,10 @@ class MatrixPage extends StatefulWidget {
   _MatrixPageState createState() => _MatrixPageState();
 }
 
-class _MatrixPageState extends State<MatrixPage> {
+class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateMixin{
+
+  late AnimationController menuController;
+  bool isMenuPlaying = false;
 
   final CustomTimerController _controllerTime = CustomTimerController();
 
@@ -643,6 +647,8 @@ class _MatrixPageState extends State<MatrixPage> {
     // at the beginning, all users are shown
     _foundTicket = ticket;
     super.initState();
+
+    menuController = AnimationController(vsync: this,duration: Duration(milliseconds: 500));
   }
 
   void _runFilter(String enteredKeyword) {
@@ -668,6 +674,7 @@ class _MatrixPageState extends State<MatrixPage> {
   double value = 0;
   IncidentMarker selectedIncidentWidgetMarker = IncidentMarker.main;   //Inside Incident Starting home
   WidgetMarker selectedWidgetMarker = WidgetMarker.devices;           // Drawer Starting home
+  DeviceMarker selectedDevicesMarker = DeviceMarker.devicemain;
 
   bool _ticketExpand = false;                                           // getAssignedTicket
   // bool _isChatButton = true;                                            // getAssignedTicket -> Stack -> Red:White
@@ -911,6 +918,7 @@ class _MatrixPageState extends State<MatrixPage> {
                             setState(() {
                               selectedWidgetMarker = WidgetMarker.dashboard;
                               value = 0;
+                              menuController.reverse();
                             });
                           },
                           leading: SizedBox(
@@ -936,6 +944,7 @@ class _MatrixPageState extends State<MatrixPage> {
                             setState(() {
                               selectedWidgetMarker = WidgetMarker.incident;
                               value = 0;
+                              menuController.reverse();
                             });
                           },
                           leading: SizedBox(
@@ -961,6 +970,7 @@ class _MatrixPageState extends State<MatrixPage> {
                             setState(() {
                               selectedWidgetMarker = WidgetMarker.devices;
                               value = 0;
+                              menuController.reverse();
                             });
                           },
                           leading: SizedBox(
@@ -1159,7 +1169,7 @@ class _MatrixPageState extends State<MatrixPage> {
                   child: Row(
                     children: <Widget>[
                       SizedBox(width: 5),
-                      AnimatedSwitcher(
+                      /*AnimatedSwitcher(
                         switchInCurve: Curves.linear,
                         switchOutCurve: Curves.easeOut,
                         duration: Duration(milliseconds: 750),
@@ -1205,7 +1215,35 @@ class _MatrixPageState extends State<MatrixPage> {
                                   // color: Colors.black,
                                 ),
                               ),
+                      ),*/
+
+                      GestureDetector(
+                        onTap: (){
+                          setState(() {
+                            // isMenuPlaying=!isMenuPlaying;
+                            // isMenuPlaying ? menuController.forward() : menuController.reverse();
+                            value == 0 ? value = 1 : value = 0;
+                            value == 1? menuController.forward() : menuController.reverse();
+                          });
+                        },
+                        child: Container(
+                          padding: EdgeInsets.all(2),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.all(Radius.circular(50)),
+                              border: Border.all(
+                                  color: Colors.black.withOpacity(0.75),
+                                  width: 2.5,
+                                style: value == 1?BorderStyle.solid:BorderStyle.none,
+                              )
+                          ),
+                          child: AnimatedIcon(
+                            icon: AnimatedIcons.menu_close,
+                            progress: menuController,
+                            size: 25,
+                          ),
+                        ),
                       ),
+
                       Padding(padding: EdgeInsets.only(left: 7.5)),
                       GestureDetector(
                         onTap: () {
@@ -2788,21 +2826,22 @@ class _MatrixPageState extends State<MatrixPage> {
           ),
           child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Container(
                   child: Row(
                     children: <Widget>[
                       SizedBox(width: 5),
-                      AnimatedSwitcher(
+                      /*AnimatedSwitcher(
                         switchInCurve: Curves.linear,
                         switchOutCurve: Curves.easeOut,
                         duration: Duration(milliseconds: 750),
                         reverseDuration: Duration(microseconds: 0),
                         transitionBuilder: (child, animation) =>
-                            /*ScaleTransition(
+                            *//*ScaleTransition(
                           child: child,
                           scale: animation,
-                        ),*/
+                        ),*//*
                             RotationTransition(
                           child: child,
                           turns: animation,
@@ -2844,7 +2883,35 @@ class _MatrixPageState extends State<MatrixPage> {
                                   // color: Colors.black,
                                 ),
                               ),
+                      ),*/
+
+                      GestureDetector(
+                        onTap: (){
+                          setState(() {
+                            // isMenuPlaying=!isMenuPlaying;
+                            // isMenuPlaying ? menuController.forward() : menuController.reverse();
+                            value == 0 ? value = 1 : value = 0;
+                            value == 1? menuController.forward() : menuController.reverse();
+                          });
+                        },
+                        child: Container(
+                          padding: EdgeInsets.all(2),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.all(Radius.circular(50)),
+                              border: Border.all(
+                                  color: Colors.black.withOpacity(0.75),
+                                  width: 2.5,
+                                style: value == 1?BorderStyle.solid:BorderStyle.none,
+                              )
+                          ),
+                          child: AnimatedIcon(
+                            icon: AnimatedIcons.menu_close,
+                            progress: menuController,
+                            size: 25,
+                          ),
+                        ),
                       ),
+
                       Padding(padding: EdgeInsets.only(left: 7.5)),
                       GestureDetector(
                         onTap: () {
@@ -2934,7 +3001,12 @@ class _MatrixPageState extends State<MatrixPage> {
                       _buttonPosition = false;
                       _ticketExpand = false;
 
-                      selectedIncidentWidgetMarker = IncidentMarker.notification;
+                      if(selectedIncidentWidgetMarker == IncidentMarker.main){
+                        selectedIncidentWidgetMarker = IncidentMarker.notification;
+                      }else{
+                        selectedIncidentWidgetMarker = IncidentMarker.main;
+                      }
+                      // selectedIncidentWidgetMarker = IncidentMarker.notification;
                     });
                   },
                   child: Center(
@@ -6194,14 +6266,14 @@ class _MatrixPageState extends State<MatrixPage> {
                             }
                           });*/
 
-                          memorybar.forEach((key, value) {
+                          /*memorybar.forEach((key, value) {
                             // print(value.contains('assets/callicongreenpadding1.gif'));
                             if(value.contains('assets/callicongreenpadding1.gif') == true){
                               print("true");
                             }else{
                               print("false11");
                             }
-                          });
+                          });*/
 
                           /*for (var i in memorybar.keys){
 
@@ -9188,6 +9260,15 @@ class _MatrixPageState extends State<MatrixPage> {
     );
   }
 
+  Widget getDevicesSwitchContainer(){
+    switch (selectedDevicesMarker){
+      case DeviceMarker.devicemain:
+        return getDeviceMain();
+      case DeviceMarker.devicenotification:
+        return getDevicesNotification();
+    }
+  }
+
   Widget getDevices() {
     return WillPopScope(
       onWillPop: () async {
@@ -9216,9 +9297,7 @@ class _MatrixPageState extends State<MatrixPage> {
                 Padding(padding: EdgeInsets.only(top: MediaQuery.of(context).viewPadding.top+20)),
                 getDevicesAppbar(),
 
-                Expanded(
-                    child: Chart()
-                ),
+                getDevicesSwitchContainer(),
 
               ],
             )
@@ -9263,7 +9342,7 @@ class _MatrixPageState extends State<MatrixPage> {
                   child: Row(
                     children: <Widget>[
                       SizedBox(width: 5),
-                      AnimatedSwitcher(
+                      /*AnimatedSwitcher(
                         switchInCurve: Curves.linear,
                         switchOutCurve: Curves.easeOut,
                         duration: Duration(milliseconds: 750),
@@ -9308,7 +9387,35 @@ class _MatrixPageState extends State<MatrixPage> {
                             // color: Colors.black,
                           ),
                         ),
+                      ),*/
+
+                      GestureDetector(
+                        onTap: (){
+                          setState(() {
+                            // isMenuPlaying=!isMenuPlaying;
+                            // isMenuPlaying ? menuController.forward() : menuController.reverse();
+                            value == 0 ? value = 1 : value = 0;
+                            value == 1? menuController.forward() : menuController.reverse();
+                          });
+                        },
+                        child: Container(
+                          padding: EdgeInsets.all(2),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(50)),
+                            border: Border.all(
+                              color: Colors.black.withOpacity(0.75),
+                              width: 2.5,
+                              style: value == 1?BorderStyle.solid:BorderStyle.none,
+                            )
+                          ),
+                          child: AnimatedIcon(
+                            icon: AnimatedIcons.menu_close,
+                            progress: menuController,
+                            size: 25,
+                          ),
+                        ),
                       ),
+
                       Padding(padding: EdgeInsets.only(left: 7.5)),
                       GestureDetector(
                         onTap: () {
@@ -9350,6 +9457,15 @@ class _MatrixPageState extends State<MatrixPage> {
                 GestureDetector(
                   onTap: (){
                     basicAnimation.currentState!.forward();
+
+                    setState(() {
+                      if(selectedDevicesMarker == DeviceMarker.devicemain){
+                        selectedDevicesMarker = DeviceMarker.devicenotification;
+                      }else{
+                        selectedDevicesMarker = DeviceMarker.devicemain;
+                      }
+                    });
+
                   },
                   child: Center(
                     child: Padding(
@@ -9379,6 +9495,61 @@ class _MatrixPageState extends State<MatrixPage> {
                 ),
 
               ])),
+    );
+  }
+
+  Widget getDevicesNotification(){
+    return Expanded(
+      child: Container(
+        // height: MediaQuery.of(context).size.height-100,
+        // color: Colors.blueGrey,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(
+              style: BorderStyle.solid,
+              color: Colors.white70.withOpacity(0.1),
+              width: 0.5,
+            ),
+            gradient: LinearGradient(
+                colors: [
+                  // Color(0xffB0C8C8),
+                  Color(0xff19547b),
+                  // Color(0xff497D7D).withOpacity(0.8),
+                  // Color(0xff91BBD2).withOpacity(0.35),
+                  // Color(0xff9A85B4),
+                  // Color(0xffA3818F)
+                  Color(0xff91BBD2).withOpacity(0.8),
+                  // Color(0xff8D6679).withOpacity(0.8),
+                ],
+                // stops: [0.0,1.0],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter)),
+        margin: EdgeInsets.only(left: 15, right: 15, top: 10, bottom: 10),
+        child: Column(
+          children: [
+            SizedBox(height: 5,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Notification',
+                  style: TextStyle(
+                      fontFamily: 'Roboto',
+                      color: Colors.white.withOpacity(0.9),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16),
+                )
+              ],
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget getDeviceMain(){
+    return Expanded(
+        child: Chart()
     );
   }
 

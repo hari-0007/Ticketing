@@ -7,27 +7,27 @@ import 'package:grouped_list/grouped_list.dart';
 
 
 List<Map<String, dynamic>> _elements = [
-  {'devices': 'C0001', 'group': 'Online'},
-  {'devices': 'C0002', 'group': 'Online'},
-  {'devices': 'C0003', 'group': 'Online'},
-  {'devices': 'C0004', 'group': 'Online'},
-  {'devices': 'C0005', 'group': 'Online'},
-  {'devices': 'C0006', 'group': 'Online'},
-  {'devices': 'A0001', 'group': 'Offline'},
-  {'devices': 'C0007', 'group': 'Online'},
-  {'devices': 'A0002', 'group': 'Offline'},
-  {'devices': 'A0003', 'group': 'Offline'},
-  {'devices': 'A0004', 'group': 'Offline'},
-  {'devices': 'A0005', 'group': 'Offline'},
-  {'devices': 'A0006', 'group': 'Offline'},
-  {'devices': 'B0001', 'group': 'Disabled'},
-  {'devices': 'A0007', 'group': 'Offline'},
-  {'devices': 'B0002', 'group': 'Disabled'},
-  {'devices': 'B0003', 'group': 'Disabled'},
-  {'devices': 'B0004', 'group': 'Disabled'},
-  {'devices': 'B0005', 'group': 'Disabled'},
-  {'devices': 'B0006', 'group': 'Disabled'},
-  {'devices': 'B0007', 'group': 'Disabled'},
+  {'devices': 'C0001', 'group': 'Online', 'disable': false, 'remove': false},
+  {'devices': 'C0002', 'group': 'Online', 'disable': false, 'remove': false},
+  {'devices': 'C0003', 'group': 'Online', 'disable': false, 'remove': false},
+  {'devices': 'C0004', 'group': 'Online', 'disable': false, 'remove': false},
+  {'devices': 'C0005', 'group': 'Online', 'disable': false, 'remove': false},
+  {'devices': 'C0006', 'group': 'Online', 'disable': false, 'remove': false},
+  {'devices': 'A0001', 'group': 'Offline', 'disable': false},
+  {'devices': 'C0007', 'group': 'Online', 'disable': false, 'remove': false},
+  {'devices': 'A0002', 'group': 'Offline', 'disable': false},
+  {'devices': 'A0003', 'group': 'Offline', 'disable': false},
+  {'devices': 'A0004', 'group': 'Offline', 'disable': false},
+  {'devices': 'A0005', 'group': 'Offline', 'disable': false},
+  {'devices': 'A0006', 'group': 'Offline', 'disable': false},
+  {'devices': 'B0001', 'group': 'Disabled', 'enable': false},
+  {'devices': 'A0007', 'group': 'Offline', 'disable': false},
+  {'devices': 'B0002', 'group': 'Disabled', 'enable': false},
+  {'devices': 'B0003', 'group': 'Disabled', 'enable': false},
+  {'devices': 'B0004', 'group': 'Disabled', 'enable': false},
+  {'devices': 'B0005', 'group': 'Disabled', 'enable': false},
+  {'devices': 'B0006', 'group': 'Disabled', 'enable': false},
+  {'devices': 'B0007', 'group': 'Disabled', 'enable': false},
 ];
 
 enum DevicesMarker {members, discovered}
@@ -40,6 +40,8 @@ class Chart extends StatefulWidget {
 }
 
 class _ChartState extends State<Chart> {
+
+  bool checkBox = false;
 
   List<Map<String, dynamic>> _discover = [];
 
@@ -644,16 +646,96 @@ class _ChartState extends State<Chart> {
                 elevation: 8.0,
                 color: Colors.transparent,
                 shadowColor: Colors.black,
-                child: Container(
-                    height: 42.5,
-                    decoration: BoxDecoration(
-                        color: Color(0xff19547b).withOpacity(0.6)/*Color(0xff404b60).withOpacity(0.9)*/
-                    ),
-                    child: Center(
-                      child: Text(
-                        element['devices'],
+                child: GestureDetector(
+                  // onTap: (){},
+                  onLongPress: (){
+                    // print(checkBox);
+                    // checkBox=true;
+                    setState(() {
+                      checkBox=!checkBox;
+                      print(checkBox);
+                    });
+                  },
+                  child: Container(
+                      height: 42.5,
+                      decoration: BoxDecoration(
+                          color: Color(0xff19547b).withOpacity(0.6)/*Color(0xff404b60).withOpacity(0.9)*/
                       ),
-                    )
+                      child: Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+
+
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                SizedBox(width: 10),
+                                Text(
+                                  element['devices'],
+                                ),
+                              ],
+                            ),
+
+
+                            Visibility(
+                              visible: checkBox,
+                              child: Row(
+                                children: [
+
+                                  Visibility(
+                                    visible: (element["group"]=="Offline"  || element["group"]=="Online"),
+                                    child: Row(
+                                      children: [
+                                        Text("Disable"),
+                                        Checkbox(
+                                            value: false,
+                                            onChanged: (bool? value){
+
+                                            }
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+
+                                  Visibility(
+                                    visible: (element["group"]=="Disabled"),
+                                    child: Row(
+                                      children: [
+                                        Text("Enable"),
+                                        Checkbox(
+                                            value: false,
+                                            onChanged: (bool? value){
+
+                                            }
+                                        ),
+                                      ],
+                                    ),),
+
+                                  Visibility(
+                                    visible: (element["group"]=="Online"),
+                                    child: Row(
+                                      children: [
+                                        Text("Remove"),
+                                        Checkbox(
+                                            value: false,
+                                            onChanged: (bool? value){
+
+                                            }
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+
+                                ],
+                              ),
+                            ),
+
+                          ],
+                        ),
+                      )
+                  ),
                 ),
               ),
             );
