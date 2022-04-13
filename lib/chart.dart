@@ -7,27 +7,160 @@ import 'package:grouped_list/grouped_list.dart';
 
 
 List<Map<String, dynamic>> _elements = [
-  {'devices': 'C0001', 'group': 'Online', 'disable': false, 'remove': false},
-  {'devices': 'C0002', 'group': 'Online', 'disable': false, 'remove': false},
-  {'devices': 'C0003', 'group': 'Online', 'disable': false, 'remove': false},
-  {'devices': 'C0004', 'group': 'Online', 'disable': false, 'remove': false},
-  {'devices': 'C0005', 'group': 'Online', 'disable': false, 'remove': false},
-  {'devices': 'C0006', 'group': 'Online', 'disable': false, 'remove': false},
-  {'devices': 'A0001', 'group': 'Offline', 'disable': false},
-  {'devices': 'C0007', 'group': 'Online', 'disable': false, 'remove': false},
-  {'devices': 'A0002', 'group': 'Offline', 'disable': false},
-  {'devices': 'A0003', 'group': 'Offline', 'disable': false},
-  {'devices': 'A0004', 'group': 'Offline', 'disable': false},
-  {'devices': 'A0005', 'group': 'Offline', 'disable': false},
-  {'devices': 'A0006', 'group': 'Offline', 'disable': false},
-  {'devices': 'B0001', 'group': 'Disabled', 'enable': false},
-  {'devices': 'A0007', 'group': 'Offline', 'disable': false},
-  {'devices': 'B0002', 'group': 'Disabled', 'enable': false},
-  {'devices': 'B0003', 'group': 'Disabled', 'enable': false},
-  {'devices': 'B0004', 'group': 'Disabled', 'enable': false},
-  {'devices': 'B0005', 'group': 'Disabled', 'enable': false},
-  {'devices': 'B0006', 'group': 'Disabled', 'enable': false},
-  {'devices': 'B0007', 'group': 'Disabled', 'enable': false},
+  {
+    'devices': 'Allitson 1',
+    "platform": "Windows",
+    'group': 'Online',
+    "lastActive": "1 Hour Ago",
+    'disable': false,
+    'remove': false
+  },
+  {
+    'devices': 'Allitson 2',
+    "platform": "Mac",
+    'group': 'Online',
+    "lastActive": "30 Minutes Ago",
+    'disable': false,
+    'remove': false
+  },
+  {
+    'devices': 'Allitson 3',
+    "platform": "Android",
+    'group': 'Online',
+    "lastActive": "1 Hour Ago",
+    'disable': false,
+    'remove': false
+  },
+  {
+    'devices': 'Allitson 4',
+    "platform": "Windows",
+    'group': 'Online',
+    "lastActive": "1 Hour Ago",
+    'disable': false,
+    'remove': false
+  },
+  {
+    'devices': 'Allitson 5',
+    "platform": "Mac",
+    'group': 'Online',
+    "lastActive": "3 Hour Ago",
+    'disable': false,
+    'remove': false
+  },
+  {
+    'devices': 'Allitson 6',
+    "platform": "Android",
+    'group': 'Online',
+    "lastActive": "4 Hour Ago",
+    'disable': false,
+    'remove': false
+  },
+  {
+    'devices': 'Allitson 7',
+    "platform": "Windows",
+    'group': 'Offline',
+    "lastActive": "Offline",
+    'disable': false
+  },
+  {
+    'devices': 'Allitson 8',
+    "platform": "Mac",
+    'group': 'Online',
+    "lastActive": "2 Hour Ago",
+    'disable': false,
+    'remove': false
+  },
+  {
+    'devices': 'Allitson 9',
+    "platform": "Android",
+    'group': 'Offline',
+    "lastActive": "Offline",
+    'disable': false
+  },
+  {
+    'devices': 'Allitson 10',
+    "platform": "Windows",
+    'group': 'Offline',
+    "lastActive": "Offline",
+    'disable': false
+  },
+  {
+    'devices': 'Allitson 11',
+    "platform": "Mac",
+    'group': 'Offline',
+    "lastActive": "Offline",
+    'disable': false
+  },
+  {
+    'devices': 'Allitson 12',
+    "platform": "Android",
+    'group': 'Offline',
+    "lastActive": "Offline",
+    'disable': false
+  },
+  {
+    'devices': 'Allitson 13',
+    "platform": "Windows",
+    'group': 'Offline',
+    "lastActive": "Offline",
+    'disable': false
+  },
+  {
+    'devices': 'Allitson 14',
+    "platform": "Mac",
+    'group': 'Disabled',
+    "lastActive": "Disable",
+    'enable': false
+  },
+  {
+    'devices': 'Allitson 15',
+    "platform": "Android",
+    'group': 'Offline',
+    "lastActive": "Offline",
+    'disable': false
+  },
+  {
+    'devices': 'Allitson 16',
+    "platform": "Windows",
+    'group': 'Disabled',
+    "lastActive": "Disable",
+    'enable': false
+  },
+  {
+    'devices': 'Allitson 17',
+    "platform": "Mac",
+    'group': 'Disabled',
+    "lastActive": "Disable",
+    'enable': false
+  },
+  {
+    'devices': 'Allitson 18',
+    "platform": "Android",
+    'group': 'Disabled',
+    "lastActive": "Disable",
+    'enable': false
+  },
+  {
+    'devices': 'Allitson 19',
+    "platform": "Windows",
+    'group': 'Disabled',
+    "lastActive": "Disable",
+    'enable': false
+  },
+  {
+    'devices': 'Allitson 20',
+    "platform": "Mac",
+    'group': 'Disabled',
+    "lastActive": "Disable",
+    'enable': false
+  },
+  {
+    'devices': 'Allitson 21',
+    "platform": "Android",
+    'group': 'Disabled',
+    "lastActive": "Disable",
+    'enable': false
+  },
 ];
 
 enum DevicesMarker {members, discovered}
@@ -602,21 +735,11 @@ class _ChartState extends State<Chart> {
 
   Widget getMembers(){
     return Expanded(
-        child: GroupedListView<dynamic, String>(
-          elements: _discover,
-          groupBy: (_element) => _element['group'],
-          sort: true,
-          order: GroupedListOrder.DESC,
-          itemComparator: (item1, item2) => item2['devices'].compareTo(item1['devices']),
-          useStickyGroupSeparators: true,
-          padding: EdgeInsets.symmetric(vertical: 0, horizontal:0),
-          stickyHeaderBackgroundColor: Colors.transparent,
-          floatingHeader: false,
-          groupSeparatorBuilder: (String value) => Container(
+      child: Column(
+        children: [
+          Container(
             height: 27.5,
             decoration: BoxDecoration(
-              // color: Colors.blueGrey,
-              borderRadius: BorderRadius.circular(30),
               gradient: LinearGradient(
                   colors: [
                     Colors.white.withOpacity(0.5),
@@ -625,146 +748,335 @@ class _ChartState extends State<Chart> {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter),
             ),
-            child: Center(
-              child: Text(
-                value,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'fonts/Roboto-Regular.ttf',
-                  color: Colors.black
+            child: Row(
+              children: [
+                // SizedBox(width: 7.5,),
+                Expanded(
+                  child: Center(
+                    child: Text(
+                        "Host Name",
+                    ),
+                  ),
                 ),
-              ),
+                Expanded(
+                  child: Center(
+                    child: Text(
+                        "Platform",
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: Center(
+                    child: Text(
+                        "Last Activation",
+                    ),
+                  ),
+                ),
+                // SizedBox(width: 5,),
+              ],
             ),
           ),
-
-          indexedItemBuilder: (context, element, int){
-            return Padding(
-              padding: EdgeInsets.only(left: 3.5,right: 3.5),
-              child: Card(
-                elevation: 8.0,
-                color: Colors.transparent,
-                shadowColor: Colors.black,
-                child: GestureDetector(
-                  // onTap: (){},
-                  onLongPress: (){
-                    // print(checkBox);
-                    // checkBox=true;
-                    setState(() {
-                      checkBox=!checkBox;
-                      print(checkBox);
-                    });
-                  },
-                  child: Container(
-                      height: 42.5,
-                      decoration: BoxDecoration(
-                          color: Color(0xff19547b).withOpacity(0.6)/*Color(0xff404b60).withOpacity(0.9)*/
+          Expanded(
+              child: GroupedListView<dynamic, String>(
+                elements: _discover,
+                groupBy: (_element) => _element['group'],
+                sort: true,
+                order: GroupedListOrder.DESC,
+                itemComparator: (item1, item2) => item2['devices'].compareTo(item1['devices']),
+                // groupComparator: (value1, value2) => value1.compareTo(value2),
+                useStickyGroupSeparators: true,
+                padding: EdgeInsets.symmetric(vertical: 0, horizontal:0),
+                stickyHeaderBackgroundColor: Colors.black,
+                floatingHeader: false,
+                groupSeparatorBuilder: (String value) => SizedBox(),
+                /*Container(
+                  height: 27.5,
+                  decoration: BoxDecoration(
+                    // color: Colors.blueGrey,
+                    borderRadius: BorderRadius.circular(30),
+                    gradient: LinearGradient(
+                        colors: [
+                          Colors.white.withOpacity(0.5),
+                          Colors.white.withOpacity(1),
+                        ],
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter),
+                  ),
+                  child: Center(
+                    child: Text(
+                      value,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'fonts/Roboto-Regular.ttf',
+                        color: Colors.black
                       ),
-                      child: Center(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
+                    ),
+                  ),
+                ),*/
+
+                indexedItemBuilder: (context, element, int){
+                  return Padding(
+                    padding: EdgeInsets.only(left: 3.5,right: 3.5),
+                    child: Card(
+                      elevation: 8.0,
+                      color: Colors.transparent,
+                      shadowColor: Colors.black,
+                      child: GestureDetector(
+                        onTap: (){
+                          /*print(element["disable"]);
+                          print(element["remove"]);
+                          print(element["enable"]);*/
+                          print(element[int]);
+
+                          setState(() {
+                            element.removeAt(int);
+                          });
 
 
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                SizedBox(width: 10),
-                                Text(
-                                  element['devices'],
-                                ),
-                              ],
+                        },
+                        onLongPress: (){
+                          // print(checkBox);
+                          // checkBox=true;
+                          // checkDialog();
+
+                          setState(() {
+                            checkBox=!checkBox;
+                            print(checkBox);
+                          });
+
+                          showModalBottomSheet(
+                            constraints: BoxConstraints(
+                              maxWidth: MediaQuery.of(context).size.width * 0.95,
                             ),
+                            isScrollControlled: true,
+                            backgroundColor: Colors.transparent,
+                            context: context,
+                            builder: (BuildContext context) {
+                              return Container(
+                                /*constraints: BoxConstraints(
+                                  maxHeight: *//*MediaQuery.of(context).size.height - *//*300,
+                                ),*/
+                                height: 200,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(45),
+                                    topLeft: Radius.circular(45),
+                                    bottomRight: Radius.circular(30),
+                                    bottomLeft: Radius.circular(30),
+                                  ),
+                                  color: Colors.white,
+                                ),
+                                child: Column(
 
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 
-                            Visibility(
-                              visible: checkBox,
+                                  children: [
+
+                                    Visibility(
+                                      visible: (element["group"]=="Offline"  || element["group"]=="Online"),
+                                      child: Row(
+                                        children: [
+                                          Text("Disable"),
+                                          Checkbox(
+                                              value: element["disable"]==null?false:element["disable"],
+                                              onChanged: (bool? value){
+
+                                              }
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+
+                                    Visibility(
+                                      visible: (element["group"]=="Disabled"),
+                                      child: Row(
+                                        children: [
+                                          Text("Enable"),
+                                          Checkbox(
+                                              value: element["enable"]==null?false:element["enable"],
+                                              onChanged: (bool? value){
+
+                                              }
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+
+                                    Visibility(
+                                      visible: (element["group"]=="Online"),
+                                      child: Row(
+                                        children: [
+                                          Text("Remove"),
+                                          Checkbox(
+                                              value: element["remove"]==null?false:element["remove"],
+                                              onChanged: (bool? value){
+
+                                              }
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+
+                                  ],
+                                ),
+                              );
+                            },
+                          );
+
+                        },
+                        child: Container(
+                            height: 42.5,
+                            decoration: BoxDecoration(
+                                color: Color(0xff19547b).withOpacity(0.6)/*Color(0xff404b60).withOpacity(0.9)*/
+                            ),
+                            child: Center(
                               child: Row(
+                                // mainAxisAlignment: MainAxisAlignment.spaceAround,
                                 children: [
-
-                                  Visibility(
-                                    visible: (element["group"]=="Offline"  || element["group"]=="Online"),
-                                    child: Row(
-                                      children: [
-                                        Text("Disable"),
-                                        Checkbox(
-                                            value: false,
-                                            onChanged: (bool? value){
-
-                                            }
-                                        ),
-                                      ],
+                                  // SizedBox(width: 10),
+                                  Expanded(
+                                    child: Center(
+                                      child: Text(
+                                        element['devices'],
+                                      ),
                                     ),
                                   ),
+                                  Expanded(
+                                    child: Center(
+                                      child: Text(
+                                        element["platform"],
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Center(
+                                      child: Text(
+                                          element["lastActive"],
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                              /*Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+
+
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      SizedBox(width: 10),
+                                      Text(
+                                        element['devices'],
+                                      ),
+                                      SizedBox(
+                                        // height: 42.5,
+                                        width: 70,
+                                        child: SingleChildScrollView(
+                                          scrollDirection: Axis.horizontal,
+                                          child: Text(
+                                              element["agentID"].toString(),
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+
 
                                   Visibility(
-                                    visible: (element["group"]=="Disabled"),
+                                    visible: checkBox,
                                     child: Row(
                                       children: [
-                                        Text("Enable"),
-                                        Checkbox(
-                                            value: false,
-                                            onChanged: (bool? value){
 
-                                            }
+                                        Visibility(
+                                          visible: (element["group"]=="Offline"  || element["group"]=="Online"),
+                                          child: Row(
+                                            children: [
+                                              Text("Disable"),
+                                              Checkbox(
+                                                  value: element["disable"]==null?false:element["disable"],
+                                                  onChanged: (bool? value){
+
+                                                  }
+                                              ),
+                                            ],
+                                          ),
                                         ),
-                                      ],
-                                    ),),
 
-                                  Visibility(
-                                    visible: (element["group"]=="Online"),
-                                    child: Row(
-                                      children: [
-                                        Text("Remove"),
-                                        Checkbox(
-                                            value: false,
-                                            onChanged: (bool? value){
+                                        Visibility(
+                                          visible: (element["group"]=="Disabled"),
+                                          child: Row(
+                                            children: [
+                                              Text("Enable"),
+                                              Checkbox(
+                                                  value: element["enable"]==null?false:element["enable"],
+                                                  onChanged: (bool? value){
 
-                                            }
+                                                  }
+                                              ),
+                                            ],
+                                          ),
                                         ),
+
+                                        Visibility(
+                                          visible: (element["group"]=="Online"),
+                                          child: Row(
+                                            children: [
+                                              Text("Remove"),
+                                              Checkbox(
+                                                  value: element["remove"]==null?false:element["remove"],
+                                                  onChanged: (bool? value){
+
+                                                  }
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+
                                       ],
                                     ),
                                   ),
 
                                 ],
+                              ),*/
+                            )
+                        ),
+                      ),
+                    ),
+                  );
+                },
+                /*itemBuilder: (c, element) {
+                  return GestureDetector(
+                    onTap: (){
+                      print(element.toString());
+                    },
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 3.5,right: 3.5),
+                      child: Card(
+                        elevation: 8.0,
+                        color: Colors.transparent,
+                        shadowColor: Colors.black,
+                        child: Container(
+                            height: 42.5,
+                            decoration: BoxDecoration(color: Color(0xff404b60).withOpacity(0.9)),
+                            child: Center(
+                              child: Text(
+                                  element['devices'],
                               ),
-                            ),
-
-                          ],
+                            )
                         ),
-                      )
-                  ),
-                ),
-              ),
-            );
-          },
-          /*itemBuilder: (c, element) {
-            return GestureDetector(
-              onTap: (){
-                print(element.toString());
-              },
-              child: Padding(
-                padding: EdgeInsets.only(left: 3.5,right: 3.5),
-                child: Card(
-                  elevation: 8.0,
-                  color: Colors.transparent,
-                  shadowColor: Colors.black,
-                  child: Container(
-                      height: 42.5,
-                      decoration: BoxDecoration(color: Color(0xff404b60).withOpacity(0.9)),
-                      child: Center(
-                        child: Text(
-                            element['devices'],
-                        ),
-                      )
-                  ),
-                ),
-              ),
-            );
-          },*/
-        )
+                      ),
+                    ),
+                  );
+                },*/
+              )
+          ),
+        ],
+      ),
     );
   }
 
@@ -798,6 +1110,33 @@ class _ChartState extends State<Chart> {
         )
     );
   }
+
+  /*Future checkDialog(){
+    return showModalBottomSheet(
+      constraints: BoxConstraints(
+        maxWidth: MediaQuery.of(context).size.width * 0.95,
+      ),
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      context: context,
+      builder: (BuildContext context) {
+        return Container(
+          constraints: BoxConstraints(
+            maxHeight: *//*MediaQuery.of(context).size.height - *//*300,
+          ),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.only(
+              topRight: Radius.circular(45),
+              topLeft: Radius.circular(45),
+              bottomRight: Radius.circular(30),
+              bottomLeft: Radius.circular(30),
+            ),
+            color: Colors.white,
+          ),
+        );
+      },
+    );
+  }*/
 
 }
 
