@@ -10,146 +10,281 @@ List<Map<String, dynamic>> _elements = [
   {
     'devices': 'Allitson 1',
     "platform": "Windows",
+    "agentID": 123456789123,
+    "ipAddress": "170.30.30.151",
     'group': 'Online',
     "lastActive": "1 Hour Ago",
+    "callPermission": false,
+    "disableCall":false,
+    "remotePermission":false,
+    "disableRemote":false,
+    "disableScript":false,
     'disable': false,
-    'remove': false
+    'remove': false,
   },
   {
     'devices': 'Allitson 2',
     "platform": "Mac",
+    "agentID": 123456789456,
+    "ipAddress": "170.30.30.123",
     'group': 'Online',
     "lastActive": "30 Minutes Ago",
+    "callPermission": false,
+    "disableCall":false,
+    "remotePermission":false,
+    "disableRemote":false,
+    "disableScript":false,
     'disable': false,
     'remove': false
   },
   {
     'devices': 'Allitson 3',
     "platform": "Android",
+    "agentID": 123456789789,
+    "ipAddress": "170.30.30.456",
     'group': 'Online',
     "lastActive": "1 Hour Ago",
+    "callPermission": false,
+    "disableCall":false,
+    "remotePermission":false,
+    "disableRemote":false,
+    "disableScript":false,
     'disable': false,
     'remove': false
   },
   {
     'devices': 'Allitson 4',
     "platform": "Windows",
+    "agentID": 123456789321,
+    "ipAddress": "170.30.30.789",
     'group': 'Online',
     "lastActive": "1 Hour Ago",
+    "callPermission": false,
+    "disableCall":false,
+    "remotePermission":false,
+    "disableRemote":false,
+    "disableScript":false,
     'disable': false,
     'remove': false
   },
   {
     'devices': 'Allitson 5',
     "platform": "Mac",
+    "agentID": 123456789654,
+    "ipAddress": "170.30.30.987",
     'group': 'Online',
     "lastActive": "3 Hour Ago",
+    "callPermission": false,
+    "disableCall":false,
+    "remotePermission":false,
+    "disableRemote":false,
+    "disableScript":false,
     'disable': false,
     'remove': false
   },
   {
     'devices': 'Allitson 6',
     "platform": "Android",
+    "agentID": 123456789987,
+    "ipAddress": "170.30.30.654",
     'group': 'Online',
     "lastActive": "4 Hour Ago",
+    "callPermission": false,
+    "disableCall":false,
+    "remotePermission":false,
+    "disableRemote":false,
+    "disableScript":false,
     'disable': false,
     'remove': false
   },
   {
     'devices': 'Allitson 7',
     "platform": "Windows",
+    "agentID": 123456789159,
+    "ipAddress": "170.30.30.321",
     'group': 'Offline',
     "lastActive": "Offline",
+    "callPermission": false,
+    "disableCall":false,
+    "remotePermission":false,
+    "disableRemote":false,
+    "disableScript":false,
     'disable': false
   },
   {
     'devices': 'Allitson 8',
     "platform": "Mac",
+    "agentID": 123456789357,
+    "ipAddress": "170.30.30.147",
     'group': 'Online',
     "lastActive": "2 Hour Ago",
+    "callPermission": false,
+    "disableCall":false,
+    "remotePermission":false,
+    "disableRemote":false,
+    "disableScript":false,
     'disable': false,
     'remove': false
   },
   {
     'devices': 'Allitson 9',
     "platform": "Android",
+    "agentID": 123456789951,
+    "ipAddress": "170.30.30.258",
     'group': 'Offline',
     "lastActive": "Offline",
+    "callPermission": false,
+    "disableCall":false,
+    "remotePermission":false,
+    "disableRemote":false,
+    "disableScript":false,
     'disable': false
   },
   {
     'devices': 'Allitson 10',
     "platform": "Windows",
+    "agentID": 123456789753,
+    "ipAddress": "170.30.30.369",
     'group': 'Offline',
     "lastActive": "Offline",
+    "callPermission": false,
+    "disableCall":false,
+    "remotePermission":false,
+    "disableRemote":false,
+    "disableScript":false,
     'disable': false
   },
   {
     'devices': 'Allitson 11',
     "platform": "Mac",
+    "agentID": 123456789478,
+    "ipAddress": "170.30.30.963",
     'group': 'Offline',
     "lastActive": "Offline",
+    "callPermission": false,
+    "disableCall":false,
+    "remotePermission":false,
+    "disableRemote":false,
+    "disableScript":false,
     'disable': false
   },
   {
     'devices': 'Allitson 12',
     "platform": "Android",
+    "agentID": 123456789236,
+    "ipAddress": "170.30.30.852",
     'group': 'Offline',
     "lastActive": "Offline",
+    "callPermission": false,
+    "disableCall":false,
+    "remotePermission":false,
+    "disableRemote":false,
+    "disableScript":false,
     'disable': false
   },
   {
     'devices': 'Allitson 13',
     "platform": "Windows",
+    "agentID": 123456789874,
+    "ipAddress": "170.30.30.741",
     'group': 'Offline',
     "lastActive": "Offline",
+    "callPermission": false,
+    "disableCall":false,
+    "remotePermission":false,
+    "disableRemote":false,
+    "disableScript":false,
     'disable': false
   },
   {
     'devices': 'Allitson 14',
     "platform": "Mac",
+    "agentID": 123456789632,
+    "ipAddress": "170.30.30.159",
     'group': 'Disabled',
     "lastActive": "Disable",
+    "callPermission": false,
+    "disableCall":false,
+    "remotePermission":false,
+    "disableRemote":false,
+    "disableScript":false,
     'enable': false
   },
   {
     'devices': 'Allitson 15',
     "platform": "Android",
+    "agentID": 123456789759,
+    "ipAddress": "170.30.30.951",
     'group': 'Offline',
     "lastActive": "Offline",
+    "callPermission": false,
+    "disableCall":false,
+    "remotePermission":false,
+    "disableRemote":false,
+    "disableScript":false,
     'disable': false
   },
   {
     'devices': 'Allitson 16',
     "platform": "Windows",
+    "agentID": 123456789153,
+    "ipAddress": "170.30.30.753",
     'group': 'Disabled',
     "lastActive": "Disable",
+    "callPermission": false,
+    "disableCall":false,
+    "remotePermission":false,
+    "disableRemote":false,
+    "disableScript":false,
     'enable': false
   },
   {
     'devices': 'Allitson 17',
     "platform": "Mac",
+    "agentID": 123456789957,
+    "ipAddress": "170.30.30.357",
     'group': 'Disabled',
     "lastActive": "Disable",
+    "callPermission": false,
+    "disableCall":false,
+    "remotePermission":false,
+    "disableRemote":false,
+    "disableScript":false,
     'enable': false
   },
   {
     'devices': 'Allitson 18',
     "platform": "Android",
+    "agentID": 123456789351,
+    "ipAddress": "170.30.30.478",
     'group': 'Disabled',
     "lastActive": "Disable",
+    "callPermission": false,
+    "disableCall":false,
+    "remotePermission":false,
+    "disableRemote":false,
+    "disableScript":false,
     'enable': false
   },
   {
     'devices': 'Allitson 19',
     "platform": "Windows",
+    "agentID": 123456789486,
+    "ipAddress": "170.30.30.874",
     'group': 'Disabled',
     "lastActive": "Disable",
+    "callPermission": false,
+    "disableCall":false,
+    "remotePermission":false,
+    "disableRemote":false,
+    "disableScript":false,
     'enable': false
   },
   {
     'devices': 'Allitson 20',
     "platform": "Mac",
+    "agentID": 123456789426,
+    "ipAddress": "170.30.30.236",
     'group': 'Disabled',
     "lastActive": "Disable",
     'enable': false
@@ -157,8 +292,15 @@ List<Map<String, dynamic>> _elements = [
   {
     'devices': 'Allitson 21',
     "platform": "Android",
+    "agentID": 123456789684,
+    "ipAddress": "170.30.30.632",
     'group': 'Disabled',
     "lastActive": "Disable",
+    "callPermission": false,
+    "disableCall":false,
+    "remotePermission":false,
+    "disableRemote":false,
+    "disableScript":false,
     'enable': false
   },
 ];
@@ -825,14 +967,270 @@ class _ChartState extends State<Chart> {
                       shadowColor: Colors.black,
                       child: GestureDetector(
                         onTap: (){
+                          /*setState(() {
+                            _discover[_discover.length-int-1]["disable"] = true;
+                          });
+                          print(_discover[int]["disable"]);
+                          print(element["disable"]);*/
+                          // print(element["ipAddress"]);
                           /*print(element["disable"]);
                           print(element["remove"]);
                           print(element["enable"]);*/
-                          print(element[int]);
+                          showDialog(
+                              context: context,
+                            builder: (BuildContext context) {
+                                return StatefulBuilder(
+                                  builder: (BuildContext context, void Function(void Function()) setState) {
+                                    return AlertDialog(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(30.0),
+                                      ),
+                                      scrollable: true,
+                                      insetPadding: EdgeInsets.zero,
+                                      contentPadding: EdgeInsets.only(bottom: 5,left: 5,right: 5),
+                                      titlePadding: EdgeInsets.only(top: 5,bottom: 5),
+                                      backgroundColor: Colors.white70,
+                                      title: Row(
+                                        // mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Expanded(
+                                            child: Center(
+                                              child: Padding(
+                                                padding: const EdgeInsets.only(left:47.5),
+                                                child: Text(
+                                                  element["devices"],
+                                                  style: TextStyle(),
+                                                  textAlign: TextAlign.center,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
 
-                          setState(() {
-                            element.removeAt(int);
-                          });
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.end,
+                                            children: [
+                                              PopupMenuButton(
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius: BorderRadius.all(
+                                                    Radius.circular(15.0),
+                                                  ),
+                                                ),
+                                                padding: EdgeInsets.zero,
+                                                offset: Offset(-1,-1),
+                                                enabled: (element["group"]=="Disabled")?false:true,
+                                                itemBuilder: (BuildContext context) {
+                                                  return [
+                                                    PopupMenuItem(
+                                                        child: Text("1")
+                                                    ),
+                                                    PopupMenuItem(
+                                                        child: Text("1")
+                                                    ),
+                                                  ];
+                                                },
+                                              ),
+                                            ],
+                                          )
+
+                                        ],
+                                      ),
+                                      content: Container(
+                                        // height: 350,
+                                        width: 350,
+                                        padding: EdgeInsets.all(5),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white70,
+                                          borderRadius: BorderRadius.circular(30.0),
+                                        ),
+                                        child: Column(
+                                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                          children: [
+
+                                            SizedBox(
+                                              height: 45,
+                                              child: Center(
+                                                child: Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                                  children: [
+                                                    Expanded(
+                                                      child: Center(
+                                                        child: Text(
+                                                            "Agent ID"
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Expanded(
+                                                      child: Text(
+                                                          element["agentID"].toString()
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+
+                                            SizedBox(
+                                              height: 45,
+                                              child: Center(
+                                                child: Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                                  children: [
+                                                    Expanded(
+                                                      child: Center(
+                                                        child: Text(
+                                                            "IP Address"
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Expanded(
+                                                      child: Text(
+                                                          element["ipAddress"].toString()
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                              children: [
+                                                Expanded(
+                                                    child: Checkbox(
+                                                        value: element["callPermission"],
+                                                        checkColor: Colors.white,
+                                                        activeColor: Colors.grey,
+                                                        shape:  RoundedRectangleBorder(
+                                                          borderRadius: BorderRadius.circular(5),
+                                                        ),
+                                                        onChanged:(value){
+                                                          /*print(element);
+                                                            print(_discover[_discover.length-int-1]);*/
+                                                          setState(() {
+                                                            element["callPermission"]=value;
+                                                          });
+                                                        })
+                                                ),
+                                                Expanded(
+                                                  child: Text(
+                                                    "Call Permission",
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                              children: [
+                                                Expanded(
+                                                    child: Checkbox(
+                                                        value: element["remotePermission"],
+                                                        checkColor: Colors.white,
+                                                        activeColor: Colors.grey,
+                                                        shape:  RoundedRectangleBorder(
+                                                          borderRadius: BorderRadius.circular(5),
+                                                        ),
+                                                        onChanged:(value){
+                                                          setState(() {
+                                                            element["remotePermission"] = value;
+                                                          });
+                                                        })
+                                                ),
+                                                Expanded(
+                                                  child: Text(
+                                                    "Remote Permission",
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                              children: [
+                                                Expanded(
+                                                    child: Checkbox(
+                                                        value: element["disableRemote"],
+                                                        checkColor: Colors.white,
+                                                        activeColor: Colors.grey,
+                                                        shape:  RoundedRectangleBorder(
+                                                          borderRadius: BorderRadius.circular(5),
+                                                        ),
+                                                        onChanged:(value){
+                                                          setState(() {
+                                                            element["disableRemote"]=value;
+                                                          });
+                                                        })
+                                                ),
+                                                Expanded(
+                                                  child: Text(
+                                                    "Disable Remote",
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                              children: [
+                                                Expanded(
+                                                    child: Checkbox(
+                                                        value: element["disableCall"],
+                                                        checkColor: Colors.white,
+                                                        activeColor: Colors.grey,
+                                                        shape:  RoundedRectangleBorder(
+                                                          borderRadius: BorderRadius.circular(5),
+                                                        ),
+                                                        onChanged:(value){
+                                                          setState(() {
+                                                            element["disableCall"]=value;
+                                                          });
+                                                        })
+                                                ),
+                                                Expanded(
+                                                  child: Text(
+                                                    "Disable Call",
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                              children: [
+                                                Expanded(
+                                                    child: Checkbox(
+                                                        value: element["disableScript"],
+                                                        checkColor: Colors.white,
+                                                        activeColor: Colors.grey,
+                                                        shape:  RoundedRectangleBorder(
+                                                          borderRadius: BorderRadius.circular(5),
+                                                        ),
+                                                        onChanged:(value){
+                                                          setState(() {
+                                                            element["disableScript"]=value;
+                                                          });
+                                                        })
+                                                ),
+                                                Expanded(
+                                                  child: Text(
+                                                    "Disable Script",
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+
+                                          ],
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                );
+                            },
+                          );
+
+                          /*setState(() {
+                            _discover.remove(element);
+                          });*/
 
 
                         },
@@ -843,7 +1241,7 @@ class _ChartState extends State<Chart> {
 
                           setState(() {
                             checkBox=!checkBox;
-                            print(checkBox);
+                            /*print(checkBox);*/
                           });
 
                           showModalBottomSheet(

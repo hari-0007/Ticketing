@@ -1118,8 +1118,10 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [
+                      // Color(0xff19547b),
+                      // Color(0xffB0C8C8),
                       Colors.green,
-                      Colors.white
+                      Colors.white,
                       // Color(0xff497D7D),
                       // Color(0xff8D6679)
                     ])),
