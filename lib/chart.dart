@@ -287,6 +287,11 @@ List<Map<String, dynamic>> _elements = [
     "ipAddress": "170.30.30.236",
     'group': 'Disabled',
     "lastActive": "Disable",
+    "callPermission": false,
+    "disableCall":false,
+    "remotePermission":false,
+    "disableRemote":false,
+    "disableScript":false,
     'enable': false
   },
   {
@@ -1020,11 +1025,87 @@ class _ChartState extends State<Chart> {
                                                 enabled: (element["group"]=="Disabled")?false:true,
                                                 itemBuilder: (BuildContext context) {
                                                   return [
+
                                                     PopupMenuItem(
-                                                        child: Text("1")
+                                                      enabled: (element["group"]=="Offline"  || element["group"]=="Online"),
+                                                      onTap: (){
+                                                        setState((){
+                                                          element["disable"]=!element["disable"];
+                                                        });
+                                                      },
+                                                        child: Row(
+                                                          children: [
+                                                            Expanded(
+                                                                child: Text("Disable"),
+                                                            ),
+                                                            Expanded(
+                                                              child: Checkbox(
+                                                                  value: element["disable"]==null?false:element["disable"],
+                                                                  onChanged: (value){
+                                                                    setState((){
+                                                                      element["disable"]=value;
+                                                                    });
+                                                                  }
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
                                                     ),
+
                                                     PopupMenuItem(
-                                                        child: Text("1")
+                                                        enabled: (element["group"]=="Disabled"),
+                                                        onTap: (){
+                                                          setState((){
+                                                            element["enable"]=!element["enable"];
+                                                          });
+                                                        },
+                                                        child: Row(
+                                                          children: [
+                                                            Expanded(
+                                                                child: Text("Enable"),
+                                                            ),
+                                                            Expanded(
+                                                              child: Center(
+                                                                child: Checkbox(
+                                                                    value: element["enable"]==null?false:element["enable"],
+                                                                    onChanged: (bool? value){
+                                                                      setState((){
+                                                                        element["enable"]=value;
+                                                                      });
+                                                                    }
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                    ),
+
+                                                    PopupMenuItem(
+                                                      enabled: (element["group"]=="Online"),
+                                                      onTap: (){
+                                                        setState((){
+                                                          element["remove"]=!element["remove"];
+                                                        });
+                                                      },
+                                                      child: Row(
+                                                        children: [
+                                                          Expanded(
+                                                              child: Text("Remove"),
+                                                          ),
+                                                          Expanded(
+                                                            child: Center(
+                                                              child: Checkbox(
+                                                                  value: element["remove"]==null?false:element["remove"],
+                                                                  onChanged: (bool? value){
+                                                                    setState((){
+                                                                      element["remove"]=value;
+                                                                    });
+                                                                  }
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
                                                     ),
                                                   ];
                                                 },
