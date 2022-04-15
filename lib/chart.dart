@@ -1015,6 +1015,9 @@ class _ChartState extends State<Chart> {
                                             mainAxisAlignment: MainAxisAlignment.end,
                                             children: [
                                               PopupMenuButton(
+                                                onCanceled: (){
+                                                  print(element);
+                                                },
                                                 shape: RoundedRectangleBorder(
                                                   borderRadius: BorderRadius.all(
                                                     Radius.circular(15.0),
@@ -1022,91 +1025,213 @@ class _ChartState extends State<Chart> {
                                                 ),
                                                 padding: EdgeInsets.zero,
                                                 offset: Offset(-1,-1),
-                                                enabled: (element["group"]=="Disabled")?false:true,
+                                                enabled: true/*(element["group"]=="Disabled")?false:true*/,
                                                 itemBuilder: (BuildContext context) {
                                                   return [
 
-                                                    PopupMenuItem(
+                                                    PopupItem(
+                                                      enabled: (element["group"]=="Offline"  || element["group"]=="Online"),
+                                                      child: StatefulBuilder(
+                                                        builder: (BuildContext context, void Function(void Function()) setState) {
+                                                          return IgnorePointer(
+                                                            ignoring: !(element["group"]=="Offline"  || element["group"]=="Online"),
+                                                            child: GestureDetector(
+                                                              onTap: (){
+                                                                setState((){
+                                                                  element["disable"]=!element["disable"];
+                                                                  print(element);
+                                                                });
+                                                              },
+                                                              child: Row(
+                                                                children: [
+                                                                  Expanded(
+                                                                    child: Text("Disable"),
+                                                                  ),
+                                                                  Expanded(
+                                                                    child: Checkbox(
+                                                                        value: element["disable"]==null?false:element["disable"],
+                                                                        onChanged: (bool? value){
+                                                                          /*setState((){
+                                                                            element["disable"]=value;
+                                                                          });*/
+                                                                        }
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          );
+                                                        },
+                                                      ),
+                                                    ),
+
+                                                    PopupItem(
+                                                      enabled: (element["group"]=="Disabled"),
+                                                      child: StatefulBuilder(
+                                                        builder: (BuildContext context, void Function(void Function()) setState) {
+                                                          return IgnorePointer(
+                                                            ignoring: !(element["group"]=="Disabled"),
+                                                            child: GestureDetector(
+                                                              onTap: (){
+                                                                setState((){
+                                                                  element["enable"]=!element["enable"];
+                                                                  print(element);
+                                                                });
+                                                              },
+                                                              child: Row(
+                                                                children: [
+                                                                  Expanded(
+                                                                    child: Text("Enable"),
+                                                                  ),
+                                                                  Expanded(
+                                                                    child: Center(
+                                                                      child: Checkbox(
+                                                                          value: element["enable"]==null?false:element["enable"],
+                                                                          onChanged: (bool? value){
+                                                                            /*setState((){
+                                                                            element["enable"]=value;
+                                                                          });*/
+                                                                          }
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          );
+                                                        },
+                                                      ),
+                                                    ),
+
+                                                    PopupItem(
+                                                      enabled: (element["group"]=="Online"),
+                                                        child: StatefulBuilder(
+                                                          builder: (BuildContext context, void Function(void Function()) setState) {
+                                                            return IgnorePointer(
+                                                              ignoring: !(element["group"]=="Online"),
+                                                              child: GestureDetector(
+                                                                onTap: (){
+                                                                  setState((){
+                                                                    element["remove"]=!element["remove"];
+                                                                    print(element);
+                                                                  });
+                                                                },
+                                                                child: Row(
+                                                                  children: [
+                                                                    Expanded(
+                                                                      child: Text("Remove"),
+                                                                    ),
+                                                                    Expanded(
+                                                                      child: Center(
+                                                                        child: Checkbox(
+                                                                            value: element["remove"]==null?false:element["remove"],
+                                                                            onChanged: (bool? value){
+                                                                              /*setState((){
+                                                                          element["remove"]=value;
+                                                                        });*/
+                                                                            }
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                            );
+                                                          },
+                                                        )
+                                                    ),
+
+                                                    /*PopupMenuItem(
                                                       enabled: (element["group"]=="Offline"  || element["group"]=="Online"),
                                                       onTap: (){
                                                         setState((){
                                                           element["disable"]=!element["disable"];
                                                         });
                                                       },
-                                                        child: Row(
-                                                          children: [
-                                                            Expanded(
-                                                                child: Text("Disable"),
-                                                            ),
-                                                            Expanded(
-                                                              child: Checkbox(
-                                                                  value: element["disable"]==null?false:element["disable"],
-                                                                  onChanged: (value){
-                                                                    setState((){
-                                                                      element["disable"]=value;
-                                                                    });
-                                                                  }
+                                                        child: IgnorePointer(
+                                                          ignoring: (element["group"]=="Offline"  || element["group"]=="Online"),
+                                                          child: Row(
+                                                            children: [
+                                                              Expanded(
+                                                                  child: Text("Disable"),
                                                               ),
-                                                            ),
-                                                          ],
+                                                              Expanded(
+                                                                child: Checkbox(
+                                                                    value: element["disable"]==null?false:element["disable"],
+                                                                    onChanged: (value){
+                                                                      setState((){
+                                                                        element["disable"]=value;
+                                                                      });
+                                                                    }
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
                                                         ),
-                                                    ),
+                                                    ),*/
 
-                                                    PopupMenuItem(
+                                                    /*PopupMenuItem(
                                                         enabled: (element["group"]=="Disabled"),
                                                         onTap: (){
                                                           setState((){
                                                             element["enable"]=!element["enable"];
                                                           });
                                                         },
-                                                        child: Row(
-                                                          children: [
-                                                            Expanded(
-                                                                child: Text("Enable"),
-                                                            ),
-                                                            Expanded(
-                                                              child: Center(
-                                                                child: Checkbox(
-                                                                    value: element["enable"]==null?false:element["enable"],
-                                                                    onChanged: (bool? value){
-                                                                      setState((){
-                                                                        element["enable"]=value;
-                                                                      });
-                                                                    }
+                                                        child: IgnorePointer(
+                                                          ignoring: (element["group"]=="Disabled"),
+                                                          child: Row(
+                                                            children: [
+                                                              Expanded(
+                                                                  child: Text("Enable"),
+                                                              ),
+                                                              Expanded(
+                                                                child: Center(
+                                                                  child: Checkbox(
+                                                                      value: element["enable"]==null?false:element["enable"],
+                                                                      onChanged: (bool? value){
+                                                                        *//*setState((){
+                                                                          element["enable"]=value;
+                                                                        });*//*
+                                                                      }
+                                                                  ),
                                                                 ),
                                                               ),
-                                                            ),
-                                                          ],
+                                                            ],
+                                                          ),
                                                         ),
-                                                    ),
+                                                    ),*/
 
-                                                    PopupMenuItem(
+                                                    /*PopupMenuItem(
                                                       enabled: (element["group"]=="Online"),
                                                       onTap: (){
                                                         setState((){
                                                           element["remove"]=!element["remove"];
                                                         });
                                                       },
-                                                      child: Row(
-                                                        children: [
-                                                          Expanded(
-                                                              child: Text("Remove"),
-                                                          ),
-                                                          Expanded(
-                                                            child: Center(
-                                                              child: Checkbox(
-                                                                  value: element["remove"]==null?false:element["remove"],
-                                                                  onChanged: (bool? value){
-                                                                    setState((){
-                                                                      element["remove"]=value;
-                                                                    });
-                                                                  }
+                                                      child: IgnorePointer(
+                                                        ignoring: (element["group"]=="Online"),
+                                                        child: Row(
+                                                          children: [
+                                                            Expanded(
+                                                                child: Text("Remove"),
+                                                            ),
+                                                            Expanded(
+                                                              child: Center(
+                                                                child: Checkbox(
+                                                                    value: element["remove"]==null?false:element["remove"],
+                                                                    onChanged: (bool? value){
+                                                                      *//*setState((){
+                                                                        element["remove"]=value;
+                                                                      });*//*
+                                                                    }
+                                                                ),
                                                               ),
                                                             ),
-                                                          ),
-                                                        ],
+                                                          ],
+                                                        ),
                                                       ),
-                                                    ),
+                                                    ),*/
+
                                                   ];
                                                 },
                                               ),
@@ -1116,6 +1241,7 @@ class _ChartState extends State<Chart> {
                                         ],
                                       ),
                                       content: Container(
+                                        clipBehavior: Clip.antiAliasWithSaveLayer,
                                         // height: 350,
                                         width: 350,
                                         padding: EdgeInsets.all(5),
@@ -1624,4 +1750,23 @@ class ChartData {
   final String x;
   final int y;
   final Color color;
+}
+
+class PopupItem extends PopupMenuItem {
+  const PopupItem({
+    required Widget child,
+    bool enabled = true,
+    // VoidCallback? onTap,
+    Key? key,
+  }) : super(key: key, child: child, enabled: enabled);
+
+  @override
+  _PopupItemState createState() => _PopupItemState();
+}
+
+class _PopupItemState extends PopupMenuItemState {
+  @override
+  void handleTap() {
+    // widget.onTap?.call();
+  }
 }

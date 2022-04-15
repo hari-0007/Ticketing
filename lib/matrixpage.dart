@@ -1118,10 +1118,10 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [
-                      // Color(0xff19547b),
-                      // Color(0xffB0C8C8),
-                      Colors.green,
-                      Colors.white,
+                      Color(0xff19547b),
+                      Color(0xffB0C8C8),
+                      // Colors.green,
+                      // Colors.white,
                       // Color(0xff497D7D),
                       // Color(0xff8D6679)
                     ])),
@@ -1139,6 +1139,35 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
             //   },
             // )
             ),
+      ),
+    );
+  }
+
+  Widget menuIcon(){
+    return GestureDetector(
+      onTap: (){
+        setState(() {
+          // isMenuPlaying=!isMenuPlaying;
+          // isMenuPlaying ? menuController.forward() : menuController.reverse();
+          value == 0 ? value = 1 : value = 0;
+          value == 1? menuController.forward() : menuController.reverse();
+        });
+      },
+      child: Container(
+        padding: EdgeInsets.all(2),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(50)),
+            border: Border.all(
+              color: Colors.black.withOpacity(0.75),
+              width: 2.5,
+              style: value == 1?BorderStyle.solid:BorderStyle.none,
+            )
+        ),
+        child: AnimatedIcon(
+          icon: AnimatedIcons.menu_close,
+          progress: menuController,
+          size: 25,
+        ),
       ),
     );
   }
@@ -1219,7 +1248,9 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                               ),
                       ),*/
 
-                      GestureDetector(
+                      menuIcon(),
+
+                      /*GestureDetector(
                         onTap: (){
                           setState(() {
                             // isMenuPlaying=!isMenuPlaying;
@@ -1244,7 +1275,7 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                             size: 25,
                           ),
                         ),
-                      ),
+                      ),*/
 
                       Padding(padding: EdgeInsets.only(left: 7.5)),
                       GestureDetector(
@@ -2887,7 +2918,9 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                               ),
                       ),*/
 
-                      GestureDetector(
+                      menuIcon(),
+
+                      /*GestureDetector(
                         onTap: (){
                           setState(() {
                             // isMenuPlaying=!isMenuPlaying;
@@ -2912,7 +2945,7 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                             size: 25,
                           ),
                         ),
-                      ),
+                      ),*/
 
                       Padding(padding: EdgeInsets.only(left: 7.5)),
                       GestureDetector(
@@ -9391,7 +9424,9 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                         ),
                       ),*/
 
-                      GestureDetector(
+                      menuIcon(),
+
+                      /*GestureDetector(
                         onTap: (){
                           setState(() {
                             // isMenuPlaying=!isMenuPlaying;
@@ -9416,7 +9451,7 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                             size: 25,
                           ),
                         ),
-                      ),
+                      ),*/
 
                       Padding(padding: EdgeInsets.only(left: 7.5)),
                       GestureDetector(
