@@ -8,7 +8,8 @@ import 'package:grouped_list/grouped_list.dart';
 
 List<Map<String, dynamic>> _elements = [
   {
-    'devices': 'Allitson 1',
+    'devices': 'Allitson-01',
+    "UserName": "Welcome001",
     "platform": "Windows",
     "agentID": 123456789123,
     "ipAddress": "170.30.30.151",
@@ -23,7 +24,8 @@ List<Map<String, dynamic>> _elements = [
     'remove': false,
   },
   {
-    'devices': 'Allitson 2',
+    'devices': 'Allitson-02',
+    "UserName": "Welcome002",
     "platform": "Mac",
     "agentID": 123456789456,
     "ipAddress": "170.30.30.123",
@@ -38,7 +40,8 @@ List<Map<String, dynamic>> _elements = [
     'remove': false
   },
   {
-    'devices': 'Allitson 3',
+    'devices': 'Allitson-03',
+    "UserName": "Welcome003",
     "platform": "Android",
     "agentID": 123456789789,
     "ipAddress": "170.30.30.456",
@@ -53,7 +56,8 @@ List<Map<String, dynamic>> _elements = [
     'remove': false
   },
   {
-    'devices': 'Allitson 4',
+    'devices': 'Allitson-04',
+    "UserName": "Welcome004",
     "platform": "Windows",
     "agentID": 123456789321,
     "ipAddress": "170.30.30.789",
@@ -68,7 +72,8 @@ List<Map<String, dynamic>> _elements = [
     'remove': false
   },
   {
-    'devices': 'Allitson 5',
+    'devices': 'Allitson-05',
+    "UserName": "Welcome005",
     "platform": "Mac",
     "agentID": 123456789654,
     "ipAddress": "170.30.30.987",
@@ -83,7 +88,8 @@ List<Map<String, dynamic>> _elements = [
     'remove': false
   },
   {
-    'devices': 'Allitson 6',
+    'devices': 'Allitson-06',
+    "UserName": "Welcome006",
     "platform": "Android",
     "agentID": 123456789987,
     "ipAddress": "170.30.30.654",
@@ -98,7 +104,8 @@ List<Map<String, dynamic>> _elements = [
     'remove': false
   },
   {
-    'devices': 'Allitson 7',
+    'devices': 'Allitson-07',
+    "UserName": "Welcome007",
     "platform": "Windows",
     "agentID": 123456789159,
     "ipAddress": "170.30.30.321",
@@ -112,7 +119,8 @@ List<Map<String, dynamic>> _elements = [
     'disable': false
   },
   {
-    'devices': 'Allitson 8',
+    'devices': 'Allitson-08',
+    "UserName": "Welcome008",
     "platform": "Mac",
     "agentID": 123456789357,
     "ipAddress": "170.30.30.147",
@@ -127,7 +135,8 @@ List<Map<String, dynamic>> _elements = [
     'remove': false
   },
   {
-    'devices': 'Allitson 9',
+    'devices': 'Allitson-09',
+    "UserName": "Welcome009",
     "platform": "Android",
     "agentID": 123456789951,
     "ipAddress": "170.30.30.258",
@@ -141,7 +150,8 @@ List<Map<String, dynamic>> _elements = [
     'disable': false
   },
   {
-    'devices': 'Allitson 10',
+    'devices': 'Allitson-10',
+    "UserName": "Welcome010",
     "platform": "Windows",
     "agentID": 123456789753,
     "ipAddress": "170.30.30.369",
@@ -155,7 +165,8 @@ List<Map<String, dynamic>> _elements = [
     'disable': false
   },
   {
-    'devices': 'Allitson 11',
+    'devices': 'Allitson-11',
+    "UserName": "Welcome011",
     "platform": "Mac",
     "agentID": 123456789478,
     "ipAddress": "170.30.30.963",
@@ -169,7 +180,8 @@ List<Map<String, dynamic>> _elements = [
     'disable': false
   },
   {
-    'devices': 'Allitson 12',
+    'devices': 'Allitson-12',
+    "UserName": "Welcome012",
     "platform": "Android",
     "agentID": 123456789236,
     "ipAddress": "170.30.30.852",
@@ -183,7 +195,8 @@ List<Map<String, dynamic>> _elements = [
     'disable': false
   },
   {
-    'devices': 'Allitson 13',
+    'devices': 'Allitson-13',
+    "UserName": "Welcome013",
     "platform": "Windows",
     "agentID": 123456789874,
     "ipAddress": "170.30.30.741",
@@ -197,7 +210,8 @@ List<Map<String, dynamic>> _elements = [
     'disable': false
   },
   {
-    'devices': 'Allitson 14',
+    'devices': 'Allitson-14',
+    "UserName": "Welcome014",
     "platform": "Mac",
     "agentID": 123456789632,
     "ipAddress": "170.30.30.159",
@@ -211,7 +225,8 @@ List<Map<String, dynamic>> _elements = [
     'enable': false
   },
   {
-    'devices': 'Allitson 15',
+    'devices': 'Allitson-15',
+    "UserName": "Welcome015",
     "platform": "Android",
     "agentID": 123456789759,
     "ipAddress": "170.30.30.951",
@@ -225,7 +240,8 @@ List<Map<String, dynamic>> _elements = [
     'disable': false
   },
   {
-    'devices': 'Allitson 16',
+    'devices': 'Allitson-16',
+    "UserName": "Welcome016",
     "platform": "Windows",
     "agentID": 123456789153,
     "ipAddress": "170.30.30.753",
@@ -239,7 +255,8 @@ List<Map<String, dynamic>> _elements = [
     'enable': false
   },
   {
-    'devices': 'Allitson 17',
+    'devices': 'Allitson-17',
+    "UserName": "Welcome017",
     "platform": "Mac",
     "agentID": 123456789957,
     "ipAddress": "170.30.30.357",
@@ -253,7 +270,8 @@ List<Map<String, dynamic>> _elements = [
     'enable': false
   },
   {
-    'devices': 'Allitson 18',
+    'devices': 'Allitson-18',
+    "UserName": "Welcome018",
     "platform": "Android",
     "agentID": 123456789351,
     "ipAddress": "170.30.30.478",
@@ -267,7 +285,8 @@ List<Map<String, dynamic>> _elements = [
     'enable': false
   },
   {
-    'devices': 'Allitson 19',
+    'devices': 'Allitson-19',
+    "UserName": "Welcome019",
     "platform": "Windows",
     "agentID": 123456789486,
     "ipAddress": "170.30.30.874",
@@ -281,7 +300,8 @@ List<Map<String, dynamic>> _elements = [
     'enable': false
   },
   {
-    'devices': 'Allitson 20',
+    'devices': 'Allitson-20',
+    "UserName": "Welcome020",
     "platform": "Mac",
     "agentID": 123456789426,
     "ipAddress": "170.30.30.236",
@@ -295,7 +315,8 @@ List<Map<String, dynamic>> _elements = [
     'enable': false
   },
   {
-    'devices': 'Allitson 21',
+    'devices': 'Allitson-21',
+    "UserName": "Welcome021",
     "platform": "Android",
     "agentID": 123456789684,
     "ipAddress": "170.30.30.632",
@@ -326,7 +347,7 @@ class _ChartState extends State<Chart> {
   List<Map<String, dynamic>> _discover = [];
 
 
-  late List<ChartData> data;
+  // late List<ChartData> data;
   late TooltipBehavior _tooltip;
 
   bool _deviceWidth = true;
@@ -346,7 +367,7 @@ class _ChartState extends State<Chart> {
 
     _discover = _elements;
 
-    _tooltip=TooltipBehavior(enable: true,elevation: 2,color: Colors.blueGrey,duration: 2000,animationDuration: 1000);
+    _tooltip=TooltipBehavior(enable: true,elevation: 2,color: Colors.blueGrey,duration: 5000,animationDuration: 500,);
 
     super.initState();
   }
@@ -359,7 +380,7 @@ class _ChartState extends State<Chart> {
     } else {
       results = _elements
           .where((user) =>_deviceflag==true?
-          user["devices"].toLowerCase().contains(enteredKeyword.toLowerCase()) : user["group"].toLowerCase().contains(enteredKeyword.toLowerCase())).toList();
+          user["devices"].toLowerCase().contains(enteredKeyword.toLowerCase()) : user["group"].toLowerCase().contains(enteredKeyword.toLowerCase())).toList()/*..sort((a, b) => a["devices"].compareTo(b["devices"]))*/;
       // we use the toLowerCase() method to make it case-insensitive
     }
 
@@ -389,11 +410,13 @@ class _ChartState extends State<Chart> {
         Stack(
           children: [
             SfCircularChart(
-
               margin: EdgeInsets.zero,
               tooltipBehavior: _tooltip,
               onLegendTapped: (data){
                 setState(() {
+                  _discover.reversed.forEach((element) {
+                    print("${element["devices"]}:${element.containsValue(chartData[data.pointIndex!].x)}");
+                  });
                   print(chartData[data.pointIndex!].x);
                 });
               },
@@ -532,7 +555,7 @@ class _ChartState extends State<Chart> {
                     dataLabelMapper: (ChartData data, _) => data.y.toString(),
                     dataLabelSettings: DataLabelSettings(
                         isVisible: true,
-                        overflowMode: OverflowMode.shift,
+                        overflowMode: OverflowMode.none,
                         textStyle: TextStyle(
                             fontSize: 15.5
                         )
@@ -555,6 +578,13 @@ class _ChartState extends State<Chart> {
                 child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
                   InkWell(
                     onTap: () {
+
+                      /*setState(() {
+                        _discover.sort((a, b) => a["devices"].compareTo(b["devices"])); //sorting
+                        _discover.forEach((element) {
+                          print(element["devices"]);
+                        });
+                      });*/
 
                       setState(() {
 
@@ -972,6 +1002,22 @@ class _ChartState extends State<Chart> {
                       shadowColor: Colors.black,
                       child: GestureDetector(
                         onTap: (){
+
+                          /*_discover.sort((a, b) => a["devices"].length.compareTo(b["group"].length));
+                          _discover.asMap().forEach((key, value) {
+                            // print(-key+_discover.length);
+                            print("${(-key+_discover.length)-1}:${value["devices"]}");
+                          });*/
+
+                          // print(_discover);
+
+                          /*setState(() {
+                            _discover.sort((a, b) => a["devices"].compareTo(b["devices"])); //sorting
+                            _discover.forEach((element) {
+                              print(element["devices"]);
+                            });
+                          });*/
+
                           /*setState(() {
                             _discover[_discover.length-int-1]["disable"] = true;
                           });
@@ -987,6 +1033,7 @@ class _ChartState extends State<Chart> {
                                 return StatefulBuilder(
                                   builder: (BuildContext context, void Function(void Function()) setState) {
                                     return AlertDialog(
+                                      alignment: Alignment.bottomCenter,
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(30.0),
                                       ),
@@ -1016,7 +1063,7 @@ class _ChartState extends State<Chart> {
                                             children: [
                                               PopupMenuButton(
                                                 onCanceled: (){
-                                                  print(element);
+                                                  print("onCanceled : $element");
                                                 },
                                                 shape: RoundedRectangleBorder(
                                                   borderRadius: BorderRadius.all(
@@ -1252,7 +1299,7 @@ class _ChartState extends State<Chart> {
                                         child: Column(
                                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                           children: [
-
+/**/
                                             SizedBox(
                                               height: 45,
                                               child: Center(

@@ -1072,7 +1072,7 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                     alignment: Alignment.center,
                     transform: Matrix4.identity()
                       ..setEntry(3, 2, 0.0019)
-                      ..setEntry(0, 3, 260 * val)
+                      ..setEntry(0, 3, 248/*260*/ * val)
                       ..rotateY((pi / 12) * val),
                     child: Stack(
                       children: [
@@ -1129,6 +1129,42 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
               children: [
                 Padding(padding: EdgeInsets.only(top: MediaQuery.of(context).viewPadding.top+20)),
                 getDashboardAppbar(),
+
+                Container(
+                  height: 100,
+                  margin: EdgeInsets.only(left: 17.5,right: 17.5,top: 10,bottom: 5),
+                  decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.white54,
+                        width: 1.5,
+                      )
+                  ),
+                ),
+
+                Container(
+                  height: 150,
+                  margin: EdgeInsets.only(left: 17.5,right: 17.5,top: 5,bottom: 5),
+                  decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.white54,
+                        width: 1.5,
+                      )
+                  ),
+                ),
+
+                Expanded(
+                  child: Container(
+                    margin: EdgeInsets.only(left: 17.5,right: 17.5,top: 5,bottom: 5),
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.white54,
+                        width: 1.5,
+                      )
+                    ),
+                    // child: ,
+                  ),
+                ),
+
               ],
             )
             // GestureDetector(
@@ -2838,7 +2874,7 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
   Widget getIncidentAppbar() {
     return Container(
       height: 40,
-      padding: EdgeInsets.symmetric(horizontal: 7.5),
+      padding: EdgeInsets.symmetric(horizontal: 10),
       margin: EdgeInsets.only(bottom: 9),
       child: DecoratedBox(
           decoration: BoxDecoration(
