@@ -11,10 +11,18 @@ List<Map<String, dynamic>> _elements = [
     'devices': 'Allitson-01',
     "UserName": "Welcome001",
     "platform": "Windows",
+    "osDetails": "Windows 10 64-bits",
     "agentID": 123456789123,
     "ipAddress": "170.30.30.151",
+    "publicIP": "8.8.8.8",
+    "localIP": "103.78.159.123",
+    "macAddress": "000.a83.b1c.08e",
     'group': 'Online',
     "lastActive": "1 Hour Ago",
+    "hardWareDetails": {
+      "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
+      "Ram":"16.0 GB 2667 MHz",
+    },
     "callPermission": false,
     "disableCall":false,
     "remotePermission":false,
@@ -27,10 +35,18 @@ List<Map<String, dynamic>> _elements = [
     'devices': 'Allitson-02',
     "UserName": "Welcome002",
     "platform": "Mac",
+    "osDetails": "macOS Monterey",
     "agentID": 123456789456,
     "ipAddress": "170.30.30.123",
+    "publicIP": "8.8.8.81",
+    "localIP": "103.78.159.456",
+    "macAddress": "000.a83.zxc.08e",
     'group': 'Online',
     "lastActive": "30 Minutes Ago",
+    "hardWareDetails": {
+      "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
+      "Ram":"16.0 GB 2667 MHz",
+    },
     "callPermission": false,
     "disableCall":false,
     "remotePermission":false,
@@ -43,10 +59,18 @@ List<Map<String, dynamic>> _elements = [
     'devices': 'Allitson-03',
     "UserName": "Welcome003",
     "platform": "Android",
+    "osDetails": "Android 11",
     "agentID": 123456789789,
     "ipAddress": "170.30.30.456",
+    "publicIP": "8.8.8.82",
+    "localIP": "103.78.159.789",
+    "macAddress": "000.a83.cvb.08e",
     'group': 'Online',
     "lastActive": "1 Hour Ago",
+    "hardWareDetails": {
+      "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
+      "Ram":"16.0 GB 2667 MHz",
+    },
     "callPermission": false,
     "disableCall":false,
     "remotePermission":false,
@@ -59,10 +83,18 @@ List<Map<String, dynamic>> _elements = [
     'devices': 'Allitson-04',
     "UserName": "Welcome004",
     "platform": "Windows",
+    "osDetails": "Windows 10 64-bits",
     "agentID": 123456789321,
     "ipAddress": "170.30.30.789",
+    "publicIP": "8.8.8.83",
+    "localIP": "103.78.159.987",
+    "macAddress": "000.a83.bnm.08e",
     'group': 'Online',
     "lastActive": "1 Hour Ago",
+    "hardWareDetails": {
+      "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
+      "Ram":"16.0 GB 2667 MHz",
+    },
     "callPermission": false,
     "disableCall":false,
     "remotePermission":false,
@@ -75,10 +107,18 @@ List<Map<String, dynamic>> _elements = [
     'devices': 'Allitson-05',
     "UserName": "Welcome005",
     "platform": "Mac",
+    "osDetails": "macOS Monterey",
     "agentID": 123456789654,
     "ipAddress": "170.30.30.987",
+    "publicIP": "8.8.8.84",
+    "localIP": "103.78.159.654",
+    "macAddress": "000.a83.asd.08e",
     'group': 'Online',
     "lastActive": "3 Hour Ago",
+    "hardWareDetails": {
+      "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
+      "Ram":"16.0 GB 2667 MHz",
+    },
     "callPermission": false,
     "disableCall":false,
     "remotePermission":false,
@@ -91,10 +131,18 @@ List<Map<String, dynamic>> _elements = [
     'devices': 'Allitson-06',
     "UserName": "Welcome006",
     "platform": "Android",
+    "osDetails": "Android 11",
     "agentID": 123456789987,
     "ipAddress": "170.30.30.654",
+    "publicIP": "8.8.8.85",
+    "localIP": "103.78.159.321",
+    "macAddress": "000.a83.dfg.08e",
     'group': 'Online',
     "lastActive": "4 Hour Ago",
+    "hardWareDetails": {
+      "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
+      "Ram":"16.0 GB 2667 MHz",
+    },
     "callPermission": false,
     "disableCall":false,
     "remotePermission":false,
@@ -107,10 +155,18 @@ List<Map<String, dynamic>> _elements = [
     'devices': 'Allitson-07',
     "UserName": "Welcome007",
     "platform": "Windows",
+    "osDetails": "Windows 10 64-bits",
     "agentID": 123456789159,
     "ipAddress": "170.30.30.321",
+    "publicIP": "8.8.8.86",
+    "localIP": "103.78.159.147",
+    "macAddress": "000.a83.ghj.08e",
     'group': 'Offline',
     "lastActive": "Offline",
+    "hardWareDetails": {
+      "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
+      "Ram":"16.0 GB 2667 MHz",
+    },
     "callPermission": false,
     "disableCall":false,
     "remotePermission":false,
@@ -122,10 +178,18 @@ List<Map<String, dynamic>> _elements = [
     'devices': 'Allitson-08',
     "UserName": "Welcome008",
     "platform": "Mac",
+    "osDetails": "macOS Monterey",
     "agentID": 123456789357,
     "ipAddress": "170.30.30.147",
+    "publicIP": "8.8.8.87",
+    "localIP": "103.78.159.258",
+    "macAddress": "000.a83.jkl.08e",
     'group': 'Online',
     "lastActive": "2 Hour Ago",
+    "hardWareDetails": {
+      "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
+      "Ram":"16.0 GB 2667 MHz",
+    },
     "callPermission": false,
     "disableCall":false,
     "remotePermission":false,
@@ -138,10 +202,18 @@ List<Map<String, dynamic>> _elements = [
     'devices': 'Allitson-09',
     "UserName": "Welcome009",
     "platform": "Android",
+    "osDetails": "Android 11",
     "agentID": 123456789951,
     "ipAddress": "170.30.30.258",
+    "publicIP": "8.8.8.88",
+    "localIP": "103.78.159.369",
+    "macAddress": "000.a83.qwe.08e",
     'group': 'Offline',
     "lastActive": "Offline",
+    "hardWareDetails": {
+      "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
+      "Ram":"16.0 GB 2667 MHz",
+    },
     "callPermission": false,
     "disableCall":false,
     "remotePermission":false,
@@ -153,10 +225,18 @@ List<Map<String, dynamic>> _elements = [
     'devices': 'Allitson-10',
     "UserName": "Welcome010",
     "platform": "Windows",
+    "osDetails": "Windows 10 64-bits",
     "agentID": 123456789753,
     "ipAddress": "170.30.30.369",
+    "publicIP": "8.8.8.89",
+    "localIP": "103.78.159.963",
+    "macAddress": "000.a83.ert.08e",
     'group': 'Offline',
     "lastActive": "Offline",
+    "hardWareDetails": {
+      "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
+      "Ram":"16.0 GB 2667 MHz",
+    },
     "callPermission": false,
     "disableCall":false,
     "remotePermission":false,
@@ -168,10 +248,18 @@ List<Map<String, dynamic>> _elements = [
     'devices': 'Allitson-11',
     "UserName": "Welcome011",
     "platform": "Mac",
+    "osDetails": "macOS Monterey",
     "agentID": 123456789478,
     "ipAddress": "170.30.30.963",
+    "publicIP": "8.8.8.9",
+    "localIP": "103.78.159.852",
+    "macAddress": "000.a83.tyu.08e",
     'group': 'Offline',
     "lastActive": "Offline",
+    "hardWareDetails": {
+      "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
+      "Ram":"16.0 GB 2667 MHz",
+    },
     "callPermission": false,
     "disableCall":false,
     "remotePermission":false,
@@ -183,10 +271,18 @@ List<Map<String, dynamic>> _elements = [
     'devices': 'Allitson-12',
     "UserName": "Welcome012",
     "platform": "Android",
+    "osDetails": "Android 11",
     "agentID": 123456789236,
     "ipAddress": "170.30.30.852",
+    "publicIP": "8.8.8.91",
+    "localIP": "103.78.159.741",
+    "macAddress": "000.a83.uio.08e",
     'group': 'Offline',
     "lastActive": "Offline",
+    "hardWareDetails": {
+      "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
+      "Ram":"16.0 GB 2667 MHz",
+    },
     "callPermission": false,
     "disableCall":false,
     "remotePermission":false,
@@ -198,10 +294,18 @@ List<Map<String, dynamic>> _elements = [
     'devices': 'Allitson-13',
     "UserName": "Welcome013",
     "platform": "Windows",
+    "osDetails": "Windows 10 64-bits",
     "agentID": 123456789874,
     "ipAddress": "170.30.30.741",
+    "publicIP": "8.8.8.92",
+    "localIP": "103.78.159.478",
+    "macAddress": "000.a83.iop.08e",
     'group': 'Offline',
     "lastActive": "Offline",
+    "hardWareDetails": {
+      "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
+      "Ram":"16.0 GB 2667 MHz",
+    },
     "callPermission": false,
     "disableCall":false,
     "remotePermission":false,
@@ -213,25 +317,41 @@ List<Map<String, dynamic>> _elements = [
     'devices': 'Allitson-14',
     "UserName": "Welcome014",
     "platform": "Mac",
+    "osDetails": "macOS Monterey",
     "agentID": 123456789632,
     "ipAddress": "170.30.30.159",
+    "publicIP": "8.8.8.93",
+    "localIP": "103.78.159.874",
+    "macAddress": "000.a83.zaq.08e",
     'group': 'Disabled',
     "lastActive": "Disable",
+    "hardWareDetails": {
+      "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
+      "Ram":"16.0 GB 2667 MHz",
+    },
     "callPermission": false,
     "disableCall":false,
     "remotePermission":false,
     "disableRemote":false,
     "disableScript":false,
-    'enable': false
+    'disable': true
   },
   {
     'devices': 'Allitson-15',
     "UserName": "Welcome015",
     "platform": "Android",
+    "osDetails": "Android 11",
     "agentID": 123456789759,
     "ipAddress": "170.30.30.951",
+    "publicIP": "8.8.8.94",
+    "localIP": "103.78.159.159",
+    "macAddress": "000.a83.xsw.08e",
     'group': 'Offline',
     "lastActive": "Offline",
+    "hardWareDetails": {
+      "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
+      "Ram":"16.0 GB 2667 MHz",
+    },
     "callPermission": false,
     "disableCall":false,
     "remotePermission":false,
@@ -243,91 +363,139 @@ List<Map<String, dynamic>> _elements = [
     'devices': 'Allitson-16',
     "UserName": "Welcome016",
     "platform": "Windows",
+    "osDetails": "Windows 10 64-bits",
     "agentID": 123456789153,
     "ipAddress": "170.30.30.753",
+    "publicIP": "8.8.8.95",
+    "localIP": "103.78.159.951",
+    "macAddress": "000.a83.cde.08e",
     'group': 'Disabled',
     "lastActive": "Disable",
+    "hardWareDetails": {
+      "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
+      "Ram":"16.0 GB 2667 MHz",
+    },
     "callPermission": false,
     "disableCall":false,
     "remotePermission":false,
     "disableRemote":false,
     "disableScript":false,
-    'enable': false
+    'disable': true
   },
   {
     'devices': 'Allitson-17',
     "UserName": "Welcome017",
     "platform": "Mac",
+    "osDetails": "macOS Monterey",
     "agentID": 123456789957,
     "ipAddress": "170.30.30.357",
+    "publicIP": "8.8.8.96",
+    "localIP": "103.78.159.236",
+    "macAddress": "000.a83.vfr.08e",
     'group': 'Disabled',
     "lastActive": "Disable",
+    "hardWareDetails": {
+      "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
+      "Ram":"16.0 GB 2667 MHz",
+    },
     "callPermission": false,
     "disableCall":false,
     "remotePermission":false,
     "disableRemote":false,
     "disableScript":false,
-    'enable': false
+    'disable': true
   },
   {
     'devices': 'Allitson-18',
     "UserName": "Welcome018",
     "platform": "Android",
+    "osDetails": "Android 11",
     "agentID": 123456789351,
     "ipAddress": "170.30.30.478",
+    "publicIP": "8.8.8.97",
+    "localIP": "103.78.159.632",
+    "macAddress": "000.a83.bgt.08e",
     'group': 'Disabled',
     "lastActive": "Disable",
+    "hardWareDetails": {
+      "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
+      "Ram":"16.0 GB 2667 MHz",
+    },
     "callPermission": false,
     "disableCall":false,
     "remotePermission":false,
     "disableRemote":false,
     "disableScript":false,
-    'enable': false
+    'disable': true
   },
   {
     'devices': 'Allitson-19',
     "UserName": "Welcome019",
     "platform": "Windows",
+    "osDetails": "Windows 10 64-bits",
     "agentID": 123456789486,
     "ipAddress": "170.30.30.874",
+    "publicIP": "8.8.8.98",
+    "localIP": "103.78.159.486",
+    "macAddress": "000.a83.nhy.08e",
     'group': 'Disabled',
     "lastActive": "Disable",
+    "hardWareDetails": {
+      "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
+      "Ram":"16.0 GB 2667 MHz",
+    },
     "callPermission": false,
     "disableCall":false,
     "remotePermission":false,
     "disableRemote":false,
     "disableScript":false,
-    'enable': false
+    'disable': true
   },
   {
     'devices': 'Allitson-20',
     "UserName": "Welcome020",
     "platform": "Mac",
+    "osDetails": "macOS Monterey",
     "agentID": 123456789426,
     "ipAddress": "170.30.30.236",
+    "publicIP": "8.8.8.99",
+    "localIP": "103.78.159.684",
+    "macAddress": "000.a83.mju.08e",
     'group': 'Disabled',
     "lastActive": "Disable",
+    "hardWareDetails": {
+      "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
+      "Ram":"16.0 GB 2667 MHz",
+    },
     "callPermission": false,
     "disableCall":false,
     "remotePermission":false,
     "disableRemote":false,
     "disableScript":false,
-    'enable': false
+    'disable': true
   },
   {
     'devices': 'Allitson-21',
     "UserName": "Welcome021",
     "platform": "Android",
+    "osDetails": "Android 11",
     "agentID": 123456789684,
     "ipAddress": "170.30.30.632",
+    "publicIP": "8.8.9.0",
+    "localIP": "103.78.159.000",
+    "macAddress": "000.a83.lop.08e",
     'group': 'Disabled',
     "lastActive": "Disable",
+    "hardWareDetails": {
+      "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
+      "Ram":"16.0 GB 2667 MHz",
+    },
     "callPermission": false,
     "disableCall":false,
     "remotePermission":false,
     "disableRemote":false,
     "disableScript":false,
-    'enable': false
+    'disable': true
   },
 ];
 
@@ -916,6 +1084,7 @@ class _ChartState extends State<Chart> {
         children: [
           Container(
             height: 27.5,
+            padding: EdgeInsets.only(right: 7.0),
             decoration: BoxDecoration(
               gradient: LinearGradient(
                   colors: [
@@ -935,6 +1104,7 @@ class _ChartState extends State<Chart> {
                     ),
                   ),
                 ),
+
                 Expanded(
                   child: Center(
                     child: Text(
@@ -942,6 +1112,7 @@ class _ChartState extends State<Chart> {
                     ),
                   ),
                 ),
+
                 Expanded(
                   child: Center(
                     child: Text(
@@ -950,6 +1121,35 @@ class _ChartState extends State<Chart> {
                   ),
                 ),
                 // SizedBox(width: 5,),
+
+                AnimatedSwitcher(
+                  duration: Duration(milliseconds: 250),
+                  child:checkBox?Transform.scale(
+                    scale: 1,
+                    child: Checkbox(
+                      value: false,
+                      checkColor: Colors.white,
+                      activeColor: Colors.grey,
+                      shape:  RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      onChanged: (bool? value){},
+                    ),
+                  ):SizedBox(
+                    width: 48,
+                  ),
+                ),
+
+                /*Transform.scale(
+                  scale: 0.90,
+                  child: Checkbox(
+                    value: false,
+                    onChanged: (bool? value){},
+                  ),
+                ),*/
+                /*SizedBox(
+                  width: 47.5,
+                ),*/
               ],
             ),
           ),
@@ -1003,6 +1203,8 @@ class _ChartState extends State<Chart> {
                       child: GestureDetector(
                         onTap: (){
 
+                          print(element["hardWareDetails"]["Ram"]);
+
                           /*_discover.sort((a, b) => a["devices"].length.compareTo(b["group"].length));
                           _discover.asMap().forEach((key, value) {
                             // print(-key+_discover.length);
@@ -1027,7 +1229,222 @@ class _ChartState extends State<Chart> {
                           /*print(element["disable"]);
                           print(element["remove"]);
                           print(element["enable"]);*/
+
                           showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                alignment: Alignment.center,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                ),
+                                scrollable: true,
+                                insetPadding: EdgeInsets.zero,
+                                contentPadding: EdgeInsets.only(bottom: 5,left: 5,right: 5),
+                                titlePadding: EdgeInsets.only(top: 5,bottom: 5),
+                                backgroundColor: Colors.white70,
+                                title: Text(
+                                  element["devices"],
+                                  style: TextStyle(),
+                                  textAlign: TextAlign.center,
+                                ),
+                                content: Container(
+                                  height: 500,
+                                  width: 350,
+                                  padding: EdgeInsets.all(5),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white70,
+                                    borderRadius: BorderRadius.circular(30.0),
+                                  ),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+
+                                      /*Text(
+                                        element["UserName"],
+                                      ),*/
+
+                                      Row(
+                                        children: [
+                                          Expanded(
+                                            child: Center(
+                                              child: Padding(
+                                                padding: EdgeInsets.only(left: 82),
+                                                child: Text(
+                                                    element["UserName"],
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Text(
+                                              element["lastActive"],
+                                          )
+                                        ],
+                                      ),
+
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Expanded(
+                                            child: Center(
+                                              child: Text("Platform"),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            child: Text(
+                                              element["platform"],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Expanded(
+                                            child: Center(
+                                              child: Text("OS"),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            child: Text(
+                                              element["osDetails"],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Expanded(
+                                            child: Center(
+                                              child: Text("CPU"),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            child: Text(
+                                              element["hardWareDetails"]["cpu"],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Expanded(
+                                            child: Center(
+                                              child: Text("RAM"),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            child: Text(
+                                              element["hardWareDetails"]["Ram"],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Expanded(
+                                            child: Center(
+                                              child: Text(
+                                                  "Agent ID"
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            child: Text(
+                                                element["agentID"].toString()
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Expanded(
+                                            child: Center(
+                                              child: Text(
+                                                  "IP Address"
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            child: Text(
+                                                element["ipAddress"].toString()
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Expanded(
+                                            child: Center(
+                                              child: Text(
+                                                  "Public IP"
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            child: Text(
+                                                element["publicIP"].toString()
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Expanded(
+                                            child: Center(
+                                              child: Text(
+                                                  "Local IP"
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            child: Text(
+                                                element["localIP"].toString()
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Expanded(
+                                            child: Center(
+                                              child: Text(
+                                                  "Mac Address"
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            child: Text(
+                                                element["macAddress"].toString()
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+
+                                    ],
+                                  ),
+                                ),
+                              );
+                            },
+                          );
+
+                          /*showDialog(
                               context: context,
                             builder: (BuildContext context) {
                                 return StatefulBuilder(
@@ -1043,9 +1460,17 @@ class _ChartState extends State<Chart> {
                                       titlePadding: EdgeInsets.only(top: 5,bottom: 5),
                                       backgroundColor: Colors.white70,
                                       title: Row(
-                                        // mainAxisAlignment: MainAxisAlignment.center,
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
                                         children: [
-                                          Expanded(
+
+                                          Text(
+                                            element["devices"],
+                                            style: TextStyle(),
+                                            textAlign: TextAlign.center,
+                                          ),
+
+                                          *//*Expanded(
                                             child: Center(
                                               child: Padding(
                                                 padding: const EdgeInsets.only(left:47.5),
@@ -1056,9 +1481,9 @@ class _ChartState extends State<Chart> {
                                                 ),
                                               ),
                                             ),
-                                          ),
+                                          ),*//*
 
-                                          Row(
+                                          *//*Row(
                                             mainAxisAlignment: MainAxisAlignment.end,
                                             children: [
                                               PopupMenuButton(
@@ -1072,7 +1497,7 @@ class _ChartState extends State<Chart> {
                                                 ),
                                                 padding: EdgeInsets.zero,
                                                 offset: Offset(-1,-1),
-                                                enabled: true/*(element["group"]=="Disabled")?false:true*/,
+                                                enabled: true*//**//*(element["group"]=="Disabled")?false:true*//**//*,
                                                 itemBuilder: (BuildContext context) {
                                                   return [
 
@@ -1098,9 +1523,9 @@ class _ChartState extends State<Chart> {
                                                                     child: Checkbox(
                                                                         value: element["disable"]==null?false:element["disable"],
                                                                         onChanged: (bool? value){
-                                                                          /*setState((){
+                                                                          *//**//*setState((){
                                                                             element["disable"]=value;
-                                                                          });*/
+                                                                          });*//**//*
                                                                         }
                                                                     ),
                                                                   ),
@@ -1135,9 +1560,9 @@ class _ChartState extends State<Chart> {
                                                                       child: Checkbox(
                                                                           value: element["enable"]==null?false:element["enable"],
                                                                           onChanged: (bool? value){
-                                                                            /*setState((){
+                                                                            *//**//*setState((){
                                                                             element["enable"]=value;
-                                                                          });*/
+                                                                          });*//**//*
                                                                           }
                                                                       ),
                                                                     ),
@@ -1173,9 +1598,9 @@ class _ChartState extends State<Chart> {
                                                                         child: Checkbox(
                                                                             value: element["remove"]==null?false:element["remove"],
                                                                             onChanged: (bool? value){
-                                                                              /*setState((){
+                                                                              *//**//*setState((){
                                                                           element["remove"]=value;
-                                                                        });*/
+                                                                        });*//**//*
                                                                             }
                                                                         ),
                                                                       ),
@@ -1188,7 +1613,7 @@ class _ChartState extends State<Chart> {
                                                         )
                                                     ),
 
-                                                    /*PopupMenuItem(
+                                                    *//**//*PopupMenuItem(
                                                       enabled: (element["group"]=="Offline"  || element["group"]=="Online"),
                                                       onTap: (){
                                                         setState((){
@@ -1215,9 +1640,9 @@ class _ChartState extends State<Chart> {
                                                             ],
                                                           ),
                                                         ),
-                                                    ),*/
+                                                    ),*//**//*
 
-                                                    /*PopupMenuItem(
+                                                    *//**//*PopupMenuItem(
                                                         enabled: (element["group"]=="Disabled"),
                                                         onTap: (){
                                                           setState((){
@@ -1236,9 +1661,9 @@ class _ChartState extends State<Chart> {
                                                                   child: Checkbox(
                                                                       value: element["enable"]==null?false:element["enable"],
                                                                       onChanged: (bool? value){
-                                                                        *//*setState((){
+                                                                        *//**//**//**//*setState((){
                                                                           element["enable"]=value;
-                                                                        });*//*
+                                                                        });*//**//**//**//*
                                                                       }
                                                                   ),
                                                                 ),
@@ -1246,9 +1671,9 @@ class _ChartState extends State<Chart> {
                                                             ],
                                                           ),
                                                         ),
-                                                    ),*/
+                                                    ),*//**//*
 
-                                                    /*PopupMenuItem(
+                                                    *//**//*PopupMenuItem(
                                                       enabled: (element["group"]=="Online"),
                                                       onTap: (){
                                                         setState((){
@@ -1267,9 +1692,9 @@ class _ChartState extends State<Chart> {
                                                                 child: Checkbox(
                                                                     value: element["remove"]==null?false:element["remove"],
                                                                     onChanged: (bool? value){
-                                                                      *//*setState((){
+                                                                      *//**//**//**//*setState((){
                                                                         element["remove"]=value;
-                                                                      });*//*
+                                                                      });*//**//**//**//*
                                                                     }
                                                                 ),
                                                               ),
@@ -1277,13 +1702,13 @@ class _ChartState extends State<Chart> {
                                                           ],
                                                         ),
                                                       ),
-                                                    ),*/
+                                                    ),*//**//*
 
                                                   ];
                                                 },
                                               ),
                                             ],
-                                          )
+                                          )*//*
 
                                         ],
                                       ),
@@ -1299,8 +1724,8 @@ class _ChartState extends State<Chart> {
                                         child: Column(
                                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                           children: [
-/**/
-                                            SizedBox(
+*//**//*
+                                            *//*SizedBox(
                                               height: 45,
                                               child: Center(
                                                 child: Row(
@@ -1321,9 +1746,9 @@ class _ChartState extends State<Chart> {
                                                   ],
                                                 ),
                                               ),
-                                            ),
+                                            ),*//*
 
-                                            SizedBox(
+                                            *//*SizedBox(
                                               height: 45,
                                               child: Center(
                                                 child: Row(
@@ -1344,7 +1769,7 @@ class _ChartState extends State<Chart> {
                                                   ],
                                                 ),
                                               ),
-                                            ),
+                                            ),*//*
 
                                             Row(
                                               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -1358,8 +1783,8 @@ class _ChartState extends State<Chart> {
                                                           borderRadius: BorderRadius.circular(5),
                                                         ),
                                                         onChanged:(value){
-                                                          /*print(element);
-                                                            print(_discover[_discover.length-int-1]);*/
+                                                          *//*print(element);
+                                                            print(_discover[_discover.length-int-1]);*//*
                                                           setState(() {
                                                             element["callPermission"]=value;
                                                           });
@@ -1480,7 +1905,7 @@ class _ChartState extends State<Chart> {
                                   },
                                 );
                             },
-                          );
+                          );*/
 
                           /*setState(() {
                             _discover.remove(element);
@@ -1495,10 +1920,9 @@ class _ChartState extends State<Chart> {
 
                           setState(() {
                             checkBox=!checkBox;
-                            /*print(checkBox);*/
                           });
 
-                          showModalBottomSheet(
+                          /*showModalBottomSheet(
                             constraints: BoxConstraints(
                               maxWidth: MediaQuery.of(context).size.width * 0.95,
                             ),
@@ -1507,9 +1931,9 @@ class _ChartState extends State<Chart> {
                             context: context,
                             builder: (BuildContext context) {
                               return Container(
-                                /*constraints: BoxConstraints(
-                                  maxHeight: *//*MediaQuery.of(context).size.height - *//*300,
-                                ),*/
+                                *//*constraints: BoxConstraints(
+                                  maxHeight: *//**//*MediaQuery.of(context).size.height - *//**//*300,
+                                ),*//*
                                 height: 200,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.only(
@@ -1576,7 +2000,7 @@ class _ChartState extends State<Chart> {
                                 ),
                               );
                             },
-                          );
+                          );*/
 
                         },
                         child: Container(
@@ -1596,6 +2020,7 @@ class _ChartState extends State<Chart> {
                                       ),
                                     ),
                                   ),
+
                                   Expanded(
                                     child: Center(
                                       child: Text(
@@ -1603,13 +2028,280 @@ class _ChartState extends State<Chart> {
                                       ),
                                     ),
                                   ),
+
                                   Expanded(
                                     child: Center(
                                       child: Text(
                                           element["lastActive"],
                                       ),
                                     ),
-                                  )
+                                  ),
+
+                                  AnimatedSwitcher(
+                                    duration: Duration(milliseconds: 250),
+                                    child: checkBox?Checkbox(
+                                        value: element["disable"],
+                                        checkColor: Colors.white,
+                                        activeColor: Colors.grey,
+                                        shape:  RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(5),
+                                        ),
+                                        onChanged: (bool? value){}
+                                    ):PopupMenuButton(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(15.0),
+                                        ),
+                                      ),
+                                      padding: EdgeInsets.zero,
+                                      itemBuilder: (BuildContext context) {
+                                        return [
+
+                                          PopupMenuItem(
+                                            child: Text("Edit"),
+                                            onTap: (){
+
+                                              WidgetsBinding.instance?.addPostFrameCallback((_){
+                                                showDialog(
+                                                  context: context,
+                                                  builder: (BuildContext context) {
+                                                    return StatefulBuilder(
+                                                      builder: (BuildContext context, void Function(void Function()) setState) {
+                                                        return AlertDialog(
+                                                          alignment: Alignment.bottomCenter,
+                                                          shape: RoundedRectangleBorder(
+                                                            borderRadius: BorderRadius.circular(30.0),
+                                                          ),
+                                                          scrollable: true,
+                                                          insetPadding: EdgeInsets.zero,
+                                                          contentPadding: EdgeInsets.only(bottom: 5,left: 5,right: 5),
+                                                          titlePadding: EdgeInsets.only(top: 5,bottom: 5),
+                                                          backgroundColor: Colors.white70,
+                                                          title: Row(
+                                                            mainAxisAlignment: MainAxisAlignment.center,
+                                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                                            children: [
+
+                                                              Text(
+                                                                element["devices"],
+                                                                style: TextStyle(),
+                                                                textAlign: TextAlign.center,
+                                                              ),
+
+                                                            ],
+                                                          ),
+                                                          content: Container(
+                                                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                                                            // height: 350,
+                                                            width: 350,
+                                                            padding: EdgeInsets.all(5),
+                                                            decoration: BoxDecoration(
+                                                              color: Colors.white70,
+                                                              borderRadius: BorderRadius.circular(30.0),
+                                                            ),
+                                                            child: Column(
+                                                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                              children: [
+                                                                Row(
+                                                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                                                  children: [
+                                                                    Expanded(
+                                                                        child: Checkbox(
+                                                                            value: element["callPermission"],
+                                                                            checkColor: Colors.white,
+                                                                            activeColor: Colors.grey,
+                                                                            shape:  RoundedRectangleBorder(
+                                                                              borderRadius: BorderRadius.circular(5),
+                                                                            ),
+                                                                            onChanged:(value){
+                                                                              /*print(element);
+                                                                              print(_discover[_discover.length-int-1]);*/
+                                                                              setState(() {
+                                                                              element["callPermission"]=value;
+                                                                              print(element);
+                                                                              });
+                                                                            })
+                                                                    ),
+                                                                    Expanded(
+                                                                      child: Text(
+                                                                        "Call Permission",
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+
+                                                                Row(
+                                                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                                                  children: [
+                                                                    Expanded(
+                                                                        child: Checkbox(
+                                                                            value: element["remotePermission"],
+                                                                            checkColor: Colors.white,
+                                                                            activeColor: Colors.grey,
+                                                                            shape:  RoundedRectangleBorder(
+                                                                              borderRadius: BorderRadius.circular(5),
+                                                                            ),
+                                                                            onChanged:(value){
+                                                                              setState(() {
+                                                                                element["remotePermission"] = value;
+                                                                              });
+                                                                            })
+                                                                    ),
+                                                                    Expanded(
+                                                                      child: Text(
+                                                                        "Remote Permission",
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+
+                                                                Row(
+                                                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                                                  children: [
+                                                                    Expanded(
+                                                                        child: Checkbox(
+                                                                            value: element["disableRemote"],
+                                                                            checkColor: Colors.white,
+                                                                            activeColor: Colors.grey,
+                                                                            shape:  RoundedRectangleBorder(
+                                                                              borderRadius: BorderRadius.circular(5),
+                                                                            ),
+                                                                            onChanged:(value){
+                                                                              setState(() {
+                                                                                element["disableRemote"]=value;
+                                                                              });
+                                                                            })
+                                                                    ),
+                                                                    Expanded(
+                                                                      child: Text(
+                                                                        "Disable Remote",
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+
+                                                                Row(
+                                                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                                                  children: [
+                                                                    Expanded(
+                                                                        child: Checkbox(
+                                                                            value: element["disableCall"],
+                                                                            checkColor: Colors.white,
+                                                                            activeColor: Colors.grey,
+                                                                            shape:  RoundedRectangleBorder(
+                                                                              borderRadius: BorderRadius.circular(5),
+                                                                            ),
+                                                                            onChanged:(value){
+                                                                              setState(() {
+                                                                                element["disableCall"]=value;
+                                                                              });
+                                                                            })
+                                                                    ),
+                                                                    Expanded(
+                                                                      child: Text(
+                                                                        "Disable Call",
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+
+                                                                Row(
+                                                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                                                  children: [
+                                                                    Expanded(
+                                                                        child: Checkbox(
+                                                                            value: element["disableScript"],
+                                                                            checkColor: Colors.white,
+                                                                            activeColor: Colors.grey,
+                                                                            shape:  RoundedRectangleBorder(
+                                                                              borderRadius: BorderRadius.circular(5),
+                                                                            ),
+                                                                            onChanged:(value){
+                                                                              setState(() {
+                                                                                element["disableScript"]=value;
+                                                                              });
+                                                                            })
+                                                                    ),
+                                                                    Expanded(
+                                                                      child: Text(
+                                                                        "Disable Script",
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        );
+                                                      },
+                                                    );
+                                                  },
+                                                );
+                                              });
+                                            },
+                                          ),
+
+                                          PopupMenuItem(
+                                            child: Text("Remove"),
+                                            onTap: (){
+                                              /*setState(() {
+                                                _discover.remove(element);
+                                              });*/
+                                            },
+                                          ),
+
+                                          PopupMenuItem(
+                                            onTap: (){
+                                              element["disable"]=!element["disable"];
+                                              print(element);
+                                            },
+                                            child: Text(
+                                              element["disable"]?"Enable":"Disable",
+                                              style: TextStyle(
+                                                // color: element["disable"]?Colors.grey:null,
+                                              ),
+                                            ),
+
+                                          ),
+
+                                          /*CustomPopupMenuItem(
+                                            onTap:(){
+                                              element["disable"]=!element["disable"];
+                                              print(element["disable"]);
+                                            },
+                                            color: element["disable"]?Colors.green:Colors.transparent,
+                                            child: Text("Disable"),
+                                          ),*/
+
+                                        ];
+                                      },
+                                    ),
+                                  ),
+
+                                  /*Checkbox(
+                                      value: false,
+                                      onChanged: (bool? value){}
+                                  ),*/
+
+                                  /*PopupMenuButton(
+                                    itemBuilder: (BuildContext context) {
+                                      return [
+
+                                        PopupMenuItem(
+                                          child: Text("Edit"),
+                                        ),
+
+                                        PopupMenuItem(
+                                          child: Text("Remove"),
+                                        ),
+
+                                        PopupMenuItem(
+                                          child: Text("Disable"),
+                                        )
+                                      ];
+                                    },
+                                  ),*/
                                 ],
                               ),
                               /*Row(
@@ -1799,13 +2491,13 @@ class ChartData {
   final Color color;
 }
 
-class PopupItem extends PopupMenuItem {
+/*class PopupItem extends PopupMenuItem {
   const PopupItem({
     required Widget child,
     bool enabled = true,
     // VoidCallback? onTap,
     Key? key,
-  }) : super(key: key, child: child, enabled: enabled);
+  }) : super(key: key, child: child, enabled: enabled*//*,onTap: onTap*//*);
 
   @override
   _PopupItemState createState() => _PopupItemState();
@@ -1816,4 +2508,34 @@ class _PopupItemState extends PopupMenuItemState {
   void handleTap() {
     // widget.onTap?.call();
   }
+}*/
+
+
+
+
+
+/*class CustomPopupMenuItem<T> extends PopupMenuItem<T> {
+  final Color color;
+
+  const CustomPopupMenuItem({
+    Key? key,
+    T? value,
+    bool enabled = true,
+    Widget? child,
+    VoidCallback? onTap,
+    required this.color,
+  }) : super(key: key, value: value, enabled: enabled, child: child,onTap: onTap);
+
+  @override
+  _CustomPopupMenuItemState<T> createState() => _CustomPopupMenuItemState<T>();
 }
+
+class _CustomPopupMenuItemState<T> extends PopupMenuItemState<T, CustomPopupMenuItem<T>> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: super.build(context),
+      color: widget.color,
+    );
+  }
+}*/
