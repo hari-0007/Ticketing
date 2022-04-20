@@ -510,6 +510,8 @@ class Chart extends StatefulWidget {
 
 class _ChartState extends State<Chart> {
 
+  bool selectAll = false;
+
   bool checkBox = false;
 
   List<Map<String, dynamic>> _discover = [];
@@ -743,7 +745,9 @@ class _ChartState extends State<Chart> {
             Positioned.fill(
               child: Align(
                 alignment: Alignment.centerRight,
-                child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
                   InkWell(
                     onTap: () {
 
@@ -754,8 +758,12 @@ class _ChartState extends State<Chart> {
                         });
                       });*/
 
+                      print(_discover.last["disable"]);
+
+                      _devicesSearch("");
                       setState(() {
 
+                        // _devicesSearch("");
                         _deviceWidth = !_deviceWidth;
                         _deviceflag = false;
 
@@ -915,6 +923,48 @@ class _ChartState extends State<Chart> {
                                     ]),
                                   ),
                                 ),
+                              ),
+                            ),
+
+                            Card(
+                              color: Colors.transparent,
+                              elevation: 5,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(25),
+                                    color: Colors.black.withOpacity(0.5),
+                                    boxShadow: [
+                                      BoxShadow(
+                                          blurRadius: 0,
+                                          offset: Offset(2, 4),
+                                          color: Colors.black12.withOpacity(0.15)), //3dright
+                                    ]),
+                                child: Row(
+                                    children: [
+                                      SizedBox(width: 3,),
+                                      SizedBox(
+                                        height: 30.5,
+                                        child: Icon(
+                                          Icons.add_circle_outline,
+                                          color: Colors.white,
+                                          size: 27,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 4,
+                                      ),
+                                      Center(
+                                        child: Text(
+                                          'Group',
+                                          style: TextStyle(
+                                              fontFamily: 'fonts/Roboto-Light.ttf',
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 16,
+                                              color: Colors.white.withOpacity(0.75)),
+                                        ),
+                                      ),
+                                      SizedBox(width: 7.5,),
+                                    ]),
                               ),
                             ),
 
@@ -1127,13 +1177,23 @@ class _ChartState extends State<Chart> {
                   child:checkBox?Transform.scale(
                     scale: 1,
                     child: Checkbox(
-                      value: false,
+                      value: selectAll,
                       checkColor: Colors.white,
                       activeColor: Colors.grey,
                       shape:  RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5),
                       ),
-                      onChanged: (bool? value){},
+                      onChanged: (value){
+
+                        selectAll=value!;
+
+                        _discover.reversed.forEach((element) {
+                          setState(() {
+                            element["disable"]=value;
+                            /*print(element);*/
+                          });
+                        });
+                      },
                     ),
                   ):SizedBox(
                     width: 48,
@@ -1203,7 +1263,7 @@ class _ChartState extends State<Chart> {
                       child: GestureDetector(
                         onTap: (){
 
-                          print(element["hardWareDetails"]["Ram"]);
+                          // print(element["hardWareDetails"]["Ram"]);
 
                           /*_discover.sort((a, b) => a["devices"].length.compareTo(b["group"].length));
                           _discover.asMap().forEach((key, value) {
@@ -2046,7 +2106,12 @@ class _ChartState extends State<Chart> {
                                         shape:  RoundedRectangleBorder(
                                           borderRadius: BorderRadius.circular(5),
                                         ),
-                                        onChanged: (bool? value){}
+                                        onChanged: (value){
+                                          setState(() {
+                                            element["disable"]=value;
+                                            // print(element);
+                                          });
+                                        }
                                     ):PopupMenuButton(
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.all(
@@ -2437,15 +2502,249 @@ class _ChartState extends State<Chart> {
             reverse: true,
             itemCount: _discover.length,
             itemBuilder: (BuildContext context, int index) {
-              return Card(
-                elevation: 8.0,
-                margin: EdgeInsets.only(left: 7.5,right: 7.5,top: 5,bottom: 5),
-                child: Container(
-                  height: 47.5,
-                  decoration: BoxDecoration(
-                    color:Color(0xff19547b).withOpacity(0.65),/*Color(0xff19547b).withOpacity(0.85),*/ /*Colors.blueGrey.withOpacity(0.9)*/),
-                  child: Center(
-                    child: Text(_discover[index]['devices']),
+              return GestureDetector(
+                onTap: (){
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        alignment: Alignment.center,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30.0),
+                        ),
+                        scrollable: true,
+                        insetPadding: EdgeInsets.zero,
+                        contentPadding: EdgeInsets.only(bottom: 5,left: 5,right: 5),
+                        titlePadding: EdgeInsets.only(top: 5,bottom: 5),
+                        backgroundColor: Colors.white70,
+                        title: Text(
+                          _discover[index]["devices"],
+                          style: TextStyle(),
+                          textAlign: TextAlign.center,
+                        ),
+                        content: Container(
+                          height: 500,
+                          // width: MediaQuery.of(context).size.width*0.95,
+                          padding: EdgeInsets.all(5),
+                          decoration: BoxDecoration(
+                            color: Colors.white70,
+                            borderRadius: BorderRadius.circular(30.0),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+
+                              Text(
+                                _discover[index]["UserName"],
+                              ),
+
+                              /*Row(
+                                children: [
+                                  Expanded(
+                                    child: Center(
+                                      child: Padding(
+                                        padding: EdgeInsets.only(left: 82),
+                                        child: Text(
+                                          _discover[index]["UserName"],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Text(
+                                    _discover[index]["lastActive"],
+                                  )
+                                ],
+                              ),*/
+
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: [
+                                  Expanded(
+                                      child: Center(
+                                        child: Text("Last Active"),
+                                      ),
+                                  ),
+                                  Expanded(
+                                    child: Text(
+                                      _discover[index]["lastActive"],
+                                    ),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: [
+                                  Expanded(
+                                    child: Center(
+                                      child: Text("Platform"),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Text(
+                                      _discover[index]["platform"],
+                                    ),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: [
+                                  Expanded(
+                                    child: Center(
+                                      child: Text("OS"),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Text(
+                                      _discover[index]["osDetails"],
+                                    ),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: [
+                                  Expanded(
+                                    child: Center(
+                                      child: Text(
+                                          "Agent ID"
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Text(
+                                        _discover[index]["agentID"].toString()
+                                    ),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: [
+                                  Expanded(
+                                    child: Center(
+                                      child: Text(
+                                          "IP Address"
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Text(
+                                        _discover[index]["ipAddress"].toString()
+                                    ),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: [
+                                  Expanded(
+                                    child: Center(
+                                      child: Text(
+                                          "IP Address"
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                          child: Text(
+                                              "Public IP : ${_discover[index]["publicIP"].toString()}"
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                          child: Text(
+                                             "Local IP : ${_discover[index]["localIP"].toString()}"
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              ),
+
+                              /*Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: [
+                                  Expanded(
+                                    child: Center(
+                                      child: Text(
+                                          "Public IP"
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Text(
+                                        _discover[index]["publicIP"].toString()
+                                    ),
+                                  ),
+                                ],
+                              ),*/
+
+                              /*Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: [
+                                  Expanded(
+                                    child: Center(
+                                      child: Text(
+                                          "Local IP"
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Text(
+                                        _discover[index]["localIP"].toString()
+                                    ),
+                                  ),
+                                ],
+                              ),*/
+
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: [
+                                  Expanded(
+                                    child: Center(
+                                      child: Text(
+                                          "Mac Address"
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Text(
+                                        _discover[index]["macAddress"].toString()
+                                    ),
+                                  ),
+                                ],
+                              ),
+
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  );
+                },
+                child: Card(
+                  elevation: 8.0,
+                  margin: EdgeInsets.only(left: 7.5,right: 7.5,top: 5,bottom: 5),
+                  child: Container(
+                    height: 47.5,
+                    decoration: BoxDecoration(
+                      color:Color(0xff19547b).withOpacity(0.65),/*Color(0xff19547b).withOpacity(0.85),*/ /*Colors.blueGrey.withOpacity(0.9)*/),
+                    child: Center(
+                      child: Text(_discover[index]['devices']),
+                    ),
                   ),
                 ),
               );

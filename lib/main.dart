@@ -299,6 +299,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 GestureDetector(
                   onTap: () {
                     // sendRequest();
+
                     // print(emailController.text);
                     FocusManager.instance.primaryFocus?.unfocus();
                     print(json.encode(loginRequestModel));

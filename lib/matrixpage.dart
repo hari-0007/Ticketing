@@ -6325,7 +6325,9 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                         /*print(memorybar[_sysNumber]?.contains('assets/callicongreenpadding1.gif'));*/
                         // print(memorybar);
 
+                        _runFilter("");
                         setState(() {
+                          // print(memorybar);
 
                           /*memorybar.forEach((key,value){
                             if(value.contains('assets/callicongreenpadding1.gif')){
