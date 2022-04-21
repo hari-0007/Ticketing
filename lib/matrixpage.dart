@@ -611,7 +611,7 @@ final List<Map<String, dynamic>> ticket = [
   },
 ];
 
-enum WidgetMarker { dashboard, incident, devices }                 // Drawer
+enum WidgetMarker { dashboard, incident, devices,report,users }                 // Drawer
 enum IncidentMarker { main, chat, notification, script, terminal} // Inside Incident
 enum DeviceMarker {devicemain, devicenotification}
 
@@ -994,30 +994,57 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                       //   leading: Icon(Icons.settings),
                       //   title: Text('Report'),
                       // ),
-                      ListTile(
-                        onTap: () {},
-                        leading: SizedBox(
-                          height: 25,
-                          width: 25,
-                          child: Image.asset('assets/report.png',
-                              color: Colors.white.withOpacity(1)),
-                        ),
-                        title: Text(
-                          'Report',
-                          style: TextStyle(color: Colors.white, fontSize: 18),
+                      Container(
+                        color: (selectedWidgetMarker == WidgetMarker.report)?Colors.blueGrey.withOpacity(0.5):Colors.transparent,
+                        child: ListTile(
+                          onTap: () {
+                            setState(() {
+                              selectedWidgetMarker = WidgetMarker.report;
+                              value = 0;
+                              menuController.reverse();
+                            });
+                          },
+                          leading: SizedBox(
+                            height: 25,
+                            width: 25,
+                            child: Image.asset('assets/report.png',
+                                color: (selectedWidgetMarker == WidgetMarker.report)?Colors.black.withOpacity(0.75):Colors.white
+                            ),
+                          ),
+                          title: Text(
+                            'Report',
+                            style: TextStyle(
+                              color: (selectedWidgetMarker == WidgetMarker.report)?Colors.black.withOpacity(0.75):Colors.white,
+                              fontWeight: (selectedWidgetMarker == WidgetMarker.report)?FontWeight.bold:FontWeight.normal,
+                              fontSize: (selectedWidgetMarker == WidgetMarker.report)?20:18,
+                            ),
+                          ),
                         ),
                       ),
-                      ListTile(
-                        onTap: () {},
-                        leading: SizedBox(
-                          height: 25,
-                          width: 25,
-                          child: Image.asset('assets/userslarge.png',
-                              color: Colors.white.withOpacity(1)),
-                        ),
-                        title: const Text(
-                          'Users',
-                          style: TextStyle(color: Colors.white, fontSize: 18),
+                      Container(
+                        color: (selectedWidgetMarker == WidgetMarker.users)?Colors.blueGrey.withOpacity(0.5):Colors.transparent,
+                        child: ListTile(
+                          onTap: () {
+                            setState(() {
+                              selectedWidgetMarker = WidgetMarker.users;
+                              value = 0;
+                              menuController.reverse();
+                            });
+                          },
+                          leading: SizedBox(
+                            height: 25,
+                            width: 25,
+                            child: Image.asset('assets/userslarge.png',
+                                color: (selectedWidgetMarker == WidgetMarker.users)?Colors.black.withOpacity(0.75):Colors.white),
+                          ),
+                          title: Text(
+                            'Users',
+                            style: TextStyle(
+                              color: (selectedWidgetMarker == WidgetMarker.users)?Colors.black.withOpacity(0.75):Colors.white,
+                              fontWeight: (selectedWidgetMarker == WidgetMarker.users)?FontWeight.bold:FontWeight.normal,
+                              fontSize: (selectedWidgetMarker == WidgetMarker.users)?20:18,
+                            ),
+                          ),
                         ),
                       ),
                       ListTile(
@@ -1097,6 +1124,10 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
         return getIncident();
       case WidgetMarker.devices:
         return getDevices();
+      case WidgetMarker.report:
+        return getReport();
+      case WidgetMarker.users:
+        return getUsers();
     }
   }
 
@@ -3125,6 +3156,7 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                 return SizedBox(width: 0);
               },*/
                       shrinkWrap: true,
+                      physics: PageScrollPhysics(),
                       scrollDirection: Axis.horizontal,
                       itemCount: _foundTicket.length,
                       itemBuilder: (context, index) {
@@ -4314,6 +4346,10 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                                       width: 174,
                                       child: ElevatedButton(
                                         onPressed: (){
+
+                                          Clipboard.setData(ClipboardData()); // Vibration
+                                          HapticFeedback.heavyImpact();
+
                                           /*_sysNumber= ticket[index]['sysNumber'];*/
                                           _remote = false;
                                           setState(() {
@@ -6323,7 +6359,8 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                     InkWell(
                       onTap: () {
                         /*print(memorybar[_sysNumber]?.contains('assets/callicongreenpadding1.gif'));*/
-                        // print(memorybar);
+                        print(memorybar);
+                        print(memorybar["C0001"]?.length);
 
                         _runFilter("");
                         setState(() {
@@ -6564,8 +6601,7 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                                         context: context,
                                         builder: (BuildContext context) {
                                           return AlertDialog(
-                                            actionsAlignment:
-                                            MainAxisAlignment.center,
+                                            actionsAlignment: MainAxisAlignment.center,
                                             shape: RoundedRectangleBorder(
                                               borderRadius: BorderRadius.circular(15.0),
                                             ),
@@ -9625,6 +9661,208 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
   Widget getDeviceMain(){
     return Expanded(
         child: Chart()
+    );
+  }
+
+  Widget getReportAppBar() {
+    return Container(
+      height: 40,
+      padding: EdgeInsets.symmetric(horizontal: 10.0),
+      child: DecoratedBox(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+                fit: BoxFit.cover,
+                image: AssetImage('assets/incidentappbar.png')),
+            boxShadow: [
+              BoxShadow(
+                  blurRadius: 10,
+                  offset: Offset(1, 1),
+                  color: Color(0xff000000).withOpacity(0.30)),
+              BoxShadow(
+                  blurRadius: 10,
+                  offset: -Offset(1, 1),
+                  color: Color(0xff000000).withOpacity(0.30)),
+            ],
+            borderRadius: BorderRadius.all(Radius.circular(70)),
+          ),
+          child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Container(
+                  child: Row(
+                    children: <Widget>[
+                      SizedBox(width: 5),
+
+                      menuIcon(),
+
+                      Padding(padding: EdgeInsets.only(left: 7.5)),
+                      GestureDetector(
+                        onTap: () {},
+                        child: GradientText(
+                          'REPORT',
+                          gradientType: GradientType.linear,
+                          gradientDirection: GradientDirection.ttb,
+                          colors: [
+                            // Color(0xFFffffff),
+                            Colors.grey,
+                            Color(0xFF063D61),
+                          ],
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontFamily: 'Roboto-Thin',
+                            fontWeight: FontWeight.w900,
+                            fontSize: 19,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ])),
+    );
+  }
+
+  Widget getReport() {
+    return WillPopScope(
+      onWillPop: () async {
+        print('hello');
+        return false;
+      },
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        backgroundColor: Colors.transparent,
+        body: AnimatedContainer(
+            duration: Duration(milliseconds: 250),
+            curve: Curves.easeInOut,
+            decoration: BoxDecoration(
+                borderRadius: value == 1 ? BorderRadius.circular(40) : BorderRadius.circular(0),
+                gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Color(0xff19547b),
+                      Color(0xffB0C8C8),
+                      // Colors.green,
+                      // Colors.white,
+                      // Color(0xff497D7D),
+                      // Color(0xff8D6679)
+                    ])),
+            child: Column(
+              children: [
+                Padding(padding: EdgeInsets.only(top: MediaQuery.of(context).viewPadding.top+20)),
+                getReportAppBar()
+              ],
+            )
+          // GestureDetector(
+          //   onTap: (){
+          //     setState(() {
+          //       value==0 ? value=1 : value=0;
+          //     });
+          //   },
+          // )
+        ),
+      ),
+    );
+  }
+
+  Widget getUsersAppBar() {
+    return Container(
+      height: 40,
+      padding: EdgeInsets.symmetric(horizontal: 10.0),
+      child: DecoratedBox(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+                fit: BoxFit.cover,
+                image: AssetImage('assets/incidentappbar.png')),
+            boxShadow: [
+              BoxShadow(
+                  blurRadius: 10,
+                  offset: Offset(1, 1),
+                  color: Color(0xff000000).withOpacity(0.30)),
+              BoxShadow(
+                  blurRadius: 10,
+                  offset: -Offset(1, 1),
+                  color: Color(0xff000000).withOpacity(0.30)),
+            ],
+            borderRadius: BorderRadius.all(Radius.circular(70)),
+          ),
+          child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Container(
+                  child: Row(
+                    children: <Widget>[
+                      SizedBox(width: 5),
+
+                      menuIcon(),
+
+                      Padding(padding: EdgeInsets.only(left: 7.5)),
+                      GestureDetector(
+                        onTap: () {},
+                        child: GradientText(
+                          'USER',
+                          gradientType: GradientType.linear,
+                          gradientDirection: GradientDirection.ttb,
+                          colors: [
+                            // Color(0xFFffffff),
+                            Colors.grey,
+                            Color(0xFF063D61),
+                          ],
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontFamily: 'Roboto-Thin',
+                            fontWeight: FontWeight.w900,
+                            fontSize: 19,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ])),
+    );
+  }
+
+  Widget getUsers() {
+    return WillPopScope(
+      onWillPop: () async {
+        print('hello');
+        return false;
+      },
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        backgroundColor: Colors.transparent,
+        body: AnimatedContainer(
+          duration: Duration(milliseconds: 250),
+          curve: Curves.easeInOut,
+          decoration: BoxDecoration(
+              borderRadius: value == 1 ? BorderRadius.circular(40) : BorderRadius.circular(0),
+              gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Color(0xff19547b),
+                    Color(0xffB0C8C8),
+                    // Colors.green,
+                    // Colors.white,
+                    // Color(0xff497D7D),
+                    // Color(0xff8D6679)
+                  ])),
+          child: Column(
+            children: [
+              Padding(padding: EdgeInsets.only(top: MediaQuery.of(context).viewPadding.top+20)),
+              getUsersAppBar(),
+            ],
+          )
+          // GestureDetector(
+          //   onTap: (){
+          //     setState(() {
+          //       value==0 ? value=1 : value=0;
+          //     });
+          //   },
+          // )
+        ),
+      ),
     );
   }
 

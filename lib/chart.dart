@@ -2,6 +2,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:grouped_list/grouped_list.dart';
 
@@ -29,7 +30,6 @@ List<Map<String, dynamic>> _elements = [
     "disableRemote":false,
     "disableScript":false,
     'disable': false,
-    'remove': false,
   },
   {
     'devices': 'Allitson-02',
@@ -53,7 +53,6 @@ List<Map<String, dynamic>> _elements = [
     "disableRemote":false,
     "disableScript":false,
     'disable': false,
-    'remove': false
   },
   {
     'devices': 'Allitson-03',
@@ -77,7 +76,6 @@ List<Map<String, dynamic>> _elements = [
     "disableRemote":false,
     "disableScript":false,
     'disable': false,
-    'remove': false
   },
   {
     'devices': 'Allitson-04',
@@ -101,7 +99,6 @@ List<Map<String, dynamic>> _elements = [
     "disableRemote":false,
     "disableScript":false,
     'disable': false,
-    'remove': false
   },
   {
     'devices': 'Allitson-05',
@@ -125,7 +122,6 @@ List<Map<String, dynamic>> _elements = [
     "disableRemote":false,
     "disableScript":false,
     'disable': false,
-    'remove': false
   },
   {
     'devices': 'Allitson-06',
@@ -149,7 +145,6 @@ List<Map<String, dynamic>> _elements = [
     "disableRemote":false,
     "disableScript":false,
     'disable': false,
-    'remove': false
   },
   {
     'devices': 'Allitson-07',
@@ -196,7 +191,6 @@ List<Map<String, dynamic>> _elements = [
     "disableRemote":false,
     "disableScript":false,
     'disable': false,
-    'remove': false
   },
   {
     'devices': 'Allitson-09',
@@ -758,7 +752,7 @@ class _ChartState extends State<Chart> {
                         });
                       });*/
 
-                      print(_discover.last["disable"]);
+                      // print(_discover.last["disable"]);
 
                       _devicesSearch("");
                       setState(() {
@@ -929,42 +923,83 @@ class _ChartState extends State<Chart> {
                             Card(
                               color: Colors.transparent,
                               elevation: 5,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(25),
-                                    color: Colors.black.withOpacity(0.5),
-                                    boxShadow: [
-                                      BoxShadow(
-                                          blurRadius: 0,
-                                          offset: Offset(2, 4),
-                                          color: Colors.black12.withOpacity(0.15)), //3dright
-                                    ]),
-                                child: Row(
-                                    children: [
-                                      SizedBox(width: 3,),
-                                      SizedBox(
-                                        height: 30.5,
-                                        child: Icon(
-                                          Icons.add_circle_outline,
-                                          color: Colors.white,
-                                          size: 27,
+                              child: GestureDetector(
+                                onTap: (){
+                                  showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        actionsAlignment: MainAxisAlignment.center,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(15.0),
                                         ),
-                                      ),
-                                      SizedBox(
-                                        width: 4,
-                                      ),
-                                      Center(
-                                        child: Text(
-                                          'Group',
-                                          style: TextStyle(
-                                              fontFamily: 'fonts/Roboto-Light.ttf',
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 16,
-                                              color: Colors.white.withOpacity(0.75)),
+                                        backgroundColor: Colors.white70,
+                                        scrollable: true,
+                                        // contentPadding: EdgeInsets.zero,
+                                        content: Container(
+                                          // height: 100,
+                                          // width: 100,
+                                          decoration: BoxDecoration(
+                                            color: Colors.transparent,
+                                            borderRadius: BorderRadius.circular(15.0),
+                                          ),
+                                          child: Column(
+                                            children: [
+                                              TextField(
+                                                decoration: InputDecoration(
+                                                  labelText: "Group name"
+                                                ),
+                                              ),
+
+                                              TextField(
+                                                decoration: InputDecoration(
+                                                  labelText: "User Group"
+                                                ),
+                                              ),
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                      SizedBox(width: 7.5,),
-                                    ]),
+                                      );
+                                    },
+                                  );
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(25),
+                                      color: Colors.black.withOpacity(0.5),
+                                      boxShadow: [
+                                        BoxShadow(
+                                            blurRadius: 0,
+                                            offset: Offset(2, 4),
+                                            color: Colors.black12.withOpacity(0.15)), //3dright
+                                      ]),
+                                  child: Row(
+                                      children: [
+                                        SizedBox(width: 3,),
+                                        SizedBox(
+                                          height: 30.5,
+                                          child: Icon(
+                                            Icons.add_circle_outline,
+                                            color: Colors.white,
+                                            size: 27,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 4,
+                                        ),
+                                        Center(
+                                          child: Text(
+                                            'Group',
+                                            style: TextStyle(
+                                                fontFamily: 'fonts/Roboto-Light.ttf',
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 16,
+                                                color: Colors.white.withOpacity(0.75)),
+                                          ),
+                                        ),
+                                        SizedBox(width: 7.5,),
+                                      ]),
+                                ),
                               ),
                             ),
 
@@ -1321,11 +1356,11 @@ class _ChartState extends State<Chart> {
                                     crossAxisAlignment: CrossAxisAlignment.center,
                                     children: [
 
-                                      /*Text(
+                                      Text(
                                         element["UserName"],
-                                      ),*/
+                                      ),
 
-                                      Row(
+                                      /*Row(
                                         children: [
                                           Expanded(
                                             child: Center(
@@ -1340,6 +1375,22 @@ class _ChartState extends State<Chart> {
                                           Text(
                                               element["lastActive"],
                                           )
+                                        ],
+                                      ),*/
+
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Expanded(
+                                            child: Center(
+                                              child: Text("Last Active"),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            child: Text(
+                                              element["lastActive"],
+                                            ),
+                                          ),
                                         ],
                                       ),
 
@@ -2107,6 +2158,12 @@ class _ChartState extends State<Chart> {
                                           borderRadius: BorderRadius.circular(5),
                                         ),
                                         onChanged: (value){
+
+
+                                          Clipboard.setData(ClipboardData()); // Vibration
+                                          HapticFeedback.heavyImpact();
+
+
                                           setState(() {
                                             element["disable"]=value;
                                             // print(element);
@@ -2310,9 +2367,9 @@ class _ChartState extends State<Chart> {
                                           PopupMenuItem(
                                             child: Text("Remove"),
                                             onTap: (){
-                                              /*setState(() {
+                                              setState(() {
                                                 _discover.remove(element);
-                                              });*/
+                                              });
                                             },
                                           ),
 
@@ -2493,262 +2550,357 @@ class _ChartState extends State<Chart> {
     return Expanded(
         child: Container(
           margin: EdgeInsets.only(left: 0,right: 0,top:0,bottom: 0),
-          padding: EdgeInsets.only(top: 12.5),
+          // padding: EdgeInsets.only(top: 12.5),
           color: Colors.transparent,
-          child: ListView.builder(
-            controller: disController,
-            padding: EdgeInsets.zero,
-            shrinkWrap: true,
-            reverse: true,
-            itemCount: _discover.length,
-            itemBuilder: (BuildContext context, int index) {
-              return GestureDetector(
-                onTap: (){
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return AlertDialog(
-                        alignment: Alignment.center,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30.0),
+          child: Column(
+            children: [
+              Container(
+                height: 27.5,
+                padding: EdgeInsets.only(right: 7.0),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      colors: [
+                        Colors.white.withOpacity(0.5),
+                        Colors.white.withOpacity(1),
+                      ],
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter),
+                ),
+                child: Row(
+                  children: [
+
+                    Expanded(
+                      child: Center(
+                        child: Text(
+                          "Host Name",
                         ),
-                        scrollable: true,
-                        insetPadding: EdgeInsets.zero,
-                        contentPadding: EdgeInsets.only(bottom: 5,left: 5,right: 5),
-                        titlePadding: EdgeInsets.only(top: 5,bottom: 5),
-                        backgroundColor: Colors.white70,
-                        title: Text(
-                          _discover[index]["devices"],
-                          style: TextStyle(),
-                          textAlign: TextAlign.center,
+                      ),
+                    ),
+
+                    Expanded(
+                      child: Center(
+                        child: Text(
+                          "Agent ID",
                         ),
-                        content: Container(
-                          height: 500,
-                          // width: MediaQuery.of(context).size.width*0.95,
-                          padding: EdgeInsets.all(5),
-                          decoration: BoxDecoration(
-                            color: Colors.white70,
-                            borderRadius: BorderRadius.circular(30.0),
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
+                      ),
+                    ),
 
-                              Text(
-                                _discover[index]["UserName"],
+                    Expanded(
+                      child: Center(
+                        child: Text(
+                          "Discovered Time",
+                        ),
+                      ),
+                    ),
+
+                    SizedBox(width: 48,),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: ListView.builder(
+                  controller: disController,
+                  padding: EdgeInsets.zero,
+                  shrinkWrap: true,
+                  reverse: true,
+                  itemCount: _discover.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return GestureDetector(
+                      onTap: (){
+
+                        print(DateTime.now());
+
+                        print("${DateTime.now().year}-${DateTime.now().month}-${DateTime.now().day} ${DateTime.now().hour}:${DateTime.now().minute}");
+
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              alignment: Alignment.center,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30.0),
                               ),
-
-                              /*Row(
-                                children: [
-                                  Expanded(
-                                    child: Center(
-                                      child: Padding(
-                                        padding: EdgeInsets.only(left: 82),
-                                        child: Text(
-                                          _discover[index]["UserName"],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Text(
-                                    _discover[index]["lastActive"],
-                                  )
-                                ],
-                              ),*/
-
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                children: [
-                                  Expanded(
-                                      child: Center(
-                                        child: Text("Last Active"),
-                                      ),
-                                  ),
-                                  Expanded(
-                                    child: Text(
-                                      _discover[index]["lastActive"],
-                                    ),
-                                  ),
-                                ],
+                              scrollable: true,
+                              insetPadding: EdgeInsets.zero,
+                              contentPadding: EdgeInsets.only(bottom: 5,left: 5,right: 5),
+                              titlePadding: EdgeInsets.only(top: 5,bottom: 5),
+                              backgroundColor: Colors.white70,
+                              title: Text(
+                                _discover[index]["devices"],
+                                style: TextStyle(),
+                                textAlign: TextAlign.center,
                               ),
+                              content: Container(
+                                height: 500,
+                                // width: MediaQuery.of(context).size.width*0.95,
+                                padding: EdgeInsets.all(5),
+                                decoration: BoxDecoration(
+                                  color: Colors.white70,
+                                  borderRadius: BorderRadius.circular(30.0),
+                                ),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
 
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                children: [
-                                  Expanded(
-                                    child: Center(
-                                      child: Text("Platform"),
+                                    Text(
+                                      _discover[index]["UserName"],
                                     ),
-                                  ),
-                                  Expanded(
-                                    child: Text(
-                                      _discover[index]["platform"],
-                                    ),
-                                  ),
-                                ],
-                              ),
 
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                children: [
-                                  Expanded(
-                                    child: Center(
-                                      child: Text("OS"),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: Text(
-                                      _discover[index]["osDetails"],
-                                    ),
-                                  ),
-                                ],
-                              ),
-
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                children: [
-                                  Expanded(
-                                    child: Center(
-                                      child: Text(
-                                          "Agent ID"
-                                      ),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: Text(
-                                        _discover[index]["agentID"].toString()
-                                    ),
-                                  ),
-                                ],
-                              ),
-
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                children: [
-                                  Expanded(
-                                    child: Center(
-                                      child: Text(
-                                          "IP Address"
-                                      ),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: Text(
-                                        _discover[index]["ipAddress"].toString()
-                                    ),
-                                  ),
-                                ],
-                              ),
-
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                children: [
-                                  Expanded(
-                                    child: Center(
-                                      child: Text(
-                                          "IP Address"
-                                      ),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                    /*Row(
                                       children: [
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                          child: Text(
-                                              "Public IP : ${_discover[index]["publicIP"].toString()}"
+                                        Expanded(
+                                          child: Center(
+                                            child: Padding(
+                                              padding: EdgeInsets.only(left: 82),
+                                              child: Text(
+                                                _discover[index]["UserName"],
+                                              ),
+                                            ),
                                           ),
                                         ),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                        Text(
+                                          _discover[index]["lastActive"],
+                                        )
+                                      ],
+                                    ),*/
+
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Expanded(
+                                            child: Center(
+                                              child: Text("Last Active"),
+                                            ),
+                                        ),
+                                        Expanded(
                                           child: Text(
-                                             "Local IP : ${_discover[index]["localIP"].toString()}"
+                                            _discover[index]["lastActive"],
                                           ),
                                         ),
                                       ],
                                     ),
-                                  )
-                                ],
+
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Expanded(
+                                          child: Center(
+                                            child: Text("Platform"),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Text(
+                                            _discover[index]["platform"],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Expanded(
+                                          child: Center(
+                                            child: Text("OS"),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Text(
+                                            _discover[index]["osDetails"],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Expanded(
+                                          child: Center(
+                                            child: Text(
+                                                "Agent ID"
+                                            ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Text(
+                                              _discover[index]["agentID"].toString()
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Expanded(
+                                          child: Center(
+                                            child: Text(
+                                                "IP Address"
+                                            ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Text(
+                                              _discover[index]["ipAddress"].toString()
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Expanded(
+                                          child: Center(
+                                            child: Text(
+                                                "IP Address"
+                                            ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.start,
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.only(bottom: 8.0),
+                                                child: Text(
+                                                    "Public IP : ${_discover[index]["publicIP"].toString()}"
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(top: 8.0),
+                                                child: Text(
+                                                   "Local IP : ${_discover[index]["localIP"].toString()}"
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        )
+                                      ],
+                                    ),
+
+                                    /*Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Expanded(
+                                          child: Center(
+                                            child: Text(
+                                                "Public IP"
+                                            ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Text(
+                                              _discover[index]["publicIP"].toString()
+                                          ),
+                                        ),
+                                      ],
+                                    ),*/
+
+                                    /*Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Expanded(
+                                          child: Center(
+                                            child: Text(
+                                                "Local IP"
+                                            ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Text(
+                                              _discover[index]["localIP"].toString()
+                                          ),
+                                        ),
+                                      ],
+                                    ),*/
+
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Expanded(
+                                          child: Center(
+                                            child: Text(
+                                                "Mac Address"
+                                            ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Text(
+                                              _discover[index]["macAddress"].toString()
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+
+                                  ],
+                                ),
                               ),
+                            );
+                          },
+                        );
+                      },
+                      child: Card(
+                        elevation: 8.0,
+                        margin: EdgeInsets.only(left: 7.5,right: 7.5,top: 5,bottom: 5),
+                        child: Container(
+                          height: 47.5,
+                          decoration: BoxDecoration(
+                            color:Color(0xff19547b).withOpacity(0.65),/*Color(0xff19547b).withOpacity(0.85),*/ /*Colors.blueGrey.withOpacity(0.9)*/),
+                          child: Row(
+                            // crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
 
-                              /*Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                children: [
-                                  Expanded(
-                                    child: Center(
-                                      child: Text(
-                                          "Public IP"
-                                      ),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: Text(
-                                        _discover[index]["publicIP"].toString()
-                                    ),
-                                  ),
-                                ],
-                              ),*/
+                              Text(_discover[index]['devices']),
 
-                              /*Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                children: [
-                                  Expanded(
-                                    child: Center(
-                                      child: Text(
-                                          "Local IP"
-                                      ),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: Text(
-                                        _discover[index]["localIP"].toString()
-                                    ),
-                                  ),
-                                ],
-                              ),*/
+                              Text(_discover[index]["agentID"].toString()/*.substring(8)*/),
 
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                children: [
-                                  Expanded(
-                                    child: Center(
-                                      child: Text(
-                                          "Mac Address"
+                              Text("${DateTime.now().year}-${DateTime.now().month}-${DateTime.now().day} ${DateTime.now().hour}:${DateTime.now().minute}"),
+
+                              SizedBox(
+                                width: 15,
+                                child: PopupMenuButton(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(15.0),
+                                    ),
+                                  ),
+                                  padding: EdgeInsets.zero,
+                                  itemBuilder: (BuildContext context) {
+                                    return [
+                                      PopupMenuItem(
+                                        onTap: (){
+                                          setState(() {
+                                            /*final int removeInt = index;
+                                            _discover.removeAt(removeInt);*/
+                                            _discover.remove(_discover[index]);
+                                          });
+                                          // print(_discover[index]);
+                                        },
+                                        child: Text("Remove"),
                                       ),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: Text(
-                                        _discover[index]["macAddress"].toString()
-                                    ),
-                                  ),
-                                ],
+                                      PopupMenuItem(
+                                        onTap: (){},
+                                        child: Text("Block"),
+                                      ),
+                                    ];
+                                  },
+                                ),
                               ),
 
                             ],
                           ),
                         ),
-                      );
-                    },
-                  );
-                },
-                child: Card(
-                  elevation: 8.0,
-                  margin: EdgeInsets.only(left: 7.5,right: 7.5,top: 5,bottom: 5),
-                  child: Container(
-                    height: 47.5,
-                    decoration: BoxDecoration(
-                      color:Color(0xff19547b).withOpacity(0.65),/*Color(0xff19547b).withOpacity(0.85),*/ /*Colors.blueGrey.withOpacity(0.9)*/),
-                    child: Center(
-                      child: Text(_discover[index]['devices']),
-                    ),
-                  ),
+                      ),
+                    );
+                  },
                 ),
-              );
-            },
+              ),
+            ],
           ),
         )
     );
