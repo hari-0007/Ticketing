@@ -30,6 +30,7 @@ List<Map<String, dynamic>> _elements = [
     "disableRemote":false,
     "disableScript":false,
     'disable': false,
+    "block": false,
   },
   {
     'devices': 'Allitson-02',
@@ -53,6 +54,7 @@ List<Map<String, dynamic>> _elements = [
     "disableRemote":false,
     "disableScript":false,
     'disable': false,
+    "block": false,
   },
   {
     'devices': 'Allitson-03',
@@ -76,6 +78,7 @@ List<Map<String, dynamic>> _elements = [
     "disableRemote":false,
     "disableScript":false,
     'disable': false,
+    "block": false,
   },
   {
     'devices': 'Allitson-04',
@@ -99,6 +102,7 @@ List<Map<String, dynamic>> _elements = [
     "disableRemote":false,
     "disableScript":false,
     'disable': false,
+    "block": false,
   },
   {
     'devices': 'Allitson-05',
@@ -122,6 +126,7 @@ List<Map<String, dynamic>> _elements = [
     "disableRemote":false,
     "disableScript":false,
     'disable': false,
+    "block": false,
   },
   {
     'devices': 'Allitson-06',
@@ -145,6 +150,7 @@ List<Map<String, dynamic>> _elements = [
     "disableRemote":false,
     "disableScript":false,
     'disable': false,
+    "block": false,
   },
   {
     'devices': 'Allitson-07',
@@ -167,7 +173,8 @@ List<Map<String, dynamic>> _elements = [
     "remotePermission":false,
     "disableRemote":false,
     "disableScript":false,
-    'disable': false
+    'disable': false,
+    "block": false,
   },
   {
     'devices': 'Allitson-08',
@@ -191,6 +198,7 @@ List<Map<String, dynamic>> _elements = [
     "disableRemote":false,
     "disableScript":false,
     'disable': false,
+    "block": false,
   },
   {
     'devices': 'Allitson-09',
@@ -213,7 +221,8 @@ List<Map<String, dynamic>> _elements = [
     "remotePermission":false,
     "disableRemote":false,
     "disableScript":false,
-    'disable': false
+    'disable': false,
+    "block": false,
   },
   {
     'devices': 'Allitson-10',
@@ -236,7 +245,8 @@ List<Map<String, dynamic>> _elements = [
     "remotePermission":false,
     "disableRemote":false,
     "disableScript":false,
-    'disable': false
+    'disable': false,
+    "block": false,
   },
   {
     'devices': 'Allitson-11',
@@ -259,7 +269,8 @@ List<Map<String, dynamic>> _elements = [
     "remotePermission":false,
     "disableRemote":false,
     "disableScript":false,
-    'disable': false
+    'disable': false,
+    "block": false,
   },
   {
     'devices': 'Allitson-12',
@@ -282,7 +293,8 @@ List<Map<String, dynamic>> _elements = [
     "remotePermission":false,
     "disableRemote":false,
     "disableScript":false,
-    'disable': false
+    'disable': false,
+    "block": false,
   },
   {
     'devices': 'Allitson-13',
@@ -305,7 +317,8 @@ List<Map<String, dynamic>> _elements = [
     "remotePermission":false,
     "disableRemote":false,
     "disableScript":false,
-    'disable': false
+    'disable': false,
+    "block": false,
   },
   {
     'devices': 'Allitson-14',
@@ -328,7 +341,8 @@ List<Map<String, dynamic>> _elements = [
     "remotePermission":false,
     "disableRemote":false,
     "disableScript":false,
-    'disable': true
+    'disable': true,
+    "block": false,
   },
   {
     'devices': 'Allitson-15',
@@ -351,7 +365,8 @@ List<Map<String, dynamic>> _elements = [
     "remotePermission":false,
     "disableRemote":false,
     "disableScript":false,
-    'disable': false
+    'disable': false,
+    "block": false,
   },
   {
     'devices': 'Allitson-16',
@@ -374,7 +389,8 @@ List<Map<String, dynamic>> _elements = [
     "remotePermission":false,
     "disableRemote":false,
     "disableScript":false,
-    'disable': true
+    'disable': true,
+    "block": false,
   },
   {
     'devices': 'Allitson-17',
@@ -397,7 +413,8 @@ List<Map<String, dynamic>> _elements = [
     "remotePermission":false,
     "disableRemote":false,
     "disableScript":false,
-    'disable': true
+    'disable': true,
+    "block": false,
   },
   {
     'devices': 'Allitson-18',
@@ -420,7 +437,8 @@ List<Map<String, dynamic>> _elements = [
     "remotePermission":false,
     "disableRemote":false,
     "disableScript":false,
-    'disable': true
+    'disable': true,
+    "block": false,
   },
   {
     'devices': 'Allitson-19',
@@ -443,7 +461,8 @@ List<Map<String, dynamic>> _elements = [
     "remotePermission":false,
     "disableRemote":false,
     "disableScript":false,
-    'disable': true
+    'disable': true,
+    "block": false,
   },
   {
     'devices': 'Allitson-20',
@@ -466,7 +485,8 @@ List<Map<String, dynamic>> _elements = [
     "remotePermission":false,
     "disableRemote":false,
     "disableScript":false,
-    'disable': true
+    'disable': true,
+    "block": false,
   },
   {
     'devices': 'Allitson-21',
@@ -489,7 +509,8 @@ List<Map<String, dynamic>> _elements = [
     "remotePermission":false,
     "disableRemote":false,
     "disableScript":false,
-    'disable': true
+    'disable': true,
+    "block": false,
   },
 ];
 
@@ -745,6 +766,8 @@ class _ChartState extends State<Chart> {
                   InkWell(
                     onTap: () {
 
+                      print(_discover);
+
                       /*setState(() {
                         _discover.sort((a, b) => a["devices"].compareTo(b["devices"])); //sorting
                         _discover.forEach((element) {
@@ -937,13 +960,14 @@ class _ChartState extends State<Chart> {
                                         scrollable: true,
                                         // contentPadding: EdgeInsets.zero,
                                         content: Container(
-                                          // height: 100,
+                                          // height: 200,
                                           // width: 100,
                                           decoration: BoxDecoration(
                                             color: Colors.transparent,
                                             borderRadius: BorderRadius.circular(15.0),
                                           ),
                                           child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                             children: [
                                               TextField(
                                                 decoration: InputDecoration(
@@ -951,11 +975,32 @@ class _ChartState extends State<Chart> {
                                                 ),
                                               ),
 
-                                              TextField(
-                                                decoration: InputDecoration(
-                                                  labelText: "User Group"
+                                              SizedBox(height: 17.5,),
+
+                                              Container(
+                                                decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                    color: Colors.black.withOpacity(0.5),
+                                                    width: 1.5,
+                                                    style: BorderStyle.solid
+                                                  )
                                                 ),
-                                              ),
+                                                child: Column(
+                                                  children: [
+                                                    Padding(
+                                                      padding: const EdgeInsets.only(top:10,bottom: 10),
+                                                      child: Text("Tech User"),
+                                                    ),
+                                                    Align(
+                                                      alignment: Alignment.centerRight,
+                                                      child: Icon(
+                                                          Icons.add_box_outlined,
+                                                        color: Colors.black.withOpacity(0.7),
+                                                      ),
+                                                    )
+                                                  ],
+                                                ),
+                                              )
                                             ],
                                           ),
                                         ),
@@ -2605,12 +2650,25 @@ class _ChartState extends State<Chart> {
                   reverse: true,
                   itemCount: _discover.length,
                   itemBuilder: (BuildContext context, int index) {
+
+                    _discover..sort((a,b) => b["block"].toString().compareTo(a["block"].toString()));
+
                     return GestureDetector(
                       onTap: (){
 
-                        print(DateTime.now());
+                        // print(_discover.reversed);
 
-                        print("${DateTime.now().year}-${DateTime.now().month}-${DateTime.now().day} ${DateTime.now().hour}:${DateTime.now().minute}");
+                        /*setState(() {
+                          _discover.sort((a,b) => a["disable"].toString().compareTo(b["disable"].toString()));
+                          // print(_discover.reversed);
+                          _discover.forEach((element) {
+                            print(element["disable"]);
+                          });
+                        });*/
+
+                        // print(DateTime.now());
+                        //
+                        // print("${DateTime.now().year}-${DateTime.now().month}-${DateTime.now().day} ${DateTime.now().hour}:${DateTime.now().minute}");
 
                         showDialog(
                           context: context,
@@ -2844,12 +2902,12 @@ class _ChartState extends State<Chart> {
                         );
                       },
                       child: Card(
-                        elevation: 8.0,
+                        elevation: _discover[index]["block"]?0:8.0,
                         margin: EdgeInsets.only(left: 7.5,right: 7.5,top: 5,bottom: 5),
                         child: Container(
                           height: 47.5,
                           decoration: BoxDecoration(
-                            color:Color(0xff19547b).withOpacity(0.65),/*Color(0xff19547b).withOpacity(0.85),*/ /*Colors.blueGrey.withOpacity(0.9)*/),
+                            color:_discover[index]["block"]?Colors.grey.withOpacity(0.4):Color(0xff19547b).withOpacity(0.65),/*Color(0xff19547b).withOpacity(0.85),*/ /*Colors.blueGrey.withOpacity(0.9)*/),
                           child: Row(
                             // crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -2884,8 +2942,20 @@ class _ChartState extends State<Chart> {
                                         child: Text("Remove"),
                                       ),
                                       PopupMenuItem(
-                                        onTap: (){},
-                                        child: Text("Block"),
+                                        onTap: (){
+
+                                          setState(() {
+                                            _discover[index]["block"] = !_discover[index]["block"];
+                                          });
+
+                                          /*setState(() {
+                                            final block = _discover[index];
+                                            _discover.remove(block);
+                                            _discover.insert(0, block);
+                                          });*/
+                                          print(_discover[index]);
+                                        },
+                                        child: Text(_discover[index]["block"]?"Unblock":"Block"),
                                       ),
                                     ];
                                   },

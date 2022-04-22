@@ -8079,68 +8079,83 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
             end: Alignment.bottomCenter,
           ),
         ),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Row(
-              children: [
-                Text(
-                    "Completed : ",
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w700,
-                    fontFamily: 'fonts/Roboto-Regular.ttf',
+        child: SingleChildScrollView(
+          physics: PageScrollPhysics(),
+          scrollDirection: Axis.vertical,
+          child: Column(
+            children: [
+              Container(
+                height: 44,
+                color: Colors.transparent,
+                child: Center(
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Row(
+                        children: [
+                          Text(
+                              "Completed : ",
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w700,
+                              fontFamily: 'fonts/Roboto-Regular.ttf',
+                            ),
+                          ),
+                          Text(
+                            "$_completed",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 25,
+                                shadows: [
+                                  Shadow(
+                                    offset: Offset(1, 1),
+                                    blurRadius: 1,
+                                    color: Colors.black.withOpacity(0.8),
+                                  ),
+                                ]
+                            ),
+                          ),
+                        ],
+                      ),
+                      // Spacer(),
+                      Row(
+                        children: [
+                          Text(
+                            "Pending : ",
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w700,
+                              fontFamily: 'fonts/Roboto-Regular.ttf',
+                            ),
+                          ),
+                          Text(
+                            "$_pending",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 25,
+                                shadows: [
+                                  Shadow(
+                                    offset: Offset(1, 1),
+                                    blurRadius: 1,
+                                    color: Colors.black.withOpacity(0.8),
+                                  ),
+                                ]
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
-                Text(
-                  "$_completed",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 25,
-                      shadows: [
-                        Shadow(
-                          offset: Offset(1, 1),
-                          blurRadius: 1,
-                          color: Colors.black.withOpacity(0.8),
-                        ),
-                      ]
-                  ),
-                ),
-              ],
-            ),
-            // Spacer(),
-            Row(
-              children: [
-                Text(
-                  "Pending : ",
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w700,
-                    fontFamily: 'fonts/Roboto-Regular.ttf',
-                  ),
-                ),
-                Text(
-                  "$_pending",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 25,
-                      shadows: [
-                        Shadow(
-                          offset: Offset(1, 1),
-                          blurRadius: 1,
-                          color: Colors.black.withOpacity(0.8),
-                        ),
-                      ]
-                  ),
-                ),
-              ],
-            ),
-          ],
+              ),
+
+            ],
+          ),
         )
       ),
     );
