@@ -514,6 +514,11 @@ List<Map<String, dynamic>> _elements = [
   },
 ];
 
+/*Map demo = {
+  "Document0":"Hello",
+  "Document1":"hello1"
+};*/
+
 enum DevicesMarker {members, discovered}
 
 class Chart extends StatefulWidget {
@@ -597,14 +602,14 @@ class _ChartState extends State<Chart> {
             SfCircularChart(
               margin: EdgeInsets.zero,
               tooltipBehavior: _tooltip,
-              onLegendTapped: (data){
+              /*onLegendTapped: (data){
                 setState(() {
                   _discover.reversed.forEach((element) {
                     print("${element["devices"]}:${element.containsValue(chartData[data.pointIndex!].x)}");
                   });
                   print(chartData[data.pointIndex!].x);
                 });
-              },
+              },*/
               /*onDataLabelTapped: (data){
                 setState(() {
                   print("hello");
@@ -612,6 +617,8 @@ class _ChartState extends State<Chart> {
                 });
                 },*/
               legend: Legend(
+                isResponsive: false,
+                toggleSeriesVisibility: true,
                 isVisible: true,
                 overflowMode: LegendItemOverflowMode.wrap,
                 alignment: ChartAlignment.center,
@@ -765,8 +772,10 @@ class _ChartState extends State<Chart> {
                     children: [
                   InkWell(
                     onTap: () {
-
-                      print(_discover);
+                      /*setState(() {
+                        _discover[0].addEntries([MapEntry("Document",demo)]);
+                      });*/
+                      print(_discover[0]);
 
                       /*setState(() {
                         _discover.sort((a, b) => a["devices"].compareTo(b["devices"])); //sorting
@@ -1112,8 +1121,9 @@ class _ChartState extends State<Chart> {
                                   color: (selectedDevicesMarker == DevicesMarker.members)?Colors.black38:Colors.transparent,
                                   borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20)),
                                 border: Border.all(
-                                  color: Colors.white.withOpacity(0.6),
-                                  width: 1
+                                  color: Colors.white.withOpacity(0.3),
+                                  width: 1,
+                                  style: BorderStyle.solid,
                                 )
                               ),
                               child: Center(
@@ -1169,8 +1179,9 @@ class _ChartState extends State<Chart> {
                                     color: (selectedDevicesMarker == DevicesMarker.discovered)?Colors.black38:Colors.transparent,
                                     borderRadius: BorderRadius.only(bottomRight: Radius.circular(20)),
                                     border: Border.all(
-                                        color: Colors.white.withOpacity(0.6),
-                                        width: 1
+                                        color: Colors.white.withOpacity(0.3),
+                                        width: 1,
+                                        style: BorderStyle.solid,
                                     )
                                 ),
                                 child: Center(

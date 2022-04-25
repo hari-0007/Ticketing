@@ -629,11 +629,11 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
 
   final CustomTimerController _controllerTime = CustomTimerController();
 
-  @override
+  /*@override
   void dispose() {
     _controllerTime.dispose();
     super.dispose();
-  }
+  }*/
 
   final GlobalKey<AnimatorWidgetState> basicAnimation = GlobalKey<AnimatorWidgetState>();
 
@@ -4009,7 +4009,9 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                                                                 fontSize: 24),
                                                           ),
                                                           Visibility(
-                                                            visible: _foundTicket[index]['loadingIndicator'],
+                                                            visible:
+                                                            /*memorybar.containsKey(_foundTicket[index]['SystemNumber'])*/
+                                                            _foundTicket[index]['loadingIndicator'] ,
                                                             child: Padding(
                                                               padding: EdgeInsets.only(top: 0.0, bottom: 2.5, left: 5),
                                                               child: Stack(
@@ -6360,7 +6362,7 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                       onTap: () {
                         /*print(memorybar[_sysNumber]?.contains('assets/callicongreenpadding1.gif'));*/
                         print(memorybar);
-                        print(memorybar["C0001"]?.length);
+                        // print(memorybar["C0001"]?.length);
 
                         _runFilter("");
                         setState(() {
@@ -8370,13 +8372,13 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                                               SizedBox(height: 10,),
 
                                               if(element["Severity"]=="High")...[
-                                                unAssignedLongPress(systemNumber: element['SystemNumber'], unAssignedColor: Color(0xff9B4244)),
+                                                unAssignedLongPress(systemNumber: element['SystemNumber'], unAssignedColor: /*Color(0xff9B4244)*/Color(0xffED0000)),
                                               ]else if(element["Severity"]=="Medium")...[
-                                                unAssignedLongPress(systemNumber: element['SystemNumber'], unAssignedColor: Color(0xff569556)),
+                                                unAssignedLongPress(systemNumber: element['SystemNumber'], unAssignedColor: /*Color(0xff569556)*/Color(0xff30C130)),
                                               ]else if(element["Severity"]=="Low")...[
-                                                unAssignedLongPress(systemNumber: element['SystemNumber'], unAssignedColor: Color(0xffB7AA5E)),
+                                                unAssignedLongPress(systemNumber: element['SystemNumber'], unAssignedColor: /*Color(0xffB7AA5E)*/Color(0xffE8D90E)),
                                               ]else if(element["Severity"]=="Information")...[
-                                                unAssignedLongPress(systemNumber: element['SystemNumber'], unAssignedColor: Color(0xffF6F6F6)),
+                                                unAssignedLongPress(systemNumber: element['SystemNumber'], unAssignedColor: /*Color(0xffF6F6F6)*/Color(0xffF0F0F0)),
                                               ]else...[
                                                 unAssignedLongPress(systemNumber: element['SystemNumber'], unAssignedColor: Color(0xff4C709A)),
                                               ],
@@ -9406,6 +9408,7 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
             duration: Duration(milliseconds: 250),
             curve: Curves.easeInOut,
             decoration: BoxDecoration(
+                // color: Color(0xff19547b),
                 borderRadius: value == 1 ? BorderRadius.circular(40) : BorderRadius.circular(0),
                 gradient: LinearGradient(
                     begin: Alignment.topCenter,
