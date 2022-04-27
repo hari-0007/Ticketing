@@ -1172,22 +1172,29 @@ class _ChartState extends State<Chart> {
                                 margin: EdgeInsets.only(left: 7.5,right: 1,top: 1,bottom: 2.5),
                                 child: ElevatedButton(
                                   onPressed: (){
-                                    for(var i in checkBoxAdd){
-                                      _discover.forEach((element) {
-                                        setState(() {
-                                          if(element.containsValue(i)){
-                                            element["disable"] = true;
-                                          }else{
-                                            return;
-                                          }
-                                        });
-                                      });
-                                    }
 
-                                    setState(() {
-                                      checkBox=false;
-                                      checkBoxAdd.clear();
-                                    });
+                                    if(checkBoxAdd.isNotEmpty){
+
+                                      for(var i in checkBoxAdd){
+                                        _discover.forEach((element) {
+                                          setState(() {
+                                            if(element.containsValue(i)){
+                                              element["disable"] = true;
+                                            }else{
+                                              return;
+                                            }
+                                          });
+                                        });
+                                      }
+
+                                      setState(() {
+                                        checkBox=false;
+                                        checkBoxAdd.clear();
+                                      });
+
+                                    }else{
+                                      return;
+                                    }
 
                                   },
                                   child: Text("Disable"),
@@ -2503,7 +2510,7 @@ class _ChartState extends State<Chart> {
                         child: Container(
                             height: 42.5,
                             decoration: BoxDecoration(
-                                color: element["disable"]?Colors.white70:Color(0xff19547b).withOpacity(0.6)/*Color(0xff404b60).withOpacity(0.9)*/
+                                color: element["disable"]?Color(0xff19547b).withOpacity(0.9):Color(0xff19547b).withOpacity(0.6)/*Color(0xff404b60).withOpacity(0.9)*/
                             ),
                             child: Center(
                               child: Row(
