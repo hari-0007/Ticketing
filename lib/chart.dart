@@ -535,7 +535,7 @@ class _ChartState extends State<Chart> {
   bool checkBox = false;
 
   List<Map<String, dynamic>> _discover = [];
-
+  Set checkBoxAdd = {};
 
   // late List<ChartData> data;
   late TooltipBehavior _tooltip;
@@ -618,7 +618,7 @@ class _ChartState extends State<Chart> {
                 },*/
               legend: Legend(
                 isResponsive: false,
-                toggleSeriesVisibility: true,
+                toggleSeriesVisibility: false,
                 isVisible: true,
                 overflowMode: LegendItemOverflowMode.wrap,
                 alignment: ChartAlignment.center,
@@ -775,7 +775,44 @@ class _ChartState extends State<Chart> {
                       /*setState(() {
                         _discover[0].addEntries([MapEntry("Document",demo)]);
                       });*/
-                      print(_discover[0]);
+                      // print(_discover[0]);
+
+                      /*_discover.reversed.forEach((element) {
+                        checkBoxAdd.add(element["devices"]);
+                      });
+
+                      print(checkBoxAdd);*/
+                      print(checkBoxAdd);
+
+                      /*for(var devices in checkBoxAdd){
+                        print(devices);
+                        setState(() {
+                          _discover.where((element){
+                            return element["devices"];
+                          });
+                        });
+                      }*/
+
+                      /*if(_discover.last.containsValue("Allitson-01")){
+                        _discover.last["disable"]=!_discover.last["disable"];
+                        print(_discover.last);
+                      }else{
+                        print("hello");
+                      }*/
+
+                      /*for(var i in {"Allitson-01","Allitson-02"}){
+                        _discover.forEach((element) {
+                          if(element.containsValue(i)){
+                           element["disable"] = true;
+                          }else{
+                            return;
+                          }
+                        });
+                      }*/
+
+                      /*_discover.forEach((element){
+                        print(element);
+                      });*/
 
                       /*setState(() {
                         _discover.sort((a, b) => a["devices"].compareTo(b["devices"])); //sorting
@@ -978,9 +1015,29 @@ class _ChartState extends State<Chart> {
                                           child: Column(
                                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                             children: [
-                                              TextField(
-                                                decoration: InputDecoration(
-                                                  labelText: "Group name"
+                                              Text("GROUP"),
+
+                                              SizedBox(height: 17.5,),
+
+                                              Container(
+                                                // padding: EdgeInsets.symmetric(horizontal: 5),
+                                                decoration: BoxDecoration(
+                                                    border: Border.all(
+                                                        color: Colors.black.withOpacity(0.5),
+                                                        width: 1.5,
+                                                        style: BorderStyle.solid
+                                                    )
+                                                ),
+                                                child: TextField(
+                                                  cursorColor: Colors.white,
+                                                  autofocus: false,
+                                                  textAlign: TextAlign.center,
+                                                  decoration: InputDecoration(
+                                                    hintText: "Name",
+                                                    border: InputBorder.none,
+                                                      labelStyle: TextStyle(
+                                                          color: Colors.black.withOpacity(0.6))
+                                                  ),
                                                 ),
                                               ),
 
@@ -998,7 +1055,7 @@ class _ChartState extends State<Chart> {
                                                   children: [
                                                     Padding(
                                                       padding: const EdgeInsets.only(top:10,bottom: 10),
-                                                      child: Text("Tech User"),
+                                                      child: Text("USERS"),
                                                     ),
                                                     Align(
                                                       alignment: Alignment.centerRight,
@@ -1103,6 +1160,262 @@ class _ChartState extends State<Chart> {
                 child: Column(
                   children: [
                     getDevicesSwitchContainer(),
+                    Visibility(
+                      visible: checkBox,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Expanded(
+                              child: Container(
+                                height: 25,
+                                margin: EdgeInsets.only(left: 7.5,right: 1,top: 1,bottom: 2.5),
+                                child: ElevatedButton(
+                                  onPressed: (){
+                                    for(var i in checkBoxAdd){
+                                      _discover.forEach((element) {
+                                        setState(() {
+                                          if(element.containsValue(i)){
+                                            element["disable"] = true;
+                                          }else{
+                                            return;
+                                          }
+                                        });
+                                      });
+                                    }
+
+                                    setState(() {
+                                      checkBox=false;
+                                      checkBoxAdd.clear();
+                                    });
+
+                                  },
+                                  child: Text("Disable"),
+                                  style: ButtonStyle(
+                                    textStyle: MaterialStateProperty.all( TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 14
+                                    )
+                                    ),
+                                    animationDuration: Duration(milliseconds: 0),
+                                    foregroundColor: MaterialStateProperty.resolveWith((states){
+                                      if(states.contains(MaterialState.pressed)){
+                                        return Colors.white;
+                                      }
+                                      return Color(0xff467695);
+                                    }),
+                                    backgroundColor:  MaterialStateProperty.resolveWith((states){
+                                      if(states.contains(MaterialState.pressed)){
+                                        return Color(0xff19547b);
+                                      }
+                                      return Colors.white;/*Color(0xffF1F1F1);*///0xffE2E2E2
+                                    }),
+                                    overlayColor:MaterialStateProperty.all(Colors.transparent),
+                                  ),
+                                ),
+                              )
+                          ),
+
+                          Expanded(
+                              child: Container(
+                                height: 25,
+                                margin: EdgeInsets.only(left: 1,right: 7.5,top: 1,bottom: 2.5),
+                                child: ElevatedButton(
+                                  onPressed: (){
+
+                                    if(checkBoxAdd.isNotEmpty){
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return AlertDialog(
+                                            alignment: Alignment.center,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(30.0),
+                                            ),
+                                            scrollable: true,
+                                            insetPadding: EdgeInsets.zero,
+                                            contentPadding: EdgeInsets.only(top: 0,bottom: 0,left: 0,right: 0),
+                                            titlePadding: EdgeInsets.only(top: 15,bottom: 0),
+                                            actionsPadding: EdgeInsets.zero,
+                                            backgroundColor: Colors.white,
+                                            /*title: Text(
+                                              "Remove Devices",
+                                              style: TextStyle(),
+                                              textAlign: TextAlign.center,
+                                            ),*/
+                                            title: Center(
+                                              child: Text(
+                                                "Are you sure you want to remove ?",
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
+                                            content: Container(
+                                              // height: 200,
+                                              width: 350,
+                                              constraints: BoxConstraints(
+                                                  maxHeight: 200
+                                              ),
+                                              padding: EdgeInsets.all(5),
+                                              decoration: BoxDecoration(
+                                                color: Colors.white,
+                                                borderRadius: BorderRadius.circular(30.0),
+                                              ),
+                                              child: SingleChildScrollView(
+                                                scrollDirection: Axis.vertical,
+                                                child: Column(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                                  children: [
+                                                    Wrap(
+                                                      children: [
+                                                        for(var i in checkBoxAdd)
+                                                          Padding(
+                                                            padding: const EdgeInsets.only(left: 2.5,right: 2.5,top: 0,bottom: 0),
+                                                            child: Chip(
+                                                              label: Text(i),
+                                                            ),
+                                                          )
+                                                      ],
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                            actionsAlignment: MainAxisAlignment.spaceEvenly,
+                                            actions: [
+
+                                              SizedBox(
+                                                width: 150,
+                                                child: TextButton(
+                                                    onPressed: (){
+                                                      for(var devices in checkBoxAdd){
+                                                        print(devices);
+                                                        setState(() {
+                                                          _discover.removeWhere((element) => element["devices"]==devices);
+                                                          selectAll=false;
+                                                        });
+                                                      }
+                                                      checkBoxAdd.clear();
+                                                      Navigator.of(context).pop();
+                                                    },
+                                                    child: Text(
+                                                      "Remove",
+                                                      style: TextStyle(
+                                                        color: Color(0xff19547b).withOpacity(0.9),
+                                                        fontWeight: FontWeight.w800,
+                                                        fontSize: 16,
+                                                      ),
+                                                    )
+                                                ),
+                                              ),
+
+                                              SizedBox(
+                                                width: 150,
+                                                child: TextButton(
+                                                    onPressed: (){
+                                                      Navigator.of(context).pop();
+                                                    },
+                                                    child: Text(
+                                                      "Cancel",
+                                                      style: TextStyle(
+                                                        color: Color(0xff19547b).withOpacity(0.9),
+                                                        fontWeight: FontWeight.w800,
+                                                        fontSize: 16,
+                                                      ),
+                                                    )
+                                                ),
+                                              ),
+
+                                            ],
+                                          );
+                                        },
+                                      );
+                                    }else{
+                                      return;
+                                    }
+
+
+                                    /*for (var e in _elements){
+                                      print(e);
+                                    }*/
+
+                                    /*for(var e in [0,1,2,3,4]){
+                                      print(e);
+                                      _discover.removeAt(e);
+                                    }*/
+
+                                    print(checkBoxAdd);
+
+                                    /*for(var e in ["Allitson-01","Allitson-02"]){
+                                      print(e);
+                                      setState(() {
+                                        _discover.removeWhere((element) => element["devices"]==e);
+                                      });
+                                    }*/
+
+                                    /*print(checkBoxAdd[0]);
+                                    print(_discover.last);*/
+                                    /*setState(() {
+                                      _discover.removeWhere((element) => element["devices"]=="Allitson-01");
+                                    });*/
+
+                                    /*_discover.forEach((element){
+                                      setState(() {
+                                        _discover.remove(element);
+                                      });
+                                    });*/
+
+                                    // _discover.last.containsValue("Allitson-01");
+
+                                    /*setState(() {
+                                      _discover.removeAt(0);
+                                    });*/
+
+                                    /*_elements.forEach((element) {
+                                      _discover.remove(element);
+                                    });*/
+                                  },
+                                  child: Text("Remove"),
+                                  style: ButtonStyle(
+                                    textStyle: MaterialStateProperty.all( TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 14
+                                    )
+                                    ),
+                                    animationDuration: Duration(milliseconds: 0),
+                                    foregroundColor: MaterialStateProperty.resolveWith((states){
+                                      if(states.contains(MaterialState.pressed)){
+                                        return Colors.white;
+                                      }
+                                      return Color(0xff467695);
+                                    }),
+                                    backgroundColor:  MaterialStateProperty.resolveWith((states){
+                                      if(states.contains(MaterialState.pressed)){
+                                        return Color(0xff19547b);
+                                      }
+                                      return Colors.white;/*Color(0xffF1F1F1);*///0xffE2E2E2
+                                    }),
+                                    // MaterialStateProperty.all(Color(0xffD3D3D3)),
+                                    // /*backgroundColor: MaterialStateProperty.all(Colors.white),
+                                    // overlayColor:MaterialStateProperty.resolveWith((states){
+                                    //   if(states.contains(MaterialState.pressed)){
+                                    //     return Color(0xff19547b);
+                                    //   }
+                                    //   return Colors.white;
+                                    // }),*/
+                                    overlayColor:MaterialStateProperty.all(Colors.transparent),
+                                    /*shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(12.5),))*/
+                                  ),
+                                ),
+                              )
+                          ),
+
+                        ],
+                      ),
+                    ),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -1265,26 +1578,43 @@ class _ChartState extends State<Chart> {
 
                 AnimatedSwitcher(
                   duration: Duration(milliseconds: 250),
-                  child:checkBox?Transform.scale(
-                    scale: 1,
-                    child: Checkbox(
-                      value: selectAll,
-                      checkColor: Colors.white,
-                      activeColor: Colors.grey,
-                      shape:  RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      onChanged: (value){
+                  child:checkBox?IgnorePointer(
+                    ignoring: _discover.isEmpty,
+                    child: Transform.scale(
+                      scale: 1,
+                      child: Checkbox(
+                        value: selectAll,
+                        checkColor: Colors.white,
+                        activeColor: Colors.grey,
+                        shape:  RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        onChanged: (value){
 
-                        selectAll=value!;
-
-                        _discover.reversed.forEach((element) {
                           setState(() {
-                            element["disable"]=value;
-                            /*print(element);*/
+                            selectAll=value!;
                           });
-                        });
-                      },
+
+                          if(selectAll==true){
+                            _discover.reversed.forEach((element) {
+                              checkBoxAdd.add(element["devices"]);
+                            });
+
+                            print(checkBoxAdd);
+                          }else{
+                            checkBoxAdd.clear();
+                          }
+
+                          print(selectAll);
+
+                          /*_discover.reversed.forEach((element) {
+                            setState(() {
+                              element["disable"]=value;
+                              *//*print(element);*//*
+                            });
+                          });*/
+                        },
+                      ),
                     ),
                   ):SizedBox(
                     width: 48,
@@ -2173,7 +2503,7 @@ class _ChartState extends State<Chart> {
                         child: Container(
                             height: 42.5,
                             decoration: BoxDecoration(
-                                color: Color(0xff19547b).withOpacity(0.6)/*Color(0xff404b60).withOpacity(0.9)*/
+                                color: element["disable"]?Colors.white70:Color(0xff19547b).withOpacity(0.6)/*Color(0xff404b60).withOpacity(0.9)*/
                             ),
                             child: Center(
                               child: Row(
@@ -2207,7 +2537,7 @@ class _ChartState extends State<Chart> {
                                   AnimatedSwitcher(
                                     duration: Duration(milliseconds: 250),
                                     child: checkBox?Checkbox(
-                                        value: element["disable"],
+                                        value: checkBoxAdd.contains(element["devices"]),/*element["disable"],*/
                                         checkColor: Colors.white,
                                         activeColor: Colors.grey,
                                         shape:  RoundedRectangleBorder(
@@ -2219,11 +2549,22 @@ class _ChartState extends State<Chart> {
                                           Clipboard.setData(ClipboardData()); // Vibration
                                           HapticFeedback.heavyImpact();
 
+                                          if(checkBoxAdd.contains(element["devices"])){
+                                            setState(() {
+                                              checkBoxAdd.remove(element["devices"]);
+                                            });
+                                          }else{
+                                            setState(() {
+                                              checkBoxAdd.add(element["devices"]);
+                                            });
+                                          }
 
-                                          setState(() {
+                                          print(checkBoxAdd);
+                                          // print(value);
+                                          /*setState(() {
                                             element["disable"]=value;
-                                            // print(element);
-                                          });
+                                            print(element);
+                                          });*/
                                         }
                                     ):PopupMenuButton(
                                       shape: RoundedRectangleBorder(
@@ -2431,7 +2772,9 @@ class _ChartState extends State<Chart> {
 
                                           PopupMenuItem(
                                             onTap: (){
-                                              element["disable"]=!element["disable"];
+                                              setState(() {
+                                                element["disable"]=!element["disable"];
+                                              });
                                               print(element);
                                             },
                                             child: Text(
