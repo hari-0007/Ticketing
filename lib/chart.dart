@@ -1003,8 +1003,13 @@ class _ChartState extends State<Chart> {
                                           borderRadius: BorderRadius.circular(15.0),
                                         ),
                                         backgroundColor: Colors.white70,
+                                        actionsOverflowButtonSpacing: 10,
+                                        elevation: 5,
                                         scrollable: true,
                                         // contentPadding: EdgeInsets.zero,
+                                        title: Text("Group",
+                                          textAlign: TextAlign.center,
+                                        ),
                                         content: Container(
                                           // height: 200,
                                           // width: 100,
@@ -1015,19 +1020,17 @@ class _ChartState extends State<Chart> {
                                           child: Column(
                                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                             children: [
-                                              Text("GROUP"),
+                                              // Text("GROUP"),
 
-                                              SizedBox(height: 17.5,),
+                                              // SizedBox(height: 17.5,),
 
                                               Container(
                                                 // padding: EdgeInsets.symmetric(horizontal: 5),
+                                                height: 47,
                                                 decoration: BoxDecoration(
+                                                    borderRadius: BorderRadius.circular(10),
                                                     border: Border.all(
-                                                        color: Colors.black.withOpacity(0.5),
-                                                        width: 1.5,
-                                                        style: BorderStyle.solid
-                                                    )
-                                                ),
+                                                        color: Colors.black.withOpacity(0.55))),
                                                 child: TextField(
                                                   cursorColor: Colors.white,
                                                   autofocus: false,
@@ -1041,27 +1044,34 @@ class _ChartState extends State<Chart> {
                                                 ),
                                               ),
 
-                                              SizedBox(height: 17.5,),
+                                              SizedBox(height: 12.5,),
 
                                               Container(
                                                 decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.circular(10),
                                                   border: Border.all(
-                                                    color: Colors.black.withOpacity(0.5),
-                                                    width: 1.5,
-                                                    style: BorderStyle.solid
+                                                    color: Colors.black.withOpacity(0.55),
+                                                    /*width: 1.5,
+                                                    style: BorderStyle.solid*/
                                                   )
                                                 ),
                                                 child: Column(
                                                   children: [
                                                     Padding(
                                                       padding: const EdgeInsets.only(top:10,bottom: 10),
-                                                      child: Text("USERS"),
+                                                      child: Text("USERS",
+                                                        style: TextStyle(
+                                                            color: Colors.black.withOpacity(0.75)),
+                                                      ),
                                                     ),
-                                                    Align(
-                                                      alignment: Alignment.centerRight,
-                                                      child: Icon(
-                                                          Icons.add_box_outlined,
-                                                        color: Colors.black.withOpacity(0.7),
+                                                    Padding(
+                                                      padding: const EdgeInsets.only(right: 5,bottom: 5),
+                                                      child: Align(
+                                                        alignment: Alignment.centerRight,
+                                                        child: Icon(
+                                                            Icons.add_box_outlined,
+                                                          color: Colors.black.withOpacity(0.7),
+                                                        ),
                                                       ),
                                                     )
                                                   ],
@@ -1189,6 +1199,7 @@ class _ChartState extends State<Chart> {
 
                                       setState(() {
                                         checkBox=false;
+                                        selectAll=false;
                                         checkBoxAdd.clear();
                                       });
 
@@ -1685,7 +1696,7 @@ class _ChartState extends State<Chart> {
                   return Padding(
                     padding: EdgeInsets.only(left: 3.5,right: 3.5),
                     child: Card(
-                      elevation: 8.0,
+                      elevation: element["disable"]?0:8,
                       color: Colors.transparent,
                       shadowColor: Colors.black,
                       child: GestureDetector(

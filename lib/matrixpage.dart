@@ -4,6 +4,7 @@ import 'dart:ui';
 // import 'dart:html';
 // import 'package:allitson/script.dart';
 // import 'package:allitson/chart.dart';
+import 'package:allitson/user.dart';
 import 'package:badges/badges.dart';
 import 'package:custom_pop_up_menu/custom_pop_up_menu.dart';
 import 'package:custom_timer/custom_timer.dart';
@@ -673,7 +674,7 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
 
   double value = 0;
   IncidentMarker selectedIncidentWidgetMarker = IncidentMarker.main;   //Inside Incident Starting home
-  WidgetMarker selectedWidgetMarker = WidgetMarker.devices;           // Drawer Starting home
+  WidgetMarker selectedWidgetMarker = WidgetMarker.users;           // Drawer Starting home
   DeviceMarker selectedDevicesMarker = DeviceMarker.devicemain;
 
   bool _ticketExpand = false;                                           // getAssignedTicket
@@ -1503,6 +1504,7 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
               children: [
                 GestureDetector(
                   onTap: (){
+                    print("Call hi");
                     setState(() {
                       if(_callVisibility==true){
                         _callVisibility=false;
@@ -9870,6 +9872,9 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
             children: [
               Padding(padding: EdgeInsets.only(top: MediaQuery.of(context).viewPadding.top+20)),
               getUsersAppBar(),
+              Expanded(
+                  child: Users()
+              ),
             ],
           )
           // GestureDetector(
