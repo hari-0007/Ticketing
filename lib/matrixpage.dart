@@ -12,6 +12,7 @@ import 'package:delayed_display/delayed_display.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animator/flutter_animator.dart';
+import 'package:flutter_rating_stars/flutter_rating_stars.dart';
 import 'package:grouped_list/grouped_list.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 import 'package:measured_size/measured_size.dart';
@@ -674,7 +675,7 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
 
   double value = 0;
   IncidentMarker selectedIncidentWidgetMarker = IncidentMarker.main;   //Inside Incident Starting home
-  WidgetMarker selectedWidgetMarker = WidgetMarker.users;           // Drawer Starting home
+  WidgetMarker selectedWidgetMarker = WidgetMarker.incident;           // Drawer Starting home
   DeviceMarker selectedDevicesMarker = DeviceMarker.devicemain;
 
   bool _ticketExpand = false;                                           // getAssignedTicket
@@ -2292,7 +2293,7 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                         width: 50,
                         child: TextField(
                           minLines: 1,
-                          maxLines: 4,
+                          maxLines: 3,
                           keyboardType: TextInputType.multiline,
                           textInputAction: TextInputAction.done,
                           cursorColor: Colors.black.withOpacity(0.25),
@@ -3171,149 +3172,152 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                             width: _ticketExpand ? 333 : 188.94,
                             child: Stack(
                               children: [
-                                GestureDetector(
-                                  onTap: () {
-                                    /*print(index);*/
-                                    setState(() {
-                                      _selectedTicketIndex = !_selectedTicketIndex;
-                                      selectedIndex = index;
+                                IgnorePointer(
+                                  ignoring: _callIgnore,
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      print(index);
+                                      setState(() {
+                                        _selectedTicketIndex = !_selectedTicketIndex;
+                                        selectedIndex = index;
 
-                                      _buttonPosition = !_buttonPosition;
-                                      _ticketExpand = !_ticketExpand;
+                                        _buttonPosition = !_buttonPosition;
+                                        _ticketExpand = !_ticketExpand;
 
-                                      _remote = false;
+                                        _remote = false;
 
-                                      if (_enterAction == false) {
-                                        _enterAction = true;
-                                      }
-                                      _index = index;
-                                      _sysNumber = ticket[index]['SystemNumber'];
-                                    });
+                                        if (_enterAction == false) {
+                                          _enterAction = true;
+                                        }
+                                        _index = index;
+                                        _sysNumber = ticket[index]['SystemNumber'];
+                                      });
 
-                                    /*setState(() {
+                                      /*setState(() {
                             if( _enterAction == false ){
                                _enterAction= true;
                             }
                           });*/
-                                  },
-                                  child: LongPressDraggable(
-                                    data: ticket,
-                                    maxSimultaneousDrags: 1,
-                                    delay: Duration(milliseconds: 500),
-                                    onDragStarted: () {
-                                      _index = index;
-                                      final snackBar = SnackBar(
-                                          duration: Duration(seconds: 60),
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.all(Radius.circular(30))),
-                                          behavior: SnackBarBehavior.floating,
-                                          margin: EdgeInsets.symmetric(horizontal: 11),
-                                          backgroundColor:
-                                          Colors.transparent.withOpacity(0.2),
-                                          content: DragTarget(
-                                            onAccept: (receivedContainer) {
-                                              showModalBottomSheet(
-                                                constraints: BoxConstraints(
-                                                  maxWidth: MediaQuery.of(context).size.width * 0.958,
-                                                  minHeight: MediaQuery.of(context).size.height * 0.80,
-                                                ),
-                                                isScrollControlled: true,
-                                                backgroundColor: Colors.transparent,
-                                                context: context,
-                                                builder: (BuildContext context) {
-                                                  return Container(
-                                                    constraints: BoxConstraints(
-                                                      // minHeight: MediaQuery.of(context).size.height *0.80,
-                                                      maxHeight:
-                                                      MediaQuery.of(context).size.height * 0.80,
-                                                    ),
-                                                    decoration: BoxDecoration(
-                                                      image: DecorationImage(
-                                                          fit: BoxFit.cover,
-                                                          image: AssetImage(
-                                                              'assets/assignedticketsdetails.png')),
-                                                      borderRadius: BorderRadius.only(
-                                                        topRight: Radius.circular(45),
-                                                        topLeft: Radius.circular(45),
-                                                        bottomRight:
-                                                        Radius.circular(30),
-                                                        bottomLeft:
-                                                        Radius.circular(30),
+                                    },
+                                    child: LongPressDraggable(
+                                      data: ticket,
+                                      maxSimultaneousDrags: 1,
+                                      delay: Duration(milliseconds: 500),
+                                      onDragStarted: () {
+                                        _index = index;
+                                        final snackBar = SnackBar(
+                                            duration: Duration(seconds: 60),
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.all(Radius.circular(30))),
+                                            behavior: SnackBarBehavior.floating,
+                                            margin: EdgeInsets.symmetric(horizontal: 11),
+                                            backgroundColor:
+                                            Colors.transparent.withOpacity(0.2),
+                                            content: DragTarget(
+                                              onAccept: (receivedContainer) {
+                                                showModalBottomSheet(
+                                                  constraints: BoxConstraints(
+                                                    maxWidth: MediaQuery.of(context).size.width * 0.958,
+                                                    minHeight: MediaQuery.of(context).size.height * 0.80,
+                                                  ),
+                                                  isScrollControlled: true,
+                                                  backgroundColor: Colors.transparent,
+                                                  context: context,
+                                                  builder: (BuildContext context) {
+                                                    return Container(
+                                                      constraints: BoxConstraints(
+                                                        // minHeight: MediaQuery.of(context).size.height *0.80,
+                                                        maxHeight:
+                                                        MediaQuery.of(context).size.height * 0.80,
                                                       ),
-                                                    ),
-                                                    child: SingleChildScrollView(
-                                                      reverse: true,
-                                                      child: ConstrainedBox(
-                                                        constraints: BoxConstraints(
-                                                            minHeight:
-                                                            MediaQuery.of(context).size.height * 0.80),
-                                                        child: IntrinsicHeight(
-                                                          child: Column(
-                                                            children: [
-                                                              Padding(
-                                                                  padding:
-                                                                  EdgeInsets.only(
-                                                                      bottom:
-                                                                      20.0)),
-                                                              Row(
-                                                                children: [
-                                                                  Expanded(
-                                                                      child:
-                                                                      Container()),
-                                                                  Center(
-                                                                    child: Text(
-                                                                      _foundTicket[
-                                                                      index][
-                                                                      "SystemNumber"],
-                                                                      style: TextStyle(
-                                                                          fontFamily:
-                                                                          'fonts/Roboto-Bold.ttf',
-                                                                          fontWeight:
-                                                                          FontWeight
-                                                                              .w900,
-                                                                          fontSize:
-                                                                          24),
-                                                                    ),
-                                                                  ),
-                                                                  Expanded(
-                                                                    child: Center(
-                                                                      child:
-                                                                      GestureDetector(
-                                                                        // onTap: () => Navigator.pop(context),
+                                                      decoration: BoxDecoration(
+                                                        image: DecorationImage(
+                                                            fit: BoxFit.cover,
+                                                            image: AssetImage(
+                                                                'assets/assignedticketsdetails.png')),
+                                                        borderRadius: BorderRadius.only(
+                                                          topRight: Radius.circular(45),
+                                                          topLeft: Radius.circular(45),
+                                                          bottomRight:
+                                                          Radius.circular(30),
+                                                          bottomLeft:
+                                                          Radius.circular(30),
+                                                        ),
+                                                      ),
+                                                      child: SingleChildScrollView(
+                                                        reverse: true,
+                                                        child: ConstrainedBox(
+                                                          constraints: BoxConstraints(
+                                                              minHeight:
+                                                              MediaQuery.of(context).size.height * 0.80),
+                                                          child: IntrinsicHeight(
+                                                            child: Column(
+                                                              children: [
+                                                                Padding(
+                                                                    padding:
+                                                                    EdgeInsets.only(
+                                                                        bottom:
+                                                                        20.0)),
+                                                                Row(
+                                                                  children: [
+                                                                    Expanded(
                                                                         child:
-                                                                        Container(
-                                                                          decoration:
-                                                                          BoxDecoration(
-                                                                            borderRadius: BorderRadius.all(Radius.circular(50)),
-                                                                            boxShadow: [
-                                                                              BoxShadow(
-                                                                                  blurRadius: 5,
-                                                                                  offset: Offset(8, 8),
-                                                                                  color: Color(0xff000000).withOpacity(0.10)),
-                                                                            ],
-                                                                          ),
+                                                                        Container()),
+                                                                    Center(
+                                                                      child: Text(
+                                                                        _foundTicket[
+                                                                        index][
+                                                                        "SystemNumber"],
+                                                                        style: TextStyle(
+                                                                            fontFamily:
+                                                                            'fonts/Roboto-Bold.ttf',
+                                                                            fontWeight:
+                                                                            FontWeight
+                                                                                .w900,
+                                                                            fontSize:
+                                                                            24),
+                                                                      ),
+                                                                    ),
+                                                                    Expanded(
+                                                                      child: Center(
+                                                                        child:
+                                                                        GestureDetector(
+                                                                          // onTap: () => Navigator.pop(context),
                                                                           child:
-                                                                          ClipRRect(
-                                                                            borderRadius:
-                                                                            BorderRadius.all(Radius.circular(50)),
-                                                                            child: GestureDetector(
-                                                                              onTap:
-                                                                                  () {
-                                                                                // Navigator.pop(context, "This string will be passed back to the parent",);
-                                                                              },
-                                                                              child:
-                                                                              Container(
-                                                                                color: Color(0xff5F4E4E).withOpacity(0.45),
-                                                                                height: 19,
-                                                                                width: 115,
-                                                                                child: Center(
-                                                                                  child: Text(
-                                                                                    'Records',
-                                                                                    style: TextStyle(
-                                                                                      color: Colors.white,
-                                                                                      fontFamily: 'fonts/Roboto-Bold.ttf',
-                                                                                      fontWeight: FontWeight.w600,
-                                                                                      fontSize: 16,
+                                                                          Container(
+                                                                            decoration:
+                                                                            BoxDecoration(
+                                                                              borderRadius: BorderRadius.all(Radius.circular(50)),
+                                                                              boxShadow: [
+                                                                                BoxShadow(
+                                                                                    blurRadius: 5,
+                                                                                    offset: Offset(8, 8),
+                                                                                    color: Color(0xff000000).withOpacity(0.10)),
+                                                                              ],
+                                                                            ),
+                                                                            child:
+                                                                            ClipRRect(
+                                                                              borderRadius:
+                                                                              BorderRadius.all(Radius.circular(50)),
+                                                                              child: GestureDetector(
+                                                                                onTap:
+                                                                                    () {
+                                                                                  // Navigator.pop(context, "This string will be passed back to the parent",);
+                                                                                },
+                                                                                child:
+                                                                                Container(
+                                                                                  color: Color(0xff5F4E4E).withOpacity(0.45),
+                                                                                  height: 19,
+                                                                                  width: 115,
+                                                                                  child: Center(
+                                                                                    child: Text(
+                                                                                      'Records',
+                                                                                      style: TextStyle(
+                                                                                        color: Colors.white,
+                                                                                        fontFamily: 'fonts/Roboto-Bold.ttf',
+                                                                                        fontWeight: FontWeight.w600,
+                                                                                        fontSize: 16,
+                                                                                      ),
                                                                                     ),
                                                                                   ),
                                                                                 ),
@@ -3323,486 +3327,368 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                                                                         ),
                                                                       ),
                                                                     ),
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                              Padding(
-                                                                  padding: EdgeInsets.only(bottom: 5.0)),
-                                                              Expanded(
-                                                                  child: Container()),
-                                                              Row(
-                                                                children: [
-                                                                  // Padding(padding: EdgeInsets.only(right: 15.0)),
-                                                                  Expanded(child: Container()),
-                                                                  Flexible(
-                                                                    flex: 4,
-                                                                    fit:
-                                                                    FlexFit.tight,
-                                                                    child: Text(
-                                                                      'HostName',
-                                                                      style: TextStyle(
-                                                                          fontFamily: 'fonts/Roboto-Bold.ttf',
-                                                                          fontWeight: FontWeight.w400,
-                                                                          fontSize: 18),
-                                                                    ),
-                                                                  ),
-                                                                  Flexible(
-                                                                    flex: 4,
-                                                                    fit: FlexFit.tight,
-                                                                    child: Text(
-                                                                      _foundTicket[index]['HostName'],
-                                                                      style: TextStyle(
-                                                                          fontFamily: 'fonts/Roboto-Bold.ttf',
-                                                                          fontWeight: FontWeight.w400,
-                                                                          fontSize: 18),
-                                                                    ),
-                                                                  ),
-                                                                  Padding(padding: EdgeInsets.only(right: 10.0)),
-                                                                ],
-                                                              ),
-                                                              Padding(padding: EdgeInsets.only(bottom: 5.0)),
-                                                              Expanded(
-                                                                  child: Container()),
-                                                              Row(
-                                                                children: [
-                                                                  // Padding(padding: EdgeInsets.only(right: 15.0)),
-                                                                  Expanded(child: Container()),
-                                                                  Flexible(
-                                                                    flex: 4,
-                                                                    fit:
-                                                                    FlexFit.tight,
-                                                                    child: Text(
-                                                                      'IP Address',
-                                                                      style: TextStyle(
-                                                                          fontFamily: 'fonts/Roboto-Bold.ttf',
-                                                                          fontWeight: FontWeight.w400,
-                                                                          fontSize: 18),
-                                                                    ),
-                                                                  ),
-                                                                  Flexible(
-                                                                    flex: 4,
-                                                                    fit: FlexFit.tight,
-                                                                    child: Text(
-                                                                      'IP Address',
-                                                                      style: TextStyle(
-                                                                          fontFamily: 'fonts/Roboto-Bold.ttf',
-                                                                          fontWeight: FontWeight.w400,
-                                                                          fontSize: 18),
-                                                                    ),
-                                                                  ),
-                                                                  Padding(padding: EdgeInsets.only(right: 10.0)),
-                                                                ],
-                                                              ),
-                                                              Padding(padding: EdgeInsets.only(bottom: 5.0)),
-                                                              Expanded(child: Container()),
-                                                              Row(
-                                                                children: [
-                                                                  // Padding(padding: EdgeInsets.only(right: 15.0)),
-                                                                  Expanded(child: Container()),
-                                                                  Flexible(
-                                                                    flex: 4,
-                                                                    fit:
-                                                                    FlexFit.tight,
-                                                                    child: Text(
-                                                                      'Date & Time',
-                                                                      style: TextStyle(
-                                                                          fontFamily: 'fonts/Roboto-Bold.ttf',
-                                                                          fontWeight: FontWeight.w400,
-                                                                          fontSize: 18),
-                                                                    ),
-                                                                  ),
-                                                                  Flexible(
-                                                                    flex: 4,
-                                                                    fit:
-                                                                    FlexFit.tight,
-                                                                    child: Text(_foundTicket[index]["DateTime"],
-                                                                      style: TextStyle(
-                                                                          fontFamily: 'fonts/Roboto-Bold.ttf',
-                                                                          fontWeight: FontWeight.w400,
-                                                                          fontSize: 17),
-                                                                    ),
-                                                                  ),
-                                                                  Padding(padding: EdgeInsets.only(right: 10.0)),
-                                                                ],
-                                                              ),
-                                                              Padding(padding: EdgeInsets.only(bottom: 5.0)),
-                                                              Expanded(child: Container()),
-                                                              Row(
-                                                                children: [
-                                                                  // Padding(padding: EdgeInsets.only(right: 15.0)),
-                                                                  Expanded(child: Container()),
-                                                                  Flexible(
-                                                                    flex: 4,
-                                                                    fit:
-                                                                    FlexFit.tight,
-                                                                    child: Text(
-                                                                      'Duration',
-                                                                      style: TextStyle(
-                                                                          fontFamily: 'fonts/Roboto-Bold.ttf',
-                                                                          fontWeight: FontWeight.w400,
-                                                                          fontSize: 18),
-                                                                    ),
-                                                                  ),
-                                                                  Flexible(
-                                                                    flex: 4,
-                                                                    fit:
-                                                                    FlexFit.tight,
-                                                                    child: Text(
-                                                                      'Duration',
-                                                                      style: TextStyle(
-                                                                          fontFamily: 'fonts/Roboto-Bold.ttf',
-                                                                          fontWeight: FontWeight.w400,
-                                                                          fontSize: 18),
-                                                                    ),
-                                                                  ),
-                                                                  Padding(padding: EdgeInsets.only(right: 10.0)),
-                                                                ],
-                                                              ),
-                                                              Padding(padding: EdgeInsets.only(bottom: 5.0)),
-                                                              Expanded(child: Container()),
-                                                              Row(
-                                                                children: [
-                                                                  // Padding(padding: EdgeInsets.only(right: 15.0)),
-                                                                  Expanded(child: Container()),
-                                                                  Flexible(
-                                                                    flex: 4,
-                                                                    fit:
-                                                                    FlexFit.tight,
-                                                                    child: Text(
-                                                                      'Severity',
-                                                                      style: TextStyle(
-                                                                          fontFamily: 'fonts/Roboto-Bold.ttf',
-                                                                          fontWeight: FontWeight.w400,
-                                                                          fontSize: 18),
-                                                                    ),
-                                                                  ),
-                                                                  Flexible(
-                                                                    flex: 4,
-                                                                    fit: FlexFit.tight,
-                                                                    child: Text(
-                                                                      _foundTicket[index]['Severity'],
-                                                                      style: TextStyle(
-                                                                          fontFamily: 'fonts/Roboto-Bold.ttf',
-                                                                          fontWeight: FontWeight.w400,
-                                                                          fontSize: 18),
-                                                                    ),
-                                                                  ),
-                                                                  Padding(padding: EdgeInsets.only(right: 10.0)),
-                                                                ],
-                                                              ),
-                                                              Padding(padding: EdgeInsets.only(bottom: 5.0)),
-                                                              Expanded(child: Container()),
-                                                              Row(
-                                                                children: [
-                                                                  // Padding(padding: EdgeInsets.only(right: 15.0)),
-                                                                  Expanded(child: Container()),
-                                                                  Flexible(
-                                                                    flex: 4,
-                                                                    fit: FlexFit.tight,
-                                                                    child: Text(
-                                                                      'Type',
-                                                                      style: TextStyle(
-                                                                          fontFamily: 'fonts/Roboto-Bold.ttf',
-                                                                          fontWeight: FontWeight.w400,
-                                                                          fontSize: 18),
-                                                                    ),
-                                                                  ),
-                                                                  Flexible(
-                                                                    flex: 4,
-                                                                    fit:
-                                                                    FlexFit.tight,
-                                                                    child: Text(_foundTicket[index]["Type"],
-                                                                      style: TextStyle(
-                                                                          fontFamily: 'fonts/Roboto-Bold.ttf',
-                                                                          fontWeight: FontWeight.w400,
-                                                                          fontSize: 18),
-                                                                    ),
-                                                                  ),
-                                                                  Padding(padding: EdgeInsets.only(right: 10.0)),
-                                                                ],
-                                                              ),
-                                                              Padding(padding: EdgeInsets.only(bottom: 5.0)),
-                                                              Expanded(child: Container()),
-                                                              Row(
-                                                                children: [
-                                                                  // Padding(padding: EdgeInsets.only(right: 15.0)),
-                                                                  Expanded(child: Container()),
-                                                                  Flexible(
-                                                                    flex: 4,
-                                                                    fit: FlexFit.tight,
-                                                                    child: Text(
-                                                                      'Notes',
-                                                                      style: TextStyle(
-                                                                          fontFamily: 'fonts/Roboto-Bold.ttf',
-                                                                          fontWeight: FontWeight.w400,
-                                                                          fontSize: 18),
-                                                                    ),
-                                                                  ),
-                                                                  Flexible(
-                                                                    flex: 4,
-                                                                    fit: FlexFit.tight,
-                                                                    child: Text(_foundTicket[index]["ProblemText"],
-                                                                      style: TextStyle(
-                                                                          fontFamily: 'fonts/Roboto-Bold.ttf',
-                                                                          fontWeight: FontWeight.w400,
-                                                                          fontSize: 18),
-                                                                    ),
-                                                                  ),
-                                                                  Padding(padding: EdgeInsets.only(right: 10.0)),
-                                                                ],
-                                                              ),
-                                                              Padding(padding: EdgeInsets.only(bottom: 5.0)),
-                                                              Expanded(child: Container()),
-                                                              Row(
-                                                                children: [
-                                                                  // Padding(padding: EdgeInsets.only(right: 15.0)),
-                                                                  Expanded(child: Container()),
-                                                                  Flexible(
-                                                                    flex: 4,
-                                                                    fit: FlexFit.tight,
-                                                                    child: Text(
-                                                                      'Status',
-                                                                      style: TextStyle(
-                                                                          fontFamily: 'fonts/Roboto-Bold.ttf',
-                                                                          fontWeight: FontWeight.w400,
-                                                                          fontSize: 18),
-                                                                    ),
-                                                                  ),
-                                                                  Flexible(
-                                                                    flex: 4,
-                                                                    fit:
-                                                                    FlexFit.tight,
-                                                                    child: Text(_foundTicket[index]['Status'],
-                                                                      style: TextStyle(
-                                                                          fontFamily: 'fonts/Roboto-Bold.ttf',
-                                                                          fontWeight: FontWeight.w400,
-                                                                          fontSize: 18),
-                                                                    ),
-                                                                  ),
-                                                                  Padding(padding: EdgeInsets.only(right: 10.0)),
-                                                                ],
-                                                              ),
-                                                              Padding(padding: EdgeInsets.only(bottom: 10.0)),
-                                                              Center(
-                                                                child:
-                                                                // Padding(padding: EdgeInsets.only(right: 15.0)),
-                                                                Text(
-                                                                  'Updates:',
-                                                                  style: TextStyle(
-                                                                      fontFamily: 'fonts/Roboto-Bold.ttf',
-                                                                      fontWeight: FontWeight.w800,
-                                                                      fontSize: 18),
+                                                                  ],
                                                                 ),
-                                                              ),
-                                                              Padding(padding: EdgeInsets.only(bottom: 15.0)),
-                                                              // TextField(),
-                                                              Center(
-                                                                  child: ClipRRect(
-                                                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                                                    child: Column(
-                                                                      children: [
-                                                                        Container(
-                                                                          width: MediaQuery.of(context).size.width * 0.90,
-                                                                          color: Color(0xffC4C4C4).withOpacity(0.20),
-                                                                          height: 70,
-                                                                          child:
-                                                                          TextField(
-                                                                            scrollPadding: EdgeInsets.only(top: 40),
-                                                                            showCursor: true,
-                                                                            cursorColor: Colors.white70,
-                                                                            keyboardType: TextInputType.text,
-                                                                            textInputAction: TextInputAction.done,
-                                                                            style: TextStyle(
-                                                                              fontFamily: 'fonts/Roboto-Bold.ttf',
-                                                                              fontSize: 18,
-                                                                            ),
-                                                                            textAlign: TextAlign.center,
-                                                                            decoration: InputDecoration.collapsed(
-                                                                              hintText: "Notes",
-                                                                              border: InputBorder.none,
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                        Container(
-                                                                          width: MediaQuery.of(context).size.width * 0.90,
-                                                                          color: Color(0xff486C7B),
-                                                                          child: Text(
-                                                                            'Update',
-                                                                            textAlign: TextAlign.center,
-                                                                            style:
-                                                                            TextStyle(
-                                                                              color: Colors.white,
-                                                                              fontFamily: 'fonts/Roboto-Bold.ttf',
-                                                                              fontWeight: FontWeight.w600,
-                                                                              fontSize: 18,
-                                                                            ),
-                                                                          ),
-                                                                        )
-                                                                      ],
+                                                                Padding(
+                                                                    padding: EdgeInsets.only(bottom: 5.0)),
+                                                                Expanded(
+                                                                    child: Container()),
+                                                                Row(
+                                                                  children: [
+                                                                    // Padding(padding: EdgeInsets.only(right: 15.0)),
+                                                                    Expanded(child: Container()),
+                                                                    Flexible(
+                                                                      flex: 4,
+                                                                      fit:
+                                                                      FlexFit.tight,
+                                                                      child: Text(
+                                                                        'HostName',
+                                                                        style: TextStyle(
+                                                                            fontFamily: 'fonts/Roboto-Bold.ttf',
+                                                                            fontWeight: FontWeight.w400,
+                                                                            fontSize: 18),
+                                                                      ),
                                                                     ),
-                                                                  )),
-                                                              SizedBox(height: MediaQuery.of(context).viewInsets.vertical,),
-                                                              Padding(padding: EdgeInsets.only(bottom: 10.0)),
-                                                            ],
+                                                                    Flexible(
+                                                                      flex: 4,
+                                                                      fit: FlexFit.tight,
+                                                                      child: Text(
+                                                                        _foundTicket[index]['HostName'],
+                                                                        style: TextStyle(
+                                                                            fontFamily: 'fonts/Roboto-Bold.ttf',
+                                                                            fontWeight: FontWeight.w400,
+                                                                            fontSize: 18),
+                                                                      ),
+                                                                    ),
+                                                                    Padding(padding: EdgeInsets.only(right: 10.0)),
+                                                                  ],
+                                                                ),
+                                                                Padding(padding: EdgeInsets.only(bottom: 5.0)),
+                                                                Expanded(
+                                                                    child: Container()),
+                                                                Row(
+                                                                  children: [
+                                                                    // Padding(padding: EdgeInsets.only(right: 15.0)),
+                                                                    Expanded(child: Container()),
+                                                                    Flexible(
+                                                                      flex: 4,
+                                                                      fit:
+                                                                      FlexFit.tight,
+                                                                      child: Text(
+                                                                        'IP Address',
+                                                                        style: TextStyle(
+                                                                            fontFamily: 'fonts/Roboto-Bold.ttf',
+                                                                            fontWeight: FontWeight.w400,
+                                                                            fontSize: 18),
+                                                                      ),
+                                                                    ),
+                                                                    Flexible(
+                                                                      flex: 4,
+                                                                      fit: FlexFit.tight,
+                                                                      child: Text(
+                                                                        'IP Address',
+                                                                        style: TextStyle(
+                                                                            fontFamily: 'fonts/Roboto-Bold.ttf',
+                                                                            fontWeight: FontWeight.w400,
+                                                                            fontSize: 18),
+                                                                      ),
+                                                                    ),
+                                                                    Padding(padding: EdgeInsets.only(right: 10.0)),
+                                                                  ],
+                                                                ),
+                                                                Padding(padding: EdgeInsets.only(bottom: 5.0)),
+                                                                Expanded(child: Container()),
+                                                                Row(
+                                                                  children: [
+                                                                    // Padding(padding: EdgeInsets.only(right: 15.0)),
+                                                                    Expanded(child: Container()),
+                                                                    Flexible(
+                                                                      flex: 4,
+                                                                      fit:
+                                                                      FlexFit.tight,
+                                                                      child: Text(
+                                                                        'Date & Time',
+                                                                        style: TextStyle(
+                                                                            fontFamily: 'fonts/Roboto-Bold.ttf',
+                                                                            fontWeight: FontWeight.w400,
+                                                                            fontSize: 18),
+                                                                      ),
+                                                                    ),
+                                                                    Flexible(
+                                                                      flex: 4,
+                                                                      fit:
+                                                                      FlexFit.tight,
+                                                                      child: Text(_foundTicket[index]["DateTime"],
+                                                                        style: TextStyle(
+                                                                            fontFamily: 'fonts/Roboto-Bold.ttf',
+                                                                            fontWeight: FontWeight.w400,
+                                                                            fontSize: 17),
+                                                                      ),
+                                                                    ),
+                                                                    Padding(padding: EdgeInsets.only(right: 10.0)),
+                                                                  ],
+                                                                ),
+                                                                Padding(padding: EdgeInsets.only(bottom: 5.0)),
+                                                                Expanded(child: Container()),
+                                                                Row(
+                                                                  children: [
+                                                                    // Padding(padding: EdgeInsets.only(right: 15.0)),
+                                                                    Expanded(child: Container()),
+                                                                    Flexible(
+                                                                      flex: 4,
+                                                                      fit:
+                                                                      FlexFit.tight,
+                                                                      child: Text(
+                                                                        'Duration',
+                                                                        style: TextStyle(
+                                                                            fontFamily: 'fonts/Roboto-Bold.ttf',
+                                                                            fontWeight: FontWeight.w400,
+                                                                            fontSize: 18),
+                                                                      ),
+                                                                    ),
+                                                                    Flexible(
+                                                                      flex: 4,
+                                                                      fit:
+                                                                      FlexFit.tight,
+                                                                      child: Text(
+                                                                        'Duration',
+                                                                        style: TextStyle(
+                                                                            fontFamily: 'fonts/Roboto-Bold.ttf',
+                                                                            fontWeight: FontWeight.w400,
+                                                                            fontSize: 18),
+                                                                      ),
+                                                                    ),
+                                                                    Padding(padding: EdgeInsets.only(right: 10.0)),
+                                                                  ],
+                                                                ),
+                                                                Padding(padding: EdgeInsets.only(bottom: 5.0)),
+                                                                Expanded(child: Container()),
+                                                                Row(
+                                                                  children: [
+                                                                    // Padding(padding: EdgeInsets.only(right: 15.0)),
+                                                                    Expanded(child: Container()),
+                                                                    Flexible(
+                                                                      flex: 4,
+                                                                      fit:
+                                                                      FlexFit.tight,
+                                                                      child: Text(
+                                                                        'Severity',
+                                                                        style: TextStyle(
+                                                                            fontFamily: 'fonts/Roboto-Bold.ttf',
+                                                                            fontWeight: FontWeight.w400,
+                                                                            fontSize: 18),
+                                                                      ),
+                                                                    ),
+                                                                    Flexible(
+                                                                      flex: 4,
+                                                                      fit: FlexFit.tight,
+                                                                      child: Text(
+                                                                        _foundTicket[index]['Severity'],
+                                                                        style: TextStyle(
+                                                                            fontFamily: 'fonts/Roboto-Bold.ttf',
+                                                                            fontWeight: FontWeight.w400,
+                                                                            fontSize: 18),
+                                                                      ),
+                                                                    ),
+                                                                    Padding(padding: EdgeInsets.only(right: 10.0)),
+                                                                  ],
+                                                                ),
+                                                                Padding(padding: EdgeInsets.only(bottom: 5.0)),
+                                                                Expanded(child: Container()),
+                                                                Row(
+                                                                  children: [
+                                                                    // Padding(padding: EdgeInsets.only(right: 15.0)),
+                                                                    Expanded(child: Container()),
+                                                                    Flexible(
+                                                                      flex: 4,
+                                                                      fit: FlexFit.tight,
+                                                                      child: Text(
+                                                                        'Type',
+                                                                        style: TextStyle(
+                                                                            fontFamily: 'fonts/Roboto-Bold.ttf',
+                                                                            fontWeight: FontWeight.w400,
+                                                                            fontSize: 18),
+                                                                      ),
+                                                                    ),
+                                                                    Flexible(
+                                                                      flex: 4,
+                                                                      fit:
+                                                                      FlexFit.tight,
+                                                                      child: Text(_foundTicket[index]["Type"],
+                                                                        style: TextStyle(
+                                                                            fontFamily: 'fonts/Roboto-Bold.ttf',
+                                                                            fontWeight: FontWeight.w400,
+                                                                            fontSize: 18),
+                                                                      ),
+                                                                    ),
+                                                                    Padding(padding: EdgeInsets.only(right: 10.0)),
+                                                                  ],
+                                                                ),
+                                                                Padding(padding: EdgeInsets.only(bottom: 5.0)),
+                                                                Expanded(child: Container()),
+                                                                Row(
+                                                                  children: [
+                                                                    // Padding(padding: EdgeInsets.only(right: 15.0)),
+                                                                    Expanded(child: Container()),
+                                                                    Flexible(
+                                                                      flex: 4,
+                                                                      fit: FlexFit.tight,
+                                                                      child: Text(
+                                                                        'Notes',
+                                                                        style: TextStyle(
+                                                                            fontFamily: 'fonts/Roboto-Bold.ttf',
+                                                                            fontWeight: FontWeight.w400,
+                                                                            fontSize: 18),
+                                                                      ),
+                                                                    ),
+                                                                    Flexible(
+                                                                      flex: 4,
+                                                                      fit: FlexFit.tight,
+                                                                      child: Text(_foundTicket[index]["ProblemText"],
+                                                                        style: TextStyle(
+                                                                            fontFamily: 'fonts/Roboto-Bold.ttf',
+                                                                            fontWeight: FontWeight.w400,
+                                                                            fontSize: 18),
+                                                                      ),
+                                                                    ),
+                                                                    Padding(padding: EdgeInsets.only(right: 10.0)),
+                                                                  ],
+                                                                ),
+                                                                Padding(padding: EdgeInsets.only(bottom: 5.0)),
+                                                                Expanded(child: Container()),
+                                                                Row(
+                                                                  children: [
+                                                                    // Padding(padding: EdgeInsets.only(right: 15.0)),
+                                                                    Expanded(child: Container()),
+                                                                    Flexible(
+                                                                      flex: 4,
+                                                                      fit: FlexFit.tight,
+                                                                      child: Text(
+                                                                        'Status',
+                                                                        style: TextStyle(
+                                                                            fontFamily: 'fonts/Roboto-Bold.ttf',
+                                                                            fontWeight: FontWeight.w400,
+                                                                            fontSize: 18),
+                                                                      ),
+                                                                    ),
+                                                                    Flexible(
+                                                                      flex: 4,
+                                                                      fit:
+                                                                      FlexFit.tight,
+                                                                      child: Text(_foundTicket[index]['Status'],
+                                                                        style: TextStyle(
+                                                                            fontFamily: 'fonts/Roboto-Bold.ttf',
+                                                                            fontWeight: FontWeight.w400,
+                                                                            fontSize: 18),
+                                                                      ),
+                                                                    ),
+                                                                    Padding(padding: EdgeInsets.only(right: 10.0)),
+                                                                  ],
+                                                                ),
+                                                                Padding(padding: EdgeInsets.only(bottom: 10.0)),
+                                                                Center(
+                                                                  child:
+                                                                  // Padding(padding: EdgeInsets.only(right: 15.0)),
+                                                                  Text(
+                                                                    'Updates:',
+                                                                    style: TextStyle(
+                                                                        fontFamily: 'fonts/Roboto-Bold.ttf',
+                                                                        fontWeight: FontWeight.w800,
+                                                                        fontSize: 18),
+                                                                  ),
+                                                                ),
+                                                                Padding(padding: EdgeInsets.only(bottom: 15.0)),
+                                                                // TextField(),
+                                                                Center(
+                                                                    child: ClipRRect(
+                                                                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                                                                      child: Column(
+                                                                        children: [
+                                                                          Container(
+                                                                            width: MediaQuery.of(context).size.width * 0.90,
+                                                                            color: Color(0xffC4C4C4).withOpacity(0.20),
+                                                                            height: 70,
+                                                                            child:
+                                                                            TextField(
+                                                                              scrollPadding: EdgeInsets.only(top: 40),
+                                                                              showCursor: true,
+                                                                              cursorColor: Colors.white70,
+                                                                              keyboardType: TextInputType.text,
+                                                                              textInputAction: TextInputAction.done,
+                                                                              style: TextStyle(
+                                                                                fontFamily: 'fonts/Roboto-Bold.ttf',
+                                                                                fontSize: 18,
+                                                                              ),
+                                                                              textAlign: TextAlign.center,
+                                                                              decoration: InputDecoration.collapsed(
+                                                                                hintText: "Notes",
+                                                                                border: InputBorder.none,
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                          Container(
+                                                                            width: MediaQuery.of(context).size.width * 0.90,
+                                                                            color: Color(0xff486C7B),
+                                                                            child: Text(
+                                                                              'Update',
+                                                                              textAlign: TextAlign.center,
+                                                                              style:
+                                                                              TextStyle(
+                                                                                color: Colors.white,
+                                                                                fontFamily: 'fonts/Roboto-Bold.ttf',
+                                                                                fontWeight: FontWeight.w600,
+                                                                                fontSize: 18,
+                                                                              ),
+                                                                            ),
+                                                                          )
+                                                                        ],
+                                                                      ),
+                                                                    )),
+                                                                SizedBox(height: MediaQuery.of(context).viewInsets.vertical,),
+                                                                Padding(padding: EdgeInsets.only(bottom: 10.0)),
+                                                              ],
+                                                            ),
                                                           ),
                                                         ),
                                                       ),
-                                                    ),
-                                                  );
-                                                },
-                                              );
-                                              // }
-                                            },
-                                            builder: (context, _, __) => SizedBox(
-                                                height: (mySize.height.toDouble())-27,
-                                                /* target(),*/
-                                                /*height: MediaQuery.of(context).size.height-338,*/
-                                                // 508.07142857142856-30,
-                                                child: Center(
-                                                    child: Shimmer.fromColors(
-                                                        highlightColor: Color(0xff333333),
-                                                        baseColor: Colors.white,
-                                                        child: Text(
-                                                          'Drop Here For More Info!',
-                                                          style: TextStyle(fontSize: 18),)
-                                                    )
-                                                )
-                                            ),
-                                          )
-                                      );
-                                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                                    },
-                                    onDraggableCanceled: (a, b) {
-                                      setState(() {
+                                                    );
+                                                  },
+                                                );
+                                                // }
+                                              },
+                                              builder: (context, _, __) => SizedBox(
+                                                  height: (mySize.height.toDouble())-27,
+                                                  /* target(),*/
+                                                  /*height: MediaQuery.of(context).size.height-338,*/
+                                                  // 508.07142857142856-30,
+                                                  child: Center(
+                                                      child: Shimmer.fromColors(
+                                                          highlightColor: Color(0xff333333),
+                                                          baseColor: Colors.white,
+                                                          child: Text(
+                                                            'Drop Here For More Info!',
+                                                            style: TextStyle(fontSize: 18),)
+                                                      )
+                                                  )
+                                              ),
+                                            )
+                                        );
+                                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                                      },
+                                      onDraggableCanceled: (a, b) {
+                                        setState(() {
+                                          ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                                        });
+                                      },
+                                      onDragEnd: (hello) {
                                         ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                                      });
-                                    },
-                                    onDragEnd: (hello) {
-                                      ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                                    },
-                                    feedback: Material(
-                                      color: Colors.transparent,
-                                      child: Container(
-                                        height: 210,
-                                        width: 153.94,
-                                        margin: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
-                                        decoration: BoxDecoration(
-                                          // color: Color(0xffE2E2E2),
-                                          borderRadius: BorderRadius.circular(12.5),
-                                          boxShadow: [
-                                            BoxShadow(
-                                                blurRadius: 5,
-                                                offset: Offset(1, 0),
-                                                color: Colors.black.withOpacity(0.8)),
-                                            //3dright
-                                            BoxShadow(
-                                                blurRadius: 0,
-                                                offset: Offset(0, 1),
-                                                color: Colors.black.withOpacity(0.9)),
-                                            //3dbottom
-                                            BoxShadow(
-                                                blurRadius: 5,
-                                                offset: -Offset(1, 0),
-                                                color: Colors.black.withOpacity(0.8)),
-                                            //3dleft
-                                            BoxShadow(
-                                                blurRadius: 0,
-                                                offset: -Offset(0, 1),
-                                                color: Colors.black.withOpacity(0.9)),
-                                          ],
-                                          image: DecorationImage(
-                                              fit: BoxFit.cover,
-                                              image: AssetImage('assets/rectangle.png')),
-                                        ),
-                                        child: Column(
-                                          children: [
-                                            Padding(padding: EdgeInsets.only(top: 10.0)),
-                                            Row(
-                                              children: [
-                                                if(_foundTicket[index]["Severity"]=="High") ...[
-                                                  Image.asset("assets/vectorright.png")
-                                                ]else if(_foundTicket[index]["Severity"]=="Medium") ...[
-                                                  Image.asset("assets/greenticket.png")
-                                                ]else if(_foundTicket[index]["Severity"]=="Low") ...[
-                                                  Image.asset("assets/yellowticket.png")
-                                                ]else if(_foundTicket[index]["Severity"]=="Information") ...[
-                                                  Image.asset("assets/whiteticket.png")
-                                                ],
-                                                /*Image.asset(
-                                                    _foundTicket[index]["Image"]),*/
-                                                Padding(padding: EdgeInsets.only(right: 5.0)),
-                                                Text(
-                                                  _foundTicket[index]['SystemNumber'],
-                                                  textAlign: TextAlign.center,
-                                                  style: TextStyle(
-                                                      fontFamily: 'fonts/Roboto-Bold.ttf',
-                                                      fontWeight: FontWeight.w900,
-                                                      fontSize: 24),
-                                                ),
-                                                /*Visibility(
-                                            visible: false,
-                                            child: Padding(
-                                              padding: EdgeInsets.only(
-                                                  top: 0.0, bottom: 4, left: 5),
-                                              child: SizedBox(
-                                                width: 20,
-                                                height: 20,
-                                                child: LoadingIndicator(
-                                                  indicatorType:
-                                                      Indicator.ballScale,
-                                                  colors: [
-                                                    Colors.green,
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                          ),*/
-                                              ],
-                                            ),
-                                            Padding(padding: EdgeInsets.only(top: 3.0)),
-                                            SizedBox(
-                                              height: 108,
-                                              width: 112,
-                                              child: SingleChildScrollView(
-                                                scrollDirection: Axis.vertical,
-                                                child: Text(
-                                                  _foundTicket[index]['ProblemText'],
-                                                  textAlign: TextAlign.center,
-                                                  style: TextStyle(
-                                                      fontFamily: 'Roboto',
-                                                      fontSize: 14),
-                                                ),
-                                              ),
-                                            ),
-                                            Padding(padding: EdgeInsets.only(top: 13.0)),
-                                            Text(
-                                              _foundTicket[index]['Time'],
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(
-                                                  fontFamily: 'Roboto',
-                                                  fontWeight: FontWeight.w400,
-                                                  fontSize: 18),
-                                            ),
-                                            Padding(padding: EdgeInsets.only(top: 1.5)),
-                                            Text(
-                                              _foundTicket[index]['DateTime'],
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(
-                                                  color: Color(0xff000000).withOpacity(0.65),
-                                                  fontFamily: 'fonts/Roboto-Thin.ttf',
-                                                  // fontWeight: FontWeight.normal,
-                                                  fontSize: 12),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    childWhenDragging: Stack(
-                                      children: [
-                                        Container(
+                                      },
+                                      feedback: Material(
+                                        color: Colors.transparent,
+                                        child: Container(
                                           height: 210,
                                           width: 153.94,
-                                          margin: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 0),
+                                          margin: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
                                           decoration: BoxDecoration(
                                             // color: Color(0xffE2E2E2),
                                             borderRadius: BorderRadius.circular(12.5),
@@ -3810,26 +3696,22 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                                               BoxShadow(
                                                   blurRadius: 5,
                                                   offset: Offset(1, 0),
-                                                  color:
-                                                  Colors.black.withOpacity(0.8)),
+                                                  color: Colors.black.withOpacity(0.8)),
                                               //3dright
                                               BoxShadow(
                                                   blurRadius: 0,
                                                   offset: Offset(0, 1),
-                                                  color:
-                                                  Colors.black.withOpacity(0.9)),
+                                                  color: Colors.black.withOpacity(0.9)),
                                               //3dbottom
                                               BoxShadow(
                                                   blurRadius: 5,
                                                   offset: -Offset(1, 0),
-                                                  color:
-                                                  Colors.black.withOpacity(0.8)),
+                                                  color: Colors.black.withOpacity(0.8)),
                                               //3dleft
                                               BoxShadow(
                                                   blurRadius: 0,
                                                   offset: -Offset(0, 1),
-                                                  color:
-                                                  Colors.black.withOpacity(0.9)),
+                                                  color: Colors.black.withOpacity(0.9)),
                                             ],
                                             image: DecorationImage(
                                                 fit: BoxFit.cover,
@@ -3864,9 +3746,7 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                                               visible: false,
                                               child: Padding(
                                                 padding: EdgeInsets.only(
-                                                    top: 0.0,
-                                                    bottom: 4,
-                                                    left: 5),
+                                                    top: 0.0, bottom: 4, left: 5),
                                                 child: SizedBox(
                                                   width: 20,
                                                   height: 20,
@@ -3919,420 +3799,544 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                                             ],
                                           ),
                                         ),
-                                        Positioned.fill(
-                                            child: BackdropFilter(
-                                              filter: ImageFilter.blur(sigmaX: 1, sigmaY: 1),
-                                              child: Container(color: Colors.transparent,),
-                                            )
-                                        )
-                                      ],
-                                    ),
-                                    child: Card(
-                                      color: Colors.transparent,
-                                      elevation: 5,
-                                      shadowColor: Colors.black.withOpacity(0.15),
-                                      child: TweenAnimationBuilder(
-                                        tween: Tween<double>(begin: 0, end: _ticketExpand?1:0),
-                                        duration: Duration(milliseconds: _ticketExpand?500:100),
-                                        curve: Curves.easeInSine,
-                                        builder: (_, double val, __) {
-                                          return Transform(
-                                            alignment: Alignment.center,
-                                            transform: Matrix4.identity()
-                                              ..setEntry(3, 2, 0.0019)
-                                              ..setEntry(0, 3, 0)
-                                              ..rotateY(/*!_ticketExpand ? 0 : */-(pi / 18)*val),
-                                            child: Container(
-                                              height: 210,
-                                              width: 153.94,
-                                              margin: EdgeInsets.only(left: 10, right: 10, top: 0, bottom: 5),
-                                              decoration: BoxDecoration(
-                                                // color: Color(0xffE2E2E2),
-                                                borderRadius: BorderRadius.circular(12.5),
-                                                boxShadow: [
-                                                  BoxShadow(
-                                                      blurRadius: 5,
-                                                      offset: Offset(1, 0),
-                                                      color: Colors.black.withOpacity(0.8)),
-                                                  //3dright
-                                                  BoxShadow(
-                                                      blurRadius: 0,
-                                                      offset: Offset(0, 1),
-                                                      color: Colors.black.withOpacity(0.9)),
-                                                  //3dbottom
-                                                  BoxShadow(
-                                                      blurRadius: 5,
-                                                      offset: -Offset(1, 0),
-                                                      color: Colors.black.withOpacity(0.8)),
-                                                  //3dleft
-                                                  BoxShadow(
-                                                      blurRadius: 0,
-                                                      offset: -Offset(0, 1),
-                                                      color: Colors.black.withOpacity(0.9)),
-                                                ],
-                                                image: DecorationImage(
+                                      ),
+                                      childWhenDragging: Stack(
+                                        children: [
+                                          Container(
+                                            height: 210,
+                                            width: 153.94,
+                                            margin: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 0),
+                                            decoration: BoxDecoration(
+                                              // color: Color(0xffE2E2E2),
+                                              borderRadius: BorderRadius.circular(12.5),
+                                              boxShadow: [
+                                                BoxShadow(
+                                                    blurRadius: 5,
+                                                    offset: Offset(1, 0),
+                                                    color:
+                                                    Colors.black.withOpacity(0.8)),
+                                                //3dright
+                                                BoxShadow(
+                                                    blurRadius: 0,
+                                                    offset: Offset(0, 1),
+                                                    color:
+                                                    Colors.black.withOpacity(0.9)),
+                                                //3dbottom
+                                                BoxShadow(
+                                                    blurRadius: 5,
+                                                    offset: -Offset(1, 0),
+                                                    color:
+                                                    Colors.black.withOpacity(0.8)),
+                                                //3dleft
+                                                BoxShadow(
+                                                    blurRadius: 0,
+                                                    offset: -Offset(0, 1),
+                                                    color:
+                                                    Colors.black.withOpacity(0.9)),
+                                              ],
+                                              image: DecorationImage(
                                                   fit: BoxFit.cover,
-                                                  opacity: 1,
-                                                  image: AssetImage('assets/rectangle.png',),
-                                                ),
-                                                // color: Color(0xffE5E4E2)
-                                              ),
-                                              child: Stack(
-                                                children: [
-                                                  Positioned.fill(
-                                                      child: BackdropFilter(
-                                                        filter: ImageFilter.blur(sigmaX: 0.5, sigmaY: 0.5),
-                                                        child: Container(color: Colors.transparent,),
-                                                      )
+                                                  image: AssetImage('assets/rectangle.png')),
+                                            ),
+                                            child: Column(
+                                              children: [
+                                                Padding(padding: EdgeInsets.only(top: 10.0)),
+                                                Row(
+                                                  children: [
+                                                    if(_foundTicket[index]["Severity"]=="High") ...[
+                                                      Image.asset("assets/vectorright.png")
+                                                    ]else if(_foundTicket[index]["Severity"]=="Medium") ...[
+                                                      Image.asset("assets/greenticket.png")
+                                                    ]else if(_foundTicket[index]["Severity"]=="Low") ...[
+                                                      Image.asset("assets/yellowticket.png")
+                                                    ]else if(_foundTicket[index]["Severity"]=="Information") ...[
+                                                      Image.asset("assets/whiteticket.png")
+                                                    ],
+                                                    /*Image.asset(
+                                                        _foundTicket[index]["Image"]),*/
+                                                    Padding(padding: EdgeInsets.only(right: 5.0)),
+                                                    Text(
+                                                      _foundTicket[index]['SystemNumber'],
+                                                      textAlign: TextAlign.center,
+                                                      style: TextStyle(
+                                                          fontFamily: 'fonts/Roboto-Bold.ttf',
+                                                          fontWeight: FontWeight.w900,
+                                                          fontSize: 24),
+                                                    ),
+                                                    /*Visibility(
+                                                visible: false,
+                                                child: Padding(
+                                                  padding: EdgeInsets.only(
+                                                      top: 0.0,
+                                                      bottom: 4,
+                                                      left: 5),
+                                                  child: SizedBox(
+                                                    width: 20,
+                                                    height: 20,
+                                                    child: LoadingIndicator(
+                                                      indicatorType:
+                                                          Indicator.ballScale,
+                                                      colors: [
+                                                        Colors.green,
+                                                      ],
+                                                    ),
                                                   ),
-                                                  Column(
-                                                    children: [
-                                                      Padding(padding: EdgeInsets.only(top: 10.0)),
-                                                      Row(
-                                                        children: [
-                                                          if(_foundTicket[index]["Severity"]=="High") ...[
-                                                            Image.asset("assets/vectorright.png")
-                                                          ]else if(_foundTicket[index]["Severity"]=="Medium") ...[
-                                                            Image.asset("assets/greenticket.png")
-                                                          ]else if(_foundTicket[index]["Severity"]=="Low") ...[
-                                                            Image.asset("assets/yellowticket.png")
-                                                          ]else if(_foundTicket[index]["Severity"]=="Information") ...[
-                                                            Image.asset("assets/whiteticket.png")
-                                                          ],
-                                                          /*Image.asset(
-                                                            _foundTicket[index]["Image"]),*/
-                                                          Padding(padding: EdgeInsets.only(right: 5.0)),
-                                                          Text(
-                                                            _foundTicket[index]['SystemNumber'],
-                                                            textAlign: TextAlign.center,
-                                                            style: TextStyle(
-                                                                fontFamily: 'fonts/Roboto-Bold.ttf',
-                                                                fontWeight: FontWeight.w900,
-                                                                fontSize: 24),
-                                                          ),
-                                                          Visibility(
-                                                            visible:
-                                                            /*memorybar.containsKey(_foundTicket[index]['SystemNumber'])*/
-                                                            _foundTicket[index]['loadingIndicator'] ,
-                                                            child: Padding(
-                                                              padding: EdgeInsets.only(top: 0.0, bottom: 2.5, left: 5),
-                                                              child: Stack(
-                                                                alignment: Alignment.center,
-                                                                children: [
-                                                                  SizedBox(
-                                                                    width: 25,
-                                                                    height: 25,
-                                                                    child: LoadingIndicator(
-                                                                      indicatorType: Indicator.ballScaleMultiple,
-                                                                      colors: [
-                                                                        Colors.green.withOpacity(0.9),
-                                                                        /*Color(0xff3B8DC2)
-                                                                          .withOpacity(
-                                                                          1),*/
-                                                                      ],
+                                                ),
+                                              ),*/
+                                                  ],
+                                                ),
+                                                Padding(padding: EdgeInsets.only(top: 3.0)),
+                                                SizedBox(
+                                                  height: 108,
+                                                  width: 112,
+                                                  child: SingleChildScrollView(
+                                                    scrollDirection: Axis.vertical,
+                                                    child: Text(
+                                                      _foundTicket[index]['ProblemText'],
+                                                      textAlign: TextAlign.center,
+                                                      style: TextStyle(
+                                                          fontFamily: 'Roboto',
+                                                          fontSize: 14),
+                                                    ),
+                                                  ),
+                                                ),
+                                                Padding(padding: EdgeInsets.only(top: 13.0)),
+                                                Text(
+                                                  _foundTicket[index]['Time'],
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                      fontFamily: 'Roboto',
+                                                      fontWeight: FontWeight.w400,
+                                                      fontSize: 18),
+                                                ),
+                                                Padding(padding: EdgeInsets.only(top: 1.5)),
+                                                Text(
+                                                  _foundTicket[index]['DateTime'],
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                      color: Color(0xff000000).withOpacity(0.65),
+                                                      fontFamily: 'fonts/Roboto-Thin.ttf',
+                                                      // fontWeight: FontWeight.normal,
+                                                      fontSize: 12),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Positioned.fill(
+                                              child: BackdropFilter(
+                                                filter: ImageFilter.blur(sigmaX: 1, sigmaY: 1),
+                                                child: Container(color: Colors.transparent,),
+                                              )
+                                          )
+                                        ],
+                                      ),
+                                      child: Card(
+                                        color: Colors.transparent,
+                                        elevation: 5,
+                                        shadowColor: Colors.black.withOpacity(0.15),
+                                        child: TweenAnimationBuilder(
+                                          tween: Tween<double>(begin: 0, end: _ticketExpand?1:0),
+                                          duration: Duration(milliseconds: _ticketExpand?500:100),
+                                          curve: Curves.easeInSine,
+                                          builder: (_, double val, __) {
+                                            return Transform(
+                                              alignment: Alignment.center,
+                                              transform: Matrix4.identity()
+                                                ..setEntry(3, 2, 0.0019)
+                                                ..setEntry(0, 3, 0)
+                                                ..rotateY(/*!_ticketExpand ? 0 : */-(pi / 18)*val),
+                                              child: Container(
+                                                height: 210,
+                                                width: 153.94,
+                                                margin: EdgeInsets.only(left: 10, right: 10, top: 0, bottom: 5),
+                                                decoration: BoxDecoration(
+                                                  // color: Color(0xffE2E2E2),
+                                                  borderRadius: BorderRadius.circular(12.5),
+                                                  boxShadow: [
+                                                    BoxShadow(
+                                                        blurRadius: 5,
+                                                        offset: Offset(1, 0),
+                                                        color: Colors.black.withOpacity(0.8)),
+                                                    //3dright
+                                                    BoxShadow(
+                                                        blurRadius: 0,
+                                                        offset: Offset(0, 1),
+                                                        color: Colors.black.withOpacity(0.9)),
+                                                    //3dbottom
+                                                    BoxShadow(
+                                                        blurRadius: 5,
+                                                        offset: -Offset(1, 0),
+                                                        color: Colors.black.withOpacity(0.8)),
+                                                    //3dleft
+                                                    BoxShadow(
+                                                        blurRadius: 0,
+                                                        offset: -Offset(0, 1),
+                                                        color: Colors.black.withOpacity(0.9)),
+                                                  ],
+                                                  image: DecorationImage(
+                                                    fit: BoxFit.cover,
+                                                    opacity: 1,
+                                                    image: AssetImage('assets/rectangle.png',),
+                                                  ),
+                                                  // color: Color(0xffE5E4E2)
+                                                ),
+                                                child: Stack(
+                                                  children: [
+                                                    Positioned.fill(
+                                                        child: BackdropFilter(
+                                                          filter: ImageFilter.blur(sigmaX: 0.5, sigmaY: 0.5),
+                                                          child: Container(color: Colors.transparent,),
+                                                        )
+                                                    ),
+                                                    Column(
+                                                      children: [
+                                                        Padding(padding: EdgeInsets.only(top: 10.0)),
+                                                        Row(
+                                                          children: [
+                                                            if(_foundTicket[index]["Severity"]=="High") ...[
+                                                              Image.asset("assets/vectorright.png")
+                                                            ]else if(_foundTicket[index]["Severity"]=="Medium") ...[
+                                                              Image.asset("assets/greenticket.png")
+                                                            ]else if(_foundTicket[index]["Severity"]=="Low") ...[
+                                                              Image.asset("assets/yellowticket.png")
+                                                            ]else if(_foundTicket[index]["Severity"]=="Information") ...[
+                                                              Image.asset("assets/whiteticket.png")
+                                                            ],
+                                                            /*Image.asset(
+                                                              _foundTicket[index]["Image"]),*/
+                                                            Padding(padding: EdgeInsets.only(right: 5.0)),
+                                                            Text(
+                                                              _foundTicket[index]['SystemNumber'],
+                                                              textAlign: TextAlign.center,
+                                                              style: TextStyle(
+                                                                  fontFamily: 'fonts/Roboto-Bold.ttf',
+                                                                  fontWeight: FontWeight.w900,
+                                                                  fontSize: 24),
+                                                            ),
+                                                            Visibility(
+                                                              visible:
+                                                              /*memorybar.containsKey(_foundTicket[index]['SystemNumber'])*/
+                                                              _foundTicket[index]['loadingIndicator'] ,
+                                                              child: Padding(
+                                                                padding: EdgeInsets.only(top: 0.0, bottom: 2.5, left: 5),
+                                                                child: Stack(
+                                                                  alignment: Alignment.center,
+                                                                  children: [
+                                                                    SizedBox(
+                                                                      width: 25,
+                                                                      height: 25,
+                                                                      child: LoadingIndicator(
+                                                                        indicatorType: Indicator.ballScaleMultiple,
+                                                                        colors: [
+                                                                          Colors.green.withOpacity(0.9),
+                                                                          /*Color(0xff3B8DC2)
+                                                                            .withOpacity(
+                                                                            1),*/
+                                                                        ],
+                                                                      ),
                                                                     ),
-                                                                  ),
-                                                                  Container(
-                                                                    height: 7.5,
-                                                                    width: 7.5,
-                                                                    decoration: BoxDecoration(
-                                                                        color: Colors.green,
-                                                                        /*Color(0XFF19547B),*/
-                                                                        borderRadius: BorderRadius.circular(50)),
-                                                                  )
-                                                                ],
+                                                                    Container(
+                                                                      height: 7.5,
+                                                                      width: 7.5,
+                                                                      decoration: BoxDecoration(
+                                                                          color: Colors.green,
+                                                                          /*Color(0XFF19547B),*/
+                                                                          borderRadius: BorderRadius.circular(50)),
+                                                                    )
+                                                                  ],
+                                                                ),
                                                               ),
                                                             ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      Padding(padding: EdgeInsets.only(top: 3.0)),
-                                                      SizedBox(
-                                                        height: 108,
-                                                        width: 112,
-                                                        child: SingleChildScrollView(
-                                                          scrollDirection: Axis.vertical,
-                                                          child: Text(
-                                                            _foundTicket[index]['ProblemText'],
-                                                            textAlign: TextAlign.center,
-                                                            style: TextStyle(
-                                                                fontFamily: 'Roboto',
-                                                                fontSize: 14),
+                                                          ],
+                                                        ),
+                                                        Padding(padding: EdgeInsets.only(top: 3.0)),
+                                                        SizedBox(
+                                                          height: 108,
+                                                          width: 112,
+                                                          child: SingleChildScrollView(
+                                                            scrollDirection: Axis.vertical,
+                                                            child: Text(
+                                                              _foundTicket[index]['ProblemText'],
+                                                              textAlign: TextAlign.center,
+                                                              style: TextStyle(
+                                                                  fontFamily: 'Roboto',
+                                                                  fontSize: 14),
+                                                            ),
                                                           ),
                                                         ),
-                                                      ),
-                                                      Padding(padding: EdgeInsets.only(top: 13.0)),
-                                                      Row(
-                                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                                        children: [
+                                                        Padding(padding: EdgeInsets.only(top: 13.0)),
+                                                        Row(
+                                                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                                          children: [
 
-                                                          /*Visibility(
-                                                          visible: true,
-                                                          child: Badge(
-                                                            position: BadgePosition(top: 3,end: 3),
-                                                            toAnimate: true,
-                                                            padding: EdgeInsets.all(2.5),
-                                                            shape: BadgeShape.circle,
-                                                            alignment: Alignment(1,-1),
-                                                            showBadge: true,
-                                                            elevation: 2,
-                                                            animationType: BadgeAnimationType.fade,
-                                                            badgeColor: Colors.white.withOpacity(0.4),
-                                                            badgeContent: Text(
-                                                              '10',
-                                                              style: TextStyle(
-                                                                  fontSize: 10,
-                                                                  color: Colors.black.withOpacity(0.7),
-                                                                  fontWeight: FontWeight.bold
+                                                            /*Visibility(
+                                                            visible: true,
+                                                            child: Badge(
+                                                              position: BadgePosition(top: 3,end: 3),
+                                                              toAnimate: true,
+                                                              padding: EdgeInsets.all(2.5),
+                                                              shape: BadgeShape.circle,
+                                                              alignment: Alignment(1,-1),
+                                                              showBadge: true,
+                                                              elevation: 2,
+                                                              animationType: BadgeAnimationType.fade,
+                                                              badgeColor: Colors.white.withOpacity(0.4),
+                                                              badgeContent: Text(
+                                                                '10',
+                                                                style: TextStyle(
+                                                                    fontSize: 10,
+                                                                    color: Colors.black.withOpacity(0.7),
+                                                                    fontWeight: FontWeight.bold
+                                                                ),
                                                               ),
-                                                            ),
-                                                            child: Icon(
-                                                              Icons.mail_outline_rounded,
-                                                              color: Colors.black.withOpacity(0.65),
-                                                              size: 26,
-                                                            ),
-                                                          ),
-                                                        ),*/
-                                                          Visibility(
-                                                            visible: false,
-                                                            child: Padding(
-                                                              padding: EdgeInsets.only(left: 2),
                                                               child: Icon(
-                                                                Icons.mail_rounded,
-                                                                color: /*Color(0xff134074),*/Color(0xff19547b),
+                                                                Icons.mail_outline_rounded,
+                                                                color: Colors.black.withOpacity(0.65),
                                                                 size: 26,
                                                               ),
                                                             ),
-                                                          ),
+                                                          ),*/
+                                                            Visibility(
+                                                              visible: false,
+                                                              child: Padding(
+                                                                padding: EdgeInsets.only(left: 2),
+                                                                child: Icon(
+                                                                  Icons.mail_rounded,
+                                                                  color: /*Color(0xff134074),*/Color(0xff19547b),
+                                                                  size: 26,
+                                                                ),
+                                                              ),
+                                                            ),
 
-                                                          Text(
-                                                            _foundTicket[index]['Time'],
-                                                            textAlign: TextAlign.center,
-                                                            style: TextStyle(
-                                                                fontFamily: 'Roboto',
-                                                                fontWeight: FontWeight.w400,
-                                                                fontSize: 18),
-                                                          ),
+                                                            Text(
+                                                              _foundTicket[index]['Time'],
+                                                              textAlign: TextAlign.center,
+                                                              style: TextStyle(
+                                                                  fontFamily: 'Roboto',
+                                                                  fontWeight: FontWeight.w400,
+                                                                  fontSize: 18),
+                                                            ),
 
-                                                          SizedBox(width: 3,),
+                                                            SizedBox(width: 3,),
 
-                                                        ],
-                                                      ),
-                                                      Padding(padding: EdgeInsets.only(top: 1.5)),
-                                                      Text(
-                                                        _foundTicket[index]['DateTime'],
-                                                        textAlign: TextAlign.center,
-                                                        style: TextStyle(
-                                                            color: Color(0xff000000).withOpacity(0.65),
-                                                            fontFamily: 'fonts/Roboto-Thin.ttf',
-                                                            // fontWeight: FontWeight.normal,
-                                                            fontSize: 12),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ],
+                                                          ],
+                                                        ),
+                                                        Padding(padding: EdgeInsets.only(top: 1.5)),
+                                                        Text(
+                                                          _foundTicket[index]['DateTime'],
+                                                          textAlign: TextAlign.center,
+                                                          style: TextStyle(
+                                                              color: Color(0xff000000).withOpacity(0.65),
+                                                              fontFamily: 'fonts/Roboto-Thin.ttf',
+                                                              // fontWeight: FontWeight.normal,
+                                                              fontSize: 12),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
-                                            ),
-                                          );
-                                        },
-                                        // child: Transform(
-                                        //   alignment: Alignment.center,
-                                        //   transform: Matrix4.identity()
-                                        //     ..setEntry(3, 2, 0.0019)
-                                        //     ..setEntry(0, 3, 0)
-                                        //     ..rotateY(!_ticketExpand ? 0 : -(pi / 18)),
-                                        //   child: Container(
-                                        //     height: 210,
-                                        //     width: 153.94,
-                                        //     margin: EdgeInsets.only(left: 10, right: 10, top: 0, bottom: 5),
-                                        //     decoration: BoxDecoration(
-                                        //       // color: Color(0xffE2E2E2),
-                                        //       borderRadius: BorderRadius.circular(12.5),
-                                        //       boxShadow: [
-                                        //         BoxShadow(
-                                        //             blurRadius: 5,
-                                        //             offset: Offset(1, 0),
-                                        //             color: Colors.black.withOpacity(0.8)),
-                                        //         //3dright
-                                        //         BoxShadow(
-                                        //             blurRadius: 0,
-                                        //             offset: Offset(0, 1),
-                                        //             color: Colors.black.withOpacity(0.9)),
-                                        //         //3dbottom
-                                        //         BoxShadow(
-                                        //             blurRadius: 5,
-                                        //             offset: -Offset(1, 0),
-                                        //             color: Colors.black.withOpacity(0.8)),
-                                        //         //3dleft
-                                        //         BoxShadow(
-                                        //             blurRadius: 0,
-                                        //             offset: -Offset(0, 1),
-                                        //             color: Colors.black.withOpacity(0.9)),
-                                        //       ],
-                                        //       image: DecorationImage(
-                                        //           fit: BoxFit.cover,
-                                        //           opacity: 1,
-                                        //           image: AssetImage('assets/rectangle.png',),
-                                        //       ),
-                                        //       // color: Color(0xffE5E4E2)
-                                        //     ),
-                                        //     child: Stack(
-                                        //       children: [
-                                        //         Positioned.fill(
-                                        //             child: BackdropFilter(
-                                        //               filter: ImageFilter.blur(sigmaX: 0.5, sigmaY: 0.5),
-                                        //               child: Container(color: Colors.transparent,),
-                                        //             )
-                                        //         ),
-                                        //         Column(
-                                        //           children: [
-                                        //             Padding(padding: EdgeInsets.only(top: 10.0)),
-                                        //             Row(
-                                        //               children: [
-                                        //                 if(_foundTicket[index]["Severity"]=="High") ...[
-                                        //                   Image.asset("assets/vectorright.png")
-                                        //                 ]else if(_foundTicket[index]["Severity"]=="Medium") ...[
-                                        //                   Image.asset("assets/greenticket.png")
-                                        //                 ]else if(_foundTicket[index]["Severity"]=="Low") ...[
-                                        //                   Image.asset("assets/yellowticket.png")
-                                        //                 ]else if(_foundTicket[index]["Severity"]=="Information") ...[
-                                        //                   Image.asset("assets/whiteticket.png")
-                                        //                 ],
-                                        //                 /*Image.asset(
-                                        //                     _foundTicket[index]["Image"]),*/
-                                        //                 Padding(padding: EdgeInsets.only(right: 5.0)),
-                                        //                 Text(
-                                        //                   _foundTicket[index]['SystemNumber'],
-                                        //                   textAlign: TextAlign.center,
-                                        //                   style: TextStyle(
-                                        //                       fontFamily: 'fonts/Roboto-Bold.ttf',
-                                        //                       fontWeight: FontWeight.w900,
-                                        //                       fontSize: 24),
-                                        //                 ),
-                                        //                 Visibility(
-                                        //                   visible: _foundTicket[index]['loadingIndicator'],
-                                        //                   child: Padding(
-                                        //                     padding: EdgeInsets.only(top: 0.0, bottom: 2.5, left: 5),
-                                        //                     child: Stack(
-                                        //                       alignment: Alignment.center,
-                                        //                       children: [
-                                        //                         SizedBox(
-                                        //                           width: 25,
-                                        //                           height: 25,
-                                        //                           child: LoadingIndicator(
-                                        //                             indicatorType: Indicator.ballScaleMultiple,
-                                        //                             colors: [
-                                        //                               Colors.green.withOpacity(0.9),
-                                        //                               /*Color(0xff3B8DC2)
-                                        //                                   .withOpacity(
-                                        //                                   1),*/
-                                        //                             ],
-                                        //                           ),
-                                        //                         ),
-                                        //                         Container(
-                                        //                           height: 7.5,
-                                        //                           width: 7.5,
-                                        //                           decoration: BoxDecoration(
-                                        //                               color: Colors.green,
-                                        //                               /*Color(0XFF19547B),*/
-                                        //                               borderRadius: BorderRadius.circular(50)),
-                                        //                         )
-                                        //                       ],
-                                        //                     ),
-                                        //                   ),
-                                        //                 ),
-                                        //               ],
-                                        //             ),
-                                        //             Padding(padding: EdgeInsets.only(top: 3.0)),
-                                        //             SizedBox(
-                                        //               height: 108,
-                                        //               width: 112,
-                                        //               child: SingleChildScrollView(
-                                        //                 scrollDirection: Axis.vertical,
-                                        //                 child: Text(
-                                        //                   _foundTicket[index]['ProblemText'],
-                                        //                   textAlign: TextAlign.center,
-                                        //                   style: TextStyle(
-                                        //                       fontFamily: 'Roboto',
-                                        //                       fontSize: 14),
-                                        //                 ),
-                                        //               ),
-                                        //             ),
-                                        //             Padding(padding: EdgeInsets.only(top: 13.0)),
-                                        //             Row(
-                                        //               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                        //               crossAxisAlignment: CrossAxisAlignment.center,
-                                        //               children: [
-                                        //
-                                        //                 /*Visibility(
-                                        //                   visible: true,
-                                        //                   child: Badge(
-                                        //                     position: BadgePosition(top: 3,end: 3),
-                                        //                     toAnimate: true,
-                                        //                     padding: EdgeInsets.all(2.5),
-                                        //                     shape: BadgeShape.circle,
-                                        //                     alignment: Alignment(1,-1),
-                                        //                     showBadge: true,
-                                        //                     elevation: 2,
-                                        //                     animationType: BadgeAnimationType.fade,
-                                        //                     badgeColor: Colors.white.withOpacity(0.4),
-                                        //                     badgeContent: Text(
-                                        //                       '10',
-                                        //                       style: TextStyle(
-                                        //                           fontSize: 10,
-                                        //                           color: Colors.black.withOpacity(0.7),
-                                        //                           fontWeight: FontWeight.bold
-                                        //                       ),
-                                        //                     ),
-                                        //                     child: Icon(
-                                        //                       Icons.mail_outline_rounded,
-                                        //                       color: Colors.black.withOpacity(0.65),
-                                        //                       size: 26,
-                                        //                     ),
-                                        //                   ),
-                                        //                 ),*/
-                                        //                 Visibility(
-                                        //                   visible: false,
-                                        //                   child: Padding(
-                                        //                     padding: EdgeInsets.only(left: 2),
-                                        //                     child: Icon(
-                                        //                       Icons.mail_rounded,
-                                        //                       color: /*Color(0xff134074),*/Color(0xff19547b),
-                                        //                       size: 26,
-                                        //                     ),
-                                        //                   ),
-                                        //                 ),
-                                        //
-                                        //                 Text(
-                                        //                   _foundTicket[index]['Time'],
-                                        //                   textAlign: TextAlign.center,
-                                        //                   style: TextStyle(
-                                        //                       fontFamily: 'Roboto',
-                                        //                       fontWeight: FontWeight.w400,
-                                        //                       fontSize: 18),
-                                        //                 ),
-                                        //
-                                        //                 SizedBox(width: 3,),
-                                        //
-                                        //               ],
-                                        //             ),
-                                        //             Padding(padding: EdgeInsets.only(top: 1.5)),
-                                        //             Text(
-                                        //               _foundTicket[index]['DateTime'],
-                                        //               textAlign: TextAlign.center,
-                                        //               style: TextStyle(
-                                        //                   color: Color(0xff000000).withOpacity(0.65),
-                                        //                   fontFamily: 'fonts/Roboto-Thin.ttf',
-                                        //                   // fontWeight: FontWeight.normal,
-                                        //                   fontSize: 12),
-                                        //             ),
-                                        //           ],
-                                        //         ),
-                                        //       ],
-                                        //     ),
-                                        //   ),
-                                        // ),
+                                            );
+                                          },
+                                          // child: Transform(
+                                          //   alignment: Alignment.center,
+                                          //   transform: Matrix4.identity()
+                                          //     ..setEntry(3, 2, 0.0019)
+                                          //     ..setEntry(0, 3, 0)
+                                          //     ..rotateY(!_ticketExpand ? 0 : -(pi / 18)),
+                                          //   child: Container(
+                                          //     height: 210,
+                                          //     width: 153.94,
+                                          //     margin: EdgeInsets.only(left: 10, right: 10, top: 0, bottom: 5),
+                                          //     decoration: BoxDecoration(
+                                          //       // color: Color(0xffE2E2E2),
+                                          //       borderRadius: BorderRadius.circular(12.5),
+                                          //       boxShadow: [
+                                          //         BoxShadow(
+                                          //             blurRadius: 5,
+                                          //             offset: Offset(1, 0),
+                                          //             color: Colors.black.withOpacity(0.8)),
+                                          //         //3dright
+                                          //         BoxShadow(
+                                          //             blurRadius: 0,
+                                          //             offset: Offset(0, 1),
+                                          //             color: Colors.black.withOpacity(0.9)),
+                                          //         //3dbottom
+                                          //         BoxShadow(
+                                          //             blurRadius: 5,
+                                          //             offset: -Offset(1, 0),
+                                          //             color: Colors.black.withOpacity(0.8)),
+                                          //         //3dleft
+                                          //         BoxShadow(
+                                          //             blurRadius: 0,
+                                          //             offset: -Offset(0, 1),
+                                          //             color: Colors.black.withOpacity(0.9)),
+                                          //       ],
+                                          //       image: DecorationImage(
+                                          //           fit: BoxFit.cover,
+                                          //           opacity: 1,
+                                          //           image: AssetImage('assets/rectangle.png',),
+                                          //       ),
+                                          //       // color: Color(0xffE5E4E2)
+                                          //     ),
+                                          //     child: Stack(
+                                          //       children: [
+                                          //         Positioned.fill(
+                                          //             child: BackdropFilter(
+                                          //               filter: ImageFilter.blur(sigmaX: 0.5, sigmaY: 0.5),
+                                          //               child: Container(color: Colors.transparent,),
+                                          //             )
+                                          //         ),
+                                          //         Column(
+                                          //           children: [
+                                          //             Padding(padding: EdgeInsets.only(top: 10.0)),
+                                          //             Row(
+                                          //               children: [
+                                          //                 if(_foundTicket[index]["Severity"]=="High") ...[
+                                          //                   Image.asset("assets/vectorright.png")
+                                          //                 ]else if(_foundTicket[index]["Severity"]=="Medium") ...[
+                                          //                   Image.asset("assets/greenticket.png")
+                                          //                 ]else if(_foundTicket[index]["Severity"]=="Low") ...[
+                                          //                   Image.asset("assets/yellowticket.png")
+                                          //                 ]else if(_foundTicket[index]["Severity"]=="Information") ...[
+                                          //                   Image.asset("assets/whiteticket.png")
+                                          //                 ],
+                                          //                 /*Image.asset(
+                                          //                     _foundTicket[index]["Image"]),*/
+                                          //                 Padding(padding: EdgeInsets.only(right: 5.0)),
+                                          //                 Text(
+                                          //                   _foundTicket[index]['SystemNumber'],
+                                          //                   textAlign: TextAlign.center,
+                                          //                   style: TextStyle(
+                                          //                       fontFamily: 'fonts/Roboto-Bold.ttf',
+                                          //                       fontWeight: FontWeight.w900,
+                                          //                       fontSize: 24),
+                                          //                 ),
+                                          //                 Visibility(
+                                          //                   visible: _foundTicket[index]['loadingIndicator'],
+                                          //                   child: Padding(
+                                          //                     padding: EdgeInsets.only(top: 0.0, bottom: 2.5, left: 5),
+                                          //                     child: Stack(
+                                          //                       alignment: Alignment.center,
+                                          //                       children: [
+                                          //                         SizedBox(
+                                          //                           width: 25,
+                                          //                           height: 25,
+                                          //                           child: LoadingIndicator(
+                                          //                             indicatorType: Indicator.ballScaleMultiple,
+                                          //                             colors: [
+                                          //                               Colors.green.withOpacity(0.9),
+                                          //                               /*Color(0xff3B8DC2)
+                                          //                                   .withOpacity(
+                                          //                                   1),*/
+                                          //                             ],
+                                          //                           ),
+                                          //                         ),
+                                          //                         Container(
+                                          //                           height: 7.5,
+                                          //                           width: 7.5,
+                                          //                           decoration: BoxDecoration(
+                                          //                               color: Colors.green,
+                                          //                               /*Color(0XFF19547B),*/
+                                          //                               borderRadius: BorderRadius.circular(50)),
+                                          //                         )
+                                          //                       ],
+                                          //                     ),
+                                          //                   ),
+                                          //                 ),
+                                          //               ],
+                                          //             ),
+                                          //             Padding(padding: EdgeInsets.only(top: 3.0)),
+                                          //             SizedBox(
+                                          //               height: 108,
+                                          //               width: 112,
+                                          //               child: SingleChildScrollView(
+                                          //                 scrollDirection: Axis.vertical,
+                                          //                 child: Text(
+                                          //                   _foundTicket[index]['ProblemText'],
+                                          //                   textAlign: TextAlign.center,
+                                          //                   style: TextStyle(
+                                          //                       fontFamily: 'Roboto',
+                                          //                       fontSize: 14),
+                                          //                 ),
+                                          //               ),
+                                          //             ),
+                                          //             Padding(padding: EdgeInsets.only(top: 13.0)),
+                                          //             Row(
+                                          //               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                          //               crossAxisAlignment: CrossAxisAlignment.center,
+                                          //               children: [
+                                          //
+                                          //                 /*Visibility(
+                                          //                   visible: true,
+                                          //                   child: Badge(
+                                          //                     position: BadgePosition(top: 3,end: 3),
+                                          //                     toAnimate: true,
+                                          //                     padding: EdgeInsets.all(2.5),
+                                          //                     shape: BadgeShape.circle,
+                                          //                     alignment: Alignment(1,-1),
+                                          //                     showBadge: true,
+                                          //                     elevation: 2,
+                                          //                     animationType: BadgeAnimationType.fade,
+                                          //                     badgeColor: Colors.white.withOpacity(0.4),
+                                          //                     badgeContent: Text(
+                                          //                       '10',
+                                          //                       style: TextStyle(
+                                          //                           fontSize: 10,
+                                          //                           color: Colors.black.withOpacity(0.7),
+                                          //                           fontWeight: FontWeight.bold
+                                          //                       ),
+                                          //                     ),
+                                          //                     child: Icon(
+                                          //                       Icons.mail_outline_rounded,
+                                          //                       color: Colors.black.withOpacity(0.65),
+                                          //                       size: 26,
+                                          //                     ),
+                                          //                   ),
+                                          //                 ),*/
+                                          //                 Visibility(
+                                          //                   visible: false,
+                                          //                   child: Padding(
+                                          //                     padding: EdgeInsets.only(left: 2),
+                                          //                     child: Icon(
+                                          //                       Icons.mail_rounded,
+                                          //                       color: /*Color(0xff134074),*/Color(0xff19547b),
+                                          //                       size: 26,
+                                          //                     ),
+                                          //                   ),
+                                          //                 ),
+                                          //
+                                          //                 Text(
+                                          //                   _foundTicket[index]['Time'],
+                                          //                   textAlign: TextAlign.center,
+                                          //                   style: TextStyle(
+                                          //                       fontFamily: 'Roboto',
+                                          //                       fontWeight: FontWeight.w400,
+                                          //                       fontSize: 18),
+                                          //                 ),
+                                          //
+                                          //                 SizedBox(width: 3,),
+                                          //
+                                          //               ],
+                                          //             ),
+                                          //             Padding(padding: EdgeInsets.only(top: 1.5)),
+                                          //             Text(
+                                          //               _foundTicket[index]['DateTime'],
+                                          //               textAlign: TextAlign.center,
+                                          //               style: TextStyle(
+                                          //                   color: Color(0xff000000).withOpacity(0.65),
+                                          //                   fontFamily: 'fonts/Roboto-Thin.ttf',
+                                          //                   // fontWeight: FontWeight.normal,
+                                          //                   fontSize: 12),
+                                          //             ),
+                                          //           ],
+                                          //         ),
+                                          //       ],
+                                          //     ),
+                                          //   ),
+                                          // ),
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -4342,7 +4346,7 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                                   visible: _enterAction,
                                   child: AnimatedPositioned(
                                     curve: Curves.fastOutSlowIn,
-                                    left: _buttonPosition ? 152 : MediaQuery.of(context).size.width + 175,
+                                    left: _buttonPosition ? 156 : MediaQuery.of(context).size.width + 175,
                                     top: 17,
                                     duration: Duration(milliseconds: 250),
                                     child: Container(
@@ -4496,7 +4500,7 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                                   visible: _enterAction,
                                   child: AnimatedPositioned(
                                     curve: Curves.fastOutSlowIn,
-                                    left: _buttonPosition ? 152 : MediaQuery.of(context).size.width + 175,
+                                    left: _buttonPosition ? 156 : MediaQuery.of(context).size.width + 175,
                                     top: 44,
                                     duration: Duration(milliseconds: 350),
                                     child: IgnorePointer(
@@ -4675,7 +4679,7 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                                     visible: _enterAction,
                                     child: AnimatedPositioned(
                                       curve: Curves.fastOutSlowIn,
-                                      left: _buttonPosition ? 152 : MediaQuery.of(context).size.width + 175,
+                                      left: _buttonPosition ? 156 : MediaQuery.of(context).size.width + 175,
                                       top: 70,
                                       duration: Duration(milliseconds: 450),
                                       child: Container(
@@ -4812,7 +4816,7 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                                   visible: _enterAction,
                                   child: AnimatedPositioned(
                                     curve: Curves.fastOutSlowIn,
-                                    left: _buttonPosition ? 152 : MediaQuery.of(context).size.width + 175,
+                                    left: _buttonPosition ? 156 : MediaQuery.of(context).size.width + 175,
                                     top: 96,
                                     duration: Duration(milliseconds: 550),
                                     child: Container(
@@ -4965,7 +4969,7 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                                   visible: _enterAction,
                                   child: AnimatedPositioned(
                                     curve: Curves.fastOutSlowIn,
-                                    left: _buttonPosition ? 152 : MediaQuery.of(context).size.width + 175,
+                                    left: _buttonPosition ? 156 : MediaQuery.of(context).size.width + 175,
                                     top: 122,
                                     duration: Duration(milliseconds: 650),
                                     child: Container(
@@ -5120,7 +5124,7 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                                   visible: _enterAction,
                                   child: AnimatedPositioned(
                                     curve: Curves.fastOutSlowIn,
-                                    left: _buttonPosition ? 152 : MediaQuery.of(context).size.width + 175,
+                                    left: _buttonPosition ? 156 : MediaQuery.of(context).size.width + 175,
                                     top: 148,
                                     duration: Duration(milliseconds: 750),
                                     child: Container(
@@ -5463,7 +5467,7 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                                   visible: _enterAction,
                                   child: AnimatedPositioned(
                                     curve: Curves.fastOutSlowIn,
-                                    left: _buttonPosition ? 152 : MediaQuery.of(context).size.width + 175,
+                                    left: _buttonPosition ? 156 : MediaQuery.of(context).size.width + 175,
                                     top: 174,
                                     duration: Duration(milliseconds: 850),
                                     child: Container(
@@ -5583,7 +5587,7 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                                 ),*/
                                 AnimatedPositioned(
                                   curve: Curves.fastOutSlowIn,
-                                  left: _enterAction == false ? 152 : MediaQuery.of(context).size.width + 175,
+                                  left: _enterAction == false ? 156 : MediaQuery.of(context).size.width + 175,
                                   top: 17,
                                   duration: Duration(milliseconds: 250),
                                   child: GestureDetector(
@@ -5597,7 +5601,7 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
 
                                 AnimatedPositioned(
                                   curve: Curves.fastOutSlowIn,
-                                  left: _enterAction == false ? 152 : MediaQuery.of(context).size.width + 175,
+                                  left: _enterAction == false ? 156 : MediaQuery.of(context).size.width + 175,
                                   top: 44,
                                   duration: Duration(milliseconds: 350),
                                   child: Container(
@@ -5743,7 +5747,7 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
 
                                 AnimatedPositioned(
                                   curve: Curves.fastOutSlowIn,
-                                  left: _enterAction == false ? 152 : MediaQuery.of(context).size.width + 175,
+                                  left: _enterAction == false ? 156 : MediaQuery.of(context).size.width + 175,
                                   top: 70,
                                   duration: Duration(milliseconds: 450),
                                   child: Container(
@@ -5889,7 +5893,7 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
 
                                 AnimatedPositioned(
                                   curve: Curves.fastOutSlowIn,
-                                  left: _enterAction == false ? 152 : MediaQuery.of(context).size.width + 175,
+                                  left: _enterAction == false ? 156 : MediaQuery.of(context).size.width + 175,
                                   top: 96,
                                   duration: Duration(milliseconds: 550),
                                   child: Container(
@@ -6036,7 +6040,7 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
 
                                 AnimatedPositioned(
                                   curve: Curves.fastOutSlowIn,
-                                  left: _enterAction == false ? 152 : MediaQuery.of(context).size.width + 175,
+                                  left: _enterAction == false ? 156 : MediaQuery.of(context).size.width + 175,
                                   top: 122,
                                   duration: Duration(milliseconds: 650),
                                   child: Container(
@@ -6183,7 +6187,7 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
 
                                 AnimatedPositioned(
                                   curve: Curves.fastOutSlowIn,
-                                  left: _enterAction == false ? 152 : MediaQuery.of(context).size.width + 175,
+                                  left: _enterAction == false ? 156 : MediaQuery.of(context).size.width + 175,
                                   top: 148,
                                   duration: Duration(milliseconds: 750),
                                   child: Container(
@@ -6722,7 +6726,7 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                                                               borderRadius: BorderRadius.all(Radius.circular(10)),
                                                               color: Color(0xffC4C4C4).withOpacity(0.20),
                                                               border: Border.all(
-                                                                  color: Colors.black87)),
+                                                                  color: Colors.black.withOpacity(0.55)/*Colors.black87*/)),
                                                           width: 350,
                                                           /*width: MediaQuery.of(context)
                                                         .size
@@ -8085,9 +8089,11 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
         ),
         child: SingleChildScrollView(
           physics: PageScrollPhysics(),
+          // reverse: true,
           scrollDirection: Axis.vertical,
           child: Column(
             children: [
+
               Container(
                 height: 44,
                 color: Colors.transparent,
@@ -8138,6 +8144,129 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                           ),
                           Text(
                             "$_pending",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 25,
+                                shadows: [
+                                  Shadow(
+                                    offset: Offset(1, 1),
+                                    blurRadius: 1,
+                                    color: Colors.black.withOpacity(0.8),
+                                  ),
+                                ]
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+
+              Container(
+                height: 44,
+                color: Colors.transparent,
+                child: Center(
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Rating : ",
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w700,
+                          fontFamily: 'fonts/Roboto-Regular.ttf',
+                        ),
+                      ),
+
+                      RatingStars(
+                        value: 3.6,
+                        /*onValueChanged: (v) {
+                            setState(() {
+                              value = v;
+                            });
+                          },*/
+                        starBuilder: (index, color) => Icon(
+                          Icons.star,
+                          color: color,
+                        ),
+                        starCount: 5,
+                        starSize: 30,
+                        valueLabelColor: const Color(0xff9b9b9b),
+                        valueLabelTextStyle: const TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w400,
+                            fontStyle: FontStyle.normal,
+                            fontSize: 12.0),
+                        valueLabelRadius: 10,
+                        maxValue: 5,
+                        starSpacing: 2,
+                        maxValueVisibility: false,
+                        valueLabelVisibility: false,
+                        animationDuration: Duration(milliseconds: 1000),
+                        valueLabelPadding: EdgeInsets.symmetric(vertical: 1, horizontal: 8),
+                        valueLabelMargin: EdgeInsets.only(right: 8),
+                        starOffColor: Color(0xffe7e8ea),
+                        starColor: Color(0xff19547b),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+
+              Container(
+                height: 44,
+                color: Colors.transparent,
+                child: Center(
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Row(
+                        children: [
+                          /*Text(
+                            "Designation : ",
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w700,
+                              fontFamily: 'fonts/Roboto-Regular.ttf',
+                            ),
+                          ),*/
+                          Text(
+                            "Network Engineer",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 22.5,
+                                shadows: [
+                                  Shadow(
+                                    offset: Offset(1, 1),
+                                    blurRadius: 1,
+                                    color: Colors.black.withOpacity(0.8),
+                                  ),
+                                ]
+                            ),
+                          ),
+                        ],
+                      ),
+                      // Spacer(),
+                      Row(
+                        children: [
+                          Text(
+                            "Level : ",
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w700,
+                              fontFamily: 'fonts/Roboto-Regular.ttf',
+                            ),
+                          ),
+                          Text(
+                            "5",
                             style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
@@ -8374,9 +8503,9 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                                               SizedBox(height: 10,),
 
                                               if(element["Severity"]=="High")...[
-                                                unAssignedLongPress(systemNumber: element['SystemNumber'], unAssignedColor: /*Color(0xff9B4244)*/Color(0xffED0000)),
+                                                unAssignedLongPress(systemNumber: element['SystemNumber'], unAssignedColor: /*Color(0xff9B4244)*/Color(0xffED0000).withOpacity(0.75)),
                                               ]else if(element["Severity"]=="Medium")...[
-                                                unAssignedLongPress(systemNumber: element['SystemNumber'], unAssignedColor: /*Color(0xff569556)*/Color(0xff30C130)),
+                                                unAssignedLongPress(systemNumber: element['SystemNumber'], unAssignedColor: /*Color(0xff569556)*/Color(0xff30C130).withOpacity(0.75)),
                                               ]else if(element["Severity"]=="Low")...[
                                                 unAssignedLongPress(systemNumber: element['SystemNumber'], unAssignedColor: /*Color(0xffB7AA5E)*/Color(0xffE8D90E)),
                                               ]else if(element["Severity"]=="Information")...[

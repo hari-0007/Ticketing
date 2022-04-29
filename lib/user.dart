@@ -258,7 +258,8 @@ class _UsersState extends State<Users> {
                       Flexible(
                           child: Center(
                             child: Icon(
-                                Icons.star_border_outlined
+                              Icons.leaderboard_sharp,
+                              color: Color(0xff19547b).withOpacity(0.9),
                             ),
                           )
                       ),
@@ -266,7 +267,8 @@ class _UsersState extends State<Users> {
                       Flexible(
                           child: Center(
                             child: Icon(
-                                Icons.leaderboard_outlined
+                                Icons.star_half_sharp,
+                              color: Color(0xff19547b).withOpacity(0.9),
                             ),
                           )
                       ),
@@ -300,42 +302,59 @@ class _UsersState extends State<Users> {
                           height: 40,
                           // margin: EdgeInsets.symmetric(vertical: 10),
                           decoration: BoxDecoration(
-                            color: Color(0xff19547b).withOpacity(0.4),/*(index%2==0)?Color(0xff19547b).withOpacity(0.6):Color(0xff19547b).withOpacity(0.4),*/
+                            color: Color(0xff19547b).withOpacity(0.375),/*(index%2==0)?Color(0xff19547b).withOpacity(0.6):Color(0xff19547b).withOpacity(0.4),*/
                             borderRadius: BorderRadius.circular(10)
                           ),
                           child: Row(
                             // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
+
                               Flexible(
                                 flex: 2,
                                 child: Center(
                                     child: Text(
                                         usersFilter[index]["name"],
+                                      style: TextStyle(
+                                          color: Colors.black.withOpacity(0.85)
+                                      ),
                                     )
                                 ),
                               ),
+
                               Flexible(
                                 flex: 3,
                                 child: Center(
                                     child: Text(
                                       usersFilter[index]["designation"],
+                                      style: TextStyle(
+                                          color: Colors.black.withOpacity(0.85)
+                                      ),
                                     )
                                 ),
                               ),
+
+                              Flexible(
+                                child: Center(
+                                    child: Text(
+                                      usersFilter[index]["starRating"].toString(),
+                                      /*style: TextStyle(
+                                          color: Colors.black.withOpacity(0.85)
+                                      ),*/
+                                    )
+                                ),
+                              ),
+
                               Flexible(
                                 child: Center(
                                     child: Text(
                                   usersFilter[index]["level"].toString(),
+                                      style: TextStyle(
+                                          color: Colors.black.withOpacity(0.85)
+                                      ),
                                     )
                                 ),
                               ),
-                              Flexible(
-                                child: Center(
-                                    child: Text(
-                                        usersFilter[index]["starRating"].toString(),
-                                    )
-                                ),
-                              )
+
                             ],
                           ),
                         ),
@@ -515,45 +534,50 @@ class _UsersState extends State<Users> {
                         ),
                       ),
 
-                      Card(
-                        color: Colors.transparent,
-                        elevation: 5,
-                        child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(25),
-                              color: Colors.black.withOpacity(0.5),
-                              boxShadow: [
-                                BoxShadow(
-                                    blurRadius: 0,
-                                    offset: Offset(2, 4),
-                                    color: Colors.black12.withOpacity(0.15)), //3dright
-                              ]),
-                          child: Row(
-                              children: [
-                                SizedBox(width: 3,),
-                                SizedBox(
-                                  height: 30.5,
-                                  child: Icon(
-                                    Icons.add_circle_outline,
-                                    color: Colors.white,
-                                    size: 27,
+                      GestureDetector(
+                        onTap: (){
+
+                        },
+                        child: Card(
+                          color: Colors.transparent,
+                          elevation: 5,
+                          child: Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(25),
+                                color: Colors.black.withOpacity(0.5),
+                                boxShadow: [
+                                  BoxShadow(
+                                      blurRadius: 0,
+                                      offset: Offset(2, 4),
+                                      color: Colors.black12.withOpacity(0.15)), //3dright
+                                ]),
+                            child: Row(
+                                children: [
+                                  SizedBox(width: 3,),
+                                  SizedBox(
+                                    height: 30.5,
+                                    child: Icon(
+                                      Icons.add_circle_outline,
+                                      color: Colors.white,
+                                      size: 27,
+                                    ),
                                   ),
-                                ),
-                                SizedBox(
-                                  width: 4,
-                                ),
-                                Center(
-                                  child: Text(
-                                    'Create Users',
-                                    style: TextStyle(
-                                        fontFamily: 'fonts/Roboto-Light.ttf',
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 16,
-                                        color: Colors.white.withOpacity(0.75)),
+                                  SizedBox(
+                                    width: 4,
                                   ),
-                                ),
-                                SizedBox(width: 7.5,),
-                              ]),
+                                  Center(
+                                    child: Text(
+                                      'Create Users',
+                                      style: TextStyle(
+                                          fontFamily: 'fonts/Roboto-Light.ttf',
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 16,
+                                          color: Colors.white.withOpacity(0.75)),
+                                    ),
+                                  ),
+                                  SizedBox(width: 7.5,),
+                                ]),
+                          ),
                         ),
                       ),
 

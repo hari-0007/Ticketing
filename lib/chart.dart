@@ -1006,6 +1006,7 @@ class _ChartState extends State<Chart> {
                                         actionsOverflowButtonSpacing: 10,
                                         elevation: 5,
                                         scrollable: true,
+                                        // titlePadding: EdgeInsets.zero,
                                         // contentPadding: EdgeInsets.zero,
                                         title: Text("Group",
                                           textAlign: TextAlign.center,
@@ -1044,7 +1045,7 @@ class _ChartState extends State<Chart> {
                                                 ),
                                               ),
 
-                                              SizedBox(height: 12.5,),
+                                              SizedBox(height: 9,),
 
                                               Container(
                                                 decoration: BoxDecoration(
@@ -2986,7 +2987,9 @@ class _ChartState extends State<Chart> {
                 child: Row(
                   children: [
 
-                    Expanded(
+                    SizedBox(width: 10,),
+
+                    Flexible(
                       child: Center(
                         child: Text(
                           "Host Name",
@@ -2994,7 +2997,7 @@ class _ChartState extends State<Chart> {
                       ),
                     ),
 
-                    Expanded(
+                    Flexible(
                       child: Center(
                         child: Text(
                           "Agent ID",
@@ -3002,7 +3005,8 @@ class _ChartState extends State<Chart> {
                       ),
                     ),
 
-                    Expanded(
+                    Flexible(
+                      flex: 2,
                       child: Center(
                         child: Text(
                           "Discovered Time",
@@ -3010,7 +3014,7 @@ class _ChartState extends State<Chart> {
                       ),
                     ),
 
-                    SizedBox(width: 48,),
+                    // SizedBox(width: 48,),
                   ],
                 ),
               ),
