@@ -337,9 +337,9 @@ class _UsersState extends State<Users> {
                                 child: Center(
                                     child: Text(
                                       usersFilter[index]["starRating"].toString(),
-                                      /*style: TextStyle(
+                                      style: TextStyle(
                                           color: Colors.black.withOpacity(0.85)
-                                      ),*/
+                                      ),
                                     )
                                 ),
                               ),

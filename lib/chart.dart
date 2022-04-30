@@ -1314,7 +1314,15 @@ class _ChartState extends State<Chart> {
                                                           _discover.removeWhere((element) => element["devices"]==devices);
                                                           selectAll=false;
                                                         });
+
+                                                        /*setState(() {
+                                                          checkBox=false;
+                                                          selectAll=false;
+                                                          checkBoxAdd.clear();
+                                                        });*/
+
                                                       }
+                                                      checkBox=false;
                                                       checkBoxAdd.clear();
                                                       Navigator.of(context).pop();
                                                     },
@@ -1602,7 +1610,7 @@ class _ChartState extends State<Chart> {
                     child: Transform.scale(
                       scale: 1,
                       child: Checkbox(
-                        value: selectAll,
+                        value: (_discover.length==checkBoxAdd.length)?true:false,/*selectAll,*/
                         checkColor: Colors.white,
                         activeColor: Colors.grey,
                         shape:  RoundedRectangleBorder(
@@ -3306,6 +3314,11 @@ class _ChartState extends State<Chart> {
                                   padding: EdgeInsets.zero,
                                   itemBuilder: (BuildContext context) {
                                     return [
+
+                                      PopupMenuItem(
+                                          onTap: (){},
+                                          child: Text("Add")),
+
                                       PopupMenuItem(
                                         onTap: (){
                                           setState(() {
@@ -3317,6 +3330,7 @@ class _ChartState extends State<Chart> {
                                         },
                                         child: Text("Remove"),
                                       ),
+
                                       PopupMenuItem(
                                         onTap: (){
 

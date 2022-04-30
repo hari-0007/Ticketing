@@ -14,6 +14,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_animator/flutter_animator.dart';
 import 'package:flutter_rating_stars/flutter_rating_stars.dart';
 import 'package:grouped_list/grouped_list.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 import 'package:measured_size/measured_size.dart';
 
@@ -625,6 +626,8 @@ class MatrixPage extends StatefulWidget {
 }
 
 class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateMixin{
+
+  ImagePicker imagePicker  = ImagePicker();
 
   late AnimationController menuController;
   bool isMenuPlaying = false;
@@ -1561,12 +1564,17 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                                         itemBuilder: (context, index) {
                                           return GestureDetector(
                                             onTap: () {
+
+                                              /*memorybar.forEach((key, value){
+                                                print(value.toList()[index]);
+                                              });*/
+
                                               setState(() {
                                                 // memorybar.remove('C0001');
                                                 memorybar.forEach((key, value) {
                                                   if (key == _sysNumber) {                            //Switching on Visible MemoryBar only Remote and Chat Added
                                                     /*value.remove('assets/calliconpadding.png');*/
-                                                    if (value.toList()[index] == 'assets/chaticon250.png') {
+                                                    if (value.toList()[index] == 'assets/chaticon250.png') {                //value.toList() ==> converting Set to List
                                                       if (selectedIncidentWidgetMarker == IncidentMarker.main) {                      // Switching Between Main and Chat Container
                                                         selectedIncidentWidgetMarker = IncidentMarker.chat;
                                                         _remote = false;
@@ -2159,82 +2167,110 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
+
                             DelayedDisplay(
                               delay: Duration(milliseconds: 300),
-                              child: Card(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(15.0),
-                                ),
-                                color: Colors.transparent,
-                                elevation: 8,
-                                child: Container(
-                                  height: 45,
-                                  width: 45,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(100),
-                                    gradient: LinearGradient(
-                                        colors: [
-                                          Color(0xffEAE2E2).withOpacity(0.9),
-                                          Color(0xffABA4A4)
-                                          // Colors.white,
-                                          // Colors.black,
-                                        ],
-                                        stops: [
-                                          0.6,
-                                          1.0
-                                        ],
-                                        begin: Alignment.topCenter,
-                                        end: Alignment.bottomCenter),
+                              child: GestureDetector(
+                                onTap:() async{
+                                  final pickedImage = await imagePicker.pickImage(source: ImageSource.gallery,);
+                                  if(pickedImage != null){
+                                    print(pickedImage.path.toString());
+                                  }else{
+                                    print("No Image Selected");
+                                  }
+                                  /*if (pickedFile.path != null) {
+                                    File pickedVideo = File(pickedFile.path);
+                                  }*/
+                                },
+                                child: Card(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15.0),
                                   ),
-                                  child: Center(
-                                    child: Icon(
-                                      Icons.insert_photo_outlined,
-                                      color: Color(0xff1A5099).withOpacity(1),
-                                      size: 32.5,
+                                  color: Colors.transparent,
+                                  elevation: 8,
+                                  child: Container(
+                                    height: 45,
+                                    width: 45,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(100),
+                                      gradient: LinearGradient(
+                                          colors: [
+                                            Color(0xffEAE2E2).withOpacity(0.9),
+                                            Color(0xffABA4A4)
+                                            // Colors.white,
+                                            // Colors.black,
+                                          ],
+                                          stops: [
+                                            0.6,
+                                            1.0
+                                          ],
+                                          begin: Alignment.topCenter,
+                                          end: Alignment.bottomCenter),
+                                    ),
+                                    child: Center(
+                                      child: Icon(
+                                        Icons.insert_photo_outlined,
+                                        color: Color(0xff1A5099).withOpacity(1),
+                                        size: 32.5,
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
                             ),
+
                             SizedBox(height: 5,),
+
                             DelayedDisplay(
                               delay: Duration(milliseconds: 200),
-                              child: Card(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(15.0),
-                                ),
-                                color: Colors.transparent,
-                                elevation: 8,
-                                child: Container(
-                                  height: 45,
-                                  width: 45,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(100),
-                                    gradient: LinearGradient(
-                                        colors: [
-                                          Color(0xffEAE2E2).withOpacity(0.9),
-                                          Color(0xffABA4A4)
-                                          // Colors.white,
-                                          // Colors.black,
-                                        ],
-                                        stops: [
-                                          0.6,
-                                          1.0
-                                        ],
-                                        begin: Alignment.topCenter,
-                                        end: Alignment.bottomCenter),
+                              child: GestureDetector(
+                                onTap:() async{
+                                  final pickedImage = await imagePicker.pickVideo(source: ImageSource.gallery,);
+                                  if(pickedImage != null){
+                                    print(pickedImage.path.toString());
+                                  }else{
+                                    print("No Video Selected");
+                                  }
+                                },
+                                child: Card(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15.0),
                                   ),
-                                  child: Center(
-                                    child: Icon(
-                                      Icons.ondemand_video_outlined,
-                                      color: Color(0xff1A5099).withOpacity(1),
-                                      size: 32.5,
+                                  color: Colors.transparent,
+                                  elevation: 8,
+                                  child: Container(
+                                    height: 45,
+                                    width: 45,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(100),
+                                      gradient: LinearGradient(
+                                          colors: [
+                                            Color(0xffEAE2E2).withOpacity(0.9),
+                                            Color(0xffABA4A4)
+                                            // Colors.white,
+                                            // Colors.black,
+                                          ],
+                                          stops: [
+                                            0.6,
+                                            1.0
+                                          ],
+                                          begin: Alignment.topCenter,
+                                          end: Alignment.bottomCenter),
+                                    ),
+                                    child: Center(
+                                      child: Icon(
+                                        Icons.ondemand_video_outlined,
+                                        color: Color(0xff1A5099).withOpacity(1),
+                                        size: 32.5,
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
                             ),
+
                             SizedBox(height: 5,),
+
                             DelayedDisplay(
                               delay: Duration(milliseconds: 100),
                               child: Card(
@@ -2272,6 +2308,7 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                                 ),
                               ),
                             ),
+
                           ],
                         );
                       },
