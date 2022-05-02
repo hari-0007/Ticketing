@@ -31,6 +31,7 @@ List<Map<String, dynamic>> _elements = [
     "disableScript":false,
     'disable': false,
     "block": false,
+    "members":true,
   },
   {
     'devices': 'Allitson-02',
@@ -55,6 +56,7 @@ List<Map<String, dynamic>> _elements = [
     "disableScript":false,
     'disable': false,
     "block": false,
+    "members":false,
   },
   {
     'devices': 'Allitson-03',
@@ -79,6 +81,7 @@ List<Map<String, dynamic>> _elements = [
     "disableScript":false,
     'disable': false,
     "block": false,
+    "members":true,
   },
   {
     'devices': 'Allitson-04',
@@ -103,6 +106,7 @@ List<Map<String, dynamic>> _elements = [
     "disableScript":false,
     'disable': false,
     "block": false,
+    "members":false,
   },
   {
     'devices': 'Allitson-05',
@@ -127,6 +131,7 @@ List<Map<String, dynamic>> _elements = [
     "disableScript":false,
     'disable': false,
     "block": false,
+    "members":true,
   },
   {
     'devices': 'Allitson-06',
@@ -151,6 +156,7 @@ List<Map<String, dynamic>> _elements = [
     "disableScript":false,
     'disable': false,
     "block": false,
+    "members":false,
   },
   {
     'devices': 'Allitson-07',
@@ -175,6 +181,7 @@ List<Map<String, dynamic>> _elements = [
     "disableScript":false,
     'disable': false,
     "block": false,
+    "members":true,
   },
   {
     'devices': 'Allitson-08',
@@ -199,6 +206,7 @@ List<Map<String, dynamic>> _elements = [
     "disableScript":false,
     'disable': false,
     "block": false,
+    "members":false,
   },
   {
     'devices': 'Allitson-09',
@@ -223,6 +231,7 @@ List<Map<String, dynamic>> _elements = [
     "disableScript":false,
     'disable': false,
     "block": false,
+    "members":true,
   },
   {
     'devices': 'Allitson-10',
@@ -247,6 +256,7 @@ List<Map<String, dynamic>> _elements = [
     "disableScript":false,
     'disable': false,
     "block": false,
+    "members":false,
   },
   {
     'devices': 'Allitson-11',
@@ -271,6 +281,7 @@ List<Map<String, dynamic>> _elements = [
     "disableScript":false,
     'disable': false,
     "block": false,
+    "members":true,
   },
   {
     'devices': 'Allitson-12',
@@ -295,6 +306,7 @@ List<Map<String, dynamic>> _elements = [
     "disableScript":false,
     'disable': false,
     "block": false,
+    "members":false,
   },
   {
     'devices': 'Allitson-13',
@@ -319,6 +331,7 @@ List<Map<String, dynamic>> _elements = [
     "disableScript":false,
     'disable': false,
     "block": false,
+    "members":true,
   },
   {
     'devices': 'Allitson-14',
@@ -343,6 +356,7 @@ List<Map<String, dynamic>> _elements = [
     "disableScript":false,
     'disable': true,
     "block": false,
+    "members":false,
   },
   {
     'devices': 'Allitson-15',
@@ -367,6 +381,7 @@ List<Map<String, dynamic>> _elements = [
     "disableScript":false,
     'disable': false,
     "block": false,
+    "members":true,
   },
   {
     'devices': 'Allitson-16',
@@ -391,6 +406,7 @@ List<Map<String, dynamic>> _elements = [
     "disableScript":false,
     'disable': true,
     "block": false,
+    "members":false,
   },
   {
     'devices': 'Allitson-17',
@@ -415,6 +431,7 @@ List<Map<String, dynamic>> _elements = [
     "disableScript":false,
     'disable': true,
     "block": false,
+    "members":true,
   },
   {
     'devices': 'Allitson-18',
@@ -439,6 +456,7 @@ List<Map<String, dynamic>> _elements = [
     "disableScript":false,
     'disable': true,
     "block": false,
+    "members":false,
   },
   {
     'devices': 'Allitson-19',
@@ -463,6 +481,7 @@ List<Map<String, dynamic>> _elements = [
     "disableScript":false,
     'disable': true,
     "block": false,
+    "members":true,
   },
   {
     'devices': 'Allitson-20',
@@ -487,6 +506,7 @@ List<Map<String, dynamic>> _elements = [
     "disableScript":false,
     'disable': true,
     "block": false,
+    "members":false,
   },
   {
     'devices': 'Allitson-21',
@@ -511,6 +531,7 @@ List<Map<String, dynamic>> _elements = [
     "disableScript":false,
     'disable': true,
     "block": false,
+    "members":true,
   },
 ];
 
@@ -1702,7 +1723,7 @@ class _ChartState extends State<Chart> {
                 ),*/
 
                 indexedItemBuilder: (context, element, int){
-                  return Padding(
+                  return element["members"]? Padding(
                     padding: EdgeInsets.only(left: 3.5,right: 3.5),
                     child: Card(
                       elevation: element["disable"]?0:8,
@@ -2939,7 +2960,7 @@ class _ChartState extends State<Chart> {
                         ),
                       ),
                     ),
-                  );
+                  ):Container();
                 },
                 /*itemBuilder: (c, element) {
                   return GestureDetector(
@@ -3037,7 +3058,7 @@ class _ChartState extends State<Chart> {
 
                     _discover..sort((a,b) => b["block"].toString().compareTo(a["block"].toString()));
 
-                    return GestureDetector(
+                    return _discover[index]["members"]?Container():GestureDetector(
                       onTap: (){
 
                         // print(_discover.reversed);
@@ -3316,7 +3337,11 @@ class _ChartState extends State<Chart> {
                                     return [
 
                                       PopupMenuItem(
-                                          onTap: (){},
+                                          onTap: (){
+                                            setState(() {
+                                              _discover[index]["members"] = true;
+                                            });
+                                          },
                                           child: Text("Add")),
 
                                       PopupMenuItem(

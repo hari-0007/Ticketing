@@ -96,7 +96,7 @@ final List<Map<String, dynamic>> ticket = [
     "Ticket":"UnAssigned",
     "SystemNumber":"A0002",
     "HostName":"PCAL0101",
-    "Time":"8:00 AM",
+    "Time":"9:00 AM",
     "Severity":"Medium",
     "Type":"Automatic",
     "ProblemText":"System is not booting, it show an unknow error",
@@ -109,7 +109,7 @@ final List<Map<String, dynamic>> ticket = [
     "Ticket":"UnAssigned",
     "SystemNumber":"A0003",
     "HostName":"PCAL0102",
-    "Time":"8:00 AM",
+    "Time":"10:00 AM",
     "Severity":"Low",
     "Type":"Manual",
     "ProblemText":"System is not booting, it shows no boot files found.",
@@ -122,7 +122,7 @@ final List<Map<String, dynamic>> ticket = [
     "Ticket":"UnAssigned",
     "SystemNumber":"A0004",
     "HostName":"PCAL0103",
-    "Time":"8:00 AM",
+    "Time":"11:00 AM",
     "Severity":"Information",
     "Type":"Automatic",
     "ProblemText":"System is not booting, it show an unknow error",
@@ -135,7 +135,7 @@ final List<Map<String, dynamic>> ticket = [
     "Ticket":"UnAssigned",
     "SystemNumber":"A0005",
     "HostName":"PCAL0104",
-    "Time":"8:00 AM",
+    "Time":"12:00 AM",
     "Severity":"High",
     "Type":"Manual",
     "ProblemText":"System is not booting, it shows no boot files found.",
@@ -148,7 +148,7 @@ final List<Map<String, dynamic>> ticket = [
     "Ticket":"UnAssigned",
     "SystemNumber":"A0006",
     "HostName":"PCAL0105",
-    "Time":"8:00 AM",
+    "Time":"1:00 PM",
     "Severity":"Medium",
     "Type":"Automatic",
     "ProblemText":"System is not booting, it show an unknow error",
@@ -161,7 +161,7 @@ final List<Map<String, dynamic>> ticket = [
     "Ticket":"UnAssigned",
     "SystemNumber":"A0007",
     "HostName":"PCAL0106",
-    "Time":"8:00 AM",
+    "Time":"2:00 PM",
     "Severity":"Low",
     "Type":"Manual",
     "ProblemText":"System is not booting, it shows no boot files found.",
@@ -174,7 +174,7 @@ final List<Map<String, dynamic>> ticket = [
     "Ticket":"UnAssigned",
     "SystemNumber":"A0008",
     "HostName":"PCAL0107",
-    "Time":"8:00 AM",
+    "Time":"3:00 PM",
     "Severity":"Information",
     "Type":"Automatic",
     "ProblemText":"System is not booting, it show an unknow error",
@@ -190,7 +190,7 @@ final List<Map<String, dynamic>> ticket = [
     "Ticket":"UnAssigned",
     "SystemNumber":"A0009",
     "HostName":"PCAL0108",
-    "Time":"8:00 AM",
+    "Time":"4:00 PM",
     "Severity":"High",
     "Type":"Manual",
     "ProblemText":"System is not booting, it shows no boot files found.",
@@ -203,7 +203,7 @@ final List<Map<String, dynamic>> ticket = [
     "Ticket":"UnAssigned",
     "SystemNumber":"A0010",
     "HostName":"PCAL0109",
-    "Time":"8:00 AM",
+    "Time":"5:00 PM",
     "Severity":"Medium",
     "Type":"Automatic",
     "ProblemText":"System is not booting, it show an unknow error",
@@ -216,7 +216,7 @@ final List<Map<String, dynamic>> ticket = [
     "Ticket":"UnAssigned",
     "SystemNumber":"A0011",
     "HostName":"PCAL0110",
-    "Time":"8:00 AM",
+    "Time":"6:00 PM",
     "Severity":"Low",
     "Type":"Manual",
     "ProblemText":"System is not booting, it shows no boot files found.",
@@ -229,7 +229,7 @@ final List<Map<String, dynamic>> ticket = [
     "Ticket":"UnAssigned",
     "SystemNumber":"A0012",
     "HostName":"PCAL0111",
-    "Time":"8:00 AM",
+    "Time":"7:00 PM",
     "Severity":"Information",
     "Type":"Automatic",
     "ProblemText":"System is not booting, it show an unknow error",
@@ -242,7 +242,7 @@ final List<Map<String, dynamic>> ticket = [
     "Ticket":"UnAssigned",
     "SystemNumber":"A0013",
     "HostName":"PCAL0112",
-    "Time":"8:00 AM",
+    "Time":"8:00 PM",
     "Severity":"High",
     "Type":"Manual",
     "ProblemText":"System is not booting, it shows no boot files found.",
@@ -255,7 +255,7 @@ final List<Map<String, dynamic>> ticket = [
     "Ticket":"UnAssigned",
     "SystemNumber":"A0014",
     "HostName":"PCAL0113",
-    "Time":"8:00 AM",
+    "Time":"9:00 PM",
     "Severity":"Medium",
     "Type":"Automatic",
     "ProblemText":"System is not booting, it show an unknow error",
@@ -268,7 +268,7 @@ final List<Map<String, dynamic>> ticket = [
     "Ticket":"UnAssigned",
     "SystemNumber":"A0015",
     "HostName":"PCAL0114",
-    "Time":"8:00 AM",
+    "Time":"10:00 PM",
     "Severity":"Low",
     "Type":"Manual",
     "ProblemText":"System is not booting, it shows no boot files found.",
@@ -281,7 +281,7 @@ final List<Map<String, dynamic>> ticket = [
     "Ticket":"UnAssigned",
     "SystemNumber":"A0016",
     "HostName":"PCAL0115",
-    "Time":"8:00 AM",
+    "Time":"11:00 PM",
     "Severity":"Information",
     "Type":"Automatic",
     "ProblemText":"System is not booting, it show an unknow error",
@@ -298,7 +298,7 @@ final List<Map<String, dynamic>> ticket = [
     "Ticket":"UnAssigned",
     "SystemNumber":"A0017",
     "HostName":"PCAL0116",
-    "Time":"8:00 AM",
+    "Time":"12:00 PM",
     "Severity":"High",
     "Type":"Manual",
     "ProblemText":"System is not booting, it shows no boot files found.",
@@ -311,7 +311,7 @@ final List<Map<String, dynamic>> ticket = [
     "Ticket":"UnAssigned",
     "SystemNumber":"A0018",
     "HostName":"PCAL0117",
-    "Time":"8:00 AM",
+    "Time":"1:00 AM",
     "Severity":"Medium",
     "Type":"Automatic",
     "ProblemText":"System is not booting, it show an unknow error",
@@ -324,7 +324,7 @@ final List<Map<String, dynamic>> ticket = [
     "Ticket":"UnAssigned",
     "SystemNumber":"A0019",
     "HostName":"PCAL0118",
-    "Time":"8:00 AM",
+    "Time":"2:00 AM",
     "Severity":"Low",
     "Type":"Manual",
     "ProblemText":"System is not booting, it shows no boot files found.",
@@ -337,7 +337,7 @@ final List<Map<String, dynamic>> ticket = [
     "Ticket":"UnAssigned",
     "SystemNumber":"A0020",
     "HostName":"PCAL0119",
-    "Time":"8:00 AM",
+    "Time":"3:00 AM",
     "Severity":"Information",
     "Type":"Automatic",
     "ProblemText":"System is not booting, it show an unknow error",
@@ -350,7 +350,7 @@ final List<Map<String, dynamic>> ticket = [
     "Ticket":"UnAssigned",
     "SystemNumber":"A0021",
     "HostName":"PCAL0120",
-    "Time":"8:00 AM",
+    "Time":"4:00 AM",
     "Severity":"High",
     "Type":"Manual",
     "ProblemText":"System is not booting, it shows no boot files found.",
@@ -363,7 +363,7 @@ final List<Map<String, dynamic>> ticket = [
     "Ticket":"UnAssigned",
     "SystemNumber":"A0022",
     "HostName":"PCAL0121",
-    "Time":"8:00 AM",
+    "Time":"5:00 AM",
     "Severity":"Medium",
     "Type":"Automatic",
     "ProblemText":"System is not booting, it show an unknow error",
@@ -376,7 +376,7 @@ final List<Map<String, dynamic>> ticket = [
     "Ticket":"UnAssigned",
     "SystemNumber":"A0023",
     "HostName":"PCAL0122",
-    "Time":"8:00 AM",
+    "Time":"6:00 AM",
     "Severity":"Low",
     "Type":"Manual",
     "ProblemText":"System is not booting, it shows no boot files found.",
@@ -389,7 +389,7 @@ final List<Map<String, dynamic>> ticket = [
     "Ticket":"UnAssigned",
     "SystemNumber":"A0024",
     "HostName":"PCAL0123",
-    "Time":"8:00 AM",
+    "Time":"7:00 AM",
     "Severity":"Information",
     "Type":"Automatic",
     "ProblemText":"System is not booting, it show an unknow error",
@@ -418,7 +418,7 @@ final List<Map<String, dynamic>> ticket = [
     "Ticket":"UnAssigned",
     "SystemNumber":"A0026",
     "HostName":"PCAL0125",
-    "Time":"8:00 AM",
+    "Time":"9:00 AM",
     "Severity":"Medium",
     "Type":"Automatic",
     "ProblemText":"System is not booting, it show an unknow error",
@@ -431,7 +431,7 @@ final List<Map<String, dynamic>> ticket = [
     "Ticket":"UnAssigned",
     "SystemNumber":"A0027",
     "HostName":"PCAL0126",
-    "Time":"8:00 AM",
+    "Time":"10:00 AM",
     "Severity":"Low",
     "Type":"Manual",
     "ProblemText":"System is not booting, it shows no boot files found.",
@@ -444,7 +444,7 @@ final List<Map<String, dynamic>> ticket = [
     "Ticket":"UnAssigned",
     "SystemNumber":"A0028",
     "HostName":"PCAL0127",
-    "Time":"8:00 AM",
+    "Time":"11:00 AM",
     "Severity":"Information",
     "Type":"Automatic",
     "ProblemText":"System is not booting, it show an unknow error",
@@ -457,7 +457,7 @@ final List<Map<String, dynamic>> ticket = [
     "Ticket":"UnAssigned",
     "SystemNumber":"A0029",
     "HostName":"PCAL0128",
-    "Time":"8:00 AM",
+    "Time":"12:00 AM",
     "Severity":"High",
     "Type":"Manual",
     "ProblemText":"System is not booting, it shows no boot files found.",
@@ -470,7 +470,7 @@ final List<Map<String, dynamic>> ticket = [
     "Ticket":"UnAssigned",
     "SystemNumber":"A0030",
     "HostName":"PCAL0129",
-    "Time":"8:00 AM",
+    "Time":"1:00 PM",
     "Severity":"Medium",
     "Type":"Automatic",
     "ProblemText":"System is not booting, it show an unknow error",
@@ -483,7 +483,7 @@ final List<Map<String, dynamic>> ticket = [
     "Ticket":"UnAssigned",
     "SystemNumber":"A0031",
     "HostName":"PCAL0130",
-    "Time":"8:00 AM",
+    "Time":"2:00 PM",
     "Severity":"Low",
     "Type":"Manual",
     "ProblemText":"System is not booting, it shows no boot files found.",
@@ -496,7 +496,7 @@ final List<Map<String, dynamic>> ticket = [
     "Ticket":"UnAssigned",
     "SystemNumber":"A0032",
     "HostName":"PCAL0131",
-    "Time":"8:00 AM",
+    "Time":"3:00 PM",
     "Severity":"Information",
     "Type":"Automatic",
     "ProblemText":"System is not booting, it show an unknow error",
@@ -506,13 +506,11 @@ final List<Map<String, dynamic>> ticket = [
     "loadingIndicator": false,
   },
 
-
-
   {
     "Ticket":"UnAssigned",
     "SystemNumber":"A0025",
     "HostName":"PCAL0124",
-    "Time":"8:00 AM",
+    "Time":"4:00 PM",
     "Severity":"High",
     "Type":"Manual",
     "ProblemText":"System is not booting, it shows no boot files found.",
@@ -525,7 +523,7 @@ final List<Map<String, dynamic>> ticket = [
     "Ticket":"UnAssigned",
     "SystemNumber":"A0026",
     "HostName":"PCAL0125",
-    "Time":"8:00 AM",
+    "Time":"5:00 PM",
     "Severity":"Medium",
     "Type":"Automatic",
     "ProblemText":"System is not booting, it show an unknow error",
@@ -538,7 +536,7 @@ final List<Map<String, dynamic>> ticket = [
     "Ticket":"UnAssigned",
     "SystemNumber":"A0027",
     "HostName":"PCAL0126",
-    "Time":"8:00 AM",
+    "Time":"6:00 PM",
     "Severity":"Low",
     "Type":"Manual",
     "ProblemText":"System is not booting, it shows no boot files found.",
@@ -551,7 +549,7 @@ final List<Map<String, dynamic>> ticket = [
     "Ticket":"UnAssigned",
     "SystemNumber":"A0028",
     "HostName":"PCAL0127",
-    "Time":"8:00 AM",
+    "Time":"7:00 PM",
     "Severity":"Information",
     "Type":"Automatic",
     "ProblemText":"System is not booting, it show an unknow error",
@@ -577,7 +575,7 @@ final List<Map<String, dynamic>> ticket = [
     "Ticket":"UnAssigned",
     "SystemNumber":"A0030",
     "HostName":"PCAL0129",
-    "Time":"8:00 AM",
+    "Time":"9:00 PM",
     "Severity":"Medium",
     "Type":"Automatic",
     "ProblemText":"System is not booting, it show an unknow error",
@@ -589,7 +587,7 @@ final List<Map<String, dynamic>> ticket = [
   {
     "Ticket":"UnAssigned",
     "SystemNumber":"A0031",
-    "Time":"8:00 AM",
+    "Time":"10:00 PM",
     "Severity":"Low",
     "ProblemText":"System is not booting, it shows no boot files found.",
     'group': '31-02-2022',
@@ -602,7 +600,7 @@ final List<Map<String, dynamic>> ticket = [
   {
     "Ticket":"UnAssigned",
     "SystemNumber":"A0032",
-    "Time":"8:00 AM",
+    "Time":"11:00 PM",
     "Severity":"Information",
     "ProblemText":"System is not booting, it show an unknow error",
     'group': '31-02-2022',
@@ -892,7 +890,7 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                                   )
                               ),
                             );
-                      },
+                         },
                       ),
                     ),
                     //  CircleAvatar(
@@ -2919,9 +2917,15 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                 textInputAction: TextInputAction.go,
                 controller: _controllerTerminal,
                 // onChanged: (value){
+                //   setState(() {
+                //     _controllerTerminal.text=value;
+                //   });
                 //  print( _controllerTerminal.text);
                 // },
                 onSubmitted: (value){
+                  setState(() {
+                    _controllerTerminal.text=value;
+                  });
                   print( _controllerTerminal.text);
                 },
                 cursorColor: Colors.white,
@@ -4391,6 +4395,8 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                                       width: 174,
                                       child: ElevatedButton(
                                         onPressed: (){
+
+                                          print(_sysNumber);
 
                                           Clipboard.setData(ClipboardData()); // Vibration
                                           HapticFeedback.heavyImpact();
@@ -8124,7 +8130,216 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
             end: Alignment.bottomCenter,
           ),
         ),
-        child: SingleChildScrollView(
+        child:
+
+        /*PageView(
+          scrollDirection: Axis.vertical,
+          children: [
+
+            Container(
+              height: 44,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: Center(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Row(
+                      children: [
+                        Text(
+                          "Completed : ",
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w700,
+                            fontFamily: 'fonts/Roboto-Regular.ttf',
+                          ),
+                        ),
+                        Text(
+                          "$_completed",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 25,
+                              shadows: [
+                                Shadow(
+                                  offset: Offset(1, 1),
+                                  blurRadius: 1,
+                                  color: Colors.black.withOpacity(0.8),
+                                ),
+                              ]
+                          ),
+                        ),
+                      ],
+                    ),
+                    // Spacer(),
+                    Row(
+                      children: [
+                        Text(
+                          "Pending : ",
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w700,
+                            fontFamily: 'fonts/Roboto-Regular.ttf',
+                          ),
+                        ),
+                        Text(
+                          "$_pending",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 25,
+                              shadows: [
+                                Shadow(
+                                  offset: Offset(1, 1),
+                                  blurRadius: 1,
+                                  color: Colors.black.withOpacity(0.8),
+                                ),
+                              ]
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
+            Container(
+              height: 44,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: Center(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Rating : ",
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w700,
+                        fontFamily: 'fonts/Roboto-Regular.ttf',
+                      ),
+                    ),
+
+                    RatingStars(
+                      value:3.6,
+                      *//*onValueChanged: (v) {
+                        setState(() {
+                          value = v;
+                       });
+                     },*//*
+                      starBuilder: (index, color) => Icon(
+                        Icons.star,
+                        color: color,
+                      ),
+                      starCount: 5,
+                      starSize: 30,
+                      valueLabelColor: const Color(0xff9b9b9b),
+                      valueLabelTextStyle: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w400,
+                          fontStyle: FontStyle.normal,
+                          fontSize: 12.0),
+                      valueLabelRadius: 10,
+                      maxValue: 5,
+                      starSpacing: 2,
+                      maxValueVisibility: false,
+                      valueLabelVisibility: false,
+                      animationDuration: Duration(milliseconds: 1000),
+                      valueLabelPadding: EdgeInsets.symmetric(vertical: 1, horizontal: 8),
+                      valueLabelMargin: EdgeInsets.only(right: 8),
+                      starOffColor: Color(0xffe7e8ea),
+                      starColor: Color(0xff19547b),
+                    )
+                  ],
+                ),
+              ),
+            ),
+
+            Container(
+              height: 44,
+              color: Colors.transparent,
+              child: Center(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Row(
+                      children: [
+                        *//*Text(
+                            "Designation : ",
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w700,
+                              fontFamily: 'fonts/Roboto-Regular.ttf',
+                            ),
+                          ),*//*
+                        Text(
+                          "Network Engineer",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 22.5,
+                              shadows: [
+                                Shadow(
+                                  offset: Offset(1, 1),
+                                  blurRadius: 1,
+                                  color: Colors.black.withOpacity(0.8),
+                                ),
+                              ]
+                          ),
+                        ),
+                      ],
+                    ),
+                    // Spacer(),
+                    Row(
+                      children: [
+                        Text(
+                          "Level : ",
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w700,
+                            fontFamily: 'fonts/Roboto-Regular.ttf',
+                          ),
+                        ),
+                        Text(
+                          "5",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 25,
+                              shadows: [
+                                Shadow(
+                                  offset: Offset(1, 1),
+                                  blurRadius: 1,
+                                  color: Colors.black.withOpacity(0.8),
+                                ),
+                              ]
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
+          ],
+        )*/
+
+        SingleChildScrollView(
+          /*controller: PageController(
+              initialPage:1
+          ),*/
           physics: PageScrollPhysics(),
           // reverse: true,
           scrollDirection: Axis.vertical,
@@ -8221,11 +8436,11 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
 
                       RatingStars(
                         value: 3.6,
-                        /*onValueChanged: (v) {
+                        onValueChanged: (v) {
                             setState(() {
                               value = v;
                             });
-                          },*/
+                          },
                         starBuilder: (index, color) => Icon(
                           Icons.star,
                           color: color,
@@ -8806,8 +9021,9 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                                                 child: Center(
                                                   child: SingleChildScrollView(
                                                     scrollDirection: Axis.vertical,
-                                                    child: Text(
-                                                      'Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working ',
+                                                    child: Text(element["ProblemText"],
+                                                    // Text(
+                                                    //   'Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working ',
                                                       textAlign: TextAlign.center,
                                                       style: TextStyle(
                                                           fontSize: 17,
