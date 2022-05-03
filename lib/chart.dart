@@ -1506,7 +1506,7 @@ class _ChartState extends State<Chart> {
 
                                 setState(() {
                                   Timer(Duration(milliseconds: 200),(){
-                                    disController.animateTo(disController.position.maxScrollExtent, duration: Duration(seconds: 1), curve: Curves.easeIn);
+                                    disController.animateTo(disController.position.maxScrollExtent, duration: Duration(milliseconds: 500), curve: Curves.easeIn);
                                   });
                                   selectedDevicesMarker = DevicesMarker.discovered;
                                 });

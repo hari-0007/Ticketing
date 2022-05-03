@@ -9,6 +9,7 @@ import 'package:badges/badges.dart';
 import 'package:custom_pop_up_menu/custom_pop_up_menu.dart';
 import 'package:custom_timer/custom_timer.dart';
 import 'package:delayed_display/delayed_display.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animator/flutter_animator.dart';
@@ -624,6 +625,8 @@ class MatrixPage extends StatefulWidget {
 }
 
 class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateMixin{
+
+  ScrollController _controller = ScrollController();
 
   ImagePicker imagePicker  = ImagePicker();
 
@@ -1974,7 +1977,7 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                                       height: 22,
                                       width: 170,
                                       decoration: BoxDecoration(
-                                          color: Color(0xff6F0309),
+                                          color: Color(0xff141F38),
                                           borderRadius: BorderRadius.circular(25)),
                                       child: Row(
                                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -2271,36 +2274,48 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
 
                             DelayedDisplay(
                               delay: Duration(milliseconds: 100),
-                              child: Card(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(15.0),
-                                ),
-                                color: Colors.transparent,
-                                elevation: 8,
-                                child: Container(
-                                  height: 45,
-                                  width: 45,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(100),
-                                    gradient: LinearGradient(
-                                        colors: [
-                                          Color(0xffEAE2E2).withOpacity(0.9),
-                                          Color(0xffABA4A4)
-                                          // Colors.white,
-                                          // Colors.black,
-                                        ],
-                                        stops: [
-                                          0.6,
-                                          1.0
-                                        ],
-                                        begin: Alignment.topCenter,
-                                        end: Alignment.bottomCenter),
+                              child: GestureDetector(
+                                onTap: () async{
+                                  final pickedFile = await FilePicker.platform.pickFiles(
+                                    allowCompression: true,
+                                  );
+                                  if(pickedFile != null){
+                                    print(pickedFile.paths[0]/*.toString()*/);
+                                  }else{
+                                    print("No File Selected");
+                                  }
+                                },
+                                child: Card(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15.0),
                                   ),
-                                  child: Center(
-                                    child: Icon(
-                                      Icons.folder_outlined,
-                                      color: Color(0xff1A5099).withOpacity(1),
-                                      size: 32.5,
+                                  color: Colors.transparent,
+                                  elevation: 8,
+                                  child: Container(
+                                    height: 45,
+                                    width: 45,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(100),
+                                      gradient: LinearGradient(
+                                          colors: [
+                                            Color(0xffEAE2E2).withOpacity(0.9),
+                                            Color(0xffABA4A4)
+                                            // Colors.white,
+                                            // Colors.black,
+                                          ],
+                                          stops: [
+                                            0.6,
+                                            1.0
+                                          ],
+                                          begin: Alignment.topCenter,
+                                          end: Alignment.bottomCenter),
+                                    ),
+                                    child: Center(
+                                      child: Icon(
+                                        Icons.folder_outlined,
+                                        color: Color(0xff1A5099).withOpacity(1),
+                                        size: 32.5,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -3210,13 +3225,15 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                             // padding: EdgeInsets.only(left: 0),
                             // margin: EdgeInsets.only(top: 10,bottom: 10,left: 10,right: 10),
                             color: Colors.transparent,
-                            width: _ticketExpand ? 333 : 188.94,
+                            width: _ticketExpand ? 333 : MediaQuery.of(context).size.width>500?188.94:MediaQuery.of(context).size.width*0.46,/*MediaQuery.of(context).size.width*0.46,*//*188.94,*/
                             child: Stack(
                               children: [
                                 IgnorePointer(
                                   ignoring: _callIgnore,
                                   child: GestureDetector(
                                     onTap: () {
+                                      print(MediaQuery.of(context).size.width*0.848);
+                                      print(MediaQuery.of(context).size.width*0.46);
                                       print(index);
                                       setState(() {
                                         _selectedTicketIndex = !_selectedTicketIndex;
@@ -8340,201 +8357,261 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
           /*controller: PageController(
               initialPage:1
           ),*/
-          physics: PageScrollPhysics(),
+          controller: _controller,
+          physics: NeverScrollableScrollPhysics(),/*PageScrollPhysics(),*/
           // reverse: true,
           scrollDirection: Axis.vertical,
           child: Column(
             children: [
 
-              Container(
-                height: 44,
-                color: Colors.transparent,
-                child: Center(
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Row(
-                        children: [
-                          Text(
-                              "Completed : ",
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700,
-                              fontFamily: 'fonts/Roboto-Regular.ttf',
-                            ),
-                          ),
-                          Text(
-                            "$_completed",
-                            style: TextStyle(
+              GestureDetector(
+
+                /*onTap:(){
+                  print(_controller.position.maxScrollExtent/2);
+                  print(_controller.position.pixels);
+                },*/
+
+                onPanUpdate:(details){
+
+                  if(details.delta.dy<0){
+                    // print("down");
+                    _controller.animateTo(_controller.position.maxScrollExtent/2, duration: Duration(milliseconds: 500), curve: Curves.ease);
+                  }else{
+                    // print("UP");
+                    _controller.animateTo(_controller.position.maxScrollExtent, duration: Duration(milliseconds: 500), curve: Curves.ease);
+                  }
+                  /*_controller.animateTo(44, duration: Duration(seconds: 1), curve: Curves.ease);*/
+                },
+                child: Container(
+                  height: 44,
+                  color: Colors.transparent,
+                  child: Center(
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Row(
+                          children: [
+                            Text(
+                                "Completed : ",
+                              style: TextStyle(
+                                fontSize: 18,
                                 color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 25,
-                                shadows: [
-                                  Shadow(
-                                    offset: Offset(1, 1),
-                                    blurRadius: 1,
-                                    color: Colors.black.withOpacity(0.8),
-                                  ),
-                                ]
+                                fontWeight: FontWeight.w700,
+                                fontFamily: 'fonts/Roboto-Regular.ttf',
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                      // Spacer(),
-                      Row(
-                        children: [
-                          Text(
-                            "Pending : ",
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700,
-                              fontFamily: 'fonts/Roboto-Regular.ttf',
+                            Text(
+                              "$_completed",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 25,
+                                  shadows: [
+                                    Shadow(
+                                      offset: Offset(1, 1),
+                                      blurRadius: 1,
+                                      color: Colors.black.withOpacity(0.8),
+                                    ),
+                                  ]
+                              ),
                             ),
-                          ),
-                          Text(
-                            "$_pending",
-                            style: TextStyle(
+                          ],
+                        ),
+                        // Spacer(),
+                        Row(
+                          children: [
+                            Text(
+                              "Pending : ",
+                              style: TextStyle(
+                                fontSize: 18,
                                 color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 25,
-                                shadows: [
-                                  Shadow(
-                                    offset: Offset(1, 1),
-                                    blurRadius: 1,
-                                    color: Colors.black.withOpacity(0.8),
-                                  ),
-                                ]
+                                fontWeight: FontWeight.w700,
+                                fontFamily: 'fonts/Roboto-Regular.ttf',
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ],
+                            Text(
+                              "$_pending",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 25,
+                                  shadows: [
+                                    Shadow(
+                                      offset: Offset(1, 1),
+                                      blurRadius: 1,
+                                      color: Colors.black.withOpacity(0.8),
+                                    ),
+                                  ]
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
 
-              Container(
-                height: 44,
-                color: Colors.transparent,
-                child: Center(
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "Rating : ",
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w700,
-                          fontFamily: 'fonts/Roboto-Regular.ttf',
-                        ),
-                      ),
+              GestureDetector(
 
-                      RatingStars(
-                        value: 3.6,
-                        onValueChanged: (v) {
-                            setState(() {
-                              value = v;
-                            });
-                          },
-                        starBuilder: (index, color) => Icon(
-                          Icons.star,
-                          color: color,
-                        ),
-                        starCount: 5,
-                        starSize: 30,
-                        valueLabelColor: const Color(0xff9b9b9b),
-                        valueLabelTextStyle: const TextStyle(
+                /*onTap:(){
+                  print(_controller.position.maxScrollExtent);
+                  print(_controller.position.minScrollExtent);
+                },*/
+
+                onPanUpdate:(details){
+
+                  if(details.delta.dy<0){
+                    // print("down");
+                    _controller.animateTo(_controller.position.maxScrollExtent, duration: Duration(milliseconds: 500), curve: Curves.ease);
+                  }else{
+                    // print("UP");
+                    _controller.animateTo(_controller.position.minScrollExtent, duration: Duration(milliseconds: 500), curve: Curves.ease);
+                  }
+                  /*_controller.animateTo(44, duration: Duration(seconds: 1), curve: Curves.ease);*/
+                },
+
+                child: Container(
+                  height: 44,
+                  color: Colors.transparent,
+                  child: Center(
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Rating : ",
+                          style: TextStyle(
+                            fontSize: 18,
                             color: Colors.white,
-                            fontWeight: FontWeight.w400,
-                            fontStyle: FontStyle.normal,
-                            fontSize: 12.0),
-                        valueLabelRadius: 10,
-                        maxValue: 5,
-                        starSpacing: 2,
-                        maxValueVisibility: false,
-                        valueLabelVisibility: false,
-                        animationDuration: Duration(milliseconds: 1000),
-                        valueLabelPadding: EdgeInsets.symmetric(vertical: 1, horizontal: 8),
-                        valueLabelMargin: EdgeInsets.only(right: 8),
-                        starOffColor: Color(0xffe7e8ea),
-                        starColor: Color(0xff19547b),
-                      ),
-                    ],
+                            fontWeight: FontWeight.w700,
+                            fontFamily: 'fonts/Roboto-Regular.ttf',
+                          ),
+                        ),
+
+                        RatingStars(
+                          value: 3.6,
+                          onValueChanged: (v) {
+                              setState(() {
+                                value = v;
+                              });
+                            },
+                          starBuilder: (index, color) => Icon(
+                            Icons.star,
+                            color: color,
+                          ),
+                          starCount: 5,
+                          starSize: 30,
+                          valueLabelColor: const Color(0xff9b9b9b),
+                          valueLabelTextStyle: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w400,
+                              fontStyle: FontStyle.normal,
+                              fontSize: 12.0),
+                          valueLabelRadius: 10,
+                          maxValue: 5,
+                          starSpacing: 2,
+                          maxValueVisibility: false,
+                          valueLabelVisibility: false,
+                          animationDuration: Duration(milliseconds: 1000),
+                          valueLabelPadding: EdgeInsets.symmetric(vertical: 1, horizontal: 8),
+                          valueLabelMargin: EdgeInsets.only(right: 8),
+                          starOffColor: Color(0xffe7e8ea),
+                          starColor: Color(0xff19547b),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
 
-              Container(
-                height: 44,
-                color: Colors.transparent,
-                child: Center(
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Row(
-                        children: [
-                          /*Text(
-                            "Designation : ",
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700,
-                              fontFamily: 'fonts/Roboto-Regular.ttf',
-                            ),
-                          ),*/
-                          Text(
-                            "Network Engineer",
-                            style: TextStyle(
+              GestureDetector(
+
+                /*onTap:(){
+                  print(_controller.position.maxScrollExtent/2);
+                  print(_controller.position.pixels);
+                },*/
+
+                onPanUpdate:(details){
+
+                  if(details.delta.dy<0){
+                    // print("down");
+                    _controller.animateTo(_controller.position.minScrollExtent, duration: Duration(milliseconds: 500), curve: Curves.ease);
+                  }else{
+                    // print("UP");
+                    _controller.animateTo(_controller.position.maxScrollExtent/2, duration: Duration(milliseconds: 500), curve: Curves.ease);
+                  }
+                  /*_controller.animateTo(44, duration: Duration(seconds: 1), curve: Curves.ease);*/
+                },
+
+                child: Container(
+                  height: 44,
+                  color: Colors.transparent,
+                  child: Center(
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Row(
+                          children: [
+                            /*Text(
+                              "Designation : ",
+                              style: TextStyle(
+                                fontSize: 18,
                                 color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 22.5,
-                                shadows: [
-                                  Shadow(
-                                    offset: Offset(1, 1),
-                                    blurRadius: 1,
-                                    color: Colors.black.withOpacity(0.8),
-                                  ),
-                                ]
+                                fontWeight: FontWeight.w700,
+                                fontFamily: 'fonts/Roboto-Regular.ttf',
+                              ),
+                            ),*/
+                            Text(
+                              "Network Engineer",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 22.5,
+                                  shadows: [
+                                    Shadow(
+                                      offset: Offset(1, 1),
+                                      blurRadius: 1,
+                                      color: Colors.black.withOpacity(0.8),
+                                    ),
+                                  ]
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                      // Spacer(),
-                      Row(
-                        children: [
-                          Text(
-                            "Level : ",
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700,
-                              fontFamily: 'fonts/Roboto-Regular.ttf',
-                            ),
-                          ),
-                          Text(
-                            "5",
-                            style: TextStyle(
+                          ],
+                        ),
+                        // Spacer(),
+                        Row(
+                          children: [
+                            Text(
+                              "Level : ",
+                              style: TextStyle(
+                                fontSize: 18,
                                 color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 25,
-                                shadows: [
-                                  Shadow(
-                                    offset: Offset(1, 1),
-                                    blurRadius: 1,
-                                    color: Colors.black.withOpacity(0.8),
-                                  ),
-                                ]
+                                fontWeight: FontWeight.w700,
+                                fontFamily: 'fonts/Roboto-Regular.ttf',
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ],
+                            Text(
+                              "5",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 25,
+                                  shadows: [
+                                    Shadow(
+                                      offset: Offset(1, 1),
+                                      blurRadius: 1,
+                                      color: Colors.black.withOpacity(0.8),
+                                    ),
+                                  ]
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
