@@ -3179,7 +3179,7 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                           shape: BadgeShape.circle,
                           showBadge: false,
                           animationType: BadgeAnimationType.fade,
-                          badgeColor: Colors.deepPurple,
+                          badgeColor: Color(0xff141F38).withOpacity(0.7),/*Colors.deepPurple,*/
                           badgeContent: Text(
                             '1',
                             style: TextStyle(fontSize: 12, color: Colors.white),
@@ -9406,7 +9406,7 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                             width: 2
                           ),*/
                             // borderRadius: BorderRadius.circular(10),
-                            color: /*Colors.blueGrey.withOpacity(1)*/(int%2==0)?Color(0xff19547b).withOpacity(0.6):Color(0xff19547b).withOpacity(0.4),
+                            color: /*Colors.blueGrey.withOpacity(1)*/(int%2==0)?Color(0xff19547b).withOpacity(0.9):Color(0xff19547b).withOpacity(0.7),
                           /*boxShadow: [
                             BoxShadow(
                                 blurRadius: 0,
