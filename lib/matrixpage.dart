@@ -679,7 +679,7 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
 
   double value = 0;
   IncidentMarker selectedIncidentWidgetMarker = IncidentMarker.main;   //Inside Incident Starting home
-  WidgetMarker selectedWidgetMarker = WidgetMarker.incident;           // Drawer Starting home
+  WidgetMarker selectedWidgetMarker = WidgetMarker.devices;           // Drawer Starting home
   DeviceMarker selectedDevicesMarker = DeviceMarker.devicemain;
 
   bool _ticketExpand = false;                                           // getAssignedTicket
@@ -3201,9 +3201,7 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
   }
 
   Widget getAssignedTicket() {
-    return LayoutBuilder(
-      builder: (BuildContext context, BoxConstraints constraints) {
-          return Stack(
+    return Stack(
             children: [
               Container(
                   alignment: Alignment.center,
@@ -6925,7 +6923,6 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
               ),
             ],
           );
-      },);
   }
 
   /*Widget ChatButton() {

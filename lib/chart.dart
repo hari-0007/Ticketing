@@ -623,14 +623,15 @@ class _ChartState extends State<Chart> {
             SfCircularChart(
               margin: EdgeInsets.zero,
               tooltipBehavior: _tooltip,
-              /*onLegendTapped: (data){
-                setState(() {
-                  _discover.reversed.forEach((element) {
-                    print("${element["devices"]}:${element.containsValue(chartData[data.pointIndex!].x)}");
-                  });
-                  print(chartData[data.pointIndex!].x);
-                });
-              },*/
+              onLegendTapped: (data){
+                // setState(() {
+                //   _discover.reversed.forEach((element) {
+                //     print("${element["devices"]}:${element.containsValue(chartData[data.pointIndex!].x)}");
+                //   });
+                //   print(chartData[data.pointIndex!].x);
+                // });
+                print(chartData[data.pointIndex!].x);
+              },
               /*onDataLabelTapped: (data){
                 setState(() {
                   print("hello");
@@ -638,6 +639,23 @@ class _ChartState extends State<Chart> {
                 });
                 },*/
               legend: Legend(
+                  /*legendItemBuilder: (String name, dynamic series,dynamic point, int index){
+                    return Text(
+                        name.toString(),
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          shadows: [
+                            Shadow(
+                              offset: Offset(1, 1),
+                              blurRadius: 1,
+                              color: Colors.black.withOpacity(0.8),
+                            ),
+                          ]
+                      ),
+                    );
+                  },*/
                 isResponsive: false,
                 toggleSeriesVisibility: false,
                 isVisible: true,
@@ -703,6 +721,7 @@ class _ChartState extends State<Chart> {
               ],
               series: <CircularSeries>[
                 DoughnutSeries<ChartData, String>(
+                  legendIconType: LegendIconType.seriesType,
                     /*onPointDoubleTap: (value){
                       setState(() {
                         _devicesSearch(chartData[value.pointIndex!].x);
@@ -785,6 +804,62 @@ class _ChartState extends State<Chart> {
                 )
               ],
             ),
+
+            Positioned.fill(
+              child: Align(
+                alignment: Alignment(0.75,0.60),
+                child: Container(
+                  padding: EdgeInsets.all(2.5),
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Colors.white.withOpacity(0.5),
+                        Colors.white.withOpacity(0.2)
+                      ],
+                      stops: [0.0, 1.0],
+                    ),
+                    // color: Colors.white60,
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(15),
+                        bottomLeft: Radius.circular(15),
+                      topRight: Radius.circular(15),
+                      bottomRight: Radius.circular(15),
+                    ),
+                  ),
+                    child: GestureDetector(
+                      onTap: (){
+                        print("GROUP");
+                      },
+                      child: Card(
+                        color: Colors.transparent,
+                        elevation: 5,
+                        child: Container(
+                            padding: EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                                borderRadius:
+                                BorderRadius.circular(25),
+                                color: Colors.black.withOpacity(0.5),
+                                boxShadow: [
+                                  BoxShadow(
+                                      blurRadius: 0,
+                                      offset: Offset(2, 4),
+                                      color: Colors.black12
+                                          .withOpacity(
+                                          0.15)), //3dright
+                                ]),
+                            child: Text(
+                              "GROUP",
+                              style: TextStyle(
+                                color: Colors.white
+                              ),
+                            )
+                        ),
+                      ),
+                    )
+                ),
+              ),
+            ),
+
             Positioned.fill(
               child: Align(
                 alignment: Alignment.centerRight,
@@ -3325,55 +3400,57 @@ class _ChartState extends State<Chart> {
                               Text("${DateTime.now().year}-${DateTime.now().month}-${DateTime.now().day} ${DateTime.now().hour}:${DateTime.now().minute}"),
 
                               SizedBox(
-                                width: 15,
-                                child: PopupMenuButton(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(15.0),
+                                width: 20,
+                                child: Center(
+                                  child: PopupMenuButton(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(15.0),
+                                      ),
                                     ),
-                                  ),
-                                  padding: EdgeInsets.zero,
-                                  itemBuilder: (BuildContext context) {
-                                    return [
+                                    padding: EdgeInsets.zero,
+                                    itemBuilder: (BuildContext context) {
+                                      return [
 
-                                      PopupMenuItem(
+                                        PopupMenuItem(
+                                            onTap: (){
+                                              setState(() {
+                                                _discover[index]["members"] = true;
+                                              });
+                                            },
+                                            child: Text("Add")),
+
+                                        PopupMenuItem(
                                           onTap: (){
                                             setState(() {
-                                              _discover[index]["members"] = true;
+                                              /*final int removeInt = index;
+                                              _discover.removeAt(removeInt);*/
+                                              _discover.remove(_discover[index]);
                                             });
+                                            // print(_discover[index]);
                                           },
-                                          child: Text("Add")),
+                                          child: Text("Remove"),
+                                        ),
 
-                                      PopupMenuItem(
-                                        onTap: (){
-                                          setState(() {
-                                            /*final int removeInt = index;
-                                            _discover.removeAt(removeInt);*/
-                                            _discover.remove(_discover[index]);
-                                          });
-                                          // print(_discover[index]);
-                                        },
-                                        child: Text("Remove"),
-                                      ),
+                                        PopupMenuItem(
+                                          onTap: (){
 
-                                      PopupMenuItem(
-                                        onTap: (){
+                                            setState(() {
+                                              _discover[index]["block"] = !_discover[index]["block"];
+                                            });
 
-                                          setState(() {
-                                            _discover[index]["block"] = !_discover[index]["block"];
-                                          });
-
-                                          /*setState(() {
-                                            final block = _discover[index];
-                                            _discover.remove(block);
-                                            _discover.insert(0, block);
-                                          });*/
-                                          print(_discover[index]);
-                                        },
-                                        child: Text(_discover[index]["block"]?"Unblock":"Block"),
-                                      ),
-                                    ];
-                                  },
+                                            /*setState(() {
+                                              final block = _discover[index];
+                                              _discover.remove(block);
+                                              _discover.insert(0, block);
+                                            });*/
+                                            print(_discover[index]);
+                                          },
+                                          child: Text(_discover[index]["block"]?"Unblock":"Block"),
+                                        ),
+                                      ];
+                                    },
+                                  ),
                                 ),
                               ),
 
