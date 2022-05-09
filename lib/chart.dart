@@ -1,5 +1,7 @@
 // import 'package:flutter/cupertino.dart';
 import 'dart:async';
+// import 'dart:math';
+// import 'package:random_color/random_color.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -18,7 +20,7 @@ List<Map<String, dynamic>> _elements = [
     "publicIP": "8.8.8.8",
     "localIP": "103.78.159.123",
     "macAddress": "000.a83.b1c.08e",
-    'group': 'Online',
+    'statusLive': 'Online',
     "lastActive": "1 Hour Ago",
     "hardWareDetails": {
       "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
@@ -43,7 +45,7 @@ List<Map<String, dynamic>> _elements = [
     "publicIP": "8.8.8.81",
     "localIP": "103.78.159.456",
     "macAddress": "000.a83.zxc.08e",
-    'group': 'Online',
+    'statusLive': 'Online',
     "lastActive": "30 Minutes Ago",
     "hardWareDetails": {
       "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
@@ -68,7 +70,7 @@ List<Map<String, dynamic>> _elements = [
     "publicIP": "8.8.8.82",
     "localIP": "103.78.159.789",
     "macAddress": "000.a83.cvb.08e",
-    'group': 'Online',
+    'statusLive': 'Online',
     "lastActive": "1 Hour Ago",
     "hardWareDetails": {
       "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
@@ -93,7 +95,7 @@ List<Map<String, dynamic>> _elements = [
     "publicIP": "8.8.8.83",
     "localIP": "103.78.159.987",
     "macAddress": "000.a83.bnm.08e",
-    'group': 'Online',
+    'statusLive': 'Online',
     "lastActive": "1 Hour Ago",
     "hardWareDetails": {
       "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
@@ -118,7 +120,7 @@ List<Map<String, dynamic>> _elements = [
     "publicIP": "8.8.8.84",
     "localIP": "103.78.159.654",
     "macAddress": "000.a83.asd.08e",
-    'group': 'Online',
+    'statusLive': 'Online',
     "lastActive": "3 Hour Ago",
     "hardWareDetails": {
       "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
@@ -143,7 +145,7 @@ List<Map<String, dynamic>> _elements = [
     "publicIP": "8.8.8.85",
     "localIP": "103.78.159.321",
     "macAddress": "000.a83.dfg.08e",
-    'group': 'Online',
+    'statusLive': 'Online',
     "lastActive": "4 Hour Ago",
     "hardWareDetails": {
       "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
@@ -168,7 +170,7 @@ List<Map<String, dynamic>> _elements = [
     "publicIP": "8.8.8.86",
     "localIP": "103.78.159.147",
     "macAddress": "000.a83.ghj.08e",
-    'group': 'Offline',
+    'statusLive': 'Offline',
     "lastActive": "Offline",
     "hardWareDetails": {
       "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
@@ -193,7 +195,7 @@ List<Map<String, dynamic>> _elements = [
     "publicIP": "8.8.8.87",
     "localIP": "103.78.159.258",
     "macAddress": "000.a83.jkl.08e",
-    'group': 'Online',
+    'statusLive': 'Online',
     "lastActive": "2 Hour Ago",
     "hardWareDetails": {
       "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
@@ -218,7 +220,7 @@ List<Map<String, dynamic>> _elements = [
     "publicIP": "8.8.8.88",
     "localIP": "103.78.159.369",
     "macAddress": "000.a83.qwe.08e",
-    'group': 'Offline',
+    'statusLive': 'Offline',
     "lastActive": "Offline",
     "hardWareDetails": {
       "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
@@ -243,7 +245,7 @@ List<Map<String, dynamic>> _elements = [
     "publicIP": "8.8.8.89",
     "localIP": "103.78.159.963",
     "macAddress": "000.a83.ert.08e",
-    'group': 'Offline',
+    'statusLive': 'Offline',
     "lastActive": "Offline",
     "hardWareDetails": {
       "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
@@ -268,7 +270,7 @@ List<Map<String, dynamic>> _elements = [
     "publicIP": "8.8.8.9",
     "localIP": "103.78.159.852",
     "macAddress": "000.a83.tyu.08e",
-    'group': 'Offline',
+    'statusLive': 'Offline',
     "lastActive": "Offline",
     "hardWareDetails": {
       "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
@@ -293,7 +295,7 @@ List<Map<String, dynamic>> _elements = [
     "publicIP": "8.8.8.91",
     "localIP": "103.78.159.741",
     "macAddress": "000.a83.uio.08e",
-    'group': 'Offline',
+    'statusLive': 'Offline',
     "lastActive": "Offline",
     "hardWareDetails": {
       "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
@@ -318,7 +320,7 @@ List<Map<String, dynamic>> _elements = [
     "publicIP": "8.8.8.92",
     "localIP": "103.78.159.478",
     "macAddress": "000.a83.iop.08e",
-    'group': 'Offline',
+    'statusLive': 'Offline',
     "lastActive": "Offline",
     "hardWareDetails": {
       "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
@@ -343,7 +345,7 @@ List<Map<String, dynamic>> _elements = [
     "publicIP": "8.8.8.93",
     "localIP": "103.78.159.874",
     "macAddress": "000.a83.zaq.08e",
-    'group': 'Disabled',
+    'statusLive': 'Disabled',
     "lastActive": "Disable",
     "hardWareDetails": {
       "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
@@ -368,7 +370,7 @@ List<Map<String, dynamic>> _elements = [
     "publicIP": "8.8.8.94",
     "localIP": "103.78.159.159",
     "macAddress": "000.a83.xsw.08e",
-    'group': 'Offline',
+    'statusLive': 'Offline',
     "lastActive": "Offline",
     "hardWareDetails": {
       "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
@@ -393,7 +395,7 @@ List<Map<String, dynamic>> _elements = [
     "publicIP": "8.8.8.95",
     "localIP": "103.78.159.951",
     "macAddress": "000.a83.cde.08e",
-    'group': 'Disabled',
+    'statusLive': 'Offline',
     "lastActive": "Disable",
     "hardWareDetails": {
       "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
@@ -418,7 +420,7 @@ List<Map<String, dynamic>> _elements = [
     "publicIP": "8.8.8.96",
     "localIP": "103.78.159.236",
     "macAddress": "000.a83.vfr.08e",
-    'group': 'Disabled',
+    'statusLive': 'Disabled',
     "lastActive": "Disable",
     "hardWareDetails": {
       "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
@@ -443,7 +445,7 @@ List<Map<String, dynamic>> _elements = [
     "publicIP": "8.8.8.97",
     "localIP": "103.78.159.632",
     "macAddress": "000.a83.bgt.08e",
-    'group': 'Disabled',
+    'statusLive': 'Disabled',
     "lastActive": "Disable",
     "hardWareDetails": {
       "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
@@ -468,7 +470,7 @@ List<Map<String, dynamic>> _elements = [
     "publicIP": "8.8.8.98",
     "localIP": "103.78.159.486",
     "macAddress": "000.a83.nhy.08e",
-    'group': 'Disabled',
+    'statusLive': 'Disabled',
     "lastActive": "Disable",
     "hardWareDetails": {
       "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
@@ -493,7 +495,7 @@ List<Map<String, dynamic>> _elements = [
     "publicIP": "8.8.8.99",
     "localIP": "103.78.159.684",
     "macAddress": "000.a83.mju.08e",
-    'group': 'Disabled',
+    'statusLive': 'Disabled',
     "lastActive": "Disable",
     "hardWareDetails": {
       "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
@@ -518,7 +520,7 @@ List<Map<String, dynamic>> _elements = [
     "publicIP": "8.8.9.0",
     "localIP": "103.78.159.000",
     "macAddress": "000.a83.lop.08e",
-    'group': 'Disabled',
+    'statusLive': 'Disabled',
     "lastActive": "Disable",
     "hardWareDetails": {
       "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
@@ -551,12 +553,19 @@ class Chart extends StatefulWidget {
 
 class _ChartState extends State<Chart> {
 
+  List<ChartData> chartData =[];
+
+  Map map = Map();
+
+  List group= [];
+
   bool selectAll = false;
 
   bool checkBox = false;
 
   List<Map<String, dynamic>> _discover = [];
   Set checkBoxAdd = {};
+  Set visibleCheckBox = {};
 
   // late List<ChartData> data;
   late TooltipBehavior _tooltip;
@@ -576,14 +585,27 @@ class _ChartState extends State<Chart> {
   @override
   void initState() {
 
+    // _elements.sort((a, b) => a["devices"].compareTo(b["devices"]));
+
     _discover = _elements;
 
     _tooltip=TooltipBehavior(enable: true,elevation: 2,color: Colors.blueGrey,duration: 5000,animationDuration: 500,);
+
+    _discover.forEach((element) {
+      group.add(element["statusLive"]);
+    });
+
+    group.forEach((x) => map[x] = !map.containsKey(x) ? (1) : (map[x] + 1));
+
+    for(int i=0;i<map.keys.toList().length;i++){
+      chartData.add(ChartData(map.keys.toList()[i], map[map.keys.toList()[i]].toInt()));
+    }
 
     super.initState();
   }
 
   void _devicesSearch(String enteredKeyword) {
+    // _elements.sort((a, b) => a["devices"].compareTo(b["devices"]));
     List<Map<String, dynamic>> results = [];
     if (enteredKeyword.isEmpty) {
       // if the search field is empty or only contains white-space, we'll display all users
@@ -591,30 +613,49 @@ class _ChartState extends State<Chart> {
     } else {
       results = _elements
           .where((user) =>_deviceflag==true?
-          user["devices"].toLowerCase().contains(enteredKeyword.toLowerCase()) : user["group"].toLowerCase().contains(enteredKeyword.toLowerCase())).toList()/*..sort((a, b) => a["devices"].compareTo(b["devices"]))*/;
+          user["devices"].toLowerCase().contains(enteredKeyword.toLowerCase()) : user["statusLive"].toLowerCase().contains(enteredKeyword.toLowerCase())).toList()/*..sort((a, b) => a["devices"].compareTo(b["devices"]))*/;
       // we use the toLowerCase() method to make it case-insensitive
     }
 
     // Refresh the UI
     setState(() {
+      // results.sort((a, b) => a["devices"].compareTo(b["devices"]));
       _discover = results;
+      // _discover.sort((a, b) => a["devices"].compareTo(b["devices"]));
     });
   }
+
+
 
   @override
   Widget build(BuildContext context) {
 
-    var _chart = {
-      "Online":15,
-      "Offline":15,
-      "Disabled":20
-    };
+    // List group= [];
 
-    final List<ChartData> chartData = [
-      ChartData(_chart.keys.toList()[0], _chart["Online"]!.toInt(), Color(0xff001F61)),
-      ChartData(_chart.keys.toList()[1],  _chart["Offline"]!.toInt(), Color(0xff0247BA)),
-      ChartData(_chart.keys.toList()[2],  _chart["Disabled"]!.toInt(), Color(0xff0068D7)),
-    ];
+    // _discover.forEach((element) {
+    //   group.add(element["statusLive"]);
+    // });
+
+    // var reversed = group.reversed;
+
+    // Map map = Map();
+
+    // reversed.forEach((x) => map[x] = !map.containsKey(x) ? (1) : (map[x] + 1));
+
+    // _elements.sort((a, b) => a["devices"].compareTo(b["devices"]));
+    // _discover.sort((a, b) => a["devices"].compareTo(b["devices"]));
+
+    // var _chart = {
+    //   "Online":15,
+    //   "Offline":15,
+    //   "Disabled":20
+    // };
+
+    // final List<ChartData> chartData = [
+    //   ChartData(map.keys.toList()[0], map[map.keys.toList()[0]].toInt(), Color(0xff001F61)),
+    //   ChartData(map.keys.toList()[1],  map[map.keys.toList()[1]].toInt(), Color(0xff0247BA)),
+    //   ChartData(map.keys.toList()[2],  map[map.keys.toList()[2]].toInt(), Color(0xff0068D7)),
+    // ];
 
     return Column(
       children: [
@@ -639,28 +680,60 @@ class _ChartState extends State<Chart> {
                 });
                 },*/
               legend: Legend(
-                  /*legendItemBuilder: (String name, dynamic series,dynamic point, int index){
-                    return Text(
-                        name.toString(),
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                          shadows: [
-                            Shadow(
-                              offset: Offset(1, 1),
-                              blurRadius: 1,
-                              color: Colors.black.withOpacity(0.8),
-                            ),
-                          ]
-                      ),
-                    );
-                  },*/
+                  // legendItemBuilder: (String name, dynamic series,dynamic point, int index){
+                  //   return Container(
+                  //     height: 30,
+                  //       width: 80,
+                  //       color: index==0?Colors.green:Colors.red,
+                  //       // margin: index==0?EdgeInsets.only(top: 40):EdgeInsets.only(top: 20),
+                  //       child: Column(
+                  //         crossAxisAlignment: CrossAxisAlignment.start,
+                  //         mainAxisAlignment: MainAxisAlignment.center,
+                  //         children: [
+                  //           Text(
+                  //             name.toString(),
+                  //             textAlign: TextAlign.start,
+                  //             style: TextStyle(
+                  //                 color: Colors.white,
+                  //                 fontWeight: FontWeight.bold,
+                  //                 fontSize: 20,
+                  //                 shadows: [
+                  //                   Shadow(
+                  //                     offset: Offset(1, 1),
+                  //                     blurRadius: 1,
+                  //                     color: Colors.black.withOpacity(0.8),
+                  //                   ),
+                  //                 ]
+                  //             ),
+                  //           ),
+                  //
+                  //         ],
+                  //       )
+                  //   );
+                  //
+                  //   //   Text(
+                  //   //     name.toString(),
+                  //   //   style: TextStyle(
+                  //   //       color: Colors.white,
+                  //   //       fontWeight: FontWeight.bold,
+                  //   //       fontSize: 20,
+                  //   //       shadows: [
+                  //   //         Shadow(
+                  //   //           offset: Offset(1, 1),
+                  //   //           blurRadius: 1,
+                  //   //           color: Colors.black.withOpacity(0.8),
+                  //   //         ),
+                  //   //       ]
+                  //   //   ),
+                  //   // );
+                  // },
+
                 isResponsive: false,
                 toggleSeriesVisibility: false,
                 isVisible: true,
-                overflowMode: LegendItemOverflowMode.wrap,
+                overflowMode: LegendItemOverflowMode.none,
                 alignment: ChartAlignment.center,
+                  position: LegendPosition.right,
                 textStyle: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
@@ -700,7 +773,7 @@ class _ChartState extends State<Chart> {
                           ),
                           child: Center(
                             child: Text(
-                              "50",
+                              _discover.length.toString(),
                               style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
@@ -729,10 +802,11 @@ class _ChartState extends State<Chart> {
                       });
                     },*/
                     onPointTap: (value){
-                      // print(value.pointIndex);
-                      /*print(value.pointIndex);
+                      print(value.pointIndex);
                       print(explode);
-                      print(explodeIndex);*/
+                      print(explodeIndex);
+                      print(chartData[value.pointIndex!].x);
+
                       setState(() {
                         explodeIndex=value.pointIndex!;
                         if(explodeIndex == value.pointIndex){
@@ -798,7 +872,30 @@ class _ChartState extends State<Chart> {
                     explode: explode,
                     explodeGesture: ActivationMode.singleTap,
                     dataSource: chartData,
-                    pointColorMapper: (ChartData data, _) => data.color,
+                    // pointColorMapper: (ChartData data, int){
+                    //
+                    //   // Color _color = RandomColor().randomColor(
+                    //   //   colorHue: ColorHue.blue,
+                    //   //   colorSaturation: ColorSaturation.highSaturation,
+                    //   //   colorBrightness: ColorBrightness.veryDark,
+                    //   //   debug: true
+                    //   // );
+                    //   //
+                    //   // return _color;
+                    //
+                    //   Color _ms = RandomColor().randomColor(
+                    //       colorHue: ColorHue.custom(Range.staticValue(
+                    //           HSLColor.fromColor(Colors.blue).hue.toInt()
+                    //       )),
+                    //       colorSaturation: ColorSaturation.highSaturation,
+                    //       colorBrightness: ColorBrightness.veryDark,
+                    //       // debug: true
+                    //   );
+                    //
+                    //   return _ms;
+                    //
+                    // },
+                    // pointColorMapper: (ChartData data, _) => data.color,
                     xValueMapper: (ChartData data, _) => data.x,
                     yValueMapper: (ChartData data, _) => data.y
                 )
@@ -807,55 +904,84 @@ class _ChartState extends State<Chart> {
 
             Positioned.fill(
               child: Align(
-                alignment: Alignment(0.75,0.60),
-                child: Container(
-                  padding: EdgeInsets.all(2.5),
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        Colors.white.withOpacity(0.5),
-                        Colors.white.withOpacity(0.2)
-                      ],
-                      stops: [0.0, 1.0],
-                    ),
-                    // color: Colors.white60,
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(15),
-                        bottomLeft: Radius.circular(15),
-                      topRight: Radius.circular(15),
-                      bottomRight: Radius.circular(15),
-                    ),
-                  ),
-                    child: GestureDetector(
-                      onTap: (){
-                        print("GROUP");
-                      },
-                      child: Card(
-                        color: Colors.transparent,
-                        elevation: 5,
-                        child: Container(
-                            padding: EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                                borderRadius:
-                                BorderRadius.circular(25),
-                                color: Colors.black.withOpacity(0.5),
-                                boxShadow: [
-                                  BoxShadow(
-                                      blurRadius: 0,
-                                      offset: Offset(2, 4),
-                                      color: Colors.black12
-                                          .withOpacity(
-                                          0.15)), //3dright
-                                ]),
-                            child: Text(
-                              "GROUP",
-                              style: TextStyle(
-                                color: Colors.white
-                              ),
-                            )
-                        ),
+                alignment: Alignment(1,0.60),
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 35),
+                  child: Container(
+                    padding: EdgeInsets.all(2.5),
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          Colors.white.withOpacity(0.5),
+                          Colors.white.withOpacity(0.2)
+                        ],
+                        stops: [0.0, 1.0],
                       ),
-                    )
+                      // color: Colors.white60,
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(15),
+                          bottomLeft: Radius.circular(15),
+                        topRight: Radius.circular(15),
+                        bottomRight: Radius.circular(15),
+                      ),
+                    ),
+                      child: GestureDetector(
+                        onTap: (){
+
+                          // _elements.sort((a, b) => a["devices"].compareTo(b["devices"])); //sorting
+                          // _elements.forEach((element) {
+                          //   print(element["devices"]);
+                          // });
+
+                          /*List group= [];
+
+                          _discover.forEach((element) {
+                            group.add(element["group"]);
+                          });
+
+                          var map = Map();
+
+                          group.forEach((x) => map[x] = !map.containsKey(x) ? (1) : (map[x] + 1));*/
+
+                          print(map);
+                          print(map.keys.toList());
+
+                          // group.sort();
+                          // print(group.toSet());
+
+                          // print("GROUP");
+                          // final index1 = _elements.indexWhere((element) => element["devices"]=="Allitson-01");
+                          // print(_discover.length-index1-1);
+                          // print(index1);
+                          // print(_discover[index1]);
+                        },
+                        child: Card(
+                          color: Colors.transparent,
+                          elevation: 5,
+                          child: Container(
+                              padding: EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                  borderRadius:
+                                  BorderRadius.circular(25),
+                                  color: Colors.black.withOpacity(0.5),
+                                  boxShadow: [
+                                    BoxShadow(
+                                        blurRadius: 0,
+                                        offset: Offset(2, 4),
+                                        color: Colors.black12
+                                            .withOpacity(
+                                            0.15)), //3dright
+                                  ]),
+                              child: Text(
+                                "GROUP",
+                                style: TextStyle(
+                                  color: Colors.white
+                                ),
+                              )
+                          ),
+                        ),
+                      )
+                  ),
                 ),
               ),
             ),
@@ -1242,20 +1368,20 @@ class _ChartState extends State<Chart> {
               margin: EdgeInsets.only(left: 12.5,right: 12.5,top: 0,bottom: 5),
               padding: EdgeInsets.only(top: 0,bottom: 0),
               decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Colors.transparent,
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(30),
                       topRight: Radius.circular(30),
                       bottomLeft: Radius.circular(30),
                       bottomRight: Radius.circular(30)
                   ),
-                  gradient: LinearGradient(
+                  /*gradient: LinearGradient(
                       colors: [
                         Colors.white.withOpacity(0.5),
                         Colors.white.withOpacity(0.1),
                       ],
                       begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter)
+                      end: Alignment.bottomCenter)*/
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.only(
@@ -1666,7 +1792,7 @@ class _ChartState extends State<Chart> {
               gradient: LinearGradient(
                   colors: [
                     Colors.white.withOpacity(0.5),
-                    Colors.white.withOpacity(1),
+                    Colors.white.withOpacity(0.5),
                   ],
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter),
@@ -1691,9 +1817,18 @@ class _ChartState extends State<Chart> {
                 ),
 
                 Expanded(
-                  child: Center(
-                    child: Text(
-                        "Last Activation",
+                  child: GestureDetector(
+                    onTap: (){
+                      _discover.forEach((element) {
+                        if(element["members"]==true){
+                          print(element["devices"]);
+                        }
+                      });
+                    },
+                    child: Center(
+                      child: Text(
+                          "Last Activation",
+                      ),
                     ),
                   ),
                 ),
@@ -1706,7 +1841,7 @@ class _ChartState extends State<Chart> {
                     child: Transform.scale(
                       scale: 1,
                       child: Checkbox(
-                        value: (_discover.length==checkBoxAdd.length)?true:false,/*selectAll,*/
+                        value: (visibleCheckBox.length==checkBoxAdd.length)?true:false,/*selectAll,*/
                         checkColor: Colors.white,
                         activeColor: Colors.grey,
                         shape:  RoundedRectangleBorder(
@@ -1720,7 +1855,10 @@ class _ChartState extends State<Chart> {
 
                           if(selectAll==true){
                             _discover.reversed.forEach((element) {
-                              checkBoxAdd.add(element["devices"]);
+                              if(element["members"]==true){
+                                checkBoxAdd.add(element["devices"]);
+                              }else{return;}
+                              // checkBoxAdd.add(element["devices"]);
                             });
 
                             print(checkBoxAdd);
@@ -1757,10 +1895,11 @@ class _ChartState extends State<Chart> {
               ],
             ),
           ),
+
           Expanded(
               child: GroupedListView<dynamic, String>(
                 elements: _discover,
-                groupBy: (_element) => _element['group'],
+                groupBy: (_element) => _element['statusLive'],
                 sort: true,
                 order: GroupedListOrder.DESC,
                 itemComparator: (item1, item2) => item2['devices'].compareTo(item1['devices']),
@@ -1798,391 +1937,431 @@ class _ChartState extends State<Chart> {
                 ),*/
 
                 indexedItemBuilder: (context, element, int){
-                  return element["members"]? Padding(
-                    padding: EdgeInsets.only(left: 3.5,right: 3.5),
-                    child: Card(
-                      elevation: element["disable"]?0:8,
-                      color: Colors.transparent,
-                      shadowColor: Colors.black,
-                      child: GestureDetector(
-                        onTap: (){
+                  return element["members"]? Card(
+                    elevation: 5/*element["disable"]?0:5*/,
+                    color: Colors.white.withOpacity(0.4),
+                    shadowColor: Colors.black,
+                    margin: EdgeInsets.only(left: 2.50,right: 2.50,top: 5,bottom: 5),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: GestureDetector(
+                      onTap: (){
 
-                          // print(element["hardWareDetails"]["Ram"]);
+                        // print(element["hardWareDetails"]["Ram"]);
 
-                          /*_discover.sort((a, b) => a["devices"].length.compareTo(b["group"].length));
-                          _discover.asMap().forEach((key, value) {
-                            // print(-key+_discover.length);
-                            print("${(-key+_discover.length)-1}:${value["devices"]}");
-                          });*/
+                        /*_discover.sort((a, b) => a["devices"].length.compareTo(b["group"].length));
+                        _discover.asMap().forEach((key, value) {
+                          // print(-key+_discover.length);
+                          print("${(-key+_discover.length)-1}:${value["devices"]}");
+                        });*/
 
-                          // print(_discover);
+                        // print(_discover);
 
-                          /*setState(() {
-                            _discover.sort((a, b) => a["devices"].compareTo(b["devices"])); //sorting
-                            _discover.forEach((element) {
-                              print(element["devices"]);
-                            });
-                          });*/
-
-                          /*setState(() {
-                            _discover[_discover.length-int-1]["disable"] = true;
+                        /*setState(() {
+                          _discover.sort((a, b) => a["devices"].compareTo(b["devices"])); //sorting
+                          _discover.forEach((element) {
+                            print(element["devices"]);
                           });
-                          print(_discover[int]["disable"]);
-                          print(element["disable"]);*/
-                          // print(element["ipAddress"]);
-                          /*print(element["disable"]);
-                          print(element["remove"]);
-                          print(element["enable"]);*/
+                        });*/
 
-                          showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                alignment: Alignment.center,
-                                shape: RoundedRectangleBorder(
+                        /*setState(() {
+                          _discover[_discover.length-int-1]["disable"] = true;
+                        });
+                        print(_discover[int]["disable"]);
+                        print(element["disable"]);*/
+                        // print(element["ipAddress"]);
+                        /*print(element["disable"]);
+                        print(element["remove"]);
+                        print(element["enable"]);*/
+
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              alignment: Alignment.center,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30.0),
+                              ),
+                              scrollable: true,
+                              insetPadding: EdgeInsets.zero,
+                              contentPadding: EdgeInsets.only(bottom: 5,left: 5,right: 5),
+                              titlePadding: EdgeInsets.only(top: 5,bottom: 5),
+                              backgroundColor: Colors.white70,
+                              title: Text(
+                                element["devices"],
+                                style: TextStyle(),
+                                textAlign: TextAlign.center,
+                              ),
+                              content: Container(
+                                height: 500,
+                                width: 350,
+                                padding: EdgeInsets.all(5),
+                                decoration: BoxDecoration(
+                                  color: Colors.white70,
                                   borderRadius: BorderRadius.circular(30.0),
                                 ),
-                                scrollable: true,
-                                insetPadding: EdgeInsets.zero,
-                                contentPadding: EdgeInsets.only(bottom: 5,left: 5,right: 5),
-                                titlePadding: EdgeInsets.only(top: 5,bottom: 5),
-                                backgroundColor: Colors.white70,
-                                title: Text(
-                                  element["devices"],
-                                  style: TextStyle(),
-                                  textAlign: TextAlign.center,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+
+                                    Text(
+                                      element["UserName"],
+                                    ),
+
+                                    /*Row(
+                                      children: [
+                                        Expanded(
+                                          child: Center(
+                                            child: Padding(
+                                              padding: EdgeInsets.only(left: 82),
+                                              child: Text(
+                                                  element["UserName"],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Text(
+                                            element["lastActive"],
+                                        )
+                                      ],
+                                    ),*/
+
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Expanded(
+                                          child: Center(
+                                            child: Text("Last Active"),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Text(
+                                            element["lastActive"],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Expanded(
+                                          child: Center(
+                                            child: Text("Platform"),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Text(
+                                            element["platform"],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Expanded(
+                                          child: Center(
+                                            child: Text("OS"),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Text(
+                                            element["osDetails"],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Expanded(
+                                          child: Center(
+                                            child: Text("CPU"),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Text(
+                                            element["hardWareDetails"]["cpu"],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Expanded(
+                                          child: Center(
+                                            child: Text("RAM"),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Text(
+                                            element["hardWareDetails"]["Ram"],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Expanded(
+                                          child: Center(
+                                            child: Text(
+                                                "Agent ID"
+                                            ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Text(
+                                              element["agentID"].toString()
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Expanded(
+                                          child: Center(
+                                            child: Text(
+                                                "IP Address"
+                                            ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Text(
+                                              element["ipAddress"].toString()
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Expanded(
+                                          child: Center(
+                                            child: Text(
+                                                "Public IP"
+                                            ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Text(
+                                              element["publicIP"].toString()
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Expanded(
+                                          child: Center(
+                                            child: Text(
+                                                "Local IP"
+                                            ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Text(
+                                              element["localIP"].toString()
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Expanded(
+                                          child: Center(
+                                            child: Text(
+                                                "Mac Address"
+                                            ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Text(
+                                              element["macAddress"].toString()
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+
+                                  ],
                                 ),
-                                content: Container(
-                                  height: 500,
-                                  width: 350,
-                                  padding: EdgeInsets.all(5),
-                                  decoration: BoxDecoration(
-                                    color: Colors.white70,
-                                    borderRadius: BorderRadius.circular(30.0),
-                                  ),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: [
+                              ),
+                            );
+                          },
+                        );
 
-                                      Text(
-                                        element["UserName"],
-                                      ),
+                        /*showDialog(
+                            context: context,
+                          builder: (BuildContext context) {
+                              return StatefulBuilder(
+                                builder: (BuildContext context, void Function(void Function()) setState) {
+                                  return AlertDialog(
+                                    alignment: Alignment.bottomCenter,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(30.0),
+                                    ),
+                                    scrollable: true,
+                                    insetPadding: EdgeInsets.zero,
+                                    contentPadding: EdgeInsets.only(bottom: 5,left: 5,right: 5),
+                                    titlePadding: EdgeInsets.only(top: 5,bottom: 5),
+                                    backgroundColor: Colors.white70,
+                                    title: Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: [
 
-                                      /*Row(
-                                        children: [
-                                          Expanded(
-                                            child: Center(
-                                              child: Padding(
-                                                padding: EdgeInsets.only(left: 82),
-                                                child: Text(
-                                                    element["UserName"],
+                                        Text(
+                                          element["devices"],
+                                          style: TextStyle(),
+                                          textAlign: TextAlign.center,
+                                        ),
+
+                                        *//*Expanded(
+                                          child: Center(
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(left:47.5),
+                                              child: Text(
+                                                element["devices"],
+                                                style: TextStyle(),
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
+                                          ),
+                                        ),*//*
+
+                                        *//*Row(
+                                          mainAxisAlignment: MainAxisAlignment.end,
+                                          children: [
+                                            PopupMenuButton(
+                                              onCanceled: (){
+                                                print("onCanceled : $element");
+                                              },
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.all(
+                                                  Radius.circular(15.0),
                                                 ),
                                               ),
-                                            ),
-                                          ),
-                                          Text(
-                                              element["lastActive"],
-                                          )
-                                        ],
-                                      ),*/
+                                              padding: EdgeInsets.zero,
+                                              offset: Offset(-1,-1),
+                                              enabled: true*//**//*(element["group"]=="Disabled")?false:true*//**//*,
+                                              itemBuilder: (BuildContext context) {
+                                                return [
 
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                        children: [
-                                          Expanded(
-                                            child: Center(
-                                              child: Text("Last Active"),
-                                            ),
-                                          ),
-                                          Expanded(
-                                            child: Text(
-                                              element["lastActive"],
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                        children: [
-                                          Expanded(
-                                            child: Center(
-                                              child: Text("Platform"),
-                                            ),
-                                          ),
-                                          Expanded(
-                                            child: Text(
-                                              element["platform"],
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                        children: [
-                                          Expanded(
-                                            child: Center(
-                                              child: Text("OS"),
-                                            ),
-                                          ),
-                                          Expanded(
-                                            child: Text(
-                                              element["osDetails"],
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                        children: [
-                                          Expanded(
-                                            child: Center(
-                                              child: Text("CPU"),
-                                            ),
-                                          ),
-                                          Expanded(
-                                            child: Text(
-                                              element["hardWareDetails"]["cpu"],
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                        children: [
-                                          Expanded(
-                                            child: Center(
-                                              child: Text("RAM"),
-                                            ),
-                                          ),
-                                          Expanded(
-                                            child: Text(
-                                              element["hardWareDetails"]["Ram"],
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                        children: [
-                                          Expanded(
-                                            child: Center(
-                                              child: Text(
-                                                  "Agent ID"
-                                              ),
-                                            ),
-                                          ),
-                                          Expanded(
-                                            child: Text(
-                                                element["agentID"].toString()
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                        children: [
-                                          Expanded(
-                                            child: Center(
-                                              child: Text(
-                                                  "IP Address"
-                                              ),
-                                            ),
-                                          ),
-                                          Expanded(
-                                            child: Text(
-                                                element["ipAddress"].toString()
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                        children: [
-                                          Expanded(
-                                            child: Center(
-                                              child: Text(
-                                                  "Public IP"
-                                              ),
-                                            ),
-                                          ),
-                                          Expanded(
-                                            child: Text(
-                                                element["publicIP"].toString()
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                        children: [
-                                          Expanded(
-                                            child: Center(
-                                              child: Text(
-                                                  "Local IP"
-                                              ),
-                                            ),
-                                          ),
-                                          Expanded(
-                                            child: Text(
-                                                element["localIP"].toString()
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                        children: [
-                                          Expanded(
-                                            child: Center(
-                                              child: Text(
-                                                  "Mac Address"
-                                              ),
-                                            ),
-                                          ),
-                                          Expanded(
-                                            child: Text(
-                                                element["macAddress"].toString()
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-
-                                    ],
-                                  ),
-                                ),
-                              );
-                            },
-                          );
-
-                          /*showDialog(
-                              context: context,
-                            builder: (BuildContext context) {
-                                return StatefulBuilder(
-                                  builder: (BuildContext context, void Function(void Function()) setState) {
-                                    return AlertDialog(
-                                      alignment: Alignment.bottomCenter,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(30.0),
-                                      ),
-                                      scrollable: true,
-                                      insetPadding: EdgeInsets.zero,
-                                      contentPadding: EdgeInsets.only(bottom: 5,left: 5,right: 5),
-                                      titlePadding: EdgeInsets.only(top: 5,bottom: 5),
-                                      backgroundColor: Colors.white70,
-                                      title: Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        children: [
-
-                                          Text(
-                                            element["devices"],
-                                            style: TextStyle(),
-                                            textAlign: TextAlign.center,
-                                          ),
-
-                                          *//*Expanded(
-                                            child: Center(
-                                              child: Padding(
-                                                padding: const EdgeInsets.only(left:47.5),
-                                                child: Text(
-                                                  element["devices"],
-                                                  style: TextStyle(),
-                                                  textAlign: TextAlign.center,
-                                                ),
-                                              ),
-                                            ),
-                                          ),*//*
-
-                                          *//*Row(
-                                            mainAxisAlignment: MainAxisAlignment.end,
-                                            children: [
-                                              PopupMenuButton(
-                                                onCanceled: (){
-                                                  print("onCanceled : $element");
-                                                },
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius: BorderRadius.all(
-                                                    Radius.circular(15.0),
-                                                  ),
-                                                ),
-                                                padding: EdgeInsets.zero,
-                                                offset: Offset(-1,-1),
-                                                enabled: true*//**//*(element["group"]=="Disabled")?false:true*//**//*,
-                                                itemBuilder: (BuildContext context) {
-                                                  return [
-
-                                                    PopupItem(
-                                                      enabled: (element["group"]=="Offline"  || element["group"]=="Online"),
-                                                      child: StatefulBuilder(
-                                                        builder: (BuildContext context, void Function(void Function()) setState) {
-                                                          return IgnorePointer(
-                                                            ignoring: !(element["group"]=="Offline"  || element["group"]=="Online"),
-                                                            child: GestureDetector(
-                                                              onTap: (){
-                                                                setState((){
-                                                                  element["disable"]=!element["disable"];
-                                                                  print(element);
-                                                                });
-                                                              },
-                                                              child: Row(
-                                                                children: [
-                                                                  Expanded(
-                                                                    child: Text("Disable"),
+                                                  PopupItem(
+                                                    enabled: (element["group"]=="Offline"  || element["group"]=="Online"),
+                                                    child: StatefulBuilder(
+                                                      builder: (BuildContext context, void Function(void Function()) setState) {
+                                                        return IgnorePointer(
+                                                          ignoring: !(element["group"]=="Offline"  || element["group"]=="Online"),
+                                                          child: GestureDetector(
+                                                            onTap: (){
+                                                              setState((){
+                                                                element["disable"]=!element["disable"];
+                                                                print(element);
+                                                              });
+                                                            },
+                                                            child: Row(
+                                                              children: [
+                                                                Expanded(
+                                                                  child: Text("Disable"),
+                                                                ),
+                                                                Expanded(
+                                                                  child: Checkbox(
+                                                                      value: element["disable"]==null?false:element["disable"],
+                                                                      onChanged: (bool? value){
+                                                                        *//**//*setState((){
+                                                                          element["disable"]=value;
+                                                                        });*//**//*
+                                                                      }
                                                                   ),
-                                                                  Expanded(
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        );
+                                                      },
+                                                    ),
+                                                  ),
+
+                                                  PopupItem(
+                                                    enabled: (element["group"]=="Disabled"),
+                                                    child: StatefulBuilder(
+                                                      builder: (BuildContext context, void Function(void Function()) setState) {
+                                                        return IgnorePointer(
+                                                          ignoring: !(element["group"]=="Disabled"),
+                                                          child: GestureDetector(
+                                                            onTap: (){
+                                                              setState((){
+                                                                element["enable"]=!element["enable"];
+                                                                print(element);
+                                                              });
+                                                            },
+                                                            child: Row(
+                                                              children: [
+                                                                Expanded(
+                                                                  child: Text("Enable"),
+                                                                ),
+                                                                Expanded(
+                                                                  child: Center(
                                                                     child: Checkbox(
-                                                                        value: element["disable"]==null?false:element["disable"],
+                                                                        value: element["enable"]==null?false:element["enable"],
                                                                         onChanged: (bool? value){
                                                                           *//**//*setState((){
-                                                                            element["disable"]=value;
-                                                                          });*//**//*
+                                                                          element["enable"]=value;
+                                                                        });*//**//*
                                                                         }
                                                                     ),
                                                                   ),
-                                                                ],
-                                                              ),
+                                                                ),
+                                                              ],
                                                             ),
-                                                          );
-                                                        },
-                                                      ),
+                                                          ),
+                                                        );
+                                                      },
                                                     ),
+                                                  ),
 
-                                                    PopupItem(
-                                                      enabled: (element["group"]=="Disabled"),
+                                                  PopupItem(
+                                                    enabled: (element["group"]=="Online"),
                                                       child: StatefulBuilder(
                                                         builder: (BuildContext context, void Function(void Function()) setState) {
                                                           return IgnorePointer(
-                                                            ignoring: !(element["group"]=="Disabled"),
+                                                            ignoring: !(element["group"]=="Online"),
                                                             child: GestureDetector(
                                                               onTap: (){
                                                                 setState((){
-                                                                  element["enable"]=!element["enable"];
+                                                                  element["remove"]=!element["remove"];
                                                                   print(element);
                                                                 });
                                                               },
                                                               child: Row(
                                                                 children: [
                                                                   Expanded(
-                                                                    child: Text("Enable"),
+                                                                    child: Text("Remove"),
                                                                   ),
                                                                   Expanded(
                                                                     child: Center(
                                                                       child: Checkbox(
-                                                                          value: element["enable"]==null?false:element["enable"],
+                                                                          value: element["remove"]==null?false:element["remove"],
                                                                           onChanged: (bool? value){
                                                                             *//**//*setState((){
-                                                                            element["enable"]=value;
-                                                                          });*//**//*
+                                                                        element["remove"]=value;
+                                                                      });*//**//*
                                                                           }
                                                                       ),
                                                                     ),
@@ -2192,128 +2371,59 @@ class _ChartState extends State<Chart> {
                                                             ),
                                                           );
                                                         },
-                                                      ),
-                                                    ),
+                                                      )
+                                                  ),
 
-                                                    PopupItem(
-                                                      enabled: (element["group"]=="Online"),
-                                                        child: StatefulBuilder(
-                                                          builder: (BuildContext context, void Function(void Function()) setState) {
-                                                            return IgnorePointer(
-                                                              ignoring: !(element["group"]=="Online"),
-                                                              child: GestureDetector(
-                                                                onTap: (){
-                                                                  setState((){
-                                                                    element["remove"]=!element["remove"];
-                                                                    print(element);
-                                                                  });
-                                                                },
-                                                                child: Row(
-                                                                  children: [
-                                                                    Expanded(
-                                                                      child: Text("Remove"),
-                                                                    ),
-                                                                    Expanded(
-                                                                      child: Center(
-                                                                        child: Checkbox(
-                                                                            value: element["remove"]==null?false:element["remove"],
-                                                                            onChanged: (bool? value){
-                                                                              *//**//*setState((){
-                                                                          element["remove"]=value;
-                                                                        });*//**//*
-                                                                            }
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              ),
-                                                            );
-                                                          },
-                                                        )
-                                                    ),
-
-                                                    *//**//*PopupMenuItem(
-                                                      enabled: (element["group"]=="Offline"  || element["group"]=="Online"),
-                                                      onTap: (){
-                                                        setState((){
-                                                          element["disable"]=!element["disable"];
-                                                        });
-                                                      },
-                                                        child: IgnorePointer(
-                                                          ignoring: (element["group"]=="Offline"  || element["group"]=="Online"),
-                                                          child: Row(
-                                                            children: [
-                                                              Expanded(
-                                                                  child: Text("Disable"),
-                                                              ),
-                                                              Expanded(
-                                                                child: Checkbox(
-                                                                    value: element["disable"]==null?false:element["disable"],
-                                                                    onChanged: (value){
-                                                                      setState((){
-                                                                        element["disable"]=value;
-                                                                      });
-                                                                    }
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                    ),*//**//*
-
-                                                    *//**//*PopupMenuItem(
-                                                        enabled: (element["group"]=="Disabled"),
-                                                        onTap: (){
-                                                          setState((){
-                                                            element["enable"]=!element["enable"];
-                                                          });
-                                                        },
-                                                        child: IgnorePointer(
-                                                          ignoring: (element["group"]=="Disabled"),
-                                                          child: Row(
-                                                            children: [
-                                                              Expanded(
-                                                                  child: Text("Enable"),
-                                                              ),
-                                                              Expanded(
-                                                                child: Center(
-                                                                  child: Checkbox(
-                                                                      value: element["enable"]==null?false:element["enable"],
-                                                                      onChanged: (bool? value){
-                                                                        *//**//**//**//*setState((){
-                                                                          element["enable"]=value;
-                                                                        });*//**//**//**//*
-                                                                      }
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                    ),*//**//*
-
-                                                    *//**//*PopupMenuItem(
-                                                      enabled: (element["group"]=="Online"),
-                                                      onTap: (){
-                                                        setState((){
-                                                          element["remove"]=!element["remove"];
-                                                        });
-                                                      },
+                                                  *//**//*PopupMenuItem(
+                                                    enabled: (element["group"]=="Offline"  || element["group"]=="Online"),
+                                                    onTap: (){
+                                                      setState((){
+                                                        element["disable"]=!element["disable"];
+                                                      });
+                                                    },
                                                       child: IgnorePointer(
-                                                        ignoring: (element["group"]=="Online"),
+                                                        ignoring: (element["group"]=="Offline"  || element["group"]=="Online"),
                                                         child: Row(
                                                           children: [
                                                             Expanded(
-                                                                child: Text("Remove"),
+                                                                child: Text("Disable"),
+                                                            ),
+                                                            Expanded(
+                                                              child: Checkbox(
+                                                                  value: element["disable"]==null?false:element["disable"],
+                                                                  onChanged: (value){
+                                                                    setState((){
+                                                                      element["disable"]=value;
+                                                                    });
+                                                                  }
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                  ),*//**//*
+
+                                                  *//**//*PopupMenuItem(
+                                                      enabled: (element["group"]=="Disabled"),
+                                                      onTap: (){
+                                                        setState((){
+                                                          element["enable"]=!element["enable"];
+                                                        });
+                                                      },
+                                                      child: IgnorePointer(
+                                                        ignoring: (element["group"]=="Disabled"),
+                                                        child: Row(
+                                                          children: [
+                                                            Expanded(
+                                                                child: Text("Enable"),
                                                             ),
                                                             Expanded(
                                                               child: Center(
                                                                 child: Checkbox(
-                                                                    value: element["remove"]==null?false:element["remove"],
+                                                                    value: element["enable"]==null?false:element["enable"],
                                                                     onChanged: (bool? value){
                                                                       *//**//**//**//*setState((){
-                                                                        element["remove"]=value;
+                                                                        element["enable"]=value;
                                                                       });*//**//**//**//*
                                                                     }
                                                                 ),
@@ -2322,717 +2432,758 @@ class _ChartState extends State<Chart> {
                                                           ],
                                                         ),
                                                       ),
-                                                    ),*//**//*
+                                                  ),*//**//*
 
-                                                  ];
-                                                },
+                                                  *//**//*PopupMenuItem(
+                                                    enabled: (element["group"]=="Online"),
+                                                    onTap: (){
+                                                      setState((){
+                                                        element["remove"]=!element["remove"];
+                                                      });
+                                                    },
+                                                    child: IgnorePointer(
+                                                      ignoring: (element["group"]=="Online"),
+                                                      child: Row(
+                                                        children: [
+                                                          Expanded(
+                                                              child: Text("Remove"),
+                                                          ),
+                                                          Expanded(
+                                                            child: Center(
+                                                              child: Checkbox(
+                                                                  value: element["remove"]==null?false:element["remove"],
+                                                                  onChanged: (bool? value){
+                                                                    *//**//**//**//*setState((){
+                                                                      element["remove"]=value;
+                                                                    });*//**//**//**//*
+                                                                  }
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),*//**//*
+
+                                                ];
+                                              },
+                                            ),
+                                          ],
+                                        )*//*
+
+                                      ],
+                                    ),
+                                    content: Container(
+                                      clipBehavior: Clip.antiAliasWithSaveLayer,
+                                      // height: 350,
+                                      width: 350,
+                                      padding: EdgeInsets.all(5),
+                                      decoration: BoxDecoration(
+                                        color: Colors.white70,
+                                        borderRadius: BorderRadius.circular(30.0),
+                                      ),
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                        children: [
+*//**//*
+                                          *//*SizedBox(
+                                            height: 45,
+                                            child: Center(
+                                              child: Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                                children: [
+                                                  Expanded(
+                                                    child: Center(
+                                                      child: Text(
+                                                          "Agent ID"
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Expanded(
+                                                    child: Text(
+                                                        element["agentID"].toString()
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),*//*
+
+                                          *//*SizedBox(
+                                            height: 45,
+                                            child: Center(
+                                              child: Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                                children: [
+                                                  Expanded(
+                                                    child: Center(
+                                                      child: Text(
+                                                          "IP Address"
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Expanded(
+                                                    child: Text(
+                                                        element["ipAddress"].toString()
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),*//*
+
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                            children: [
+                                              Expanded(
+                                                  child: Checkbox(
+                                                      value: element["callPermission"],
+                                                      checkColor: Colors.white,
+                                                      activeColor: Colors.grey,
+                                                      shape:  RoundedRectangleBorder(
+                                                        borderRadius: BorderRadius.circular(5),
+                                                      ),
+                                                      onChanged:(value){
+                                                        *//*print(element);
+                                                          print(_discover[_discover.length-int-1]);*//*
+                                                        setState(() {
+                                                          element["callPermission"]=value;
+                                                        });
+                                                      })
+                                              ),
+                                              Expanded(
+                                                child: Text(
+                                                  "Call Permission",
+                                                ),
                                               ),
                                             ],
-                                          )*//*
+                                          ),
+
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                            children: [
+                                              Expanded(
+                                                  child: Checkbox(
+                                                      value: element["remotePermission"],
+                                                      checkColor: Colors.white,
+                                                      activeColor: Colors.grey,
+                                                      shape:  RoundedRectangleBorder(
+                                                        borderRadius: BorderRadius.circular(5),
+                                                      ),
+                                                      onChanged:(value){
+                                                        setState(() {
+                                                          element["remotePermission"] = value;
+                                                        });
+                                                      })
+                                              ),
+                                              Expanded(
+                                                child: Text(
+                                                  "Remote Permission",
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                            children: [
+                                              Expanded(
+                                                  child: Checkbox(
+                                                      value: element["disableRemote"],
+                                                      checkColor: Colors.white,
+                                                      activeColor: Colors.grey,
+                                                      shape:  RoundedRectangleBorder(
+                                                        borderRadius: BorderRadius.circular(5),
+                                                      ),
+                                                      onChanged:(value){
+                                                        setState(() {
+                                                          element["disableRemote"]=value;
+                                                        });
+                                                      })
+                                              ),
+                                              Expanded(
+                                                child: Text(
+                                                  "Disable Remote",
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                            children: [
+                                              Expanded(
+                                                  child: Checkbox(
+                                                      value: element["disableCall"],
+                                                      checkColor: Colors.white,
+                                                      activeColor: Colors.grey,
+                                                      shape:  RoundedRectangleBorder(
+                                                        borderRadius: BorderRadius.circular(5),
+                                                      ),
+                                                      onChanged:(value){
+                                                        setState(() {
+                                                          element["disableCall"]=value;
+                                                        });
+                                                      })
+                                              ),
+                                              Expanded(
+                                                child: Text(
+                                                  "Disable Call",
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                            children: [
+                                              Expanded(
+                                                  child: Checkbox(
+                                                      value: element["disableScript"],
+                                                      checkColor: Colors.white,
+                                                      activeColor: Colors.grey,
+                                                      shape:  RoundedRectangleBorder(
+                                                        borderRadius: BorderRadius.circular(5),
+                                                      ),
+                                                      onChanged:(value){
+                                                        setState(() {
+                                                          element["disableScript"]=value;
+                                                        });
+                                                      })
+                                              ),
+                                              Expanded(
+                                                child: Text(
+                                                  "Disable Script",
+                                                ),
+                                              ),
+                                            ],
+                                          ),
 
                                         ],
                                       ),
-                                      content: Container(
-                                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                                        // height: 350,
-                                        width: 350,
-                                        padding: EdgeInsets.all(5),
-                                        decoration: BoxDecoration(
-                                          color: Colors.white70,
-                                          borderRadius: BorderRadius.circular(30.0),
-                                        ),
-                                        child: Column(
-                                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                          children: [
-*//**//*
-                                            *//*SizedBox(
-                                              height: 45,
-                                              child: Center(
-                                                child: Row(
-                                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                                  children: [
-                                                    Expanded(
-                                                      child: Center(
-                                                        child: Text(
-                                                            "Agent ID"
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Expanded(
-                                                      child: Text(
-                                                          element["agentID"].toString()
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),*//*
+                                    ),
+                                  );
+                                },
+                              );
+                          },
+                        );*/
 
-                                            *//*SizedBox(
-                                              height: 45,
-                                              child: Center(
-                                                child: Row(
-                                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                                  children: [
-                                                    Expanded(
-                                                      child: Center(
-                                                        child: Text(
-                                                            "IP Address"
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Expanded(
-                                                      child: Text(
-                                                          element["ipAddress"].toString()
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),*//*
-
-                                            Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                              children: [
-                                                Expanded(
-                                                    child: Checkbox(
-                                                        value: element["callPermission"],
-                                                        checkColor: Colors.white,
-                                                        activeColor: Colors.grey,
-                                                        shape:  RoundedRectangleBorder(
-                                                          borderRadius: BorderRadius.circular(5),
-                                                        ),
-                                                        onChanged:(value){
-                                                          *//*print(element);
-                                                            print(_discover[_discover.length-int-1]);*//*
-                                                          setState(() {
-                                                            element["callPermission"]=value;
-                                                          });
-                                                        })
-                                                ),
-                                                Expanded(
-                                                  child: Text(
-                                                    "Call Permission",
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-
-                                            Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                              children: [
-                                                Expanded(
-                                                    child: Checkbox(
-                                                        value: element["remotePermission"],
-                                                        checkColor: Colors.white,
-                                                        activeColor: Colors.grey,
-                                                        shape:  RoundedRectangleBorder(
-                                                          borderRadius: BorderRadius.circular(5),
-                                                        ),
-                                                        onChanged:(value){
-                                                          setState(() {
-                                                            element["remotePermission"] = value;
-                                                          });
-                                                        })
-                                                ),
-                                                Expanded(
-                                                  child: Text(
-                                                    "Remote Permission",
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-
-                                            Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                              children: [
-                                                Expanded(
-                                                    child: Checkbox(
-                                                        value: element["disableRemote"],
-                                                        checkColor: Colors.white,
-                                                        activeColor: Colors.grey,
-                                                        shape:  RoundedRectangleBorder(
-                                                          borderRadius: BorderRadius.circular(5),
-                                                        ),
-                                                        onChanged:(value){
-                                                          setState(() {
-                                                            element["disableRemote"]=value;
-                                                          });
-                                                        })
-                                                ),
-                                                Expanded(
-                                                  child: Text(
-                                                    "Disable Remote",
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-
-                                            Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                              children: [
-                                                Expanded(
-                                                    child: Checkbox(
-                                                        value: element["disableCall"],
-                                                        checkColor: Colors.white,
-                                                        activeColor: Colors.grey,
-                                                        shape:  RoundedRectangleBorder(
-                                                          borderRadius: BorderRadius.circular(5),
-                                                        ),
-                                                        onChanged:(value){
-                                                          setState(() {
-                                                            element["disableCall"]=value;
-                                                          });
-                                                        })
-                                                ),
-                                                Expanded(
-                                                  child: Text(
-                                                    "Disable Call",
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-
-                                            Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                              children: [
-                                                Expanded(
-                                                    child: Checkbox(
-                                                        value: element["disableScript"],
-                                                        checkColor: Colors.white,
-                                                        activeColor: Colors.grey,
-                                                        shape:  RoundedRectangleBorder(
-                                                          borderRadius: BorderRadius.circular(5),
-                                                        ),
-                                                        onChanged:(value){
-                                                          setState(() {
-                                                            element["disableScript"]=value;
-                                                          });
-                                                        })
-                                                ),
-                                                Expanded(
-                                                  child: Text(
-                                                    "Disable Script",
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-
-                                          ],
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                );
-                            },
-                          );*/
-
-                          /*setState(() {
-                            _discover.remove(element);
-                          });*/
+                        /*setState(() {
+                          _discover.remove(element);
+                        });*/
 
 
-                        },
-                        onLongPress: (){
-                          // print(checkBox);
-                          // checkBox=true;
-                          // checkDialog();
+                      },
+                      onLongPress: (){
+                        // print(checkBox);
+                        // checkBox=true;
+                        // checkDialog();
 
-                          setState(() {
-                            checkBox=!checkBox;
+                        setState(() {
+
+                          _discover.reversed.forEach((element) {
+                            if(element["members"]==true){
+                              visibleCheckBox.add(element["devices"]);
+                            }else{return;}
+                            // checkBoxAdd.add(element["devices"]);
                           });
 
-                          /*showModalBottomSheet(
-                            constraints: BoxConstraints(
-                              maxWidth: MediaQuery.of(context).size.width * 0.95,
-                            ),
-                            isScrollControlled: true,
-                            backgroundColor: Colors.transparent,
-                            context: context,
-                            builder: (BuildContext context) {
-                              return Container(
-                                *//*constraints: BoxConstraints(
-                                  maxHeight: *//**//*MediaQuery.of(context).size.height - *//**//*300,
-                                ),*//*
-                                height: 200,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.only(
-                                    topRight: Radius.circular(45),
-                                    topLeft: Radius.circular(45),
-                                    bottomRight: Radius.circular(30),
-                                    bottomLeft: Radius.circular(30),
-                                  ),
-                                  color: Colors.white,
+                          checkBox=!checkBox;
+                        });
+
+                        print(visibleCheckBox);
+
+                        /*showModalBottomSheet(
+                          constraints: BoxConstraints(
+                            maxWidth: MediaQuery.of(context).size.width * 0.95,
+                          ),
+                          isScrollControlled: true,
+                          backgroundColor: Colors.transparent,
+                          context: context,
+                          builder: (BuildContext context) {
+                            return Container(
+                              *//*constraints: BoxConstraints(
+                                maxHeight: *//**//*MediaQuery.of(context).size.height - *//**//*300,
+                              ),*//*
+                              height: 200,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(45),
+                                  topLeft: Radius.circular(45),
+                                  bottomRight: Radius.circular(30),
+                                  bottomLeft: Radius.circular(30),
                                 ),
-                                child: Column(
-
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-
-                                  children: [
-
-                                    Visibility(
-                                      visible: (element["group"]=="Offline"  || element["group"]=="Online"),
-                                      child: Row(
-                                        children: [
-                                          Text("Disable"),
-                                          Checkbox(
-                                              value: element["disable"]==null?false:element["disable"],
-                                              onChanged: (bool? value){
-
-                                              }
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-
-                                    Visibility(
-                                      visible: (element["group"]=="Disabled"),
-                                      child: Row(
-                                        children: [
-                                          Text("Enable"),
-                                          Checkbox(
-                                              value: element["enable"]==null?false:element["enable"],
-                                              onChanged: (bool? value){
-
-                                              }
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-
-                                    Visibility(
-                                      visible: (element["group"]=="Online"),
-                                      child: Row(
-                                        children: [
-                                          Text("Remove"),
-                                          Checkbox(
-                                              value: element["remove"]==null?false:element["remove"],
-                                              onChanged: (bool? value){
-
-                                              }
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-
-                                  ],
-                                ),
-                              );
-                            },
-                          );*/
-
-                        },
-                        child: Container(
-                            height: 42.5,
-                            decoration: BoxDecoration(
-                                color: element["disable"]?Color(0xff19547b).withOpacity(0.9):Color(0xff19547b).withOpacity(0.6)/*Color(0xff404b60).withOpacity(0.9)*/
-                            ),
-                            child: Center(
-                              child: Row(
-                                // mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                children: [
-                                  // SizedBox(width: 10),
-                                  Expanded(
-                                    child: Center(
-                                      child: Text(
-                                        element['devices'],
-                                      ),
-                                    ),
-                                  ),
-
-                                  Expanded(
-                                    child: Center(
-                                      child: Text(
-                                        element["platform"],
-                                      ),
-                                    ),
-                                  ),
-
-                                  Expanded(
-                                    child: Center(
-                                      child: Text(
-                                          element["lastActive"],
-                                      ),
-                                    ),
-                                  ),
-
-                                  AnimatedSwitcher(
-                                    duration: Duration(milliseconds: 250),
-                                    child: checkBox?Checkbox(
-                                        value: checkBoxAdd.contains(element["devices"]),/*element["disable"],*/
-                                        checkColor: Colors.white,
-                                        activeColor: Colors.grey,
-                                        shape:  RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(5),
-                                        ),
-                                        onChanged: (value){
-
-
-                                          Clipboard.setData(ClipboardData()); // Vibration
-                                          HapticFeedback.heavyImpact();
-
-                                          if(checkBoxAdd.contains(element["devices"])){
-                                            setState(() {
-                                              checkBoxAdd.remove(element["devices"]);
-                                            });
-                                          }else{
-                                            setState(() {
-                                              checkBoxAdd.add(element["devices"]);
-                                            });
-                                          }
-
-                                          print(checkBoxAdd);
-                                          // print(value);
-                                          /*setState(() {
-                                            element["disable"]=value;
-                                            print(element);
-                                          });*/
-                                        }
-                                    ):PopupMenuButton(
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.all(
-                                          Radius.circular(15.0),
-                                        ),
-                                      ),
-                                      padding: EdgeInsets.zero,
-                                      itemBuilder: (BuildContext context) {
-                                        return [
-
-                                          PopupMenuItem(
-                                            child: Text("Edit"),
-                                            onTap: (){
-
-                                              WidgetsBinding.instance?.addPostFrameCallback((_){
-                                                showDialog(
-                                                  context: context,
-                                                  builder: (BuildContext context) {
-                                                    return StatefulBuilder(
-                                                      builder: (BuildContext context, void Function(void Function()) setState) {
-                                                        return AlertDialog(
-                                                          alignment: Alignment.bottomCenter,
-                                                          shape: RoundedRectangleBorder(
-                                                            borderRadius: BorderRadius.circular(30.0),
-                                                          ),
-                                                          scrollable: true,
-                                                          insetPadding: EdgeInsets.zero,
-                                                          contentPadding: EdgeInsets.only(bottom: 5,left: 5,right: 5),
-                                                          titlePadding: EdgeInsets.only(top: 5,bottom: 5),
-                                                          backgroundColor: Colors.white70,
-                                                          title: Row(
-                                                            mainAxisAlignment: MainAxisAlignment.center,
-                                                            crossAxisAlignment: CrossAxisAlignment.center,
-                                                            children: [
-
-                                                              Text(
-                                                                element["devices"],
-                                                                style: TextStyle(),
-                                                                textAlign: TextAlign.center,
-                                                              ),
-
-                                                            ],
-                                                          ),
-                                                          content: Container(
-                                                            clipBehavior: Clip.antiAliasWithSaveLayer,
-                                                            // height: 350,
-                                                            width: 350,
-                                                            padding: EdgeInsets.all(5),
-                                                            decoration: BoxDecoration(
-                                                              color: Colors.white70,
-                                                              borderRadius: BorderRadius.circular(30.0),
-                                                            ),
-                                                            child: Column(
-                                                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                                              children: [
-                                                                Row(
-                                                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                                                  children: [
-                                                                    Expanded(
-                                                                        child: Checkbox(
-                                                                            value: element["callPermission"],
-                                                                            checkColor: Colors.white,
-                                                                            activeColor: Colors.grey,
-                                                                            shape:  RoundedRectangleBorder(
-                                                                              borderRadius: BorderRadius.circular(5),
-                                                                            ),
-                                                                            onChanged:(value){
-                                                                              /*print(element);
-                                                                              print(_discover[_discover.length-int-1]);*/
-                                                                              setState(() {
-                                                                              element["callPermission"]=value;
-                                                                              print(element);
-                                                                              });
-                                                                            })
-                                                                    ),
-                                                                    Expanded(
-                                                                      child: Text(
-                                                                        "Call Permission",
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-
-                                                                Row(
-                                                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                                                  children: [
-                                                                    Expanded(
-                                                                        child: Checkbox(
-                                                                            value: element["remotePermission"],
-                                                                            checkColor: Colors.white,
-                                                                            activeColor: Colors.grey,
-                                                                            shape:  RoundedRectangleBorder(
-                                                                              borderRadius: BorderRadius.circular(5),
-                                                                            ),
-                                                                            onChanged:(value){
-                                                                              setState(() {
-                                                                                element["remotePermission"] = value;
-                                                                              });
-                                                                            })
-                                                                    ),
-                                                                    Expanded(
-                                                                      child: Text(
-                                                                        "Remote Permission",
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-
-                                                                Row(
-                                                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                                                  children: [
-                                                                    Expanded(
-                                                                        child: Checkbox(
-                                                                            value: element["disableRemote"],
-                                                                            checkColor: Colors.white,
-                                                                            activeColor: Colors.grey,
-                                                                            shape:  RoundedRectangleBorder(
-                                                                              borderRadius: BorderRadius.circular(5),
-                                                                            ),
-                                                                            onChanged:(value){
-                                                                              setState(() {
-                                                                                element["disableRemote"]=value;
-                                                                              });
-                                                                            })
-                                                                    ),
-                                                                    Expanded(
-                                                                      child: Text(
-                                                                        "Disable Remote",
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-
-                                                                Row(
-                                                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                                                  children: [
-                                                                    Expanded(
-                                                                        child: Checkbox(
-                                                                            value: element["disableCall"],
-                                                                            checkColor: Colors.white,
-                                                                            activeColor: Colors.grey,
-                                                                            shape:  RoundedRectangleBorder(
-                                                                              borderRadius: BorderRadius.circular(5),
-                                                                            ),
-                                                                            onChanged:(value){
-                                                                              setState(() {
-                                                                                element["disableCall"]=value;
-                                                                              });
-                                                                            })
-                                                                    ),
-                                                                    Expanded(
-                                                                      child: Text(
-                                                                        "Disable Call",
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-
-                                                                Row(
-                                                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                                                  children: [
-                                                                    Expanded(
-                                                                        child: Checkbox(
-                                                                            value: element["disableScript"],
-                                                                            checkColor: Colors.white,
-                                                                            activeColor: Colors.grey,
-                                                                            shape:  RoundedRectangleBorder(
-                                                                              borderRadius: BorderRadius.circular(5),
-                                                                            ),
-                                                                            onChanged:(value){
-                                                                              setState(() {
-                                                                                element["disableScript"]=value;
-                                                                              });
-                                                                            })
-                                                                    ),
-                                                                    Expanded(
-                                                                      child: Text(
-                                                                        "Disable Script",
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-
-                                                              ],
-                                                            ),
-                                                          ),
-                                                        );
-                                                      },
-                                                    );
-                                                  },
-                                                );
-                                              });
-                                            },
-                                          ),
-
-                                          PopupMenuItem(
-                                            child: Text("Remove"),
-                                            onTap: (){
-                                              setState(() {
-                                                _discover.remove(element);
-                                              });
-                                            },
-                                          ),
-
-                                          PopupMenuItem(
-                                            onTap: (){
-                                              setState(() {
-                                                element["disable"]=!element["disable"];
-                                              });
-                                              print(element);
-                                            },
-                                            child: Text(
-                                              element["disable"]?"Enable":"Disable",
-                                              style: TextStyle(
-                                                // color: element["disable"]?Colors.grey:null,
-                                              ),
-                                            ),
-
-                                          ),
-
-                                          /*CustomPopupMenuItem(
-                                            onTap:(){
-                                              element["disable"]=!element["disable"];
-                                              print(element["disable"]);
-                                            },
-                                            color: element["disable"]?Colors.green:Colors.transparent,
-                                            child: Text("Disable"),
-                                          ),*/
-
-                                        ];
-                                      },
-                                    ),
-                                  ),
-
-                                  /*Checkbox(
-                                      value: false,
-                                      onChanged: (bool? value){}
-                                  ),*/
-
-                                  /*PopupMenuButton(
-                                    itemBuilder: (BuildContext context) {
-                                      return [
-
-                                        PopupMenuItem(
-                                          child: Text("Edit"),
-                                        ),
-
-                                        PopupMenuItem(
-                                          child: Text("Remove"),
-                                        ),
-
-                                        PopupMenuItem(
-                                          child: Text("Disable"),
-                                        )
-                                      ];
-                                    },
-                                  ),*/
-                                ],
+                                color: Colors.white,
                               ),
-                              /*Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.center,
+                              child: Column(
+
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+
                                 children: [
-
-
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      SizedBox(width: 10),
-                                      Text(
-                                        element['devices'],
-                                      ),
-                                      SizedBox(
-                                        // height: 42.5,
-                                        width: 70,
-                                        child: SingleChildScrollView(
-                                          scrollDirection: Axis.horizontal,
-                                          child: Text(
-                                              element["agentID"].toString(),
-                                          ),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-
 
                                   Visibility(
-                                    visible: checkBox,
+                                    visible: (element["group"]=="Offline"  || element["group"]=="Online"),
                                     child: Row(
                                       children: [
+                                        Text("Disable"),
+                                        Checkbox(
+                                            value: element["disable"]==null?false:element["disable"],
+                                            onChanged: (bool? value){
 
-                                        Visibility(
-                                          visible: (element["group"]=="Offline"  || element["group"]=="Online"),
-                                          child: Row(
-                                            children: [
-                                              Text("Disable"),
-                                              Checkbox(
-                                                  value: element["disable"]==null?false:element["disable"],
-                                                  onChanged: (bool? value){
-
-                                                  }
-                                              ),
-                                            ],
-                                          ),
+                                            }
                                         ),
+                                      ],
+                                    ),
+                                  ),
 
-                                        Visibility(
-                                          visible: (element["group"]=="Disabled"),
-                                          child: Row(
-                                            children: [
-                                              Text("Enable"),
-                                              Checkbox(
-                                                  value: element["enable"]==null?false:element["enable"],
-                                                  onChanged: (bool? value){
+                                  Visibility(
+                                    visible: (element["group"]=="Disabled"),
+                                    child: Row(
+                                      children: [
+                                        Text("Enable"),
+                                        Checkbox(
+                                            value: element["enable"]==null?false:element["enable"],
+                                            onChanged: (bool? value){
 
-                                                  }
-                                              ),
-                                            ],
-                                          ),
+                                            }
                                         ),
+                                      ],
+                                    ),
+                                  ),
 
-                                        Visibility(
-                                          visible: (element["group"]=="Online"),
-                                          child: Row(
-                                            children: [
-                                              Text("Remove"),
-                                              Checkbox(
-                                                  value: element["remove"]==null?false:element["remove"],
-                                                  onChanged: (bool? value){
+                                  Visibility(
+                                    visible: (element["group"]=="Online"),
+                                    child: Row(
+                                      children: [
+                                        Text("Remove"),
+                                        Checkbox(
+                                            value: element["remove"]==null?false:element["remove"],
+                                            onChanged: (bool? value){
 
-                                                  }
-                                              ),
-                                            ],
-                                          ),
+                                            }
                                         ),
-
                                       ],
                                     ),
                                   ),
 
                                 ],
-                              ),*/
-                            )
-                        ),
+                              ),
+                            );
+                          },
+                        );*/
+
+                      },
+                      child: Container(
+                          height: 40,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: element["disable"]?Color(0xff19547b).withOpacity(0.9):Color(0xff19547b).withOpacity(0.6)/*Color(0xff404b60).withOpacity(0.9)*/
+                          ),
+                          child: Center(
+                            child: Row(
+                              // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                // SizedBox(width: 10),
+                                Expanded(
+                                  child: Center(
+                                    child: Text(
+                                      element['devices'],
+                                    ),
+                                  ),
+                                ),
+
+                                Expanded(
+                                  child: Center(
+                                    child: Text(
+                                      element["platform"],
+                                    ),
+                                  ),
+                                ),
+
+                                Expanded(
+                                  child: Center(
+                                    child: Text(
+                                        element["lastActive"],
+                                    ),
+                                  ),
+                                ),
+
+                                AnimatedSwitcher(
+                                  duration: Duration(milliseconds: 250),
+                                  child: checkBox?Checkbox(
+                                      value: checkBoxAdd.contains(element["devices"]),/*element["disable"],*/
+                                      checkColor: Colors.white,
+                                      activeColor: Colors.grey,
+                                      shape:  RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(5),
+                                      ),
+                                      onChanged: (value){
+
+
+                                        Clipboard.setData(ClipboardData()); // Vibration
+                                        HapticFeedback.heavyImpact();
+
+                                        if(checkBoxAdd.contains(element["devices"])){
+                                          setState(() {
+                                            checkBoxAdd.remove(element["devices"]);
+                                          });
+                                        }else{
+                                          setState(() {
+                                            checkBoxAdd.add(element["devices"]);
+                                          });
+                                        }
+
+                                        print(checkBoxAdd);
+                                        // print(value);
+                                        /*setState(() {
+                                          element["disable"]=value;
+                                          print(element);
+                                        });*/
+                                      }
+                                  ):PopupMenuButton(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(15.0),
+                                      ),
+                                    ),
+                                    padding: EdgeInsets.zero,
+                                    itemBuilder: (BuildContext context) {
+                                      return [
+
+                                        PopupMenuItem(
+                                          child: Text("Edit"),
+                                          onTap: (){
+
+                                            WidgetsBinding.instance?.addPostFrameCallback((_){
+                                              showDialog(
+                                                context: context,
+                                                builder: (BuildContext context) {
+                                                  return StatefulBuilder(
+                                                    builder: (BuildContext context, void Function(void Function()) setState) {
+                                                      return AlertDialog(
+                                                        alignment: Alignment.bottomCenter,
+                                                        shape: RoundedRectangleBorder(
+                                                          borderRadius: BorderRadius.circular(30.0),
+                                                        ),
+                                                        scrollable: true,
+                                                        insetPadding: EdgeInsets.zero,
+                                                        contentPadding: EdgeInsets.only(bottom: 5,left: 5,right: 5),
+                                                        titlePadding: EdgeInsets.only(top: 5,bottom: 5),
+                                                        backgroundColor: Colors.white70,
+                                                        title: Row(
+                                                          mainAxisAlignment: MainAxisAlignment.center,
+                                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                                          children: [
+
+                                                            Text(
+                                                              element["devices"],
+                                                              style: TextStyle(),
+                                                              textAlign: TextAlign.center,
+                                                            ),
+
+                                                          ],
+                                                        ),
+                                                        content: Container(
+                                                          clipBehavior: Clip.antiAliasWithSaveLayer,
+                                                          // height: 350,
+                                                          width: 350,
+                                                          padding: EdgeInsets.all(5),
+                                                          decoration: BoxDecoration(
+                                                            color: Colors.white70,
+                                                            borderRadius: BorderRadius.circular(30.0),
+                                                          ),
+                                                          child: Column(
+                                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                            children: [
+                                                              Row(
+                                                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                                                children: [
+                                                                  Expanded(
+                                                                      child: Checkbox(
+                                                                          value: element["callPermission"],
+                                                                          checkColor: Colors.white,
+                                                                          activeColor: Colors.grey,
+                                                                          shape:  RoundedRectangleBorder(
+                                                                            borderRadius: BorderRadius.circular(5),
+                                                                          ),
+                                                                          onChanged:(value){
+                                                                            /*print(element);
+                                                                            print(_discover[_discover.length-int-1]);*/
+                                                                            setState(() {
+                                                                            element["callPermission"]=value;
+                                                                            print(element);
+                                                                            });
+                                                                          })
+                                                                  ),
+                                                                  Expanded(
+                                                                    child: Text(
+                                                                      "Call Permission",
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+
+                                                              Row(
+                                                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                                                children: [
+                                                                  Expanded(
+                                                                      child: Checkbox(
+                                                                          value: element["remotePermission"],
+                                                                          checkColor: Colors.white,
+                                                                          activeColor: Colors.grey,
+                                                                          shape:  RoundedRectangleBorder(
+                                                                            borderRadius: BorderRadius.circular(5),
+                                                                          ),
+                                                                          onChanged:(value){
+                                                                            setState(() {
+                                                                              element["remotePermission"] = value;
+                                                                            });
+                                                                          })
+                                                                  ),
+                                                                  Expanded(
+                                                                    child: Text(
+                                                                      "Remote Permission",
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+
+                                                              Row(
+                                                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                                                children: [
+                                                                  Expanded(
+                                                                      child: Checkbox(
+                                                                          value: element["disableRemote"],
+                                                                          checkColor: Colors.white,
+                                                                          activeColor: Colors.grey,
+                                                                          shape:  RoundedRectangleBorder(
+                                                                            borderRadius: BorderRadius.circular(5),
+                                                                          ),
+                                                                          onChanged:(value){
+                                                                            setState(() {
+                                                                              element["disableRemote"]=value;
+                                                                            });
+                                                                          })
+                                                                  ),
+                                                                  Expanded(
+                                                                    child: Text(
+                                                                      "Disable Remote",
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+
+                                                              Row(
+                                                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                                                children: [
+                                                                  Expanded(
+                                                                      child: Checkbox(
+                                                                          value: element["disableCall"],
+                                                                          checkColor: Colors.white,
+                                                                          activeColor: Colors.grey,
+                                                                          shape:  RoundedRectangleBorder(
+                                                                            borderRadius: BorderRadius.circular(5),
+                                                                          ),
+                                                                          onChanged:(value){
+                                                                            setState(() {
+                                                                              element["disableCall"]=value;
+                                                                            });
+                                                                          })
+                                                                  ),
+                                                                  Expanded(
+                                                                    child: Text(
+                                                                      "Disable Call",
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+
+                                                              Row(
+                                                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                                                children: [
+                                                                  Expanded(
+                                                                      child: Checkbox(
+                                                                          value: element["disableScript"],
+                                                                          checkColor: Colors.white,
+                                                                          activeColor: Colors.grey,
+                                                                          shape:  RoundedRectangleBorder(
+                                                                            borderRadius: BorderRadius.circular(5),
+                                                                          ),
+                                                                          onChanged:(value){
+                                                                            setState(() {
+                                                                              element["disableScript"]=value;
+                                                                            });
+                                                                          })
+                                                                  ),
+                                                                  Expanded(
+                                                                    child: Text(
+                                                                      "Disable Script",
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      );
+                                                    },
+                                                  );
+                                                },
+                                              );
+                                            });
+                                          },
+                                        ),
+
+                                        PopupMenuItem(
+                                          child: Text("Remove"),
+                                          onTap: (){
+                                            setState(() {
+                                              _discover.remove(element);
+                                            });
+                                          },
+                                        ),
+
+                                        PopupMenuItem(
+                                          onTap: (){
+                                            setState(() {
+                                              element["disable"]=!element["disable"];
+                                            });
+                                            print(element);
+                                          },
+                                          child: Text(
+                                            element["disable"]?"Enable":"Disable",
+                                            style: TextStyle(
+                                              // color: element["disable"]?Colors.grey:null,
+                                            ),
+                                          ),
+
+                                        ),
+
+                                        /*CustomPopupMenuItem(
+                                          onTap:(){
+                                            element["disable"]=!element["disable"];
+                                            print(element["disable"]);
+                                          },
+                                          color: element["disable"]?Colors.green:Colors.transparent,
+                                          child: Text("Disable"),
+                                        ),*/
+
+                                      ];
+                                    },
+                                  ),
+                                ),
+
+                                /*Checkbox(
+                                    value: false,
+                                    onChanged: (bool? value){}
+                                ),*/
+
+                                /*PopupMenuButton(
+                                  itemBuilder: (BuildContext context) {
+                                    return [
+
+                                      PopupMenuItem(
+                                        child: Text("Edit"),
+                                      ),
+
+                                      PopupMenuItem(
+                                        child: Text("Remove"),
+                                      ),
+
+                                      PopupMenuItem(
+                                        child: Text("Disable"),
+                                      )
+                                    ];
+                                  },
+                                ),*/
+                              ],
+                            ),
+                            /*Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+
+
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    SizedBox(width: 10),
+                                    Text(
+                                      element['devices'],
+                                    ),
+                                    SizedBox(
+                                      // height: 42.5,
+                                      width: 70,
+                                      child: SingleChildScrollView(
+                                        scrollDirection: Axis.horizontal,
+                                        child: Text(
+                                            element["agentID"].toString(),
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+
+
+                                Visibility(
+                                  visible: checkBox,
+                                  child: Row(
+                                    children: [
+
+                                      Visibility(
+                                        visible: (element["group"]=="Offline"  || element["group"]=="Online"),
+                                        child: Row(
+                                          children: [
+                                            Text("Disable"),
+                                            Checkbox(
+                                                value: element["disable"]==null?false:element["disable"],
+                                                onChanged: (bool? value){
+
+                                                }
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+
+                                      Visibility(
+                                        visible: (element["group"]=="Disabled"),
+                                        child: Row(
+                                          children: [
+                                            Text("Enable"),
+                                            Checkbox(
+                                                value: element["enable"]==null?false:element["enable"],
+                                                onChanged: (bool? value){
+
+                                                }
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+
+                                      Visibility(
+                                        visible: (element["group"]=="Online"),
+                                        child: Row(
+                                          children: [
+                                            Text("Remove"),
+                                            Checkbox(
+                                                value: element["remove"]==null?false:element["remove"],
+                                                onChanged: (bool? value){
+
+                                                }
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+
+                                    ],
+                                  ),
+                                ),
+
+                              ],
+                            ),*/
+                          )
                       ),
                     ),
                   ):Container();
@@ -3083,7 +3234,7 @@ class _ChartState extends State<Chart> {
                   gradient: LinearGradient(
                       colors: [
                         Colors.white.withOpacity(0.5),
-                        Colors.white.withOpacity(1),
+                        Colors.white.withOpacity(0.5),
                       ],
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter),
@@ -3382,11 +3533,17 @@ class _ChartState extends State<Chart> {
                         );
                       },
                       child: Card(
-                        elevation: _discover[index]["block"]?0:8.0,
-                        margin: EdgeInsets.only(left: 7.5,right: 7.5,top: 5,bottom: 5),
+                        elevation: 5/*_discover[index]["block"]?0:8.0*/,
+                        color: Colors.white.withOpacity(0.4),
+                        shadowColor: Colors.black,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        margin: EdgeInsets.only(left: 2.50,right: 2.50,top: 5,bottom: 5),
                         child: Container(
-                          height: 47.5,
+                          height: 40,
                           decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
                             color:_discover[index]["block"]?Colors.grey.withOpacity(0.4):Color(0xff19547b).withOpacity(0.65),/*Color(0xff19547b).withOpacity(0.85),*/ /*Colors.blueGrey.withOpacity(0.9)*/),
                           child: Row(
                             // crossAxisAlignment: CrossAxisAlignment.center,
@@ -3498,10 +3655,10 @@ class _ChartState extends State<Chart> {
 }
 
 class ChartData {
-  ChartData(this.x, this.y,this.color);
+  ChartData(this.x, this.y/*,this.color*/);
   final String x;
   final int y;
-  final Color color;
+  // final Color color;
 }
 
 /*class PopupItem extends PopupMenuItem {

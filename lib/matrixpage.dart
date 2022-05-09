@@ -8684,6 +8684,7 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
             child: Container(
               // margin: EdgeInsets.only(left: 7.5,right: 7.5),
               decoration: BoxDecoration(
+                  color: Colors.transparent,
                 /*borderRadius: BorderRadius.only(
                   topRight: Radius.elliptical(40, 100),
                   topLeft: Radius.elliptical(40, 100),
@@ -8695,13 +8696,13 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                 //     bottomLeft: Radius.circular(30),
                 //     bottomRight: Radius.circular(30)
                 // ),
-                  gradient: LinearGradient(
-                      colors: [
-                        Colors.white.withOpacity(0.5),
-                        Colors.white.withOpacity(0.1),
-                      ],
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter),
+                //   gradient: LinearGradient(
+                //       colors: [
+                //         Colors.white.withOpacity(0.5),
+                //         Colors.white.withOpacity(0.1),
+                //       ],
+                //       begin: Alignment.topCenter,
+                //       end: Alignment.bottomCenter),
               ),
               child: GroupedListView<dynamic, String>(
                 sort: false,
@@ -8726,7 +8727,7 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                         child: Text(
                             _element['group'],
                           style: TextStyle(
-                            color: Color(0xff404b60).withOpacity(1),
+                            // color: Color(0xff404b60).withOpacity(1),
                             fontSize: 16,
                           ),
                         ),
@@ -9392,9 +9393,12 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                     },
                     child: Card(
                       elevation: 5.0,
-                      color: Colors.transparent,
+                      color: Colors.white.withOpacity(0.4),
                       shadowColor: Colors.black,
-                      margin: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      margin: EdgeInsets.symmetric(horizontal: /*5*/2.5, vertical: 5),
                       child: Container(
                         height: 40,
                         decoration: BoxDecoration(
@@ -9402,8 +9406,9 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                             color: Color(0xff19547b),
                             width: 2
                           ),*/
-                            // borderRadius: BorderRadius.circular(10),
-                            color: /*Colors.blueGrey.withOpacity(1)*/(int%2==0)?Color(0xff19547b).withOpacity(0.9):Color(0xff19547b).withOpacity(0.7),
+                            borderRadius: BorderRadius.circular(10),
+                            color: Color(0xff19547b).withOpacity(0.375),/*Color(0xff19547b).withOpacity(0.425),*/
+                            // color: /*Colors.blueGrey.withOpacity(1)*//*(int%2==0)?Color(0xff19547b).withOpacity(0.9):Color(0xff19547b).withOpacity(0.7)*/Color(0xff19547b).withOpacity(0.6),
                           /*boxShadow: [
                             BoxShadow(
                                 blurRadius: 0,
@@ -9427,7 +9432,8 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                                 child: Text(
                                   element['SystemNumber'],
                                   style: TextStyle(
-                                    color: Colors.white.withOpacity(0.9),
+                                      color: Colors.black.withOpacity(0.775),
+                                    // color: Colors.white.withOpacity(0.9),
                                       fontWeight: FontWeight.bold,
                                       fontSize: 14
                                   ),
@@ -9443,7 +9449,8 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                                 child: Text(
                                   element['Time'],
                                   style: TextStyle(
-                                    color: Colors.white.withOpacity(0.9),
+                                      color: Colors.black.withOpacity(0.85)
+                                    // color: Colors.white.withOpacity(0.9),
                                   ),
                                 )
                             ),
@@ -9477,7 +9484,8 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                                       // overflow: TextOverflow.ellipsis,
                                       // softWrap: false
                                       style: TextStyle(
-                                        color: Colors.white.withOpacity(0.9),
+                                          color: Colors.black.withOpacity(0.85)
+                                        // color: Colors.white.withOpacity(0.9),
                                       ),
                                     ),
                                   )),
