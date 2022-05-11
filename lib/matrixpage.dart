@@ -1098,7 +1098,7 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
           ),
           TweenAnimationBuilder(
               tween: Tween<double>(begin: 0, end: value),
-              duration: Duration(milliseconds: 500),
+              duration: Duration(milliseconds: 250),
               curve: Curves.easeInSine,
               builder: (_, double val, __) {
                 return Transform(
@@ -8718,7 +8718,7 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                       gradient: LinearGradient(
                           colors: [
                             Colors.white.withOpacity(0.5),
-                            Colors.white.withOpacity(1),
+                            Colors.white.withOpacity(0.5),
                           ],
                           begin: Alignment.topCenter,
                           end: Alignment.bottomCenter),

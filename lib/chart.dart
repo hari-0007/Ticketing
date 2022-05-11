@@ -1,7 +1,8 @@
 // import 'package:flutter/cupertino.dart';
 import 'dart:async';
 // import 'dart:math';
-// import 'package:random_color/random_color.dart';
+import 'package:allitson/user.dart';
+import 'package:random_color/random_color.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -553,6 +554,10 @@ class Chart extends StatefulWidget {
 
 class _ChartState extends State<Chart> {
 
+  var selectedItem ;
+
+  List colors = [];
+
   List<ChartData> chartData =[];
 
   Map map = Map();
@@ -599,7 +604,17 @@ class _ChartState extends State<Chart> {
 
     for(int i=0;i<map.keys.toList().length;i++){
       chartData.add(ChartData(map.keys.toList()[i], map[map.keys.toList()[i]].toInt()));
+
+      colors.add(RandomColor().randomColor(
+        colorHue: ColorHue.custom(Range.staticValue(HSLColor.fromColor(Color(0xff19547b)).hue.toInt())),
+        colorSaturation: ColorSaturation.highSaturation,
+        colorBrightness: ColorBrightness.custom(Range.staticValue((i+1)*10))/*ColorBrightness.custom(Range.staticValue(Random().nextInt(50))),*/
+        // debug: true
+      ).value.toInt());
+
     }
+
+    print(colors);
 
     super.initState();
   }
@@ -872,29 +887,31 @@ class _ChartState extends State<Chart> {
                     explode: explode,
                     explodeGesture: ActivationMode.singleTap,
                     dataSource: chartData,
-                    // pointColorMapper: (ChartData data, int){
-                    //
-                    //   // Color _color = RandomColor().randomColor(
-                    //   //   colorHue: ColorHue.blue,
-                    //   //   colorSaturation: ColorSaturation.highSaturation,
-                    //   //   colorBrightness: ColorBrightness.veryDark,
-                    //   //   debug: true
-                    //   // );
-                    //   //
-                    //   // return _color;
-                    //
-                    //   Color _ms = RandomColor().randomColor(
-                    //       colorHue: ColorHue.custom(Range.staticValue(
-                    //           HSLColor.fromColor(Colors.blue).hue.toInt()
-                    //       )),
-                    //       colorSaturation: ColorSaturation.highSaturation,
-                    //       colorBrightness: ColorBrightness.veryDark,
-                    //       // debug: true
-                    //   );
-                    //
-                    //   return _ms;
-                    //
-                    // },
+                    pointColorMapper: (ChartData data, int){
+
+                      // Color _color = RandomColor().randomColor(
+                      //   colorHue: ColorHue.blue,
+                      //   colorSaturation: ColorSaturation.highSaturation,
+                      //   colorBrightness: ColorBrightness.veryDark,
+                      //   debug: true
+                      // );
+                      //
+                      // return _color;
+
+                      // Color _ms = RandomColor().randomColor(
+                      //     colorHue: ColorHue.custom(Range.staticValue(
+                      //         HSLColor.fromColor(Colors.blue).hue.toInt()
+                      //     )),
+                      //     colorSaturation: ColorSaturation.highSaturation,
+                      //     colorBrightness: ColorBrightness.veryDark,
+                      //     // debug: true
+                      // );
+                      //
+                      // return _ms;
+
+                      return Color(colors[int]);
+
+                    },
                     // pointColorMapper: (ChartData data, _) => data.color,
                     xValueMapper: (ChartData data, _) => data.x,
                     yValueMapper: (ChartData data, _) => data.y
@@ -904,9 +921,9 @@ class _ChartState extends State<Chart> {
 
             Positioned.fill(
               child: Align(
-                alignment: Alignment(1,0.60),
+                alignment: Alignment(1,0.90),
                 child: Padding(
-                  padding: const EdgeInsets.only(right: 35),
+                  padding: const EdgeInsets.only(right: 25),
                   child: Container(
                     padding: EdgeInsets.all(2.5),
                     decoration: BoxDecoration(
@@ -994,6 +1011,13 @@ class _ChartState extends State<Chart> {
                     children: [
                   InkWell(
                     onTap: () {
+
+                      print(UsersState().usersFilter);
+
+                      UsersState().usersFilter.forEach((element) {
+                        print(element["name"]);
+                      });
+
                       /*setState(() {
                         _discover[0].addEntries([MapEntry("Document",demo)]);
                       });*/
@@ -1219,6 +1243,7 @@ class _ChartState extends State<Chart> {
                                   showDialog(
                                     context: context,
                                     builder: (BuildContext context) {
+
                                       return AlertDialog(
                                         actionsAlignment: MainAxisAlignment.center,
                                         shape: RoundedRectangleBorder(
@@ -1269,37 +1294,163 @@ class _ChartState extends State<Chart> {
 
                                               SizedBox(height: 9,),
 
-                                              Container(
+
+
+                                              /*Container(
+                                                height: 47,
                                                 decoration: BoxDecoration(
                                                   borderRadius: BorderRadius.circular(10),
                                                   border: Border.all(
-                                                    color: Colors.black.withOpacity(0.55),
-                                                    /*width: 1.5,
-                                                    style: BorderStyle.solid*/
-                                                  )
+                                                      color: Colors.black.withOpacity(0.55)),
                                                 ),
-                                                child: Column(
-                                                  children: [
-                                                    Padding(
-                                                      padding: const EdgeInsets.only(top:10,bottom: 10),
-                                                      child: Text("USERS",
-                                                        style: TextStyle(
-                                                            color: Colors.black.withOpacity(0.75)),
-                                                      ),
-                                                    ),
-                                                    Padding(
-                                                      padding: const EdgeInsets.only(right: 5,bottom: 5),
-                                                      child: Align(
-                                                        alignment: Alignment.centerRight,
-                                                        child: Icon(
-                                                            Icons.add_box_outlined,
-                                                          color: Colors.black.withOpacity(0.7),
+                                                padding: EdgeInsets.symmetric(horizontal: 10),
+                                                child: Center(
+                                                  child: DropdownButton<String>(
+                                                    hint: Text("Select Users"),
+                                                    isExpanded: true,
+                                                    value: selectedItem,
+                                                    selectedItemBuilder: (BuildContext context) {
+                                                      return items.map<Widget>((String item) {
+                                                        return Text(item);
+                                                      }).toList();
+                                                    },
+                                                    isDense: true,
+                                                      onChanged: (String? string){
+                                                        setState(() => selectedItem = string!);
+                                                      },
+                                                    items: UsersState().usersFilter.map((e){
+                                                      return DropdownMenuItem<String>(
+                                                          value: e["name"],
+                                                        child: Text(e["name"]),
+                                                      );
+                                                    }).toList(),
+                                                    // UsersState().usersFilter.forEach((element) {
+                                                    //   element["name"].map((String item){
+                                                    //     return DropdownMenuItem<String>(
+                                                    //       value: item,
+                                                    //       child: Text('Log $item'),
+                                                    //     );
+                                                    //   });
+                                                    // }),
+                                                    // items.map((String item) {
+                                                    //   return DropdownMenuItem<String>(
+                                                    //     value: item,
+                                                    //     child: Text('Log $item'),
+                                                    //   );
+                                                    // }).toList(),
+                                                  ),
+                                                ),
+                                              ),
+
+                                              SizedBox(height: 9,),*/
+
+                                              GestureDetector(
+                                                onTap: (){
+
+                                                  showDialog(
+                                                    context: context,
+                                                    builder: (BuildContext context) {
+                                                      return AlertDialog(
+                                                        actionsAlignment: MainAxisAlignment.center,
+                                                        shape: RoundedRectangleBorder(
+                                                          borderRadius: BorderRadius.circular(20.0),
+                                                        ),
+                                                        backgroundColor: Colors.white70,
+                                                        insetPadding: EdgeInsets.zero,
+                                                        // contentPadding: EdgeInsets.only(bottom: 5,left: 5,right: 5),
+                                                        titlePadding: EdgeInsets.only(top: 5,bottom: 5),
+                                                        actionsOverflowButtonSpacing: 10,
+                                                        elevation: 5,
+                                                        scrollable: false,
+                                                        title: Text(
+                                                          "Users",
+                                                          textAlign: TextAlign.center,
+                                                          style: TextStyle(
+                                                            color: Colors.black.withOpacity(0.75),
+                                                          ),
+                                                        ),
+                                                        content: Container(
+                                                          width: MediaQuery.of(context).size.width*0.8,
+                                                          // padding: EdgeInsets.all(20),
+                                                          decoration: BoxDecoration(
+                                                            color: Colors.white70,
+                                                            borderRadius: BorderRadius.circular(30.0),
+                                                          ),
+                                                          child: SingleChildScrollView(
+                                                            child: Column(
+                                                              children: [
+                                                                for(int i=0;i<UsersState().usersFilter.length;i++)...[
+                                                                  Row(
+                                                                    children: [
+
+                                                                      Flexible(
+                                                                          child: Center(
+                                                                              child: Text(
+                                                                                  "${UsersState().usersFilter[i]["name"]}",
+                                                                              )
+                                                                          )
+                                                                      ),
+
+                                                                      Flexible(
+                                                                        child: Center(
+                                                                          child: Checkbox(
+                                                                              value: false,
+                                                                              onChanged: (value){
+                                                                                print(UsersState().usersFilter[i]["name"]);
+                                                                              }
+                                                                          ),
+                                                                        ),
+                                                                      ),
+
+                                                                    ],
+                                                                  )
+                                                                ]
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      );
+                                                    },
+                                                  );
+
+                                                },
+                                                child: Container(
+                                                  decoration: BoxDecoration(
+                                                    borderRadius: BorderRadius.circular(10),
+                                                    border: Border.all(
+                                                      color: Colors.black.withOpacity(0.55),
+                                                      /*width: 1.5,
+                                                      style: BorderStyle.solid*/
+                                                    )
+                                                  ),
+                                                  child: Column(
+                                                    children: [
+
+                                                      Padding(
+                                                        padding: const EdgeInsets.only(top:10,bottom: 10),
+                                                        child: Text("USERS",
+                                                          style: TextStyle(
+                                                              color: Colors.black.withOpacity(0.75)),
                                                         ),
                                                       ),
-                                                    )
-                                                  ],
+
+                                                      Padding(
+                                                        padding: const EdgeInsets.only(right: 5,bottom: 5),
+                                                        child: Align(
+                                                          alignment: Alignment.centerRight,
+                                                          child: Icon(
+                                                              Icons.add_box_outlined,
+                                                            color: Colors.black.withOpacity(0.7),
+                                                          ),
+                                                        ),
+                                                      ),
+
+                                                    ],
+                                                  ),
                                                 ),
                                               )
+
+
                                             ],
                                           ),
                                         ),
