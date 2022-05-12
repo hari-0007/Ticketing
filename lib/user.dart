@@ -161,6 +161,14 @@ List<Map<String, dynamic>> users = [
   },
 ];
 
+List<String> branch =[
+  "Branch 0",
+  "Branch 1",
+  "Branch 2",
+  "Branch 3",
+  "Branch 5",
+];
+
 class Users extends StatefulWidget {
 
   const Users({Key? key}) : super(key: key);
@@ -170,6 +178,8 @@ class Users extends StatefulWidget {
 }
 
 class UsersState extends State<Users> {
+
+  List userBranch = [];
 
   bool _userWidth = false;
   bool _searchUser = false;
@@ -306,7 +316,9 @@ class UsersState extends State<Users> {
                         child: Slidable(
                           key: UniqueKey(),
                           endActionPane: ActionPane(
-                              motion: const ScrollMotion(),
+                            extentRatio: 0.3,
+                              // closeThreshold: 0.25,openThreshold: 0.2,
+                              motion: const DrawerMotion(),
                               /*dismissible: DismissiblePane(
                                 key: UniqueKey(),
                                   onDismissed: () {
@@ -322,15 +334,16 @@ class UsersState extends State<Users> {
                               children: [
 
                                 SlidableAction(
+                                  // flex: 1,
                                   autoClose: true,
                                   onPressed: (value){
                                     print(value);
                                   },
                                   backgroundColor: Colors.transparent,
                                   foregroundColor: Colors.white,
-                                  icon: Icons.close_rounded,
+                                  icon: Icons.edit,
                                   spacing: 10,
-                                  label: 'Remove',
+                                  // label: 'Edit',
                                 ),
 
                                 SlidableAction(
@@ -341,10 +354,23 @@ class UsersState extends State<Users> {
                                   },
                                   backgroundColor: Colors.transparent,
                                   foregroundColor: Colors.white,
-                                  icon: Icons.edit,
+                                  icon: Icons.block,
                                   spacing: 10,
-                                  label: 'Edit',
+                                  // label: 'Disable',
                                 ),
+
+                                /*SlidableAction(
+                                  autoClose: true,
+                                  onPressed: (value){
+                                    print(value);
+                                  },
+                                  backgroundColor: Colors.transparent,
+                                  foregroundColor: Colors.white,
+                                  icon: Icons.close_rounded,
+                                  spacing: 10,
+                                  // label: 'Remove',
+                                ),*/
+
                                 /*SlidableAction(
                               onPressed: (value){},
                               backgroundColor: Colors.transparent,
@@ -630,157 +656,169 @@ class UsersState extends State<Users> {
                                               showDialog(
                                                 context: context,
                                                 builder: (BuildContext context) {
-                                                  return AlertDialog(
-                                                    alignment: Alignment.center,
-                                                    shape: RoundedRectangleBorder(
-                                                      borderRadius: BorderRadius.circular(30.0),
-                                                    ),
-                                                    scrollable: false,
-                                                    insetPadding: EdgeInsets.zero,
-                                                    contentPadding: EdgeInsets.only(bottom: 5,left: 5,right: 5),
-                                                    titlePadding: EdgeInsets.only(top: 5,bottom: 5),
-                                                    backgroundColor: Colors.white70,
-                                                    title: Text(
-                                                      "ADMIN",
-                                                      style: TextStyle(
-                                                        color: Colors.black.withOpacity(0.7)
-                                                      ),
-                                                      textAlign: TextAlign.center,
-                                                    ),
-                                                    content: Container(
-                                                      width: MediaQuery.of(context).size.width*0.85,
-                                                      padding: EdgeInsets.all(20),
-                                                      decoration: BoxDecoration(
-                                                        color: Colors.white70,
-                                                        borderRadius: BorderRadius.circular(30.0),
-                                                      ),
-                                                      child: Column(
-                                                        mainAxisSize: MainAxisSize.min,
-                                                        children: [
-                                                          Row(
-                                                            children: [
-
-                                                              Container(
-                                                                width: 87,
-                                                                  child: Text(
-                                                                      "User Name : "
-                                                                  )
-                                                              ),
-
-                                                              Expanded(
-                                                                child: Center(
-                                                                  child: TextField(
-
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            ],
+                                                  return StatefulBuilder(
+                                                    builder: (BuildContext context, void Function(void Function()) setState) {
+                                                      return AlertDialog(
+                                                        alignment: Alignment.center,
+                                                        shape: RoundedRectangleBorder(
+                                                          borderRadius: BorderRadius.circular(30.0),
+                                                        ),
+                                                        scrollable: false,
+                                                        insetPadding: EdgeInsets.zero,
+                                                        contentPadding: EdgeInsets.only(bottom: 5,left: 5,right: 5),
+                                                        titlePadding: EdgeInsets.only(top: 5,bottom: 5),
+                                                        backgroundColor: Colors.white70,
+                                                        title: Text(
+                                                          "ADMIN",
+                                                          style: TextStyle(
+                                                              color: Colors.black.withOpacity(0.7)
                                                           ),
-
-                                                          SizedBox(
-                                                            height: 10,
-                                                          ),
-
-                                                          Row(
-                                                            children: [
-
-                                                              Container(
-                                                                  width: 87,
-                                                                  alignment: Alignment.centerRight,
-                                                                  child: Text(
-                                                                      "Email : "
-                                                                  )
-                                                              ),
-
-                                                              Expanded(
-                                                                child: Center(
-                                                                  child: TextField(
-
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-
-                                                          SizedBox(
-                                                            height: 10,
-                                                          ),
-
-                                                          Container(
+                                                          textAlign: TextAlign.center,
+                                                        ),
+                                                        content: SingleChildScrollView(
+                                                          physics: NeverScrollableScrollPhysics(),
+                                                          child: Container(
+                                                            width: MediaQuery.of(context).size.width*0.85,
+                                                            padding: EdgeInsets.all(20),
                                                             decoration: BoxDecoration(
-                                                              borderRadius: BorderRadius.circular(15),
-                                                              border: Border.all(
-                                                                width: 1,
-                                                                color: Colors.black.withOpacity(0.5)
-                                                              )
+                                                              color: Colors.white70,
+                                                              borderRadius: BorderRadius.circular(30.0),
                                                             ),
-                                                            child: Row(
-                                                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                                              crossAxisAlignment: CrossAxisAlignment.center,
+                                                            child: Column(
+                                                              mainAxisSize: MainAxisSize.min,
                                                               children: [
-                                                                Text("Org Name"),
+                                                                Row(
+                                                                  children: [
 
-                                                                Checkbox(
-                                                                    value: false,
-                                                                    onChanged: (value){
+                                                                    Flexible(
+                                                                      child: Align(
+                                                                          alignment: Alignment.centerRight,
+                                                                          child: Text(
+                                                                              "Name : "
+                                                                          )
+                                                                      ),
+                                                                    ),
 
-                                                                    }
-                                                                )
+                                                                    Flexible(
+                                                                      flex: 2,
+                                                                      child: Center(
+                                                                        child: TextField(
 
-                                                              ],
-                                                            ),
-                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
 
-                                                          SizedBox(
-                                                            height: 10,
-                                                          ),
+                                                                SizedBox(
+                                                                  height: 10,
+                                                                ),
 
-                                                          Container(
-                                                            height: /*MediaQuery.of(context).size.height*0.6,*/((48.4*15)>MediaQuery.of(context).size.height*0.6)?MediaQuery.of(context).size.height*0.6:(48.4*15),/*48.4*5,*/
-                                                            decoration: BoxDecoration(
-                                                                borderRadius: BorderRadius.circular(15),
-                                                                border: Border.all(
-                                                                    width: 1,
-                                                                    color: Colors.black.withOpacity(0.5)
-                                                                )
-                                                            ),
-                                                            child: ListView.builder(
-                                                              shrinkWrap: true,
-                                                              // physics: NeverScrollableScrollPhysics(),
-                                                              itemCount: 15,
-                                                              itemBuilder: (BuildContext context, int index) {
-                                                                return GestureDetector(
-                                                                  onTap: (){
-                                                                    print(MediaQuery.of(context).size.height*0.6);
-                                                                    print(47.5*15);
-                                                                  },
+                                                                Row(
+                                                                  children: [
+
+                                                                    Flexible(
+                                                                      child: Align(
+                                                                          alignment: Alignment.centerRight,
+                                                                          child: Text(
+                                                                              "Email : "
+                                                                          )
+                                                                      ),
+                                                                    ),
+
+                                                                    Flexible(
+                                                                      flex: 2,
+                                                                      child: Center(
+                                                                        child: TextField(
+
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+
+                                                                SizedBox(
+                                                                  height: 10,
+                                                                ),
+
+                                                                Container(
+                                                                  decoration: BoxDecoration(
+                                                                      borderRadius: BorderRadius.circular(15),
+                                                                      border: Border.all(
+                                                                          width: 1,
+                                                                          color: Colors.black.withOpacity(0.5)
+                                                                      )
+                                                                  ),
                                                                   child: Row(
                                                                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                                                     crossAxisAlignment: CrossAxisAlignment.center,
                                                                     children: [
-                                                                      Text("Branch ${index}"),
+                                                                      Text("Org Name"),
 
                                                                       Checkbox(
                                                                           value: false,
                                                                           onChanged: (value){
 
-                                                                      }
+                                                                          }
                                                                       )
+
                                                                     ],
                                                                   ),
-                                                                );
-                                                              },
+                                                                ),
+
+                                                                SizedBox(
+                                                                  height: 10,
+                                                                ),
+
+                                                                Container(
+                                                                  height: /*MediaQuery.of(context).size.height*0.6,*/((48.4*branch.length)>MediaQuery.of(context).size.height*0.6)?MediaQuery.of(context).size.height*0.6:(48.4*branch.length),/*48.4*5,*/
+                                                                  decoration: BoxDecoration(
+                                                                      borderRadius: BorderRadius.circular(15),
+                                                                      border: Border.all(
+                                                                          width: 1,
+                                                                          color: Colors.black.withOpacity(0.5)
+                                                                      )
+                                                                  ),
+                                                                  child: ListView.builder(
+                                                                    shrinkWrap: true,
+                                                                    // physics: NeverScrollableScrollPhysics(),
+                                                                    itemCount: branch.length,
+                                                                    itemBuilder: (BuildContext context, int index) {
+                                                                      return GestureDetector(
+                                                                        onTap: (){
+                                                                          print(MediaQuery.of(context).size.height*0.6);
+                                                                          print(47.5*branch.length);
+                                                                        },
+                                                                        child: Row(
+                                                                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                                                          children: [
+                                                                            Text(branch[index]),
+
+                                                                            Checkbox(
+                                                                                value: false,
+                                                                                onChanged: (value){
+
+                                                                                }
+                                                                            )
+                                                                          ],
+                                                                        ),
+                                                                      );
+                                                                    },
+                                                                  ),
+                                                                )
+
+                                                              ],
                                                             ),
-                                                          )
+                                                          ),
+                                                        ),
 
-                                                        ],
-                                                      ),
-                                                    ),
+                                                        // actions: [
+                                                        //   Text("SUBMIT")
+                                                        // ],
 
-                                                    // actions: [
-                                                    //   Text("SUBMIT")
-                                                    // ],
-
+                                                      );
+                                                    },
                                                   );
                                                 },
                                               );
@@ -824,6 +862,170 @@ class UsersState extends State<Users> {
 
                                       ElevatedButton(
                                           onPressed: (){
+
+                                            Navigator.pop(context);
+
+                                            WidgetsBinding.instance?.addPostFrameCallback((_){
+                                              showDialog(
+                                                context: context,
+                                                builder: (BuildContext context) {
+                                                  return AlertDialog(
+                                                    alignment: Alignment.center,
+                                                    shape: RoundedRectangleBorder(
+                                                      borderRadius: BorderRadius.circular(30.0),
+                                                    ),
+                                                    scrollable: false,
+                                                    insetPadding: EdgeInsets.zero,
+                                                    contentPadding: EdgeInsets.only(bottom: 5,left: 5,right: 5),
+                                                    titlePadding: EdgeInsets.only(top: 5,bottom: 5),
+                                                    backgroundColor: Colors.white70,
+                                                    title: Text(
+                                                      "TECHNICAL",
+                                                      style: TextStyle(
+                                                          color: Colors.black.withOpacity(0.7)
+                                                      ),
+                                                      textAlign: TextAlign.center,
+                                                    ),
+                                                    content: Container(
+                                                      width: MediaQuery.of(context).size.width*0.85,
+                                                      padding: EdgeInsets.all(20),
+                                                      decoration: BoxDecoration(
+                                                        color: Colors.white70,
+                                                        borderRadius: BorderRadius.circular(30.0),
+                                                      ),
+                                                      child: Column(
+                                                        mainAxisSize: MainAxisSize.min,
+                                                        children: [
+
+                                                          Row(
+                                                            children: [
+
+                                                              Flexible(
+                                                                  child: Align(
+                                                                    alignment: Alignment.centerRight,
+                                                                    child: Text(
+                                                                        "Name : "
+                                                                    ),
+                                                                  )
+                                                              ),
+
+                                                              Flexible(
+                                                                flex: 2,
+                                                                child: Center(
+                                                                  child: TextField(
+
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+
+                                                          SizedBox(
+                                                            height: 10,
+                                                          ),
+
+                                                          Row(
+                                                            children: [
+
+                                                              Flexible(
+                                                                  child: Align(
+                                                                    alignment: Alignment.centerRight,
+                                                                    child: Text(
+                                                                        "Email : "
+                                                                    ),
+                                                                  )
+                                                              ),
+
+                                                              Flexible(
+                                                                flex: 2,
+                                                                child: Center(
+                                                                  child: TextField(
+
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+
+                                                          SizedBox(
+                                                            height: 10,
+                                                          ),
+
+                                                          Row(
+                                                            children: [
+
+                                                              Flexible(
+                                                                  child: Align(
+                                                                    alignment: Alignment.centerRight,
+                                                                    child: Text(
+                                                                        "Designation : "
+                                                                    ),
+                                                                  )
+                                                              ),
+
+                                                              Flexible(
+                                                                flex: 2,
+                                                                child: Center(
+                                                                  child: DropdownButton<String>(
+                                                                    hint: Text("Select Users"),
+                                                                    isExpanded: true,
+                                                                    isDense: false,
+                                                                    onChanged: (value) {  },
+                                                                    items: branch.map((String items){
+                                                                      return DropdownMenuItem<String>(
+                                                                        value: items,
+                                                                        child: Text(items),
+                                                                      );
+                                                                    }).toList(),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+
+                                                          SizedBox(
+                                                            height: 10,
+                                                          ),
+
+                                                          Row(
+                                                            children: [
+
+                                                              Flexible(
+                                                                  child: Align(
+                                                                    alignment: Alignment.centerRight,
+                                                                    child: Text(
+                                                                        "Level : "
+                                                                    ),
+                                                                  )
+                                                              ),
+
+                                                              Flexible(
+                                                                flex: 2,
+                                                                child: Center(
+                                                                  child: DropdownButton<String>(
+                                                                    hint: Text("Select Users"),
+                                                                    isExpanded: true,
+                                                                    isDense: false,
+                                                                    onChanged: (value) {  },
+                                                                    items: branch.map((String items){
+                                                                      return DropdownMenuItem<String>(
+                                                                        value: items,
+                                                                        child: Text(items),
+                                                                      );
+                                                                    }).toList(),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  );
+                                                },
+                                              );
+                                            });
 
                                           },
                                           child: Text("Technical"),

@@ -654,7 +654,7 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
     _foundTicket = ticket;
     super.initState();
 
-    menuController = AnimationController(vsync: this,duration: Duration(milliseconds: 500));
+    menuController = AnimationController(vsync: this,duration: Duration(milliseconds: 150));
   }
 
   void _runFilter(String enteredKeyword) {
@@ -1098,7 +1098,7 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
           ),
           TweenAnimationBuilder(
               tween: Tween<double>(begin: 0, end: value),
-              duration: Duration(milliseconds: 250),
+              duration: Duration(milliseconds: 150),
               curve: Curves.easeInSine,
               builder: (_, double val, __) {
                 return Transform(
@@ -9425,7 +9425,16 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                           children: [
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 12.0),
-                              child: PhysicalModel(
+                              child: Text(
+                                element['SystemNumber'],
+                                style: TextStyle(
+                                    color: Colors.black.withOpacity(0.775),
+                                    // color: Colors.white.withOpacity(0.9),
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 14
+                                ),
+                              ),
+                              /*PhysicalModel(
                                 color: Colors.transparent,
                                 shadowColor: Colors.black.withOpacity(0.55),
                                 elevation: 5,
@@ -9438,7 +9447,7 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                                       fontSize: 14
                                   ),
                                 ),
-                              ),
+                              ),*/
                             ),
                             /*VerticalDivider(
                               color: Color(0xff19547b),
@@ -9484,7 +9493,8 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                                       // overflow: TextOverflow.ellipsis,
                                       // softWrap: false
                                       style: TextStyle(
-                                          color: Colors.black.withOpacity(0.85)
+                                          color: Colors.black.withOpacity(0.85),
+                                        // fontWeight: FontWeight.w600,
                                         // color: Colors.white.withOpacity(0.9),
                                       ),
                                     ),

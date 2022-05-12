@@ -554,6 +554,10 @@ class Chart extends StatefulWidget {
 
 class _ChartState extends State<Chart> {
 
+  bool chum = false;
+
+  List UserData = [];
+
   var selectedItem ;
 
   List colors = [];
@@ -674,6 +678,95 @@ class _ChartState extends State<Chart> {
 
     return Column(
       children: [
+
+        // Container(
+        //   height: 47,
+        //   decoration: BoxDecoration(
+        //     borderRadius: BorderRadius.circular(10),
+        //     border: Border.all(
+        //         color: Colors.black.withOpacity(0.55)),
+        //   ),
+        //   padding: EdgeInsets.symmetric(horizontal: 10),
+        //   child: Center(
+        //     child: DropdownButton<String>(
+        //       hint: Text(
+        //         "${UserData.length.toString()} Selected",
+        //         textAlign: TextAlign.center,
+        //       ),
+        //       isExpanded: true,
+        //       value: selectedItem,
+        //       // selectedItemBuilder: (BuildContext context) {
+        //       //   return items.map<Widget>((String item) {
+        //       //     return Text(item);
+        //       //   }).toList();
+        //       // },
+        //       isDense: true,
+        //       onChanged: (String? string){
+        //         // setState(() => selectedItem = string!);
+        //
+        //         setState(() {
+        //
+        //         });
+        //
+        //       },
+        //       items: UsersState().usersFilter.map((e){
+        //         return DropdownMenuItem<String>(
+        //           value: e["name"],
+        //           child: Row(
+        //             children: [
+        //
+        //               Flexible(
+        //                   child: Center(
+        //                       child: Text(e["name"])
+        //                   )
+        //               ),
+        //
+        //               Flexible(
+        //                 child: Center(
+        //                   child: Checkbox(
+        //                     value: UserData.contains(e["name"]),
+        //                     onChanged: (value){
+        //                       setState((){
+        //
+        //                         if(UserData.contains(e["name"])){
+        //                           UserData.remove(e["name"]);
+        //                         }else{
+        //                           UserData.add(e["name"]);
+        //                         }
+        //
+        //                       });
+        //
+        //                       setState(() {
+        //
+        //                       });
+        //
+        //                     },
+        //                   ),
+        //                 ),
+        //               ),
+        //
+        //             ],
+        //           ),
+        //         );
+        //       }).toList(),
+        //       // UsersState().usersFilter.forEach((element) {
+        //       //   element["name"].map((String item){
+        //       //     return DropdownMenuItem<String>(
+        //       //       value: item,
+        //       //       child: Text('Log $item'),
+        //       //     );
+        //       //   });
+        //       // }),
+        //       // items.map((String item) {
+        //       //   return DropdownMenuItem<String>(
+        //       //     value: item,
+        //       //     child: Text('Log $item'),
+        //       //   );
+        //       // }).toList(),
+        //     ),
+        //   ),
+        // ),
+
         Stack(
           children: [
             SfCircularChart(
@@ -746,7 +839,7 @@ class _ChartState extends State<Chart> {
                 isResponsive: false,
                 toggleSeriesVisibility: false,
                 isVisible: true,
-                overflowMode: LegendItemOverflowMode.none,
+                overflowMode: LegendItemOverflowMode.scroll,
                 alignment: ChartAlignment.center,
                   position: LegendPosition.right,
                 textStyle: TextStyle(
@@ -788,7 +881,7 @@ class _ChartState extends State<Chart> {
                           ),
                           child: Center(
                             child: Text(
-                              _discover.length.toString(),
+                              _elements.length.toString(),
                               style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
@@ -1243,60 +1336,62 @@ class _ChartState extends State<Chart> {
                                   showDialog(
                                     context: context,
                                     builder: (BuildContext context) {
+                                      return StatefulBuilder(
+                                        builder: (BuildContext context, void Function(void Function()) setState) {
 
-                                      return AlertDialog(
-                                        actionsAlignment: MainAxisAlignment.center,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(15.0),
-                                        ),
-                                        backgroundColor: Colors.white70,
-                                        actionsOverflowButtonSpacing: 10,
-                                        elevation: 5,
-                                        scrollable: true,
-                                        // titlePadding: EdgeInsets.zero,
-                                        // contentPadding: EdgeInsets.zero,
-                                        title: Text("Group",
-                                          textAlign: TextAlign.center,
-                                        ),
-                                        content: Container(
-                                          // height: 200,
-                                          // width: 100,
-                                          decoration: BoxDecoration(
-                                            color: Colors.transparent,
-                                            borderRadius: BorderRadius.circular(15.0),
-                                          ),
-                                          child: Column(
-                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                            children: [
-                                              // Text("GROUP"),
-
-                                              // SizedBox(height: 17.5,),
-
-                                              Container(
-                                                // padding: EdgeInsets.symmetric(horizontal: 5),
-                                                height: 47,
-                                                decoration: BoxDecoration(
-                                                    borderRadius: BorderRadius.circular(10),
-                                                    border: Border.all(
-                                                        color: Colors.black.withOpacity(0.55))),
-                                                child: TextField(
-                                                  cursorColor: Colors.white,
-                                                  autofocus: false,
-                                                  textAlign: TextAlign.center,
-                                                  decoration: InputDecoration(
-                                                    hintText: "Name",
-                                                    border: InputBorder.none,
-                                                      labelStyle: TextStyle(
-                                                          color: Colors.black.withOpacity(0.6))
-                                                  ),
-                                                ),
+                                          return AlertDialog(
+                                            actionsAlignment: MainAxisAlignment.center,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(15.0),
+                                            ),
+                                            backgroundColor: Colors.white70,
+                                            actionsOverflowButtonSpacing: 10,
+                                            elevation: 5,
+                                            scrollable: true,
+                                            // titlePadding: EdgeInsets.zero,
+                                            // contentPadding: EdgeInsets.zero,
+                                            title: Text("Group",
+                                              textAlign: TextAlign.center,
+                                            ),
+                                            content: Container(
+                                              // height: 200,
+                                              // width: 100,
+                                              decoration: BoxDecoration(
+                                                color: Colors.transparent,
+                                                borderRadius: BorderRadius.circular(15.0),
                                               ),
+                                              child: Column(
+                                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                children: [
+                                                  // Text("GROUP"),
 
-                                              SizedBox(height: 9,),
+                                                  // SizedBox(height: 17.5,),
+
+                                                  Container(
+                                                    // padding: EdgeInsets.symmetric(horizontal: 5),
+                                                    height: 47,
+                                                    decoration: BoxDecoration(
+                                                        borderRadius: BorderRadius.circular(10),
+                                                        border: Border.all(
+                                                            color: Colors.black.withOpacity(0.55))),
+                                                    child: TextField(
+                                                      cursorColor: Colors.white,
+                                                      autofocus: false,
+                                                      textAlign: TextAlign.center,
+                                                      decoration: InputDecoration(
+                                                          hintText: "Name",
+                                                          border: InputBorder.none,
+                                                          labelStyle: TextStyle(
+                                                              color: Colors.black.withOpacity(0.6))
+                                                      ),
+                                                    ),
+                                                  ),
+
+                                                  SizedBox(height: 9,),
 
 
 
-                                              /*Container(
+                                                  Container(
                                                 height: 47,
                                                 decoration: BoxDecoration(
                                                   borderRadius: BorderRadius.circular(10),
@@ -1306,22 +1401,83 @@ class _ChartState extends State<Chart> {
                                                 padding: EdgeInsets.symmetric(horizontal: 10),
                                                 child: Center(
                                                   child: DropdownButton<String>(
-                                                    hint: Text("Select Users"),
+                                                    hint: Text(
+                                                        "${UserData.length.toString()} Selected",
+                                                      textAlign: TextAlign.center,
+                                                    ),
                                                     isExpanded: true,
                                                     value: selectedItem,
-                                                    selectedItemBuilder: (BuildContext context) {
-                                                      return items.map<Widget>((String item) {
-                                                        return Text(item);
-                                                      }).toList();
-                                                    },
+                                                    // selectedItemBuilder: (BuildContext context) {
+                                                    //   return items.map<Widget>((String item) {
+                                                    //     return Text(item);
+                                                    //   }).toList();
+                                                    // },
+                                                    onTap: (){
+                                                      print("Helo");
+
+                                                      /*setState((){
+                                                        chum=!chum;
+                                                      });*/
+
+                                                      },
+                                                    borderRadius: BorderRadius.circular(10),
+                                                    enableFeedback: true,
                                                     isDense: true,
                                                       onChanged: (String? string){
-                                                        setState(() => selectedItem = string!);
+
+                                                        // setState(() => selectedItem = string!);
                                                       },
                                                     items: UsersState().usersFilter.map((e){
                                                       return DropdownMenuItem<String>(
                                                           value: e["name"],
-                                                        child: Text(e["name"]),
+                                                        child: CheckboxListTile(
+                                                          title: Text(e["name"].toString()),
+                                                          value: chum,/*UserData.contains(e["name"]),*/
+                                                          onChanged: (value){
+                                                            setState((){
+
+                                                              chum=!chum;
+
+                                                              /*if(UserData.contains(e["name"])){
+                                                                UserData.remove(e["name"]);
+                                                              }else{
+                                                                UserData.add(e["name"]);
+                                                              }*/
+
+                                                            });
+                                                          },
+                                                        )
+
+                                                        /*Row(
+                                                          children: [
+
+                                                            Flexible(
+                                                                child: Center(
+                                                                    child: Text(e["name"])
+                                                                )
+                                                            ),
+
+                                                            Flexible(
+                                                              child: Center(
+                                                                child: Checkbox(
+                                                                    value: UserData.contains(e["name"]),
+                                                                    onChanged: (value){
+                                                                      setState((){
+
+                                                                        if(UserData.contains(e["name"])){
+                                                                          UserData.remove(e["name"]);
+                                                                        }else{
+                                                                          UserData.add(e["name"]);
+                                                                        }
+
+                                                                      });
+                                                                    },
+                                                                ),
+                                                              ),
+                                                            ),
+
+                                                          ],
+                                                        ),*/
                                                       );
                                                     }).toList(),
                                                     // UsersState().usersFilter.forEach((element) {
@@ -1342,118 +1498,192 @@ class _ChartState extends State<Chart> {
                                                 ),
                                               ),
 
-                                              SizedBox(height: 9,),*/
+                                              SizedBox(height: 9,),
 
-                                              GestureDetector(
-                                                onTap: (){
+                                                  GestureDetector(
+                                                    onTap: (){
 
-                                                  showDialog(
-                                                    context: context,
-                                                    builder: (BuildContext context) {
-                                                      return AlertDialog(
-                                                        actionsAlignment: MainAxisAlignment.center,
-                                                        shape: RoundedRectangleBorder(
-                                                          borderRadius: BorderRadius.circular(20.0),
-                                                        ),
-                                                        backgroundColor: Colors.white70,
-                                                        insetPadding: EdgeInsets.zero,
-                                                        // contentPadding: EdgeInsets.only(bottom: 5,left: 5,right: 5),
-                                                        titlePadding: EdgeInsets.only(top: 5,bottom: 5),
-                                                        actionsOverflowButtonSpacing: 10,
-                                                        elevation: 5,
-                                                        scrollable: false,
-                                                        title: Text(
-                                                          "Users",
-                                                          textAlign: TextAlign.center,
-                                                          style: TextStyle(
-                                                            color: Colors.black.withOpacity(0.75),
-                                                          ),
-                                                        ),
-                                                        content: Container(
-                                                          width: MediaQuery.of(context).size.width*0.8,
-                                                          // padding: EdgeInsets.all(20),
-                                                          decoration: BoxDecoration(
-                                                            color: Colors.white70,
-                                                            borderRadius: BorderRadius.circular(30.0),
-                                                          ),
-                                                          child: SingleChildScrollView(
-                                                            child: Column(
-                                                              children: [
-                                                                for(int i=0;i<UsersState().usersFilter.length;i++)...[
-                                                                  Row(
-                                                                    children: [
+                                                      Navigator.of(context).pop();
 
-                                                                      Flexible(
-                                                                          child: Center(
-                                                                              child: Text(
-                                                                                  "${UsersState().usersFilter[i]["name"]}",
-                                                                              )
-                                                                          )
-                                                                      ),
+                                                      showDialog(
+                                                        context: context,
+                                                        barrierDismissible: false,
+                                                        builder: (BuildContext context) {
+                                                          return StatefulBuilder(
+                                                            builder: (BuildContext context, void Function(void Function()) setState) {
 
-                                                                      Flexible(
-                                                                        child: Center(
-                                                                          child: Checkbox(
-                                                                              value: false,
-                                                                              onChanged: (value){
-                                                                                print(UsersState().usersFilter[i]["name"]);
-                                                                              }
-                                                                          ),
+                                                              return AlertDialog(
+                                                                actionsAlignment: MainAxisAlignment.center,
+                                                                shape: RoundedRectangleBorder(
+                                                                  borderRadius: BorderRadius.circular(20.0),
+                                                                ),
+                                                                backgroundColor: Colors.white70,
+                                                                titlePadding: EdgeInsets.only(top: 5,bottom: 5),
+                                                                actionsOverflowButtonSpacing: 10,
+                                                                elevation: 5,
+                                                                scrollable: false,
+                                                                insetPadding: EdgeInsets.zero,
+                                                                contentPadding: EdgeInsets.only(top:5,bottom: 5,left: 10,right: 10),
+                                                                buttonPadding: EdgeInsets.zero,
+                                                                actionsPadding: EdgeInsets.only(top:10,bottom: 10),
+                                                                title: Text(
+                                                                  "Users",
+                                                                  textAlign: TextAlign.center,
+                                                                  style: TextStyle(
+                                                                    color: Colors.black.withOpacity(0.75),
+                                                                  ),
+                                                                ),
+                                                                actions: [
+
+                                                                  SizedBox(
+                                                                    width: MediaQuery.of(context).size.width*0.8,
+                                                                    child: Row(
+                                                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                                                      children: [
+
+                                                                        GestureDetector(
+                                                                            onTap:(){
+                                                                              Navigator.pop(context);
+                                                                            },
+                                                                            child: Text("SUBMIT")
                                                                         ),
-                                                                      ),
 
-                                                                    ],
-                                                                  )
-                                                                ]
-                                                              ],
+                                                                        GestureDetector(
+                                                                            onTap:(){
+                                                                              Navigator.pop(context);
+                                                                            },
+                                                                            child: Text("CANCEL")
+                                                                        ),
+
+                                                                      ],
+                                                                    ),
+                                                                  ),
+
+                                                                ],
+                                                                content: Container(
+                                                                  width: MediaQuery.of(context).size.width*0.8,
+                                                                  // padding: EdgeInsets.all(20),
+                                                                  decoration: BoxDecoration(
+                                                                    color: Colors.white70,
+                                                                    borderRadius: BorderRadius.circular(30.0),
+                                                                  ),
+                                                                  child: SingleChildScrollView(
+                                                                    child: Column(
+                                                                      children: [
+                                                                        for(int i=0;i<UsersState().usersFilter.length;i++)...[
+                                                                          Row(
+                                                                            children: [
+
+                                                                              Flexible(
+                                                                                  child: Center(
+                                                                                      child: Text(
+                                                                                        "${UsersState().usersFilter[i]["name"]}",
+                                                                                      )
+                                                                                  )
+                                                                              ),
+
+                                                                              Flexible(
+                                                                                child: Center(
+                                                                                  child: Checkbox(
+                                                                                      value: UserData.contains(UsersState().usersFilter[i]["name"]),
+                                                                                      onChanged: (value){
+
+                                                                                        setState((){
+
+                                                                                          // UserData.add(UsersState().usersFilter[i]["name"]);
+
+                                                                                          if(UserData.contains(UsersState().usersFilter[i]["name"])){
+                                                                                            UserData.remove(UsersState().usersFilter[i]["name"]);
+                                                                                          }else{
+                                                                                            UserData.add(UsersState().usersFilter[i]["name"]);
+                                                                                          }
+
+                                                                                        });
+
+                                                                                        print(UserData);
+
+                                                                                        print(i);
+                                                                                        print(UsersState().usersFilter[i]["name"]);
+
+                                                                                      }
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+
+                                                                            ],
+                                                                          )
+                                                                        ]
+                                                                      ],
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              );
+                                                            },
+                                                          );
+                                                        },
+                                                      );
+
+                                                    },
+                                                    child: Container(
+                                                      decoration: BoxDecoration(
+                                                          borderRadius: BorderRadius.circular(10),
+                                                          border: Border.all(
+                                                            color: Colors.black.withOpacity(0.55),
+                                                            /*width: 1.5,
+                                                      style: BorderStyle.solid*/
+                                                          )
+                                                      ),
+                                                      child:UserData.length>0?Column(
+                                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                                        children: [
+                                                          Wrap(
+                                                            children: [
+                                                              for(var i in UserData)
+                                                                Padding(
+                                                                  padding: const EdgeInsets.only(left: 2.5,right: 2.5,top: 0,bottom: 0),
+                                                                  child: Chip(
+                                                                    label: Text(i),
+                                                                  ),
+                                                                )
+                                                            ],
+                                                          ),
+                                                        ],
+                                                      ):SizedBox(),
+                                                      /*Column(
+                                                        children: [
+
+                                                          Padding(
+                                                            padding: const EdgeInsets.only(top:10,bottom: 10),
+                                                            child: Text("USERS",
+                                                              style: TextStyle(
+                                                                  color: Colors.black.withOpacity(0.75)),
                                                             ),
                                                           ),
-                                                        ),
-                                                      );
-                                                    },
-                                                  );
 
-                                                },
-                                                child: Container(
-                                                  decoration: BoxDecoration(
-                                                    borderRadius: BorderRadius.circular(10),
-                                                    border: Border.all(
-                                                      color: Colors.black.withOpacity(0.55),
-                                                      /*width: 1.5,
-                                                      style: BorderStyle.solid*/
-                                                    )
-                                                  ),
-                                                  child: Column(
-                                                    children: [
-
-                                                      Padding(
-                                                        padding: const EdgeInsets.only(top:10,bottom: 10),
-                                                        child: Text("USERS",
-                                                          style: TextStyle(
-                                                              color: Colors.black.withOpacity(0.75)),
-                                                        ),
-                                                      ),
-
-                                                      Padding(
-                                                        padding: const EdgeInsets.only(right: 5,bottom: 5),
-                                                        child: Align(
-                                                          alignment: Alignment.centerRight,
-                                                          child: Icon(
-                                                              Icons.add_box_outlined,
-                                                            color: Colors.black.withOpacity(0.7),
+                                                          Padding(
+                                                            padding: const EdgeInsets.only(right: 5,bottom: 5),
+                                                            child: Align(
+                                                              alignment: Alignment.centerRight,
+                                                              child: Icon(
+                                                                Icons.add_box_outlined,
+                                                                color: Colors.black.withOpacity(0.7),
+                                                              ),
+                                                            ),
                                                           ),
-                                                        ),
-                                                      ),
 
-                                                    ],
-                                                  ),
-                                                ),
-                                              )
+                                                        ],
+                                                      ),*/
+                                                    ),
+                                                  )
 
 
-                                            ],
-                                          ),
-                                        ),
+                                                ],
+                                              ),
+                                            ),
+                                          );
+                                        },
                                       );
                                     },
                                   );
@@ -1829,7 +2059,7 @@ class _ChartState extends State<Chart> {
                             },
                             child: Container(
                               height: 25,
-                              margin: EdgeInsets.only(left: 7.5,right: 1),
+                              margin: EdgeInsets.only(left: 2.5,right: 1),
                               decoration: BoxDecoration(
                                   color: (selectedDevicesMarker == DevicesMarker.members)?Colors.black38:Colors.transparent,
                                   borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20)),
@@ -1887,7 +2117,7 @@ class _ChartState extends State<Chart> {
                               },
                               child: Container(
                                 height: 25,
-                                margin: EdgeInsets.only(left: 1,right: 7.5),
+                                margin: EdgeInsets.only(left: 1,right: 2.5),
                                 decoration: BoxDecoration(
                                     color: (selectedDevicesMarker == DevicesMarker.discovered)?Colors.black38:Colors.transparent,
                                     borderRadius: BorderRadius.only(bottomRight: Radius.circular(20)),
@@ -2832,6 +3062,8 @@ class _ChartState extends State<Chart> {
 
                         setState(() {
 
+                          checkBoxAdd.clear();
+
                           _discover.reversed.forEach((element) {
                             if(element["members"]==true){
                               visibleCheckBox.add(element["devices"]);
@@ -2929,7 +3161,7 @@ class _ChartState extends State<Chart> {
                           height: 40,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
-                              color: element["disable"]?Color(0xff19547b).withOpacity(0.9):Color(0xff19547b).withOpacity(0.6)/*Color(0xff404b60).withOpacity(0.9)*/
+                              color: element["disable"]?Color(0xff19547b).withOpacity(0.6):Color(0xff19547b).withOpacity(0.9)/*Color(0xff404b60).withOpacity(0.9)*/
                           ),
                           child: Center(
                             child: Row(
