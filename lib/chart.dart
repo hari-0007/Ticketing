@@ -4,7 +4,8 @@ import 'dart:async';
 import 'package:allitson/user.dart';
 import 'package:random_color/random_color.dart';
 
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
+import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
 import 'package:flutter/services.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:grouped_list/grouped_list.dart';
@@ -554,11 +555,11 @@ class Chart extends StatefulWidget {
 
 class _ChartState extends State<Chart> {
 
-  bool chum = false;
+  bool isGroupPressed = false;
 
   List UserData = [];
 
-  var selectedItem ;
+  // var selectedItem ;
 
   List colors = [];
 
@@ -648,6 +649,9 @@ class _ChartState extends State<Chart> {
 
   @override
   Widget build(BuildContext context) {
+
+    Offset offset = isGroupPressed?Offset(2.5, 2.5):Offset(5, 5);
+    double blur = isGroupPressed?1.0:5.0;
 
     // List group= [];
 
@@ -867,8 +871,8 @@ class _ChartState extends State<Chart> {
                     // verticalAlignment: ChartAlignment.center,
                     widget: PhysicalModel(
                         shape: BoxShape.circle,
-                        elevation: 10,
-                        shadowColor: Colors.black,
+                        elevation: 0,
+                        // shadowColor: Colors.white,
                         color: Colors.transparent,/*Color(0xffe6e6e6),*/
                         child: Container(
                           decoration: BoxDecoration(
@@ -1013,6 +1017,52 @@ class _ChartState extends State<Chart> {
             ),
 
             Positioned.fill(
+                child: Align(
+                  alignment: Alignment(1,0.90),
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 25),
+                    child: GestureDetector(
+                      onTap:(){
+                        setState(() {
+                          print("hello");
+                          isGroupPressed=!isGroupPressed;
+                        });
+                      },
+                      child: AnimatedContainer(
+                        duration: const Duration(milliseconds: 150),
+                        decoration: BoxDecoration(
+                          color: Color(0xff5F8A9F),
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: [
+
+                            BoxShadow(
+                                blurRadius: blur,
+                                offset: -offset,
+                                color: Colors.white.withOpacity(0.35),
+                              inset: isGroupPressed
+                            ),
+
+                            BoxShadow(
+                              blurRadius: blur,
+                            offset: offset,
+                            color: Colors.black.withOpacity(0.35),
+                                inset: isGroupPressed
+                          )
+                          ]
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: Text(
+                            "Group",
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                )
+            ),
+
+            /*Positioned.fill(
               child: Align(
                 alignment: Alignment(1,0.90),
                 child: Padding(
@@ -1043,7 +1093,7 @@ class _ChartState extends State<Chart> {
                           //   print(element["devices"]);
                           // });
 
-                          /*List group= [];
+                          *//*List group= [];
 
                           _discover.forEach((element) {
                             group.add(element["group"]);
@@ -1051,7 +1101,7 @@ class _ChartState extends State<Chart> {
 
                           var map = Map();
 
-                          group.forEach((x) => map[x] = !map.containsKey(x) ? (1) : (map[x] + 1));*/
+                          group.forEach((x) => map[x] = !map.containsKey(x) ? (1) : (map[x] + 1));*//*
 
                           print(map);
                           print(map.keys.toList());
@@ -1094,7 +1144,7 @@ class _ChartState extends State<Chart> {
                   ),
                 ),
               ),
-            ),
+            ),*/
 
             Positioned.fill(
               child: Align(
@@ -1345,14 +1395,39 @@ class _ChartState extends State<Chart> {
                                               borderRadius: BorderRadius.circular(15.0),
                                             ),
                                             backgroundColor: Colors.white70,
-                                            actionsOverflowButtonSpacing: 10,
+                                            actionsOverflowButtonSpacing: 0,
                                             elevation: 5,
                                             scrollable: true,
-                                            // titlePadding: EdgeInsets.zero,
-                                            // contentPadding: EdgeInsets.zero,
+                                            actionsPadding: EdgeInsets.only(top: 5,bottom: 10),
+                                            titlePadding: EdgeInsets.only(top: 20),
+                                            contentPadding: EdgeInsets.only(left: 24,right: 24,top: 20,bottom: 5),
                                             title: Text("Group",
                                               textAlign: TextAlign.center,
                                             ),
+                                            actions: [
+                                              Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                crossAxisAlignment: CrossAxisAlignment.center,
+                                                children: [
+
+                                                  GestureDetector(
+                                                      onTap:(){
+                                                        Navigator.of(context).pop();
+                                                      },
+                                                      child: Text("CREATE")
+                                                  ),
+
+                                                  GestureDetector(
+                                                      onTap:(){
+                                                        UserData.clear();
+                                                        Navigator.of(context).pop();
+                                                      },
+                                                      child: Text("CANCEL")
+                                                  ),
+
+                                                ],
+                                              )
+                                            ],
                                             content: Container(
                                               // height: 200,
                                               // width: 100,
@@ -1387,7 +1462,7 @@ class _ChartState extends State<Chart> {
                                                     ),
                                                   ),
 
-                                                  SizedBox(height: 9,),
+                                                  /*SizedBox(height: 9,),
 
 
 
@@ -1403,10 +1478,11 @@ class _ChartState extends State<Chart> {
                                                   child: DropdownButton<String>(
                                                     hint: Text(
                                                         "${UserData.length.toString()} Selected",
+                                                      // "Selected Users",
                                                       textAlign: TextAlign.center,
                                                     ),
                                                     isExpanded: true,
-                                                    value: selectedItem,
+                                                    // value: selectedItem,
                                                     // selectedItemBuilder: (BuildContext context) {
                                                     //   return items.map<Widget>((String item) {
                                                     //     return Text(item);
@@ -1415,9 +1491,9 @@ class _ChartState extends State<Chart> {
                                                     onTap: (){
                                                       print("Helo");
 
-                                                      /*setState((){
-                                                        chum=!chum;
-                                                      });*/
+                                                      // setState((){
+                                                      //   chum=!chum;
+                                                      // });
 
                                                       },
                                                     borderRadius: BorderRadius.circular(10),
@@ -1425,59 +1501,63 @@ class _ChartState extends State<Chart> {
                                                     isDense: true,
                                                       onChanged: (String? string){
 
+                                                      print("Helo");
+
                                                         // setState(() => selectedItem = string!);
                                                       },
                                                     items: UsersState().usersFilter.map((e){
                                                       return DropdownMenuItem<String>(
                                                           value: e["name"],
-                                                        child: CheckboxListTile(
-                                                          title: Text(e["name"].toString()),
-                                                          value: chum,/*UserData.contains(e["name"]),*/
-                                                          onChanged: (value){
-                                                            setState((){
+                                                        child: StatefulBuilder(
+                                                          builder: (BuildContext context, void Function(void Function()) setState) {
+                                                            return CheckboxListTile(
+                                                              title: Text(e["name"].toString()),
+                                                              value: UserData.contains(e["name"]),
+                                                              onChanged: (value){
+                                                                setState((){
 
-                                                              chum=!chum;
+                                                                  if(UserData.contains(e["name"])){
+                                                                    UserData.remove(e["name"]);
+                                                                  }else{
+                                                                    UserData.add(e["name"]);
+                                                                  }
 
-                                                              /*if(UserData.contains(e["name"])){
-                                                                UserData.remove(e["name"]);
-                                                              }else{
-                                                                UserData.add(e["name"]);
-                                                              }*/
-
-                                                            });
+                                                                });
+                                                              },
+                                                            );
                                                           },
                                                         )
 
-                                                        /*Row(
-                                                          children: [
-
-                                                            Flexible(
-                                                                child: Center(
-                                                                    child: Text(e["name"])
-                                                                )
-                                                            ),
-
-                                                            Flexible(
-                                                              child: Center(
-                                                                child: Checkbox(
-                                                                    value: UserData.contains(e["name"]),
-                                                                    onChanged: (value){
-                                                                      setState((){
-
-                                                                        if(UserData.contains(e["name"])){
-                                                                          UserData.remove(e["name"]);
-                                                                        }else{
-                                                                          UserData.add(e["name"]);
-                                                                        }
-
-                                                                      });
-                                                                    },
-                                                                ),
-                                                              ),
-                                                            ),
-
-                                                          ],
-                                                        ),*/
+                                                        // Row(
+                                                        //   children: [
+                                                        //
+                                                        //     Flexible(
+                                                        //         child: Center(
+                                                        //             child: Text(e["name"])
+                                                        //         )
+                                                        //     ),
+                                                        //
+                                                        //     Flexible(
+                                                        //       child: Center(
+                                                        //         child: Checkbox(
+                                                        //             value: UserData.contains(e["name"]),
+                                                        //             onChanged: (value){
+                                                        //               setState((){
+                                                        //
+                                                        //                 if(UserData.contains(e["name"])){
+                                                        //                   UserData.remove(e["name"]);
+                                                        //                 }else{
+                                                        //                   UserData.add(e["name"]);
+                                                        //                 }
+                                                        //
+                                                        //               });
+                                                        //             },
+                                                        //         ),
+                                                        //       ),
+                                                        //     ),
+                                                        //
+                                                        //   ],
+                                                        // ),
                                                       );
                                                     }).toList(),
                                                     // UsersState().usersFilter.forEach((element) {
@@ -1496,16 +1576,83 @@ class _ChartState extends State<Chart> {
                                                     // }).toList(),
                                                   ),
                                                 ),
-                                              ),
+                                              ),*/
 
-                                              SizedBox(height: 9,),
+                                              /*SizedBox(height: 9,),
+
+                                                  PopupMenuButton(
+                                                    offset: Offset(0, 0),
+                                                    child: Center(
+                                                        child: Text("Select User")
+                                                    ),
+                                                    itemBuilder: (BuildContext context) {
+                                                      return List.generate(UsersState().usersFilter.length, (index) {
+                                                        return CustomPopupMenuItem(
+                                                          enabled: true,
+                                                          onTap: (){
+                                                            print(UsersState().usersFilter[index]["name"]);
+
+                                                            setState((){
+
+                                                              if(UserData.contains(UsersState().usersFilter[index]["name"])){
+                                                                UserData.remove(UsersState().usersFilter[index]["name"]);
+                                                              }else{
+                                                                UserData.add(UsersState().usersFilter[index]["name"]);
+                                                              }
+
+                                                            });
+
+                                                          },
+                                                          color: UserData.contains(UsersState().usersFilter[index]["name"])?Colors.blue:Colors.white,
+                                                          child: StatefulBuilder(
+                                                            builder: (BuildContext context, void Function(void Function()) setState) {
+                                                              return CheckboxListTile(
+                                                                title: Text("${UsersState().usersFilter[index]["name"]}"),
+                                                                value: UserData.contains(UsersState().usersFilter[index]["name"]),
+                                                                onChanged: (bool? value) {
+
+                                                                  // print(UsersState().usersFilter[index]["name"]);
+
+                                                                  setState((){
+
+                                                                    if(UserData.contains(UsersState().usersFilter[index]["name"])){
+                                                                      UserData.remove(UsersState().usersFilter[index]["name"]);
+                                                                    }else{
+                                                                      UserData.add(UsersState().usersFilter[index]["name"]);
+                                                                    }
+
+                                                                  });
+
+                                                                },
+                                                              );
+                                                            },
+                                                          )
+                                                          // Row(
+                                                          //   children: [
+                                                          //
+                                                          //     Text("${UsersState().usersFilter[index]["name"]}"),
+                                                          //
+                                                          //     Checkbox(value: chum, onChanged: (v){
+                                                          //       setState((){
+                                                          //         chum=!chum;
+                                                          //       });
+                                                          //     })
+                                                          //
+                                                          //   ],
+                                                          // ),
+                                                        );
+                                                      });
+                                                    },
+                                                  ),*/
+
+                                                  SizedBox(height: 9,),
 
                                                   GestureDetector(
-                                                    onTap: (){
+                                                    onTap: () async{
 
-                                                      Navigator.of(context).pop();
+                                                      // Navigator.of(context).pop();
 
-                                                      showDialog(
+                                                      await showDialog(
                                                         context: context,
                                                         barrierDismissible: false,
                                                         builder: (BuildContext context) {
@@ -1551,7 +1698,13 @@ class _ChartState extends State<Chart> {
 
                                                                         GestureDetector(
                                                                             onTap:(){
+
+                                                                              setState((){
+                                                                                UserData.clear();
+                                                                              });
+
                                                                               Navigator.pop(context);
+
                                                                             },
                                                                             child: Text("CANCEL")
                                                                         ),
@@ -1562,8 +1715,8 @@ class _ChartState extends State<Chart> {
 
                                                                 ],
                                                                 content: Container(
-                                                                  width: MediaQuery.of(context).size.width*0.8,
-                                                                  // padding: EdgeInsets.all(20),
+                                                                  width: MediaQuery.of(context).size.width*0.5,
+                                                                  padding: EdgeInsets.only(left: 30,right: 30),
                                                                   decoration: BoxDecoration(
                                                                     color: Colors.white70,
                                                                     borderRadius: BorderRadius.circular(30.0),
@@ -1571,48 +1724,76 @@ class _ChartState extends State<Chart> {
                                                                   child: SingleChildScrollView(
                                                                     child: Column(
                                                                       children: [
+
+                                                                        // Text("ADD USER"),
+
                                                                         for(int i=0;i<UsersState().usersFilter.length;i++)...[
-                                                                          Row(
-                                                                            children: [
 
-                                                                              Flexible(
-                                                                                  child: Center(
-                                                                                      child: Text(
-                                                                                        "${UsersState().usersFilter[i]["name"]}",
-                                                                                      )
-                                                                                  )
-                                                                              ),
+                                                                          CheckboxListTile(
+                                                                            title: Text("${UsersState().usersFilter[i]["name"]}",),
+                                                                              value: UserData.contains(UsersState().usersFilter[i]["name"]),
+                                                                              onChanged: (value){
 
-                                                                              Flexible(
-                                                                                child: Center(
-                                                                                  child: Checkbox(
-                                                                                      value: UserData.contains(UsersState().usersFilter[i]["name"]),
-                                                                                      onChanged: (value){
+                                                                              setState((){
+                                                                                // UserData.add(UsersState().usersFilter[i]["name"]);
+                                                                                if(UserData.contains(UsersState().usersFilter[i]["name"])){
+                                                                                  UserData.remove(UsersState().usersFilter[i]["name"]);
+                                                                                }else{
+                                                                                  UserData.add(UsersState().usersFilter[i]["name"]);
+                                                                                }
+                                                                              });
 
-                                                                                        setState((){
-
-                                                                                          // UserData.add(UsersState().usersFilter[i]["name"]);
-
-                                                                                          if(UserData.contains(UsersState().usersFilter[i]["name"])){
-                                                                                            UserData.remove(UsersState().usersFilter[i]["name"]);
-                                                                                          }else{
-                                                                                            UserData.add(UsersState().usersFilter[i]["name"]);
-                                                                                          }
-
-                                                                                        });
-
-                                                                                        print(UserData);
-
-                                                                                        print(i);
-                                                                                        print(UsersState().usersFilter[i]["name"]);
-
-                                                                                      }
-                                                                                  ),
-                                                                                ),
-                                                                              ),
-
-                                                                            ],
+                                                                              }
                                                                           )
+
+                                                                          // GestureDetector(
+                                                                          //
+                                                                          //   onTap:(){
+                                                                          //
+                                                                          //     setState((){
+                                                                          //
+                                                                          //       // UserData.add(UsersState().usersFilter[i]["name"]);
+                                                                          //
+                                                                          //       if(UserData.contains(UsersState().usersFilter[i]["name"])){
+                                                                          //         UserData.remove(UsersState().usersFilter[i]["name"]);
+                                                                          //       }else{
+                                                                          //         UserData.add(UsersState().usersFilter[i]["name"]);
+                                                                          //       }
+                                                                          //
+                                                                          //     });
+                                                                          //
+                                                                          //   },
+                                                                          //
+                                                                          //   child: Row(
+                                                                          //     children: [
+                                                                          //
+                                                                          //       Flexible(
+                                                                          //           child: Center(
+                                                                          //               child: Text(
+                                                                          //                 "${UsersState().usersFilter[i]["name"]}",
+                                                                          //               )
+                                                                          //           )
+                                                                          //       ),
+                                                                          //
+                                                                          //       Flexible(
+                                                                          //         child: Center(
+                                                                          //           child: Checkbox(
+                                                                          //               value: UserData.contains(UsersState().usersFilter[i]["name"]),
+                                                                          //               onChanged: (value){
+                                                                          //
+                                                                          //                 print(UserData);
+                                                                          //
+                                                                          //                 print(i);
+                                                                          //                 print(UsersState().usersFilter[i]["name"]);
+                                                                          //
+                                                                          //               }
+                                                                          //           ),
+                                                                          //         ),
+                                                                          //       ),
+                                                                          //
+                                                                          //     ],
+                                                                          //   ),
+                                                                          // )
                                                                         ]
                                                                       ],
                                                                     ),
@@ -1624,14 +1805,19 @@ class _ChartState extends State<Chart> {
                                                         },
                                                       );
 
+                                                      setState((){
+
+                                                      });
+
                                                     },
                                                     child: Container(
+                                                      width: MediaQuery.of(context).size.width*0.6,
                                                       decoration: BoxDecoration(
                                                           borderRadius: BorderRadius.circular(10),
                                                           border: Border.all(
                                                             color: Colors.black.withOpacity(0.55),
-                                                            /*width: 1.5,
-                                                      style: BorderStyle.solid*/
+                                                            width: 1,
+                                                      style: BorderStyle.solid
                                                           )
                                                       ),
                                                       child:UserData.length>0?Column(
@@ -1642,7 +1828,7 @@ class _ChartState extends State<Chart> {
                                                             children: [
                                                               for(var i in UserData)
                                                                 Padding(
-                                                                  padding: const EdgeInsets.only(left: 2.5,right: 2.5,top: 0,bottom: 0),
+                                                                  padding: const EdgeInsets.only(left: 5,right: 5,top: 0,bottom: 0),
                                                                   child: Chip(
                                                                     label: Text(i),
                                                                   ),
@@ -1650,8 +1836,7 @@ class _ChartState extends State<Chart> {
                                                             ],
                                                           ),
                                                         ],
-                                                      ):SizedBox(),
-                                                      /*Column(
+                                                      ): Column(
                                                         children: [
 
                                                           Padding(
@@ -1674,7 +1859,7 @@ class _ChartState extends State<Chart> {
                                                           ),
 
                                                         ],
-                                                      ),*/
+                                                      ),
                                                     ),
                                                   )
 
@@ -4044,13 +4229,13 @@ class ChartData {
   // final Color color;
 }
 
-/*class PopupItem extends PopupMenuItem {
+class PopupItem extends PopupMenuItem {
   const PopupItem({
     required Widget child,
     bool enabled = true,
-    // VoidCallback? onTap,
+    VoidCallback? onTap,
     Key? key,
-  }) : super(key: key, child: child, enabled: enabled*//*,onTap: onTap*//*);
+  }) : super(key: key, child: child, enabled: enabled,onTap: onTap);
 
   @override
   _PopupItemState createState() => _PopupItemState();
@@ -4059,15 +4244,15 @@ class ChartData {
 class _PopupItemState extends PopupMenuItemState {
   @override
   void handleTap() {
-    // widget.onTap?.call();
+    widget.onTap?.call();
   }
-}*/
+}
 
 
 
 
 
-/*class CustomPopupMenuItem<T> extends PopupMenuItem<T> {
+class CustomPopupMenuItem<T> extends PopupMenuItem<T> {
   final Color color;
 
   const CustomPopupMenuItem({
@@ -4084,11 +4269,12 @@ class _PopupItemState extends PopupMenuItemState {
 }
 
 class _CustomPopupMenuItemState<T> extends PopupMenuItemState<T, CustomPopupMenuItem<T>> {
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: super.build(context),
-      color: widget.color,
-    );
+        child: super.build(context),
+        color: widget.color,
+      );
   }
-}*/
+}
