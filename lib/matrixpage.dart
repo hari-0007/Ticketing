@@ -9423,45 +9423,33 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                         ),
                         child: Row(
                           children: [
-                            Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 12.0),
-                              child: Text(
-                                element['SystemNumber'],
-                                style: TextStyle(
-                                    color: Colors.black.withOpacity(0.775),
-                                    // color: Colors.white.withOpacity(0.9),
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 14
-                                ),
-                              ),
-                              /*PhysicalModel(
-                                color: Colors.transparent,
-                                shadowColor: Colors.black.withOpacity(0.55),
-                                elevation: 5,
+                            Flexible(
+                              child: Center(
                                 child: Text(
                                   element['SystemNumber'],
                                   style: TextStyle(
                                       color: Colors.black.withOpacity(0.775),
-                                    // color: Colors.white.withOpacity(0.9),
-                                      fontWeight: FontWeight.bold,
+                                      // color: Colors.white.withOpacity(0.9),
+                                      fontWeight: FontWeight.w600,
                                       fontSize: 14
                                   ),
                                 ),
-                              ),*/
+                              ),
                             ),
                             /*VerticalDivider(
                               color: Color(0xff19547b),
                               thickness: 2,
                             ),*/
-                            Container(
-                                padding: EdgeInsets.symmetric(horizontal: 5.0),
+                            Flexible(
+                              child: Center(
                                 child: Text(
                                   element['Time'],
                                   style: TextStyle(
                                       color: Colors.black.withOpacity(0.85)
                                     // color: Colors.white.withOpacity(0.9),
                                   ),
-                                )
+                                ),
+                              ),
                             ),
                             /*Card(
                               elevation: 5,
@@ -9482,23 +9470,26 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                               color: Color(0xff19547b),
                               thickness: 2,
                             ),*/
-                            Expanded(
-                              child: Container(
-                                  padding: EdgeInsets.symmetric(horizontal: 10.0),
-                                  child: SingleChildScrollView(
-                                    scrollDirection: Axis.horizontal,
-                                    child: Text(
-                                      element['ProblemText'],
-                                      maxLines: 1,
-                                      // overflow: TextOverflow.ellipsis,
-                                      // softWrap: false
-                                      style: TextStyle(
-                                          color: Colors.black.withOpacity(0.85),
-                                        // fontWeight: FontWeight.w600,
-                                        // color: Colors.white.withOpacity(0.9),
+                            Flexible(
+                              flex: 4,
+                              child: Center(
+                                child: Container(
+                                    padding: EdgeInsets.symmetric(horizontal: 10.0),
+                                    child: SingleChildScrollView(
+                                      scrollDirection: Axis.horizontal,
+                                      child: Text(
+                                        element['ProblemText'],
+                                        maxLines: 1,
+                                        // overflow: TextOverflow.ellipsis,
+                                        // softWrap: false
+                                        style: TextStyle(
+                                            color: Colors.black.withOpacity(0.85),
+                                          // fontWeight: FontWeight.w600,
+                                          // color: Colors.white.withOpacity(0.9),
+                                        ),
                                       ),
-                                    ),
-                                  )),
+                                    )),
+                              ),
                             ),
                           ],
                         ),

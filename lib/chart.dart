@@ -4,11 +4,13 @@ import 'dart:async';
 import 'package:allitson/user.dart';
 import 'package:random_color/random_color.dart';
 
-import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
-import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
+import 'package:flutter/material.dart';
+// import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
 import 'package:flutter/services.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:grouped_list/grouped_list.dart';
+
+import 'chartbutton.dart';
 
 
 List<Map<String, dynamic>> _elements = [
@@ -650,8 +652,8 @@ class _ChartState extends State<Chart> {
   @override
   Widget build(BuildContext context) {
 
-    Offset offset = isGroupPressed?Offset(2.5, 2.5):Offset(5, 5);
-    double blur = isGroupPressed?1.0:5.0;
+    // Offset offset = isGroupPressed?Offset(2.5, 2.5):Offset(5, 5);
+    // double blur = isGroupPressed?1.0:5.0;
 
     // List group= [];
 
@@ -1017,6 +1019,29 @@ class _ChartState extends State<Chart> {
             ),
 
             Positioned.fill(
+              child: Align(
+                alignment: Alignment(1,0.90),
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 25),
+                  child: Button(
+                    onTap: (){
+                      // print("Device Button");
+
+                      setState(() {
+                        isGroupPressed=!isGroupPressed;
+                      });
+
+                      print(isGroupPressed);
+
+                    },
+                    text: "GROUP",
+                    isGroupPressed: isGroupPressed,
+                  ),
+                ),
+              ),
+            ),
+
+            /*Positioned.fill(
                 child: Align(
                   alignment: Alignment(1,0.90),
                   child: Padding(
@@ -1060,7 +1085,7 @@ class _ChartState extends State<Chart> {
                     ),
                   ),
                 )
-            ),
+            ),*/
 
             /*Positioned.fill(
               child: Align(
@@ -4139,9 +4164,148 @@ class _ChartState extends State<Chart> {
 
                                         PopupMenuItem(
                                             onTap: (){
-                                              setState(() {
-                                                _discover[index]["members"] = true;
+
+                                              WidgetsBinding.instance?.addPostFrameCallback((_){
+                                                showDialog(
+                                                  context: context,
+                                                  builder: (BuildContext context) {
+                                                    return AlertDialog(
+                                                      alignment: Alignment.center,
+                                                      shape: RoundedRectangleBorder(
+                                                        borderRadius: BorderRadius.circular(30.0),
+                                                      ),
+                                                      scrollable: true,
+                                                      insetPadding: EdgeInsets.zero,
+                                                      contentPadding: EdgeInsets.only(top: 20,bottom: 20,left: 20,right: 20),
+                                                      titlePadding: EdgeInsets.only(top: 0,bottom: 0,right: 0,left: 0),
+                                                      actionsPadding: EdgeInsets.zero,
+                                                      backgroundColor: Colors.white,
+                                                      // title: Center(
+                                                      //   child: Text(
+                                                      //     "Are you sure you want to ${_discover[index]["devices"]} add ?",
+                                                      //     textAlign: TextAlign.center,
+                                                      //   ),
+                                                      // ),
+                                                      content: Container(
+                                                        padding: EdgeInsets.all(5),
+                                                        decoration: BoxDecoration(
+                                                          color: Colors.white,
+                                                          borderRadius: BorderRadius.circular(30.0),
+                                                        ),
+                                                        child: Column(
+                                                          children: [
+
+                                                            Text(
+                                                              "Are you sure you want to add ${_discover[index]["devices"]} ?",
+                                                              textAlign: TextAlign.center,
+                                                            ),
+
+                                                            SizedBox(
+                                                              height: 15,
+                                                            ),
+
+                                                            Row(
+                                                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                              mainAxisSize: MainAxisSize.max,
+                                                              children: [
+
+                                                                ElevatedButton(
+                                                                    onPressed: (){
+
+                                                                      setState(() {
+                                                                        _discover[index]["members"] = true;
+                                                                      });
+
+                                                                      Navigator.pop(context);
+
+                                                                    },
+                                                                  child: Text("Yes"),
+                                                                  style: ButtonStyle(
+                                                                      textStyle: MaterialStateProperty.all( TextStyle(
+                                                                          color: Colors.white,
+                                                                          fontWeight: FontWeight.bold,
+                                                                          fontSize: 14
+                                                                      )
+                                                                      ),
+                                                                      animationDuration: Duration(milliseconds: 0),
+                                                                      foregroundColor: MaterialStateProperty.resolveWith((states){
+                                                                        if(states.contains(MaterialState.pressed)){
+                                                                          return Colors.white;
+                                                                        }
+                                                                        return Color(0xff467695);
+                                                                      }),
+                                                                      backgroundColor:  MaterialStateProperty.resolveWith((states){
+                                                                        if(states.contains(MaterialState.pressed)){
+                                                                          return Color(0xff19547b);
+                                                                        }
+                                                                        return Colors.white;/*Color(0xffF1F1F1);*///0xffE2E2E2
+                                                                      }),
+                                                                      // MaterialStateProperty.all(Color(0xffD3D3D3)),
+                                                                      // /*backgroundColor: MaterialStateProperty.all(Colors.white),
+                                                                      // overlayColor:MaterialStateProperty.resolveWith((states){
+                                                                      //   if(states.contains(MaterialState.pressed)){
+                                                                      //     return Color(0xff19547b);
+                                                                      //   }
+                                                                      //   return Colors.white;
+                                                                      // }),*/
+                                                                      overlayColor:MaterialStateProperty.all(Colors.transparent),
+                                                                      shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                                                                        borderRadius: BorderRadius.circular(12.5),))
+                                                                  ),
+                                                                ),
+
+                                                                ElevatedButton(
+                                                                  onPressed: (){
+                                                                    Navigator.pop(context);
+                                                                  },
+                                                                  child: Text("No"),
+                                                                  style: ButtonStyle(
+                                                                      textStyle: MaterialStateProperty.all( TextStyle(
+                                                                          color: Colors.white,
+                                                                          fontWeight: FontWeight.bold,
+                                                                          fontSize: 14
+                                                                      )
+                                                                      ),
+                                                                      animationDuration: Duration(milliseconds: 0),
+                                                                      foregroundColor: MaterialStateProperty.resolveWith((states){
+                                                                        if(states.contains(MaterialState.pressed)){
+                                                                          return Colors.white;
+                                                                        }
+                                                                        return Color(0xff467695);
+                                                                      }),
+                                                                      backgroundColor:  MaterialStateProperty.resolveWith((states){
+                                                                        if(states.contains(MaterialState.pressed)){
+                                                                          return Color(0xff19547b);
+                                                                        }
+                                                                        return Colors.white;/*Color(0xffF1F1F1);*///0xffE2E2E2
+                                                                      }),
+                                                                      // MaterialStateProperty.all(Color(0xffD3D3D3)),
+                                                                      // /*backgroundColor: MaterialStateProperty.all(Colors.white),
+                                                                      // overlayColor:MaterialStateProperty.resolveWith((states){
+                                                                      //   if(states.contains(MaterialState.pressed)){
+                                                                      //     return Color(0xff19547b);
+                                                                      //   }
+                                                                      //   return Colors.white;
+                                                                      // }),*/
+                                                                      overlayColor:MaterialStateProperty.all(Colors.transparent),
+                                                                      shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                                                                        borderRadius: BorderRadius.circular(12.5),))
+                                                                  ),
+                                                                ),
+
+                                                              ],
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    );
+                                                  },
+                                                );
                                               });
+
+                                              // setState(() {
+                                              //   _discover[index]["members"] = true;
+                                              // });
                                             },
                                             child: Text("Add")),
 
