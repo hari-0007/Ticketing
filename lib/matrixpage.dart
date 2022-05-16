@@ -679,7 +679,7 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
 
   double value = 0;
   IncidentMarker selectedIncidentWidgetMarker = IncidentMarker.main;   //Inside Incident Starting home
-  WidgetMarker selectedWidgetMarker = WidgetMarker.devices;           // Drawer Starting home
+  WidgetMarker selectedWidgetMarker = WidgetMarker.incident;           // Drawer Starting home
   DeviceMarker selectedDevicesMarker = DeviceMarker.devicemain;
 
   bool _ticketExpand = false;                                           // getAssignedTicket
@@ -888,7 +888,7 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                                   height: 100,
                                   width: 100,
                                   child: CircularProgressIndicator(
-                                    color: Colors.blue.withOpacity(0.7),
+                                    color: Color(0xff19547b).withOpacity(0.85),/*Colors.blue.withOpacity(0.7),*/
                                     backgroundColor: Colors.white.withOpacity(0.4),
                                   )
                               ),

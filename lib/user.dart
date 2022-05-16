@@ -169,6 +169,14 @@ List<String> branch =[
   "Branch 5",
 ];
 
+List<String> designation = [
+  "Network Admin",
+  "Network Technician",
+  "Server Admin",
+  "System Admin",
+  "System Engineer",
+];
+
 class Users extends StatefulWidget {
 
   const Users({Key? key}) : super(key: key);
@@ -178,6 +186,9 @@ class Users extends StatefulWidget {
 }
 
 class UsersState extends State<Users> {
+
+  String? selectedDesignation;
+  String? selectedlevel;
 
   List userBranch = [];
 
@@ -863,165 +874,198 @@ class UsersState extends State<Users> {
                                       ElevatedButton(
                                           onPressed: (){
 
+                                            selectedDesignation=null;
+                                            selectedlevel=null;
+
                                             Navigator.pop(context);
 
                                             WidgetsBinding.instance?.addPostFrameCallback((_){
                                               showDialog(
                                                 context: context,
                                                 builder: (BuildContext context) {
-                                                  return AlertDialog(
-                                                    alignment: Alignment.center,
-                                                    shape: RoundedRectangleBorder(
-                                                      borderRadius: BorderRadius.circular(30.0),
-                                                    ),
-                                                    scrollable: false,
-                                                    insetPadding: EdgeInsets.zero,
-                                                    contentPadding: EdgeInsets.only(bottom: 5,left: 5,right: 5),
-                                                    titlePadding: EdgeInsets.only(top: 5,bottom: 5),
-                                                    backgroundColor: Colors.white70,
-                                                    title: Text(
-                                                      "TECHNICAL",
-                                                      style: TextStyle(
-                                                          color: Colors.black.withOpacity(0.7)
-                                                      ),
-                                                      textAlign: TextAlign.center,
-                                                    ),
-                                                    content: Container(
-                                                      width: MediaQuery.of(context).size.width*0.85,
-                                                      padding: EdgeInsets.all(20),
-                                                      decoration: BoxDecoration(
-                                                        color: Colors.white70,
-                                                        borderRadius: BorderRadius.circular(30.0),
-                                                      ),
-                                                      child: Column(
-                                                        mainAxisSize: MainAxisSize.min,
-                                                        children: [
-
-                                                          Row(
+                                                  return StatefulBuilder(
+                                                    builder: (BuildContext context, void Function(void Function()) setState) {
+                                                      return AlertDialog(
+                                                        alignment: Alignment.center,
+                                                        shape: RoundedRectangleBorder(
+                                                          borderRadius: BorderRadius.circular(30.0),
+                                                        ),
+                                                        scrollable: false,
+                                                        insetPadding: EdgeInsets.zero,
+                                                        contentPadding: EdgeInsets.only(bottom: 5,left: 5,right: 5),
+                                                        titlePadding: EdgeInsets.only(top: 5,bottom: 5),
+                                                        backgroundColor: Colors.white70,
+                                                        title: Text(
+                                                          "TECHNICAL",
+                                                          style: TextStyle(
+                                                              color: Colors.black.withOpacity(0.7)
+                                                          ),
+                                                          textAlign: TextAlign.center,
+                                                        ),
+                                                        content: Container(
+                                                          width: MediaQuery.of(context).size.width*0.85,
+                                                          padding: EdgeInsets.all(20),
+                                                          decoration: BoxDecoration(
+                                                            color: Colors.white70,
+                                                            borderRadius: BorderRadius.circular(30.0),
+                                                          ),
+                                                          child: Column(
+                                                            mainAxisSize: MainAxisSize.min,
                                                             children: [
 
-                                                              Flexible(
-                                                                  child: Align(
-                                                                    alignment: Alignment.centerRight,
-                                                                    child: Text(
-                                                                        "Name : "
-                                                                    ),
-                                                                  )
-                                                              ),
+                                                              Row(
+                                                                children: [
 
-                                                              Flexible(
-                                                                flex: 2,
-                                                                child: Center(
-                                                                  child: TextField(
-
+                                                                  Flexible(
+                                                                      child: Align(
+                                                                        alignment: Alignment.centerRight,
+                                                                        child: Text(
+                                                                            "Name : "
+                                                                        ),
+                                                                      )
                                                                   ),
-                                                                ),
+
+                                                                  Flexible(
+                                                                    flex: 2,
+                                                                    child: Center(
+                                                                      child: TextField(
+
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ],
                                                               ),
+
+                                                              SizedBox(
+                                                                height: 10,
+                                                              ),
+
+                                                              Row(
+                                                                children: [
+
+                                                                  Flexible(
+                                                                      child: Align(
+                                                                        alignment: Alignment.centerRight,
+                                                                        child: Text(
+                                                                            "Email : "
+                                                                        ),
+                                                                      )
+                                                                  ),
+
+                                                                  Flexible(
+                                                                    flex: 2,
+                                                                    child: Center(
+                                                                      child: TextField(
+
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+
+                                                              SizedBox(
+                                                                height: 10,
+                                                              ),
+
+                                                              Row(
+                                                                children: [
+
+                                                                  Flexible(
+                                                                      child: Align(
+                                                                        alignment: Alignment.centerRight,
+                                                                        child: Text(
+                                                                            "Designation : "
+                                                                        ),
+                                                                      )
+                                                                  ),
+
+                                                                  Flexible(
+                                                                    flex: 2,
+                                                                    child: Center(
+                                                                      child: ButtonTheme(
+                                                                        alignedDropdown: true,
+                                                                        child: DropdownButton<String>(
+                                                                          value: selectedDesignation,
+                                                                          hint: Text("Select Designation"),
+                                                                          isExpanded: true,
+                                                                          isDense: false,
+                                                                          borderRadius: BorderRadius.circular(12.5),
+                                                                          onChanged: (value) {
+                                                                            setState(() {
+                                                                              selectedDesignation = value;
+                                                                            });
+                                                                          },
+                                                                          // selectedItemBuilder: ,
+                                                                          items: designation.map((String items){
+                                                                            return DropdownMenuItem<String>(
+                                                                              value: items,
+                                                                              alignment: AlignmentDirectional.centerStart,
+                                                                              child: Text(items),
+                                                                            );
+                                                                          }).toList(),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+
+                                                              SizedBox(
+                                                                height: 10,
+                                                              ),
+
+                                                              Row(
+                                                                children: [
+
+                                                                  Flexible(
+                                                                      child: Align(
+                                                                        alignment: Alignment.centerRight,
+                                                                        child: Text(
+                                                                            "Level : "
+                                                                        ),
+                                                                      )
+                                                                  ),
+
+                                                                  Flexible(
+                                                                    flex: 2,
+                                                                    child: Center(
+                                                                      child: ButtonTheme(
+                                                                        alignedDropdown: true,
+                                                                        child: DropdownButton<String>(
+                                                                          value: selectedlevel,
+                                                                          hint: Text("Select Users"),
+                                                                          isExpanded: true,
+                                                                          isDense: false,
+                                                                          borderRadius: BorderRadius.circular(12.5),
+                                                                          onChanged: (value) {
+                                                                            setState(() {
+                                                                              selectedlevel = value;
+                                                                            });
+                                                                          },
+                                                                          items: <String>[
+                                                                            '1',
+                                                                            '2',
+                                                                            '3',
+                                                                            '4',
+                                                                            '5',
+                                                                          ].map((String items){
+                                                                            return DropdownMenuItem<String>(
+                                                                              value: items,
+                                                                              child: Text(items),
+                                                                            );
+                                                                          }).toList(),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+
                                                             ],
                                                           ),
-
-                                                          SizedBox(
-                                                            height: 10,
-                                                          ),
-
-                                                          Row(
-                                                            children: [
-
-                                                              Flexible(
-                                                                  child: Align(
-                                                                    alignment: Alignment.centerRight,
-                                                                    child: Text(
-                                                                        "Email : "
-                                                                    ),
-                                                                  )
-                                                              ),
-
-                                                              Flexible(
-                                                                flex: 2,
-                                                                child: Center(
-                                                                  child: TextField(
-
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-
-                                                          SizedBox(
-                                                            height: 10,
-                                                          ),
-
-                                                          Row(
-                                                            children: [
-
-                                                              Flexible(
-                                                                  child: Align(
-                                                                    alignment: Alignment.centerRight,
-                                                                    child: Text(
-                                                                        "Designation : "
-                                                                    ),
-                                                                  )
-                                                              ),
-
-                                                              Flexible(
-                                                                flex: 2,
-                                                                child: Center(
-                                                                  child: DropdownButton<String>(
-                                                                    hint: Text("Select Users"),
-                                                                    isExpanded: true,
-                                                                    isDense: false,
-                                                                    onChanged: (value) {  },
-                                                                    items: branch.map((String items){
-                                                                      return DropdownMenuItem<String>(
-                                                                        value: items,
-                                                                        child: Text(items),
-                                                                      );
-                                                                    }).toList(),
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-
-                                                          SizedBox(
-                                                            height: 10,
-                                                          ),
-
-                                                          Row(
-                                                            children: [
-
-                                                              Flexible(
-                                                                  child: Align(
-                                                                    alignment: Alignment.centerRight,
-                                                                    child: Text(
-                                                                        "Level : "
-                                                                    ),
-                                                                  )
-                                                              ),
-
-                                                              Flexible(
-                                                                flex: 2,
-                                                                child: Center(
-                                                                  child: DropdownButton<String>(
-                                                                    hint: Text("Select Users"),
-                                                                    isExpanded: true,
-                                                                    isDense: false,
-                                                                    onChanged: (value) {  },
-                                                                    items: branch.map((String items){
-                                                                      return DropdownMenuItem<String>(
-                                                                        value: items,
-                                                                        child: Text(items),
-                                                                      );
-                                                                    }).toList(),
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-
-                                                        ],
-                                                      ),
-                                                    ),
+                                                        ),
+                                                      );
+                                                    },
                                                   );
                                                 },
                                               );

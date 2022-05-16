@@ -25,7 +25,7 @@ List<Map<String, dynamic>> _elements = [
     "localIP": "103.78.159.123",
     "macAddress": "000.a83.b1c.08e",
     'statusLive': 'Online',
-    "lastActive": "1 Hour Ago",
+    "lastActive": "Online",
     "hardWareDetails": {
       "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
       "Ram":"16.0 GB 2667 MHz",
@@ -50,7 +50,7 @@ List<Map<String, dynamic>> _elements = [
     "localIP": "103.78.159.456",
     "macAddress": "000.a83.zxc.08e",
     'statusLive': 'Online',
-    "lastActive": "30 Minutes Ago",
+    "lastActive": "Online",
     "hardWareDetails": {
       "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
       "Ram":"16.0 GB 2667 MHz",
@@ -75,7 +75,7 @@ List<Map<String, dynamic>> _elements = [
     "localIP": "103.78.159.789",
     "macAddress": "000.a83.cvb.08e",
     'statusLive': 'Online',
-    "lastActive": "1 Hour Ago",
+    "lastActive": "Online",
     "hardWareDetails": {
       "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
       "Ram":"16.0 GB 2667 MHz",
@@ -100,7 +100,7 @@ List<Map<String, dynamic>> _elements = [
     "localIP": "103.78.159.987",
     "macAddress": "000.a83.bnm.08e",
     'statusLive': 'Online',
-    "lastActive": "1 Hour Ago",
+    "lastActive": "Online",
     "hardWareDetails": {
       "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
       "Ram":"16.0 GB 2667 MHz",
@@ -125,7 +125,7 @@ List<Map<String, dynamic>> _elements = [
     "localIP": "103.78.159.654",
     "macAddress": "000.a83.asd.08e",
     'statusLive': 'Online',
-    "lastActive": "3 Hour Ago",
+    "lastActive": "Online",
     "hardWareDetails": {
       "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
       "Ram":"16.0 GB 2667 MHz",
@@ -150,7 +150,7 @@ List<Map<String, dynamic>> _elements = [
     "localIP": "103.78.159.321",
     "macAddress": "000.a83.dfg.08e",
     'statusLive': 'Online',
-    "lastActive": "4 Hour Ago",
+    "lastActive": "Online",
     "hardWareDetails": {
       "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
       "Ram":"16.0 GB 2667 MHz",
@@ -175,7 +175,7 @@ List<Map<String, dynamic>> _elements = [
     "localIP": "103.78.159.147",
     "macAddress": "000.a83.ghj.08e",
     'statusLive': 'Offline',
-    "lastActive": "Offline",
+    "lastActive": "1 Hour Ago",
     "hardWareDetails": {
       "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
       "Ram":"16.0 GB 2667 MHz",
@@ -200,7 +200,7 @@ List<Map<String, dynamic>> _elements = [
     "localIP": "103.78.159.258",
     "macAddress": "000.a83.jkl.08e",
     'statusLive': 'Online',
-    "lastActive": "2 Hour Ago",
+    "lastActive": "Online",
     "hardWareDetails": {
       "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
       "Ram":"16.0 GB 2667 MHz",
@@ -225,7 +225,7 @@ List<Map<String, dynamic>> _elements = [
     "localIP": "103.78.159.369",
     "macAddress": "000.a83.qwe.08e",
     'statusLive': 'Offline',
-    "lastActive": "Offline",
+    "lastActive": "30 Minutes Ago",
     "hardWareDetails": {
       "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
       "Ram":"16.0 GB 2667 MHz",
@@ -250,7 +250,7 @@ List<Map<String, dynamic>> _elements = [
     "localIP": "103.78.159.963",
     "macAddress": "000.a83.ert.08e",
     'statusLive': 'Offline',
-    "lastActive": "Offline",
+    "lastActive": "1 Hour Ago",
     "hardWareDetails": {
       "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
       "Ram":"16.0 GB 2667 MHz",
@@ -275,7 +275,7 @@ List<Map<String, dynamic>> _elements = [
     "localIP": "103.78.159.852",
     "macAddress": "000.a83.tyu.08e",
     'statusLive': 'Offline',
-    "lastActive": "Offline",
+    "lastActive": "1 Hour Ago",
     "hardWareDetails": {
       "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
       "Ram":"16.0 GB 2667 MHz",
@@ -300,7 +300,7 @@ List<Map<String, dynamic>> _elements = [
     "localIP": "103.78.159.741",
     "macAddress": "000.a83.uio.08e",
     'statusLive': 'Offline',
-    "lastActive": "Offline",
+    "lastActive": "3 Hour Ago",
     "hardWareDetails": {
       "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
       "Ram":"16.0 GB 2667 MHz",
@@ -325,7 +325,7 @@ List<Map<String, dynamic>> _elements = [
     "localIP": "103.78.159.478",
     "macAddress": "000.a83.iop.08e",
     'statusLive': 'Offline',
-    "lastActive": "Offline",
+    "lastActive": "4 Hour Ago",
     "hardWareDetails": {
       "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
       "Ram":"16.0 GB 2667 MHz",
@@ -375,7 +375,7 @@ List<Map<String, dynamic>> _elements = [
     "localIP": "103.78.159.159",
     "macAddress": "000.a83.xsw.08e",
     'statusLive': 'Offline',
-    "lastActive": "Offline",
+    "lastActive": "2 Hour Ago",
     "hardWareDetails": {
       "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
       "Ram":"16.0 GB 2667 MHz",
@@ -400,7 +400,7 @@ List<Map<String, dynamic>> _elements = [
     "localIP": "103.78.159.951",
     "macAddress": "000.a83.cde.08e",
     'statusLive': 'Offline',
-    "lastActive": "Disable",
+    "lastActive": "3 Hour Ago",
     "hardWareDetails": {
       "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
       "Ram":"16.0 GB 2667 MHz",
@@ -569,7 +569,7 @@ class _ChartState extends State<Chart> {
 
   Map map = Map();
 
-  List group= [];
+  List _group= [];
 
   bool selectAll = false;
 
@@ -604,12 +604,12 @@ class _ChartState extends State<Chart> {
     _tooltip=TooltipBehavior(enable: true,elevation: 2,color: Colors.blueGrey,duration: 5000,animationDuration: 500,);
 
     _discover.forEach((element) {
-      group.add(element["statusLive"]);
+      _group.add(element["statusLive"]);
     });
 
-    group.forEach((x) => map[x] = !map.containsKey(x) ? (1) : (map[x] + 1));
+    _group.forEach((x) => map[x] = !map.containsKey(x) ? (1) : (map[x] + 1));
 
-    for(int i=0;i<map.keys.toList().length;i++){
+    for(int i=0;i<map.keys.length;i++){
       chartData.add(ChartData(map.keys.toList()[i], map[map.keys.toList()[i]].toInt()));
 
       colors.add(RandomColor().randomColor(
@@ -1180,11 +1180,12 @@ class _ChartState extends State<Chart> {
                   InkWell(
                     onTap: () {
 
-                      print(UsersState().usersFilter);
+                      // print(UsersState().usersFilter);
+                      print(map);
 
-                      UsersState().usersFilter.forEach((element) {
-                        print(element["name"]);
-                      });
+                      // UsersState().usersFilter.forEach((element) {
+                      //   print(element["name"]);
+                      // });
 
                       /*setState(() {
                         _discover[0].addEntries([MapEntry("Document",demo)]);
@@ -1830,9 +1831,9 @@ class _ChartState extends State<Chart> {
                                                         },
                                                       );
 
-                                                      setState((){
+                                                      /*setState((){
 
-                                                      });
+                                                      });*/
 
                                                     },
                                                     child: Container(
