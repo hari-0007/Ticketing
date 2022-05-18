@@ -373,7 +373,13 @@ class _MyHomePageState extends State<MyHomePage> {
       "id" : "1"
     };*/
 
-    var url = 'http://192.168.0.102:8000/';
+    /*Map<String, dynamic> data = {
+      "username" : "akshaya",
+      "password" : "NSzmcC@8@q"
+    };*/
+
+    // var url = 'http://192.168.0.102:8000/';
+    var url = 'http://192.168.0.102:8000/self/user/login/';
     var response = await http.post(Uri.parse(url), body: json.encode(loginRequestModel),
       headers: {
       'Content-type': 'application/json',
@@ -402,13 +408,13 @@ class _MyHomePageState extends State<MyHomePage> {
         duration: Duration(milliseconds: 500),
         content: Text('Login Successful'),
       ));
-      /*Timer(Duration(seconds: 1),(){
+      Timer(Duration(seconds: 1),(){
         Navigator.push(
             context,
             MaterialPageRoute(builder: (context)=>  MatrixPage()
             )
         );
-      });*/
+      });
     }else{
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(
@@ -468,17 +474,26 @@ class LoginRequestModel {
 
   Map<String, dynamic> toJson() {
     Map<String, dynamic> map = {
-      "method" : "user.login",
-      "jsonrpc" : "2.0",
-      "params" : {
-        "username": email,
-        "password": password
-      },
-      "id" : 1
+      "username" : "akshaya",
+      "password" : "NSzmcC@8@q"
     };
 
     return map;
   }
+
+  // Map<String, dynamic> toJson() {
+  //   Map<String, dynamic> map = {
+  //     "method" : "user.login",
+  //     "jsonrpc" : "2.0",
+  //     "params" : {
+  //       "username": email,
+  //       "password": password
+  //     },
+  //     "id" : 1
+  //   };
+  //
+  //   return map;
+  // }
 }
 
 

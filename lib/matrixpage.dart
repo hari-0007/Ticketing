@@ -654,7 +654,7 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
     _foundTicket = ticket;
     super.initState();
 
-    menuController = AnimationController(vsync: this,duration: Duration(milliseconds: 150));
+    menuController = AnimationController(vsync: this,duration: Duration(milliseconds: 500));
   }
 
   void _runFilter(String enteredKeyword) {
@@ -1098,7 +1098,7 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
           ),
           TweenAnimationBuilder(
               tween: Tween<double>(begin: 0, end: value),
-              duration: Duration(milliseconds: 150),
+              duration: Duration(milliseconds: 500),
               curve: Curves.easeInSine,
               builder: (_, double val, __) {
                 return Transform(
@@ -8774,378 +8774,548 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                 indexedItemBuilder: (context, element, int) {
                   return element.toString().contains("UnAssigned")?GestureDetector(
                     onLongPress: () {
+
                       showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                                contentPadding: EdgeInsets.only(left: 0, right: 0),
-                                insetPadding: EdgeInsets.only(left: 15, right: 15),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(15),
-                                    topRight: Radius.circular(15),
-                                    bottomLeft: Radius.circular(20),
-                                    bottomRight: Radius.circular(20),
-                                  ),
-                                ),
-                                elevation: 50,
-                                backgroundColor: Colors.white,
-                                scrollable: true,
-                                content: ClipRRect(
-                                    borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(15),
-                                      topRight: Radius.circular(15),
-                                      bottomLeft: Radius.circular(20),
-                                      bottomRight: Radius.circular(20),
-                                    ),
-                                    child: Container(
-                                      height: 260,
-                                      width: 365,
-                                      decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                              // opacity: 0.75,
-                                              fit: BoxFit.fill,
-                                              image: AssetImage('assets/unassignedticketimage.png'))),
-                                      child: Stack(
-                                        children: [
-                                          Center(
-                                            child: Container(
-                                              height: 210,
-                                              width: 345,
-                                              decoration: BoxDecoration(
-                                                // color: Colors.transparent.withOpacity(0.1),
-                                                borderRadius: BorderRadius.only(
-                                                  topLeft: Radius.circular(20),
-                                                  topRight: Radius.circular(20),
-                                                  bottomLeft: Radius.circular(20),
-                                                  bottomRight: Radius.circular(20),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          Column(
-                                            // mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                            crossAxisAlignment: CrossAxisAlignment.center,
-                                            children: [
-                                              SizedBox(height: 10,),
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            alignment: Alignment.center,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30.0),
+                            ),
+                            scrollable: false,
+                            insetPadding: EdgeInsets.zero,
+                            contentPadding: EdgeInsets.only(top: 5,bottom: 5,left: 5,right: 5),
+                            titlePadding: EdgeInsets.only(top: 5,bottom: 5),
+                            backgroundColor: Colors.white70,
 
-                                              if(element["Severity"]=="High")...[
-                                                unAssignedLongPress(systemNumber: element['SystemNumber'], unAssignedColor: /*Color(0xff9B4244)*/Color(0xffED0000).withOpacity(0.75)),
-                                              ]else if(element["Severity"]=="Medium")...[
-                                                unAssignedLongPress(systemNumber: element['SystemNumber'], unAssignedColor: /*Color(0xff569556)*/Color(0xff30C130).withOpacity(0.75)),
-                                              ]else if(element["Severity"]=="Low")...[
-                                                unAssignedLongPress(systemNumber: element['SystemNumber'], unAssignedColor: /*Color(0xffB7AA5E)*/Color(0xffE8D90E)),
-                                              ]else if(element["Severity"]=="Information")...[
-                                                unAssignedLongPress(systemNumber: element['SystemNumber'], unAssignedColor: /*Color(0xffF6F6F6)*/Color(0xffF0F0F0)),
-                                              ]else...[
-                                                unAssignedLongPress(systemNumber: element['SystemNumber'], unAssignedColor: Color(0xff4C709A)),
-                                              ],
+                            title: Column(
+                              children: [
+                                if(element["Severity"]=="High")...[
+                                  unAssignedLongPress(systemNumber: element['SystemNumber'], unAssignedColor: /*Color(0xff9B4244)*/Color(0xffED0000).withOpacity(0.60)),
+                                ]else if(element["Severity"]=="Medium")...[
+                                  unAssignedLongPress(systemNumber: element['SystemNumber'], unAssignedColor: /*Color(0xff569556)*/Color(0xff30C130).withOpacity(0.60)),
+                                ]else if(element["Severity"]=="Low")...[
+                                  unAssignedLongPress(systemNumber: element['SystemNumber'], unAssignedColor: /*Color(0xffB7AA5E)*/Color(0xffE8D90E)),
+                                ]else if(element["Severity"]=="Information")...[
+                                  unAssignedLongPress(systemNumber: element['SystemNumber'], unAssignedColor: /*Color(0xffF6F6F6)*/Color(0xffF0F0F0)),
+                                ]else...[
+                                  unAssignedLongPress(systemNumber: element['SystemNumber'], unAssignedColor: Color(0xff4C709A)),
+                                ],
+                              ],
+                            ),
 
-                                              /*Stack(
-                                                children: [
-                                                  if(element["Severity"]=="High")...[
-                                                    unAssignedLongPress(systemNumber: element['SystemNumber'], unAssignedColor: Color(0xff9B4244)),
-                                                    Card(
-                                                      shape: RoundedRectangleBorder(
-                                                        borderRadius: BorderRadius.circular(7.5),
-                                                      ),
-                                                      color: Colors.transparent,
-                                                      elevation: 5,
-                                                      child: Container(
-                                                        padding: EdgeInsets.symmetric(horizontal: 10.0),
-                                                        decoration: BoxDecoration(
-                                                          color: Color(0xff9B4244),
-                                                          borderRadius: BorderRadius.all(Radius.circular(7.5)),
-                                                        ),
-                                                        child: Text(
-                                                          element['SystemNumber'],
-                                                          style: TextStyle(
-                                                              fontSize: 20,
-                                                              fontWeight: FontWeight.bold,
-                                                              color: Colors.transparent
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Card(
-                                                      shape: RoundedRectangleBorder(
-                                                        borderRadius: BorderRadius.circular(7.5),
-                                                      ),
-                                                      color: Colors.transparent,
-                                                      elevation: 5,
-                                                      child: Container(
-                                                          padding: EdgeInsets.symmetric(horizontal: 10.0),
-                                                          child: Text(
-                                                            element['SystemNumber'],
-                                                            style: TextStyle(
-                                                                fontSize: 20,
-                                                                fontWeight: FontWeight.bold),
-                                                          )),
-                                                    ),
-                                                  ] else if(element["Severity"]=="Medium")...[
-                                                    Card(
-                                                      shape: RoundedRectangleBorder(
-                                                        borderRadius: BorderRadius.circular(7.5),
-                                                      ),
-                                                      color: Colors.transparent,
-                                                      elevation: 5,
-                                                      child: Container(
-                                                        padding: EdgeInsets.symmetric(horizontal: 10.0),
-                                                        decoration: BoxDecoration(
-                                                          color: Color(0xff569556),
-                                                          borderRadius: BorderRadius.all(Radius.circular(7.5)),
-                                                        ),
-                                                        child: Text(
-                                                          element['SystemNumber'],
-                                                          style: TextStyle(
-                                                              fontSize: 20,
-                                                              fontWeight: FontWeight.bold,
-                                                              color: Colors.transparent
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Card(
-                                                      shape: RoundedRectangleBorder(
-                                                        borderRadius: BorderRadius.circular(7.5),
-                                                      ),
-                                                      color: Colors.transparent,
-                                                      elevation: 5,
-                                                      child: Container(
-                                                          padding: EdgeInsets.symmetric(horizontal: 10.0),
-                                                          child: Text(
-                                                            element['SystemNumber'],
-                                                            style: TextStyle(
-                                                                fontSize: 20,
-                                                                fontWeight: FontWeight.bold),
-                                                          )),
-                                                    ),
-                                                  ]else if(element["Severity"]=="Low")...[
-                                                    Card(
-                                                      shape: RoundedRectangleBorder(
-                                                        borderRadius: BorderRadius.circular(7.5),
-                                                      ),
-                                                      color: Colors.transparent,
-                                                      elevation: 5,
-                                                      child: Container(
-                                                        padding: EdgeInsets.symmetric(horizontal: 10.0),
-                                                        decoration: BoxDecoration(
-                                                          color: Color(0xffB7AA5E),
-                                                          borderRadius: BorderRadius.all(Radius.circular(7.5)),
-                                                        ),
-                                                        child: Text(
-                                                          element['SystemNumber'],
-                                                          style: TextStyle(
-                                                              fontSize: 20,
-                                                              fontWeight: FontWeight.bold,
-                                                              color: Colors.transparent
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Card(
-                                                      shape: RoundedRectangleBorder(
-                                                        borderRadius: BorderRadius.circular(7.5),
-                                                      ),
-                                                      color: Colors.transparent,
-                                                      elevation: 5,
-                                                      child: Container(
-                                                          padding: EdgeInsets.symmetric(horizontal: 10.0),
-                                                          child: Text(
-                                                            element['SystemNumber'],
-                                                            style: TextStyle(
-                                                                fontSize: 20,
-                                                                fontWeight: FontWeight.bold),
-                                                          )),
-                                                    ),
-                                                  ]else if(element["Severity"]=="Information")...[
-                                                    Card(
-                                                      shape: RoundedRectangleBorder(
-                                                        borderRadius: BorderRadius.circular(7.5),
-                                                      ),
-                                                      color: Colors.transparent,
-                                                      elevation: 5,
-                                                      child: Container(
-                                                        padding: EdgeInsets.symmetric(horizontal: 10.0),
-                                                        decoration: BoxDecoration(
-                                                          color: Color(0xffF6F6F6),
-                                                          borderRadius: BorderRadius.all(Radius.circular(7.5)),
-                                                        ),
-                                                        child: Text(
-                                                          element['SystemNumber'],
-                                                          style: TextStyle(
-                                                              fontSize: 20,
-                                                              fontWeight: FontWeight.bold,
-                                                              color: Colors.transparent
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Card(
-                                                      shape: RoundedRectangleBorder(
-                                                        borderRadius: BorderRadius.circular(7.5),
-                                                      ),
-                                                      color: Colors.transparent,
-                                                      elevation: 5,
-                                                      child: Container(
-                                                          padding: EdgeInsets.symmetric(horizontal: 10.0),
-                                                          child: Text(
-                                                            element['SystemNumber'],
-                                                            style: TextStyle(
-                                                                fontSize: 20,
-                                                                fontWeight: FontWeight.bold),
-                                                          )),
-                                                    ),
-                                                  ]else...[
-                                                    Card(
-                                                      shape: RoundedRectangleBorder(
-                                                        borderRadius: BorderRadius.circular(7.5),
-                                                      ),
-                                                      color: Colors.transparent,
-                                                      elevation: 5,
-                                                      child: Container(
-                                                        padding: EdgeInsets.symmetric(horizontal: 10.0),
-                                                        decoration: BoxDecoration(
-                                                          color: Color(0xff4C709A),
-                                                          borderRadius: BorderRadius.all(Radius.circular(7.5)),
-                                                        ),
-                                                        child: Text(
-                                                          element['SystemNumber'],
-                                                          style: TextStyle(
-                                                              fontSize: 20,
-                                                              fontWeight: FontWeight.bold,
-                                                              color: Colors.transparent
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Card(
-                                                      shape: RoundedRectangleBorder(
-                                                        borderRadius: BorderRadius.circular(7.5),
-                                                      ),
-                                                      color: Colors.transparent,
-                                                      elevation: 5,
-                                                      child: Container(
-                                                          padding: EdgeInsets.symmetric(horizontal: 10.0),
-                                                          child: Text(
-                                                            element['SystemNumber'],
-                                                            style: TextStyle(
-                                                                fontSize: 20,
-                                                                fontWeight: FontWeight.bold),
-                                                          )),
-                                                    ),
-                                                  ]
+                            content: Container(
+                              height: 230,
+                              width: MediaQuery.of(context).size.width*0.85,
+                              padding: EdgeInsets.only(top: 5,),
+                              decoration: BoxDecoration(
+                                color: Colors.white70,
+                                borderRadius: BorderRadius.circular(30.0),
+                              ),
+                              child: Column(
+                                children: [
 
-                                                ],
-                                              ),*/
-
-                                              /*Row(
-                                                mainAxisAlignment: MainAxisAlignment.center,
-                                                children: [
-                                                  Card(
-                                                    shape: RoundedRectangleBorder(
-                                                      borderRadius: BorderRadius.circular(7.5),
-                                                    ),
-                                                    elevation: 5,
-                                                    child: Container(
-                                                        padding: EdgeInsets.symmetric(horizontal: 10.0),
-                                                        decoration: BoxDecoration(
-                                                          color: (element["Severity"]=="High")?Color(0xff9B4244).withOpacity(0.5):Colors.red.withOpacity(0.5),
-                                                          *//*Colors.black.withOpacity(0.5)*//*
-                                                          *//*color: element['Color']
-                                                              .withOpacity(0.5),*//*
-                                                          borderRadius: BorderRadius.all(Radius.circular(7.5)),
-                                                        ),
-                                                        child: Text(
-                                                          element['SystemNumber'],
-                                                          style: TextStyle(
-                                                              fontSize: 20,
-                                                              fontWeight: FontWeight.bold),
-                                                        )),
-                                                  ),
-                                                ],
-                                              ),*/
-                                              SizedBox(height: 7.5,),
-                                              Row(
-                                                mainAxisAlignment: MainAxisAlignment.center,
-                                                children: [
-                                                  Text(
-                                                    element['group'],
-                                                    style: TextStyle(
-                                                        fontWeight: FontWeight.w400,
-                                                        fontSize: 16,
-                                                        color: Colors.black.withOpacity(0.5)),
-                                                  ),
-                                                  SizedBox(width: 5,),
-                                                  Text(
-                                                    element['Time'],
-                                                    style: TextStyle(
-                                                        fontWeight: FontWeight.w400,
-                                                        fontSize: 16,
-                                                        color: Colors.black.withOpacity(0.5)),
-                                                  ),
-                                                ],
-                                              ),
-                                              SizedBox(height: 10,),
-                                              Container(
-                                                decoration: BoxDecoration(
-                                                  borderRadius: BorderRadius.circular(20),
-                                                ),
-                                                height: 120,
-                                                width: 330,
-                                                child: Center(
-                                                  child: SingleChildScrollView(
-                                                    scrollDirection: Axis.vertical,
-                                                    child: Text(element["ProblemText"],
-                                                    // Text(
-                                                    //   'Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working ',
-                                                      textAlign: TextAlign.center,
-                                                      style: TextStyle(
-                                                          fontSize: 17,
-                                                          color: Colors.black.withOpacity(0.75),
-                                                          fontWeight: FontWeight.w500),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                              SizedBox(height: 10,),
-                                              Card(
-                                                color: Colors.black,
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius: BorderRadius.circular(20),
-                                                ),
-                                                elevation: 5,
-                                                shadowColor: Colors.transparent.withOpacity(0.9),
-                                                child: Container(
-                                                  decoration: BoxDecoration(
-                                                      color: Color(0xff1A8118),
-                                                      // Color(0xff1A8118),
-                                                      borderRadius: BorderRadius.circular(20)),
-                                                  padding: EdgeInsets.only(left: 15, right: 15, top: 5, bottom: 5,),
-                                                  child: Text(
-                                                    'ACCEPT TICKET',
-                                                    style: TextStyle(
-                                                      shadows: [
-                                                        Shadow(
-                                                          offset: Offset(1, 1),
-                                                          blurRadius: 2,
-                                                          color: Colors.black,
-                                                        ),
-                                                      ],
-                                                      fontSize: 18,
-                                                      color: Colors.white,
-                                                      fontWeight: FontWeight.bold,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                              SizedBox(height: 2,)
-                                            ],
-                                          ),
-                                        ],
+                                  // if(element["Severity"]=="High")...[
+                                  //   unAssignedLongPress(systemNumber: element['SystemNumber'], unAssignedColor: /*Color(0xff9B4244)*/Color(0xffED0000).withOpacity(0.60)),
+                                  // ]else if(element["Severity"]=="Medium")...[
+                                  //   unAssignedLongPress(systemNumber: element['SystemNumber'], unAssignedColor: /*Color(0xff569556)*/Color(0xff30C130).withOpacity(0.60)),
+                                  // ]else if(element["Severity"]=="Low")...[
+                                  //   unAssignedLongPress(systemNumber: element['SystemNumber'], unAssignedColor: /*Color(0xffB7AA5E)*/Color(0xffE8D90E)),
+                                  // ]else if(element["Severity"]=="Information")...[
+                                  //   unAssignedLongPress(systemNumber: element['SystemNumber'], unAssignedColor: /*Color(0xffF6F6F6)*/Color(0xffF0F0F0)),
+                                  // ]else...[
+                                  //   unAssignedLongPress(systemNumber: element['SystemNumber'], unAssignedColor: Color(0xff4C709A)),
+                                  // ],
+                                  //
+                                  //
+                                  SizedBox(height: 7.5,),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        element['group'],
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: 16,
+                                            color: Colors.black.withOpacity(0.5)),
                                       ),
-                                    )));
-                          });
+                                      SizedBox(width: 5,),
+                                      Text(
+                                        element['Time'],
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: 16,
+                                            color: Colors.black.withOpacity(0.5)),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(height: 10,),
+
+
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                    height: 120,
+                                    width: 330,
+                                    child: Center(
+                                      child: SingleChildScrollView(
+                                        scrollDirection: Axis.vertical,
+                                        child: Text(element["ProblemText"],
+                                          // Text(
+                                          //   'Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working ',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              fontSize: 17,
+                                              color: Colors.black.withOpacity(0.75),
+                                              fontWeight: FontWeight.w500),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(height: 10,),
+
+                                  ElevatedButton(
+                                      onPressed: (){
+
+                                      },
+                                      child: Text(
+                                        'ACCEPT TICKET',
+                                        style: TextStyle(
+                                          shadows: [
+                                            Shadow(
+                                              offset: Offset(1, 1),
+                                              blurRadius: 2,
+                                              color: Colors.black,
+                                            ),
+                                          ],
+                                          fontSize: 18,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      style: ButtonStyle(
+                                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                              RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.circular(20.0),
+                                              )
+                                          ),
+                                          shadowColor: MaterialStateProperty.all(Colors.black),
+                                          backgroundColor: MaterialStateProperty.all(Color(0xff1A8118))
+                                      )
+                                  ),
+
+                                ],
+                              ),
+                            ),
+                          );
+                        },
+                      );
+
+                      // showDialog(
+                      //     context: context,
+                      //     builder: (BuildContext context) {
+                      //       return AlertDialog(
+                      //           contentPadding: EdgeInsets.only(left: 0, right: 0),
+                      //           insetPadding: EdgeInsets.only(left: 15, right: 15),
+                      //           shape: RoundedRectangleBorder(
+                      //             borderRadius: BorderRadius.only(
+                      //               topLeft: Radius.circular(15),
+                      //               topRight: Radius.circular(15),
+                      //               bottomLeft: Radius.circular(20),
+                      //               bottomRight: Radius.circular(20),
+                      //             ),
+                      //           ),
+                      //           elevation: 50,
+                      //           backgroundColor: Colors.white,
+                      //           scrollable: true,
+                      //           content: ClipRRect(
+                      //               borderRadius: BorderRadius.only(
+                      //                 topLeft: Radius.circular(15),
+                      //                 topRight: Radius.circular(15),
+                      //                 bottomLeft: Radius.circular(20),
+                      //                 bottomRight: Radius.circular(20),
+                      //               ),
+                      //               child: Container(
+                      //                 height: 260,
+                      //                 width: 365,
+                      //                 decoration: BoxDecoration(
+                      //                     image: DecorationImage(
+                      //                         // opacity: 0.75,
+                      //                         fit: BoxFit.fill,
+                      //                         colorFilter: ColorFilter.mode(Colors.black, BlendMode.difference),
+                      //                         image: AssetImage('assets/unassignedticketimage.png'))),
+                      //                 child: Stack(
+                      //                   children: [
+                      //                     Center(
+                      //                       child: Container(
+                      //                         height: 210,
+                      //                         width: 345,
+                      //                         decoration: BoxDecoration(
+                      //                           // color: Colors.transparent.withOpacity(0.1),
+                      //                           borderRadius: BorderRadius.only(
+                      //                             topLeft: Radius.circular(20),
+                      //                             topRight: Radius.circular(20),
+                      //                             bottomLeft: Radius.circular(20),
+                      //                             bottomRight: Radius.circular(20),
+                      //                           ),
+                      //                         ),
+                      //                       ),
+                      //                     ),
+                      //                     Column(
+                      //                       // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      //                       crossAxisAlignment: CrossAxisAlignment.center,
+                      //                       children: [
+                      //                         SizedBox(height: 10,),
+                      //
+                      //                         if(element["Severity"]=="High")...[
+                      //                           unAssignedLongPress(systemNumber: element['SystemNumber'], unAssignedColor: /*Color(0xff9B4244)*/Color(0xffED0000).withOpacity(0.60)),
+                      //                         ]else if(element["Severity"]=="Medium")...[
+                      //                           unAssignedLongPress(systemNumber: element['SystemNumber'], unAssignedColor: /*Color(0xff569556)*/Color(0xff30C130).withOpacity(0.60)),
+                      //                         ]else if(element["Severity"]=="Low")...[
+                      //                           unAssignedLongPress(systemNumber: element['SystemNumber'], unAssignedColor: /*Color(0xffB7AA5E)*/Color(0xffE8D90E)),
+                      //                         ]else if(element["Severity"]=="Information")...[
+                      //                           unAssignedLongPress(systemNumber: element['SystemNumber'], unAssignedColor: /*Color(0xffF6F6F6)*/Color(0xffF0F0F0)),
+                      //                         ]else...[
+                      //                           unAssignedLongPress(systemNumber: element['SystemNumber'], unAssignedColor: Color(0xff4C709A)),
+                      //                         ],
+                      //
+                      //                         /*Stack(
+                      //                           children: [
+                      //                             if(element["Severity"]=="High")...[
+                      //                               unAssignedLongPress(systemNumber: element['SystemNumber'], unAssignedColor: Color(0xff9B4244)),
+                      //                               Card(
+                      //                                 shape: RoundedRectangleBorder(
+                      //                                   borderRadius: BorderRadius.circular(7.5),
+                      //                                 ),
+                      //                                 color: Colors.transparent,
+                      //                                 elevation: 5,
+                      //                                 child: Container(
+                      //                                   padding: EdgeInsets.symmetric(horizontal: 10.0),
+                      //                                   decoration: BoxDecoration(
+                      //                                     color: Color(0xff9B4244),
+                      //                                     borderRadius: BorderRadius.all(Radius.circular(7.5)),
+                      //                                   ),
+                      //                                   child: Text(
+                      //                                     element['SystemNumber'],
+                      //                                     style: TextStyle(
+                      //                                         fontSize: 20,
+                      //                                         fontWeight: FontWeight.bold,
+                      //                                         color: Colors.transparent
+                      //                                     ),
+                      //                                   ),
+                      //                                 ),
+                      //                               ),
+                      //                               Card(
+                      //                                 shape: RoundedRectangleBorder(
+                      //                                   borderRadius: BorderRadius.circular(7.5),
+                      //                                 ),
+                      //                                 color: Colors.transparent,
+                      //                                 elevation: 5,
+                      //                                 child: Container(
+                      //                                     padding: EdgeInsets.symmetric(horizontal: 10.0),
+                      //                                     child: Text(
+                      //                                       element['SystemNumber'],
+                      //                                       style: TextStyle(
+                      //                                           fontSize: 20,
+                      //                                           fontWeight: FontWeight.bold),
+                      //                                     )),
+                      //                               ),
+                      //                             ] else if(element["Severity"]=="Medium")...[
+                      //                               Card(
+                      //                                 shape: RoundedRectangleBorder(
+                      //                                   borderRadius: BorderRadius.circular(7.5),
+                      //                                 ),
+                      //                                 color: Colors.transparent,
+                      //                                 elevation: 5,
+                      //                                 child: Container(
+                      //                                   padding: EdgeInsets.symmetric(horizontal: 10.0),
+                      //                                   decoration: BoxDecoration(
+                      //                                     color: Color(0xff569556),
+                      //                                     borderRadius: BorderRadius.all(Radius.circular(7.5)),
+                      //                                   ),
+                      //                                   child: Text(
+                      //                                     element['SystemNumber'],
+                      //                                     style: TextStyle(
+                      //                                         fontSize: 20,
+                      //                                         fontWeight: FontWeight.bold,
+                      //                                         color: Colors.transparent
+                      //                                     ),
+                      //                                   ),
+                      //                                 ),
+                      //                               ),
+                      //                               Card(
+                      //                                 shape: RoundedRectangleBorder(
+                      //                                   borderRadius: BorderRadius.circular(7.5),
+                      //                                 ),
+                      //                                 color: Colors.transparent,
+                      //                                 elevation: 5,
+                      //                                 child: Container(
+                      //                                     padding: EdgeInsets.symmetric(horizontal: 10.0),
+                      //                                     child: Text(
+                      //                                       element['SystemNumber'],
+                      //                                       style: TextStyle(
+                      //                                           fontSize: 20,
+                      //                                           fontWeight: FontWeight.bold),
+                      //                                     )),
+                      //                               ),
+                      //                             ]else if(element["Severity"]=="Low")...[
+                      //                               Card(
+                      //                                 shape: RoundedRectangleBorder(
+                      //                                   borderRadius: BorderRadius.circular(7.5),
+                      //                                 ),
+                      //                                 color: Colors.transparent,
+                      //                                 elevation: 5,
+                      //                                 child: Container(
+                      //                                   padding: EdgeInsets.symmetric(horizontal: 10.0),
+                      //                                   decoration: BoxDecoration(
+                      //                                     color: Color(0xffB7AA5E),
+                      //                                     borderRadius: BorderRadius.all(Radius.circular(7.5)),
+                      //                                   ),
+                      //                                   child: Text(
+                      //                                     element['SystemNumber'],
+                      //                                     style: TextStyle(
+                      //                                         fontSize: 20,
+                      //                                         fontWeight: FontWeight.bold,
+                      //                                         color: Colors.transparent
+                      //                                     ),
+                      //                                   ),
+                      //                                 ),
+                      //                               ),
+                      //                               Card(
+                      //                                 shape: RoundedRectangleBorder(
+                      //                                   borderRadius: BorderRadius.circular(7.5),
+                      //                                 ),
+                      //                                 color: Colors.transparent,
+                      //                                 elevation: 5,
+                      //                                 child: Container(
+                      //                                     padding: EdgeInsets.symmetric(horizontal: 10.0),
+                      //                                     child: Text(
+                      //                                       element['SystemNumber'],
+                      //                                       style: TextStyle(
+                      //                                           fontSize: 20,
+                      //                                           fontWeight: FontWeight.bold),
+                      //                                     )),
+                      //                               ),
+                      //                             ]else if(element["Severity"]=="Information")...[
+                      //                               Card(
+                      //                                 shape: RoundedRectangleBorder(
+                      //                                   borderRadius: BorderRadius.circular(7.5),
+                      //                                 ),
+                      //                                 color: Colors.transparent,
+                      //                                 elevation: 5,
+                      //                                 child: Container(
+                      //                                   padding: EdgeInsets.symmetric(horizontal: 10.0),
+                      //                                   decoration: BoxDecoration(
+                      //                                     color: Color(0xffF6F6F6),
+                      //                                     borderRadius: BorderRadius.all(Radius.circular(7.5)),
+                      //                                   ),
+                      //                                   child: Text(
+                      //                                     element['SystemNumber'],
+                      //                                     style: TextStyle(
+                      //                                         fontSize: 20,
+                      //                                         fontWeight: FontWeight.bold,
+                      //                                         color: Colors.transparent
+                      //                                     ),
+                      //                                   ),
+                      //                                 ),
+                      //                               ),
+                      //                               Card(
+                      //                                 shape: RoundedRectangleBorder(
+                      //                                   borderRadius: BorderRadius.circular(7.5),
+                      //                                 ),
+                      //                                 color: Colors.transparent,
+                      //                                 elevation: 5,
+                      //                                 child: Container(
+                      //                                     padding: EdgeInsets.symmetric(horizontal: 10.0),
+                      //                                     child: Text(
+                      //                                       element['SystemNumber'],
+                      //                                       style: TextStyle(
+                      //                                           fontSize: 20,
+                      //                                           fontWeight: FontWeight.bold),
+                      //                                     )),
+                      //                               ),
+                      //                             ]else...[
+                      //                               Card(
+                      //                                 shape: RoundedRectangleBorder(
+                      //                                   borderRadius: BorderRadius.circular(7.5),
+                      //                                 ),
+                      //                                 color: Colors.transparent,
+                      //                                 elevation: 5,
+                      //                                 child: Container(
+                      //                                   padding: EdgeInsets.symmetric(horizontal: 10.0),
+                      //                                   decoration: BoxDecoration(
+                      //                                     color: Color(0xff4C709A),
+                      //                                     borderRadius: BorderRadius.all(Radius.circular(7.5)),
+                      //                                   ),
+                      //                                   child: Text(
+                      //                                     element['SystemNumber'],
+                      //                                     style: TextStyle(
+                      //                                         fontSize: 20,
+                      //                                         fontWeight: FontWeight.bold,
+                      //                                         color: Colors.transparent
+                      //                                     ),
+                      //                                   ),
+                      //                                 ),
+                      //                               ),
+                      //                               Card(
+                      //                                 shape: RoundedRectangleBorder(
+                      //                                   borderRadius: BorderRadius.circular(7.5),
+                      //                                 ),
+                      //                                 color: Colors.transparent,
+                      //                                 elevation: 5,
+                      //                                 child: Container(
+                      //                                     padding: EdgeInsets.symmetric(horizontal: 10.0),
+                      //                                     child: Text(
+                      //                                       element['SystemNumber'],
+                      //                                       style: TextStyle(
+                      //                                           fontSize: 20,
+                      //                                           fontWeight: FontWeight.bold),
+                      //                                     )),
+                      //                               ),
+                      //                             ]
+                      //
+                      //                           ],
+                      //                         ),*/
+                      //
+                      //                         /*Row(
+                      //                           mainAxisAlignment: MainAxisAlignment.center,
+                      //                           children: [
+                      //                             Card(
+                      //                               shape: RoundedRectangleBorder(
+                      //                                 borderRadius: BorderRadius.circular(7.5),
+                      //                               ),
+                      //                               elevation: 5,
+                      //                               child: Container(
+                      //                                   padding: EdgeInsets.symmetric(horizontal: 10.0),
+                      //                                   decoration: BoxDecoration(
+                      //                                     color: (element["Severity"]=="High")?Color(0xff9B4244).withOpacity(0.5):Colors.red.withOpacity(0.5),
+                      //                                     *//*Colors.black.withOpacity(0.5)*//*
+                      //                                     *//*color: element['Color']
+                      //                                         .withOpacity(0.5),*//*
+                      //                                     borderRadius: BorderRadius.all(Radius.circular(7.5)),
+                      //                                   ),
+                      //                                   child: Text(
+                      //                                     element['SystemNumber'],
+                      //                                     style: TextStyle(
+                      //                                         fontSize: 20,
+                      //                                         fontWeight: FontWeight.bold),
+                      //                                   )),
+                      //                             ),
+                      //                           ],
+                      //                         ),*/
+                      //                         SizedBox(height: 7.5,),
+                      //                         Row(
+                      //                           mainAxisAlignment: MainAxisAlignment.center,
+                      //                           children: [
+                      //                             Text(
+                      //                               element['group'],
+                      //                               style: TextStyle(
+                      //                                   fontWeight: FontWeight.w400,
+                      //                                   fontSize: 16,
+                      //                                   color: Colors.black.withOpacity(0.5)),
+                      //                             ),
+                      //                             SizedBox(width: 5,),
+                      //                             Text(
+                      //                               element['Time'],
+                      //                               style: TextStyle(
+                      //                                   fontWeight: FontWeight.w400,
+                      //                                   fontSize: 16,
+                      //                                   color: Colors.black.withOpacity(0.5)),
+                      //                             ),
+                      //                           ],
+                      //                         ),
+                      //                         SizedBox(height: 10,),
+                      //                         Container(
+                      //                           decoration: BoxDecoration(
+                      //                             borderRadius: BorderRadius.circular(20),
+                      //                           ),
+                      //                           height: 120,
+                      //                           width: 330,
+                      //                           child: Center(
+                      //                             child: SingleChildScrollView(
+                      //                               scrollDirection: Axis.vertical,
+                      //                               child: Text(element["ProblemText"],
+                      //                               // Text(
+                      //                               //   'Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working Keyboard not working ',
+                      //                                 textAlign: TextAlign.center,
+                      //                                 style: TextStyle(
+                      //                                     fontSize: 17,
+                      //                                     color: Colors.black.withOpacity(0.75),
+                      //                                     fontWeight: FontWeight.w500),
+                      //                               ),
+                      //                             ),
+                      //                           ),
+                      //                         ),
+                      //                         SizedBox(height: 10,),
+                      //
+                      //                         ElevatedButton(
+                      //                             onPressed: (){
+                      //
+                      //                             },
+                      //                             child: Text(
+                      //                                 'ACCEPT TICKET',
+                      //                               style: TextStyle(
+                      //                                 shadows: [
+                      //                                   Shadow(
+                      //                                     offset: Offset(1, 1),
+                      //                                     blurRadius: 2,
+                      //                                     color: Colors.black,
+                      //                                   ),
+                      //                                 ],
+                      //                                 fontSize: 18,
+                      //                                 color: Colors.white,
+                      //                                 fontWeight: FontWeight.bold,
+                      //                               ),
+                      //                             ),
+                      //                             style: ButtonStyle(
+                      //                                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      //                                     RoundedRectangleBorder(
+                      //                                         borderRadius: BorderRadius.circular(20.0),
+                      //                                     )
+                      //                                 ),
+                      //                               backgroundColor: MaterialStateProperty.all(Color(0xff1A8118))
+                      //                             )
+                      //                         ),
+                      //
+                      //                         /*Card(
+                      //                           color: Colors.black,
+                      //                           shape: RoundedRectangleBorder(
+                      //                             borderRadius: BorderRadius.circular(20),
+                      //                           ),
+                      //                           elevation: 5,
+                      //                           shadowColor: Colors.transparent.withOpacity(0.9),
+                      //                           child: Container(
+                      //                             decoration: BoxDecoration(
+                      //                                 color: Color(0xff1A8118),
+                      //                                 // Color(0xff1A8118),
+                      //                                 borderRadius: BorderRadius.circular(20)),
+                      //                             padding: EdgeInsets.only(left: 15, right: 15, top: 5, bottom: 5,),
+                      //                             child: Text(
+                      //                               'ACCEPT TICKET',
+                      //                               style: TextStyle(
+                      //                                 shadows: [
+                      //                                   Shadow(
+                      //                                     offset: Offset(1, 1),
+                      //                                     blurRadius: 2,
+                      //                                     color: Colors.black,
+                      //                                   ),
+                      //                                 ],
+                      //                                 fontSize: 18,
+                      //                                 color: Colors.white,
+                      //                                 fontWeight: FontWeight.bold,
+                      //                               ),
+                      //                             ),
+                      //                           ),
+                      //                         ),*/
+                      //                         SizedBox(height: 2,)
+                      //                       ],
+                      //                     ),
+                      //                   ],
+                      //                 ),
+                      //               )));
+                      //     });
                     },
                     onTap: () {
                       showModalBottomSheet(
@@ -9153,8 +9323,16 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                             maxWidth: MediaQuery.of(context).size.width * 0.95,
                           ),
                           isScrollControlled: true,
-                          backgroundColor: Colors.transparent,
+                          backgroundColor: Colors.white70,
                           context: context,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(45),
+                              topLeft: Radius.circular(45),
+                              bottomRight: Radius.circular(30),
+                              bottomLeft: Radius.circular(30),
+                            ),
+                          ),
                           builder: (BuildContext context) {
                             return Container(
                               constraints: BoxConstraints(
@@ -9167,10 +9345,10 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                                   bottomRight: Radius.circular(30),
                                   bottomLeft: Radius.circular(30),
                                 ),
-                                // color: Colors.transparent,
-                                image: DecorationImage(
-                                    fit: BoxFit.cover,
-                                    image: AssetImage('assets/problemclick.png')),
+                                color: Colors.white70.withOpacity(0.6),
+                                // image: DecorationImage(
+                                //     fit: BoxFit.cover,
+                                //     image: AssetImage('assets/problemclick.png')),
                               ),
                               child: SingleChildScrollView(
                                 reverse: true,
@@ -9344,7 +9522,7 @@ class _MatrixPageState extends State<MatrixPage> with SingleTickerProviderStateM
                                             children: [
                                               Container(
                                                 width: MediaQuery.of(context).size.width * 0.90,
-                                                color: Color(0xffC4C4C4).withOpacity(0.20),
+                                                color: Color(0xffC4C4C4).withOpacity(0.3),
                                                 height: 70,
                                                 child: TextField(
                                                   scrollPadding: EdgeInsets.only(top: 40),

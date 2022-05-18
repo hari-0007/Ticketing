@@ -4,160 +4,185 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 List<Map<String, dynamic>> users = [
   {
     "name" : "James",
-    "designation" : "Trainee",
+    "designation" : "Network Admin",
     "level" : 1,
     "starRating" : 8,
+    "group": "Group A"
   },
   {
     "name" : "Robert",
-    "designation" : "Software Engineer",
+    "designation" : "Network Technician",
     "level" : 3,
     "starRating" : 2,
+    "group": "Group B"
   },
   {
     "name" : "John",
-    "designation" : "System Engineer",
+    "designation" : "Server Admin",
     "level" : 2,
     "starRating" : 2,
+    "group": "Group C"
   },
   {
     "name" : "Michael",
-    "designation" : "Senior Software Engineer",
+    "designation" : "System Admin",
     "level" : 4,
     "starRating" : 0,
+    "group": "Group D"
   },
   {
     "name" : "William",
-    "designation" : "Senior System Engineer",
+    "designation" : "System Engineer",
     "level" : 5,
     "starRating" : 6,
+    "group": "Group A"
   },
   {
     "name" : "David",
-    "designation" : "Software Tester",
+    "designation" : "Network Admin",
     "level" : 1,
     "starRating" : 0,
+    "group": "Group B"
   },
   {
     "name" : "Richard",
-    "designation" : "Team Lead",
+    "designation" : "Network Technician",
     "level" : 4,
     "starRating" : 7,
+    "group": "Group C"
   },
   {
     "name" : "Joseph",
-    "designation" : "Trainee",
+    "designation" : "Server Admin",
     "level" : 0,
     "starRating" : 0,
+    "group": "Group D"
   },
   {
     "name" : "Thomas",
-    "designation" : "Software Engineer",
+    "designation" : "System Admin",
     "level" : 2,
     "starRating" : 9,
+    "group": "Group A"
   },
   {
     "name" : "Charles",
     "designation" : "System Engineer",
     "level" : 3,
     "starRating" : 4,
-
+    "group": "Group B"
   },
   {
     "name" : "Christopher",
-    "designation" : "Senior Software Engineer",
+    "designation" : "Network Admin",
     "level" : 4,
     "starRating" : 10,
+    "group": "Group C"
   },
   {
     "name" : "Daniel",
-    "designation" : "Senior System Engineer",
+    "designation" : "Network Technician",
     "level" : 5,
     "starRating" : 7,
+    "group": "Group D"
   },
   {
     "name" : "Matthew",
-    "designation" : "Software Tester",
+    "designation" : "Server Admin",
     "level" : 2,
     "starRating" : 3,
+    "group": "Group A"
   },
   {
     "name" : "Anthony",
-    "designation" : "Team Lead",
+    "designation" : "System Admin",
     "level" : 5,
     "starRating" : 5,
+    "group": "Group B"
   },
   {
     "name" : "Mark",
-    "designation" : "Trainee",
+    "designation" : "System Engineer",
     "level" : 1,
     "starRating" : 8,
+    "group": "Group C"
   },
   {
     "name" : "Donald",
-    "designation" : "Software Engineer",
+    "designation" : "Network Admin",
     "level" : 4,
     "starRating" : 9,
+    "group": "Group D"
   },
   {
     "name" : "Steven",
-    "designation" : "System Engineer",
+    "designation" : "Network Technician",
     "level" : 2,
     "starRating" : 4,
+    "group": "Group A"
   },
   {
     "name" : "Paul",
-    "designation" : "Senior Software Engineer",
+    "designation" : "Server Admin",
     "level" : 3,
     "starRating" : 7,
+    "group": "Group B"
   },
   {
     "name" : "Andrew",
-    "designation" : "Senior System Engineer",
+    "designation" : "System Admin",
     "level" : 3,
     "starRating" : 8,
+    "group": "Group C"
   },
   {
     "name" : "Joshua",
-    "designation" : "Software Tester",
+    "designation" : "System Engineer",
     "level" : 3,
     "starRating" : 8,
+    "group": "Group D"
   },
   {
     "name" : "Kenneth",
-    "designation" : "Team Lead",
+    "designation" : "Network Admin",
     "level" : 0,
     "starRating" : 1,
+    "group": "Group A"
   },
   {
     "name" : "Kevin",
-    "designation" : "Trainee",
+    "designation" : "Network Technician",
     "level" : 0,
     "starRating" : 0,
+    "group": "Group B"
   },
   {
     "name" : "Brian",
-    "designation" : "Software Engineer",
+    "designation" : "Server Admin",
     "level" : 2,
     "starRating" : 4,
+    "group": "Group C"
   },
   {
     "name" : "George",
-    "designation" : "System Engineer",
+    "designation" : "System Admin",
     "level" : 2,
     "starRating" : 6,
+    "group": "Group D"
   },
   {
     "name" : "Edward",
-    "designation" : "Senior Software Engineer",
+    "designation" : "System Engineer",
     "level" : 2,
     "starRating" : 5,
+    "group": "Group A"
   },
   {
     "name" : "Ronald",
-    "designation" : "Senior System Engineer",
+    "designation" : "Network Admin",
     "level" : 0,
     "starRating" : 2,
+    "group": "Group B"
   },
 ];
 
@@ -169,13 +194,13 @@ List<String> branch =[
   "Branch 5",
 ];
 
-List<String> designation = [
-  "Network Admin",
-  "Network Technician",
-  "Server Admin",
-  "System Admin",
-  "System Engineer",
-];
+// List<String> designation = [
+//   "Network Admin",
+//   "Network Technician",
+//   "Server Admin",
+//   "System Admin",
+//   "System Engineer",
+// ];
 
 class Users extends StatefulWidget {
 
@@ -186,6 +211,11 @@ class Users extends StatefulWidget {
 }
 
 class UsersState extends State<Users> {
+
+  Map map = Map();
+  List<String> group = [];
+
+  Set<String> designation = {};
 
   String? selectedDesignation;
   String? selectedlevel;
@@ -201,6 +231,19 @@ class UsersState extends State<Users> {
   initState() {
     // at the beginning, all users are shown
     usersFilter = users;
+
+    usersFilter.forEach((element) {
+      designation.add(element["designation"]);
+    });
+
+    usersFilter.forEach((element) {
+      group.add(element["group"]);
+    });
+
+    group.forEach((element){
+      map[element] = !map.containsKey(element) ? (1) : (map[element] + 1);
+    });
+    
     super.initState();
   }
 
@@ -265,10 +308,76 @@ class UsersState extends State<Users> {
 
                       Flexible(
                         flex: 2,
-                          child: Center(
-                            child: Text(
-                                "Name",
-                            ),
+                          child: Row(
+                            // mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+
+                              // Flexible(
+                              //     flex: 3,
+                              //   child: GestureDetector(
+                              //     onTap: (){
+                              //       print("down arrow");
+                              //     },
+                              //     child: Center(
+                              //       child: Icon(
+                              //         Icons.arrow_drop_down_outlined,
+                              //         size: 28,
+                              //       ),
+                              //     ),
+                              //   )
+                              // ),
+                              Flexible(
+                                flex: 3,
+                                  child: PopupMenuButton(
+                                    icon: Icon(Icons.arrow_drop_down_outlined,),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(20.0),
+                                      ),
+                                    ),
+                                    onSelected: (val){
+                                      print(val);
+                                    },
+                                    color: Color(0xff19547b).withOpacity(0.975),
+                                    padding: EdgeInsets.zero,
+                                    offset: Offset(2,2),
+                                    itemBuilder: (BuildContext context) {
+                                      return [
+
+                                        PopupMenuItem(
+                                          value: "User",
+                                            child: Text(
+                                                "User",
+                                              style: TextStyle(
+                                                color: Colors.white
+                                              ),
+                                            )
+                                        ),
+
+                                        PopupMenuItem(
+                                            value: "Group",
+                                            child: Text(
+                                                "Group",
+                                              style: TextStyle(
+                                                  color: Colors.white
+                                              ),
+                                            )
+                                        )
+
+                                      ];
+                                    },
+                                  )
+                              ),
+
+                              Flexible(
+                                flex: 4,
+                                child: Text(
+                                  'Name',
+                                ),
+                              )
+
+                            ],
                           )
                       ),
 
@@ -305,15 +414,16 @@ class UsersState extends State<Users> {
               ),
 
               Expanded(
-                child: ListView.builder(
-                  padding: EdgeInsets.only(top: 10),
-                  shrinkWrap: true,
-                  itemCount: usersFilter.length,
+                child:
+
+                ListView.builder(
+                    padding: EdgeInsets.only(top: 10),
+                    shrinkWrap: true,
+                    itemCount: map.length,
                   itemBuilder: (BuildContext context, int index) {
                     return GestureDetector(
                       onTap: (){
-                        print(usersFilter[index]);
-                        // print(context.owner);
+                        print("${map.keys.toList()[index]}:${map.values.toList()[index]}");
                       },
                       child: Card(
                         elevation: 5.0,
@@ -322,140 +432,221 @@ class UsersState extends State<Users> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        // elevation: 8,
-                        // margin: EdgeInsets.only(left: 7.5,right: 7.5,top: 5,bottom: 5),
-                        child: Slidable(
-                          key: UniqueKey(),
-                          endActionPane: ActionPane(
-                            extentRatio: 0.3,
-                              // closeThreshold: 0.25,openThreshold: 0.2,
-                              motion: const DrawerMotion(),
-                              /*dismissible: DismissiblePane(
-                                key: UniqueKey(),
-                                  onDismissed: () {
-
-                                setState(() {
-                                  usersFilter.removeAt(index);
-                                });
-
-
-                                print(index);
-                                print(usersFilter[index]);
-                              }),*/
-                              children: [
-
-                                SlidableAction(
-                                  // flex: 1,
-                                  autoClose: true,
-                                  onPressed: (value){
-                                    print(value);
-                                  },
-                                  backgroundColor: Colors.transparent,
-                                  foregroundColor: Colors.white,
-                                  icon: Icons.edit,
-                                  spacing: 10,
-                                  // label: 'Edit',
-                                ),
-
-                                SlidableAction(
-                                  // flex: 1,
-                                  autoClose: true,
-                                  onPressed: (value){
-                                    print(value);
-                                  },
-                                  backgroundColor: Colors.transparent,
-                                  foregroundColor: Colors.white,
-                                  icon: Icons.block,
-                                  spacing: 10,
-                                  // label: 'Disable',
-                                ),
-
-                                /*SlidableAction(
-                                  autoClose: true,
-                                  onPressed: (value){
-                                    print(value);
-                                  },
-                                  backgroundColor: Colors.transparent,
-                                  foregroundColor: Colors.white,
-                                  icon: Icons.close_rounded,
-                                  spacing: 10,
-                                  // label: 'Remove',
-                                ),*/
-
-                                /*SlidableAction(
-                              onPressed: (value){},
-                              backgroundColor: Colors.transparent,
-                              foregroundColor: Colors.white,
-                              icon: Icons.share,
-                              label: 'Share',
-                            ),*/
-                              ]
-                          ),
-                          child: Container(
-                            height: 40,
-                            // margin: EdgeInsets.symmetric(vertical: 10),
-                            decoration: BoxDecoration(
+                        child: Container(
+                          height: 40,
+                          // margin: EdgeInsets.symmetric(vertical: 10),
+                          decoration: BoxDecoration(
                               color: Color(0xff19547b).withOpacity(0.375),/*(index%2==0)?Color(0xff19547b).withOpacity(0.6):Color(0xff19547b).withOpacity(0.4),*/
                               borderRadius: BorderRadius.circular(10)
-                            ),
-                            child: Row(
-                              // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
+                          ),
+                          child: Row(
+                            children: [
 
-                                Flexible(
-                                  flex: 2,
-                                  child: Center(
-                                      child: Text(
-                                          usersFilter[index]["name"],
-                                        style: TextStyle(
-                                            color: Colors.black.withOpacity(0.85)
-                                        ),
-                                      )
+                              Flexible(
+                                child: Center(
+                                  child: Text(
+                                      map.keys.toList()[index]
                                   ),
                                 ),
+                              ),
 
-                                Flexible(
-                                  flex: 3,
-                                  child: Center(
-                                      child: Text(
-                                        usersFilter[index]["designation"],
-                                        style: TextStyle(
-                                            color: Colors.black.withOpacity(0.85)
-                                        ),
-                                      )
+                              Flexible(
+                                child: Center(
+                                  child: Text(
+                                      map.values.toList()[index].toString()
                                   ),
                                 ),
+                              ),
 
-                                Flexible(
-                                  child: Center(
-                                      child: Text(
-                                        usersFilter[index]["starRating"].toString(),
-                                        style: TextStyle(
-                                            color: Colors.black.withOpacity(0.85)
-                                        ),
-                                      )
-                                  ),
-                                ),
-
-                                Flexible(
-                                  child: Center(
-                                      child: Text(
-                                    usersFilter[index]["level"].toString(),
-                                        style: TextStyle(
-                                            color: Colors.black.withOpacity(0.85)
-                                        ),
-                                      )
-                                  ),
-                                ),
-
-                              ],
-                            ),
+                            ],
                           ),
                         ),
                       ),
                     );
                   },
-                ),
+                )
+
+                // ListView.builder(
+                //     padding: EdgeInsets.only(top: 10),
+                //     shrinkWrap: true,
+                //     itemCount: group.length,
+                //   itemBuilder: (BuildContext context, int index) {
+                //     return Card(
+                //       elevation: 5.0,
+                //       color: Colors.white.withOpacity(0.4),
+                //       shadowColor: Colors.black,
+                //       shape: RoundedRectangleBorder(
+                //         borderRadius: BorderRadius.circular(10),
+                //       ),
+                //       child: Container(
+                //         height: 40,
+                //         // margin: EdgeInsets.symmetric(vertical: 10),
+                //         decoration: BoxDecoration(
+                //             color: Color(0xff19547b).withOpacity(0.375),/*(index%2==0)?Color(0xff19547b).withOpacity(0.6):Color(0xff19547b).withOpacity(0.4),*/
+                //             borderRadius: BorderRadius.circular(10)
+                //         ),
+                //         child: Center(
+                //             child: Text(
+                //                 group.toList()[index]
+                //             ),
+                //         ),
+                //       ),
+                //     );
+                //   },
+                // )
+
+                // ListView.builder(
+                //   padding: EdgeInsets.only(top: 10),
+                //   shrinkWrap: true,
+                //   itemCount: usersFilter.length,
+                //   itemBuilder: (BuildContext context, int index) {
+                //     return GestureDetector(
+                //       onTap: (){
+                //         print(usersFilter[index]);
+                //         // print(context.owner);
+                //       },
+                //       child: Card(
+                //         elevation: 5.0,
+                //         color: Colors.white.withOpacity(0.4),
+                //         shadowColor: Colors.black,
+                //         shape: RoundedRectangleBorder(
+                //           borderRadius: BorderRadius.circular(10),
+                //         ),
+                //         // elevation: 8,
+                //         // margin: EdgeInsets.only(left: 7.5,right: 7.5,top: 5,bottom: 5),
+                //         child: Slidable(
+                //           key: UniqueKey(),
+                //           endActionPane: ActionPane(
+                //             extentRatio: 0.3,
+                //               // closeThreshold: 0.25,openThreshold: 0.2,
+                //               motion: const DrawerMotion(),
+                //               /*dismissible: DismissiblePane(
+                //                 key: UniqueKey(),
+                //                   onDismissed: () {
+                //
+                //                 setState(() {
+                //                   usersFilter.removeAt(index);
+                //                 });
+                //
+                //
+                //                 print(index);
+                //                 print(usersFilter[index]);
+                //               }),*/
+                //               children: [
+                //
+                //                 SlidableAction(
+                //                   // flex: 1,
+                //                   autoClose: true,
+                //                   onPressed: (value){
+                //                     print(value);
+                //                   },
+                //                   backgroundColor: Colors.transparent,
+                //                   foregroundColor: Colors.white,
+                //                   icon: Icons.edit,
+                //                   spacing: 10,
+                //                   // label: 'Edit',
+                //                 ),
+                //
+                //                 SlidableAction(
+                //                   // flex: 1,
+                //                   autoClose: true,
+                //                   onPressed: (value){
+                //                     print(value);
+                //                   },
+                //                   backgroundColor: Colors.transparent,
+                //                   foregroundColor: Colors.white,
+                //                   icon: Icons.block,
+                //                   spacing: 10,
+                //                   // label: 'Disable',
+                //                 ),
+                //
+                //                 /*SlidableAction(
+                //                   autoClose: true,
+                //                   onPressed: (value){
+                //                     print(value);
+                //                   },
+                //                   backgroundColor: Colors.transparent,
+                //                   foregroundColor: Colors.white,
+                //                   icon: Icons.close_rounded,
+                //                   spacing: 10,
+                //                   // label: 'Remove',
+                //                 ),*/
+                //
+                //                 /*SlidableAction(
+                //               onPressed: (value){},
+                //               backgroundColor: Colors.transparent,
+                //               foregroundColor: Colors.white,
+                //               icon: Icons.share,
+                //               label: 'Share',
+                //             ),*/
+                //               ]
+                //           ),
+                //           child: Container(
+                //             height: 40,
+                //             // margin: EdgeInsets.symmetric(vertical: 10),
+                //             decoration: BoxDecoration(
+                //               color: Color(0xff19547b).withOpacity(0.375),/*(index%2==0)?Color(0xff19547b).withOpacity(0.6):Color(0xff19547b).withOpacity(0.4),*/
+                //               borderRadius: BorderRadius.circular(10)
+                //             ),
+                //             child: Row(
+                //               // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                //               children: [
+                //
+                //                 Flexible(
+                //                   flex: 2,
+                //                   child: Center(
+                //                       child: Text(
+                //                           usersFilter[index]["name"],
+                //                         style: TextStyle(
+                //                             color: Colors.black.withOpacity(0.85)
+                //                         ),
+                //                       )
+                //                   ),
+                //                 ),
+                //
+                //                 Flexible(
+                //                   flex: 3,
+                //                   child: Center(
+                //                       child: Text(
+                //                         usersFilter[index]["designation"],
+                //                         style: TextStyle(
+                //                             color: Colors.black.withOpacity(0.85)
+                //                         ),
+                //                       )
+                //                   ),
+                //                 ),
+                //
+                //                 Flexible(
+                //                   child: Center(
+                //                       child: Text(
+                //                         usersFilter[index]["starRating"].toString(),
+                //                         style: TextStyle(
+                //                             color: Colors.black.withOpacity(0.85)
+                //                         ),
+                //                       )
+                //                   ),
+                //                 ),
+                //
+                //                 Flexible(
+                //                   child: Center(
+                //                       child: Text(
+                //                     usersFilter[index]["level"].toString(),
+                //                         style: TextStyle(
+                //                             color: Colors.black.withOpacity(0.85)
+                //                         ),
+                //                       )
+                //                   ),
+                //                 ),
+                //
+                //               ],
+                //             ),
+                //           ),
+                //         ),
+                //       ),
+                //     );
+                //   },
+                // ),
+
               ),
             ],
           ),
@@ -472,6 +663,11 @@ class UsersState extends State<Users> {
             children: [
               InkWell(
                 onTap: (){
+
+                  print(designation);
+                  print(group);
+                  print(map.keys);
+
                   setState(() {
                     _userWidth=!_userWidth;
                     _searchUser=false;
@@ -882,6 +1078,7 @@ class UsersState extends State<Users> {
                                             WidgetsBinding.instance?.addPostFrameCallback((_){
                                               showDialog(
                                                 context: context,
+                                                barrierDismissible: false,
                                                 builder: (BuildContext context) {
                                                   return StatefulBuilder(
                                                     builder: (BuildContext context, void Function(void Function()) setState) {
@@ -892,8 +1089,9 @@ class UsersState extends State<Users> {
                                                         ),
                                                         scrollable: false,
                                                         insetPadding: EdgeInsets.zero,
-                                                        contentPadding: EdgeInsets.only(bottom: 5,left: 5,right: 5),
-                                                        titlePadding: EdgeInsets.only(top: 5,bottom: 5),
+                                                        actionsPadding: EdgeInsets.zero,
+                                                        contentPadding: EdgeInsets.only(left: 5,right: 5),
+                                                        titlePadding: EdgeInsets.only(top: 7.5,bottom: 7.5),
                                                         backgroundColor: Colors.white70,
                                                         title: Text(
                                                           "TECHNICAL",
@@ -902,6 +1100,47 @@ class UsersState extends State<Users> {
                                                           ),
                                                           textAlign: TextAlign.center,
                                                         ),
+
+                                                        actions: [
+                                                          Row(
+                                                            mainAxisSize: MainAxisSize.max,
+                                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                                            children: [
+
+                                                              TextButton(
+                                                                  onPressed: (){
+
+                                                                    Navigator.of(context).pop();
+
+                                                                  },
+                                                                  child: Text(
+                                                                      "CANCEL",
+                                                                    style: TextStyle(
+                                                                      color: Color(0xff19547b)
+                                                                    ),
+                                                                  )
+                                                              ),
+
+                                                              TextButton(
+                                                                  onPressed: (){
+
+                                                                  },
+                                                                  child: Text(
+                                                                    "SUBMIT",
+                                                                    style: TextStyle(
+                                                                        color: Color(0xff19547b)
+                                                                    ),
+                                                                  ),
+                                                                style: ButtonStyle(
+
+                                                                ),
+                                                              ),
+
+                                                            ],
+                                                          )
+                                                        ],
+
                                                         content: Container(
                                                           width: MediaQuery.of(context).size.width*0.85,
                                                           padding: EdgeInsets.all(20),
@@ -1158,6 +1397,136 @@ class UsersState extends State<Users> {
 
                         GestureDetector(
                           onTap: (){
+                            print("User Group");
+
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return StatefulBuilder(
+                                  builder: (BuildContext context, void Function(void Function()) setState) {
+
+                                    return AlertDialog(
+                                      actionsAlignment: MainAxisAlignment.center,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(15.0),
+                                      ),
+                                      backgroundColor: Colors.white70,
+                                      actionsOverflowButtonSpacing: 0,
+                                      elevation: 5,
+                                      scrollable: true,
+                                      actionsPadding: EdgeInsets.only(top: 5,bottom: 10),
+                                      titlePadding: EdgeInsets.only(top: 20),
+                                      contentPadding: EdgeInsets.only(left: 24,right: 24,top: 20,bottom: 5),
+                                      title: Text("Group",
+                                        textAlign: TextAlign.center,
+                                      ),
+                                      actions: [
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          children: [
+
+                                            GestureDetector(
+                                                onTap:(){
+                                                  Navigator.of(context).pop();
+                                                },
+                                                child: Text("CREATE")
+                                            ),
+
+                                            GestureDetector(
+                                                onTap:(){
+                                                  Navigator.of(context).pop();
+                                                },
+                                                child: Text("CANCEL")
+                                            ),
+
+                                          ],
+                                        )
+                                      ],
+                                      content: Container(
+                                        // height: 200,
+                                        // width: 100,
+                                        decoration: BoxDecoration(
+                                          color: Colors.transparent,
+                                          borderRadius: BorderRadius.circular(15.0),
+                                        ),
+                                        child: Column(
+                                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            // Text("GROUP"),
+
+                                            // SizedBox(height: 17.5,),
+
+                                            Container(
+                                              // padding: EdgeInsets.symmetric(horizontal: 5),
+                                              height: 47,
+                                              decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.circular(10),
+                                                  border: Border.all(
+                                                      color: Colors.black.withOpacity(0.55))),
+                                              child: TextField(
+                                                cursorColor: Colors.white,
+                                                autofocus: false,
+                                                textAlign: TextAlign.center,
+                                                decoration: InputDecoration(
+                                                    hintText: "Name",
+                                                    border: InputBorder.none,
+                                                    labelStyle: TextStyle(
+                                                        color: Colors.black.withOpacity(0.6))
+                                                ),
+                                              ),
+                                            ),
+
+                                            SizedBox(height: 9,),
+
+                                            GestureDetector(
+                                              onTap: (){},
+                                              child: Container(
+                                                width: MediaQuery.of(context).size.width*0.6,
+                                                decoration: BoxDecoration(
+                                                    borderRadius: BorderRadius.circular(10),
+                                                    border: Border.all(
+                                                        color: Colors.black.withOpacity(0.55),
+                                                        width: 1,
+                                                        style: BorderStyle.solid
+                                                    )
+                                                ),
+                                                child:Column(
+                                                  children: [
+
+                                                    Padding(
+                                                      padding: const EdgeInsets.only(top:10,bottom: 10),
+                                                      child: Text("USERS",
+                                                        style: TextStyle(
+                                                            color: Colors.black.withOpacity(0.75)),
+                                                      ),
+                                                    ),
+
+                                                    Padding(
+                                                      padding: const EdgeInsets.only(right: 5,bottom: 5),
+                                                      child: Align(
+                                                        alignment: Alignment.centerRight,
+                                                        child: Icon(
+                                                          Icons.add_box_outlined,
+                                                          color: Colors.black.withOpacity(0.7),
+                                                        ),
+                                                      ),
+                                                    ),
+
+                                                  ],
+                                                ),
+                                              ),
+                                            )
+
+
+                                          ],
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                );
+                              },
+                            );
 
                           },
                           child: Card(
