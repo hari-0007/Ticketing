@@ -10,12 +10,13 @@ import 'package:flutter/services.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:grouped_list/grouped_list.dart';
 
-import 'chartbutton.dart';
+// import 'chartbutton.dart';
 
 
 List<Map<String, dynamic>> _elements = [
   {
     'devices': 'Allitson-01',
+    "deviceGroup" : "Group A",
     "UserName": "Welcome001",
     "platform": "Windows",
     "osDetails": "Windows 10 64-bits",
@@ -41,6 +42,7 @@ List<Map<String, dynamic>> _elements = [
   },
   {
     'devices': 'Allitson-02',
+    "deviceGroup" : "Group B",
     "UserName": "Welcome002",
     "platform": "Mac",
     "osDetails": "macOS Monterey",
@@ -66,6 +68,7 @@ List<Map<String, dynamic>> _elements = [
   },
   {
     'devices': 'Allitson-03',
+    "deviceGroup" : "Group C",
     "UserName": "Welcome003",
     "platform": "Android",
     "osDetails": "Android 11",
@@ -91,6 +94,7 @@ List<Map<String, dynamic>> _elements = [
   },
   {
     'devices': 'Allitson-04',
+    "deviceGroup" : "Group D",
     "UserName": "Welcome004",
     "platform": "Windows",
     "osDetails": "Windows 10 64-bits",
@@ -116,6 +120,7 @@ List<Map<String, dynamic>> _elements = [
   },
   {
     'devices': 'Allitson-05',
+    "deviceGroup" : "Group E",
     "UserName": "Welcome005",
     "platform": "Mac",
     "osDetails": "macOS Monterey",
@@ -141,6 +146,7 @@ List<Map<String, dynamic>> _elements = [
   },
   {
     'devices': 'Allitson-06',
+    "deviceGroup" : "Group A",
     "UserName": "Welcome006",
     "platform": "Android",
     "osDetails": "Android 11",
@@ -166,6 +172,7 @@ List<Map<String, dynamic>> _elements = [
   },
   {
     'devices': 'Allitson-07',
+    "deviceGroup" : "Group B",
     "UserName": "Welcome007",
     "platform": "Windows",
     "osDetails": "Windows 10 64-bits",
@@ -191,6 +198,7 @@ List<Map<String, dynamic>> _elements = [
   },
   {
     'devices': 'Allitson-08',
+    "deviceGroup" : "Group C",
     "UserName": "Welcome008",
     "platform": "Mac",
     "osDetails": "macOS Monterey",
@@ -216,6 +224,7 @@ List<Map<String, dynamic>> _elements = [
   },
   {
     'devices': 'Allitson-09',
+    "deviceGroup" : "Group D",
     "UserName": "Welcome009",
     "platform": "Android",
     "osDetails": "Android 11",
@@ -241,6 +250,7 @@ List<Map<String, dynamic>> _elements = [
   },
   {
     'devices': 'Allitson-10',
+    "deviceGroup" : "Group E",
     "UserName": "Welcome010",
     "platform": "Windows",
     "osDetails": "Windows 10 64-bits",
@@ -266,6 +276,7 @@ List<Map<String, dynamic>> _elements = [
   },
   {
     'devices': 'Allitson-11',
+    "deviceGroup" : "Group A",
     "UserName": "Welcome011",
     "platform": "Mac",
     "osDetails": "macOS Monterey",
@@ -291,6 +302,7 @@ List<Map<String, dynamic>> _elements = [
   },
   {
     'devices': 'Allitson-12',
+    "deviceGroup" : "Group B",
     "UserName": "Welcome012",
     "platform": "Android",
     "osDetails": "Android 11",
@@ -316,6 +328,7 @@ List<Map<String, dynamic>> _elements = [
   },
   {
     'devices': 'Allitson-13',
+    "deviceGroup" : "Group C",
     "UserName": "Welcome013",
     "platform": "Windows",
     "osDetails": "Windows 10 64-bits",
@@ -341,6 +354,7 @@ List<Map<String, dynamic>> _elements = [
   },
   {
     'devices': 'Allitson-14',
+    "deviceGroup" : "Group D",
     "UserName": "Welcome014",
     "platform": "Mac",
     "osDetails": "macOS Monterey",
@@ -366,6 +380,7 @@ List<Map<String, dynamic>> _elements = [
   },
   {
     'devices': 'Allitson-15',
+    "deviceGroup" : "Group E",
     "UserName": "Welcome015",
     "platform": "Android",
     "osDetails": "Android 11",
@@ -391,6 +406,7 @@ List<Map<String, dynamic>> _elements = [
   },
   {
     'devices': 'Allitson-16',
+    "deviceGroup" : "Group A",
     "UserName": "Welcome016",
     "platform": "Windows",
     "osDetails": "Windows 10 64-bits",
@@ -416,6 +432,7 @@ List<Map<String, dynamic>> _elements = [
   },
   {
     'devices': 'Allitson-17',
+    "deviceGroup" : "Group B",
     "UserName": "Welcome017",
     "platform": "Mac",
     "osDetails": "macOS Monterey",
@@ -441,6 +458,7 @@ List<Map<String, dynamic>> _elements = [
   },
   {
     'devices': 'Allitson-18',
+    "deviceGroup" : "Group C",
     "UserName": "Welcome018",
     "platform": "Android",
     "osDetails": "Android 11",
@@ -466,6 +484,7 @@ List<Map<String, dynamic>> _elements = [
   },
   {
     'devices': 'Allitson-19',
+    "deviceGroup" : "Group D",
     "UserName": "Welcome019",
     "platform": "Windows",
     "osDetails": "Windows 10 64-bits",
@@ -491,6 +510,7 @@ List<Map<String, dynamic>> _elements = [
   },
   {
     'devices': 'Allitson-20',
+    "deviceGroup" : "Group E",
     "UserName": "Welcome020",
     "platform": "Mac",
     "osDetails": "macOS Monterey",
@@ -516,6 +536,7 @@ List<Map<String, dynamic>> _elements = [
   },
   {
     'devices': 'Allitson-21',
+    "deviceGroup" : "Group A",
     "UserName": "Welcome021",
     "platform": "Android",
     "osDetails": "Android 11",
@@ -523,6 +544,58 @@ List<Map<String, dynamic>> _elements = [
     "ipAddress": "170.30.30.632",
     "publicIP": "8.8.9.0",
     "localIP": "103.78.159.000",
+    "macAddress": "000.a83.lop.08e",
+    'statusLive': 'Disabled',
+    "lastActive": "Disable",
+    "hardWareDetails": {
+      "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
+      "Ram":"16.0 GB 2667 MHz",
+    },
+    "callPermission": false,
+    "disableCall":false,
+    "remotePermission":false,
+    "disableRemote":false,
+    "disableScript":false,
+    'disable': true,
+    "block": false,
+    "members":true,
+  },
+  {
+    'devices': 'Allitson-22',
+    "deviceGroup" : "Group F",
+    "UserName": "Welcome022",
+    "platform": "Android",
+    "osDetails": "Android 11",
+    "agentID": 123456785554,
+    "ipAddress": "170.30.30.555",
+    "publicIP": "8.8.9.1",
+    "localIP": "103.55.159.000",
+    "macAddress": "000.a83.lop.08e",
+    'statusLive': 'Disabled',
+    "lastActive": "Disable",
+    "hardWareDetails": {
+      "cpu":"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz",
+      "Ram":"16.0 GB 2667 MHz",
+    },
+    "callPermission": false,
+    "disableCall":false,
+    "remotePermission":false,
+    "disableRemote":false,
+    "disableScript":false,
+    'disable': true,
+    "block": false,
+    "members":true,
+  },
+  {
+    'devices': 'Allitson-23',
+    "deviceGroup" : "Group G",
+    "UserName": "Welcome023",
+    "platform": "Android",
+    "osDetails": "Android 11",
+    "agentID": 123456785554,
+    "ipAddress": "170.30.30.555",
+    "publicIP": "8.8.9.1",
+    "localIP": "103.55.159.000",
     "macAddress": "000.a83.lop.08e",
     'statusLive': 'Disabled',
     "lastActive": "Disable",
@@ -557,7 +630,15 @@ class Chart extends StatefulWidget {
 
 class _ChartState extends State<Chart> {
 
-  bool isGroupPressed = false;
+  // List deviceGroupColor = [];
+  //
+  // Map deviceGroupMap = Map();
+  //
+  // List deviceGroup = [];
+  //
+  // List<ChartData> deviceGroupData = [];
+  //
+  // bool isGroupPressed = false;
 
   List UserData = [];
 
@@ -567,9 +648,9 @@ class _ChartState extends State<Chart> {
 
   List<ChartData> chartData =[];
 
-  Map map = Map();
+  Map deviceMap = Map();
 
-  List _group= [];
+  List _groupActive= [];
 
   bool selectAll = false;
 
@@ -597,31 +678,58 @@ class _ChartState extends State<Chart> {
   @override
   void initState() {
 
-    // _elements.sort((a, b) => a["devices"].compareTo(b["devices"]));
+    _elements.sort((a, b) => a["devices"].compareTo(b["devices"]));
 
     _discover = _elements;
 
-    _tooltip=TooltipBehavior(enable: true,elevation: 2,color: Colors.blueGrey,duration: 5000,animationDuration: 500,);
+    _tooltip=TooltipBehavior(
+      enable: true,
+      elevation: 2,
+      color: Colors.blueGrey,
+      duration: 5000,
+      animationDuration: 500,
+    );
 
     _discover.forEach((element) {
-      _group.add(element["statusLive"]);
+      _groupActive.add(element["statusLive"]);
     });
 
-    _group.forEach((x) => map[x] = !map.containsKey(x) ? (1) : (map[x] + 1));
+    _groupActive.forEach((element) {
+      deviceMap[element] = !deviceMap.containsKey(element) ? (1) : (deviceMap[element] + 1);
+    });
 
-    for(int i=0;i<map.keys.length;i++){
-      chartData.add(ChartData(map.keys.toList()[i], map[map.keys.toList()[i]].toInt()));
+    for(int i=0;i<deviceMap.keys.length;i++){
+      chartData.add(ChartData(deviceMap.keys.toList()[i], deviceMap[deviceMap.keys.toList()[i]].toInt()));
 
       colors.add(RandomColor().randomColor(
-        colorHue: ColorHue.custom(Range.staticValue(HSLColor.fromColor(Color(0xff19547b)).hue.toInt())),
+        colorHue: ColorHue.custom(Range.staticValue(HSLColor.fromColor(/*Color(0xff4066E0)*//*Colors.blueAccent*/Color(0xff19547b)).hue.toInt())),
         colorSaturation: ColorSaturation.highSaturation,
         colorBrightness: ColorBrightness.custom(Range.staticValue((i+1)*10))/*ColorBrightness.custom(Range.staticValue(Random().nextInt(50))),*/
         // debug: true
       ).value.toInt());
-
     }
 
+    // _discover.forEach((element) {
+    //   deviceGroup.add(element["deviceGroup"]);
+    // });
+    //
+    // deviceGroup.forEach((element) {
+    //   deviceGroupMap[element] = !deviceGroupMap.containsKey(element) ? (1) : (deviceGroupMap[element] + 1);
+    // });
+    //
+    // for(int i=0;i<deviceGroupMap.keys.length;i++){
+    //   deviceGroupData.add(ChartData(deviceGroupMap.keys.toList()[i], deviceGroupMap[deviceGroupMap.keys.toList()[i]].toInt()));
+    //
+    //   deviceGroupColor.add(RandomColor().randomColor(
+    //       colorHue: ColorHue.custom(Range.staticValue(HSLColor.fromColor(/*Color(0xff4066E0)*//*Colors.blueAccent*/Color(0xff19547b)).hue.toInt())),
+    //       colorSaturation: ColorSaturation.highSaturation,
+    //       colorBrightness: ColorBrightness.custom(Range.staticValue((i+1)*10))/*ColorBrightness.custom(Range.staticValue(Random().nextInt(50))),*/
+    //     // debug: true
+    //   ).value.toInt());
+    // }
+
     print(colors);
+    // print(deviceGroupColor);
 
     super.initState();
   }
@@ -778,6 +886,13 @@ class _ChartState extends State<Chart> {
             SfCircularChart(
               margin: EdgeInsets.zero,
               tooltipBehavior: _tooltip,
+              // onChartTouchInteractionMove: (data){
+              //   print(data.position);
+              // },
+              onTooltipRender: (TooltipArgs arg){
+                print(arg.text);
+              },
+              enableMultiSelection: false,
               onLegendTapped: (data){
                 // setState(() {
                 //   _discover.reversed.forEach((element) {
@@ -785,7 +900,11 @@ class _ChartState extends State<Chart> {
                 //   });
                 //   print(chartData[data.pointIndex!].x);
                 // });
-                print(chartData[data.pointIndex!].x);
+                // print(chartData[data.pointIndex!].x);
+                print("Helo");
+                setState(() {
+
+                });
               },
               /*onDataLabelTapped: (data){
                 setState(() {
@@ -793,6 +912,13 @@ class _ChartState extends State<Chart> {
                   print(chartData[data.pointIndex].x);
                 });
                 },*/
+              // onLegendItemRender: (value){
+              //   print(value);
+              // },
+              // onSelectionChanged: (value){
+              //   print("xxxxx");
+              //   print(value);
+              // },
               legend: Legend(
                   // legendItemBuilder: (String name, dynamic series,dynamic point, int index){
                   //   return Container(
@@ -847,6 +973,7 @@ class _ChartState extends State<Chart> {
                 isVisible: true,
                 overflowMode: LegendItemOverflowMode.scroll,
                 alignment: ChartAlignment.center,
+                  orientation: LegendItemOrientation.vertical,
                   position: LegendPosition.right,
                 textStyle: TextStyle(
                     color: Colors.white,
@@ -873,7 +1000,7 @@ class _ChartState extends State<Chart> {
                     // verticalAlignment: ChartAlignment.center,
                     widget: PhysicalModel(
                         shape: BoxShape.circle,
-                        elevation: 0,
+                        elevation: 8,
                         // shadowColor: Colors.white,
                         color: Colors.transparent,/*Color(0xffe6e6e6),*/
                         child: Container(
@@ -915,11 +1042,55 @@ class _ChartState extends State<Chart> {
                         print(chartData[value.pointIndex!].x);
                       });
                     },*/
+
+
                     onPointTap: (value){
+
                       print(value.pointIndex);
                       print(explode);
                       print(explodeIndex);
-                      print(chartData[value.pointIndex!].x);
+
+                      /*if(isGroupPressed == false){
+
+                        print(chartData[value.pointIndex!].x);
+
+                        setState(() {
+                          explodeIndex=value.pointIndex!;
+                          if(explodeIndex == value.pointIndex){
+                            explode = !explode;
+                            if(explode==true){
+                              print("helo");
+                              _devicesSearch(chartData[value.pointIndex!].x);
+                              explodeIndexAF = explodeIndex;
+                            }else{
+                              if(explodeIndexAF != value.pointIndex){
+                                print(explodeIndexAF);
+                                print("helo2");
+                                print(value.pointIndex);
+                                explode = true;
+                                explodeIndexAF = explodeIndex;
+                                _devicesSearch(chartData[value.pointIndex!].x);
+                              }else{
+                                print(value.pointIndex);
+                                print("helo1");
+                                _devicesSearch("");
+                                explode = false;
+                                print(explodeIndexAF);
+                              }
+                              *//*print(value.pointIndex);
+                            print("helo1");
+                            _devicesSearch("");
+                            print(explodeIndexAF);*//*
+                            }
+                          }*//*else{
+                          print("hello2");
+                          explode = false;
+                        }*//*
+                        });
+                      }else{
+                        print(deviceGroupData [value.pointIndex!].x);
+                        print("XXXXX");
+                      }*/
 
                       setState(() {
                         explodeIndex=value.pointIndex!;
@@ -969,6 +1140,8 @@ class _ChartState extends State<Chart> {
                         print(chartData[value.pointIndex!].x);
                       });*/
                     },
+
+
                     explodeIndex: explodeIndex,
                     explodeOffset: "10%",
                     strokeColor: Colors.transparent,
@@ -985,7 +1158,7 @@ class _ChartState extends State<Chart> {
                     innerRadius: "60%",
                     explode: explode,
                     explodeGesture: ActivationMode.singleTap,
-                    dataSource: chartData,
+                    dataSource: /*isGroupPressed?deviceGroupData:*/chartData,
                     pointColorMapper: (ChartData data, int){
 
                       // Color _color = RandomColor().randomColor(
@@ -1008,7 +1181,7 @@ class _ChartState extends State<Chart> {
                       //
                       // return _ms;
 
-                      return Color(colors[int]);
+                      return Color(/*isGroupPressed?deviceGroupColor[int] :*/colors[int]);
 
                     },
                     // pointColorMapper: (ChartData data, _) => data.color,
@@ -1018,7 +1191,22 @@ class _ChartState extends State<Chart> {
               ],
             ),
 
-            Positioned.fill(
+            /*isGroupPressed?SizedBox():*/Positioned.fill(
+              child: Align(
+                alignment: Alignment(1,0),
+                child: GestureDetector(
+                  onTap: (){
+                    print("Can't touch");
+                  },
+                  child: Container(
+                    width: 150,
+                    color: Colors.green.withOpacity(0.0),
+                  ),
+                ),
+              ),
+            ),
+
+            /*Positioned.fill(
               child: Align(
                 alignment: Alignment(1,0.90),
                 child: Padding(
@@ -1039,7 +1227,7 @@ class _ChartState extends State<Chart> {
                   ),
                 ),
               ),
-            ),
+            ),*/
 
             /*Positioned.fill(
                 child: Align(
@@ -1181,7 +1369,11 @@ class _ChartState extends State<Chart> {
                     onTap: () {
 
                       // print(UsersState().usersFilter);
-                      print(map);
+                      print(deviceMap);
+
+                      // print(deviceGroupData);
+                      // print(deviceGroup);
+                      // print(deviceGroupMap);
 
                       // UsersState().usersFilter.forEach((element) {
                       //   print(element["name"]);
@@ -1408,8 +1600,9 @@ class _ChartState extends State<Chart> {
                               color: Colors.transparent,
                               elevation: 5,
                               child: GestureDetector(
-                                onTap: (){
-                                  showDialog(
+                                onTap: () {
+
+                                   showDialog(
                                     context: context,
                                     builder: (BuildContext context) {
                                       return StatefulBuilder(
@@ -1717,7 +1910,9 @@ class _ChartState extends State<Chart> {
 
                                                                         GestureDetector(
                                                                             onTap:(){
+
                                                                               Navigator.pop(context);
+
                                                                             },
                                                                             child: Text("SUBMIT")
                                                                         ),
@@ -1831,9 +2026,9 @@ class _ChartState extends State<Chart> {
                                                         },
                                                       );
 
-                                                      /*setState((){
+                                                      setState((){
 
-                                                      });*/
+                                                      });
 
                                                     },
                                                     child: Container(
@@ -2631,6 +2826,22 @@ class _ChartState extends State<Chart> {
                                         Expanded(
                                           child: Text(
                                             element["lastActive"],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Expanded(
+                                          child: Center(
+                                            child: Text("Group"),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Text(
+                                            element["deviceGroup"],
                                           ),
                                         ),
                                       ],
@@ -4394,7 +4605,7 @@ class ChartData {
   // final Color color;
 }
 
-class PopupItem extends PopupMenuItem {
+/*class PopupItem extends PopupMenuItem {
   const PopupItem({
     required Widget child,
     bool enabled = true,
@@ -4411,7 +4622,7 @@ class _PopupItemState extends PopupMenuItemState {
   void handleTap() {
     widget.onTap?.call();
   }
-}
+}*/
 
 
 

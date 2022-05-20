@@ -3,186 +3,186 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 
 List<Map<String, dynamic>> users = [
   {
-    "name" : "James",
+    "name" : "James Bond",
     "designation" : "Network Admin",
     "level" : 1,
     "starRating" : 8,
-    "group": "Group A"
+    "userGroup": "Group A"
   },
   {
     "name" : "Robert",
     "designation" : "Network Technician",
     "level" : 3,
     "starRating" : 2,
-    "group": "Group B"
+    "userGroup": "Group B"
   },
   {
     "name" : "John",
     "designation" : "Server Admin",
     "level" : 2,
     "starRating" : 2,
-    "group": "Group C"
+    "userGroup": "Group C"
   },
   {
     "name" : "Michael",
     "designation" : "System Admin",
     "level" : 4,
     "starRating" : 0,
-    "group": "Group D"
+    "userGroup": "Group D"
   },
   {
     "name" : "William",
     "designation" : "System Engineer",
     "level" : 5,
     "starRating" : 6,
-    "group": "Group A"
+    "userGroup": "Group A"
   },
   {
     "name" : "David",
     "designation" : "Network Admin",
     "level" : 1,
     "starRating" : 0,
-    "group": "Group B"
+    "userGroup": "Group B"
   },
   {
     "name" : "Richard",
     "designation" : "Network Technician",
     "level" : 4,
     "starRating" : 7,
-    "group": "Group C"
+    "userGroup": "Group C"
   },
   {
     "name" : "Joseph",
     "designation" : "Server Admin",
     "level" : 0,
     "starRating" : 0,
-    "group": "Group D"
+    "userGroup": "Group D"
   },
   {
     "name" : "Thomas",
     "designation" : "System Admin",
     "level" : 2,
     "starRating" : 9,
-    "group": "Group A"
+    "userGroup": "Group A"
   },
   {
     "name" : "Charles",
     "designation" : "System Engineer",
     "level" : 3,
     "starRating" : 4,
-    "group": "Group B"
+    "userGroup": "Group B"
   },
   {
     "name" : "Christopher",
     "designation" : "Network Admin",
     "level" : 4,
     "starRating" : 10,
-    "group": "Group C"
+    "userGroup": "Group C"
   },
   {
     "name" : "Daniel",
     "designation" : "Network Technician",
     "level" : 5,
     "starRating" : 7,
-    "group": "Group D"
+    "userGroup": "Group D"
   },
   {
     "name" : "Matthew",
     "designation" : "Server Admin",
     "level" : 2,
     "starRating" : 3,
-    "group": "Group A"
+    "userGroup": "Group A"
   },
   {
     "name" : "Anthony",
     "designation" : "System Admin",
     "level" : 5,
     "starRating" : 5,
-    "group": "Group B"
+    "userGroup": "Group B"
   },
   {
     "name" : "Mark",
     "designation" : "System Engineer",
     "level" : 1,
     "starRating" : 8,
-    "group": "Group C"
+    "userGroup": "Group C"
   },
   {
     "name" : "Donald",
     "designation" : "Network Admin",
     "level" : 4,
     "starRating" : 9,
-    "group": "Group D"
+    "userGroup": "Group D"
   },
   {
     "name" : "Steven",
     "designation" : "Network Technician",
     "level" : 2,
     "starRating" : 4,
-    "group": "Group A"
+    "userGroup": "Group A"
   },
   {
     "name" : "Paul",
     "designation" : "Server Admin",
     "level" : 3,
     "starRating" : 7,
-    "group": "Group B"
+    "userGroup": "Group B"
   },
   {
     "name" : "Andrew",
     "designation" : "System Admin",
     "level" : 3,
     "starRating" : 8,
-    "group": "Group C"
+    "userGroup": "Group C"
   },
   {
     "name" : "Joshua",
     "designation" : "System Engineer",
     "level" : 3,
     "starRating" : 8,
-    "group": "Group D"
+    "userGroup": "Group D"
   },
   {
     "name" : "Kenneth",
     "designation" : "Network Admin",
     "level" : 0,
     "starRating" : 1,
-    "group": "Group A"
+    "userGroup": "Group A"
   },
   {
     "name" : "Kevin",
     "designation" : "Network Technician",
     "level" : 0,
     "starRating" : 0,
-    "group": "Group B"
+    "userGroup": "Group B"
   },
   {
     "name" : "Brian",
     "designation" : "Server Admin",
     "level" : 2,
     "starRating" : 4,
-    "group": "Group C"
+    "userGroup": "Group C"
   },
   {
     "name" : "George",
     "designation" : "System Admin",
     "level" : 2,
     "starRating" : 6,
-    "group": "Group D"
+    "userGroup": "Group D"
   },
   {
     "name" : "Edward",
     "designation" : "System Engineer",
     "level" : 2,
     "starRating" : 5,
-    "group": "Group A"
+    "userGroup": "Group A"
   },
   {
     "name" : "Ronald",
     "designation" : "Network Admin",
     "level" : 0,
     "starRating" : 2,
-    "group": "Group B"
+    "userGroup": "Group B"
   },
 ];
 
@@ -212,6 +212,11 @@ class Users extends StatefulWidget {
 
 class UsersState extends State<Users> {
 
+  final firstName =TextEditingController();
+  final eMail =TextEditingController();
+
+  // bool userGroup = false;
+
   Map map = Map();
   List<String> group = [];
 
@@ -228,6 +233,13 @@ class UsersState extends State<Users> {
   List<Map<String, dynamic>> usersFilter = users;
 
   @override
+  void dispose() {
+    firstName.dispose();
+    eMail.dispose();
+    super.dispose();
+  }
+
+  @override
   initState() {
     // at the beginning, all users are shown
     usersFilter = users;
@@ -237,12 +249,14 @@ class UsersState extends State<Users> {
     });
 
     usersFilter.forEach((element) {
-      group.add(element["group"]);
+      group.add(element["userGroup"]);
     });
 
     group.forEach((element){
       map[element] = !map.containsKey(element) ? (1) : (map[element] + 1);
     });
+
+    // userGroup = false;
     
     super.initState();
   }
@@ -254,9 +268,8 @@ class UsersState extends State<Users> {
       results = users;
     }else {
       results = users
-          .where((user) =>
-          user["name"].toLowerCase().contains(enteredKeyword.toLowerCase()))
-          .toList();
+          .where((user) =>!_userWidth?
+      user["userGroup"].toLowerCase().contains(enteredKeyword.toLowerCase()):user["name"].toLowerCase().contains(enteredKeyword.toLowerCase())).toList();
       // we use the toLowerCase() method to make it case-insensitive
     }
 
@@ -269,8 +282,31 @@ class UsersState extends State<Users> {
 
   // List<Map<String, dynamic>> pass = users;
 
+  String? get _errorText {
+    // at any time, we can get the text from _controller.value.text
+    final text = firstName.value.text;
+    // Note: you can do your own custom validation here
+    // Move this logic this outside the widget for more testable code
+
+    String result = "";
+
+    if (text.isEmpty) {
+      return result = 'Enter User Name'/*'Can\'t be empty'*/;
+    }else if (text.length > 1) {
+      usersFilter.forEach((element) {
+        if(element["name"].toString().toLowerCase()==text.toLowerCase()){
+          print("same");
+          result = 'User already exists';
+        }
+      });
+    }
+    // return null if the text is valid
+    return result;
+  }
+
   @override
   Widget build(BuildContext context) {
+
     return Stack(
       children: [
         Container(
@@ -306,122 +342,301 @@ class UsersState extends State<Users> {
                     // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
 
-                      Flexible(
-                        flex: 2,
-                          child: Row(
-                            // mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
+                      SizedBox(
+                        width: 35,
+                        child: PopupMenuButton(
+                          icon: Icon(Icons.arrow_drop_down_outlined,),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(20.0),
+                            ),
+                          ),
+                          onCanceled: (){
+                            print("Cancel");
+                          },
+                          // onSelected: (val){
+                          //   print(val);
+                          // },
+                          color: Color(0xff19547b).withOpacity(0.975),
+                          padding: EdgeInsets.zero,
+                          offset: Offset(2,2),
+                          itemBuilder: (BuildContext context) {
+                            return [
 
-                              // Flexible(
-                              //     flex: 3,
-                              //   child: GestureDetector(
-                              //     onTap: (){
-                              //       print("down arrow");
-                              //     },
-                              //     child: Center(
-                              //       child: Icon(
-                              //         Icons.arrow_drop_down_outlined,
-                              //         size: 28,
-                              //       ),
-                              //     ),
-                              //   )
-                              // ),
-                              Flexible(
-                                flex: 3,
-                                  child: PopupMenuButton(
-                                    icon: Icon(Icons.arrow_drop_down_outlined,),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.all(
-                                        Radius.circular(20.0),
+                                PopupMenuItem(
+                                    onTap: (){
+                                      setState(() {
+                                        _userSearch("");
+                                      });
+                                    },
+                                    value: "All",
+                                    child: Text(
+                                      "All",
+                                      style: TextStyle(
+                                          color: Colors.white,
                                       ),
                                     ),
-                                    onSelected: (val){
-                                      print(val);
-                                    },
-                                    color: Color(0xff19547b).withOpacity(0.975),
-                                    padding: EdgeInsets.zero,
-                                    offset: Offset(2,2),
-                                    itemBuilder: (BuildContext context) {
-                                      return [
+                                ),
 
-                                        PopupMenuItem(
-                                          value: "User",
-                                            child: Text(
-                                                "User",
-                                              style: TextStyle(
-                                                color: Colors.white
-                                              ),
-                                            )
-                                        ),
+                              for(int i=0; i<map.length;i++)...[
+                                PopupMenuItem(
+                                  onTap: (){
+                                    setState(() {
+                                      // _userSearch(map.keys.toList()[i]);
+                                    });
+                                  },
+                                    value: map.keys.toList()[i],
+                                    child: Text(
+                                      map.keys.toList()[i],/*usersFilter[i]["name"],*//*"${map.keys.toList()[i]}   ${map.values.toList()[i]}",*/
+                                      style: TextStyle(
+                                          color: Colors.white
+                                      ),
+                                    ),
+                                )
+                              ],
 
-                                        PopupMenuItem(
-                                            value: "Group",
-                                            child: Text(
-                                                "Group",
-                                              style: TextStyle(
-                                                  color: Colors.white
-                                              ),
-                                            )
-                                        )
+                            ];
 
-                                      ];
-                                    },
+                            //   group.toSet().map((item){
+                            //   return PopupMenuItem(
+                            //     value: item,
+                            //     child: Text(item),
+                            //   );
+                            // }).toList();
+
+                            //   [
+                            //
+                            //   PopupMenuItem(
+                            //       onTap: (){
+                            //         setState(() {
+                            //           userGroup = false;
+                            //         });
+                            //       },
+                            //       value: "User",
+                            //       child: Text(
+                            //         "User",
+                            //         style: TextStyle(
+                            //             color: Colors.white
+                            //         ),
+                            //       )
+                            //   ),
+                            //
+                            //   PopupMenuItem(
+                            //       onTap: (){
+                            //         setState(() {
+                            //           userGroup = true;
+                            //         });
+                            //       },
+                            //       value: "Group",
+                            //       child: Text(
+                            //         "Group",
+                            //         style: TextStyle(
+                            //             color: Colors.white
+                            //         ),
+                            //       )
+                            //   ),
+                            //
+                            // ];
+                          },
+                        ),
+                      ),
+
+                      /*userGroup?Flexible(
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+
+                              Flexible(
+                                  child: Center(
+                                      child: Text(
+                                          "Groups"
+                                      )
                                   )
                               ),
 
                               Flexible(
-                                flex: 4,
-                                child: Text(
-                                  'Name',
-                                ),
-                              )
+                                  child: Center(
+                                      child: Text(
+                                          "Users"
+                                      )
+                                  )
+                              ),
 
                             ],
                           )
-                      ),
+                      ):*/Flexible(
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
 
-                      Flexible(
-                          flex: 3,
-                          child: Center(
-                            child: Text(
-                                "Designation"
+                            Flexible(
+                                child: Center(
+                                    child: Text(
+                                        "Name",
+                                    )
+                                )
                             ),
-                          )
-                      ),
 
-                      Flexible(
-                          child: Center(
-                            child: Icon(
-                              Icons.leaderboard_sharp,
-                              color: Color(0xff19547b).withOpacity(0.9),
+                            Flexible(
+                              flex: 3,
+                                child: Center(
+                                    child: Text(
+                                        "Designation",
+                                    )
+                                )
                             ),
-                          )
-                      ),
 
-                      Flexible(
-                          child: Center(
-                            child: Icon(
-                                Icons.star_half_sharp,
-                              color: Color(0xff19547b).withOpacity(0.9),
-                            ),
-                          )
-                      ),
+                              Flexible(
+                                  child: Center(
+                                    child: Icon(
+                                      Icons.leaderboard_sharp,
+                                      color: Color(0xff19547b).withOpacity(0.9),
+                                    ),
+                                  )
+                              ),
+
+                              Flexible(
+                                  child: Center(
+                                    child: Icon(
+                                        Icons.star_half_sharp,
+                                      color: Color(0xff19547b).withOpacity(0.9),
+                                    ),
+                                  )
+                              ),
+
+                          ],
+                        ),
+                      )
 
                     ],
+
+                    // children: [
+                    //
+                    //   Flexible(
+                    //     flex: 2,
+                    //       child: Row(
+                    //         // mainAxisAlignment: MainAxisAlignment.center,
+                    //         crossAxisAlignment: CrossAxisAlignment.center,
+                    //         children: [
+                    //
+                    //           // Flexible(
+                    //           //     flex: 3,
+                    //           //   child: GestureDetector(
+                    //           //     onTap: (){
+                    //           //       print("down arrow");
+                    //           //     },
+                    //           //     child: Center(
+                    //           //       child: Icon(
+                    //           //         Icons.arrow_drop_down_outlined,
+                    //           //         size: 28,
+                    //           //       ),
+                    //           //     ),
+                    //           //   )
+                    //           // ),
+                    //           Flexible(
+                    //             flex: 3,
+                    //               child: PopupMenuButton(
+                    //                 icon: Icon(Icons.arrow_drop_down_outlined,),
+                    //                 shape: RoundedRectangleBorder(
+                    //                   borderRadius: BorderRadius.all(
+                    //                     Radius.circular(20.0),
+                    //                   ),
+                    //                 ),
+                    //                 onSelected: (val){
+                    //                   print(val);
+                    //                 },
+                    //                 color: Color(0xff19547b).withOpacity(0.975),
+                    //                 padding: EdgeInsets.zero,
+                    //                 offset: Offset(2,2),
+                    //                 itemBuilder: (BuildContext context) {
+                    //                   return [
+                    //
+                    //                     PopupMenuItem(
+                    //                       onTap: (){
+                    //                         setState(() {
+                    //                           userGroup = false;
+                    //                         });
+                    //                       },
+                    //                       value: "User",
+                    //                         child: Text(
+                    //                             "User",
+                    //                           style: TextStyle(
+                    //                             color: Colors.white
+                    //                           ),
+                    //                         )
+                    //                     ),
+                    //
+                    //                     PopupMenuItem(
+                    //                         onTap: (){
+                    //                           setState(() {
+                    //                             userGroup = true;
+                    //                           });
+                    //                         },
+                    //                         value: "Group",
+                    //                         child: Text(
+                    //                             "Group",
+                    //                           style: TextStyle(
+                    //                               color: Colors.white
+                    //                           ),
+                    //                         )
+                    //                     )
+                    //
+                    //                   ];
+                    //                 },
+                    //               )
+                    //           ),
+                    //
+                    //           Flexible(
+                    //             flex: 4,
+                    //             child: Text(
+                    //               'Name',
+                    //             ),
+                    //           )
+                    //
+                    //         ],
+                    //       )
+                    //   ),
+                    //
+                    //   Flexible(
+                    //       flex: 3,
+                    //       child: Center(
+                    //         child: Text(
+                    //             "Designation"
+                    //         ),
+                    //       )
+                    //   ),
+                    //
+                    //   Flexible(
+                    //       child: Center(
+                    //         child: Icon(
+                    //           Icons.leaderboard_sharp,
+                    //           color: Color(0xff19547b).withOpacity(0.9),
+                    //         ),
+                    //       )
+                    //   ),
+                    //
+                    //   Flexible(
+                    //       child: Center(
+                    //         child: Icon(
+                    //             Icons.star_half_sharp,
+                    //           color: Color(0xff19547b).withOpacity(0.9),
+                    //         ),
+                    //       )
+                    //   ),
+                    //
+                    // ],
+
                   ),
                 ),
               ),
 
               Expanded(
-                child:
-
-                ListView.builder(
-                    padding: EdgeInsets.only(top: 10),
-                    shrinkWrap: true,
-                    itemCount: map.length,
+                child: ListView.builder(
+                  padding: EdgeInsets.only(top: 10),
+                  shrinkWrap: true,
+                  itemCount:/*userGroup?map.length:*/usersFilter.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return GestureDetector(
+                    return /*userGroup?GestureDetector(
                       onTap: (){
                         print("${map.keys.toList()[index]}:${map.values.toList()[index]}");
                       },
@@ -436,11 +651,20 @@ class UsersState extends State<Users> {
                           height: 40,
                           // margin: EdgeInsets.symmetric(vertical: 10),
                           decoration: BoxDecoration(
-                              color: Color(0xff19547b).withOpacity(0.375),/*(index%2==0)?Color(0xff19547b).withOpacity(0.6):Color(0xff19547b).withOpacity(0.4),*/
+                              color: Color(0xff19547b).withOpacity(0.375),*//*(index%2==0)?Color(0xff19547b).withOpacity(0.6):Color(0xff19547b).withOpacity(0.4),*//*
                               borderRadius: BorderRadius.circular(10)
                           ),
                           child: Row(
                             children: [
+
+                              SizedBox(
+                                width: 35,
+                                child: Center(
+                                  child: Text(
+                                    "${index+1}"
+                                  ),
+                                ),
+                              ),
 
                               Flexible(
                                 child: Center(
@@ -462,190 +686,162 @@ class UsersState extends State<Users> {
                           ),
                         ),
                       ),
+                    ):*/GestureDetector(
+                      onTap: (){
+                        print(usersFilter[index]);
+                        // print(context.owner);
+                      },
+                      child: Card(
+                        elevation: 5.0,
+                        color: Colors.white.withOpacity(0.4),
+                        shadowColor: Colors.black,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        // elevation: 8,
+                        // margin: EdgeInsets.only(left: 7.5,right: 7.5,top: 5,bottom: 5),
+                        child: Slidable(
+                          key: UniqueKey(),
+                          endActionPane: ActionPane(
+                            extentRatio: 0.3,
+                              // closeThreshold: 0.25,openThreshold: 0.2,
+                              motion: const DrawerMotion(),
+                              /*dismissible: DismissiblePane(
+                                key: UniqueKey(),
+                                  onDismissed: () {
+
+                                setState(() {
+                                  usersFilter.removeAt(index);
+                                });
+
+
+                                print(index);
+                                print(usersFilter[index]);
+                              }),*/
+                              children: [
+
+                                SlidableAction(
+                                  // flex: 1,
+                                  autoClose: true,
+                                  onPressed: (value){
+                                    print(value);
+                                  },
+                                  backgroundColor: Colors.transparent,
+                                  foregroundColor: Colors.white,
+                                  icon: Icons.edit,
+                                  spacing: 10,
+                                  // label: 'Edit',
+                                ),
+
+                                SlidableAction(
+                                  // flex: 1,
+                                  autoClose: true,
+                                  onPressed: (value){
+                                    print(value);
+                                  },
+                                  backgroundColor: Colors.transparent,
+                                  foregroundColor: Colors.white,
+                                  icon: Icons.block,
+                                  spacing: 10,
+                                  // label: 'Disable',
+                                ),
+
+                                /*SlidableAction(
+                                  autoClose: true,
+                                  onPressed: (value){
+                                    print(value);
+                                  },
+                                  backgroundColor: Colors.transparent,
+                                  foregroundColor: Colors.white,
+                                  icon: Icons.close_rounded,
+                                  spacing: 10,
+                                  // label: 'Remove',
+                                ),*/
+
+                                /*SlidableAction(
+                              onPressed: (value){},
+                              backgroundColor: Colors.transparent,
+                              foregroundColor: Colors.white,
+                              icon: Icons.share,
+                              label: 'Share',
+                            ),*/
+                              ]
+                          ),
+                          child: Container(
+                            height: 40,
+                            // margin: EdgeInsets.symmetric(vertical: 10),
+                            decoration: BoxDecoration(
+                              color: Color(0xff19547b).withOpacity(0.375),/*(index%2==0)?Color(0xff19547b).withOpacity(0.6):Color(0xff19547b).withOpacity(0.4),*/
+                              borderRadius: BorderRadius.circular(10)
+                            ),
+                            child: Row(
+                              // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+
+                                Flexible(
+                                  flex: 2,
+                                  child: Center(
+                                      child: Text(
+                                          usersFilter[index]["name"],
+                                        style: TextStyle(
+                                            color: Colors.black.withOpacity(0.85)
+                                        ),
+                                      )
+                                  ),
+                                ),
+
+                                Flexible(
+                                  flex: 3,
+                                  child: Center(
+                                      child: Text(
+                                        usersFilter[index]["designation"],
+                                        style: TextStyle(
+                                            color: Colors.black.withOpacity(0.85)
+                                        ),
+                                      )
+                                  ),
+                                ),
+
+                                Flexible(
+                                  child: Center(
+                                      child: Text(
+                                        usersFilter[index]["starRating"].toString(),
+                                        style: TextStyle(
+                                            color: Colors.black.withOpacity(0.85)
+                                        ),
+                                      )
+                                  ),
+                                ),
+
+                                Flexible(
+                                  child: Center(
+                                      child: Text(
+                                    usersFilter[index]["level"].toString(),
+                                        style: TextStyle(
+                                            color: Colors.black.withOpacity(0.85)
+                                        ),
+                                      )
+                                  ),
+                                ),
+
+                                // SizedBox(
+                                //   width: 52.5,
+                                //     child: Text(
+                                //       usersFilter[index]["userGroup"].toString(),
+                                //       style: TextStyle(
+                                //           color: Colors.black.withOpacity(0.85)
+                                //       ),
+                                //     )
+                                // ),
+
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
                     );
                   },
-                )
-
-                // ListView.builder(
-                //     padding: EdgeInsets.only(top: 10),
-                //     shrinkWrap: true,
-                //     itemCount: group.length,
-                //   itemBuilder: (BuildContext context, int index) {
-                //     return Card(
-                //       elevation: 5.0,
-                //       color: Colors.white.withOpacity(0.4),
-                //       shadowColor: Colors.black,
-                //       shape: RoundedRectangleBorder(
-                //         borderRadius: BorderRadius.circular(10),
-                //       ),
-                //       child: Container(
-                //         height: 40,
-                //         // margin: EdgeInsets.symmetric(vertical: 10),
-                //         decoration: BoxDecoration(
-                //             color: Color(0xff19547b).withOpacity(0.375),/*(index%2==0)?Color(0xff19547b).withOpacity(0.6):Color(0xff19547b).withOpacity(0.4),*/
-                //             borderRadius: BorderRadius.circular(10)
-                //         ),
-                //         child: Center(
-                //             child: Text(
-                //                 group.toList()[index]
-                //             ),
-                //         ),
-                //       ),
-                //     );
-                //   },
-                // )
-
-                // ListView.builder(
-                //   padding: EdgeInsets.only(top: 10),
-                //   shrinkWrap: true,
-                //   itemCount: usersFilter.length,
-                //   itemBuilder: (BuildContext context, int index) {
-                //     return GestureDetector(
-                //       onTap: (){
-                //         print(usersFilter[index]);
-                //         // print(context.owner);
-                //       },
-                //       child: Card(
-                //         elevation: 5.0,
-                //         color: Colors.white.withOpacity(0.4),
-                //         shadowColor: Colors.black,
-                //         shape: RoundedRectangleBorder(
-                //           borderRadius: BorderRadius.circular(10),
-                //         ),
-                //         // elevation: 8,
-                //         // margin: EdgeInsets.only(left: 7.5,right: 7.5,top: 5,bottom: 5),
-                //         child: Slidable(
-                //           key: UniqueKey(),
-                //           endActionPane: ActionPane(
-                //             extentRatio: 0.3,
-                //               // closeThreshold: 0.25,openThreshold: 0.2,
-                //               motion: const DrawerMotion(),
-                //               /*dismissible: DismissiblePane(
-                //                 key: UniqueKey(),
-                //                   onDismissed: () {
-                //
-                //                 setState(() {
-                //                   usersFilter.removeAt(index);
-                //                 });
-                //
-                //
-                //                 print(index);
-                //                 print(usersFilter[index]);
-                //               }),*/
-                //               children: [
-                //
-                //                 SlidableAction(
-                //                   // flex: 1,
-                //                   autoClose: true,
-                //                   onPressed: (value){
-                //                     print(value);
-                //                   },
-                //                   backgroundColor: Colors.transparent,
-                //                   foregroundColor: Colors.white,
-                //                   icon: Icons.edit,
-                //                   spacing: 10,
-                //                   // label: 'Edit',
-                //                 ),
-                //
-                //                 SlidableAction(
-                //                   // flex: 1,
-                //                   autoClose: true,
-                //                   onPressed: (value){
-                //                     print(value);
-                //                   },
-                //                   backgroundColor: Colors.transparent,
-                //                   foregroundColor: Colors.white,
-                //                   icon: Icons.block,
-                //                   spacing: 10,
-                //                   // label: 'Disable',
-                //                 ),
-                //
-                //                 /*SlidableAction(
-                //                   autoClose: true,
-                //                   onPressed: (value){
-                //                     print(value);
-                //                   },
-                //                   backgroundColor: Colors.transparent,
-                //                   foregroundColor: Colors.white,
-                //                   icon: Icons.close_rounded,
-                //                   spacing: 10,
-                //                   // label: 'Remove',
-                //                 ),*/
-                //
-                //                 /*SlidableAction(
-                //               onPressed: (value){},
-                //               backgroundColor: Colors.transparent,
-                //               foregroundColor: Colors.white,
-                //               icon: Icons.share,
-                //               label: 'Share',
-                //             ),*/
-                //               ]
-                //           ),
-                //           child: Container(
-                //             height: 40,
-                //             // margin: EdgeInsets.symmetric(vertical: 10),
-                //             decoration: BoxDecoration(
-                //               color: Color(0xff19547b).withOpacity(0.375),/*(index%2==0)?Color(0xff19547b).withOpacity(0.6):Color(0xff19547b).withOpacity(0.4),*/
-                //               borderRadius: BorderRadius.circular(10)
-                //             ),
-                //             child: Row(
-                //               // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                //               children: [
-                //
-                //                 Flexible(
-                //                   flex: 2,
-                //                   child: Center(
-                //                       child: Text(
-                //                           usersFilter[index]["name"],
-                //                         style: TextStyle(
-                //                             color: Colors.black.withOpacity(0.85)
-                //                         ),
-                //                       )
-                //                   ),
-                //                 ),
-                //
-                //                 Flexible(
-                //                   flex: 3,
-                //                   child: Center(
-                //                       child: Text(
-                //                         usersFilter[index]["designation"],
-                //                         style: TextStyle(
-                //                             color: Colors.black.withOpacity(0.85)
-                //                         ),
-                //                       )
-                //                   ),
-                //                 ),
-                //
-                //                 Flexible(
-                //                   child: Center(
-                //                       child: Text(
-                //                         usersFilter[index]["starRating"].toString(),
-                //                         style: TextStyle(
-                //                             color: Colors.black.withOpacity(0.85)
-                //                         ),
-                //                       )
-                //                   ),
-                //                 ),
-                //
-                //                 Flexible(
-                //                   child: Center(
-                //                       child: Text(
-                //                     usersFilter[index]["level"].toString(),
-                //                         style: TextStyle(
-                //                             color: Colors.black.withOpacity(0.85)
-                //                         ),
-                //                       )
-                //                   ),
-                //                 ),
-                //
-                //               ],
-                //             ),
-                //           ),
-                //         ),
-                //       ),
-                //     );
-                //   },
-                // ),
+                ),
 
               ),
             ],
@@ -666,7 +862,7 @@ class UsersState extends State<Users> {
 
                   print(designation);
                   print(group);
-                  print(map.keys);
+                  print(map);
 
                   setState(() {
                     _userWidth=!_userWidth;
@@ -1119,12 +1315,20 @@ class UsersState extends State<Users> {
                                                                     style: TextStyle(
                                                                       color: Color(0xff19547b)
                                                                     ),
-                                                                  )
+                                                                  ),
+                                                                style: ButtonStyle(
+                                                                    shape: MaterialStateProperty.all(
+                                                                        RoundedRectangleBorder(
+                                                                          borderRadius: BorderRadius.circular(12.5),
+                                                                        )
+                                                                    ),
+                                                                    backgroundColor: MaterialStateProperty.all(Colors.white)
+                                                                ),
                                                               ),
 
                                                               TextButton(
                                                                   onPressed: (){
-
+                                                                    print(_errorText=="");
                                                                   },
                                                                   child: Text(
                                                                     "SUBMIT",
@@ -1133,7 +1337,12 @@ class UsersState extends State<Users> {
                                                                     ),
                                                                   ),
                                                                 style: ButtonStyle(
-
+                                                                    shape: MaterialStateProperty.all(
+                                                                        RoundedRectangleBorder(
+                                                                      borderRadius: BorderRadius.circular(12.5),
+                                                                        )
+                                                                    ),
+                                                                  backgroundColor: MaterialStateProperty.all(_errorText==""?Colors.white:Colors.transparent)
                                                                 ),
                                                               ),
 
@@ -1168,7 +1377,37 @@ class UsersState extends State<Users> {
                                                                     flex: 2,
                                                                     child: Center(
                                                                       child: TextField(
-
+                                                                        controller: firstName,
+                                                                        cursorColor: Colors.white,
+                                                                        decoration: InputDecoration(
+                                                                          errorText: _errorText,
+                                                                          errorBorder: UnderlineInputBorder(
+                                                                            borderSide: BorderSide(
+                                                                                color: Colors.black.withOpacity(0.35)
+                                                                            ),
+                                                                          ),
+                                                                          focusedErrorBorder: UnderlineInputBorder(
+                                                                            borderSide: BorderSide(
+                                                                                color: Colors.black.withOpacity(0.5)
+                                                                            ),
+                                                                          ),
+                                                                          errorStyle: TextStyle(
+                                                                            color: Colors.blue,
+                                                                          ),
+                                                                          enabledBorder: UnderlineInputBorder(
+                                                                            borderSide: BorderSide(
+                                                                                color: Colors.black.withOpacity(0.35)
+                                                                            ),
+                                                                          ),
+                                                                          focusedBorder: UnderlineInputBorder(
+                                                                            borderSide: BorderSide(
+                                                                                color: Colors.black.withOpacity(0.5)
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                        onChanged: (_){
+                                                                          setState((){});
+                                                                        },
                                                                       ),
                                                                     ),
                                                                   ),
@@ -1195,7 +1434,20 @@ class UsersState extends State<Users> {
                                                                     flex: 2,
                                                                     child: Center(
                                                                       child: TextField(
-
+                                                                        controller: eMail,
+                                                                        cursorColor: Colors.white,
+                                                                        decoration: InputDecoration(
+                                                                          enabledBorder: UnderlineInputBorder(
+                                                                            borderSide: BorderSide(
+                                                                                color: Colors.black.withOpacity(0.35)
+                                                                            ),
+                                                                          ),
+                                                                          focusedBorder: UnderlineInputBorder(
+                                                                            borderSide: BorderSide(
+                                                                                color: Colors.black.withOpacity(0.5)
+                                                                            ),
+                                                                          ),
+                                                                        ),
                                                                       ),
                                                                     ),
                                                                   ),
