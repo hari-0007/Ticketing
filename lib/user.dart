@@ -212,6 +212,8 @@ class Users extends StatefulWidget {
 
 class UsersState extends State<Users> {
 
+  String? userGroupHeading;
+
   final firstName =TextEditingController();
   final eMail =TextEditingController();
 
@@ -268,7 +270,7 @@ class UsersState extends State<Users> {
       results = users;
     }else {
       results = users
-          .where((user) =>!_userWidth?
+          .where((user) =>!_searchUser?
       user["userGroup"].toLowerCase().contains(enteredKeyword.toLowerCase()):user["name"].toLowerCase().contains(enteredKeyword.toLowerCase())).toList();
       // we use the toLowerCase() method to make it case-insensitive
     }
@@ -345,6 +347,7 @@ class UsersState extends State<Users> {
                       SizedBox(
                         width: 35,
                         child: PopupMenuButton(
+                          enabled: !_searchUser,
                           icon: Icon(Icons.arrow_drop_down_outlined,),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(
@@ -367,6 +370,7 @@ class UsersState extends State<Users> {
                                     onTap: (){
                                       setState(() {
                                         _userSearch("");
+                                        userGroupHeading = null;
                                       });
                                     },
                                     value: "All",
@@ -382,7 +386,8 @@ class UsersState extends State<Users> {
                                 PopupMenuItem(
                                   onTap: (){
                                     setState(() {
-                                      // _userSearch(map.keys.toList()[i]);
+                                      _userSearch(map.keys.toList()[i]);
+                                      userGroupHeading = map.keys.toList()[i];
                                     });
                                   },
                                     value: map.keys.toList()[i],
@@ -630,9 +635,30 @@ class UsersState extends State<Users> {
                 ),
               ),
 
+              Visibility(
+                visible: userGroupHeading==null?false:true,
+                child: Card(
+                    elevation: 5.0,
+                    color: Colors.white.withOpacity(0.4),
+                    shadowColor: Colors.black,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    margin: EdgeInsets.only(top: 7.5,bottom: 0),
+                    child: Container(
+                        padding: EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                            color: Color(0xffACC5C6).withOpacity(0.375),/*(index%2==0)?Color(0xff19547b).withOpacity(0.6):Color(0xff19547b).withOpacity(0.4),*/
+                            borderRadius: BorderRadius.circular(10)
+                        ),
+                        child: Text(userGroupHeading.toString())
+                    )
+                ),
+              ),
+
               Expanded(
                 child: ListView.builder(
-                  padding: EdgeInsets.only(top: 10),
+                  padding: EdgeInsets.only(top: 5),
                   shrinkWrap: true,
                   itemCount:/*userGroup?map.length:*/usersFilter.length,
                   itemBuilder: (BuildContext context, int index) {
@@ -860,16 +886,31 @@ class UsersState extends State<Users> {
               InkWell(
                 onTap: (){
 
+                  // usersFilter.add({
+                  //   "name" : "456456",
+                  //   "designation" : "Network Admin",
+                  //   "level" : 0,
+                  //   "starRating" : 2,
+                  //   "userGroup": "Group B"
+                  // },);
+
                   print(designation);
                   print(group);
                   print(map);
 
+                  // print(usersFilter.last);
+                  // print(users.last);
+
                   setState(() {
+
                     _userWidth=!_userWidth;
                     _searchUser=false;
 
                   });
+
+                  userGroupHeading = null;
                   _userSearch("");
+
                 },
                 child: AnimatedContainer(
                   constraints: BoxConstraints(
